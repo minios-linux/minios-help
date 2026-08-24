@@ -71,6 +71,22 @@ class CoreTests(unittest.TestCase):
         with self.assertRaises(DocumentError):
             DocumentStore(self.fx.output)
 
+    def test_semantically_corrupt_navigation_is_rejected(self):
+        manifest_path = self.fx.output / "manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["navigation"][0]["items"][0]["canonical_id"] = "missing/Page"
+        manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+        with self.assertRaisesRegex(DocumentError, "unknown document"):
+            DocumentStore(self.fx.output)
+
+    def test_invalid_default_locale_is_rejected(self):
+        manifest_path = self.fx.output / "manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["default_locale"] = "ru"
+        manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+        with self.assertRaisesRegex(DocumentError, "default locale"):
+            DocumentStore(self.fx.output)
+
     def test_missing_manifest_has_clear_error(self):
         with tempfile.TemporaryDirectory() as directory:
             with self.assertRaisesRegex(DocumentError, "not installed"):

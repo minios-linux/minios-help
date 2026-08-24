@@ -77,6 +77,16 @@ def _validate_relative_path(value):
     return path
 
 
+def _validate_canonical_id(value):
+    if not isinstance(value, str) or not value or "\x00" in value or _has_control(value):
+        raise DocumentError("invalid canonical document ID")
+    if "\\" in value or value.startswith("/"):
+        raise DocumentError("invalid canonical document ID: {}".format(value))
+    if any(part in ("", ".", "..") for part in value.split("/")):
+        raise DocumentError("invalid canonical document ID: {}".format(value))
+    return value
+
+
 class DocumentStore(object):
     def __init__(self, docs_root):
         self.docs_root = Path(docs_root)
@@ -89,6 +99,7 @@ class DocumentStore(object):
         self._documents = {}
         self._folded = {}
         self._validate_documents()
+        self._validate_navigation()
 
     def _load_manifest(self):
         path = self.docs_root / "manifest.json"
@@ -105,8 +116,11 @@ class DocumentStore(object):
         if data.get("schema_version") != SCHEMA_VERSION:
             raise DocumentError("unsupported documentation manifest version")
         locales = data.get("locales")
-        if not isinstance(locales, list) or DEFAULT_LOCALE not in locales:
-            raise DocumentError("documentation manifest has no English locale")
+        if (not isinstance(locales, list) or DEFAULT_LOCALE not in locales or
+                len(locales) != len(set(locales))):
+            raise DocumentError("documentation manifest has invalid locales")
+        if data.get("default_locale") != DEFAULT_LOCALE:
+            raise DocumentError("documentation manifest has invalid default locale")
         if not isinstance(data.get("documents"), list):
             raise DocumentError("documentation manifest has no document list")
         if not isinstance(data.get("navigation"), list):
@@ -117,9 +131,7 @@ class DocumentStore(object):
         for item in self.manifest["documents"]:
             if not isinstance(item, dict):
                 raise DocumentError("invalid document record")
-            canon = item.get("canonical_id")
-            if not isinstance(canon, str) or not canon or _has_control(canon):
-                raise DocumentError("invalid canonical document ID")
+            canon = _validate_canonical_id(item.get("canonical_id"))
             if canon in self._documents or canon.casefold() in self._folded:
                 raise DocumentError("duplicate canonical document ID: {}".format(canon))
             translations = item.get("translations")
@@ -131,6 +143,49 @@ class DocumentStore(object):
                 _validate_relative_path(rel)
             self._documents[canon] = item
             self._folded[canon.casefold()] = canon
+
+    def _validate_navigation(self):
+        seen_keys = set()
+        seen_documents = set()
+
+        def walk(nodes):
+            if not isinstance(nodes, list):
+                raise DocumentError("invalid navigation items in manifest")
+            for node in nodes:
+                if not isinstance(node, dict):
+                    raise DocumentError("invalid navigation record in manifest")
+                key = node.get("key")
+                if (not isinstance(key, str) or not key or
+                        "\x00" in key or _has_control(key)):
+                    raise DocumentError("invalid navigation key in manifest")
+                if key in seen_keys:
+                    raise DocumentError("duplicate navigation key: {}".format(key))
+                seen_keys.add(key)
+                labels = node.get("labels")
+                if (not isinstance(labels, dict) or
+                        not isinstance(labels.get(DEFAULT_LOCALE), str) or
+                        not labels.get(DEFAULT_LOCALE)):
+                    raise DocumentError("navigation item has no English label: {}".format(key))
+                for locale_name, label in labels.items():
+                    if locale_name not in self.locales or not isinstance(label, str):
+                        raise DocumentError("invalid navigation label: {}".format(key))
+                canonical = node.get("canonical_id")
+                if canonical:
+                    resolved = self.resolve_canonical(canonical)
+                    if resolved is None:
+                        raise DocumentError("navigation references unknown document: {}".format(canonical))
+                    if resolved in seen_documents:
+                        raise DocumentError("duplicate navigation document: {}".format(resolved))
+                    seen_documents.add(resolved)
+                walk(node.get("items", []))
+
+        walk(self.navigation())
+        expected = set(self._documents) - {"index"}
+        if seen_documents != expected:
+            missing = sorted(expected - seen_documents)
+            raise DocumentError(
+                "navigation does not cover installed documents: {}".format(
+                    ", ".join(missing) if missing else "duplicate entries"))
 
     def resolve_canonical(self, value):
         if not isinstance(value, str):
