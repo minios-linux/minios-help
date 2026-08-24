@@ -142,29 +142,13 @@ class HelpWindow(Gtk.ApplicationWindow):
         header.pack_start(self.forward_button)
         header.pack_start(self.home_button)
 
-        self.search_entry = Gtk.SearchEntry()
-        self.search_entry.set_placeholder_text(_("Search documentation"))
-        self.search_entry.set_tooltip_text(_("Search documentation"))
-        self.search_entry.set_width_chars(22)
-        _accessible(self.search_entry, _("Search documentation"))
-        self.search_entry.connect("search-changed", self._on_search_changed)
-        self.search_entry.connect("activate", self._on_search_activate)
-        header.pack_end(self.search_entry)
-
-        self.locale_combo = Gtk.ComboBoxText()
-        self.locale_combo.set_tooltip_text(_("Documentation language"))
-        _accessible(self.locale_combo, _("Documentation language"))
-        self.locale_combo.connect("changed", self._on_locale_changed)
-        header.pack_end(self.locale_combo)
-
-        self._build_search_popover()
         self._update_nav_buttons()
 
     def _build_search_popover(self):
         self.search_popover = Gtk.Popover.new(self.search_entry)
         self.search_popover.set_position(Gtk.PositionType.BOTTOM)
         outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-        outer.set_size_request(520, 300)
+        outer.set_size_request(380, 300)
         self.search_message = Gtk.Label(
             label=_("Type to search the local documentation."), xalign=0)
         self.search_message.set_margin_top(10)
@@ -184,6 +168,29 @@ class HelpWindow(Gtk.ApplicationWindow):
     def _build_content(self):
         root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         self.add(root)
+
+        controls = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        controls.set_margin_top(6)
+        controls.set_margin_bottom(6)
+        controls.set_margin_start(8)
+        controls.set_margin_end(8)
+        self.search_entry = Gtk.SearchEntry()
+        self.search_entry.set_placeholder_text(_("Search documentation"))
+        self.search_entry.set_tooltip_text(_("Search documentation"))
+        self.search_entry.set_hexpand(True)
+        _accessible(self.search_entry, _("Search documentation"))
+        self.search_entry.connect("search-changed", self._on_search_changed)
+        self.search_entry.connect("activate", self._on_search_activate)
+        controls.pack_start(self.search_entry, True, True, 0)
+
+        self.locale_combo = Gtk.ComboBoxText()
+        self.locale_combo.set_tooltip_text(_("Documentation language"))
+        _accessible(self.locale_combo, _("Documentation language"))
+        self.locale_combo.connect("changed", self._on_locale_changed)
+        controls.pack_end(self.locale_combo, False, False, 0)
+        root.pack_start(controls, False, False, 0)
+        self.controls_row = controls
+        self._build_search_popover()
 
         self.fallback_bar = Gtk.InfoBar()
         self.fallback_bar.set_message_type(Gtk.MessageType.INFO)
@@ -483,7 +490,7 @@ class HelpWindow(Gtk.ApplicationWindow):
             section.get_style_context().add_class("row-meta")
             snippet = Gtk.Label(label=result.snippet, xalign=0)
             snippet.set_line_wrap(True)
-            snippet.set_max_width_chars(64)
+            snippet.set_max_width_chars(48)
             box.pack_start(title, False, False, 0)
             box.pack_start(section, False, False, 0)
             box.pack_start(snippet, False, False, 0)

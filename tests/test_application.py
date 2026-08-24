@@ -117,6 +117,16 @@ class ApplicationTests(unittest.TestCase):
         self._drain()
         self.assertEqual(self.window.current.canonical_id, "about/Page")
 
+    def test_compact_window_controls_do_not_force_a_wide_minimum(self):
+        minimum, _natural = self.window.get_preferred_width()
+        header_minimum, _header_natural = self.window.get_titlebar().get_preferred_width()
+        controls_minimum, _controls_natural = self.window.controls_row.get_preferred_width()
+        self.assertLessEqual(minimum, 420)
+        self.assertLessEqual(header_minimum, 420)
+        self.assertLessEqual(controls_minimum, 420)
+        self.assertIs(self.window.search_entry.get_parent(), self.window.controls_row)
+        self.assertIs(self.window.locale_combo.get_parent(), self.window.controls_row)
+
     def test_narrow_window_hides_sidebar(self):
         allocation = type("Allocation", (), {"width": 600})()
         self.window._on_size_allocate(self.window, allocation)
