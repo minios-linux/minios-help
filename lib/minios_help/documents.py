@@ -49,11 +49,10 @@ def locale_candidates(explicit=None, environ=None):
     values = []
     if explicit:
         values.append(explicit)
-    else:
-        values.extend(
-            item for item in environ.get("LANGUAGE", "").split(":") if item)
-        values.extend(environ.get(name, "") for name in (
-            "LC_ALL", "LC_MESSAGES", "LANG"))
+    values.extend(
+        item for item in environ.get("LANGUAGE", "").split(":") if item)
+    values.extend(environ.get(name, "") for name in (
+        "LC_ALL", "LC_MESSAGES", "LANG"))
     values.append(DEFAULT_LOCALE)
     candidates = []
     for value in values:

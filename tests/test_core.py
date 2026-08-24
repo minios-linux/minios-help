@@ -39,12 +39,17 @@ class CoreTests(unittest.TestCase):
             "LANG": "en_US.UTF-8",
         }
         self.assertEqual(self.store.select_locale(environ=env), "ru")
-        self.assertEqual(self.store.select_locale("pt_BR.UTF-8"), "en")
+        self.assertEqual(
+            self.store.select_locale("pt_BR.UTF-8", environ={}), "en")
         self.assertEqual(locale_candidates(None, env)[:3], ["ru-RU", "ru", "de-DE"])
 
     def test_explicit_locale_wins(self):
         env = {"LANGUAGE": "en", "LANG": "en_US.UTF-8"}
         self.assertEqual(self.store.select_locale("ru", environ=env), "ru")
+
+    def test_unsupported_explicit_locale_falls_through_environment(self):
+        env = {"LANGUAGE": "ru", "LANG": "en_US.UTF-8"}
+        self.assertEqual(self.store.select_locale("de_DE.UTF-8", environ=env), "ru")
 
     def test_manual_locale_preference_is_saved_outside_docs(self):
         path = Path(self.fx.temp.name) / "config" / "settings.json"
