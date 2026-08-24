@@ -80,6 +80,8 @@ def _validate_relative_path(value):
 class DocumentStore(object):
     def __init__(self, docs_root):
         self.docs_root = Path(docs_root)
+        if self.docs_root.is_symlink():
+            raise DocumentError("symbolic documentation roots are not allowed")
         self.manifest = self._load_manifest()
         self.locales = tuple(self.manifest["locales"])
         self.default_locale = self.manifest.get("default_locale", DEFAULT_LOCALE)
@@ -90,6 +92,8 @@ class DocumentStore(object):
 
     def _load_manifest(self):
         path = self.docs_root / "manifest.json"
+        if path.is_symlink():
+            raise DocumentError("symbolic documentation manifests are not allowed")
         if not path.is_file():
             raise DocumentError("MiniOS Help documentation is not installed")
         try:

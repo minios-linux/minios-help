@@ -76,6 +76,21 @@ class CoreTests(unittest.TestCase):
             with self.assertRaisesRegex(DocumentError, "not installed"):
                 DocumentStore(directory)
 
+    def test_symbolic_document_root_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            link = Path(directory) / "docs-link"
+            link.symlink_to(self.fx.output, target_is_directory=True)
+            with self.assertRaisesRegex(DocumentError, "symbolic documentation roots"):
+                DocumentStore(link)
+
+    def test_symbolic_manifest_is_rejected(self):
+        manifest = self.fx.output / "manifest.json"
+        real_manifest = self.fx.output / "manifest.real.json"
+        manifest.rename(real_manifest)
+        manifest.symlink_to(real_manifest.name)
+        with self.assertRaisesRegex(DocumentError, "symbolic documentation manifests"):
+            DocumentStore(self.fx.output)
+
     def test_internal_navigation_forms(self):
         cases = {
             "/about/Other.md": ("about/Other", ""),
@@ -92,7 +107,9 @@ class CoreTests(unittest.TestCase):
         for uri in ("https://minios.dev", "http://example.test", "mailto:test@example.test"):
             self.assertEqual(resolve_link(self.store, "about/Page", uri).kind, "external")
         for uri in ("file:///etc/passwd", "data:text/plain,x", "javascript:alert(1)",
-                    "ftp://example.test", "//example.test", "../about/Other.md"):
+                    "ftp://example.test", "//example.test", "../about/Other.md",
+                    "/about/../about/Other.md",
+                    "/docs/about/%2e%2e/about/Other.md"):
             self.assertEqual(resolve_link(self.store, "about/Page", uri).kind, "blocked")
 
     def test_history_back_forward_and_scroll_restore(self):

@@ -37,6 +37,8 @@ def resolve_link(store, current_id, uri):
         if canonical is None:
             return LinkResolution("blocked", None, "", None)
         return LinkResolution("internal", canonical, anchor, None)
+    if ".." in path.split("/"):
+        return LinkResolution("blocked", None, "", None)
 
     if path.startswith("/docs/"):
         path = path[len("/docs/"):]
@@ -44,9 +46,6 @@ def resolve_link(store, current_id, uri):
         path = path[1:]
     else:
         base = "" if current_id == "index" else posixpath.dirname(current_id)
-        raw_parts = path.split("/")
-        if ".." in raw_parts:
-            return LinkResolution("blocked", None, "", None)
         path = posixpath.join(base, path)
     if path.endswith(".md"):
         path = path[:-3]
