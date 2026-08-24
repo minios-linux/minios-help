@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+from __future__ import absolute_import
+
+import os
+import sys
+
+installed = "/usr/lib/minios-help"
+if os.path.isdir(installed):
+    sys.path.insert(0, installed)
+else:
+    here = os.path.abspath(os.path.dirname(__file__))
+    sys.path.insert(0, os.path.join(os.path.dirname(here), "lib"))
+
+from minios_help.application import main
+
+sys.exit(main())
