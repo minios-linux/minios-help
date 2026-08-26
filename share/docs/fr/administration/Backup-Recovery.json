@@ -1,0 +1,1275 @@
+{
+  "headings": [
+    {
+      "anchor": "sauvegarde-et-restauration",
+      "level": 1,
+      "title": "Sauvegarde et restauration"
+    },
+    {
+      "anchor": "adoptez-une-stratégie-de-sauvegarde-en-couches",
+      "level": 2,
+      "title": "Adoptez une stratégie de sauvegarde en couches"
+    },
+    {
+      "anchor": "sauvegardez-dabord-les-données-personnelles",
+      "level": 2,
+      "title": "Sauvegardez d’abord les données personnelles"
+    },
+    {
+      "anchor": "sauvegardez-la-configuration",
+      "level": 2,
+      "title": "Sauvegardez la configuration"
+    },
+    {
+      "anchor": "sauvegardez-les-modules",
+      "level": 2,
+      "title": "Sauvegardez les modules"
+    },
+    {
+      "anchor": "exporter-les-sessions-persistantes",
+      "level": 2,
+      "title": "Exporter les sessions persistantes"
+    },
+    {
+      "anchor": "gérer-les-sessions-squashfs-hors-ligne",
+      "level": 2,
+      "title": "Gérer les sessions SquashFS hors ligne"
+    },
+    {
+      "anchor": "préservez-chaque-segment-dynfilefs",
+      "level": 2,
+      "title": "Préservez chaque segment DynFileFS"
+    },
+    {
+      "anchor": "créer-une-image-complète-du-support",
+      "level": 2,
+      "title": "Créer une image complète du support"
+    },
+    {
+      "anchor": "sauvegarder-les-installations-natives",
+      "level": 2,
+      "title": "Sauvegarder les installations natives"
+    },
+    {
+      "anchor": "valider-les-sauvegardes-et-tester-les-restaurations",
+      "level": 2,
+      "title": "Valider les sauvegardes et tester les restaurations"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "sauvegarde-et-restauration",
+      [
+        [
+          "text",
+          "Sauvegarde et restauration"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Aucune sauvegarde unique ne protège chaque composant d’un système MiniOS. Les fichiers personnels, la configuration, les sessions persistantes, les modules et le périphérique de stockage nécessitent chacun des procédures de restauration différentes. Conservez plusieurs copies, gardez au moins une copie sur un autre appareil et testez la restauration avant d’en avoir réellement besoin."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "adoptez-une-stratégie-de-sauvegarde-en-couches",
+      [
+        [
+          "text",
+          "Adoptez une stratégie de sauvegarde en couches"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Un jeu de sauvegardes efficace comprend les couches suivantes :"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Sauvegardez fréquemment les fichiers personnels irremplaçables, indépendamment de la session MiniOS."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Notez la configuration et les modules choisis à chaque modification."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Exportez chaque session saine et arrêtée dans un mode pris en charge."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Conservez une copie hors ligne des données que le Gestionnaire de sessions ne peut pas exporter."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Créez occasionnellement une image complète du support après avoir arrêté la source et interrompu toute écriture."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Utilisez des destinations versionnées plutôt que d’écraser la dernière sauvegarde valide. Conservez un enregistrement de la version MiniOS, de l’édition, de l’architecture, de la date de sauvegarde, du mode de session et de l’état de chiffrement avec chaque sauvegarde. Une image complète du support constitue un filet de sécurité utile, mais ne doit jamais être la seule copie des fichiers personnels."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "sauvegardez-dabord-les-données-personnelles",
+      [
+        [
+          "text",
+          "Sauvegardez d’abord les données personnelles"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Sauvegardez l’intégralité du répertoire personnel lorsque c’est possible, y compris les paramètres cachés des applications. Au minimum, incluez le travail stocké dans Bureau, Documents, Téléchargements, Musique, Images, Public, Modèles et Vidéos, ainsi que tout dossier de projet ou de données créé en dehors de ces emplacements standards."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Le support utilisateur de MiniOS peut lier ou monter les répertoires utilisateurs standards vers un emplacement séparé sur le support MiniOS inscriptible. Le chemin configuré par défaut est "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/minios/userdata"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", mais "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_USER_DIRS_PATH"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " permet de choisir un autre chemin sécurisé. Les données à cet emplacement sont en dehors de la couche de session normale et doivent être sauvegardées séparément. Vérifiez les cibles réelles des liens ou des montages au lieu de supposer qu’exporter une session les inclut. Sauvegardez également les fichiers stockés volontairement sur d’autres volumes montés."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Fermez les applications qui écrivent des bases de données, des boîtes mail, des profils de navigateur ou des images de machines virtuelles avant de copier leurs données. Pour les données importantes, privilégiez une méthode de sauvegarde qui préserve la propriété, les permissions, les liens, les attributs étendus et les horodatages lorsque la destination le permet."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "sauvegardez-la-configuration",
+      [
+        [
+          "text",
+          "Sauvegardez la configuration"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Préservez la configuration qui contrôle les futurs démarrages, pas seulement les fichiers visibles dans le système de fichiers racine actuel. Les emplacements concernés peuvent inclure :"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios/config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " et "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios/config.conf.d/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " sur un support MiniOS inscriptible."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/live/config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " et "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/live/config.conf.d/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " sur un système persistant ou natif."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Les hooks, preseeds, modifications du menu de démarrage examinés, ainsi qu’une note des paramètres de démarrage personnalisés."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "La configuration utilisateur dans le répertoire personnel et la configuration système sélectionnée sous "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " pour une installation native."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La configuration peut contenir des empreintes de mots de passe, des identifiants réseau, des clés et des paramètres de service. Protégez la sauvegarde en conséquence. Ne stockez jamais de mots de passe en clair à côté d’une sauvegarde de session chiffrée. Voir "
+        ],
+        [
+          "link",
+          "/administration/Security-Hardening.md",
+          null,
+          [
+            [
+              "text",
+              "Renforcement de la sécurité"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pour des conseils sur le chiffrement et la gestion des supports."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "sauvegardez-les-modules",
+      [
+        [
+          "text",
+          "Sauvegardez les modules"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Sauvegardez les fichiers "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " personnalisés depuis le stockage durable des modules et consignez leur ordre, leur source, la version MiniOS et leur usage. Ne déduisez pas le prochain démarrage à partir de ce qui est visible dans le système de fichiers racine actuel :"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "En cours d’exécution"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " correspond à l’ensemble de modules composant le système live actuel."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Prochain démarrage"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " correspond à l’ensemble de modules sélectionné par les règles de démarrage actuelles."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Un module activé uniquement pour la session en cours peut ne pas être présent dans le stockage durable. Un module ajouté pour le prochain démarrage peut ne pas être actif actuellement. Examinez et consignez les deux vues avant la sauvegarde. Les filtres de démarrage comme "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "load"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noload"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " et "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "bext"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " peuvent également modifier l’ensemble effectif du prochain démarrage. Voir "
+        ],
+        [
+          "link",
+          "/administration/Module-Manager.md",
+          null,
+          [
+            [
+              "text",
+              "Gestionnaire de modules"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "exporter-les-sessions-persistantes",
+      [
+        [
+          "text",
+          "Exporter les sessions persistantes"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Utilisez la "
+        ],
+        [
+          "link",
+          "/configuration/Session-Management.md",
+          null,
+          [
+            [
+              "text",
+              "Gestion des sessions"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pour identifier la session En cours d’exécution et celle sélectionnée pour le prochain démarrage. Activer une session différente ne modifie que le prochain démarrage ; cela ne rend pas la session actuelle sûre à exporter. Redémarrez sur une autre session, ou démarrez sans persistance, avant de sauvegarder l’ancienne session en cours."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Le Gestionnaire de sessions peut exporter une session "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "native"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dynfilefs"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "raw"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ou "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " non active sous forme d’archive "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".tar.zst"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". L’exportation est une sauvegarde logique des fichiers de la session, pas nécessairement une copie bit à bit de son conteneur de stockage. Conservez l’archive sur un autre appareil. L’importation crée une nouvelle session numérotée ; examinez-la et activez-la explicitement uniquement après validation."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Une exportation LUKS contient les données logiques de session déchiffrées, et non le conteneur "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " chiffré. Chiffrez la destination de sauvegarde ou l’archive par une méthode distincte et vérifiée si les données exportées doivent rester confidentielles. L’importation dans LUKS crée un nouveau conteneur chiffré et nécessite une nouvelle phrase secrète cible."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ne copiez pas manuellement un répertoire de session monté. La session peut être en cours de modification, et un système de fichiers sur conteneur peut ne pas être représenté par un ensemble cohérent de fichiers tant qu’il est actif."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "gérer-les-sessions-squashfs-hors-ligne",
+      [
+        [
+          "text",
+          "Gérer les sessions SquashFS hors ligne"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Avant de sauvegarder une session SquashFS en cours d’exécution, utilisez "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Sauvegarder maintenant"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " et attendez la fin de la sauvegarde et de la validation. La sauvegarde reconstruit "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " et remplace de façon atomique l’instantané précédent ; elle ne conserve pas de génération de retour arrière. Arrêtez ensuite proprement."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L’implémentation actuelle du Gestionnaire de sessions refuse l’exportation et la copie de SquashFS. Après la sauvegarde, démarrez sans persistance ou utilisez un autre système Linux et copiez la session SquashFS depuis le magasin de sessions inactif. Préservez ensemble le répertoire complet de la session numérotée et les métadonnées du magasin de sessions. Ne remplacez ni ne renumérotez d’entrées dans un magasin "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/changes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " actif. Consultez "
+        ],
+        [
+          "link",
+          "/administration/Boot-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Récupération au démarrage"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " avant toute modification de la structure de démarrage ou de disque lors d’une restauration."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "préservez-chaque-segment-dynfilefs",
+      [
+        [
+          "text",
+          "Préservez chaque segment DynFileFS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Une session DynFileFS est un conteneur logique réparti sur un ensemble complet de fichiers de support. Une copie hors ligne doit inclure "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.dat"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ainsi que chaque segment numéroté comme "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.dat.0"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.dat.1"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " et les segments suivants. Copier uniquement le premier fichier ne donne pas une sauvegarde exploitable. Ne créez pas de segment manquant et ne réparez pas l’unique copie."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L’exportation normale via le Gestionnaire de sessions évite ce problème au niveau du conteneur en exportant les fichiers logiques de la session. Pour les copies interrompues, segments manquants, supports pleins et réparations de système de fichiers, consultez "
+        ],
+        [
+          "link",
+          "/configuration/DynFileFS-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Récupération DynFileFS et dynblk"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "créer-une-image-complète-du-support",
+      [
+        [
+          "text",
+          "Créer une image complète du support"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "link",
+          "/installation/tools/Drive-Utility.md",
+          null,
+          [
+            [
+              "text",
+              "L’Utilitaire de disque"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " permet d’utiliser "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Créer une image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pour lire l’intégralité d’un périphérique dans une image brute, avec compression optionnelle. Cela capture la table de partitions, les fichiers de démarrage, les modules, la configuration, le magasin de sessions, les données utilisateur et les blocs inutilisés tels qu’ils existent sur le périphérique source. Le fichier image nécessite donc un espace de destination adapté et peut contenir des données supprimées récupérables et des secrets."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Créez l’image hors ligne. Arrêtez MiniOS et connectez le support source à un autre système en fonctionnement, ou démarrez depuis un autre appareil. Assurez-vous qu’aucune partition source n’est montée et qu’aucune persistance, swap, base de données ou service en arrière-plan n’écrit dessus. L’Utilitaire de disque masque normalement les périphériques montés, mais afficher un périphérique dans l’interface ne garantit pas la cohérence d’une image brute en direct."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Vérifiez la source par modèle, taille et nom de périphérique. Enregistrez l’image sur un autre support physique, jamais sur un système de fichiers du support source. Pour la restauration, "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Écrire l’image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " effectue une écriture brute sur le périphérique cible sélectionné. Vérifiez la cible avec la même attention ; toutes les données existantes sur la cible seront perdues. Utilisez une cible au moins aussi grande que la source d’origine, sauf si l’image a été préparée explicitement pour un périphérique plus petit."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "sauvegarder-les-installations-natives",
+      [
+        [
+          "text",
+          "Sauvegarder les installations natives"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Une installation native n’utilise pas une session persistante live comme système de fichiers racine, donc l’exportation via le Gestionnaire de sessions ne constitue pas une sauvegarde complète du système natif. Sauvegardez les répertoires personnels des utilisateurs, la configuration système sélectionnée, les données applicatives, les fichiers locaux et les identifiants de récupération à l’aide d’une méthode de sauvegarde compatible avec le système de fichiers. Notez la version MiniOS, la disposition des partitions, la sélection des paquets installés, le mode de démarrage et tout module ou noyau personnalisé."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Pour une restauration bare-metal, créez une image complète du disque hors ligne ou utilisez un produit de sauvegarde éprouvé prenant en charge les systèmes de fichiers et la disposition des partitions natifs. Conservez une sauvegarde au niveau des fichiers pour pouvoir restaurer des fichiers individuels sans écraser tout le disque. Voir "
+        ],
+        [
+          "link",
+          "/administration/Boot-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Récupération au démarrage"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pour le diagnostic des fichiers de démarrage et du bootloader."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "valider-les-sauvegardes-et-tester-les-restaurations",
+      [
+        [
+          "text",
+          "Valider les sauvegardes et tester les restaurations"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Une copie terminée n’est pas encore une sauvegarde éprouvée. À chaque cycle de sauvegarde :"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Vérifiez que la sauvegarde est sur un autre appareil et possède la date et la taille attendues."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Notez puis comparez une somme de contrôle cryptographique pour les archives et images disque."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Ouvrez un échantillon de fichiers personnels, dont au moins un gros fichier et un fichier de chaque jeu de données applicatif important."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Importez une archive de session comme nouvelle session inactive et inspectez ses fichiers. Testez le démarrage uniquement après avoir préservé la sélection de session connue comme valide."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Vérifiez qu’une copie hors ligne DynFileFS contient bien toute la séquence de segments."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Restaurez une image complète du support uniquement sur un appareil jetable ou de rechange de taille adéquate, puis testez le démarrage et l’accès aux données importantes."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Testez la restauration de fichiers natifs vers un emplacement séparé et vérifiez les permissions, la propriété, les liens et la lisibilité par les applications."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Effectuez des tests de restauration après tout changement de mode de persistance, de chiffrement, de partitionnement, de version MiniOS ou de logiciel de sauvegarde. Conservez la dernière sauvegarde validée jusqu’à ce que la suivante ait passé son test de restauration. Pour un diagnostic plus large, voir "
+        ],
+        [
+          "link",
+          "/administration/Boot-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Récupération au démarrage"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "link",
+          "/configuration/DynFileFS-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Récupération DynFileFS et dynblk"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " et "
+        ],
+        [
+          "link",
+          "/administration/Security-Hardening.md",
+          null,
+          [
+            [
+              "text",
+              "Renforcement de la sécurité"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Sauvegarde et restauration\nAucune sauvegarde unique ne protège chaque composant d’un système MiniOS. Les fichiers personnels, la configuration, les sessions persistantes, les modules et le périphérique de stockage nécessitent chacun des procédures de restauration différentes. Conservez plusieurs copies, gardez au moins une copie sur un autre appareil et testez la restauration avant d’en avoir réellement besoin.\nAdoptez une stratégie de sauvegarde en couches\nUn jeu de sauvegardes efficace comprend les couches suivantes :\nSauvegardez fréquemment les fichiers personnels irremplaçables, indépendamment de la session MiniOS.\nNotez la configuration et les modules choisis à chaque modification.\nExportez chaque session saine et arrêtée dans un mode pris en charge.\nConservez une copie hors ligne des données que le Gestionnaire de sessions ne peut pas exporter.\nCréez occasionnellement une image complète du support après avoir arrêté la source et interrompu toute écriture.\nUtilisez des destinations versionnées plutôt que d’écraser la dernière sauvegarde valide. Conservez un enregistrement de la version MiniOS, de l’édition, de l’architecture, de la date de sauvegarde, du mode de session et de l’état de chiffrement avec chaque sauvegarde. Une image complète du support constitue un filet de sécurité utile, mais ne doit jamais être la seule copie des fichiers personnels.\nSauvegardez d’abord les données personnelles\nSauvegardez l’intégralité du répertoire personnel lorsque c’est possible, y compris les paramètres cachés des applications. Au minimum, incluez le travail stocké dans Bureau, Documents, Téléchargements, Musique, Images, Public, Modèles et Vidéos, ainsi que tout dossier de projet ou de données créé en dehors de ces emplacements standards.\nLe support utilisateur de MiniOS peut lier ou monter les répertoires utilisateurs standards vers un emplacement séparé sur le support MiniOS inscriptible. Le chemin configuré par défaut est /minios/userdata, mais LIVE_USER_DIRS_PATH permet de choisir un autre chemin sécurisé. Les données à cet emplacement sont en dehors de la couche de session normale et doivent être sauvegardées séparément. Vérifiez les cibles réelles des liens ou des montages au lieu de supposer qu’exporter une session les inclut. Sauvegardez également les fichiers stockés volontairement sur d’autres volumes montés.\nFermez les applications qui écrivent des bases de données, des boîtes mail, des profils de navigateur ou des images de machines virtuelles avant de copier leurs données. Pour les données importantes, privilégiez une méthode de sauvegarde qui préserve la propriété, les permissions, les liens, les attributs étendus et les horodatages lorsque la destination le permet.\nSauvegardez la configuration\nPréservez la configuration qui contrôle les futurs démarrages, pas seulement les fichiers visibles dans le système de fichiers racine actuel. Les emplacements concernés peuvent inclure :\nminios/config.conf et minios/config.conf.d/ sur un support MiniOS inscriptible.\n/etc/live/config.conf et /etc/live/config.conf.d/ sur un système persistant ou natif.\nLes hooks, preseeds, modifications du menu de démarrage examinés, ainsi qu’une note des paramètres de démarrage personnalisés.\nLa configuration utilisateur dans le répertoire personnel et la configuration système sélectionnée sous /etc pour une installation native.\nLa configuration peut contenir des empreintes de mots de passe, des identifiants réseau, des clés et des paramètres de service. Protégez la sauvegarde en conséquence. Ne stockez jamais de mots de passe en clair à côté d’une sauvegarde de session chiffrée. Voir Renforcement de la sécurité pour des conseils sur le chiffrement et la gestion des supports.\nSauvegardez les modules\nSauvegardez les fichiers .sb personnalisés depuis le stockage durable des modules et consignez leur ordre, leur source, la version MiniOS et leur usage. Ne déduisez pas le prochain démarrage à partir de ce qui est visible dans le système de fichiers racine actuel :\nEn cours d’exécution correspond à l’ensemble de modules composant le système live actuel.\nProchain démarrage correspond à l’ensemble de modules sélectionné par les règles de démarrage actuelles.\nUn module activé uniquement pour la session en cours peut ne pas être présent dans le stockage durable. Un module ajouté pour le prochain démarrage peut ne pas être actif actuellement. Examinez et consignez les deux vues avant la sauvegarde. Les filtres de démarrage comme load, noload et bext peuvent également modifier l’ensemble effectif du prochain démarrage. Voir Gestionnaire de modules.\nExporter les sessions persistantes\nUtilisez la Gestion des sessions pour identifier la session En cours d’exécution et celle sélectionnée pour le prochain démarrage. Activer une session différente ne modifie que le prochain démarrage ; cela ne rend pas la session actuelle sûre à exporter. Redémarrez sur une autre session, ou démarrez sans persistance, avant de sauvegarder l’ancienne session en cours.\nLe Gestionnaire de sessions peut exporter une session native, dynfilefs, raw ou luks non active sous forme d’archive .tar.zst. L’exportation est une sauvegarde logique des fichiers de la session, pas nécessairement une copie bit à bit de son conteneur de stockage. Conservez l’archive sur un autre appareil. L’importation crée une nouvelle session numérotée ; examinez-la et activez-la explicitement uniquement après validation.\nUne exportation LUKS contient les données logiques de session déchiffrées, et non le conteneur changes.luks chiffré. Chiffrez la destination de sauvegarde ou l’archive par une méthode distincte et vérifiée si les données exportées doivent rester confidentielles. L’importation dans LUKS crée un nouveau conteneur chiffré et nécessite une nouvelle phrase secrète cible.\nNe copiez pas manuellement un répertoire de session monté. La session peut être en cours de modification, et un système de fichiers sur conteneur peut ne pas être représenté par un ensemble cohérent de fichiers tant qu’il est actif.\nGérer les sessions SquashFS hors ligne\nAvant de sauvegarder une session SquashFS en cours d’exécution, utilisez Sauvegarder maintenant et attendez la fin de la sauvegarde et de la validation. La sauvegarde reconstruit changes.sb et remplace de façon atomique l’instantané précédent ; elle ne conserve pas de génération de retour arrière. Arrêtez ensuite proprement.\nL’implémentation actuelle du Gestionnaire de sessions refuse l’exportation et la copie de SquashFS. Après la sauvegarde, démarrez sans persistance ou utilisez un autre système Linux et copiez la session SquashFS depuis le magasin de sessions inactif. Préservez ensemble le répertoire complet de la session numérotée et les métadonnées du magasin de sessions. Ne remplacez ni ne renumérotez d’entrées dans un magasin minios/changes actif. Consultez Récupération au démarrage avant toute modification de la structure de démarrage ou de disque lors d’une restauration.\nPréservez chaque segment DynFileFS\nUne session DynFileFS est un conteneur logique réparti sur un ensemble complet de fichiers de support. Une copie hors ligne doit inclure changes.dat ainsi que chaque segment numéroté comme changes.dat.0, changes.dat.1 et les segments suivants. Copier uniquement le premier fichier ne donne pas une sauvegarde exploitable. Ne créez pas de segment manquant et ne réparez pas l’unique copie.\nL’exportation normale via le Gestionnaire de sessions évite ce problème au niveau du conteneur en exportant les fichiers logiques de la session. Pour les copies interrompues, segments manquants, supports pleins et réparations de système de fichiers, consultez Récupération DynFileFS et dynblk.\nCréer une image complète du support\nL’Utilitaire de disque permet d’utiliser Créer une image pour lire l’intégralité d’un périphérique dans une image brute, avec compression optionnelle. Cela capture la table de partitions, les fichiers de démarrage, les modules, la configuration, le magasin de sessions, les données utilisateur et les blocs inutilisés tels qu’ils existent sur le périphérique source. Le fichier image nécessite donc un espace de destination adapté et peut contenir des données supprimées récupérables et des secrets.\nCréez l’image hors ligne. Arrêtez MiniOS et connectez le support source à un autre système en fonctionnement, ou démarrez depuis un autre appareil. Assurez-vous qu’aucune partition source n’est montée et qu’aucune persistance, swap, base de données ou service en arrière-plan n’écrit dessus. L’Utilitaire de disque masque normalement les périphériques montés, mais afficher un périphérique dans l’interface ne garantit pas la cohérence d’une image brute en direct.\nVérifiez la source par modèle, taille et nom de périphérique. Enregistrez l’image sur un autre support physique, jamais sur un système de fichiers du support source. Pour la restauration, Écrire l’image effectue une écriture brute sur le périphérique cible sélectionné. Vérifiez la cible avec la même attention ; toutes les données existantes sur la cible seront perdues. Utilisez une cible au moins aussi grande que la source d’origine, sauf si l’image a été préparée explicitement pour un périphérique plus petit.\nSauvegarder les installations natives\nUne installation native n’utilise pas une session persistante live comme système de fichiers racine, donc l’exportation via le Gestionnaire de sessions ne constitue pas une sauvegarde complète du système natif. Sauvegardez les répertoires personnels des utilisateurs, la configuration système sélectionnée, les données applicatives, les fichiers locaux et les identifiants de récupération à l’aide d’une méthode de sauvegarde compatible avec le système de fichiers. Notez la version MiniOS, la disposition des partitions, la sélection des paquets installés, le mode de démarrage et tout module ou noyau personnalisé.\nPour une restauration bare-metal, créez une image complète du disque hors ligne ou utilisez un produit de sauvegarde éprouvé prenant en charge les systèmes de fichiers et la disposition des partitions natifs. Conservez une sauvegarde au niveau des fichiers pour pouvoir restaurer des fichiers individuels sans écraser tout le disque. Voir Récupération au démarrage pour le diagnostic des fichiers de démarrage et du bootloader.\nValider les sauvegardes et tester les restaurations\nUne copie terminée n’est pas encore une sauvegarde éprouvée. À chaque cycle de sauvegarde :\nVérifiez que la sauvegarde est sur un autre appareil et possède la date et la taille attendues.\nNotez puis comparez une somme de contrôle cryptographique pour les archives et images disque.\nOuvrez un échantillon de fichiers personnels, dont au moins un gros fichier et un fichier de chaque jeu de données applicatif important.\nImportez une archive de session comme nouvelle session inactive et inspectez ses fichiers. Testez le démarrage uniquement après avoir préservé la sélection de session connue comme valide.\nVérifiez qu’une copie hors ligne DynFileFS contient bien toute la séquence de segments.\nRestaurez une image complète du support uniquement sur un appareil jetable ou de rechange de taille adéquate, puis testez le démarrage et l’accès aux données importantes.\nTestez la restauration de fichiers natifs vers un emplacement séparé et vérifiez les permissions, la propriété, les liens et la lisibilité par les applications.\nEffectuez des tests de restauration après tout changement de mode de persistance, de chiffrement, de partitionnement, de version MiniOS ou de logiciel de sauvegarde. Conservez la dernière sauvegarde validée jusqu’à ce que la suivante ait passé son test de restauration. Pour un diagnostic plus large, voir Récupération au démarrage, Récupération DynFileFS et dynblk et Renforcement de la sécurité.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

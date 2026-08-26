@@ -1,0 +1,698 @@
+{
+  "headings": [
+    {
+      "anchor": "minios-configurator",
+      "level": 1,
+      "title": "MiniOS Configurator"
+    },
+    {
+      "anchor": "démarrer-le-configurateur",
+      "level": 2,
+      "title": "Démarrer le configurateur"
+    },
+    {
+      "anchor": "configuration-du-support-et-à-lexécution",
+      "level": 2,
+      "title": "Configuration du support et à l'exécution"
+    },
+    {
+      "anchor": "quand-les-paramètres-sappliquent",
+      "level": 2,
+      "title": "Quand les paramètres s'appliquent"
+    },
+    {
+      "anchor": "appliqués-après-redémarrage",
+      "level": 3,
+      "title": "Appliqués après redémarrage"
+    },
+    {
+      "anchor": "utilisés-uniquement-pour-une-nouvelle-session",
+      "level": 3,
+      "title": "Utilisés uniquement pour une nouvelle session"
+    },
+    {
+      "anchor": "répertoires-utilisateur-et-persistance",
+      "level": 2,
+      "title": "Répertoires utilisateur et persistance"
+    },
+    {
+      "anchor": "comportement-de-lenregistrement",
+      "level": 2,
+      "title": "Comportement de l'enregistrement"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "minios-configurator",
+      [
+        [
+          "text",
+          "MiniOS Configurator"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS Configurator est un éditeur graphique pour les paramètres "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " de MiniOS. Il valide les modifications et écrit la configuration pour un prochain démarrage. Il ne modifie pas directement le système en cours d'exécution."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "démarrer-le-configurateur",
+      [
+        [
+          "text",
+          "Démarrer le configurateur"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ouvrez MiniOS Configurator depuis le menu des applications ou lancez :"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "minios-configurator",
+      "bash",
+      [
+        [
+          "syntax",
+          "minios-configurator",
+          "#6F42C1",
+          "#B392F0"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La cible par défaut est "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/etc/live/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Pour modifier un autre fichier régulier,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "indiquez son chemin :"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "minios-configurator /path/to/config.conf",
+      "bash",
+      [
+        [
+          "syntax",
+          "minios-configurator",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/config.conf",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L'enregistrement nécessite une authentification PolicyKit. Les liens symboliques et les fichiers cibles non réguliers sont refusés."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "configuration-du-support-et-à-lexécution",
+      [
+        [
+          "text",
+          "Configuration du support et à l'exécution"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS peut lire la configuration à partir de deux emplacements :"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios/config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " et "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios/config.conf.d/*.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " sur le support live"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/live/config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " et "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/live/config.conf.d/*.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " dans le système de fichiers racine en cours d'exécution"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Le Configurator modifie uniquement le fichier sélectionné. Sans argument de chemin, il modifie le fichier d'exécution "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/etc/live/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ; il n'ouvre pas directement le fichier du support. MiniOS synchronise la configuration la plus récente entre le système de fichiers d'exécution et les supports MiniOS inscriptibles lors du démarrage. Les supports en lecture seule ne peuvent pas recevoir de modifications d'exécution, et une configuration d'exécution persistante peut rester indépendante de la copie sur le support."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Pour une option donnée, les paramètres du noyau ont priorité sur les fichiers de configuration, et la configuration du support a priorité sur celle du système de fichiers racine."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Utilisez "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "-i"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pour superposer dans l'éditeur les paramètres reconnus de la ligne de commande du noyau en cours :"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "minios-configurator --inherit-cmdline /etc/live/config.conf",
+      "bash",
+      [
+        [
+          "syntax",
+          "minios-configurator",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--inherit-cmdline",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/etc/live/config.conf",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Le fichier sélectionné reste la cible d'enregistrement. Les paramètres du noyau non reconnus sont ignorés."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "quand-les-paramètres-sappliquent",
+      [
+        [
+          "text",
+          "Quand les paramètres s'appliquent"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Chaque contrôle indique quand il est utilisé. L'enregistrement n'applique jamais un paramètre à la session en cours."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "appliqués-après-redémarrage",
+      [
+        [
+          "text",
+          "Appliqués après redémarrage"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Le nom d'hôte, la langue, le fuseau horaire, le clavier, la cible de démarrage, la sélection des services, le mode des modules, la gestion des répertoires utilisateur sur le support, les paramètres de débogage et l'exportation des journaux sont lus lors d'un prochain démarrage. Redémarrez après l'enregistrement pour les appliquer."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "utilisés-uniquement-pour-une-nouvelle-session",
+      [
+        [
+          "text",
+          "Utilisés uniquement pour une nouvelle session"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La création de compte, les mots de passe utilisateur et root, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noroot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", la politique sudo et PolicyKit, la politique SSH et XRDP, l'accès X11, les indices de mot de passe et le verrouillage d'écran sont des paramètres à usage unique. Une session persistante enregistre normalement les composants "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " terminés sous "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/var/lib/live/config/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", donc modifier ces valeurs puis redémarrer la même session ne recrée pas le compte ni l'état de sécurité. Démarrez une nouvelle session pour les appliquer comme paramètres initiaux."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Les profils de sécurité sont des préréglages de l'éditeur. Le nom du profil n'est pas enregistré ; les paramètres de sécurité individuels sont enregistrés et restent modifiables."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "répertoires-utilisateur-et-persistance",
+      [
+        [
+          "text",
+          "Répertoires utilisateur et persistance"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Le lien symbolique et le montage par liaison des répertoires utilisateur sont mutuellement exclusifs. Les deux utilisent un support de données MiniOS local inscriptible existant et un chemin relatif au support sécurisé. Ils ne sont pas disponibles avec "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=full"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ou "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", et MiniOS ne fusionne pas automatiquement deux arborescences de répertoires déjà peuplées."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchmode"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " et "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchsize"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " sont des paramètres de démarrage initramfs, pas des paramètres du Configurator. Le Configurator ne crée, ne déverrouille, ne redimensionne ni ne répare un conteneur de persistance. Pour la persistance chiffrée, il indique seulement si le marqueur de chiffrement initramfs est présent."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "comportement-de-lenregistrement",
+      [
+        [
+          "text",
+          "Comportement de l'enregistrement"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L'aperçu ne liste que les valeurs modifiées et masque les mots de passe. L'enregistrement met à jour uniquement les clés modifiées tout en préservant les commentaires, l'ordre, les clés inconnues, la propriété, les permissions et les attributs étendus. L'écriture est atomique."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Pour la référence complète des variables et des paramètres de démarrage, consultez"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/configuration/Configuration-File.md",
+          null,
+          [
+            [
+              "text",
+              "Fichier de configuration"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ","
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/configuration/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Paramètres de démarrage"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", et"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/configuration/live-config.md",
+          null,
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "MiniOS Configurator\nMiniOS Configurator est un éditeur graphique pour les paramètres live-config de MiniOS. Il valide les modifications et écrit la configuration pour un prochain démarrage. Il ne modifie pas directement le système en cours d'exécution.\nDémarrer le configurateur\nOuvrez MiniOS Configurator depuis le menu des applications ou lancez :\nminios-configurator\nLa cible par défaut est /etc/live/config.conf. Pour modifier un autre fichier régulier,\nindiquez son chemin :\nminios-configurator /path/to/config.conf\nL'enregistrement nécessite une authentification PolicyKit. Les liens symboliques et les fichiers cibles non réguliers sont refusés.\nConfiguration du support et à l'exécution\nMiniOS peut lire la configuration à partir de deux emplacements :\nminios/config.conf et minios/config.conf.d/*.conf sur le support live\n/etc/live/config.conf et /etc/live/config.conf.d/*.conf dans le système de fichiers racine en cours d'exécution\nLe Configurator modifie uniquement le fichier sélectionné. Sans argument de chemin, il modifie le fichier d'exécution /etc/live/config.conf ; il n'ouvre pas directement le fichier du support. MiniOS synchronise la configuration la plus récente entre le système de fichiers d'exécution et les supports MiniOS inscriptibles lors du démarrage. Les supports en lecture seule ne peuvent pas recevoir de modifications d'exécution, et une configuration d'exécution persistante peut rester indépendante de la copie sur le support.\nPour une option donnée, les paramètres du noyau ont priorité sur les fichiers de configuration, et la configuration du support a priorité sur celle du système de fichiers racine.\nUtilisez -i pour superposer dans l'éditeur les paramètres reconnus de la ligne de commande du noyau en cours :\nminios-configurator --inherit-cmdline /etc/live/config.conf\nLe fichier sélectionné reste la cible d'enregistrement. Les paramètres du noyau non reconnus sont ignorés.\nQuand les paramètres s'appliquent\nChaque contrôle indique quand il est utilisé. L'enregistrement n'applique jamais un paramètre à la session en cours.\nAppliqués après redémarrage\nLe nom d'hôte, la langue, le fuseau horaire, le clavier, la cible de démarrage, la sélection des services, le mode des modules, la gestion des répertoires utilisateur sur le support, les paramètres de débogage et l'exportation des journaux sont lus lors d'un prochain démarrage. Redémarrez après l'enregistrement pour les appliquer.\nUtilisés uniquement pour une nouvelle session\nLa création de compte, les mots de passe utilisateur et root, noroot, la politique sudo et PolicyKit, la politique SSH et XRDP, l'accès X11, les indices de mot de passe et le verrouillage d'écran sont des paramètres à usage unique. Une session persistante enregistre normalement les composants live-config terminés sous /var/lib/live/config/, donc modifier ces valeurs puis redémarrer la même session ne recrée pas le compte ni l'état de sécurité. Démarrez une nouvelle session pour les appliquer comme paramètres initiaux.\nLes profils de sécurité sont des préréglages de l'éditeur. Le nom du profil n'est pas enregistré ; les paramètres de sécurité individuels sont enregistrés et restent modifiables.\nRépertoires utilisateur et persistance\nLe lien symbolique et le montage par liaison des répertoires utilisateur sont mutuellement exclusifs. Les deux utilisent un support de données MiniOS local inscriptible existant et un chemin relatif au support sécurisé. Ils ne sont pas disponibles avec toram, toram=full ou toram=trim, et MiniOS ne fusionne pas automatiquement deux arborescences de répertoires déjà peuplées.\nperchmode et perchsize sont des paramètres de démarrage initramfs, pas des paramètres du Configurator. Le Configurator ne crée, ne déverrouille, ne redimensionne ni ne répare un conteneur de persistance. Pour la persistance chiffrée, il indique seulement si le marqueur de chiffrement initramfs est présent.\nComportement de l'enregistrement\nL'aperçu ne liste que les valeurs modifiées et masque les mots de passe. L'enregistrement met à jour uniquement les clés modifiées tout en préservant les commentaires, l'ordre, les clés inconnues, la propriété, les permissions et les attributs étendus. L'écriture est atomique.\nPour la référence complète des variables et des paramètres de démarrage, consultez\nFichier de configuration,\nParamètres de démarrage, et\nlive-config.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

@@ -1,0 +1,1861 @@
+{
+  "headings": [
+    {
+      "anchor": "minios-system-architecture",
+      "level": 1,
+      "title": "MiniOS system architecture"
+    },
+    {
+      "anchor": "boot-discovery",
+      "level": 2,
+      "title": "Boot discovery"
+    },
+    {
+      "anchor": "module-composition",
+      "level": 2,
+      "title": "Module composition"
+    },
+    {
+      "anchor": "aufs-and-overlayfs",
+      "level": 2,
+      "title": "AUFS and OverlayFS"
+    },
+    {
+      "anchor": "writable-layer-and-sessions",
+      "level": 2,
+      "title": "Writable layer and sessions"
+    },
+    {
+      "anchor": "configuration-precedence",
+      "level": 2,
+      "title": "Configuration precedence"
+    },
+    {
+      "anchor": "shutdown-and-save-lifecycle",
+      "level": 2,
+      "title": "Shutdown and save lifecycle"
+    },
+    {
+      "anchor": "media-tree",
+      "level": 2,
+      "title": "Media tree"
+    },
+    {
+      "anchor": "related-documentation",
+      "level": 2,
+      "title": "Related documentation"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "minios-system-architecture",
+      [
+        [
+          "text",
+          "MiniOS system architecture"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS boots a read-only operating system assembled from SquashFS modules and"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "adds one writable layer for the current session. The initramfs is responsible"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "for finding the media, selecting modules and persistence, constructing the root"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "filesystem, applying early configuration, and handing control to the installed"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "init system."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "boot-discovery",
+      [
+        [
+          "text",
+          "Boot discovery"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The BIOS or UEFI bootloader loads a Linux kernel and MiniOS initramfs from"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/boot/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". The initramfs then discovers the MiniOS data tree that contains"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "the live modules. A source can be local, selected interactively, or supplied"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "over a supported network path; a local ISO is loop-mounted before its data tree"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "is used. Exact precedence and accepted "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "from="
+            ]
+          ]
+        ],
+        [
+          "text",
+          " forms are documented in"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/configuration/Initrd-System-Discovery.md",
+          null,
+          [
+            [
+              "text",
+              "Initrd system discovery"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The same discovery stage supports HTTP ISO and PXE sources. Optional early-boot"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "networking is only for "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "loading MiniOS over the network"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " (PXE / HTTP ISO). It"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "is not durable session network configuration. See"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/installation/Network-Boot.md",
+          null,
+          [
+            [
+              "text",
+              "Network boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "After discovery, MiniOS can optionally prepare a RAM copy. Whether the original"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "source remains required depends on copy mode, persistence, and successful"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "detachment. See "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Boot modes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for the operational"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "model."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "module-composition",
+      [
+        [
+          "text",
+          "Module composition"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Each "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " file is a read-only SquashFS filesystem. Built-in modules are stored"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "directly under "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "; additional module locations can contribute to the"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "ordered composition. The initramfs selects, orders, and mounts the resulting"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "read-only layers. Candidate tiers, basename replacement, filters, custom bundle"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "extensions, and running-kernel coordination are specified in"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Initrd module loading"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A typical Xfce image contains the following ordered roles, although exact names"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "and numbers depend on the build and modules skipped for that target:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "00-core-<arch>.sb\n01-kernel-<version>-<arch>.sb\n02-firmware-<arch>.sb\n03-gui-base-<arch>.sb\n04-xfce-desktop-<arch>.sb\n05-apps-<arch>.sb or the next applicable module",
+      "",
+      []
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Later modules have higher precedence and can replace paths supplied by earlier"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "modules. A module can depend on files in every lower-numbered module, so a set"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "of module files is an ordered composition rather than a collection of"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "independent packages."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "aufs-and-overlayfs",
+      [
+        [
+          "text",
+          "AUFS and OverlayFS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS uses a union filesystem to present the modules and writable layer as one"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "root filesystem. It selects AUFS when the running kernel supports it and falls"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "back to OverlayFS otherwise. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "union=aufs"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " requests AUFS but still falls back to"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "OverlayFS when AUFS is unavailable; "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "union=overlayfs"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " selects OverlayFS."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The two implementations have an important operational difference:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "AUFS starts with the writable branch and adds mounted modules as read-only"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "branches. MiniOS can activate or deactivate a module in the running root when"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "the AUFS mount supports that operation."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "OverlayFS receives its complete ordered "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "lowerdir"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " list when the root is"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "mounted, plus an "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "upperdir"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " and "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "workdir"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ". Its lower-module set cannot be"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "changed in place by Module Manager."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Module Manager therefore separates "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Running now"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", the mounted module set,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "from "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Next boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", the modules selected by current media and boot rules. Adding"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "or removing a durable module normally changes the next boot only. Creating or"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "opening a module does not activate it. Runtime activation and deactivation are"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "available only with AUFS."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "After the root is assembled and early setup completes, the LiveKit initrd uses"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "pivot_root"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", retains the old initrd for shutdown duties, and executes the new"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "root's init. The dracut path prepares the same assembled root but leaves the"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "final "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "switch_root"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " to dracut. See"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Initrd module loading"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for the detailed"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "handoff boundary."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "writable-layer-and-sessions",
+      [
+        [
+          "text",
+          "Writable layer and sessions"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Without persistence, the writable layer is memory-backed and disappears at"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "shutdown. Persistence can instead activate a numbered session with a supported"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "storage backend. Selection, compatibility, activation failure, current-boot"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "authority, and durability are defined in"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Persistence.md",
+          null,
+          [
+            [
+              "text",
+              "Initrd persistence"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "table",
+      [
+        [
+          "table_row",
+          true,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Mode"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Writable storage"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Notes"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "native"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Files stored directly in the session directory"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Requires a writable POSIX filesystem that preserves Linux metadata."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "dynfilefs"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Expandable ext4 filesystem split across backing files"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Supports POSIX filesystems and FAT32, NTFS, or exFAT media."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "raw"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Fixed-size "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "changes.img"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " containing ext4"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Supports POSIX filesystems and FAT32, NTFS, or exFAT media."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "luks"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "LUKS2 "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "changes.luks"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " containing ext4"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Requires cryptsetup and an initramfs built with MiniOS encryption support. The passphrase is requested during boot."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "squashfs"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Compressed "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "changes.sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " snapshot"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Unpacked into RAM for use; saving rebuilds and atomically replaces the snapshot. The persistence filesystem must preserve Linux metadata during the save."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The active session selected for a future resume and the writable layer actually"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "authorized for the current boot are related but distinct state. Changing a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "future selection does not replace the running writable layer."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "See "
+        ],
+        [
+          "link",
+          "/configuration/Session-Management.md",
+          null,
+          [
+            [
+              "text",
+              "Session management"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for creation,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "selection, sizing, encryption, conversion, export, and recovery commands."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "configuration-precedence",
+      [
+        [
+          "text",
+          "Configuration precedence"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The media configuration is "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", with optional fragments in"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/config.conf.d/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". The runtime copies are "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/etc/live/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/etc/live/config.conf.d/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " in the composed root."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "At boot, MiniOS compares modification times and copies a newer media file into"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "the runtime root. If the media is writable and the runtime copy is newer, it is"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "copied back to the media. Fragment files are synchronized by filename in both"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "directions. If the clock has moved backwards since the previous synchronization,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "MiniOS avoids timestamp replacement and only fills missing destinations."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Kernel command-line options override corresponding values read from the runtime"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "configuration for that boot. This means the effective order for an explicitly"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "supported setting is the boot parameter, then the synchronized runtime/media"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "configuration, then the built-in default. Persistent runtime edits can become"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "the media configuration when the source is writable; read-only ISO media cannot"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "receive that update."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "See "
+        ],
+        [
+          "link",
+          "/configuration/Configuration-File.md",
+          null,
+          [
+            [
+              "text",
+              "Configuration file"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/configuration/live-config.md",
+          null,
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for the supported settings."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "shutdown-and-save-lifecycle",
+      [
+        [
+          "text",
+          "Shutdown and save lifecycle"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Normal shutdown first gives the running system a chance to flush services and"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "session data. A SquashFS session with shutdown saving enabled is rebuilt and"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "validated before filesystem teardown. The save backend writes a completion"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "marker for the exact running session; the shutdown initramfs checks that marker"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "and leaves the session dirty if the required save failed."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The shutdown initramfs then detaches unused loop devices, unmounts the old root"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "and writable layer, records a successful session as clean, unmounts the media,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "and closes a MiniOS-owned LUKS mapping. Optical media can then be ejected before"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "poweroff or reboot. Manual and periodic SquashFS saves use the same snapshot"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "backend, but only the configured shutdown policy blocks clean finalization on a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "missing shutdown save."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "media-tree",
+      [
+        [
+          "text",
+          "Media tree"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A current image is organized as follows. Optional directories appear only when"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "the related feature has created content."
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "/\n|-- .disk/                         ISO metadata\n|-- EFI/                           UEFI boot files\n`-- minios/\n    |-- 00-core-<arch>.sb          base userspace\n    |-- 01-kernel-<version>-<arch>.sb\n    |-- 02-firmware-<arch>.sb\n    |-- NN-<name>-<arch>.sb        ordered system modules\n    |-- boot/                      kernels, initramfs, GRUB, and Syslinux data\n    |-- changes/                   session metadata and numbered sessions\n    |-- modules/                   additional next-boot modules\n    |-- config.conf                main media configuration\n    |-- config.conf.d/             optional configuration fragments\n    |-- kernels/                   optional inactive kernel repository\n    |-- userdata/                  optional linked or bound user directories\n    `-- log/                       optional exported boot logs",
+      "",
+      []
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The booted paths under "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/run/initramfs/memory/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " are implementation mounts, not a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "second persistent copy of this tree."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "related-documentation",
+      [
+        [
+          "text",
+          "Related documentation"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Boot-Modes.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Boot modes"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Initrd-System-Discovery.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Initrd system discovery"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Initrd-Module-Loading.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Initrd module loading"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Initrd-Persistence.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Initrd persistence"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Boot-Parameters.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Boot parameters"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Boot-Menus.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Boot menus"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Configuration-File.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Configuration file"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Session-Management.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Session management"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/installation/Network-Boot.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Network boot"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/development/Creating-Modules.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Creating modules"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "MiniOS system architecture\nMiniOS boots a read-only operating system assembled from SquashFS modules and\nadds one writable layer for the current session. The initramfs is responsible\nfor finding the media, selecting modules and persistence, constructing the root\nfilesystem, applying early configuration, and handing control to the installed\ninit system.\nBoot discovery\nThe BIOS or UEFI bootloader loads a Linux kernel and MiniOS initramfs from\nminios/boot/. The initramfs then discovers the MiniOS data tree that contains\nthe live modules. A source can be local, selected interactively, or supplied\nover a supported network path; a local ISO is loop-mounted before its data tree\nis used. Exact precedence and accepted from= forms are documented in\nInitrd system discovery.\nThe same discovery stage supports HTTP ISO and PXE sources. Optional early-boot\nnetworking is only for loading MiniOS over the network (PXE / HTTP ISO). It\nis not durable session network configuration. See\nNetwork boot.\nAfter discovery, MiniOS can optionally prepare a RAM copy. Whether the original\nsource remains required depends on copy mode, persistence, and successful\ndetachment. See Boot modes for the operational\nmodel.\nModule composition\nEach .sb file is a read-only SquashFS filesystem. Built-in modules are stored\ndirectly under minios/; additional module locations can contribute to the\nordered composition. The initramfs selects, orders, and mounts the resulting\nread-only layers. Candidate tiers, basename replacement, filters, custom bundle\nextensions, and running-kernel coordination are specified in\nInitrd module loading.\nA typical Xfce image contains the following ordered roles, although exact names\nand numbers depend on the build and modules skipped for that target:\n00-core-<arch>.sb\n01-kernel-<version>-<arch>.sb\n02-firmware-<arch>.sb\n03-gui-base-<arch>.sb\n04-xfce-desktop-<arch>.sb\n05-apps-<arch>.sb or the next applicable module\nLater modules have higher precedence and can replace paths supplied by earlier\nmodules. A module can depend on files in every lower-numbered module, so a set\nof module files is an ordered composition rather than a collection of\nindependent packages.\nAUFS and OverlayFS\nMiniOS uses a union filesystem to present the modules and writable layer as one\nroot filesystem. It selects AUFS when the running kernel supports it and falls\nback to OverlayFS otherwise. union=aufs requests AUFS but still falls back to\nOverlayFS when AUFS is unavailable; union=overlayfs selects OverlayFS.\nThe two implementations have an important operational difference:\nAUFS starts with the writable branch and adds mounted modules as read-only\nbranches. MiniOS can activate or deactivate a module in the running root when\nthe AUFS mount supports that operation.\nOverlayFS receives its complete ordered lowerdir list when the root is\nmounted, plus an upperdir and workdir. Its lower-module set cannot be\nchanged in place by Module Manager.\nModule Manager therefore separates Running now, the mounted module set,\nfrom Next boot, the modules selected by current media and boot rules. Adding\nor removing a durable module normally changes the next boot only. Creating or\nopening a module does not activate it. Runtime activation and deactivation are\navailable only with AUFS.\nAfter the root is assembled and early setup completes, the LiveKit initrd uses\npivot_root, retains the old initrd for shutdown duties, and executes the new\nroot's init. The dracut path prepares the same assembled root but leaves the\nfinal switch_root to dracut. See\nInitrd module loading for the detailed\nhandoff boundary.\nWritable layer and sessions\nWithout persistence, the writable layer is memory-backed and disappears at\nshutdown. Persistence can instead activate a numbered session with a supported\nstorage backend. Selection, compatibility, activation failure, current-boot\nauthority, and durability are defined in\nInitrd persistence.\nMode | Writable storage | Notes\nnative | Files stored directly in the session directory | Requires a writable POSIX filesystem that preserves Linux metadata.\ndynfilefs | Expandable ext4 filesystem split across backing files | Supports POSIX filesystems and FAT32, NTFS, or exFAT media.\nraw | Fixed-size changes.img containing ext4 | Supports POSIX filesystems and FAT32, NTFS, or exFAT media.\nluks | LUKS2 changes.luks containing ext4 | Requires cryptsetup and an initramfs built with MiniOS encryption support. The passphrase is requested during boot.\nsquashfs | Compressed changes.sb snapshot | Unpacked into RAM for use; saving rebuilds and atomically replaces the snapshot. The persistence filesystem must preserve Linux metadata during the save.\nThe active session selected for a future resume and the writable layer actually\nauthorized for the current boot are related but distinct state. Changing a\nfuture selection does not replace the running writable layer.\nSee Session management for creation,\nselection, sizing, encryption, conversion, export, and recovery commands.\nConfiguration precedence\nThe media configuration is minios/config.conf, with optional fragments in\nminios/config.conf.d/. The runtime copies are /etc/live/config.conf and\n/etc/live/config.conf.d/ in the composed root.\nAt boot, MiniOS compares modification times and copies a newer media file into\nthe runtime root. If the media is writable and the runtime copy is newer, it is\ncopied back to the media. Fragment files are synchronized by filename in both\ndirections. If the clock has moved backwards since the previous synchronization,\nMiniOS avoids timestamp replacement and only fills missing destinations.\nKernel command-line options override corresponding values read from the runtime\nconfiguration for that boot. This means the effective order for an explicitly\nsupported setting is the boot parameter, then the synchronized runtime/media\nconfiguration, then the built-in default. Persistent runtime edits can become\nthe media configuration when the source is writable; read-only ISO media cannot\nreceive that update.\nSee Configuration file and\nlive-config for the supported settings.\nShutdown and save lifecycle\nNormal shutdown first gives the running system a chance to flush services and\nsession data. A SquashFS session with shutdown saving enabled is rebuilt and\nvalidated before filesystem teardown. The save backend writes a completion\nmarker for the exact running session; the shutdown initramfs checks that marker\nand leaves the session dirty if the required save failed.\nThe shutdown initramfs then detaches unused loop devices, unmounts the old root\nand writable layer, records a successful session as clean, unmounts the media,\nand closes a MiniOS-owned LUKS mapping. Optical media can then be ejected before\npoweroff or reboot. Manual and periodic SquashFS saves use the same snapshot\nbackend, but only the configured shutdown policy blocks clean finalization on a\nmissing shutdown save.\nMedia tree\nA current image is organized as follows. Optional directories appear only when\nthe related feature has created content.\n/\n|-- .disk/                         ISO metadata\n|-- EFI/                           UEFI boot files\n`-- minios/\n    |-- 00-core-<arch>.sb          base userspace\n    |-- 01-kernel-<version>-<arch>.sb\n    |-- 02-firmware-<arch>.sb\n    |-- NN-<name>-<arch>.sb        ordered system modules\n    |-- boot/                      kernels, initramfs, GRUB, and Syslinux data\n    |-- changes/                   session metadata and numbered sessions\n    |-- modules/                   additional next-boot modules\n    |-- config.conf                main media configuration\n    |-- config.conf.d/             optional configuration fragments\n    |-- kernels/                   optional inactive kernel repository\n    |-- userdata/                  optional linked or bound user directories\n    `-- log/                       optional exported boot logs\nThe booted paths under /run/initramfs/memory/ are implementation mounts, not a\nsecond persistent copy of this tree.\nRelated documentation\nBoot modes\nInitrd system discovery\nInitrd module loading\nInitrd persistence\nBoot parameters\nBoot menus\nConfiguration file\nSession management\nNetwork boot\nCreating modules",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

@@ -1,4 +1,7 @@
 PYTHON ?= python3
+NODE ?= node
+MARKDOWN_COMPILER ?= ../minios-gui/tools/markdown-compiler.mjs
+MARKDOWN_NODE_MODULES ?= ../minios-gui/tools/node_modules
 PREFIX ?= /usr
 BINDIR = $(PREFIX)/bin
 LIBDIR = $(PREFIX)/lib/minios-help
@@ -6,18 +9,27 @@ DATADIR = $(PREFIX)/share/minios-help
 APPLICATIONSDIR = $(PREFIX)/share/applications
 METAINFO_DIR = $(PREFIX)/share/metainfo
 LOCALEDIR = $(PREFIX)/share/locale
-ICONDIR = $(PREFIX)/share/icons/hicolor/scalable/apps
 PO_FILES = $(wildcard po/*.po)
 
-.PHONY: all test check install update-pot clean
+.PHONY: all test test-build-tools check install update-pot clean
 
 all:
 
 test:
-	PYTHONPATH=lib$${PYTHONPATH:+:$$PYTHONPATH} xvfb-run -a $(PYTHON) -m unittest discover -s tests -v
+	PYTHONPATH=lib$${PYTHONPATH:+:$$PYTHONPATH} xvfb-run -a $(PYTHON) -m unittest \
+		tests.test_core tests.test_application -v
+
+test-build-tools:
+	@test -d $(MARKDOWN_NODE_MODULES) || { \
+		echo "Node build tools are missing; run ../minios-gui/tools/npm-ci.sh" >&2; exit 1; \
+	}
+	$(NODE) --check $(MARKDOWN_COMPILER)
+	MINIOS_MARKDOWN_COMPILER=$(MARKDOWN_COMPILER) \
+		$(PYTHON) -m unittest tests.test_sync tests.test_compiler -v
 
 check:
-	$(PYTHON) -m py_compile bin/minios-help lib/minios_help/*.py tools/sync_from_docs.py tests/*.py
+	$(PYTHON) -m py_compile bin/minios-help lib/minios_help/*.py \
+		tools/sync_from_docs.py tests/*.py
 	@for po in $(PO_FILES); do msgfmt --check --check-format -o /dev/null $$po; done
 	@if command -v desktop-file-validate >/dev/null 2>&1; then \
 		desktop-file-validate share/applications/dev.minios.Help.desktop; \
@@ -39,9 +51,6 @@ install:
 	install -d $(DESTDIR)$(DATADIR)/docs $(DESTDIR)$(DATADIR)/styles
 	cp -a share/docs/. $(DESTDIR)$(DATADIR)/docs/
 	install -m644 share/styles/style.css $(DESTDIR)$(DATADIR)/styles/style.css
-	install -d $(DESTDIR)$(ICONDIR)
-	ln -sfn ../../../elementary-minios/categories/128/system-help.svg \
-		$(DESTDIR)$(ICONDIR)/dev.minios.Help.svg
 	@for po in $(PO_FILES); do \
 		lang=$${po##*/}; lang=$${lang%.po}; \
 		install -d $(DESTDIR)$(LOCALEDIR)/$$lang/LC_MESSAGES; \

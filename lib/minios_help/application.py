@@ -13,7 +13,7 @@ gi.require_version("Gtk", "3.0")
 gi.require_version("Gdk", "3.0")
 from gi.repository import Gdk, Gio, GLib, Gtk
 
-from minios_gui import MarkdownTextView, apply_minios_css, new_header_bar, new_icon
+from minios_gui import DocumentTextView, apply_minios_css, new_header_bar, new_icon
 
 from .documents import DocumentError, DocumentStore, LocalePreference
 from .navigation import NavigationHistory, resolve_link
@@ -128,7 +128,7 @@ class HelpWindow(Gtk.ApplicationWindow):
         self.set_titlebar(header)
 
         self.sidebar_button = _header_button(
-            "sidebar-show-symbolic", _("Show or hide contents"),
+            "sidebar-hide-symbolic", _("Show or hide contents"),
             self._on_sidebar_toggle)
         header.pack_start(self.sidebar_button)
 
@@ -147,6 +147,8 @@ class HelpWindow(Gtk.ApplicationWindow):
     def _build_search_popover(self):
         self.search_popover = Gtk.Popover.new(self.search_entry)
         self.search_popover.set_position(Gtk.PositionType.BOTTOM)
+        # Search results must not take the keyboard grab from SearchEntry.
+        self.search_popover.set_modal(False)
         outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=0)
         outer.set_size_request(380, 300)
         self.search_message = Gtk.Label(
@@ -232,9 +234,9 @@ class HelpWindow(Gtk.ApplicationWindow):
             Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.document_scroll.set_hexpand(True)
         self.document_scroll.set_vexpand(True)
-        self.markdown = MarkdownTextView(
-            "", link_handler=self._on_markdown_link,
-            allow_internal_links=True, render_mermaid=True)
+        self.markdown = DocumentTextView(
+            link_handler=self._on_markdown_link,
+            asset_resolver=self._resolve_document_asset)
         self.markdown.set_left_margin(24)
         self.markdown.set_right_margin(24)
         self.markdown.set_top_margin(18)
@@ -252,7 +254,19 @@ class HelpWindow(Gtk.ApplicationWindow):
         message = _("The local MiniOS documentation could not be loaded.")
         if self.store_error:
             message = "{}\n\n{}".format(message, str(self.store_error))
-        self.markdown.set_markdown("# {}\n\n{}".format(_("MiniOS Help"), message))
+        self.markdown.set_document({
+            "product_kind": "minios-markup-document",
+            "schema_version": 1,
+            "nodes": [
+                ["heading", 1, "minios-help", [["text", _("MiniOS Help")]]],
+                ["block", "paragraph", [["text", message]]],
+            ],
+        })
+
+    def _resolve_document_asset(self, relative):
+        if self.store is None:
+            raise DocumentError("documentation store is unavailable")
+        return str(self.store.asset_path(relative))
 
     def _populate_locales(self):
         self.locale_combo.handler_block_by_func(self._on_locale_changed)
@@ -330,7 +344,7 @@ class HelpWindow(Gtk.ApplicationWindow):
             self._show_transient_message(str(error), Gtk.MessageType.ERROR)
             return False
         self.current = content
-        self.markdown.set_markdown(content.text)
+        self.markdown.set_document(content.document)
         self._syncing_tree = True
         try:
             self._select_tree_document(content.canonical_id)
@@ -522,10 +536,19 @@ class HelpWindow(Gtk.ApplicationWindow):
         self._open_document(
             result.canonical_id, anchor=result.anchor, add_history=True)
 
+    def _update_sidebar_button_icon(self):
+        icon_name = (
+            "sidebar-hide-symbolic"
+            if self.sidebar_revealer.get_reveal_child()
+            else "sidebar-show-symbolic")
+        self.sidebar_button.set_image(new_icon(
+            icon_name, accessible_name=_("Show or hide contents")))
+
     def _on_sidebar_toggle(self, _button=None):
         visible = not self.sidebar_revealer.get_reveal_child()
         self.sidebar_revealer.set_reveal_child(visible)
         self._sidebar_manual = visible
+        self._update_sidebar_button_icon()
 
     def _on_size_allocate(self, _widget, allocation):
         narrow = allocation.width < SIDEBAR_THRESHOLD
@@ -538,6 +561,7 @@ class HelpWindow(Gtk.ApplicationWindow):
         else:
             self.sidebar_revealer.set_reveal_child(
                 True if self._sidebar_manual is None else self._sidebar_manual)
+        self._update_sidebar_button_icon()
 
     def _on_key_press(self, _window, event):
         state = event.state
@@ -567,6 +591,7 @@ class HelpWindow(Gtk.ApplicationWindow):
                 return True
             if self._last_narrow and self.sidebar_revealer.get_reveal_child():
                 self.sidebar_revealer.set_reveal_child(False)
+                self._update_sidebar_button_icon()
                 return True
         return False
 

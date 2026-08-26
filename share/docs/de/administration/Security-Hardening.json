@@ -1,0 +1,1185 @@
+{
+  "headings": [
+    {
+      "anchor": "härtung-der-sicherheit",
+      "level": 1,
+      "title": "Härtung der Sicherheit"
+    },
+    {
+      "anchor": "mit-vertrauenswürdigen-medien-beginnen",
+      "level": 2,
+      "title": "Mit vertrauenswürdigen Medien beginnen"
+    },
+    {
+      "anchor": "standard-zugangsdaten-ersetzen",
+      "level": 2,
+      "title": "Standard-Zugangsdaten ersetzen"
+    },
+    {
+      "anchor": "sicherheitskontrollen-im-configurator-nutzen",
+      "level": 2,
+      "title": "Sicherheitskontrollen im Configurator nutzen"
+    },
+    {
+      "anchor": "fernzugriff-absichern",
+      "level": 2,
+      "title": "Fernzugriff absichern"
+    },
+    {
+      "anchor": "persistente-daten-verschlüsseln",
+      "level": 2,
+      "title": "Persistente Daten verschlüsseln"
+    },
+    {
+      "anchor": "updates-gezielt-anwenden",
+      "level": 2,
+      "title": "Updates gezielt anwenden"
+    },
+    {
+      "anchor": "hooks-und-preseeding-als-code-ausführung-behandeln",
+      "level": 2,
+      "title": "Hooks und Preseeding als Code-Ausführung behandeln"
+    },
+    {
+      "anchor": "medien-sicher-sichern-und-ausmustern",
+      "level": 2,
+      "title": "Medien sicher sichern und ausmustern"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "härtung-der-sicherheit",
+      [
+        [
+          "text",
+          "Härtung der Sicherheit"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS kann als Live-Wiederherstellungssystem, als persistentes portables System oder als native Installation betrieben werden. Die passenden Schutzmaßnahmen hängen von der jeweiligen Nutzung ab. Schützen Sie die laufende Sitzung, persistente Daten, das Boot-Medium sowie alle Konfigurationen, die beim Start angewendet werden."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "mit-vertrauenswürdigen-medien-beginnen",
+      [
+        [
+          "text",
+          "Mit vertrauenswürdigen Medien beginnen"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Laden Sie MiniOS nur aus einer offiziellen Quelle herunter und verifizieren Sie das ISO, bevor Sie es schreiben. Folgen Sie "
+        ],
+        [
+          "link",
+          "/installation/Verifying-Downloads.md",
+          null,
+          [
+            [
+              "text",
+              "Downloads verifizieren"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " und vergleichen Sie das Ergebnis, bevor Sie booten oder installieren. Die Verifizierung erkennt beschädigte oder ausgetauschte Downloads, beweist jedoch nicht, dass ein bereits modifiziertes USB-Gerät sicher ist."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Behalten Sie das USB-Gerät unter physischer Kontrolle. Firmware-Passwörter und eine eingeschränkte Boot-Reihenfolge können unbefugtes Booten erschweren, verschlüsseln jedoch keine Dateien auf dem Gerät. Secure Boot kann zusätzlichen Schutz für die Boot-Kette bieten, sofern Image und Hardware dies unterstützen; prüfen Sie das tatsächliche Release und das Firmware-Verhalten, anstatt Unterstützung vorauszusetzen."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "standard-zugangsdaten-ersetzen",
+      [
+        [
+          "text",
+          "Standard-Zugangsdaten ersetzen"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ein nicht angepasstes MiniOS-Live-Image verwendet die veröffentlichten Zugangsdaten "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "live"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " /"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "evil"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " und "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "root"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " / "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toor"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", mit automatischer Anmeldung und passwortlosem administrativen Zugriff in der benutzerfreundlichen Standardkonfiguration. Jeder, der Zugriff auf das System erhält, kann diese Zugangsdaten nutzen, insbesondere wenn SSH aktiviert ist."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Vor dem Verbinden mit einem nicht vertrauenswürdigen Netzwerk:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Legen Sie im MiniOS Configurator individuelle Benutzer- und Root-Passwörter fest."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Wählen Sie ein passendes Sicherheitsprofil und prüfen Sie jede aktivierte Einstellung."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Deaktivieren Sie SSH und XRDP, sofern kein Fernzugriff benötigt wird."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Starten Sie eine neue Sitzung, wenn Einmal-Einstellungen für Konten oder Sicherheit geändert wurden, und prüfen Sie anschließend das Anmelde- und Berechtigungsverhalten."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Der Configurator speichert verschlüsselte Passwort-Hashes, nicht die Klartext-Passwörter. Wenn Sie ein bereits erstelltes persistentes oder natives Konto ändern, verwenden Sie "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "passwd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " für den aktuellen Benutzer und "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "sudo passwd root"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " für Root."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "sicherheitskontrollen-im-configurator-nutzen",
+      [
+        [
+          "text",
+          "Sicherheitskontrollen im Configurator nutzen"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Der MiniOS Configurator bietet drei Profile. Ein Profil füllt konkrete Einstellungen aus; der Profilname selbst wird nicht als Laufzeit-Konfigurationsschlüssel gespeichert, und jede Einstellung bleibt einzeln bearbeitbar."
+        ]
+      ]
+    ],
+    [
+      "table",
+      [
+        [
+          "table_row",
+          true,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Profil"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Hauptverhalten"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "convenient"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Autologin-kompatibel, passwortloses sudo und PolicyKit, Root- und Passwort-SSH erlaubt, entspanntes XRDP/X11/Sperrbildschirm, Passworthinweise werden angezeigt."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "balanced"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Kein Autologin, sudo und PolicyKit erfordern Passwort, SSH-Root-Login verweigert, aber Passwort-SSH erlaubt, gehärtetes XRDP/X11/Sperrbildschirm."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "strict"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Kein Autologin, sudo und PolicyKit erfordern Passwort, SSH-Root- und Passwort-Login verweigert, XRDP deaktiviert, gehärtetes X11/Sperrbildschirm, Passworthinweise ausgeblendet."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Die Standardwerte des Installers unterscheiden sich je nach Installationsmodus: Live-Installationen bevorzugen "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "convenient"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", während native Installationen "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "balanced"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " bevorzugen. Dies sind Vorgaben, keine Empfehlungen für jedes Bedrohungsmodell."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Die gleichen Einstellungen sind als dokumentierte Konfigurationsschlüssel verfügbar, darunter "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_SUDO_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_POLKIT_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_SSH_PERMIT_ROOT_LOGIN"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_SSH_PASSWORD_AUTHENTICATION"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_XRDP_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_X11_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_ISSUE_PASSWORD_HINTS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " und "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_LOCKSCREEN_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Verwenden Sie bevorzugt diese Schlüssel oder den Configurator, anstatt generierte sudoers-, PolicyKit-, Display-Manager- oder SSH-Dateien direkt zu bearbeiten. Siehe "
+        ],
+        [
+          "link",
+          "/configuration/Configuration-File.md",
+          null,
+          [
+            [
+              "text",
+              "Konfigurationsdatei"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Weitere Informationen zum Speichern und zur Anwendbarkeit von Einstellungen finden Sie unter "
+        ],
+        [
+          "link",
+          "/configuration/MiniOS-Configurator.md",
+          null,
+          [
+            [
+              "text",
+              "MiniOS Configurator"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Kontoerstellung, Passwörter, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_CONFIG_NOROOT"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " und die Sicherheitslage sind Einmal-Einstellungen, die beim Erstellen einer neuen Sitzung verwendet werden. Der Configurator zeigt für jede Einstellung die Anwendbarkeit an. Wieder konfigurierbare Einstellungen wie Dienste werden nach einem Neustart angewendet."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "fernzugriff-absichern",
+      [
+        [
+          "text",
+          "Fernzugriff absichern"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "SSH kann in einem MiniOS-Image für Wiederherstellungszwecke aktiviert sein. In einem Netzwerk, in dem anderen Nutzern nicht vertraut wird, gehen Sie davon aus, dass die veröffentlichten Standard-Zugangsdaten bekannt sind, bis Sie das Gegenteil bestätigt haben."
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Wenn SSH nicht benötigt wird, fügen Sie "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "ssh"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " zu "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "DISABLE_SERVICES"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " im Configurator hinzu und entfernen Sie es aus "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "ENABLE_SERVICES"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", falls vorhanden."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Falls SSH erforderlich ist, verweigern Sie Root-Login mit "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_SSH_PERMIT_ROOT_LOGIN=false"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Bevorzugen Sie die Authentifizierung per Schlüssel. Testen Sie die Schlüssel-Anmeldung in einer separaten Verbindung, bevor Sie "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_SSH_PASSWORD_AUTHENTICATION=false"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " setzen."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Beschränken Sie eingehende Zugriffe über die Netzwerk-Firewall oder den Router und setzen Sie ein portables Wiederherstellungssystem nicht direkt dem Internet aus."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Prüfen Sie XRDP separat. Das strikte Profil deaktiviert XRDP; das ausgewogene Profil härtet es, deaktiviert aber nicht zwingend den Dienst."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Boot-Parameter können Werte aus der Konfigurationsdatei überschreiben. Prüfen Sie unerwartetes Dienstverhalten anhand der "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Boot-Parameter"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "persistente-daten-verschlüsseln",
+      [
+        [
+          "text",
+          "Persistente Daten verschlüsseln"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Unverschlüsselte native, DynFileFS- und Raw-Persistenz können von jedem gelesen werden, der das Gerät in die Hände bekommt. Der MiniOS Installer kann für eine Live-Sitzung einen verschlüsselten LUKS-Container einrichten, wenn das Quell-initrd LUKS-Unterstützung anbietet. Das initrd erstellt beim ersten Start "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " und fragt nach dessen Passphrase; der Installer erhält oder speichert diese Passphrase nicht."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "LUKS-Persistenz schützt die Inhalte, solange der Container geschlossen ist. Sie schützt keine Daten nach dem Entsperren, keine unverschlüsselten Boot-Dateien, keine außerhalb des Containers kopierten Dateien und kein natives Root-Dateisystem. LUKS-Sitzungspersistenz ist keine native Root-Verschlüsselung. Verwenden Sie eine starke Passphrase und halten Sie ein getestetes Backup bereit."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Siehe "
+        ],
+        [
+          "link",
+          "/installation/MiniOS-Installer.md",
+          null,
+          [
+            [
+              "text",
+              "MiniOS Installer"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " und "
+        ],
+        [
+          "link",
+          "/configuration/Session-Management.md",
+          null,
+          [
+            [
+              "text",
+              "Sitzungsverwaltung"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "updates-gezielt-anwenden",
+      [
+        [
+          "text",
+          "Updates gezielt anwenden"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Aktualisieren Sie die Paket-Metadaten und installieren Sie Debian-Sicherheitsupdates in persistenten Live-Sitzungen oder nativen Installationen über den normalen APT-Workflow. Änderungen durch APT in einer frischen Live-Sitzung gehen beim Neustart verloren. Basis-SquashFS-Module sind schreibgeschützt, daher ist das Ersetzen des ISO oder der Module durch eine neuere, vertrauenswürdige MiniOS-Version oft der sauberste Weg, das Basissystem zu aktualisieren."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Siehe "
+        ],
+        [
+          "link",
+          "/administration/Software-Updates.md",
+          null,
+          [
+            [
+              "text",
+              "Software-Updates"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " für die getrennten Workflows zu APT, Modulen, Images und Kernel."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Vor einem größeren Update:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Sichern Sie wichtige Dateien und persistente Sitzungen."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Stellen Sie sicher, dass ausreichend freier Speicherplatz vorhanden ist."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Vermeiden Sie Unterbrechungen beim Schreiben oder das Ausschalten des Geräts."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Starten Sie neu und prüfen Sie das aktualisierte System, bevor Sie das bisher bekannte, funktionierende Medium oder die Sitzung verwerfen."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "hooks-und-preseeding-als-code-ausführung-behandeln",
+      [
+        [
+          "text",
+          "Hooks und Preseeding als Code-Ausführung behandeln"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Die Boot-Option "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "hooks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " und live-config-Hooks können Dateien vom Root-Dateisystem, vom Boot-Medium oder von einer URL ausführen. Remote-Hooks, modifizierte Medien-Hooks und ungeprüfte Preseeds können mit Systemrechten ausgeführt werden. Verwenden Sie nur geprüfte Dateien aus vertrauenswürdigen Quellen, bevorzugen Sie authentifizierte Verteilung und vermeiden Sie Remote-Hooks in unsicheren Netzwerken. Siehe "
+        ],
+        [
+          "link",
+          "/configuration/live-config.md",
+          null,
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " für die Ausführungsreihenfolge und unterstützte Speicherorte."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "medien-sicher-sichern-und-ausmustern",
+      [
+        [
+          "text",
+          "Medien sicher sichern und ausmustern"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Persistenz ist kein Backup. Halten Sie eine separate Kopie Ihrer Benutzerdaten bereit und exportieren oder kopieren Sie Sitzungen, solange sie intakt sind. Testen Sie die Wiederherstellung auf unterschiedlichen Medien. Fahren Sie das System sauber herunter, bevor Sie beschreibbare Datenträger entfernen, und halten Sie ausreichend freien Speicherplatz für Sitzungsmetadaten und Dateisystemoperationen vor."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Bevor Sie ein Gerät entsorgen, löschen Sie es sicher entsprechend der Speichertechnologie und der Sensibilität der Daten. Das bloße Löschen von Dateien oder Neuformatieren reicht oft nicht aus, um alte Daten unwiederbringlich zu entfernen."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Härtung der Sicherheit\nMiniOS kann als Live-Wiederherstellungssystem, als persistentes portables System oder als native Installation betrieben werden. Die passenden Schutzmaßnahmen hängen von der jeweiligen Nutzung ab. Schützen Sie die laufende Sitzung, persistente Daten, das Boot-Medium sowie alle Konfigurationen, die beim Start angewendet werden.\nMit vertrauenswürdigen Medien beginnen\nLaden Sie MiniOS nur aus einer offiziellen Quelle herunter und verifizieren Sie das ISO, bevor Sie es schreiben. Folgen Sie Downloads verifizieren und vergleichen Sie das Ergebnis, bevor Sie booten oder installieren. Die Verifizierung erkennt beschädigte oder ausgetauschte Downloads, beweist jedoch nicht, dass ein bereits modifiziertes USB-Gerät sicher ist.\nBehalten Sie das USB-Gerät unter physischer Kontrolle. Firmware-Passwörter und eine eingeschränkte Boot-Reihenfolge können unbefugtes Booten erschweren, verschlüsseln jedoch keine Dateien auf dem Gerät. Secure Boot kann zusätzlichen Schutz für die Boot-Kette bieten, sofern Image und Hardware dies unterstützen; prüfen Sie das tatsächliche Release und das Firmware-Verhalten, anstatt Unterstützung vorauszusetzen.\nStandard-Zugangsdaten ersetzen\nEin nicht angepasstes MiniOS-Live-Image verwendet die veröffentlichten Zugangsdaten live /\nevil und root / toor, mit automatischer Anmeldung und passwortlosem administrativen Zugriff in der benutzerfreundlichen Standardkonfiguration. Jeder, der Zugriff auf das System erhält, kann diese Zugangsdaten nutzen, insbesondere wenn SSH aktiviert ist.\nVor dem Verbinden mit einem nicht vertrauenswürdigen Netzwerk:\nLegen Sie im MiniOS Configurator individuelle Benutzer- und Root-Passwörter fest.\nWählen Sie ein passendes Sicherheitsprofil und prüfen Sie jede aktivierte Einstellung.\nDeaktivieren Sie SSH und XRDP, sofern kein Fernzugriff benötigt wird.\nStarten Sie eine neue Sitzung, wenn Einmal-Einstellungen für Konten oder Sicherheit geändert wurden, und prüfen Sie anschließend das Anmelde- und Berechtigungsverhalten.\nDer Configurator speichert verschlüsselte Passwort-Hashes, nicht die Klartext-Passwörter. Wenn Sie ein bereits erstelltes persistentes oder natives Konto ändern, verwenden Sie passwd für den aktuellen Benutzer und sudo passwd root für Root.\nSicherheitskontrollen im Configurator nutzen\nDer MiniOS Configurator bietet drei Profile. Ein Profil füllt konkrete Einstellungen aus; der Profilname selbst wird nicht als Laufzeit-Konfigurationsschlüssel gespeichert, und jede Einstellung bleibt einzeln bearbeitbar.\nProfil | Hauptverhalten\nconvenient | Autologin-kompatibel, passwortloses sudo und PolicyKit, Root- und Passwort-SSH erlaubt, entspanntes XRDP/X11/Sperrbildschirm, Passworthinweise werden angezeigt.\nbalanced | Kein Autologin, sudo und PolicyKit erfordern Passwort, SSH-Root-Login verweigert, aber Passwort-SSH erlaubt, gehärtetes XRDP/X11/Sperrbildschirm.\nstrict | Kein Autologin, sudo und PolicyKit erfordern Passwort, SSH-Root- und Passwort-Login verweigert, XRDP deaktiviert, gehärtetes X11/Sperrbildschirm, Passworthinweise ausgeblendet.\nDie Standardwerte des Installers unterscheiden sich je nach Installationsmodus: Live-Installationen bevorzugen convenient, während native Installationen balanced bevorzugen. Dies sind Vorgaben, keine Empfehlungen für jedes Bedrohungsmodell.\nDie gleichen Einstellungen sind als dokumentierte Konfigurationsschlüssel verfügbar, darunter LIVE_SUDO_MODE, LIVE_POLKIT_MODE, LIVE_SSH_PERMIT_ROOT_LOGIN, LIVE_SSH_PASSWORD_AUTHENTICATION, LIVE_XRDP_MODE, LIVE_X11_MODE, LIVE_ISSUE_PASSWORD_HINTS und LIVE_LOCKSCREEN_MODE. Verwenden Sie bevorzugt diese Schlüssel oder den Configurator, anstatt generierte sudoers-, PolicyKit-, Display-Manager- oder SSH-Dateien direkt zu bearbeiten. Siehe Konfigurationsdatei.\nWeitere Informationen zum Speichern und zur Anwendbarkeit von Einstellungen finden Sie unter MiniOS Configurator.\nKontoerstellung, Passwörter, LIVE_CONFIG_NOROOT und die Sicherheitslage sind Einmal-Einstellungen, die beim Erstellen einer neuen Sitzung verwendet werden. Der Configurator zeigt für jede Einstellung die Anwendbarkeit an. Wieder konfigurierbare Einstellungen wie Dienste werden nach einem Neustart angewendet.\nFernzugriff absichern\nSSH kann in einem MiniOS-Image für Wiederherstellungszwecke aktiviert sein. In einem Netzwerk, in dem anderen Nutzern nicht vertraut wird, gehen Sie davon aus, dass die veröffentlichten Standard-Zugangsdaten bekannt sind, bis Sie das Gegenteil bestätigt haben.\nWenn SSH nicht benötigt wird, fügen Sie ssh zu DISABLE_SERVICES im Configurator hinzu und entfernen Sie es aus ENABLE_SERVICES, falls vorhanden.\nFalls SSH erforderlich ist, verweigern Sie Root-Login mit LIVE_SSH_PERMIT_ROOT_LOGIN=false.\nBevorzugen Sie die Authentifizierung per Schlüssel. Testen Sie die Schlüssel-Anmeldung in einer separaten Verbindung, bevor Sie LIVE_SSH_PASSWORD_AUTHENTICATION=false setzen.\nBeschränken Sie eingehende Zugriffe über die Netzwerk-Firewall oder den Router und setzen Sie ein portables Wiederherstellungssystem nicht direkt dem Internet aus.\nPrüfen Sie XRDP separat. Das strikte Profil deaktiviert XRDP; das ausgewogene Profil härtet es, deaktiviert aber nicht zwingend den Dienst.\nBoot-Parameter können Werte aus der Konfigurationsdatei überschreiben. Prüfen Sie unerwartetes Dienstverhalten anhand der Boot-Parameter.\nPersistente Daten verschlüsseln\nUnverschlüsselte native, DynFileFS- und Raw-Persistenz können von jedem gelesen werden, der das Gerät in die Hände bekommt. Der MiniOS Installer kann für eine Live-Sitzung einen verschlüsselten LUKS-Container einrichten, wenn das Quell-initrd LUKS-Unterstützung anbietet. Das initrd erstellt beim ersten Start changes.luks und fragt nach dessen Passphrase; der Installer erhält oder speichert diese Passphrase nicht.\nLUKS-Persistenz schützt die Inhalte, solange der Container geschlossen ist. Sie schützt keine Daten nach dem Entsperren, keine unverschlüsselten Boot-Dateien, keine außerhalb des Containers kopierten Dateien und kein natives Root-Dateisystem. LUKS-Sitzungspersistenz ist keine native Root-Verschlüsselung. Verwenden Sie eine starke Passphrase und halten Sie ein getestetes Backup bereit.\nSiehe MiniOS Installer und Sitzungsverwaltung.\nUpdates gezielt anwenden\nAktualisieren Sie die Paket-Metadaten und installieren Sie Debian-Sicherheitsupdates in persistenten Live-Sitzungen oder nativen Installationen über den normalen APT-Workflow. Änderungen durch APT in einer frischen Live-Sitzung gehen beim Neustart verloren. Basis-SquashFS-Module sind schreibgeschützt, daher ist das Ersetzen des ISO oder der Module durch eine neuere, vertrauenswürdige MiniOS-Version oft der sauberste Weg, das Basissystem zu aktualisieren.\nSiehe Software-Updates für die getrennten Workflows zu APT, Modulen, Images und Kernel.\nVor einem größeren Update:\nSichern Sie wichtige Dateien und persistente Sitzungen.\nStellen Sie sicher, dass ausreichend freier Speicherplatz vorhanden ist.\nVermeiden Sie Unterbrechungen beim Schreiben oder das Ausschalten des Geräts.\nStarten Sie neu und prüfen Sie das aktualisierte System, bevor Sie das bisher bekannte, funktionierende Medium oder die Sitzung verwerfen.\nHooks und Preseeding als Code-Ausführung behandeln\nDie Boot-Option hooks und live-config-Hooks können Dateien vom Root-Dateisystem, vom Boot-Medium oder von einer URL ausführen. Remote-Hooks, modifizierte Medien-Hooks und ungeprüfte Preseeds können mit Systemrechten ausgeführt werden. Verwenden Sie nur geprüfte Dateien aus vertrauenswürdigen Quellen, bevorzugen Sie authentifizierte Verteilung und vermeiden Sie Remote-Hooks in unsicheren Netzwerken. Siehe live-config für die Ausführungsreihenfolge und unterstützte Speicherorte.\nMedien sicher sichern und ausmustern\nPersistenz ist kein Backup. Halten Sie eine separate Kopie Ihrer Benutzerdaten bereit und exportieren oder kopieren Sie Sitzungen, solange sie intakt sind. Testen Sie die Wiederherstellung auf unterschiedlichen Medien. Fahren Sie das System sauber herunter, bevor Sie beschreibbare Datenträger entfernen, und halten Sie ausreichend freien Speicherplatz für Sitzungsmetadaten und Dateisystemoperationen vor.\nBevor Sie ein Gerät entsorgen, löschen Sie es sicher entsprechend der Speichertechnologie und der Sensibilität der Daten. Das bloße Löschen von Dateien oder Neuformatieren reicht oft nicht aus, um alte Daten unwiederbringlich zu entfernen.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

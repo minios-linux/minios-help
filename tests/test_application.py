@@ -6,17 +6,11 @@ from unittest import mock
 import gi
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gio, Gtk
-
-try:
-    import mistune  # noqa: F401
-    HAS_MISTUNE = True
-except ImportError:
-    HAS_MISTUNE = False
+from gi.repository import Gio, GLib, Gtk
 
 from minios_help.application import HelpWindow, MiniOSHelpApplication
 from minios_help.documents import LocalePreference
-from tests.test_sync import SyncFixture
+from tests.runtime_fixture import RuntimeFixture
 
 
 GTK_READY = Gtk.init_check(None)[0]
@@ -31,10 +25,10 @@ def test_application():
     return _TEST_APP
 
 
-@unittest.skipUnless(GTK_READY and HAS_MISTUNE, "GTK display and Mistune are required")
+@unittest.skipUnless(GTK_READY, "GTK display is required")
 class ApplicationTests(unittest.TestCase):
     def setUp(self):
-        self.fx = SyncFixture()
+        self.fx = RuntimeFixture()
         self.fx.run()
         self.preference_path = Path(self.fx.temp.name) / "settings.json"
         self.preference = LocalePreference(self.preference_path)
@@ -61,10 +55,11 @@ class ApplicationTests(unittest.TestCase):
         self.assertEqual(len(h1), 1)
 
 
-    def test_mermaid_rendering_is_enabled_for_help_pages(self):
-        self.assertTrue(self.window.markdown.render_mermaid)
+    def test_help_uses_precompiled_document_renderer(self):
+        self.assertEqual(type(self.window.markdown).__name__, "DocumentTextView")
+        self.assertFalse(hasattr(self.window.markdown, "set_markdown"))
 
-    def test_markdown_is_direct_scrolled_window_child(self):
+    def test_document_view_is_direct_scrolled_window_child(self):
         self.assertIs(self.window.document_scroll.get_child(), self.window.markdown)
 
     def test_internal_link_navigation_and_history(self):
@@ -94,7 +89,7 @@ class ApplicationTests(unittest.TestCase):
         self._drain()
         self.assertTrue(self.window.current.fallback)
         self.assertTrue(self.window.fallback_bar.get_visible())
-        self.assertTrue(self.window.current.text.startswith("# Other"))
+        self.assertTrue(self.window.current.text.startswith("Other"))
 
     def test_external_https_uses_system_uri_launcher(self):
         with mock.patch.object(Gio.AppInfo, "launch_default_for_uri", return_value=True) as launcher:
@@ -127,6 +122,28 @@ class ApplicationTests(unittest.TestCase):
         self.assertIs(self.window.search_entry.get_parent(), self.window.controls_row)
         self.assertIs(self.window.locale_combo.get_parent(), self.window.controls_row)
 
+
+    def test_search_results_do_not_use_modal_keyboard_grab(self):
+        self.window.search_worker.index.build()
+        self.window.search_index = self.window.search_worker.index
+        self.window.search_entry.set_text("Page")
+        self.window._update_search_results()
+        self._drain()
+        self.assertTrue(self.window.search_popover.get_visible())
+        self.assertFalse(self.window.search_popover.get_modal())
+        self.assertTrue(self.window._search_rows)
+
+    def test_sidebar_button_points_toward_hidden_side(self):
+        with mock.patch("minios_help.application.new_icon", return_value=Gtk.Image()) as factory:
+            self.window.sidebar_revealer.set_reveal_child(True)
+            self.window._update_sidebar_button_icon()
+            self.assertEqual(
+                factory.call_args.args[0], "sidebar-hide-symbolic")
+            self.window.sidebar_revealer.set_reveal_child(False)
+            self.window._update_sidebar_button_icon()
+            self.assertEqual(
+                factory.call_args.args[0], "sidebar-show-symbolic")
+
     def test_narrow_window_hides_sidebar(self):
         allocation = type("Allocation", (), {"width": 600})()
         self.window._on_size_allocate(self.window, allocation)
@@ -135,7 +152,7 @@ class ApplicationTests(unittest.TestCase):
         self.assertTrue(self.window.sidebar_revealer.get_reveal_child())
 
 
-@unittest.skipUnless(GTK_READY and HAS_MISTUNE, "GTK display and Mistune are required")
+@unittest.skipUnless(GTK_READY, "GTK display is required")
 class BrokenManifestTests(unittest.TestCase):
     def test_corrupt_manifest_shows_readable_error_page(self):
         with tempfile.TemporaryDirectory() as directory:

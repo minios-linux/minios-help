@@ -1,0 +1,639 @@
+{
+  "headings": [
+    {
+      "anchor": "überprüfung-von-downloads",
+      "level": 1,
+      "title": "Überprüfung von Downloads"
+    },
+    {
+      "anchor": "beide-dateien-herunterladen",
+      "level": 2,
+      "title": "Beide Dateien herunterladen"
+    },
+    {
+      "anchor": "linux",
+      "level": 2,
+      "title": "Linux"
+    },
+    {
+      "anchor": "macos",
+      "level": 2,
+      "title": "macOS"
+    },
+    {
+      "anchor": "windows-powershell",
+      "level": 2,
+      "title": "Windows PowerShell"
+    },
+    {
+      "anchor": "wenn-die-überprüfung-fehlschlägt",
+      "level": 2,
+      "title": "Wenn die Überprüfung fehlschlägt"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "überprüfung-von-downloads",
+      [
+        [
+          "text",
+          "Überprüfung von Downloads"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS-Versionen werden auf der offiziellen "
+        ],
+        [
+          "link",
+          "https://github.com/minios-linux/minios-live/releases",
+          null,
+          [
+            [
+              "text",
+              "GitHub Releases-Seite"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " veröffentlicht. Jede ISO-Veröffentlichung enthält eine passende Datei, deren Name auf "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".iso.sha256"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " endet."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Die SHA-256-Prüfung erkennt unvollständige oder veränderte Downloads. Sie beweist jedoch nicht, wer die Dateien erstellt hat. Derzeit werden nur Prüfsummen, aber keine kryptografischen Signaturdateien bereitgestellt, daher beschreibt diese Seite keine Signaturprüfung."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "beide-dateien-herunterladen",
+      [
+        [
+          "text",
+          "Beide Dateien herunterladen"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Laden Sie die ISO und die dazugehörige "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sha256"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "-Datei aus derselben GitHub-Veröffentlichung herunter. Bewahren Sie beide Dateien im selben Verzeichnis. Ihre Basisnamen müssen übereinstimmen, zum Beispiel:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "minios-trixie-xfce-standard-amd64-5.1.1.iso\nminios-trixie-xfce-standard-amd64-5.1.1.iso.sha256",
+      "",
+      []
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Verwenden Sie in den folgenden Befehlen die Namen aus der heruntergeladenen Veröffentlichung."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "linux",
+      [
+        [
+          "text",
+          "Linux"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Öffnen Sie ein Terminal im Download-Verzeichnis und führen Sie aus:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sha256sum --check minios-trixie-xfce-standard-amd64-5.1.1.iso.sha256",
+      "bash",
+      [
+        [
+          "syntax",
+          "sha256sum",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--check",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-trixie-xfce-standard-amd64-5.1.1.iso.sha256",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ein gültiger Download gibt den ISO-Namen gefolgt von "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "OK"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " aus."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "macos",
+      [
+        [
+          "text",
+          "macOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Berechnen Sie die ISO-Prüfsumme:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "shasum -a 256 minios-trixie-xfce-standard-amd64-5.1.1.iso",
+      "bash",
+      [
+        [
+          "syntax",
+          "shasum",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-a",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "256",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-trixie-xfce-standard-amd64-5.1.1.iso",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Zeigen Sie die erwartete Prüfsumme an:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "cat minios-trixie-xfce-standard-amd64-5.1.1.iso.sha256",
+      "bash",
+      [
+        [
+          "syntax",
+          "cat",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-trixie-xfce-standard-amd64-5.1.1.iso.sha256",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Vergleichen Sie die beiden 64-stelligen hexadezimalen Werte exakt."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "windows-powershell",
+      [
+        [
+          "text",
+          "Windows PowerShell"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Öffnen Sie PowerShell im Download-Verzeichnis und führen Sie aus:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "(Get-FileHash .\\minios-trixie-xfce-standard-amd64-5.1.1.iso -Algorithm SHA256).Hash.ToLower()\nGet-Content .\\minios-trixie-xfce-standard-amd64-5.1.1.iso.sha256",
+      "powershell",
+      [
+        [
+          "syntax",
+          "(",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "Get-FileHash",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " .\\minios",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "trixie",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "xfce",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "standard",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "amd64",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "5.1",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          ".",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "1.",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          "iso ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "Algorithm SHA256).Hash.ToLower()",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "Get-Content",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " .\\minios",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "trixie",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "xfce",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "standard",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "amd64",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "5.1",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          ".",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "1.",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          "iso.sha256",
+          "#24292E",
+          "#E1E4E8"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Vergleichen Sie den berechneten Wert mit dem Wert am Anfang der "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sha256"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "-Datei. Der Vergleich ist nicht groß-/kleinschreibungssensitiv."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "wenn-die-überprüfung-fehlschlägt",
+      [
+        [
+          "text",
+          "Wenn die Überprüfung fehlschlägt"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Beschreiben oder starten Sie die ISO nicht. Überprüfen Sie, ob die ISO und die Prüfsummendatei zur gleichen Veröffentlichung und Edition gehören, löschen Sie die fehlerhafte ISO und laden Sie sie erneut von den offiziellen "
+        ],
+        [
+          "link",
+          "https://github.com/minios-linux/minios-live/releases",
+          null,
+          [
+            [
+              "text",
+              "MiniOS Releases"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " herunter."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Überprüfung von Downloads\nMiniOS-Versionen werden auf der offiziellen GitHub Releases-Seite veröffentlicht. Jede ISO-Veröffentlichung enthält eine passende Datei, deren Name auf .iso.sha256 endet.\nDie SHA-256-Prüfung erkennt unvollständige oder veränderte Downloads. Sie beweist jedoch nicht, wer die Dateien erstellt hat. Derzeit werden nur Prüfsummen, aber keine kryptografischen Signaturdateien bereitgestellt, daher beschreibt diese Seite keine Signaturprüfung.\nBeide Dateien herunterladen\nLaden Sie die ISO und die dazugehörige .sha256-Datei aus derselben GitHub-Veröffentlichung herunter. Bewahren Sie beide Dateien im selben Verzeichnis. Ihre Basisnamen müssen übereinstimmen, zum Beispiel:\nminios-trixie-xfce-standard-amd64-5.1.1.iso\nminios-trixie-xfce-standard-amd64-5.1.1.iso.sha256\nVerwenden Sie in den folgenden Befehlen die Namen aus der heruntergeladenen Veröffentlichung.\nLinux\nÖffnen Sie ein Terminal im Download-Verzeichnis und führen Sie aus:\nsha256sum --check minios-trixie-xfce-standard-amd64-5.1.1.iso.sha256\nEin gültiger Download gibt den ISO-Namen gefolgt von OK aus.\nmacOS\nBerechnen Sie die ISO-Prüfsumme:\nshasum -a 256 minios-trixie-xfce-standard-amd64-5.1.1.iso\nZeigen Sie die erwartete Prüfsumme an:\ncat minios-trixie-xfce-standard-amd64-5.1.1.iso.sha256\nVergleichen Sie die beiden 64-stelligen hexadezimalen Werte exakt.\nWindows PowerShell\nÖffnen Sie PowerShell im Download-Verzeichnis und führen Sie aus:\n(Get-FileHash .\\minios-trixie-xfce-standard-amd64-5.1.1.iso -Algorithm SHA256).Hash.ToLower()\nGet-Content .\\minios-trixie-xfce-standard-amd64-5.1.1.iso.sha256\nVergleichen Sie den berechneten Wert mit dem Wert am Anfang der .sha256-Datei. Der Vergleich ist nicht groß-/kleinschreibungssensitiv.\nWenn die Überprüfung fehlschlägt\nBeschreiben oder starten Sie die ISO nicht. Überprüfen Sie, ob die ISO und die Prüfsummendatei zur gleichen Veröffentlichung und Edition gehören, löschen Sie die fehlerhafte ISO und laden Sie sie erneut von den offiziellen MiniOS Releases herunter.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

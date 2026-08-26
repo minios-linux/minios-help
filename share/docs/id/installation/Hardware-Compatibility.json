@@ -1,0 +1,443 @@
+{
+  "headings": [
+    {
+      "anchor": "panduan-kompatibilitas-perangkat-keras",
+      "level": 1,
+      "title": "Panduan kompatibilitas perangkat keras"
+    },
+    {
+      "anchor": "persyaratan-sistem",
+      "level": 2,
+      "title": "Persyaratan sistem"
+    },
+    {
+      "anchor": "kompatibilitas-komponen",
+      "level": 2,
+      "title": "Kompatibilitas komponen"
+    },
+    {
+      "anchor": "prosesor",
+      "level": 3,
+      "title": "Prosesor"
+    },
+    {
+      "anchor": "grafis",
+      "level": 3,
+      "title": "Grafis"
+    },
+    {
+      "anchor": "jaringan",
+      "level": 3,
+      "title": "Jaringan"
+    },
+    {
+      "anchor": "penyimpanan",
+      "level": 3,
+      "title": "Penyimpanan"
+    },
+    {
+      "anchor": "virtualisasi",
+      "level": 3,
+      "title": "Virtualisasi"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "panduan-kompatibilitas-perangkat-keras",
+      [
+        [
+          "text",
+          "Panduan kompatibilitas perangkat keras"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Dukungan perangkat keras bergantung pada rilis dan image MiniOS: distribusi dasar, kernel, firmware, modul yang disertakan, dan edisi semuanya berpengaruh. Periksa deskripsi rilis untuk image yang Anda unduh, lalu uji sesi live baru sebelum mengganti disk atau menggunakan mesin tersebut untuk pekerjaan yang bersifat persisten."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "persyaratan-sistem",
+      [
+        [
+          "text",
+          "Persyaratan sistem"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Image MiniOS untuk PC yang dipublikasikan ditujukan untuk arsitektur "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "amd64"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " (x86 64-bit) kecuali jika deskripsi rilis menyatakan lain. Kebutuhan sumber daya bervariasi tergantung image, edisi, desktop, aplikasi, dan mode boot:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "CPU harus mendukung arsitektur image dan mode firmware yang dipilih."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "RAM harus mencukupi untuk edisi dan beban kerja yang dipilih. Mode "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "toram"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " membutuhkan memori tambahan untuk data image yang disalin."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Media boot harus memiliki ruang yang cukup untuk image yang diunduh. Persistensi, data pengguna, dan instalasi native memerlukan penyimpanan tambahan yang dapat ditulis."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Kebutuhan grafis bergantung pada desktop dan aplikasi di edisi yang dipilih."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Menulis image ke perangkat yang lebih besar tidak otomatis membuat penyimpanan persisten. Lihat "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Boot modes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk panduan resmi perilaku live boot dan "
+        ],
+        [
+          "link",
+          "/installation/Quick-Start.md",
+          null,
+          [
+            [
+              "text",
+              "Quick start"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk persiapan media."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "kompatibilitas-komponen",
+      [
+        [
+          "text",
+          "Kompatibilitas komponen"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "prosesor",
+      [
+        [
+          "text",
+          "Prosesor"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Kompatibilitas bergantung pada arsitektur dan kernel yang disertakan dalam image yang dipilih. Periksa catatan rilis jika menggunakan prosesor terbaru atau fitur CPU yang memerlukan dukungan kernel yang lebih baru."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "grafis",
+      [
+        [
+          "text",
+          "Grafis"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Dukungan grafis bergantung pada driver kernel, firmware, dan stack grafis userspace dalam image. Sebuah kartu grafis mungkin hanya menyediakan output tampilan dasar tanpa mendukung akselerasi hardware atau semua konektor. Beberapa hardware NVIDIA mungkin memerlukan driver proprietary yang tidak disertakan dalam image tertentu."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "jaringan",
+      [
+        [
+          "text",
+          "Jaringan"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Dukungan Ethernet dan Wi-Fi bergantung pada controller, driver kernel, dan firmware yang disertakan dalam image. Uji jaringan dari sesi baru. Untuk Wi-Fi, periksa juga apakah perangkat memerlukan firmware atau driver out-of-tree yang tidak ada di rilis tersebut."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "penyimpanan",
+      [
+        [
+          "text",
+          "Penyimpanan"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Perangkat USB, SATA, NVMe, IDE, dan SD/MMC hanya berfungsi jika image yang dipilih memiliki driver untuk controller-nya dan kernel dapat mengenali perangkat tersebut. Pemindaian initrd tidak membuat controller yang tidak didukung menjadi kompatibel. Lihat "
+        ],
+        [
+          "link",
+          "/configuration/Initrd-System-Discovery.md",
+          null,
+          [
+            [
+              "text",
+              "Initrd system discovery"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk perilaku pencarian live-source secara detail."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Mode live dan mode native memiliki jalur boot yang berbeda. Mode live mendeteksi pohon data MiniOS dan merakit modul read-only di userspace awal; mode native melakukan boot ke root yang diinstal secara konvensional. Lihat "
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Initrd module loading"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk penanganan modul live dan "
+        ],
+        [
+          "link",
+          "/installation/Installing-MiniOS.md",
+          null,
+          [
+            [
+              "text",
+              "Installing MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk perbedaan tata letak."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "virtualisasi",
+      [
+        [
+          "text",
+          "Virtualisasi"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS dapat dijalankan sebagai guest jika image yang dipilih menyertakan driver untuk CPU, penyimpanan, jaringan, dan perangkat display yang dikonfigurasi pada VM. Dukungan tidak dijamin untuk setiap hypervisor atau model controller. Dukungan VirtIO, VMware, Hyper-V, serta IDE atau SATA emulasi harus dicek terhadap rilis dan diuji dengan konfigurasi VM yang spesifik."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Agen guest dan alat integrasi desktop juga bervariasi tergantung edisi dan image. Lihat "
+        ],
+        [
+          "link",
+          "/administration/Packages.md",
+          null,
+          [
+            [
+              "text",
+              "daftar paket"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dan "
+        ],
+        [
+          "link",
+          "/administration/Virtualization.md",
+          null,
+          [
+            [
+              "text",
+              "panduan Virtualisasi"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " sebelum mengasumsikan fitur seperti clipboard sharing, resolusi dinamis, shutdown bersih, atau komunikasi dengan host tersedia."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Panduan kompatibilitas perangkat keras\nDukungan perangkat keras bergantung pada rilis dan image MiniOS: distribusi dasar, kernel, firmware, modul yang disertakan, dan edisi semuanya berpengaruh. Periksa deskripsi rilis untuk image yang Anda unduh, lalu uji sesi live baru sebelum mengganti disk atau menggunakan mesin tersebut untuk pekerjaan yang bersifat persisten.\nPersyaratan sistem\nImage MiniOS untuk PC yang dipublikasikan ditujukan untuk arsitektur amd64 (x86 64-bit) kecuali jika deskripsi rilis menyatakan lain. Kebutuhan sumber daya bervariasi tergantung image, edisi, desktop, aplikasi, dan mode boot:\nCPU harus mendukung arsitektur image dan mode firmware yang dipilih.\nRAM harus mencukupi untuk edisi dan beban kerja yang dipilih. Mode toram membutuhkan memori tambahan untuk data image yang disalin.\nMedia boot harus memiliki ruang yang cukup untuk image yang diunduh. Persistensi, data pengguna, dan instalasi native memerlukan penyimpanan tambahan yang dapat ditulis.\nKebutuhan grafis bergantung pada desktop dan aplikasi di edisi yang dipilih.\nMenulis image ke perangkat yang lebih besar tidak otomatis membuat penyimpanan persisten. Lihat Boot modes untuk panduan resmi perilaku live boot dan Quick start untuk persiapan media.\nKompatibilitas komponen\nProsesor\nKompatibilitas bergantung pada arsitektur dan kernel yang disertakan dalam image yang dipilih. Periksa catatan rilis jika menggunakan prosesor terbaru atau fitur CPU yang memerlukan dukungan kernel yang lebih baru.\nGrafis\nDukungan grafis bergantung pada driver kernel, firmware, dan stack grafis userspace dalam image. Sebuah kartu grafis mungkin hanya menyediakan output tampilan dasar tanpa mendukung akselerasi hardware atau semua konektor. Beberapa hardware NVIDIA mungkin memerlukan driver proprietary yang tidak disertakan dalam image tertentu.\nJaringan\nDukungan Ethernet dan Wi-Fi bergantung pada controller, driver kernel, dan firmware yang disertakan dalam image. Uji jaringan dari sesi baru. Untuk Wi-Fi, periksa juga apakah perangkat memerlukan firmware atau driver out-of-tree yang tidak ada di rilis tersebut.\nPenyimpanan\nPerangkat USB, SATA, NVMe, IDE, dan SD/MMC hanya berfungsi jika image yang dipilih memiliki driver untuk controller-nya dan kernel dapat mengenali perangkat tersebut. Pemindaian initrd tidak membuat controller yang tidak didukung menjadi kompatibel. Lihat Initrd system discovery untuk perilaku pencarian live-source secara detail.\nMode live dan mode native memiliki jalur boot yang berbeda. Mode live mendeteksi pohon data MiniOS dan merakit modul read-only di userspace awal; mode native melakukan boot ke root yang diinstal secara konvensional. Lihat Initrd module loading untuk penanganan modul live dan Installing MiniOS untuk perbedaan tata letak.\nVirtualisasi\nMiniOS dapat dijalankan sebagai guest jika image yang dipilih menyertakan driver untuk CPU, penyimpanan, jaringan, dan perangkat display yang dikonfigurasi pada VM. Dukungan tidak dijamin untuk setiap hypervisor atau model controller. Dukungan VirtIO, VMware, Hyper-V, serta IDE atau SATA emulasi harus dicek terhadap rilis dan diuji dengan konfigurasi VM yang spesifik.\nAgen guest dan alat integrasi desktop juga bervariasi tergantung edisi dan image. Lihat daftar paket dan panduan Virtualisasi sebelum mengasumsikan fitur seperti clipboard sharing, resolusi dinamis, shutdown bersih, atau komunikasi dengan host tersedia.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

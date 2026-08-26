@@ -7,6 +7,7 @@ import shutil
 import tempfile
 import unittest
 from pathlib import Path
+from urllib.parse import unquote
 
 
 HERE = Path(__file__).resolve().parent
@@ -71,6 +72,10 @@ features:
     def run(self):
         return sync.sync_docs(self.root, self.output, stderr=io.StringIO())
 
+    def compiled(self, locale, canonical):
+        relative = "index.json" if canonical == "index" else canonical + ".json"
+        return json.loads((self.output / locale / relative).read_text(encoding="utf-8"))
+
     def close(self):
         self.temp.cleanup()
 
@@ -101,36 +106,38 @@ class SynchronizerTests(unittest.TestCase):
 
     def test_frontmatter_removed_and_native_home_generated(self):
         self.fx.run()
-        home = (self.fx.output / "en" / "index.md").read_text(encoding="utf-8")
-        self.assertTrue(home.startswith("# MiniOS Wiki\n"))
-        self.assertIn("**Offline help**", home)
-        self.assertIn("## About", home)
-        self.assertNotIn("layout: home", home)
-        self.assertNotIn("hero:", home)
+        home = self.fx.compiled("en", "index")
+        self.assertEqual(home["headings"][0]["title"], "MiniOS Wiki")
+        self.assertIn("Offline help", home["plain_text"])
+        self.assertIn("About", home["plain_text"])
+        raw = json.dumps(home, ensure_ascii=False)
+        self.assertNotIn("layout: home", raw)
+        self.assertNotIn("hero:", raw)
 
     def test_absolute_relative_and_anchor_links_are_normalized(self):
         self.fx.run()
-        page = (self.fx.output / "en" / "about" / "Page.md").read_text(encoding="utf-8")
-        other = (self.fx.output / "en" / "about" / "Other.md").read_text(encoding="utf-8")
-        self.assertIn("[Other](/about/Other.md)", page)
-        self.assertIn("[page](/about/Page.md#anchor-here)", other)
+        page = json.dumps(self.fx.compiled("en", "about/Page"), ensure_ascii=False)
+        other = json.dumps(self.fx.compiled("en", "about/Other"), ensure_ascii=False)
+        self.assertIn("/about/Other.md", page)
+        self.assertIn("/about/Page.md#anchor-here", other)
 
     def test_locale_and_english_fallback_are_recorded(self):
         manifest = self.fx.run()
         other = next(item for item in manifest["documents"] if item["canonical_id"] == "about/Other")
         self.assertIn("ru", other["fallback_locales"])
-        self.assertEqual(other["translations"]["ru"], "ru/about/Other.md")
-        fallback_text = (self.fx.output / "ru" / "about" / "Other.md").read_text(encoding="utf-8")
-        self.assertTrue(fallback_text.startswith("# Other\n"))
-        self.assertIn("Back to [page]", fallback_text)
+        self.assertEqual(other["translations"]["ru"], "ru/about/Other.json")
+        fallback = self.fx.compiled("ru", "about/Other")
+        self.assertTrue(fallback["plain_text"].startswith("Other"))
+        self.assertIn("Back to page", fallback["plain_text"])
 
     def test_localized_anchor_is_mapped_to_translated_heading(self):
         self.fx.write(
             "translations/ru/about/Other.md",
             "# Другое\n\n[Назад](/about/Page#anchor-here).\n")
         self.fx.run()
-        other = (self.fx.output / "ru" / "about" / "Other.md").read_text(encoding="utf-8")
-        self.assertIn("#якорь-здесь", other)
+        other = json.dumps(
+            self.fx.compiled("ru", "about/Other"), ensure_ascii=False)
+        self.assertIn("#якорь-здесь", unquote(other))
 
     def test_sidebar_missing_document_is_error(self):
         self.fx.sidebar[0]["items"] = self.fx.sidebar[0]["items"][:1]
@@ -171,18 +178,44 @@ class SynchronizerTests(unittest.TestCase):
             "about/Page.md",
             "# Page\n\nA<br>B <kbd>Esc</kbd> <strong>bold</strong> <em>italic</em>\n\n## Anchor Here\n")
         self.fx.run()
-        page = (self.fx.output / "en" / "about" / "Page.md").read_text(encoding="utf-8")
-        self.assertIn("A  \nB", page)
-        self.assertIn("`Esc`", page)
-        self.assertIn("**bold**", page)
-        self.assertIn("*italic*", page)
+        page = self.fx.compiled("en", "about/Page")
+        self.assertIn("A\nB Esc bold italic", page["plain_text"])
+        raw = json.dumps(page["nodes"], ensure_ascii=False)
+        self.assertIn('"code"', raw)
+        self.assertIn('"strong"', raw)
+        self.assertIn('"emphasis"', raw)
+
+    def test_br_inside_table_stays_in_same_cell(self):
+        self.fx.write(
+            "about/Page.md",
+            "# Page\n\n"
+            "| Parameter | Use | Description | Example |\n"
+            "| --- | --- | --- | --- |\n"
+            "| `perchmode` | Every boot | Mode. | "
+            "`perchmode=native`<br>`perchmode=raw` |\n\n"
+            "## Anchor Here\n")
+        self.fx.run()
+        page = self.fx.compiled("en", "about/Page")
+        table = next(node for node in page["nodes"] if node[0] == "table")
+        self.assertEqual(len(table[1]), 2)
+        row = table[1][1]
+        self.assertEqual(len(row[2]), 4)
+        first = json.dumps(row[2][0], ensure_ascii=False)
+        example = json.dumps(row[2][3], ensure_ascii=False)
+        self.assertIn("perchmode", first)
+        self.assertIn("perchmode=native", example)
+        self.assertIn("perchmode=raw", example)
+        self.assertNotIn("perchmode=native", first)
 
     def test_fenced_code_is_byte_for_byte_preserved_in_body(self):
         fenced = "```html\n<strong>do not transform</strong>\n[k](../outside.md)\n```"
         self.fx.write("about/Page.md", "# Page\n\n{}\n\n## Anchor Here\n".format(fenced))
         self.fx.run()
-        page = (self.fx.output / "en" / "about" / "Page.md").read_text(encoding="utf-8")
-        self.assertIn(fenced, page)
+        page = self.fx.compiled("en", "about/Page")
+        code_blocks = [node for node in page["nodes"] if node[0] == "code_block"]
+        self.assertEqual(len(code_blocks), 1)
+        self.assertEqual(code_blocks[0][1], "<strong>do not transform</strong>\n[k](../outside.md)")
+        self.assertEqual(code_blocks[0][2], "html")
 
 
     def test_manifest_lists_available_translations(self):
@@ -200,7 +233,7 @@ class SynchronizerTests(unittest.TestCase):
         self.assertNotIn("generated_at", raw)
         manifest = json.loads(raw)
         self.assertEqual(manifest["product_kind"], "minios-help-documents")
-        self.assertEqual(manifest["schema_version"], 1)
+        self.assertEqual(manifest["schema_version"], 2)
         self.assertEqual(manifest["default_locale"], "en")
 
 

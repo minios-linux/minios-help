@@ -1,0 +1,758 @@
+{
+  "headings": [
+    {
+      "anchor": "optimización-del-rendimiento",
+      "level": 1,
+      "title": "Optimización del rendimiento"
+    },
+    {
+      "anchor": "parámetros-de-arranque-para-el-rendimiento",
+      "level": 2,
+      "title": "Parámetros de arranque para el rendimiento"
+    },
+    {
+      "anchor": "cargar-el-sistema-en-ram-toram",
+      "level": 3,
+      "title": "Cargar el sistema en RAM (toram)"
+    },
+    {
+      "anchor": "filtrado-de-módulos-load-y-noload",
+      "level": 3,
+      "title": "Filtrado de módulos (load y noload)"
+    },
+    {
+      "anchor": "optimización-de-la-persistencia",
+      "level": 2,
+      "title": "Optimización de la persistencia"
+    },
+    {
+      "anchor": "modos-de-persistencia-perchmode",
+      "level": 3,
+      "title": "Modos de persistencia (perchmode)"
+    },
+    {
+      "anchor": "configuración-de-zram",
+      "level": 2,
+      "title": "Configuración de ZRAM"
+    },
+    {
+      "anchor": "sistema-de-archivos-y-hardware-de-almacenamiento",
+      "level": 2,
+      "title": "Sistema de archivos y hardware de almacenamiento"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "optimización-del-rendimiento",
+      [
+        [
+          "text",
+          "Optimización del rendimiento"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El ajuste de rendimiento en MiniOS es principalmente un equilibrio entre el tiempo de arranque, uso de RAM,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "lecturas en tiempo de ejecución, sobrecarga de persistencia y durabilidad del almacenamiento. Para conocer la semántica exacta de las opciones y los límites de seguridad, consulta "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Modos de arranque"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Carga de módulos Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y "
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Persistence.md",
+          null,
+          [
+            [
+              "text",
+              "Persistencia Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "parámetros-de-arranque-para-el-rendimiento",
+      [
+        [
+          "text",
+          "Parámetros de arranque para el rendimiento"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Los parámetros de arranque pueden trasladar el trabajo de inicio y las lecturas del sistema en vivo entre la RAM y el dispositivo de origen. Consulta "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Parámetros de arranque"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para la referencia completa."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "cargar-el-sistema-en-ram-toram",
+      [
+        [
+          "text",
+          "Cargar el sistema en RAM ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " puede reducir la latencia en tiempo de ejecución causada por un dispositivo USB lento o una ISO en red, a costa de un arranque más largo y un uso considerablemente mayor de RAM. El uso de "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " realiza una copia completa. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " suele consumir menos RAM, pero su copia más limitada puede omitir datos o módulos necesarios posteriormente."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Deja espacio para la capa de escritura, aplicaciones, cachés y zram, en lugar de dimensionar solo para los archivos de módulos. Asignar más RAM a la copia en vivo significa que habrá menos disponible para la carga de trabajo. Consulta "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Modos de arranque"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para conocer la durabilidad de la copia y las restricciones de extracción de medios."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "filtrado-de-módulos-load-y-noload",
+      [
+        [
+          "text",
+          "Filtrado de módulos ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "load"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noload"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El filtrado puede reducir los datos copiados y las capas montadas, especialmente con "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". El costo es un sistema menos capaz y una mayor probabilidad de fallos en el arranque o en tiempo de ejecución si se omite una dependencia. Verifica el conjunto de módulos resultante; la sintaxis de filtrado y las limitaciones de módulos protegidos se definen en "
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Carga de módulos Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "optimización-de-la-persistencia",
+      [
+        [
+          "text",
+          "Optimización de la persistencia"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La persistencia traslada las operaciones de E/S de la capa escribible desde la RAM temporal al almacenamiento o a un contenedor. La elección del backend afecta la latencia, compatibilidad, gestión de capacidad y complejidad de recuperación."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "modos-de-persistencia-perchmode",
+      [
+        [
+          "text",
+          "Modos de persistencia ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchmode"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "native"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Evita una capa de sistema de archivos en un archivo y es la opción más sencilla en un sistema de archivos POSIX adecuado, pero no está disponible en sistemas de archivos que no pueden conservar los metadatos requeridos por Linux."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "raw"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Tiene una capacidad fija predecible y un comportamiento ext4 convencional, pero reserva el tamaño del archivo y no puede crecer más allá del almacenamiento disponible."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "dynfilefs"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Se expande bajo demanda y admite medios que de otro modo serían inadecuados, con mayor complejidad de mapeo y recuperación."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "luks"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Añade confidencialidad a costa de trabajo de desbloqueo y sobrecarga de cifrado."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "squashfs"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Intercambia compresión al guardar y trabajo de extracción en RAM por una instantánea compacta; no es un backend escribible de baja latencia general."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Realiza pruebas comparativas de cargas de trabajo representativas en el dispositivo real. Las diferencias en el controlador flash, sistema de archivos, puente USB y carga de trabajo son más fiables que una clasificación universal de los modos de persistencia."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "configuración-de-zram",
+      [
+        [
+          "text",
+          "Configuración de ZRAM"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Zram intercambia tiempo de CPU por capacidad de memoria comprimida y puede evitar el uso de swap respaldado por almacenamiento, que es mucho más lento. Un dispositivo zram más grande puede absorber más páginas inactivas, pero no crea RAM física; las cargas de trabajo incomprimibles siguen consumiendo memoria. Los algoritmos de compresión equilibran el rendimiento y el uso de CPU frente a la tasa de compresión, y su disponibilidad depende del kernel. Comienza con la configuración predeterminada y cambia "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramsize"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramcomp"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " o "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "nozram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " solo para una carga de trabajo medida; consulta "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Parámetros de arranque"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para los valores aceptados."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "sistema-de-archivos-y-hardware-de-almacenamiento",
+      [
+        [
+          "text",
+          "Sistema de archivos y hardware de almacenamiento"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Elección del dispositivo:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Un mayor rendimiento secuencial acorta la copia de módulos grandes, mientras que una baja latencia de E/S aleatoria es más relevante para cargas de trabajo de escritorio persistentes. Mide el dispositivo y la carcasa juntos; la generación USB por sí sola no predice el rendimiento de la memoria flash o SSD."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Elección del sistema de archivos:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Un sistema de archivos nativo de Linux puede usar persistencia nativa sin la sobrecarga de un contenedor. Los sistemas de archivos multiplataforma mejoran la portabilidad pero requieren un backend de contenedor compatible para los metadatos de Linux, lo que añade capas de mapeo y sistema de archivos. Elige en función de la portabilidad, las necesidades de recuperación y los resultados de las pruebas comparativas."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Optimización del rendimiento\nEl ajuste de rendimiento en MiniOS es principalmente un equilibrio entre el tiempo de arranque, uso de RAM,\nlecturas en tiempo de ejecución, sobrecarga de persistencia y durabilidad del almacenamiento. Para conocer la semántica exacta de las opciones y los límites de seguridad, consulta Modos de arranque, Carga de módulos Initrd y Persistencia Initrd.\nParámetros de arranque para el rendimiento\nLos parámetros de arranque pueden trasladar el trabajo de inicio y las lecturas del sistema en vivo entre la RAM y el dispositivo de origen. Consulta Parámetros de arranque para la referencia completa.\nCargar el sistema en RAM (toram)\ntoram puede reducir la latencia en tiempo de ejecución causada por un dispositivo USB lento o una ISO en red, a costa de un arranque más largo y un uso considerablemente mayor de RAM. El uso de toram realiza una copia completa. toram=trim suele consumir menos RAM, pero su copia más limitada puede omitir datos o módulos necesarios posteriormente.\nDeja espacio para la capa de escritura, aplicaciones, cachés y zram, en lugar de dimensionar solo para los archivos de módulos. Asignar más RAM a la copia en vivo significa que habrá menos disponible para la carga de trabajo. Consulta Modos de arranque para conocer la durabilidad de la copia y las restricciones de extracción de medios.\nFiltrado de módulos (load y noload)\nEl filtrado puede reducir los datos copiados y las capas montadas, especialmente con toram=trim. El costo es un sistema menos capaz y una mayor probabilidad de fallos en el arranque o en tiempo de ejecución si se omite una dependencia. Verifica el conjunto de módulos resultante; la sintaxis de filtrado y las limitaciones de módulos protegidos se definen en Carga de módulos Initrd.\nOptimización de la persistencia\nLa persistencia traslada las operaciones de E/S de la capa escribible desde la RAM temporal al almacenamiento o a un contenedor. La elección del backend afecta la latencia, compatibilidad, gestión de capacidad y complejidad de recuperación.\nModos de persistencia (perchmode)\nnative: Evita una capa de sistema de archivos en un archivo y es la opción más sencilla en un sistema de archivos POSIX adecuado, pero no está disponible en sistemas de archivos que no pueden conservar los metadatos requeridos por Linux.\nraw: Tiene una capacidad fija predecible y un comportamiento ext4 convencional, pero reserva el tamaño del archivo y no puede crecer más allá del almacenamiento disponible.\ndynfilefs: Se expande bajo demanda y admite medios que de otro modo serían inadecuados, con mayor complejidad de mapeo y recuperación.\nluks: Añade confidencialidad a costa de trabajo de desbloqueo y sobrecarga de cifrado.\nsquashfs: Intercambia compresión al guardar y trabajo de extracción en RAM por una instantánea compacta; no es un backend escribible de baja latencia general.\nRealiza pruebas comparativas de cargas de trabajo representativas en el dispositivo real. Las diferencias en el controlador flash, sistema de archivos, puente USB y carga de trabajo son más fiables que una clasificación universal de los modos de persistencia.\nConfiguración de ZRAM\nZram intercambia tiempo de CPU por capacidad de memoria comprimida y puede evitar el uso de swap respaldado por almacenamiento, que es mucho más lento. Un dispositivo zram más grande puede absorber más páginas inactivas, pero no crea RAM física; las cargas de trabajo incomprimibles siguen consumiendo memoria. Los algoritmos de compresión equilibran el rendimiento y el uso de CPU frente a la tasa de compresión, y su disponibilidad depende del kernel. Comienza con la configuración predeterminada y cambia zramsize, zramcomp o nozram solo para una carga de trabajo medida; consulta Parámetros de arranque para los valores aceptados.\nSistema de archivos y hardware de almacenamiento\nElección del dispositivo: Un mayor rendimiento secuencial acorta la copia de módulos grandes, mientras que una baja latencia de E/S aleatoria es más relevante para cargas de trabajo de escritorio persistentes. Mide el dispositivo y la carcasa juntos; la generación USB por sí sola no predice el rendimiento de la memoria flash o SSD.\nElección del sistema de archivos: Un sistema de archivos nativo de Linux puede usar persistencia nativa sin la sobrecarga de un contenedor. Los sistemas de archivos multiplataforma mejoran la portabilidad pero requieren un backend de contenedor compatible para los metadatos de Linux, lo que añade capas de mapeo y sistema de archivos. Elige en función de la portabilidad, las necesidades de recuperación y los resultados de las pruebas comparativas.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

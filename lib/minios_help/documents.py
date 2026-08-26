@@ -10,10 +10,22 @@ from collections import namedtuple
 from pathlib import Path, PurePosixPath
 
 PRODUCT_KIND = "minios-help-documents"
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+COMPILED_KIND = "minios-markup-document"
+COMPILED_SCHEMA_VERSION = 1
 DEFAULT_LOCALE = "en"
-DocumentContent = namedtuple(
-    "DocumentContent", "canonical_id requested_locale locale fallback text metadata")
+_DocumentContent = namedtuple(
+    "DocumentContentBase",
+    "canonical_id requested_locale locale fallback document metadata")
+
+
+class DocumentContent(_DocumentContent):
+    __slots__ = ()
+
+    @property
+    def text(self):
+        """Plain searchable text retained for compatibility with callers."""
+        return self.document.get("plain_text", "")
 
 
 class DocumentError(Exception):
@@ -124,6 +136,13 @@ class DocumentStore(object):
             raise DocumentError("documentation manifest has no document list")
         if not isinstance(data.get("navigation"), list):
             raise DocumentError("documentation manifest has no navigation tree")
+        assets = data.get("assets", {})
+        if not isinstance(assets, dict):
+            raise DocumentError("documentation manifest has invalid assets")
+        for relative, digest in assets.items():
+            _validate_relative_path(relative)
+            if not isinstance(digest, str) or len(digest) != 64:
+                raise DocumentError("documentation asset checksum is invalid")
         return data
 
     def _validate_documents(self):
@@ -238,16 +257,33 @@ class DocumentStore(object):
         path = self._safe_file(relative)
         try:
             raw = path.read_bytes()
-            text = raw.decode("utf-8")
-        except UnicodeDecodeError as error:
-            raise DocumentError("installed document is not UTF-8: {}".format(error))
+            document = json.loads(raw.decode("utf-8"))
+        except (UnicodeDecodeError, ValueError) as error:
+            raise DocumentError("installed document is invalid: {}".format(error))
         expected = item.get("sha256", {}).get(actual)
         if not isinstance(expected, str) or len(expected) != 64:
             raise DocumentError("document checksum is missing: {}".format(canonical))
         if hashlib.sha256(raw).hexdigest() != expected.lower():
             raise DocumentError("installed document checksum does not match: {}".format(canonical))
+        if (not isinstance(document, dict) or
+                document.get("product_kind") != COMPILED_KIND or
+                document.get("schema_version") != COMPILED_SCHEMA_VERSION or
+                not isinstance(document.get("nodes"), list) or
+                not isinstance(document.get("plain_text"), str) or
+                not isinstance(document.get("headings"), list)):
+            raise DocumentError("installed document has invalid compiled format: {}".format(canonical))
         return DocumentContent(
-            item["canonical_id"], requested, actual, fallback, text, item)
+            item["canonical_id"], requested, actual, fallback, document, item)
+
+    def asset_path(self, relative):
+        assets = self.manifest.get("assets", {})
+        expected = assets.get(relative)
+        if expected is None:
+            raise DocumentError("unknown documentation asset: {}".format(relative))
+        path = self._safe_file(relative)
+        if hashlib.sha256(path.read_bytes()).hexdigest() != expected.lower():
+            raise DocumentError("installed asset checksum does not match: {}".format(relative))
+        return path
 
     def navigation(self):
         return self.manifest["navigation"]

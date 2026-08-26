@@ -1,0 +1,1103 @@
+{
+  "headings": [
+    {
+      "anchor": "minios-module-manager",
+      "level": 1,
+      "title": "MiniOS Module Manager"
+    },
+    {
+      "anchor": "in-esecuzione-ora-e-al-prossimo-avvio",
+      "level": 2,
+      "title": "In esecuzione ora e al prossimo avvio"
+    },
+    {
+      "anchor": "ispezionare-un-modulo",
+      "level": 2,
+      "title": "Ispezionare un modulo"
+    },
+    {
+      "anchor": "creazione-di-un-modulo",
+      "level": 2,
+      "title": "Creazione di un modulo"
+    },
+    {
+      "anchor": "drag-and-drop",
+      "level": 2,
+      "title": "Drag and drop"
+    },
+    {
+      "anchor": "documentazione-correlata",
+      "level": 2,
+      "title": "Documentazione correlata"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "minios-module-manager",
+      [
+        [
+          "text",
+          "MiniOS Module Manager"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS Module Manager è l'applicazione grafica per ispezionare, creare e gestire i moduli "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " di MiniOS. Dispone di due aree di lavoro: "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Moduli"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " per la composizione del sistema e "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Crea"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " per la creazione di nuovi moduli."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Avviala dal menu delle applicazioni oppure esegui:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "minios-module-manager",
+      "bash",
+      [
+        [
+          "syntax",
+          "minios-module-manager",
+          "#6F42C1",
+          "#B392F0"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L'applicazione viene eseguita con il tuo utente desktop. Richiede l'autenticazione amministratore solo quando un'operazione richiesta lo necessita."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "in-esecuzione-ora-e-al-prossimo-avvio",
+      [
+        [
+          "text",
+          "In esecuzione ora e al prossimo avvio"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L'area di lavoro Moduli mantiene due viste separate:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "In esecuzione ora"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " è l'insieme ordinato dei moduli che attualmente compongono il sistema attivo."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Prossimo avvio"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " è l'insieme ordinato selezionato dalle regole di avvio correnti di MiniOS."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La modifica di una vista non cambia silenziosamente l'altra. Ad esempio, "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Attiva per questa sessione"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " influisce solo sul sistema in esecuzione, mentre "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Aggiungi al prossimo avvio"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " copia un modulo nell'archivio moduli permanente senza attivarlo subito."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Per le regole autorevoli di avvio, inclusi i livelli sorgente candidati,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "sostituzione esatta del basename, ordinamento numerico e filtri "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "load="
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noload="
+            ]
+          ]
+        ],
+        [
+          "text",
+          " e"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "bext="
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", consulta"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Caricamento moduli Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Questa guida"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "spiega anche perché In esecuzione ora e Prossimo avvio possono differire."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L'attivazione e la disattivazione a runtime sono disponibili solo quando il filesystem di root utilizza attualmente AUFS. Non sono disponibili su root OverlayFS, anche se il kernel supporta AUFS. I moduli di base non possono essere disattivati tramite l'applicazione."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Le modifiche al prossimo avvio sono disponibili solo quando MiniOS trova un archivio moduli adatto, permanente e scrivibile. I moduli di base e quelli su archivi di sola lettura o volatili non possono essere rimossi. I filtri di avvio come "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "load"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noload"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " e "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "bext"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " determinano comunque quali moduli vengono selezionati."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "ispezionare-un-modulo",
+      [
+        [
+          "text",
+          "Ispezionare un modulo"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Seleziona un modulo per vedere la sua origine, la dimensione compressa e il contenuto del filesystem. Se il file di origine è disponibile, "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Estrai in cartella"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " crea una nuova directory contenente i file del modulo."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L'ispezione e l'estrazione ordinaria non richiedono privilegi di amministratore. L'estrazione non sovrascrive mai una destinazione esistente."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Puoi anche aprire un file locale "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dal file manager. L'apertura di un file consente solo l'ispezione; non lo attiva né lo aggiunge al prossimo avvio."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "creazione-di-un-modulo",
+      [
+        [
+          "text",
+          "Creazione di un modulo"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L'area di lavoro Crea utilizza un flusso composto da "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Configura"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Rivedi"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Esegui"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " e "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Risultato"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Un modulo creato con successo rimane un file nella posizione di output. Non viene attivato né aggiunto automaticamente al prossimo avvio."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "I metodi disponibili sono:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Pacchetti"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " installa pacchetti dai repository e file locali "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".deb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " selezionati, incluse le relative dipendenze, in un ambiente di build MiniOS isolato. L'installazione dei pacchetti richiede l'autenticazione amministratore."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Script di installazione"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " esegue uno script revisionato senza terminale interattivo. Una cartella seed opzionale può fornire file iniziali. Lo script viene eseguito con privilegi di amministratore ma non viene memorizzato nel modulo risultante."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Chroot interattivo"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " apre una shell root temporanea nel terminale integrato. Digita "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "exit"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " quando hai finito, quindi crea il modulo, riapri la shell o scarta le modifiche. Chiudere o scartare la sessione non modifica il sistema in esecuzione."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Cartella"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " impacchetta il contenuto di una directory esistente. La directory sorgente non viene annidata all'interno del modulo. La conversione ordinaria di una cartella non richiede privilegi root, lascia la sorgente invariata e normalizza la proprietà dei file nel modulo a root."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Modifiche della sessione corrente"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " cattura i file idonei e le eliminazioni dallo strato scrivibile della sessione corrente. Utilizza la policy standard "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "savechanges"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " di MiniOS, che esclude log, cache, dati di avvio e percorsi runtime temporanei. La lettura dell'intero strato scrivibile richiede l'autenticazione amministratore."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Scegli un nuovo percorso di output per ogni flusso di lavoro. I file esistenti non vengono mai sovrascritti. L'avanzamento e le diagnostiche del backend restano visibili durante l'esecuzione di un'operazione e la cattura della sessione corrente può essere annullata."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Modifiche della sessione corrente è pensato per una cattura standard e comoda, non per la revisione di ogni percorso incluso. Uno strato scrivibile live può contenere dati personali o riservati. Per policy di privacy esplicite "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "exact"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "clean"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " o selezionate per percorso, utilizza il flusso da riga di comando "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "savechanges"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " descritto in "
+        ],
+        [
+          "link",
+          "/development/Creating-Modules.md",
+          null,
+          [
+            [
+              "text",
+              "Creazione dei moduli"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "drag-and-drop",
+      [
+        [
+          "text",
+          "Drag and drop"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Il trascinamento serve solo a compilare un input o aprire l'ispezione:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Un modulo apre i suoi dettagli."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "I file "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".deb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " vengono aggiunti a Pacchetti."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Una directory viene selezionata per Cartella."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Un altro file regolare viene selezionato come Script di installazione."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Il rilascio di un elemento non esegue codice né modifica Esecuzione attuale o Prossimo avvio."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "documentazione-correlata",
+      [
+        [
+          "text",
+          "Documentazione correlata"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/development/Creating-Modules.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Creazione dei moduli"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Initrd-Module-Loading.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Caricamento moduli Initrd"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Boot-Modes.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Modalità di avvio"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/development/Rebuilding-ISO.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Composizione di immagini ISO da riga di comando"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/configuration/Boot-Parameters.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Parametri di avvio"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "MiniOS Module Manager\nMiniOS Module Manager è l'applicazione grafica per ispezionare, creare e gestire i moduli .sb di MiniOS. Dispone di due aree di lavoro: Moduli per la composizione del sistema e Crea per la creazione di nuovi moduli.\nAvviala dal menu delle applicazioni oppure esegui:\nminios-module-manager\nL'applicazione viene eseguita con il tuo utente desktop. Richiede l'autenticazione amministratore solo quando un'operazione richiesta lo necessita.\nIn esecuzione ora e al prossimo avvio\nL'area di lavoro Moduli mantiene due viste separate:\nIn esecuzione ora è l'insieme ordinato dei moduli che attualmente compongono il sistema attivo.\nProssimo avvio è l'insieme ordinato selezionato dalle regole di avvio correnti di MiniOS.\nLa modifica di una vista non cambia silenziosamente l'altra. Ad esempio, Attiva per questa sessione influisce solo sul sistema in esecuzione, mentre Aggiungi al prossimo avvio copia un modulo nell'archivio moduli permanente senza attivarlo subito.\nPer le regole autorevoli di avvio, inclusi i livelli sorgente candidati,\nsostituzione esatta del basename, ordinamento numerico e filtri load=, noload= e\nbext=, consulta\nCaricamento moduli Initrd. Questa guida\nspiega anche perché In esecuzione ora e Prossimo avvio possono differire.\nL'attivazione e la disattivazione a runtime sono disponibili solo quando il filesystem di root utilizza attualmente AUFS. Non sono disponibili su root OverlayFS, anche se il kernel supporta AUFS. I moduli di base non possono essere disattivati tramite l'applicazione.\nLe modifiche al prossimo avvio sono disponibili solo quando MiniOS trova un archivio moduli adatto, permanente e scrivibile. I moduli di base e quelli su archivi di sola lettura o volatili non possono essere rimossi. I filtri di avvio come load, noload e bext determinano comunque quali moduli vengono selezionati.\nIspezionare un modulo\nSeleziona un modulo per vedere la sua origine, la dimensione compressa e il contenuto del filesystem. Se il file di origine è disponibile, Estrai in cartella crea una nuova directory contenente i file del modulo.\nL'ispezione e l'estrazione ordinaria non richiedono privilegi di amministratore. L'estrazione non sovrascrive mai una destinazione esistente.\nPuoi anche aprire un file locale .sb dal file manager. L'apertura di un file consente solo l'ispezione; non lo attiva né lo aggiunge al prossimo avvio.\nCreazione di un modulo\nL'area di lavoro Crea utilizza un flusso composto da Configura, Rivedi, Esegui e Risultato. Un modulo creato con successo rimane un file nella posizione di output. Non viene attivato né aggiunto automaticamente al prossimo avvio.\nI metodi disponibili sono:\nPacchetti installa pacchetti dai repository e file locali .deb selezionati, incluse le relative dipendenze, in un ambiente di build MiniOS isolato. L'installazione dei pacchetti richiede l'autenticazione amministratore.\nScript di installazione esegue uno script revisionato senza terminale interattivo. Una cartella seed opzionale può fornire file iniziali. Lo script viene eseguito con privilegi di amministratore ma non viene memorizzato nel modulo risultante.\nChroot interattivo apre una shell root temporanea nel terminale integrato. Digita exit quando hai finito, quindi crea il modulo, riapri la shell o scarta le modifiche. Chiudere o scartare la sessione non modifica il sistema in esecuzione.\nCartella impacchetta il contenuto di una directory esistente. La directory sorgente non viene annidata all'interno del modulo. La conversione ordinaria di una cartella non richiede privilegi root, lascia la sorgente invariata e normalizza la proprietà dei file nel modulo a root.\nModifiche della sessione corrente cattura i file idonei e le eliminazioni dallo strato scrivibile della sessione corrente. Utilizza la policy standard savechanges di MiniOS, che esclude log, cache, dati di avvio e percorsi runtime temporanei. La lettura dell'intero strato scrivibile richiede l'autenticazione amministratore.\nScegli un nuovo percorso di output per ogni flusso di lavoro. I file esistenti non vengono mai sovrascritti. L'avanzamento e le diagnostiche del backend restano visibili durante l'esecuzione di un'operazione e la cattura della sessione corrente può essere annullata.\nModifiche della sessione corrente è pensato per una cattura standard e comoda, non per la revisione di ogni percorso incluso. Uno strato scrivibile live può contenere dati personali o riservati. Per policy di privacy esplicite exact, clean o selezionate per percorso, utilizza il flusso da riga di comando savechanges descritto in Creazione dei moduli.\nDrag and drop\nIl trascinamento serve solo a compilare un input o aprire l'ispezione:\nUn modulo apre i suoi dettagli.\nI file .deb vengono aggiunti a Pacchetti.\nUna directory viene selezionata per Cartella.\nUn altro file regolare viene selezionato come Script di installazione.\nIl rilascio di un elemento non esegue codice né modifica Esecuzione attuale o Prossimo avvio.\nDocumentazione correlata\nCreazione dei moduli\nCaricamento moduli Initrd\nModalità di avvio\nComposizione di immagini ISO da riga di comando\nParametri di avvio",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

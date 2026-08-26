@@ -1,0 +1,638 @@
+{
+  "headings": [
+    {
+      "anchor": "tentang-minios",
+      "level": 1,
+      "title": "Tentang MiniOS"
+    },
+    {
+      "anchor": "model-sistem",
+      "level": 2,
+      "title": "Model sistem"
+    },
+    {
+      "anchor": "edisi",
+      "level": 2,
+      "title": "Edisi"
+    },
+    {
+      "anchor": "instalasi-dan-persistensi",
+      "level": 2,
+      "title": "Instalasi dan persistensi"
+    },
+    {
+      "anchor": "sumber-daya-proyek",
+      "level": 2,
+      "title": "Sumber daya proyek"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "tentang-minios",
+      [
+        [
+          "text",
+          "Tentang MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS adalah distribusi Linux berbasis Debian yang dirancang untuk dijalankan dari media removable atau disk lokal. Sistemnya yang hanya-baca dibangun dari modul SquashFS, dengan opsi sesi yang dapat ditulis untuk file, pengaturan, dan paket yang diinstal. MiniOS mendukung sistem x86 64-bit dan dapat melakukan boot melalui UEFI atau BIOS lama."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "model-sistem",
+      [
+        [
+          "text",
+          "Model sistem"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Sistem dasar dan perangkat lunak opsional adalah modul terpisah. Modul dapat dipilih saat boot atau ditambahkan tanpa membangun ulang seluruh sistem."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Sesi live baru tidak mengubah modul dasar."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Persistensi dapat menyimpan perubahan di direktori native, kontainer DynFileFS yang dapat diperluas, image raw berukuran tetap, atau kontainer LUKS terenkripsi, tergantung pada instalasi dan filesystem target."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "MiniOS Installer dapat membuat instalasi live modular atau, jika image mendukungnya, melakukan instalasi Linux native konvensional."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Lihat "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Boot modes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk panduan resmi perilaku boot live dan "
+        ],
+        [
+          "link",
+          "/about/System-Architecture.md",
+          null,
+          [
+            [
+              "text",
+              "System architecture"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk tata letak boot dan modul. Kontrak detail early-boot didokumentasikan di "
+        ],
+        [
+          "link",
+          "/configuration/Initrd-System-Discovery.md",
+          null,
+          [
+            [
+              "text",
+              "initrd system discovery"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "initrd module loading"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", dan "
+        ],
+        [
+          "link",
+          "/configuration/Initrd-Persistence.md",
+          null,
+          [
+            [
+              "text",
+              "initrd persistence"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "edisi",
+      [
+        [
+          "text",
+          "Edisi"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Edisi yang tersedia bergantung pada rilis dan distribusi dasar:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Flux"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " menggunakan lingkungan Flux dan paket yang lebih sedikit. Cocok untuk"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "sistem yang mengutamakan pilihan perangkat lunak yang lebih ringkas."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Standard"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " adalah edisi serbaguna. Build Debian dan Ubuntu standar saat ini menggunakan Xfce."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Toolbox"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " menambahkan alat administrasi sistem, penyimpanan, diagnostik, dan pemulihan."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Ultra"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " menambahkan lebih banyak aplikasi di atas edisi lainnya."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Xfce biasanya menjadi desktop utama pada image Standard, Toolbox, dan Ultra, namun bukan satu-satunya lingkungan MiniOS. Edisi Flux menggunakan Fluxbox, dan konfigurasi build yang didukung dapat menawarkan lingkungan lain. Periksa deskripsi rilis sebelum mengunduh jika lingkungan desktop menjadi pertimbangan."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Untuk daftar perangkat lunak yang disertakan di setiap edisi, lihat"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/administration/Packages.md",
+          null,
+          [
+            [
+              "text",
+              "daftar paket"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dan "
+        ],
+        [
+          "link",
+          "/about/MiniOS-Applications.md",
+          null,
+          [
+            [
+              "text",
+              "aplikasi serta alat MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "instalasi-dan-persistensi",
+      [
+        [
+          "text",
+          "Instalasi dan persistensi"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Sebuah ISO dapat ditulis sebagai image bootable, disalin ke perangkat multiboot, atau diinstal dengan MiniOS Installer. Metode-metode ini memiliki perilaku penyimpanan yang tidak identik. Alat penulisan image seperti "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dan Etcher mereproduksi tata letak ISO; Ventoy melakukan boot dari file ISO; MiniOS Installer dapat mengalokasikan dan mengonfigurasi penyimpanan sesi yang dapat ditulis. Jangan berasumsi bahwa metode penulisan akan otomatis membuat persistensi."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Mulailah dengan "
+        ],
+        [
+          "link",
+          "/installation/Quick-Start.md",
+          null,
+          [
+            [
+              "text",
+              "Quick start"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dan gunakan panduan yang terhubung untuk metode instalasi yang dipilih. Persistensi juga dapat dipilih dari menu boot yang sesuai atau dikonfigurasi dengan parameter boot yang didokumentasikan jika penyimpanan yang dapat ditulis tersedia. Lihat "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Boot modes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk perilaku sesi live yang dihasilkan dan "
+        ],
+        [
+          "link",
+          "/configuration/Session-Management.md",
+          null,
+          [
+            [
+              "text",
+              "Session management"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk opsi penyimpanan."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "sumber-daya-proyek",
+      [
+        [
+          "text",
+          "Sumber daya proyek"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "https://minios.dev",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Situs web MiniOS"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "https://github.com/minios-linux/minios-live",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Kode sumber"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "https://github.com/minios-linux/minios-live/issues",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Pelacak isu"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/about/FAQ.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Pertanyaan yang sering diajukan"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Tentang MiniOS\nMiniOS adalah distribusi Linux berbasis Debian yang dirancang untuk dijalankan dari media removable atau disk lokal. Sistemnya yang hanya-baca dibangun dari modul SquashFS, dengan opsi sesi yang dapat ditulis untuk file, pengaturan, dan paket yang diinstal. MiniOS mendukung sistem x86 64-bit dan dapat melakukan boot melalui UEFI atau BIOS lama.\nModel sistem\nSistem dasar dan perangkat lunak opsional adalah modul terpisah. Modul dapat dipilih saat boot atau ditambahkan tanpa membangun ulang seluruh sistem.\nSesi live baru tidak mengubah modul dasar.\nPersistensi dapat menyimpan perubahan di direktori native, kontainer DynFileFS yang dapat diperluas, image raw berukuran tetap, atau kontainer LUKS terenkripsi, tergantung pada instalasi dan filesystem target.\nMiniOS Installer dapat membuat instalasi live modular atau, jika image mendukungnya, melakukan instalasi Linux native konvensional.\nLihat Boot modes untuk panduan resmi perilaku boot live dan System architecture untuk tata letak boot dan modul. Kontrak detail early-boot didokumentasikan di initrd system discovery, initrd module loading, dan initrd persistence.\nEdisi\nEdisi yang tersedia bergantung pada rilis dan distribusi dasar:\nFlux menggunakan lingkungan Flux dan paket yang lebih sedikit. Cocok untuk\nsistem yang mengutamakan pilihan perangkat lunak yang lebih ringkas.\nStandard adalah edisi serbaguna. Build Debian dan Ubuntu standar saat ini menggunakan Xfce.\nToolbox menambahkan alat administrasi sistem, penyimpanan, diagnostik, dan pemulihan.\nUltra menambahkan lebih banyak aplikasi di atas edisi lainnya.\nXfce biasanya menjadi desktop utama pada image Standard, Toolbox, dan Ultra, namun bukan satu-satunya lingkungan MiniOS. Edisi Flux menggunakan Fluxbox, dan konfigurasi build yang didukung dapat menawarkan lingkungan lain. Periksa deskripsi rilis sebelum mengunduh jika lingkungan desktop menjadi pertimbangan.\nUntuk daftar perangkat lunak yang disertakan di setiap edisi, lihat\ndaftar paket dan aplikasi serta alat MiniOS.\nInstalasi dan persistensi\nSebuah ISO dapat ditulis sebagai image bootable, disalin ke perangkat multiboot, atau diinstal dengan MiniOS Installer. Metode-metode ini memiliki perilaku penyimpanan yang tidak identik. Alat penulisan image seperti dd dan Etcher mereproduksi tata letak ISO; Ventoy melakukan boot dari file ISO; MiniOS Installer dapat mengalokasikan dan mengonfigurasi penyimpanan sesi yang dapat ditulis. Jangan berasumsi bahwa metode penulisan akan otomatis membuat persistensi.\nMulailah dengan Quick start dan gunakan panduan yang terhubung untuk metode instalasi yang dipilih. Persistensi juga dapat dipilih dari menu boot yang sesuai atau dikonfigurasi dengan parameter boot yang didokumentasikan jika penyimpanan yang dapat ditulis tersedia. Lihat Boot modes untuk perilaku sesi live yang dihasilkan dan Session management untuk opsi penyimpanan.\nSumber daya proyek\nSitus web MiniOS\nKode sumber\nPelacak isu\nPertanyaan yang sering diajukan",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

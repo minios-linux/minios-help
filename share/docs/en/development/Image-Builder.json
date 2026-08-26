@@ -1,0 +1,1763 @@
+{
+  "headings": [
+    {
+      "anchor": "minios-image-builder",
+      "level": 1,
+      "title": "MiniOS Image Builder"
+    },
+    {
+      "anchor": "choose-the-correct-workflow",
+      "level": 2,
+      "title": "Choose the correct workflow"
+    },
+    {
+      "anchor": "source-options",
+      "level": 2,
+      "title": "Source options"
+    },
+    {
+      "anchor": "requirements",
+      "level": 2,
+      "title": "Requirements"
+    },
+    {
+      "anchor": "project-workflow",
+      "level": 2,
+      "title": "Project workflow"
+    },
+    {
+      "anchor": "select-the-source",
+      "level": 3,
+      "title": "Select the source"
+    },
+    {
+      "anchor": "select-content",
+      "level": 3,
+      "title": "Select content"
+    },
+    {
+      "anchor": "configure-settings",
+      "level": 3,
+      "title": "Configure settings"
+    },
+    {
+      "anchor": "review-the-plan",
+      "level": 3,
+      "title": "Review the plan"
+    },
+    {
+      "anchor": "build-and-verify",
+      "level": 3,
+      "title": "Build and verify"
+    },
+    {
+      "anchor": "session-capture-and-privacy",
+      "level": 2,
+      "title": "Session capture and privacy"
+    },
+    {
+      "anchor": "do-not-include-session-changes",
+      "level": 3,
+      "title": "Do not include session changes"
+    },
+    {
+      "anchor": "include-all-session-changes",
+      "level": 3,
+      "title": "Include all session changes"
+    },
+    {
+      "anchor": "include-reusable-changes-only",
+      "level": 3,
+      "title": "Include reusable changes only"
+    },
+    {
+      "anchor": "choose-session-changes-manually",
+      "level": 3,
+      "title": "Choose session changes manually"
+    },
+    {
+      "anchor": "image-customization",
+      "level": 2,
+      "title": "Image customization"
+    },
+    {
+      "anchor": "output-verification",
+      "level": 2,
+      "title": "Output verification"
+    },
+    {
+      "anchor": "safety-and-cancellation",
+      "level": 2,
+      "title": "Safety and cancellation"
+    },
+    {
+      "anchor": "related-documentation",
+      "level": 2,
+      "title": "Related documentation"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "minios-image-builder",
+      [
+        [
+          "text",
+          "MiniOS Image Builder"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS Image Builder is a GTK application for remastering an existing MiniOS image. It selects content from a current MiniOS session, ISO file, or optical disc, applies declarative customization, and uses "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-image-compose"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " to produce a verified bootable ISO."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The builder runs inside MiniOS. It does not modify the selected source media."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "choose-the-correct-workflow",
+      [
+        [
+          "text",
+          "Choose the correct workflow"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Image Builder remasters an existing binary MiniOS image. It is not a replacement for either of these workflows:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Build MiniOS from source:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " use the "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios-live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " build system when changing the distribution's package lists, build configuration, kernel layer, boot artifacts, or reproducible source-built module chain. See "
+                ],
+                [
+                  "link",
+                  "/development/Building-MiniOS.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Building MiniOS"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Create a reusable module:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " use "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "apt2sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "script2sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "chroot2sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", or the other module tools when the intended result is a standalone "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " layer. See "
+                ],
+                [
+                  "link",
+                  "/development/Creating-Modules.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Creating modules"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Remaster an image:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " use Image Builder when selecting existing modules, adding completed external modules, changing supported image settings, optionally capturing session changes, and publishing another ISO."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The project filesystem layer is for declarative files in the image root. It does not execute scripts, install packages, or open a chroot. Software intended for reuse should be prepared as a module before it is added to an Image Builder project."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "source-options",
+      [
+        [
+          "text",
+          "Source options"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The Source page accepts:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "The current LiveKit or dracut MiniOS session."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "A MiniOS ISO file."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "A MiniOS optical disc."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "ISO and optical-disc sources are mounted read-only with "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "udisksctl"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Source inventory records the release, version, architecture, bootloader support, size, module inventory, and a source fingerprint. If a source changes after planning, the build is blocked rather than continuing with different input."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Session capture always describes changes in the currently running MiniOS session. When an ISO or optical disc is selected, capture is available only if that source's base-module fingerprint matches the mounted base of the running session. Selecting external media does not capture changes made in some other system."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "requirements",
+      [
+        [
+          "text",
+          "Requirements"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Image Builder requires the matching "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-image-compose"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " backend. ISO-file and optical-disc sources require "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "udisks2"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Reading a root-only "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/etc/live/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and capturing a writable session may require "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "pkexec"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and a desktop PolicyKit agent. Session capture requires a compatible "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "savechanges"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " supplied by "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-tools"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " 1.5.0 or newer."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The application and composition backend remain unprivileged. Authorization is limited to the fixed live-configuration reader and, when selected, trusted "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/usr/bin/savechanges"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "project-workflow",
+      [
+        [
+          "text",
+          "Project workflow"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "select-the-source",
+      [
+        [
+          "text",
+          "Select the source"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Choose a source and wait for inventory to finish. Review its identity, architecture, boot support, diagnostics, and module counts. Resolve source errors before proceeding."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "select-content",
+      [
+        [
+          "text",
+          "Select content"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Choose the source modules to include and add any external "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " modules. Required core and kernel modules are locked. Modules active in the current session but absent from the selected source are shown separately and are not included automatically."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Additional modules must be readable regular files with valid SquashFS data. Duplicate or case-folded basenames and target collisions are rejected because the runtime resolves layers by basename."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "configure-settings",
+      [
+        [
+          "text",
+          "Configure settings"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Choose the output path and the required current MiniOS configuration. Empty customization fields or "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "Keep current"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " preserve source behavior. Configure only the overrides needed for the new image, then decide whether the writable session layer should be captured."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The bytes of "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/etc/live/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " are copied into private build storage with mode 0600. They are not interpreted, displayed, or logged. Current projects must include this configuration; an older project that explicitly disables it cannot proceed to Review until corrected."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "review-the-plan",
+      [
+        [
+          "text",
+          "Review the plan"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Review creates a new plan from the current input identities. Check selected, excluded, and additional modules, output location, estimated space, customization summary, capture profile, warnings, and privilege boundary."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Review intentionally omits configuration values, raw kernel arguments, private customization paths, and selected capture paths. It shows counts, basenames, fingerprints, and digests where those are sufficient to bind the plan."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "If the output already exists, replacement requires confirmation. The confirmation is tied to the observed device, inode, size, timestamp, and SHA-256 of that file. A changed destination, cancellation, or failed attempt clears approval and requires another review."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "build-and-verify",
+      [
+        [
+          "text",
+          "Build and verify"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Build revalidates every effective input and runs "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-image-compose"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " with an argument list in a private working directory. The ISO remains private until structural verification succeeds. Publication to the selected destination is atomic."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Save the project if its source, module selection, output, and customization intent will be reused. Project files are JSON. Unsaved changes require confirmation before opening another project or closing the application."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "session-capture-and-privacy",
+      [
+        [
+          "text",
+          "Session capture and privacy"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Source modules, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/etc/live/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", and session capture are independent inputs. If module selection and declarative customization are sufficient, do not capture the writable session."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "do-not-include-session-changes",
+      [
+        [
+          "text",
+          "Do not include session changes"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "This is the recommended default. The builder uses the selected modules, current configuration, boot settings, and other image customization without copying the writable session layer."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "include-all-session-changes",
+      [
+        [
+          "text",
+          "Include all session changes"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "This profile preserves every supported writable change from the detected OverlayFS or AUFS provider. It can include passwords, keys, tokens, browser data, machine identity, personal files, logs, and deleted-file state. It requires explicit acknowledgement and should not be used for an image intended for other people without a separate audit."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "include-reusable-changes-only",
+      [
+        [
+          "text",
+          "Include reusable changes only"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "This profile uses a strict path allowlist for software and safe defaults while omitting broad personal, identity, cache, and log state. It reduces exposure but does not prove that allowed files contain no secret. Inspect the finished image before sharing it."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "choose-session-changes-manually",
+      [
+        [
+          "text",
+          "Choose session changes manually"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Run "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "Analyze session changes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", then select at least one normalized path from the in-memory inventory. A selected directory represents its descendants. Exact or ancestor exclusions override matching selections."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The inventory contains metadata, including filenames, and is therefore sensitive even though it does not contain file contents. It stays in memory and is not written to the project or copied into Review or logs. Explicit include and exclude rules are project intent and are saved; Review shows only their count and digest."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Starting another analysis, refreshing or changing the source, cancellation or failure, and opening or creating a project clear the runtime inventory. Analysis and capture may request administrator authorization, but the Image Builder process and ISO composition are not elevated."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "image-customization",
+      [
+        [
+          "text",
+          "Image customization"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Supported settings are constrained and validated by the backend:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "System defaults:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " hostname, timezone, default systemd target, and enabled or disabled services."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Security and access:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " allowlisted sudo, PolicyKit, SSH, XRDP, X11, lock-screen, and issue-hint modes."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "User data:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " validated root-relative user directories with either link or bind behavior, not both."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Boot behavior:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " a timeout from 0 to 300 seconds, the source menu or a constructed menu, and a selected default entry."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Boot entries:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " resume, new, choose, fresh, and copy-to-RAM templates can be hidden, reordered, duplicated, and configured through typed persistence, module, startup, localization, zRAM, and diagnostic controls."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Expert boot settings:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " validated global and per-entry kernel arguments for options not represented by typed controls."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Appearance:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " a validated PNG boot background."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Project filesystem layer:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " one real directory interpreted relative to image root and packaged as a root-owned SquashFS overlay module."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The filesystem layer supports regular files, safe relative symbolic links, empty directories, executable bits, and timestamps. Device nodes, sockets, FIFOs, filesystem crossings, absolute or escaping links, and unsafe names are rejected. Privilege bits are cleared and ownership in the generated module is normalized."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Boot customization supports recognized MiniOS GRUB, native SYSLINUX, and the standard SYSLINUX-to-GRUB chain. Unsupported or ambiguous boot configuration is rejected rather than guessed. A build without boot customization can preserve a source layout that the customization parser does not understand."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "output-verification",
+      [
+        [
+          "text",
+          "Output verification"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Before publication, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-image-compose"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " verifies the generated ISO rather than relying only on a successful "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "xorriso"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " exit. Checks include:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "The ISO filesystem tree and volume label."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "BIOS and UEFI boot records and the system area."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Required boot, kernel, initramfs, configuration, and module content."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Embedded customization and session-capture attestations when present."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Digests and structure of generated overlay and captured-session modules."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Boot background targets and transformed boot configuration when customized."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Input path identity, mode, modification time, and SHA-256 are recorded before the build. Mutable inputs are privately snapshotted with reflinks when supported; otherwise they are checked for mutation before and after ISO writing. A mismatch or verification failure prevents publication."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "After a successful build, record a checksum separately:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sha256sum custom-minios.iso > custom-minios.iso.sha256\nsha256sum -c custom-minios.iso.sha256",
+      "bash",
+      [
+        [
+          "syntax",
+          "sha256sum",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "custom-minios.iso",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          ">",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "custom-minios.iso.sha256",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sha256sum",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-c",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "custom-minios.iso.sha256",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Structural verification does not replace a boot test. Boot the ISO in a disposable virtual machine and test both BIOS and UEFI when both are intended to be supported. Image Builder can report that QEMU or VirtualBox is installed, but it does not start or configure a hypervisor."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "safety-and-cancellation",
+      [
+        [
+          "text",
+          "Safety and cancellation"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Keep source media read-only and write output to a filesystem with enough free space for the estimate and temporary headroom."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Do not build directly over the only known-good ISO. Use a new output name unless replacement is intentional and confirmed."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Verify external modules before adding them. Image Builder validates their SquashFS structure but does not establish who authored their contents."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Prefer no session capture for distributable images. If capture is needed, audit the resulting filesystem, not only the profile name."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Treat project files as sensitive when they contain explicit source paths, module paths, output paths, or selected capture rules."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Inventory, build, and verification subprocesses run in dedicated process groups. Cancellation requests termination and escalates after a grace period. A hashing pass may finish before cancellation reaches a safe checkpoint, but stale results are discarded. Once atomic publication starts, it is allowed to finish so the destination is not intentionally left half-written."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A cancelled or failed build does not publish its private ISO. Any previous destination remains in place unless a verified replacement reached atomic publication."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "related-documentation",
+      [
+        [
+          "text",
+          "Related documentation"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/development/Building-MiniOS.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Building MiniOS"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/development/Creating-Modules.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Creating modules"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/development/Rebuilding-ISO.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Composing ISO images from the command line"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "MiniOS Image Builder\nMiniOS Image Builder is a GTK application for remastering an existing MiniOS image. It selects content from a current MiniOS session, ISO file, or optical disc, applies declarative customization, and uses minios-image-compose to produce a verified bootable ISO.\nThe builder runs inside MiniOS. It does not modify the selected source media.\nChoose the correct workflow\nImage Builder remasters an existing binary MiniOS image. It is not a replacement for either of these workflows:\nBuild MiniOS from source: use the minios-live build system when changing the distribution's package lists, build configuration, kernel layer, boot artifacts, or reproducible source-built module chain. See Building MiniOS.\nCreate a reusable module: use apt2sb, script2sb, chroot2sb, or the other module tools when the intended result is a standalone .sb layer. See Creating modules.\nRemaster an image: use Image Builder when selecting existing modules, adding completed external modules, changing supported image settings, optionally capturing session changes, and publishing another ISO.\nThe project filesystem layer is for declarative files in the image root. It does not execute scripts, install packages, or open a chroot. Software intended for reuse should be prepared as a module before it is added to an Image Builder project.\nSource options\nThe Source page accepts:\nThe current LiveKit or dracut MiniOS session.\nA MiniOS ISO file.\nA MiniOS optical disc.\nISO and optical-disc sources are mounted read-only with udisksctl. Source inventory records the release, version, architecture, bootloader support, size, module inventory, and a source fingerprint. If a source changes after planning, the build is blocked rather than continuing with different input.\nSession capture always describes changes in the currently running MiniOS session. When an ISO or optical disc is selected, capture is available only if that source's base-module fingerprint matches the mounted base of the running session. Selecting external media does not capture changes made in some other system.\nRequirements\nImage Builder requires the matching minios-image-compose backend. ISO-file and optical-disc sources require udisks2. Reading a root-only /etc/live/config.conf and capturing a writable session may require pkexec and a desktop PolicyKit agent. Session capture requires a compatible savechanges supplied by minios-tools 1.5.0 or newer.\nThe application and composition backend remain unprivileged. Authorization is limited to the fixed live-configuration reader and, when selected, trusted /usr/bin/savechanges.\nProject workflow\nSelect the source\nChoose a source and wait for inventory to finish. Review its identity, architecture, boot support, diagnostics, and module counts. Resolve source errors before proceeding.\nSelect content\nChoose the source modules to include and add any external .sb modules. Required core and kernel modules are locked. Modules active in the current session but absent from the selected source are shown separately and are not included automatically.\nAdditional modules must be readable regular files with valid SquashFS data. Duplicate or case-folded basenames and target collisions are rejected because the runtime resolves layers by basename.\nConfigure settings\nChoose the output path and the required current MiniOS configuration. Empty customization fields or Keep current preserve source behavior. Configure only the overrides needed for the new image, then decide whether the writable session layer should be captured.\nThe bytes of /etc/live/config.conf are copied into private build storage with mode 0600. They are not interpreted, displayed, or logged. Current projects must include this configuration; an older project that explicitly disables it cannot proceed to Review until corrected.\nReview the plan\nReview creates a new plan from the current input identities. Check selected, excluded, and additional modules, output location, estimated space, customization summary, capture profile, warnings, and privilege boundary.\nReview intentionally omits configuration values, raw kernel arguments, private customization paths, and selected capture paths. It shows counts, basenames, fingerprints, and digests where those are sufficient to bind the plan.\nIf the output already exists, replacement requires confirmation. The confirmation is tied to the observed device, inode, size, timestamp, and SHA-256 of that file. A changed destination, cancellation, or failed attempt clears approval and requires another review.\nBuild and verify\nBuild revalidates every effective input and runs minios-image-compose with an argument list in a private working directory. The ISO remains private until structural verification succeeds. Publication to the selected destination is atomic.\nSave the project if its source, module selection, output, and customization intent will be reused. Project files are JSON. Unsaved changes require confirmation before opening another project or closing the application.\nSession capture and privacy\nSource modules, /etc/live/config.conf, and session capture are independent inputs. If module selection and declarative customization are sufficient, do not capture the writable session.\nDo not include session changes\nThis is the recommended default. The builder uses the selected modules, current configuration, boot settings, and other image customization without copying the writable session layer.\nInclude all session changes\nThis profile preserves every supported writable change from the detected OverlayFS or AUFS provider. It can include passwords, keys, tokens, browser data, machine identity, personal files, logs, and deleted-file state. It requires explicit acknowledgement and should not be used for an image intended for other people without a separate audit.\nInclude reusable changes only\nThis profile uses a strict path allowlist for software and safe defaults while omitting broad personal, identity, cache, and log state. It reduces exposure but does not prove that allowed files contain no secret. Inspect the finished image before sharing it.\nChoose session changes manually\nRun Analyze session changes, then select at least one normalized path from the in-memory inventory. A selected directory represents its descendants. Exact or ancestor exclusions override matching selections.\nThe inventory contains metadata, including filenames, and is therefore sensitive even though it does not contain file contents. It stays in memory and is not written to the project or copied into Review or logs. Explicit include and exclude rules are project intent and are saved; Review shows only their count and digest.\nStarting another analysis, refreshing or changing the source, cancellation or failure, and opening or creating a project clear the runtime inventory. Analysis and capture may request administrator authorization, but the Image Builder process and ISO composition are not elevated.\nImage customization\nSupported settings are constrained and validated by the backend:\nSystem defaults: hostname, timezone, default systemd target, and enabled or disabled services.\nSecurity and access: allowlisted sudo, PolicyKit, SSH, XRDP, X11, lock-screen, and issue-hint modes.\nUser data: validated root-relative user directories with either link or bind behavior, not both.\nBoot behavior: a timeout from 0 to 300 seconds, the source menu or a constructed menu, and a selected default entry.\nBoot entries: resume, new, choose, fresh, and copy-to-RAM templates can be hidden, reordered, duplicated, and configured through typed persistence, module, startup, localization, zRAM, and diagnostic controls.\nExpert boot settings: validated global and per-entry kernel arguments for options not represented by typed controls.\nAppearance: a validated PNG boot background.\nProject filesystem layer: one real directory interpreted relative to image root and packaged as a root-owned SquashFS overlay module.\nThe filesystem layer supports regular files, safe relative symbolic links, empty directories, executable bits, and timestamps. Device nodes, sockets, FIFOs, filesystem crossings, absolute or escaping links, and unsafe names are rejected. Privilege bits are cleared and ownership in the generated module is normalized.\nBoot customization supports recognized MiniOS GRUB, native SYSLINUX, and the standard SYSLINUX-to-GRUB chain. Unsupported or ambiguous boot configuration is rejected rather than guessed. A build without boot customization can preserve a source layout that the customization parser does not understand.\nOutput verification\nBefore publication, minios-image-compose verifies the generated ISO rather than relying only on a successful xorriso exit. Checks include:\nThe ISO filesystem tree and volume label.\nBIOS and UEFI boot records and the system area.\nRequired boot, kernel, initramfs, configuration, and module content.\nEmbedded customization and session-capture attestations when present.\nDigests and structure of generated overlay and captured-session modules.\nBoot background targets and transformed boot configuration when customized.\nInput path identity, mode, modification time, and SHA-256 are recorded before the build. Mutable inputs are privately snapshotted with reflinks when supported; otherwise they are checked for mutation before and after ISO writing. A mismatch or verification failure prevents publication.\nAfter a successful build, record a checksum separately:\nsha256sum custom-minios.iso > custom-minios.iso.sha256\nsha256sum -c custom-minios.iso.sha256\nStructural verification does not replace a boot test. Boot the ISO in a disposable virtual machine and test both BIOS and UEFI when both are intended to be supported. Image Builder can report that QEMU or VirtualBox is installed, but it does not start or configure a hypervisor.\nSafety and cancellation\nKeep source media read-only and write output to a filesystem with enough free space for the estimate and temporary headroom.\nDo not build directly over the only known-good ISO. Use a new output name unless replacement is intentional and confirmed.\nVerify external modules before adding them. Image Builder validates their SquashFS structure but does not establish who authored their contents.\nPrefer no session capture for distributable images. If capture is needed, audit the resulting filesystem, not only the profile name.\nTreat project files as sensitive when they contain explicit source paths, module paths, output paths, or selected capture rules.\nInventory, build, and verification subprocesses run in dedicated process groups. Cancellation requests termination and escalates after a grace period. A hashing pass may finish before cancellation reaches a safe checkpoint, but stale results are discarded. Once atomic publication starts, it is allowed to finish so the destination is not intentionally left half-written.\nA cancelled or failed build does not publish its private ISO. Any previous destination remains in place unless a verified replacement reached atomic publication.\nRelated documentation\nBuilding MiniOS\nCreating modules\nComposing ISO images from the command line",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

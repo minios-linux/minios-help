@@ -1,0 +1,1103 @@
+{
+  "headings": [
+    {
+      "anchor": "mises-à-jour-logicielles",
+      "level": 1,
+      "title": "Mises à jour logicielles"
+    },
+    {
+      "anchor": "mettre-à-jour-les-paquets-avec-apt",
+      "level": 2,
+      "title": "Mettre à jour les paquets avec APT"
+    },
+    {
+      "anchor": "mettre-à-jour-les-logiciels-avec-des-modules",
+      "level": 2,
+      "title": "Mettre à jour les logiciels avec des modules"
+    },
+    {
+      "anchor": "remplacer-les-modules-dimage",
+      "level": 2,
+      "title": "Remplacer les modules d’image"
+    },
+    {
+      "anchor": "mettre-à-jour-le-noyau",
+      "level": 2,
+      "title": "Mettre à jour le noyau"
+    },
+    {
+      "anchor": "compatibilité-et-récupération",
+      "level": 2,
+      "title": "Compatibilité et récupération"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "mises-à-jour-logicielles",
+      [
+        [
+          "text",
+          "Mises à jour logicielles"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS combine des modules d’image SquashFS en lecture seule avec une superposition d’exécution en écriture. La méthode de mise à jour doit correspondre à la couche modifiée. Mettre à jour les paquets au sein d’une session en cours n’est pas équivalent à remplacer les modules sur le support MiniOS."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "mettre-à-jour-les-paquets-avec-apt",
+      [
+        [
+          "text",
+          "Mettre à jour les paquets avec APT"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "APT écrit sur la superposition du runtime. Activez et utilisez une session persistante avant"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "de procéder à la mise à jour si les modifications doivent survivre à un redémarrage :"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo apt update\nsudo apt upgrade",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "apt",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "update",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "apt",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "upgrade",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Sans persistance, les modifications des paquets disparaissent à l’arrêt. Avec la persistance,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "les fichiers mis à jour et l’état d’APT restent dans cette session, mais les modules d’image "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "de base ne sont pas modifiés. Une nouvelle session utilise toujours les versions des paquets présentes dans"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "l’image."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "APT convient pour maintenir une seule installation persistante. Vérifiez d’abord l’espace disponible,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "car les fichiers mis à jour sont stockés en plus des modules de base compressés. MiniOS ne prend pas en charge"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "les mises à niveau sur place entre versions. Ne considérez pas une mise à niveau de version Debian comme une mise à niveau d’image MiniOS ; sauvegardez vos données et utilisez plutôt une image construite pour la version cible."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "mettre-à-jour-les-logiciels-avec-des-modules",
+      [
+        [
+          "text",
+          "Mettre à jour les logiciels avec des modules"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Un module "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " est un logiciel en lecture seule chargé au démarrage. Les modules sont durables lorsqu’ils sont stockés dans le répertoire "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "modules/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " de MiniOS ou dans une source de module de persistance durable. Ils ne nécessitent pas que les modifications des paquets soient enregistrées dans la session."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Examinez l’ensemble des modules prévus au prochain démarrage avant et après l’ajout d’un module :"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sb next-boot\nsudo sb next-boot add 50-example.sb",
+      "bash",
+      [
+        [
+          "syntax",
+          "sb",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "next-boot",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "sb",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "next-boot",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "add",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "50-example.sb",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "sb next-boot add"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " valide et publie un nouveau module de façon atomique, mais il ne remplace pas un module existant portant le même nom. Supprimez d’abord un module utilisateur remplaçable lorsqu’une mise à jour conserve intentionnellement le même nom de base :"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo sb next-boot remove 50-example.sb\nsudo sb next-boot add 50-example.sb",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "sb",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "next-boot",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "remove",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "50-example.sb",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "sb",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "next-boot",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "add",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "50-example.sb",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Les modules de base et ceux présents sur des supports en lecture seule ne peuvent pas être supprimés avec cette commande. Construisez ou obtenez des modules mis à jour pour la même architecture, la même version de distribution et une pile de modules inférieure. Les modules avec un numéro plus élevé prennent le dessus sur les couches inférieures, ainsi un ancien module additionnel peut aussi remplacer des fichiers fournis par une image de base plus récente."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Pour les logiciels empaquetés localement, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "apt2sb upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " peut créer un module de mise à jour. Consultez "
+        ],
+        [
+          "link",
+          "/development/Creating-Modules.md",
+          null,
+          [
+            [
+              "text",
+              "Créer des modules"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pour plus de détails sur la construction de modules et la gestion des dépendances."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "remplacer-les-modules-dimage",
+      [
+        [
+          "text",
+          "Remplacer les modules d’image"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Les mises à jour officielles d’image remplacent les fichiers sur le support MiniOS ; "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "apt upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ne les met pas à jour."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Il est préférable de remplacer l’ensemble complet des modules de base et les fichiers de démarrage correspondants d’une même version de MiniOS, ou de réinstaller à partir de la nouvelle image. Ne mélangez pas les fichiers core, desktop, application, firmware ou boot de différentes versions sauf si leur compatibilité est documentée."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Avant le remplacement :"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Sauvegardez la configuration MiniOS, les données de persistance, les modules utilisateur et les modules de base actuels comme décrit dans "
+                ],
+                [
+                  "link",
+                  "/administration/Backup-Recovery.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Sauvegarde et restauration"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Notez les listes de modules actifs et de démarrage suivant avec "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "sb list"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " et "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "sb next-boot"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Effectuez le remplacement depuis un autre système ou à partir d’un démarrage chargé en RAM afin que les fichiers sources ne soient pas utilisés."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Conservez les anciens fichiers jusqu’à ce que la nouvelle image démarre et que le matériel et les applications nécessaires aient été testés."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Préservez les noms de base et l’ordre des modules lorsqu’une version recommande un remplacement direct. Une source ultérieure avec le même nom de base remplace une source antérieure dans la sélection du prochain démarrage ; des copies portant des noms différents peuvent toutes deux être chargées et produire un ordre de couches non souhaité."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "mettre-à-jour-le-noyau",
+      [
+        [
+          "text",
+          "Mettre à jour le noyau"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Le noyau est un ensemble coordonné : le module de pilote "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "01-kernel.sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", l’image du noyau, l’initramfs et la configuration du chargeur d’amorçage doivent être cohérents. Utilisez le gestionnaire de noyau MiniOS ou la commande "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-kernel"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " au lieu de mettre à jour uniquement un paquet "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "linux-image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " avec APT."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Listez et empaquetez un noyau du dépôt, puis activez-le pour le prochain démarrage :"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo minios-kernel list\nsudo minios-kernel package --repo <linux-image-package> -o /tmp/kernel-output\nsudo minios-kernel activate <kernel-version>",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-kernel",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "list",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-kernel",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "package",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--repo",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "<",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "linux-image-packag",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "e",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          ">",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-o",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/tmp/kernel-output",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-kernel",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "activate",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "<",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "kernel-versio",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "n",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          ">",
+          "#D73A49",
+          "#F97583"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L’activation met à jour la configuration de démarrage de MiniOS. Redémarrez pour exécuter le noyau sélectionné, puis vérifiez-le avec "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "uname -r"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Conservez au moins un noyau fonctionnel connu et ses fichiers de démarrage jusqu’à ce que le matériel, le stockage, le réseau et les pilotes hors arbre aient été testés. Le module noyau standard de MiniOS peut inclure des pilotes supplémentaires absents du noyau du dépôt de la distribution."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Consultez "
+        ],
+        [
+          "link",
+          "/administration/Kernel-Management.md",
+          null,
+          [
+            [
+              "text",
+              "Gestion du noyau"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pour le flux graphique, les options de commande et la procédure de récupération."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "compatibilité-et-récupération",
+      [
+        [
+          "text",
+          "Compatibilité et récupération"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Sauvegardez la persistance avant de modifier l’image de base ou le noyau. Les fichiers de paquets persistants et leurs métadonnées peuvent remplacer un nouveau module de base ou décrire des versions de paquets qui ne correspondent plus. Testez une nouvelle image avec une session vierge d’abord, puis testez une copie de la session existante. Conservez l’image d’origine, les modules et la sauvegarde de session tant qu’un retour arrière reste nécessaire."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Après toute mise à jour, vérifiez les modules sélectionnés, démarrez une fois, puis contrôlez les applications et le matériel concernés. Si une nouvelle image de base entre en conflit avec d’anciens modules utilisateur ou la persistance, désactivez ces couches et réintroduisez-les une par une."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Mises à jour logicielles\nMiniOS combine des modules d’image SquashFS en lecture seule avec une superposition d’exécution en écriture. La méthode de mise à jour doit correspondre à la couche modifiée. Mettre à jour les paquets au sein d’une session en cours n’est pas équivalent à remplacer les modules sur le support MiniOS.\nMettre à jour les paquets avec APT\nAPT écrit sur la superposition du runtime. Activez et utilisez une session persistante avant\nde procéder à la mise à jour si les modifications doivent survivre à un redémarrage :\nsudo apt update\nsudo apt upgrade\nSans persistance, les modifications des paquets disparaissent à l’arrêt. Avec la persistance,\nles fichiers mis à jour et l’état d’APT restent dans cette session, mais les modules d’image .sb\nde base ne sont pas modifiés. Une nouvelle session utilise toujours les versions des paquets présentes dans\nl’image.\nAPT convient pour maintenir une seule installation persistante. Vérifiez d’abord l’espace disponible,\ncar les fichiers mis à jour sont stockés en plus des modules de base compressés. MiniOS ne prend pas en charge\nles mises à niveau sur place entre versions. Ne considérez pas une mise à niveau de version Debian comme une mise à niveau d’image MiniOS ; sauvegardez vos données et utilisez plutôt une image construite pour la version cible.\nMettre à jour les logiciels avec des modules\nUn module .sb est un logiciel en lecture seule chargé au démarrage. Les modules sont durables lorsqu’ils sont stockés dans le répertoire modules/ de MiniOS ou dans une source de module de persistance durable. Ils ne nécessitent pas que les modifications des paquets soient enregistrées dans la session.\nExaminez l’ensemble des modules prévus au prochain démarrage avant et après l’ajout d’un module :\nsb next-boot\nsudo sb next-boot add 50-example.sb\nsb next-boot add valide et publie un nouveau module de façon atomique, mais il ne remplace pas un module existant portant le même nom. Supprimez d’abord un module utilisateur remplaçable lorsqu’une mise à jour conserve intentionnellement le même nom de base :\nsudo sb next-boot remove 50-example.sb\nsudo sb next-boot add 50-example.sb\nLes modules de base et ceux présents sur des supports en lecture seule ne peuvent pas être supprimés avec cette commande. Construisez ou obtenez des modules mis à jour pour la même architecture, la même version de distribution et une pile de modules inférieure. Les modules avec un numéro plus élevé prennent le dessus sur les couches inférieures, ainsi un ancien module additionnel peut aussi remplacer des fichiers fournis par une image de base plus récente.\nPour les logiciels empaquetés localement, apt2sb upgrade peut créer un module de mise à jour. Consultez Créer des modules pour plus de détails sur la construction de modules et la gestion des dépendances.\nRemplacer les modules d’image\nLes mises à jour officielles d’image remplacent les fichiers sur le support MiniOS ; apt upgrade ne les met pas à jour.\nIl est préférable de remplacer l’ensemble complet des modules de base et les fichiers de démarrage correspondants d’une même version de MiniOS, ou de réinstaller à partir de la nouvelle image. Ne mélangez pas les fichiers core, desktop, application, firmware ou boot de différentes versions sauf si leur compatibilité est documentée.\nAvant le remplacement :\nSauvegardez la configuration MiniOS, les données de persistance, les modules utilisateur et les modules de base actuels comme décrit dans Sauvegarde et restauration.\nNotez les listes de modules actifs et de démarrage suivant avec sb list et sb next-boot.\nEffectuez le remplacement depuis un autre système ou à partir d’un démarrage chargé en RAM afin que les fichiers sources ne soient pas utilisés.\nConservez les anciens fichiers jusqu’à ce que la nouvelle image démarre et que le matériel et les applications nécessaires aient été testés.\nPréservez les noms de base et l’ordre des modules lorsqu’une version recommande un remplacement direct. Une source ultérieure avec le même nom de base remplace une source antérieure dans la sélection du prochain démarrage ; des copies portant des noms différents peuvent toutes deux être chargées et produire un ordre de couches non souhaité.\nMettre à jour le noyau\nLe noyau est un ensemble coordonné : le module de pilote 01-kernel.sb, l’image du noyau, l’initramfs et la configuration du chargeur d’amorçage doivent être cohérents. Utilisez le gestionnaire de noyau MiniOS ou la commande minios-kernel au lieu de mettre à jour uniquement un paquet linux-image avec APT.\nListez et empaquetez un noyau du dépôt, puis activez-le pour le prochain démarrage :\nsudo minios-kernel list\nsudo minios-kernel package --repo <linux-image-package> -o /tmp/kernel-output\nsudo minios-kernel activate <kernel-version>\nL’activation met à jour la configuration de démarrage de MiniOS. Redémarrez pour exécuter le noyau sélectionné, puis vérifiez-le avec uname -r. Conservez au moins un noyau fonctionnel connu et ses fichiers de démarrage jusqu’à ce que le matériel, le stockage, le réseau et les pilotes hors arbre aient été testés. Le module noyau standard de MiniOS peut inclure des pilotes supplémentaires absents du noyau du dépôt de la distribution.\nConsultez Gestion du noyau pour le flux graphique, les options de commande et la procédure de récupération.\nCompatibilité et récupération\nSauvegardez la persistance avant de modifier l’image de base ou le noyau. Les fichiers de paquets persistants et leurs métadonnées peuvent remplacer un nouveau module de base ou décrire des versions de paquets qui ne correspondent plus. Testez une nouvelle image avec une session vierge d’abord, puis testez une copie de la session existante. Conservez l’image d’origine, les modules et la sauvegarde de session tant qu’un retour arrière reste nécessaire.\nAprès toute mise à jour, vérifiez les modules sélectionnés, démarrez une fois, puis contrôlez les applications et le matériel concernés. Si une nouvelle image de base entre en conflit avec d’anciens modules utilisateur ou la persistance, désactivez ces couches et réintroduisez-les une par une.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

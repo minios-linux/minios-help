@@ -10,15 +10,22 @@ import os
 import posixpath
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 import unicodedata
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+TOOLS_DIR = Path(__file__).resolve().parent
+DEFAULT_NODE_COMPILER = (
+    TOOLS_DIR.parent.parent / "minios-gui" / "tools" / "markdown-compiler.mjs")
+NODE_COMPILER = Path(os.environ.get(
+    "MINIOS_MARKDOWN_COMPILER", str(DEFAULT_NODE_COMPILER)))
+
 DEFAULT_LOCALE = "en"
 PRODUCT_KIND = "minios-help-documents"
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 DOC_DIRS = ("about", "administration", "configuration", "development", "installation")
 SAFE_EXTERNAL_SCHEMES = ("http", "https", "mailto")
 LOCALE_RE = re.compile(r"^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$")
@@ -69,7 +76,7 @@ def canonical_id(relative_path):
 
 
 def output_relpath(locale_name, canonical):
-    source = "index.md" if canonical == "index" else canonical + ".md"
+    source = "index.json" if canonical == "index" else canonical + ".json"
     return posixpath.join(locale_name, source)
 
 
@@ -186,7 +193,8 @@ def parse_home_frontmatter(frontmatter):
 
 
 def safe_html_line(line):
-    line = re.sub(r"(?i)<br\s*/?>", "  \n", line)
+    # Keep <br> inline: the shared compiler converts it to a line break.
+    # Replacing it with a physical Markdown newline breaks table rows.
     line = re.sub(
         r"(?is)<kbd>(.*?)</kbd>",
         lambda match: "`{}`".format(match.group(1).replace("`", "")),
@@ -598,9 +606,99 @@ def verify_generated_tree(root, manifest):
             actual = hashlib.sha256(resolved.read_bytes()).hexdigest()
             if hashes.get(locale_name) != actual:
                 raise SyncError("manifest hash mismatch for {}".format(rel))
+    for rel, expected in manifest.get("assets", {}).items():
+        validate_name(rel, "asset path")
+        candidate = root / Path(rel)
+        if candidate.is_symlink():
+            raise SyncError("generated asset is a symlink: {}".format(rel))
+        resolved = candidate.resolve()
+        try:
+            resolved.relative_to(root)
+        except ValueError:
+            raise SyncError("asset path escapes output root: {}".format(rel))
+        if not resolved.is_file():
+            raise SyncError("manifest points to missing asset: {}".format(rel))
+        actual = hashlib.sha256(resolved.read_bytes()).hexdigest()
+        if actual != expected:
+            raise SyncError("manifest hash mismatch for {}".format(rel))
 
 
-def sync_docs(docs_root, output_root, stderr=None):
+def compile_documents(docs_root, temp_root, generated, source_paths,
+                      locales, known, node_command=None, mermaid_command=None):
+    items = []
+    lookup = {}
+    for locale_name in locales:
+        for canon in known:
+            item_id = str(len(items))
+            lookup[item_id] = (locale_name, canon)
+            items.append({
+                "id": item_id,
+                "text": generated[locale_name][canon],
+                "source_path": str(source_paths[locale_name][canon]),
+                "output_path": output_relpath(locale_name, canon),
+            })
+
+    request = {
+        "schema_version": 1,
+        "docs_root": str(docs_root),
+        "output_root": str(temp_root),
+        "mermaid_command": mermaid_command,
+        "items": items,
+    }
+    batch_path = temp_root / ".compile-batch.json"
+    batch_path.write_text(
+        json.dumps(request, ensure_ascii=False, sort_keys=True) + "\n",
+        encoding="utf-8")
+    command = [
+        node_command or os.environ.get("MINIOS_NODE", "node"),
+        str(NODE_COMPILER), str(batch_path),
+    ]
+    try:
+        result = subprocess.run(
+            command, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            universal_newlines=True, timeout=600)
+    except (OSError, subprocess.TimeoutExpired) as error:
+        raise SyncError("Node Markdown compiler failed: {}".format(error))
+    finally:
+        try:
+            batch_path.unlink()
+        except OSError:
+            pass
+    if result.returncode != 0:
+        message = (result.stderr or result.stdout or "unknown error").strip()
+        if "ERR_MODULE_NOT_FOUND" in message:
+            message += " (run ../minios-gui/tools/npm-ci.sh first)"
+        raise SyncError("Node Markdown compiler failed: {}".format(message))
+    try:
+        response = json.loads(result.stdout)
+    except ValueError as error:
+        raise SyncError("Node Markdown compiler returned invalid JSON: {}".format(error))
+    if response.get("schema_version") != 1:
+        raise SyncError("unsupported Node compiler response")
+
+    compiled = {locale_name: {} for locale_name in locales}
+    seen = set()
+    for item in response.get("items", []):
+        item_id = item.get("id") if isinstance(item, dict) else None
+        if item_id not in lookup or item_id in seen:
+            raise SyncError("invalid item in Node compiler response")
+        seen.add(item_id)
+        locale_name, canon = lookup[item_id]
+        digest = item.get("sha256")
+        headings = item.get("headings")
+        if not isinstance(digest, str) or len(digest) != 64 or not isinstance(headings, list):
+            raise SyncError("invalid metadata in Node compiler response")
+        compiled[locale_name][canon] = {"sha256": digest, "headings": headings}
+    if seen != set(lookup):
+        raise SyncError("Node compiler response is incomplete")
+    assets = response.get("assets")
+    if not isinstance(assets, dict):
+        raise SyncError("Node compiler returned invalid asset metadata")
+    return compiled, assets
+
+
+def sync_docs(docs_root, output_root, stderr=None, node_command=None,
+              mermaid_command=None):
     docs_root = Path(docs_root).resolve()
     output_root = Path(output_root)
     stderr = stderr or sys.stderr
@@ -649,8 +747,11 @@ def sync_docs(docs_root, output_root, stderr=None):
     temp_root = Path(tempfile.mkdtemp(prefix=".minios-help-docs-", dir=str(parent)))
     generated = {locale_name: {} for locale_name in locales}
     link_records = {locale_name: {} for locale_name in locales}
-    source_present = {locale_name: set(sources_by_locale.get(locale_name, {})) for locale_name in locales}
-    image_docs = []
+    source_paths = {locale_name: {} for locale_name in locales}
+    source_present = {
+        locale_name: set(sources_by_locale.get(locale_name, {}))
+        for locale_name in locales
+    }
 
     try:
         for locale_name in locales:
@@ -663,25 +764,24 @@ def sync_docs(docs_root, output_root, stderr=None):
                         messages_by_locale, known)
                     records = []
                     text = normalize_links(text, canon, known, records)
-                    has_image = False
                 else:
                     source = localized_sources.get(canon) or english_sources[canon]
-                    text, records, has_image = transform_document(
+                    text, records, _has_image = transform_document(
                         read_utf8(source), canon, known)
                 generated[locale_name][canon] = text
                 link_records[locale_name][canon] = records
-                if has_image:
-                    image_docs.append((locale_name, canon))
+                source_paths[locale_name][canon] = source
 
         remap_localized_anchors(generated, link_records, locales, known)
         for locale_name in locales:
             for canon in known:
                 _validate_anchor_records(
                     link_records[locale_name][canon], generated[locale_name], locale_name)
-                rel = output_relpath(locale_name, canon)
-                destination = temp_root / Path(rel)
-                destination.parent.mkdir(parents=True, exist_ok=True)
-                destination.write_text(generated[locale_name][canon], encoding="utf-8")
+        compiled, assets = compile_documents(
+            docs_root, temp_root, generated, source_paths, locales, known,
+            node_command=node_command,
+            mermaid_command=(mermaid_command or
+                             os.environ.get("MINIOS_MERMAID_COMMAND")))
 
         documents = []
         for canon in sorted(known, key=lambda value: (metadata[value]["order"], value.casefold())):
@@ -692,8 +792,12 @@ def sync_docs(docs_root, output_root, stderr=None):
             for locale_name in locales:
                 rel = output_relpath(locale_name, canon)
                 translations[locale_name] = rel
-                hashes[locale_name] = sha256_text(generated[locale_name][canon])
-                titles[locale_name] = first_h1(generated[locale_name][canon])
+                hashes[locale_name] = compiled[locale_name][canon]["sha256"]
+                headings = compiled[locale_name][canon]["headings"]
+                titles[locale_name] = next(
+                    (item.get("title", "") for item in headings
+                     if item.get("level") == 1),
+                    headings[0].get("title", "") if headings else "")
                 if locale_name != DEFAULT_LOCALE and canon not in source_present[locale_name]:
                     fallback_locales.append(locale_name)
             documents.append({
@@ -722,18 +826,13 @@ def sync_docs(docs_root, output_root, stderr=None):
             "navigation": navigation_manifest(
                 sidebar, locales, messages_by_locale, known),
             "documents": documents,
+            "assets": dict(sorted(assets.items())),
         }
         manifest_path = temp_root / "manifest.json"
         manifest_path.write_text(
             json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
             encoding="utf-8")
         verify_generated_tree(temp_root, manifest)
-
-        if image_docs:
-            for locale_name, canon in sorted(set(image_docs)):
-                print(
-                    "warning: image uses text fallback: {} ({})".format(canon, locale_name),
-                    file=stderr)
 
         backup = None
         if output_root.exists():
@@ -765,9 +864,16 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--docs-root", default=str(default_docs))
     parser.add_argument("--output-root", default=str(default_output))
+    parser.add_argument(
+        "--node-command", default=os.environ.get("MINIOS_NODE", "node"))
+    parser.add_argument(
+        "--mermaid-command", default=os.environ.get("MINIOS_MERMAID_COMMAND"))
     args = parser.parse_args(argv)
     try:
-        manifest = sync_docs(args.docs_root, args.output_root)
+        manifest = sync_docs(
+            args.docs_root, args.output_root,
+            node_command=args.node_command,
+            mermaid_command=args.mermaid_command)
     except SyncError as error:
         print("sync_from_docs.py: error: {}".format(error), file=sys.stderr)
         return 1

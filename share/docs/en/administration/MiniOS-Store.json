@@ -1,0 +1,1867 @@
+{
+  "headings": [
+    {
+      "anchor": "minios-store",
+      "level": 1,
+      "title": "MiniOS Store"
+    },
+    {
+      "anchor": "before-installing",
+      "level": 2,
+      "title": "Before installing"
+    },
+    {
+      "anchor": "install-an-application",
+      "level": 2,
+      "title": "Install an application"
+    },
+    {
+      "anchor": "module-and-system-modes",
+      "level": 2,
+      "title": "Module and system modes"
+    },
+    {
+      "anchor": "module-mode",
+      "level": 3,
+      "title": "Module mode"
+    },
+    {
+      "anchor": "system-mode",
+      "level": 3,
+      "title": "System mode"
+    },
+    {
+      "anchor": "local-service-and-trust-boundary",
+      "level": 2,
+      "title": "Local service and trust boundary"
+    },
+    {
+      "anchor": "cancellation",
+      "level": 2,
+      "title": "Cancellation"
+    },
+    {
+      "anchor": "troubleshooting",
+      "level": 2,
+      "title": "Troubleshooting"
+    },
+    {
+      "anchor": "the-store-is-offline",
+      "level": 3,
+      "title": "The Store is offline"
+    },
+    {
+      "anchor": "the-browser-cannot-connect-to-the-daemon",
+      "level": 3,
+      "title": "The browser cannot connect to the daemon"
+    },
+    {
+      "anchor": "authentication-fails-or-no-prompt-appears",
+      "level": 3,
+      "title": "Authentication fails or no prompt appears"
+    },
+    {
+      "anchor": "module-construction-fails",
+      "level": 3,
+      "title": "Module construction fails"
+    },
+    {
+      "anchor": "the-application-is-absent-after-installation",
+      "level": 3,
+      "title": "The application is absent after installation"
+    },
+    {
+      "anchor": "a-cancelled-system-install-left-dpkg-unfinished",
+      "level": 3,
+      "title": "A cancelled system install left dpkg unfinished"
+    },
+    {
+      "anchor": "related-documentation",
+      "level": 2,
+      "title": "Related documentation"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "minios-store",
+      [
+        [
+          "text",
+          "MiniOS Store"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS Store provides a catalog of application recipes at "
+        ],
+        [
+          "link",
+          "https://store.minios.dev",
+          null,
+          [
+            [
+              "text",
+              "store.minios.dev"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". On MiniOS, those recipes can be installed directly into the running system or used to build one or more SquashFS ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ") modules."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Browsing the catalog does not require a local server. Installation does: the web interface either connects to the local MiniOS Store daemon or opens the installed "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-store://"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " URI handler."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "before-installing",
+      [
+        [
+          "text",
+          "Before installing"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Open an application's details and review the following information before adding it to the cart:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "The package names and installation method."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "The installation script, when one is shown."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "The application homepage and developer information."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Whether the recipe downloads a separate Debian package."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Recipes can install APT packages, download Debian packages, or execute shell scripts. Installation operations run with root privileges. Treat a recipe and every download or repository it uses as privileged code."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "install-an-application",
+      [
+        [
+          "text",
+          "Install an application"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Open MiniOS Store from the application menu. The launcher checks "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "https://store.minios.dev"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " and opens it in the default browser."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Search or browse by category, open the application details, and inspect the packages or script."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Add one or more applications to the cart."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "On a live MiniOS session, select "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "Module"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " or "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "System"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ". A natively installed MiniOS system uses "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "System"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " mode automatically."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "For multiple applications in module mode, select one combined module or separate modules. A combined module can also be given a custom name."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Select "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "Install"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " and follow the progress and command output. The page uses the local daemon when its status is "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "Connected"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "; otherwise it tries the URI handler and may show a PolicyKit authentication prompt."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Only one daemon installation batch can run at a time. Closing the progress dialog does not necessarily stop a daemon installation; reopen the installation indicator to view it or explicitly cancel it."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "module-and-system-modes",
+      [
+        [
+          "text",
+          "Module and system modes"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "module-mode",
+      [
+        [
+          "text",
+          "Module mode"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Module mode runs "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "apt2sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " or "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "script2sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " in an isolated module-building environment. It writes the resulting "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " files to the first writable location below:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/run/initramfs/memory/data/minios/modules"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/lib/minios-store/modules"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The first path is the modules directory on the current MiniOS boot storage. A module created there is not activated in the current session by MiniOS Store. Leave the module in that directory and reboot to load it on the next boot. The result remains available only if the underlying boot storage is writable and retains the file."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The second path is a fallback used when the normal modules directory is not writable. A module in the fallback directory is not automatically part of the next live boot. Use "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "Open folder"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", then copy the finished module to the "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/modules"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " directory on writable MiniOS boot media before rebooting."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A combined module contains all selected recipes. With separate packaging, a failure can affect one recipe while modules completed earlier in the batch remain in the target directory."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "system-mode",
+      [
+        [
+          "text",
+          "System mode"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "System mode uses APT or a recipe script directly against the running root filesystem. Changes take effect in the current system rather than producing a module. On a live session, whether those changes survive a reboot depends on the session's persistence configuration. On a natively installed system, MiniOS Store always uses system mode."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "System mode is not transactional. A failed or cancelled operation can leave packages, repository state, or files changed by earlier commands."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "local-service-and-trust-boundary",
+      [
+        [
+          "text",
+          "Local service and trust boundary"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-store"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " service runs as root because module construction and direct package installation require mount, overlay, chroot, APT, and dpkg operations. By default it listens only on "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "ws://127.0.0.1:8765"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". The hosted web interface sends complete recipe data, including scripts and download URLs, to this local service."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The daemon validates the request shape and supported installation method, but it does not independently authenticate or sign the recipe payload. A page that can reach the local WebSocket endpoint can request privileged installation work. Therefore:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Keep the daemon bound to "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "127.0.0.1"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ". Do not expose port "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "8765"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " to a LAN or the internet."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Do not set "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "MINIOS_STORE_HOST"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " to a non-loopback address unless an additional, reviewed security boundary is in place."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Use the official HTTPS Store site and inspect recipes before installation."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Stop or disable the service when browser-based installation is not needed."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Manage the systemd service with:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo systemctl status minios-store\nsudo systemctl start minios-store\nsudo systemctl stop minios-store\nsudo systemctl enable minios-store\nsudo systemctl disable minios-store",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "systemctl",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "status",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-store",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "systemctl",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "start",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-store",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "systemctl",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "stop",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-store",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "systemctl",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "enable",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-store",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "systemctl",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "disable",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-store",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The URI handler is a separate path. It starts the GTK installer through PolicyKit and does not require the WebSocket daemon. Current URI entries are interpreted as APT package names with a requested module level and compression setting. The installer starts after authorization, so inspect the browser request before accepting the authentication prompt."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "cancellation",
+      [
+        [
+          "text",
+          "Cancellation"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Select "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "Cancel"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " in the web progress dialog or "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "Cancel installation"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " in the GTK installer. Cancellation marks the batch as cancelled and terminates the currently tracked child process. Remaining recipes are not started."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Cancellation is not rollback. Packages or modules completed earlier remain, and a command interrupted during APT, dpkg, a script, download, or module construction may leave partial state or an incomplete output file. After cancellation:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Read the final installation log."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Check the target modules directory for unexpected or zero-size files."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "For system mode, run "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "sudo dpkg --audit"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " and repair package configuration if needed."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Remove only artifacts that you have identified as belonging to the cancelled operation."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "troubleshooting",
+      [
+        [
+          "text",
+          "Troubleshooting"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "the-store-is-offline",
+      [
+        [
+          "text",
+          "The Store is offline"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Check network access to "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "https://store.minios.dev"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". An "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "Offline"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " status also means the browser is not connected to the local WebSocket daemon; installation may still proceed through the URI handler if "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-store-gui"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " is installed."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "the-browser-cannot-connect-to-the-daemon",
+      [
+        [
+          "text",
+          "The browser cannot connect to the daemon"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Check the service and its logs:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo systemctl status minios-store\nsudo journalctl -u minios-store",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "systemctl",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "status",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-store",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "journalctl",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-u",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-store",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The normal endpoint is "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "ws://127.0.0.1:8765"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". A port conflict, stopped service, missing "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "python3-websockets"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", or browser restrictions can prevent connection. Restarting the browser does not repair a stopped daemon."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "authentication-fails-or-no-prompt-appears",
+      [
+        [
+          "text",
+          "Authentication fails or no prompt appears"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The URI installer requires PolicyKit, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "pkexec"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", and an active desktop authentication agent. Start the installer from an active graphical session and verify that "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-store-gui"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " is installed. Do not work around the prompt by exposing the root daemon over the network."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "module-construction-fails",
+      [
+        [
+          "text",
+          "Module construction fails"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Expand the installation log and use the last command error rather than only the summary. Common causes include unavailable packages, repository or DNS failures, insufficient free space, an unsupported compression tool, and a read-only modules directory. The daemon reports when it has switched to "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/var/lib/minios-store/modules"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "the-application-is-absent-after-installation",
+      [
+        [
+          "text",
+          "The application is absent after installation"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "For module mode, reboot after confirming that the "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " file is in the boot media's "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/modules"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " directory. A file left in the fallback directory is not loaded automatically. For system mode on a live session, verify that the session is persistent if the application disappeared after reboot."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "a-cancelled-system-install-left-dpkg-unfinished",
+      [
+        [
+          "text",
+          "A cancelled system install left dpkg unfinished"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Inspect package state before retrying:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo dpkg --audit\nsudo dpkg --configure -a\nsudo apt-get -f install",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "dpkg",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--audit",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "dpkg",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--configure",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-a",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "apt-get",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-f",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "install",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Review the proposed APT changes before confirming any additional repair operation."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "related-documentation",
+      [
+        [
+          "text",
+          "Related documentation"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/development/Creating-Modules.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Creating modules"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/development/Rebuilding-ISO.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Rebuilding ISO"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "MiniOS Store\nMiniOS Store provides a catalog of application recipes at store.minios.dev. On MiniOS, those recipes can be installed directly into the running system or used to build one or more SquashFS (.sb) modules.\nBrowsing the catalog does not require a local server. Installation does: the web interface either connects to the local MiniOS Store daemon or opens the installed minios-store:// URI handler.\nBefore installing\nOpen an application's details and review the following information before adding it to the cart:\nThe package names and installation method.\nThe installation script, when one is shown.\nThe application homepage and developer information.\nWhether the recipe downloads a separate Debian package.\nRecipes can install APT packages, download Debian packages, or execute shell scripts. Installation operations run with root privileges. Treat a recipe and every download or repository it uses as privileged code.\nInstall an application\nOpen MiniOS Store from the application menu. The launcher checks https://store.minios.dev and opens it in the default browser.\nSearch or browse by category, open the application details, and inspect the packages or script.\nAdd one or more applications to the cart.\nOn a live MiniOS session, select Module or System. A natively installed MiniOS system uses System mode automatically.\nFor multiple applications in module mode, select one combined module or separate modules. A combined module can also be given a custom name.\nSelect Install and follow the progress and command output. The page uses the local daemon when its status is Connected; otherwise it tries the URI handler and may show a PolicyKit authentication prompt.\nOnly one daemon installation batch can run at a time. Closing the progress dialog does not necessarily stop a daemon installation; reopen the installation indicator to view it or explicitly cancel it.\nModule and system modes\nModule mode\nModule mode runs apt2sb or script2sb in an isolated module-building environment. It writes the resulting .sb files to the first writable location below:\n/run/initramfs/memory/data/minios/modules\n/var/lib/minios-store/modules\nThe first path is the modules directory on the current MiniOS boot storage. A module created there is not activated in the current session by MiniOS Store. Leave the module in that directory and reboot to load it on the next boot. The result remains available only if the underlying boot storage is writable and retains the file.\nThe second path is a fallback used when the normal modules directory is not writable. A module in the fallback directory is not automatically part of the next live boot. Use Open folder, then copy the finished module to the minios/modules directory on writable MiniOS boot media before rebooting.\nA combined module contains all selected recipes. With separate packaging, a failure can affect one recipe while modules completed earlier in the batch remain in the target directory.\nSystem mode\nSystem mode uses APT or a recipe script directly against the running root filesystem. Changes take effect in the current system rather than producing a module. On a live session, whether those changes survive a reboot depends on the session's persistence configuration. On a natively installed system, MiniOS Store always uses system mode.\nSystem mode is not transactional. A failed or cancelled operation can leave packages, repository state, or files changed by earlier commands.\nLocal service and trust boundary\nThe minios-store service runs as root because module construction and direct package installation require mount, overlay, chroot, APT, and dpkg operations. By default it listens only on ws://127.0.0.1:8765. The hosted web interface sends complete recipe data, including scripts and download URLs, to this local service.\nThe daemon validates the request shape and supported installation method, but it does not independently authenticate or sign the recipe payload. A page that can reach the local WebSocket endpoint can request privileged installation work. Therefore:\nKeep the daemon bound to 127.0.0.1. Do not expose port 8765 to a LAN or the internet.\nDo not set MINIOS_STORE_HOST to a non-loopback address unless an additional, reviewed security boundary is in place.\nUse the official HTTPS Store site and inspect recipes before installation.\nStop or disable the service when browser-based installation is not needed.\nManage the systemd service with:\nsudo systemctl status minios-store\nsudo systemctl start minios-store\nsudo systemctl stop minios-store\nsudo systemctl enable minios-store\nsudo systemctl disable minios-store\nThe URI handler is a separate path. It starts the GTK installer through PolicyKit and does not require the WebSocket daemon. Current URI entries are interpreted as APT package names with a requested module level and compression setting. The installer starts after authorization, so inspect the browser request before accepting the authentication prompt.\nCancellation\nSelect Cancel in the web progress dialog or Cancel installation in the GTK installer. Cancellation marks the batch as cancelled and terminates the currently tracked child process. Remaining recipes are not started.\nCancellation is not rollback. Packages or modules completed earlier remain, and a command interrupted during APT, dpkg, a script, download, or module construction may leave partial state or an incomplete output file. After cancellation:\nRead the final installation log.\nCheck the target modules directory for unexpected or zero-size files.\nFor system mode, run sudo dpkg --audit and repair package configuration if needed.\nRemove only artifacts that you have identified as belonging to the cancelled operation.\nTroubleshooting\nThe Store is offline\nCheck network access to https://store.minios.dev. An Offline status also means the browser is not connected to the local WebSocket daemon; installation may still proceed through the URI handler if minios-store-gui is installed.\nThe browser cannot connect to the daemon\nCheck the service and its logs:\nsudo systemctl status minios-store\nsudo journalctl -u minios-store\nThe normal endpoint is ws://127.0.0.1:8765. A port conflict, stopped service, missing python3-websockets, or browser restrictions can prevent connection. Restarting the browser does not repair a stopped daemon.\nAuthentication fails or no prompt appears\nThe URI installer requires PolicyKit, pkexec, and an active desktop authentication agent. Start the installer from an active graphical session and verify that minios-store-gui is installed. Do not work around the prompt by exposing the root daemon over the network.\nModule construction fails\nExpand the installation log and use the last command error rather than only the summary. Common causes include unavailable packages, repository or DNS failures, insufficient free space, an unsupported compression tool, and a read-only modules directory. The daemon reports when it has switched to /var/lib/minios-store/modules.\nThe application is absent after installation\nFor module mode, reboot after confirming that the .sb file is in the boot media's minios/modules directory. A file left in the fallback directory is not loaded automatically. For system mode on a live session, verify that the session is persistent if the application disappeared after reboot.\nA cancelled system install left dpkg unfinished\nInspect package state before retrying:\nsudo dpkg --audit\nsudo dpkg --configure -a\nsudo apt-get -f install\nReview the proposed APT changes before confirming any additional repair operation.\nRelated documentation\nCreating modules\nRebuilding ISO",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

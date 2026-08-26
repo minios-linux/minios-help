@@ -9,13 +9,13 @@ from minios_help.documents import (
     DocumentError, DocumentStore, LocalePreference, locale_candidates,
     normalize_locale)
 from minios_help.navigation import NavigationHistory, resolve_link
-from minios_help.search import SearchIndex, strip_markdown
-from tests.test_sync import SyncFixture
+from minios_help.search import SearchIndex
+from tests.runtime_fixture import RuntimeFixture
 
 
 class CoreTests(unittest.TestCase):
     def setUp(self):
-        self.fx = SyncFixture()
+        self.fx = RuntimeFixture()
         self.fx.run()
         self.store = DocumentStore(self.fx.output)
 
@@ -27,7 +27,8 @@ class CoreTests(unittest.TestCase):
         self.assertIn("ru", self.store.locales)
         page = self.store.open_document("about/Page", "en")
         self.assertEqual(page.canonical_id, "about/Page")
-        self.assertIn("# Page", page.text)
+        self.assertIn("Page", page.text)
+        self.assertEqual(page.document["product_kind"], "minios-markup-document")
 
     def test_locale_normalization_and_environment_order(self):
         self.assertEqual(normalize_locale("pt_BR.UTF-8"), "pt-BR")
@@ -60,7 +61,7 @@ class CoreTests(unittest.TestCase):
 
 
     def test_modified_document_checksum_is_rejected(self):
-        path = self.fx.output / "en" / "about" / "Page.md"
+        path = self.fx.output / "en" / "about" / "Page.json"
         path.write_text(path.read_text(encoding="utf-8") + "tampered\n", encoding="utf-8")
         with self.assertRaises(DocumentError):
             self.store.open_document("about/Page", "en")
@@ -69,7 +70,7 @@ class CoreTests(unittest.TestCase):
         other = self.store.open_document("about/Other", "ru")
         self.assertTrue(other.fallback)
         self.assertEqual(other.locale, "en")
-        self.assertTrue(other.text.startswith("# Other"))
+        self.assertTrue(other.text.startswith("Other"))
 
     def test_corrupt_manifest_is_rejected(self):
         (self.fx.output / "manifest.json").write_text("{broken", encoding="utf-8")
@@ -156,12 +157,10 @@ class CoreTests(unittest.TestCase):
         results = index.search("Other")
         self.assertTrue(any(item.canonical_id == "about/Other" for item in results))
 
-    def test_markdown_search_text_has_no_markup(self):
-        text = strip_markdown("# Title\n\nUse **bold**, `code` and [link](https://example.test).")
-        self.assertIn("Title", text)
-        self.assertIn("bold", text)
-        self.assertNotIn("**", text)
-        self.assertNotIn("](", text)
+    def test_search_text_comes_from_compiled_document(self):
+        content = self.store.open_document("about/Page", "en")
+        self.assertEqual(content.text, content.document["plain_text"])
+        self.assertIn("Anchor Here", content.text)
 
 
 if __name__ == "__main__":

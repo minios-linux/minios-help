@@ -4,68 +4,10 @@ from __future__ import absolute_import
 
 import re
 import threading
-import unicodedata
 from collections import namedtuple
 
 SearchResult = namedtuple(
     "SearchResult", "canonical_id title section snippet anchor score")
-HEADING_RE = re.compile(r"^(#{1,6})[ \t]+(.+?)[ \t]*#*[ \t]*$", re.MULTILINE)
-
-
-def _plain_inline(value):
-    value = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", value)
-    value = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", value)
-    value = re.sub(r"<[^>]+>", " ", value)
-    value = re.sub(r"[`*_~>#|]", "", value)
-    return re.sub(r"\s+", " ", value).strip()
-
-
-def strip_markdown(text):
-    lines = []
-    in_fence = False
-    fence = None
-    for raw in text.splitlines():
-        match = re.match(r"^[ \t]*(```|~~~)", raw)
-        if match:
-            token = match.group(1)
-            if not in_fence:
-                in_fence = True
-                fence = token
-            elif token == fence:
-                in_fence = False
-                fence = None
-            continue
-        line = raw
-        if not in_fence:
-            line = re.sub(r"^\s*(?:[-+*]|\d+[.)])\s+", "", line)
-            line = re.sub(r"^#{1,6}\s+", "", line)
-        lines.append(_plain_inline(line))
-    return "\n".join(item for item in lines if item)
-
-
-def _slug(value):
-    value = unicodedata.normalize("NFKC", _plain_inline(value)).casefold()
-    chars = []
-    for char in value:
-        category = unicodedata.category(char)
-        if category[0] in ("L", "N", "M") or char in ("-", "_"):
-            chars.append(char)
-        elif char.isspace():
-            chars.append("-")
-    return re.sub(r"-+", "-", "".join(chars)).strip("-") or "section"
-
-
-def headings(text):
-    used = {}
-    result = []
-    for match in HEADING_RE.finditer(text):
-        title = _plain_inline(match.group(2))
-        base = _slug(title)
-        count = used.get(base, 0)
-        used[base] = count + 1
-        anchor = base if count == 0 else "{}-{}".format(base, count)
-        result.append((len(match.group(1)), title, anchor))
-    return result
 
 
 def _snippet(text, query, width=150):
@@ -93,11 +35,15 @@ class SearchIndex(object):
         records = []
         for item in self.store.all_documents():
             content = self.store.open_document(item["canonical_id"], self.locale)
-            page_headings = headings(content.text)
+            page_headings = [
+                (entry.get("level", 1), entry.get("title", ""), entry.get("anchor", ""))
+                for entry in content.document.get("headings", [])
+                if isinstance(entry, dict)
+            ]
             title = content.metadata.get("titles", {}).get(content.requested_locale)
             if not title:
                 title = page_headings[0][1] if page_headings else content.metadata.get("title", "")
-            body = strip_markdown(content.text)
+            body = content.document.get("plain_text", "")
             records.append({
                 "canonical_id": content.canonical_id,
                 "title": title,

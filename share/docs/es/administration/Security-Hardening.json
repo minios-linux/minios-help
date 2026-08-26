@@ -1,0 +1,1181 @@
+{
+  "headings": [
+    {
+      "anchor": "endurecimiento-de-la-seguridad",
+      "level": 1,
+      "title": "Endurecimiento de la seguridad"
+    },
+    {
+      "anchor": "comienza-con-medios-de-confianza",
+      "level": 2,
+      "title": "Comienza con medios de confianza"
+    },
+    {
+      "anchor": "sustituye-las-credenciales-predeterminadas",
+      "level": 2,
+      "title": "Sustituye las credenciales predeterminadas"
+    },
+    {
+      "anchor": "utiliza-los-controles-de-seguridad-del-configurador",
+      "level": 2,
+      "title": "Utiliza los controles de seguridad del Configurador"
+    },
+    {
+      "anchor": "asegura-el-acceso-remoto",
+      "level": 2,
+      "title": "Asegura el acceso remoto"
+    },
+    {
+      "anchor": "cifra-los-datos-persistentes",
+      "level": 2,
+      "title": "Cifra los datos persistentes"
+    },
+    {
+      "anchor": "aplica-actualizaciones-de-forma-deliberada",
+      "level": 2,
+      "title": "Aplica actualizaciones de forma deliberada"
+    },
+    {
+      "anchor": "trata-los-hooks-y-preseeding-como-ejecución-de-código",
+      "level": 2,
+      "title": "Trata los hooks y preseeding como ejecución de código"
+    },
+    {
+      "anchor": "haz-copias-de-seguridad-y-retira-los-medios-de-forma-segura",
+      "level": 2,
+      "title": "Haz copias de seguridad y retira los medios de forma segura"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "endurecimiento-de-la-seguridad",
+      [
+        [
+          "text",
+          "Endurecimiento de la seguridad"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS puede ejecutarse como un sistema de recuperación en vivo, un sistema portátil persistente o una instalación nativa. Los controles adecuados dependen de cómo se utilice el sistema. Protege la sesión en ejecución, los datos persistentes, el medio de arranque y cualquier configuración que se aplique al inicio."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "comienza-con-medios-de-confianza",
+      [
+        [
+          "text",
+          "Comienza con medios de confianza"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Descarga MiniOS desde una fuente oficial y verifica el ISO antes de grabarlo. Sigue "
+        ],
+        [
+          "link",
+          "/installation/Verifying-Downloads.md",
+          null,
+          [
+            [
+              "text",
+              "Verificación de descargas"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y compara el resultado antes de arrancar o instalar. La verificación detecta una descarga dañada o sustituida; no garantiza que un dispositivo USB ya modificado sea seguro."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Mantén el dispositivo USB bajo control físico. Las contraseñas de firmware y el orden de arranque restringido pueden reducir el arranque no autorizado casual, pero no cifran los archivos en el dispositivo. Secure Boot puede proporcionar protección adicional en la cadena de arranque en imágenes y hardware que lo soporten; verifica el comportamiento real de la versión y el firmware en vez de asumir compatibilidad."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "sustituye-las-credenciales-predeterminadas",
+      [
+        [
+          "text",
+          "Sustituye las credenciales predeterminadas"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Una imagen en vivo de MiniOS sin personalizar utiliza las credenciales publicadas "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "live"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " / "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "evil"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "root"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " / "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toor"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", con inicio de sesión automático y acceso administrativo sin contraseña en su configuración orientada a la comodidad. Cualquiera que pueda acceder al sistema podría usar esas credenciales, especialmente si SSH está activo."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Antes de conectarte a una red no confiable:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Establece contraseñas únicas para usuario y root en el Configurador de MiniOS."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Selecciona un perfil de seguridad apropiado y revisa cada control configurado."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Desactiva SSH y XRDP salvo que se requiera acceso remoto."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Reinicia en una nueva sesión al cambiar configuraciones de cuenta o seguridad de un solo uso, luego verifica el comportamiento resultante de inicio de sesión y privilegios."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El Configurador almacena los hashes de las contraseñas cifrados en lugar de las contraseñas en texto plano. Si cambias una cuenta persistente o nativa ya creada, utiliza "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "passwd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para el usuario actual y "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "sudo passwd root"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para root."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "utiliza-los-controles-de-seguridad-del-configurador",
+      [
+        [
+          "text",
+          "Utiliza los controles de seguridad del Configurador"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El Configurador de MiniOS ofrece tres perfiles. Un perfil completa configuraciones concretas; el nombre del perfil en sí no se guarda como clave de configuración en tiempo de ejecución, y cada ajuste permanece editable de forma independiente."
+        ]
+      ]
+    ],
+    [
+      "table",
+      [
+        [
+          "table_row",
+          true,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Perfil"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Comportamiento principal"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "convenient"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Compatible con inicio de sesión automático, sudo y PolicyKit sin contraseña, root y SSH por contraseña permitidos, XRDP/X11/pantalla de bloqueo relajados, pistas de contraseña visibles."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "balanced"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Sin inicio de sesión automático, sudo y PolicyKit requieren contraseña, inicio de sesión root por SSH denegado pero SSH por contraseña permitido, XRDP/X11/pantalla de bloqueo reforzados."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "strict"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Sin inicio de sesión automático, sudo y PolicyKit requieren contraseña, inicio de sesión root y por contraseña en SSH denegados, XRDP deshabilitado, X11/pantalla de bloqueo reforzados, pistas de contraseña ocultas."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Los valores predeterminados del instalador varían según el modo de instalación: las instalaciones en vivo favorecen "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "convenient"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", mientras que las instalaciones nativas favorecen "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "balanced"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Estos son valores predeterminados, no recomendaciones para todos los modelos de amenazas."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Las mismas configuraciones están disponibles como claves de configuración documentadas, incluyendo "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_SUDO_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_POLKIT_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_SSH_PERMIT_ROOT_LOGIN"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_SSH_PASSWORD_AUTHENTICATION"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_XRDP_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_X11_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_ISSUE_PASSWORD_HINTS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_LOCKSCREEN_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Prefiere estas claves o el Configurador en lugar de editar archivos generados de sudoers, PolicyKit, display-manager o SSH. Consulta "
+        ],
+        [
+          "link",
+          "/configuration/Configuration-File.md",
+          null,
+          [
+            [
+              "text",
+              "Archivo de configuración"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Para el comportamiento de guardado y la aplicabilidad de los ajustes, consulta "
+        ],
+        [
+          "link",
+          "/configuration/MiniOS-Configurator.md",
+          null,
+          [
+            [
+              "text",
+              "MiniOS Configurator"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La creación de cuentas, contraseñas, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_CONFIG_NOROOT"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y la postura de seguridad son configuraciones de un solo uso que se aplican al crear una nueva sesión. El Configurador muestra la aplicabilidad de cada control. Los ajustes reconfigurables como los servicios se aplican tras reiniciar."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "asegura-el-acceso-remoto",
+      [
+        [
+          "text",
+          "Asegura el acceso remoto"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "SSH puede estar habilitado en una imagen de MiniOS para tareas de recuperación. En una red donde no se confía en otros usuarios, asume que las credenciales predeterminadas publicadas están expuestas hasta que confirmes lo contrario."
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Si SSH no es necesario, añade "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "ssh"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " a "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "DISABLE_SERVICES"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " en el Configurador y elimínalo de "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "ENABLE_SERVICES"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " si está presente."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Si SSH es requerido, deniega el inicio de sesión de root con "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_SSH_PERMIT_ROOT_LOGIN=false"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Prefiere la autenticación por clave. Confirma el inicio de sesión por clave en una conexión separada antes de establecer "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_SSH_PASSWORD_AUTHENTICATION=false"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Restringe el acceso entrante con el cortafuegos de red o el router, y no expongas directamente un sistema de recuperación portátil a Internet."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Revisa XRDP por separado. El perfil estricto lo deshabilita; el perfil equilibrado lo refuerza pero no necesariamente desactiva su servicio."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Los parámetros de arranque pueden sobrescribir los valores del archivo de configuración. Revisa el comportamiento inesperado de los servicios en "
+        ],
+        [
+          "link",
+          "/configuration/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Parámetros de arranque"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "cifra-los-datos-persistentes",
+      [
+        [
+          "text",
+          "Cifra los datos persistentes"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La persistencia nativa, DynFileFS y la persistencia en bruto sin cifrar pueden ser leídas por quien obtenga el dispositivo. El Instalador de MiniOS puede configurar un contenedor cifrado LUKS para una sesión en vivo cuando el initrd de origen anuncia soporte para LUKS. El initrd crea "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " en el primer arranque y solicita su frase de contraseña; el instalador no recibe ni almacena esa frase."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La persistencia LUKS protege el contenido mientras el contenedor está cerrado. No protege los datos después de desbloquear, los archivos de arranque sin cifrar, los archivos copiados fuera del contenedor ni un sistema de archivos raíz nativo. La persistencia de sesión LUKS no es cifrado nativo de root. Usa una frase de contraseña fuerte y mantén una copia de seguridad probada."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Consulta "
+        ],
+        [
+          "link",
+          "/installation/MiniOS-Installer.md",
+          null,
+          [
+            [
+              "text",
+              "MiniOS Installer"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y "
+        ],
+        [
+          "link",
+          "/configuration/Session-Management.md",
+          null,
+          [
+            [
+              "text",
+              "Gestión de sesiones"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "aplica-actualizaciones-de-forma-deliberada",
+      [
+        [
+          "text",
+          "Aplica actualizaciones de forma deliberada"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Actualiza los metadatos de paquetes e instala las actualizaciones de seguridad de Debian en sesiones en vivo persistentes o instalaciones nativas usando el flujo de trabajo normal de APT. Los cambios de APT en una sesión en vivo nueva desaparecen al reiniciar. Los módulos base SquashFS son de solo lectura, por lo que reemplazar el ISO o los módulos por una versión confiable y más reciente de MiniOS suele ser la forma más limpia de actualizar el sistema base en vivo."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Consulta "
+        ],
+        [
+          "link",
+          "/administration/Software-Updates.md",
+          null,
+          [
+            [
+              "text",
+              "Actualizaciones de software"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para los flujos de trabajo separados de APT, módulos, imágenes y kernel."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Antes de una actualización grande:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Haz una copia de seguridad de archivos importantes y sesiones persistentes."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Confirma que haya suficiente espacio libre disponible."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Evita interrumpir escrituras o apagar el dispositivo."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Reinicia y verifica el sistema actualizado antes de descartar el medio o la sesión anterior conocida como funcional."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "trata-los-hooks-y-preseeding-como-ejecución-de-código",
+      [
+        [
+          "text",
+          "Trata los hooks y preseeding como ejecución de código"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La opción de arranque "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "hooks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y los hooks de live-config pueden ejecutar archivos desde el sistema de archivos raíz, el medio de arranque o una URL. Los hooks remotos, los hooks modificados en el medio y los preseeds no revisados pueden ejecutarse con privilegios de sistema. Utiliza solo archivos revisados de una fuente confiable, prefiere la distribución autenticada y evita hooks remotos en redes no confiables. Consulta "
+        ],
+        [
+          "link",
+          "/configuration/live-config.md",
+          null,
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para el orden de ejecución y las ubicaciones soportadas."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "haz-copias-de-seguridad-y-retira-los-medios-de-forma-segura",
+      [
+        [
+          "text",
+          "Haz copias de seguridad y retira los medios de forma segura"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La persistencia no es una copia de seguridad. Mantén una copia separada de los archivos de usuario y exporta o copia las sesiones mientras estén en buen estado. Prueba la restauración en diferentes medios. Apaga correctamente antes de retirar el almacenamiento escribible y asegúrate de dejar espacio libre para los metadatos de la sesión y el funcionamiento del sistema de archivos."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Antes de desechar un dispositivo, elimínalo de forma segura según la tecnología de almacenamiento y la sensibilidad de los datos. Eliminar archivos o reformatear por sí solos puede no hacer que los datos antiguos sean irrecuperables."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Endurecimiento de la seguridad\nMiniOS puede ejecutarse como un sistema de recuperación en vivo, un sistema portátil persistente o una instalación nativa. Los controles adecuados dependen de cómo se utilice el sistema. Protege la sesión en ejecución, los datos persistentes, el medio de arranque y cualquier configuración que se aplique al inicio.\nComienza con medios de confianza\nDescarga MiniOS desde una fuente oficial y verifica el ISO antes de grabarlo. Sigue Verificación de descargas y compara el resultado antes de arrancar o instalar. La verificación detecta una descarga dañada o sustituida; no garantiza que un dispositivo USB ya modificado sea seguro.\nMantén el dispositivo USB bajo control físico. Las contraseñas de firmware y el orden de arranque restringido pueden reducir el arranque no autorizado casual, pero no cifran los archivos en el dispositivo. Secure Boot puede proporcionar protección adicional en la cadena de arranque en imágenes y hardware que lo soporten; verifica el comportamiento real de la versión y el firmware en vez de asumir compatibilidad.\nSustituye las credenciales predeterminadas\nUna imagen en vivo de MiniOS sin personalizar utiliza las credenciales publicadas live / evil y root / toor, con inicio de sesión automático y acceso administrativo sin contraseña en su configuración orientada a la comodidad. Cualquiera que pueda acceder al sistema podría usar esas credenciales, especialmente si SSH está activo.\nAntes de conectarte a una red no confiable:\nEstablece contraseñas únicas para usuario y root en el Configurador de MiniOS.\nSelecciona un perfil de seguridad apropiado y revisa cada control configurado.\nDesactiva SSH y XRDP salvo que se requiera acceso remoto.\nReinicia en una nueva sesión al cambiar configuraciones de cuenta o seguridad de un solo uso, luego verifica el comportamiento resultante de inicio de sesión y privilegios.\nEl Configurador almacena los hashes de las contraseñas cifrados en lugar de las contraseñas en texto plano. Si cambias una cuenta persistente o nativa ya creada, utiliza passwd para el usuario actual y sudo passwd root para root.\nUtiliza los controles de seguridad del Configurador\nEl Configurador de MiniOS ofrece tres perfiles. Un perfil completa configuraciones concretas; el nombre del perfil en sí no se guarda como clave de configuración en tiempo de ejecución, y cada ajuste permanece editable de forma independiente.\nPerfil | Comportamiento principal\nconvenient | Compatible con inicio de sesión automático, sudo y PolicyKit sin contraseña, root y SSH por contraseña permitidos, XRDP/X11/pantalla de bloqueo relajados, pistas de contraseña visibles.\nbalanced | Sin inicio de sesión automático, sudo y PolicyKit requieren contraseña, inicio de sesión root por SSH denegado pero SSH por contraseña permitido, XRDP/X11/pantalla de bloqueo reforzados.\nstrict | Sin inicio de sesión automático, sudo y PolicyKit requieren contraseña, inicio de sesión root y por contraseña en SSH denegados, XRDP deshabilitado, X11/pantalla de bloqueo reforzados, pistas de contraseña ocultas.\nLos valores predeterminados del instalador varían según el modo de instalación: las instalaciones en vivo favorecen convenient, mientras que las instalaciones nativas favorecen balanced. Estos son valores predeterminados, no recomendaciones para todos los modelos de amenazas.\nLas mismas configuraciones están disponibles como claves de configuración documentadas, incluyendo LIVE_SUDO_MODE, LIVE_POLKIT_MODE, LIVE_SSH_PERMIT_ROOT_LOGIN, LIVE_SSH_PASSWORD_AUTHENTICATION, LIVE_XRDP_MODE, LIVE_X11_MODE, LIVE_ISSUE_PASSWORD_HINTS y LIVE_LOCKSCREEN_MODE. Prefiere estas claves o el Configurador en lugar de editar archivos generados de sudoers, PolicyKit, display-manager o SSH. Consulta Archivo de configuración.\nPara el comportamiento de guardado y la aplicabilidad de los ajustes, consulta MiniOS Configurator.\nLa creación de cuentas, contraseñas, LIVE_CONFIG_NOROOT y la postura de seguridad son configuraciones de un solo uso que se aplican al crear una nueva sesión. El Configurador muestra la aplicabilidad de cada control. Los ajustes reconfigurables como los servicios se aplican tras reiniciar.\nAsegura el acceso remoto\nSSH puede estar habilitado en una imagen de MiniOS para tareas de recuperación. En una red donde no se confía en otros usuarios, asume que las credenciales predeterminadas publicadas están expuestas hasta que confirmes lo contrario.\nSi SSH no es necesario, añade ssh a DISABLE_SERVICES en el Configurador y elimínalo de ENABLE_SERVICES si está presente.\nSi SSH es requerido, deniega el inicio de sesión de root con LIVE_SSH_PERMIT_ROOT_LOGIN=false.\nPrefiere la autenticación por clave. Confirma el inicio de sesión por clave en una conexión separada antes de establecer LIVE_SSH_PASSWORD_AUTHENTICATION=false.\nRestringe el acceso entrante con el cortafuegos de red o el router, y no expongas directamente un sistema de recuperación portátil a Internet.\nRevisa XRDP por separado. El perfil estricto lo deshabilita; el perfil equilibrado lo refuerza pero no necesariamente desactiva su servicio.\nLos parámetros de arranque pueden sobrescribir los valores del archivo de configuración. Revisa el comportamiento inesperado de los servicios en Parámetros de arranque.\nCifra los datos persistentes\nLa persistencia nativa, DynFileFS y la persistencia en bruto sin cifrar pueden ser leídas por quien obtenga el dispositivo. El Instalador de MiniOS puede configurar un contenedor cifrado LUKS para una sesión en vivo cuando el initrd de origen anuncia soporte para LUKS. El initrd crea changes.luks en el primer arranque y solicita su frase de contraseña; el instalador no recibe ni almacena esa frase.\nLa persistencia LUKS protege el contenido mientras el contenedor está cerrado. No protege los datos después de desbloquear, los archivos de arranque sin cifrar, los archivos copiados fuera del contenedor ni un sistema de archivos raíz nativo. La persistencia de sesión LUKS no es cifrado nativo de root. Usa una frase de contraseña fuerte y mantén una copia de seguridad probada.\nConsulta MiniOS Installer y Gestión de sesiones.\nAplica actualizaciones de forma deliberada\nActualiza los metadatos de paquetes e instala las actualizaciones de seguridad de Debian en sesiones en vivo persistentes o instalaciones nativas usando el flujo de trabajo normal de APT. Los cambios de APT en una sesión en vivo nueva desaparecen al reiniciar. Los módulos base SquashFS son de solo lectura, por lo que reemplazar el ISO o los módulos por una versión confiable y más reciente de MiniOS suele ser la forma más limpia de actualizar el sistema base en vivo.\nConsulta Actualizaciones de software para los flujos de trabajo separados de APT, módulos, imágenes y kernel.\nAntes de una actualización grande:\nHaz una copia de seguridad de archivos importantes y sesiones persistentes.\nConfirma que haya suficiente espacio libre disponible.\nEvita interrumpir escrituras o apagar el dispositivo.\nReinicia y verifica el sistema actualizado antes de descartar el medio o la sesión anterior conocida como funcional.\nTrata los hooks y preseeding como ejecución de código\nLa opción de arranque hooks y los hooks de live-config pueden ejecutar archivos desde el sistema de archivos raíz, el medio de arranque o una URL. Los hooks remotos, los hooks modificados en el medio y los preseeds no revisados pueden ejecutarse con privilegios de sistema. Utiliza solo archivos revisados de una fuente confiable, prefiere la distribución autenticada y evita hooks remotos en redes no confiables. Consulta live-config para el orden de ejecución y las ubicaciones soportadas.\nHaz copias de seguridad y retira los medios de forma segura\nLa persistencia no es una copia de seguridad. Mantén una copia separada de los archivos de usuario y exporta o copia las sesiones mientras estén en buen estado. Prueba la restauración en diferentes medios. Apaga correctamente antes de retirar el almacenamiento escribible y asegúrate de dejar espacio libre para los metadatos de la sesión y el funcionamiento del sistema de archivos.\nAntes de desechar un dispositivo, elimínalo de forma segura según la tecnología de almacenamiento y la sensibilidad de los datos. Eliminar archivos o reformatear por sí solos puede no hacer que los datos antiguos sean irrecuperables.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

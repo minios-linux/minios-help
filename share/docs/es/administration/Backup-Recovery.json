@@ -1,0 +1,1275 @@
+{
+  "headings": [
+    {
+      "anchor": "copia-de-seguridad-y-recuperación",
+      "level": 1,
+      "title": "Copia de seguridad y recuperación"
+    },
+    {
+      "anchor": "utiliza-una-estrategia-de-copias-de-seguridad-por-capas",
+      "level": 2,
+      "title": "Utiliza una estrategia de copias de seguridad por capas"
+    },
+    {
+      "anchor": "haz-copia-de-seguridad-de-los-datos-personales-primero",
+      "level": 2,
+      "title": "Haz copia de seguridad de los datos personales primero"
+    },
+    {
+      "anchor": "haz-copia-de-seguridad-de-la-configuración",
+      "level": 2,
+      "title": "Haz copia de seguridad de la configuración"
+    },
+    {
+      "anchor": "haz-copia-de-seguridad-de-los-módulos",
+      "level": 2,
+      "title": "Haz copia de seguridad de los módulos"
+    },
+    {
+      "anchor": "exporta-sesiones-persistentes",
+      "level": 2,
+      "title": "Exporta sesiones persistentes"
+    },
+    {
+      "anchor": "gestiona-sesiones-squashfs-fuera-de-línea",
+      "level": 2,
+      "title": "Gestiona sesiones SquashFS fuera de línea"
+    },
+    {
+      "anchor": "conserva-todos-los-segmentos-de-dynfilefs",
+      "level": 2,
+      "title": "Conserva todos los segmentos de DynFileFS"
+    },
+    {
+      "anchor": "crea-una-imagen-de-todo-el-medio",
+      "level": 2,
+      "title": "Crea una imagen de todo el medio"
+    },
+    {
+      "anchor": "haz-copia-de-seguridad-de-instalaciones-nativas",
+      "level": 2,
+      "title": "Haz copia de seguridad de instalaciones nativas"
+    },
+    {
+      "anchor": "valida-las-copias-de-seguridad-y-prueba-las-restauraciones",
+      "level": 2,
+      "title": "Valida las copias de seguridad y prueba las restauraciones"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "copia-de-seguridad-y-recuperación",
+      [
+        [
+          "text",
+          "Copia de seguridad y recuperación"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ninguna copia de seguridad única protege todas las partes de un sistema MiniOS. Los archivos personales, la configuración, las sesiones persistentes, los módulos y el dispositivo de almacenamiento requieren procedimientos de restauración diferentes. Mantén más de una copia, guarda al menos una copia en otro dispositivo y prueba la restauración antes de necesitar el original."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "utiliza-una-estrategia-de-copias-de-seguridad-por-capas",
+      [
+        [
+          "text",
+          "Utiliza una estrategia de copias de seguridad por capas"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Un conjunto práctico de copias de seguridad incluye estas capas:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Haz copias frecuentes e independientes de los archivos personales insustituibles, al margen de la sesión de MiniOS."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Registra los cambios en la configuración y la selección de módulos cada vez que se modifiquen."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Exporta cada sesión saludable y no activa en un modo compatible."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Conserva una copia fuera de línea de los datos que el Gestor de Sesiones no pueda exportar."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Crea una imagen ocasional de todo el medio después de apagar la fuente y asegurarte de que no recibe más escrituras."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Utiliza destinos versionados en lugar de sobrescribir la última copia conocida como válida. Registra con cada copia de seguridad la versión de MiniOS, edición, arquitectura, fecha de la copia, modo de sesión y estado de cifrado. Una imagen de todo el medio es una última red de seguridad útil, pero no debe ser la única copia de los archivos personales."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "haz-copia-de-seguridad-de-los-datos-personales-primero",
+      [
+        [
+          "text",
+          "Haz copia de seguridad de los datos personales primero"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Realiza una copia de seguridad del directorio personal completo siempre que sea posible, incluyendo los ajustes ocultos de las aplicaciones. Como mínimo, incluye el trabajo guardado en Escritorio, Documentos, Descargas, Música, Imágenes, Público, Plantillas y Vídeos, además de cualquier directorio de proyectos o datos creado fuera de esas ubicaciones estándar."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El soporte de usuario-media de MiniOS puede enlazar o montar los directorios estándar de usuario en una ubicación separada dentro del medio MiniOS con escritura. La ruta configurada por defecto es "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/minios/userdata"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", pero "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_USER_DIRS_PATH"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " permite seleccionar otra ruta segura. Los datos allí quedan fuera de la capa de sesión normal y deben respaldarse por separado. Verifica los destinos reales de los enlaces o puntos de montaje en vez de asumir que exportar una sesión los incluye. También haz copia de seguridad de los archivos almacenados intencionadamente en otros volúmenes montados."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Cierra las aplicaciones que gestionan bases de datos, almacenes de correo, perfiles de navegador o imágenes de máquinas virtuales antes de copiar sus datos. Para datos importantes, elige un método de copia de seguridad que conserve la propiedad, permisos, enlaces, atributos extendidos y marcas de tiempo, siempre que el destino lo permita."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "haz-copia-de-seguridad-de-la-configuración",
+      [
+        [
+          "text",
+          "Haz copia de seguridad de la configuración"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Conserva la configuración que controla los futuros arranques, no solo los archivos visibles en el sistema de archivos raíz actual. Las ubicaciones relevantes pueden incluir:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios/config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " y "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios/config.conf.d/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " en medios MiniOS con escritura."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/live/config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " y "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/live/config.conf.d/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " en un sistema persistente o nativo."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Hooks revisados, preseeds, cambios en el menú de arranque y una nota de los parámetros de arranque personalizados."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Configuración de usuario bajo el directorio personal y configuración de sistema seleccionada bajo "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " para una instalación nativa."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La configuración puede contener hashes de contraseñas, credenciales de red, claves y ajustes de servicios. Protege la copia de seguridad de la configuración en consecuencia. No almacenes frases de contraseña en texto plano junto a una copia de seguridad cifrada de la sesión. Consulta "
+        ],
+        [
+          "link",
+          "/administration/Security-Hardening.md",
+          null,
+          [
+            [
+              "text",
+              "Refuerzo de seguridad"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para obtener orientación sobre cifrado y manejo de medios."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "haz-copia-de-seguridad-de-los-módulos",
+      [
+        [
+          "text",
+          "Haz copia de seguridad de los módulos"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Haz copia de seguridad de los archivos "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " personalizados desde el almacenamiento duradero de módulos y registra su orden, origen, versión de MiniOS y propósito. No deduzcas el próximo arranque a partir de lo que ves en el sistema de archivos raíz actual:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "En ejecución ahora"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " es el conjunto de módulos que compone el sistema en vivo actual."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Próximo arranque"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " es el conjunto de módulos seleccionado por las reglas de arranque actuales."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Un módulo activado solo para la sesión actual puede no estar presente en el almacenamiento duradero. Un módulo añadido para el próximo arranque puede no estar activo ahora. Revisa y registra ambas vistas antes de hacer la copia de seguridad. Los filtros de arranque como "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "load"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noload"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "bext"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " también pueden modificar el conjunto efectivo para el próximo arranque. Consulta "
+        ],
+        [
+          "link",
+          "/administration/Module-Manager.md",
+          null,
+          [
+            [
+              "text",
+              "Gestor de Módulos"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "exporta-sesiones-persistentes",
+      [
+        [
+          "text",
+          "Exporta sesiones persistentes"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Utiliza "
+        ],
+        [
+          "link",
+          "/configuration/Session-Management.md",
+          null,
+          [
+            [
+              "text",
+              "Gestión de sesiones"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para identificar la sesión En ejecución ahora y la seleccionada para el próximo arranque. Activar una sesión diferente solo cambia el próximo arranque; no hace que la sesión actual sea segura para exportar. Reinicia en otra sesión o arranca sin persistencia antes de respaldar la sesión que estaba en ejecución."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El Gestor de Sesiones puede exportar una sesión no activa "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "native"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dynfilefs"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "raw"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " o "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " como un archivo "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".tar.zst"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". La exportación es una copia lógica de los archivos de la sesión, no necesariamente una copia bit a bit de su contenedor de almacenamiento. Guarda el archivo en otro dispositivo. La importación crea una nueva sesión numerada; revísala y actívala explícitamente solo después de validarla."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Una exportación LUKS contiene los datos lógicos de la sesión descifrados, no el contenedor cifrado "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Cifra el destino de la copia de seguridad o el archivo exportado mediante un método revisado y separado si los datos exportados deben permanecer confidenciales. Importar en LUKS crea un nuevo contenedor cifrado y requiere una nueva frase de contraseña de destino."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "No copies manualmente un directorio de sesión montado. La sesión puede estar cambiando y un sistema de archivos respaldado por un contenedor puede no estar representado por un conjunto consistente de archivos mientras está activo."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "gestiona-sesiones-squashfs-fuera-de-línea",
+      [
+        [
+          "text",
+          "Gestiona sesiones SquashFS fuera de línea"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Antes de hacer copia de seguridad de una sesión SquashFS en ejecución, utiliza "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Guardar ahora"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y espera a que finalicen el guardado y la validación. Guardar reconstruye "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y reemplaza atómicamente la instantánea anterior; no conserva una generación para retroceso. Luego apaga el sistema correctamente."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La implementación actual del Gestor de Sesiones no permite exportar ni copiar SquashFS. Tras guardar, arranca sin persistencia o utiliza otro sistema Linux y copia la sesión SquashFS desde el almacén de sesiones inactivo. Conserva juntos el directorio completo de la sesión numerada y los metadatos del almacén de sesiones. No reemplaces ni renumeres entradas en un almacén "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/changes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " activo. Consulta "
+        ],
+        [
+          "link",
+          "/administration/Boot-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Recuperación de arranque"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " antes de modificar estructuras de arranque o disco durante una restauración."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "conserva-todos-los-segmentos-de-dynfilefs",
+      [
+        [
+          "text",
+          "Conserva todos los segmentos de DynFileFS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Una sesión DynFileFS es un contenedor lógico dividido en un conjunto completo de archivos de respaldo. Una copia fuera de línea debe incluir "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.dat"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y todos los segmentos numerados como "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.dat.0"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.dat.1"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y los segmentos posteriores. Copiar solo el primer archivo no genera una copia de seguridad utilizable. No crees un segmento faltante ni repares la única copia."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La exportación normal del Gestor de Sesiones evita esta preocupación a nivel de contenedor exportando los archivos lógicos de la sesión. Para copias interrumpidas, segmentos faltantes, medios llenos y reparación de sistemas de archivos, consulta "
+        ],
+        [
+          "link",
+          "/configuration/DynFileFS-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Recuperación de DynFileFS y dynblk"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "crea-una-imagen-de-todo-el-medio",
+      [
+        [
+          "text",
+          "Crea una imagen de todo el medio"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "link",
+          "/installation/tools/Drive-Utility.md",
+          null,
+          [
+            [
+              "text",
+              "Utilidad de Discos"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " puede usar "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Crear imagen"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para leer un dispositivo completo en una imagen raw, opcionalmente con compresión. Esto captura la tabla de particiones, archivos de arranque, módulos, configuración, almacén de sesiones, datos de usuario-media y bloques no usados tal como existen en el dispositivo de origen. Por tanto, el archivo de imagen necesita espacio de destino suficiente y puede contener datos eliminados recuperables y secretos."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Crea la imagen fuera de línea. Apaga MiniOS y conecta el medio de origen a otro sistema en funcionamiento, o arranca desde otro dispositivo. Asegúrate de que ninguna partición de origen esté montada y que no haya persistencia, swap, bases de datos ni servicios en segundo plano escribiendo en ella. La Utilidad de Discos normalmente oculta los dispositivos montados, pero mostrar un dispositivo en la interfaz no garantiza que una imagen raw en vivo sea consistente."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Verifica el origen por modelo de dispositivo, tamaño y nombre de dispositivo. Guarda la imagen en un dispositivo físico diferente, nunca en un sistema de archivos del dispositivo que estás copiando. Para restaurar, "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Escribir imagen"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " realiza una sobrescritura raw del dispositivo de destino seleccionado. Confirma el destino con el mismo cuidado; todos los datos existentes en el destino se perderán. Utiliza un destino al menos tan grande como el origen, salvo que la imagen se haya preparado explícitamente para un dispositivo más pequeño."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "haz-copia-de-seguridad-de-instalaciones-nativas",
+      [
+        [
+          "text",
+          "Haz copia de seguridad de instalaciones nativas"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Una instalación nativa no utiliza una sesión persistente en vivo como su sistema de archivos raíz, por lo que la exportación del Gestor de Sesiones no es una copia de seguridad completa del sistema nativo. Haz copia de seguridad de los directorios personales de usuario, configuración de sistema seleccionada, datos de aplicaciones, archivos locales mantenidos y credenciales de recuperación utilizando un método de copia de seguridad compatible con sistemas de archivos. Registra la versión de MiniOS, el esquema de particiones, la selección de paquetes instalados, el modo de arranque y cualquier módulo o kernel personalizado."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Para recuperación bare-metal, crea una imagen de disco completa fuera de línea o utiliza un producto de copia de seguridad probado que soporte los sistemas de archivos y el esquema de particiones nativos. Mantén una copia de seguridad a nivel de archivos por separado para poder restaurar archivos individuales sin sobrescribir un disco. Consulta "
+        ],
+        [
+          "link",
+          "/administration/Boot-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Recuperación de arranque"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para diagnóstico de archivos de arranque y gestor de arranque."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "valida-las-copias-de-seguridad-y-prueba-las-restauraciones",
+      [
+        [
+          "text",
+          "Valida las copias de seguridad y prueba las restauraciones"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Una copia completada aún no es una copia de seguridad probada. En cada ciclo de copia de seguridad:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Confirma que la copia está en un dispositivo diferente y tiene la fecha y tamaño esperados."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Registra y luego compara una suma de verificación criptográfica para archivos comprimidos e imágenes de disco."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Abre una muestra de archivos personales, incluyendo al menos un archivo grande y uno de cada conjunto de datos de aplicaciones importantes."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Importa un archivo de sesión como una sesión nueva e inactiva e inspecciona sus archivos. Prueba el arranque solo después de preservar la selección de sesión conocida como válida."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Verifica que una copia fuera de línea de DynFileFS contenga toda la secuencia de segmentos."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Restaura una imagen de todo el medio solo en un dispositivo desechable o de repuesto de tamaño adecuado, luego prueba tanto el arranque como el acceso a los datos importantes."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Prueba la restauración de archivos nativos en una ubicación separada y verifica permisos, propiedad, enlaces y legibilidad por parte de las aplicaciones."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Realiza pruebas de restauración después de cambiar el modo de persistencia, cifrado, esquema de particiones, versión de MiniOS o software de copia de seguridad. Conserva la última copia conocida como válida hasta que la nueva haya superado su prueba de restauración. Para un diagnóstico más amplio, consulta "
+        ],
+        [
+          "link",
+          "/administration/Boot-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Recuperación de arranque"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "link",
+          "/configuration/DynFileFS-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Recuperación de DynFileFS y dynblk"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y "
+        ],
+        [
+          "link",
+          "/administration/Security-Hardening.md",
+          null,
+          [
+            [
+              "text",
+              "Refuerzo de seguridad"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Copia de seguridad y recuperación\nNinguna copia de seguridad única protege todas las partes de un sistema MiniOS. Los archivos personales, la configuración, las sesiones persistentes, los módulos y el dispositivo de almacenamiento requieren procedimientos de restauración diferentes. Mantén más de una copia, guarda al menos una copia en otro dispositivo y prueba la restauración antes de necesitar el original.\nUtiliza una estrategia de copias de seguridad por capas\nUn conjunto práctico de copias de seguridad incluye estas capas:\nHaz copias frecuentes e independientes de los archivos personales insustituibles, al margen de la sesión de MiniOS.\nRegistra los cambios en la configuración y la selección de módulos cada vez que se modifiquen.\nExporta cada sesión saludable y no activa en un modo compatible.\nConserva una copia fuera de línea de los datos que el Gestor de Sesiones no pueda exportar.\nCrea una imagen ocasional de todo el medio después de apagar la fuente y asegurarte de que no recibe más escrituras.\nUtiliza destinos versionados en lugar de sobrescribir la última copia conocida como válida. Registra con cada copia de seguridad la versión de MiniOS, edición, arquitectura, fecha de la copia, modo de sesión y estado de cifrado. Una imagen de todo el medio es una última red de seguridad útil, pero no debe ser la única copia de los archivos personales.\nHaz copia de seguridad de los datos personales primero\nRealiza una copia de seguridad del directorio personal completo siempre que sea posible, incluyendo los ajustes ocultos de las aplicaciones. Como mínimo, incluye el trabajo guardado en Escritorio, Documentos, Descargas, Música, Imágenes, Público, Plantillas y Vídeos, además de cualquier directorio de proyectos o datos creado fuera de esas ubicaciones estándar.\nEl soporte de usuario-media de MiniOS puede enlazar o montar los directorios estándar de usuario en una ubicación separada dentro del medio MiniOS con escritura. La ruta configurada por defecto es /minios/userdata, pero LIVE_USER_DIRS_PATH permite seleccionar otra ruta segura. Los datos allí quedan fuera de la capa de sesión normal y deben respaldarse por separado. Verifica los destinos reales de los enlaces o puntos de montaje en vez de asumir que exportar una sesión los incluye. También haz copia de seguridad de los archivos almacenados intencionadamente en otros volúmenes montados.\nCierra las aplicaciones que gestionan bases de datos, almacenes de correo, perfiles de navegador o imágenes de máquinas virtuales antes de copiar sus datos. Para datos importantes, elige un método de copia de seguridad que conserve la propiedad, permisos, enlaces, atributos extendidos y marcas de tiempo, siempre que el destino lo permita.\nHaz copia de seguridad de la configuración\nConserva la configuración que controla los futuros arranques, no solo los archivos visibles en el sistema de archivos raíz actual. Las ubicaciones relevantes pueden incluir:\nminios/config.conf y minios/config.conf.d/ en medios MiniOS con escritura.\n/etc/live/config.conf y /etc/live/config.conf.d/ en un sistema persistente o nativo.\nHooks revisados, preseeds, cambios en el menú de arranque y una nota de los parámetros de arranque personalizados.\nConfiguración de usuario bajo el directorio personal y configuración de sistema seleccionada bajo /etc para una instalación nativa.\nLa configuración puede contener hashes de contraseñas, credenciales de red, claves y ajustes de servicios. Protege la copia de seguridad de la configuración en consecuencia. No almacenes frases de contraseña en texto plano junto a una copia de seguridad cifrada de la sesión. Consulta Refuerzo de seguridad para obtener orientación sobre cifrado y manejo de medios.\nHaz copia de seguridad de los módulos\nHaz copia de seguridad de los archivos .sb personalizados desde el almacenamiento duradero de módulos y registra su orden, origen, versión de MiniOS y propósito. No deduzcas el próximo arranque a partir de lo que ves en el sistema de archivos raíz actual:\nEn ejecución ahora es el conjunto de módulos que compone el sistema en vivo actual.\nPróximo arranque es el conjunto de módulos seleccionado por las reglas de arranque actuales.\nUn módulo activado solo para la sesión actual puede no estar presente en el almacenamiento duradero. Un módulo añadido para el próximo arranque puede no estar activo ahora. Revisa y registra ambas vistas antes de hacer la copia de seguridad. Los filtros de arranque como load, noload y bext también pueden modificar el conjunto efectivo para el próximo arranque. Consulta Gestor de Módulos.\nExporta sesiones persistentes\nUtiliza Gestión de sesiones para identificar la sesión En ejecución ahora y la seleccionada para el próximo arranque. Activar una sesión diferente solo cambia el próximo arranque; no hace que la sesión actual sea segura para exportar. Reinicia en otra sesión o arranca sin persistencia antes de respaldar la sesión que estaba en ejecución.\nEl Gestor de Sesiones puede exportar una sesión no activa native, dynfilefs, raw o luks como un archivo .tar.zst. La exportación es una copia lógica de los archivos de la sesión, no necesariamente una copia bit a bit de su contenedor de almacenamiento. Guarda el archivo en otro dispositivo. La importación crea una nueva sesión numerada; revísala y actívala explícitamente solo después de validarla.\nUna exportación LUKS contiene los datos lógicos de la sesión descifrados, no el contenedor cifrado changes.luks. Cifra el destino de la copia de seguridad o el archivo exportado mediante un método revisado y separado si los datos exportados deben permanecer confidenciales. Importar en LUKS crea un nuevo contenedor cifrado y requiere una nueva frase de contraseña de destino.\nNo copies manualmente un directorio de sesión montado. La sesión puede estar cambiando y un sistema de archivos respaldado por un contenedor puede no estar representado por un conjunto consistente de archivos mientras está activo.\nGestiona sesiones SquashFS fuera de línea\nAntes de hacer copia de seguridad de una sesión SquashFS en ejecución, utiliza Guardar ahora y espera a que finalicen el guardado y la validación. Guardar reconstruye changes.sb y reemplaza atómicamente la instantánea anterior; no conserva una generación para retroceso. Luego apaga el sistema correctamente.\nLa implementación actual del Gestor de Sesiones no permite exportar ni copiar SquashFS. Tras guardar, arranca sin persistencia o utiliza otro sistema Linux y copia la sesión SquashFS desde el almacén de sesiones inactivo. Conserva juntos el directorio completo de la sesión numerada y los metadatos del almacén de sesiones. No reemplaces ni renumeres entradas en un almacén minios/changes activo. Consulta Recuperación de arranque antes de modificar estructuras de arranque o disco durante una restauración.\nConserva todos los segmentos de DynFileFS\nUna sesión DynFileFS es un contenedor lógico dividido en un conjunto completo de archivos de respaldo. Una copia fuera de línea debe incluir changes.dat y todos los segmentos numerados como changes.dat.0, changes.dat.1 y los segmentos posteriores. Copiar solo el primer archivo no genera una copia de seguridad utilizable. No crees un segmento faltante ni repares la única copia.\nLa exportación normal del Gestor de Sesiones evita esta preocupación a nivel de contenedor exportando los archivos lógicos de la sesión. Para copias interrumpidas, segmentos faltantes, medios llenos y reparación de sistemas de archivos, consulta Recuperación de DynFileFS y dynblk.\nCrea una imagen de todo el medio\nUtilidad de Discos puede usar Crear imagen para leer un dispositivo completo en una imagen raw, opcionalmente con compresión. Esto captura la tabla de particiones, archivos de arranque, módulos, configuración, almacén de sesiones, datos de usuario-media y bloques no usados tal como existen en el dispositivo de origen. Por tanto, el archivo de imagen necesita espacio de destino suficiente y puede contener datos eliminados recuperables y secretos.\nCrea la imagen fuera de línea. Apaga MiniOS y conecta el medio de origen a otro sistema en funcionamiento, o arranca desde otro dispositivo. Asegúrate de que ninguna partición de origen esté montada y que no haya persistencia, swap, bases de datos ni servicios en segundo plano escribiendo en ella. La Utilidad de Discos normalmente oculta los dispositivos montados, pero mostrar un dispositivo en la interfaz no garantiza que una imagen raw en vivo sea consistente.\nVerifica el origen por modelo de dispositivo, tamaño y nombre de dispositivo. Guarda la imagen en un dispositivo físico diferente, nunca en un sistema de archivos del dispositivo que estás copiando. Para restaurar, Escribir imagen realiza una sobrescritura raw del dispositivo de destino seleccionado. Confirma el destino con el mismo cuidado; todos los datos existentes en el destino se perderán. Utiliza un destino al menos tan grande como el origen, salvo que la imagen se haya preparado explícitamente para un dispositivo más pequeño.\nHaz copia de seguridad de instalaciones nativas\nUna instalación nativa no utiliza una sesión persistente en vivo como su sistema de archivos raíz, por lo que la exportación del Gestor de Sesiones no es una copia de seguridad completa del sistema nativo. Haz copia de seguridad de los directorios personales de usuario, configuración de sistema seleccionada, datos de aplicaciones, archivos locales mantenidos y credenciales de recuperación utilizando un método de copia de seguridad compatible con sistemas de archivos. Registra la versión de MiniOS, el esquema de particiones, la selección de paquetes instalados, el modo de arranque y cualquier módulo o kernel personalizado.\nPara recuperación bare-metal, crea una imagen de disco completa fuera de línea o utiliza un producto de copia de seguridad probado que soporte los sistemas de archivos y el esquema de particiones nativos. Mantén una copia de seguridad a nivel de archivos por separado para poder restaurar archivos individuales sin sobrescribir un disco. Consulta Recuperación de arranque para diagnóstico de archivos de arranque y gestor de arranque.\nValida las copias de seguridad y prueba las restauraciones\nUna copia completada aún no es una copia de seguridad probada. En cada ciclo de copia de seguridad:\nConfirma que la copia está en un dispositivo diferente y tiene la fecha y tamaño esperados.\nRegistra y luego compara una suma de verificación criptográfica para archivos comprimidos e imágenes de disco.\nAbre una muestra de archivos personales, incluyendo al menos un archivo grande y uno de cada conjunto de datos de aplicaciones importantes.\nImporta un archivo de sesión como una sesión nueva e inactiva e inspecciona sus archivos. Prueba el arranque solo después de preservar la selección de sesión conocida como válida.\nVerifica que una copia fuera de línea de DynFileFS contenga toda la secuencia de segmentos.\nRestaura una imagen de todo el medio solo en un dispositivo desechable o de repuesto de tamaño adecuado, luego prueba tanto el arranque como el acceso a los datos importantes.\nPrueba la restauración de archivos nativos en una ubicación separada y verifica permisos, propiedad, enlaces y legibilidad por parte de las aplicaciones.\nRealiza pruebas de restauración después de cambiar el modo de persistencia, cifrado, esquema de particiones, versión de MiniOS o software de copia de seguridad. Conserva la última copia conocida como válida hasta que la nueva haya superado su prueba de restauración. Para un diagnóstico más amplio, consulta Recuperación de arranque, Recuperación de DynFileFS y dynblk y Refuerzo de seguridad.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

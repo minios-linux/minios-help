@@ -1,0 +1,2035 @@
+{
+  "headings": [
+    {
+      "anchor": "backup-and-recovery",
+      "level": 1,
+      "title": "Backup and recovery"
+    },
+    {
+      "anchor": "use-a-layered-backup-strategy",
+      "level": 2,
+      "title": "Use a layered backup strategy"
+    },
+    {
+      "anchor": "back-up-personal-data-first",
+      "level": 2,
+      "title": "Back up personal data first"
+    },
+    {
+      "anchor": "back-up-configuration",
+      "level": 2,
+      "title": "Back up configuration"
+    },
+    {
+      "anchor": "back-up-modules",
+      "level": 2,
+      "title": "Back up modules"
+    },
+    {
+      "anchor": "export-persistent-sessions",
+      "level": 2,
+      "title": "Export persistent sessions"
+    },
+    {
+      "anchor": "handle-squashfs-sessions-offline",
+      "level": 2,
+      "title": "Handle SquashFS sessions offline"
+    },
+    {
+      "anchor": "preserve-every-dynfilefs-segment",
+      "level": 2,
+      "title": "Preserve every DynFileFS segment"
+    },
+    {
+      "anchor": "create-a-whole-media-image",
+      "level": 2,
+      "title": "Create a whole-media image"
+    },
+    {
+      "anchor": "back-up-native-installations",
+      "level": 2,
+      "title": "Back up native installations"
+    },
+    {
+      "anchor": "validate-backups-and-test-restores",
+      "level": 2,
+      "title": "Validate backups and test restores"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "backup-and-recovery",
+      [
+        [
+          "text",
+          "Backup and recovery"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "No single backup protects every part of a MiniOS system. Personal files,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "configuration, persistent sessions, modules, and the storage device have"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "different restore procedures. Keep more than one copy, keep at least one copy"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "on another device, and test restoration before the original is needed."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "use-a-layered-backup-strategy",
+      [
+        [
+          "text",
+          "Use a layered backup strategy"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A practical backup set has these layers:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Back up irreplaceable personal files frequently and independently of the"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "MiniOS session."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Record configuration and module choices whenever they change."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Export each healthy, non-running session in a supported mode."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Keep an offline copy of data that Session Manager cannot export."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Create an occasional whole-media image after the source is shut down and no"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "longer receiving writes."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Use versioned destinations rather than replacing the previous known-good"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "backup. Keep a record of the MiniOS release, edition, architecture, backup date,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "session mode, and encryption status with each backup. A whole-media image is a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "useful final safety net, but it should not be the only copy of personal files."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "back-up-personal-data-first",
+      [
+        [
+          "text",
+          "Back up personal data first"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Back up the complete home directory when possible, including hidden"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "application settings. At minimum, include work stored in Desktop, Documents,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Downloads, Music, Pictures, Public, Templates, and Videos, plus any project or"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "data directories created outside those standard locations."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS user-media support can link or bind the standard user directories to a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "separate location on the writable MiniOS medium. The default configured path is"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/minios/userdata"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", but "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_USER_DIRS_PATH"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " can select another safe path. Data"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "there is outside the normal session layer and must be backed up separately."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Check the actual link or mount targets instead of assuming that exporting a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "session includes them. Also back up files intentionally stored on other mounted"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "volumes."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Close applications that write databases, mail stores, browser profiles, or"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "virtual machine images before copying their data. For important data, prefer a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "backup method that preserves ownership, permissions, links, extended"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "attributes, and timestamps when the destination supports them."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "back-up-configuration",
+      [
+        [
+          "text",
+          "Back up configuration"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Preserve the configuration that controls future boots, not only the files seen"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "in the current root filesystem. Relevant locations can include:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios/config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " and "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios/config.conf.d/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " on writable MiniOS media."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/live/config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " and "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/live/config.conf.d/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " in a persistent or"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "native system."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Reviewed hooks, preseeds, boot-menu changes, and a note of custom boot"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "parameters."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "User configuration under the home directory and selected system"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "configuration under "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " for a native installation."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Configuration may contain password hashes, network credentials, keys, and"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "service settings. Protect its backup accordingly. Do not store plaintext"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "passphrases beside an encrypted session backup. See "
+        ],
+        [
+          "link",
+          "/administration/Security-Hardening.md",
+          null,
+          [
+            [
+              "text",
+              "Security"
+            ],
+            [
+              "text",
+              "\n"
+            ],
+            [
+              "text",
+              "hardening"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for encryption and media"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "handling guidance."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "back-up-modules",
+      [
+        [
+          "text",
+          "Back up modules"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Back up custom "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " files from durable module storage and record their order,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "source, MiniOS release, and purpose. Do not infer the next boot from what is"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "visible in the current root filesystem:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Running Now"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " is the module set composing the current live system."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Next Boot"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " is the module set selected by current boot rules."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A module activated only for the current session may not be present in durable"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "storage. A module added for the next boot may not be active now. Review and"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "record both views before backup. Boot filters such as "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "load"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noload"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", and"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "bext"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " can also change the effective next-boot set. See "
+        ],
+        [
+          "link",
+          "/administration/Module-Manager.md",
+          null,
+          [
+            [
+              "text",
+              "Module"
+            ],
+            [
+              "text",
+              "\n"
+            ],
+            [
+              "text",
+              "Manager"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "export-persistent-sessions",
+      [
+        [
+          "text",
+          "Export persistent sessions"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Use "
+        ],
+        [
+          "link",
+          "/configuration/Session-Management.md",
+          null,
+          [
+            [
+              "text",
+              "Session management"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " to identify the"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Running Now session and the session selected for the next boot. Activating a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "different session changes only the next boot; it does not make the current"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "session safe to export. Reboot into another session, or boot without"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "persistence, before backing up the former running session."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Session Manager can export a non-running "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "native"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dynfilefs"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "raw"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", or "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "session as a "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".tar.zst"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " archive. Export is a logical backup of the files in the"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "session, not necessarily a byte-for-byte copy of its storage container. Keep"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "the archive on another device. Import creates a new numbered session; inspect"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "it and activate it explicitly only after validation."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A LUKS export contains decrypted logical session data, not the encrypted"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " container. Encrypt the backup destination or archive by a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "separate, reviewed method if the exported data must remain confidential."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Importing into LUKS creates a new encrypted container and requires a new target"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "passphrase."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Do not manually copy a mounted session directory. The session may be changing,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "and a container-backed filesystem may not be represented by a consistent set"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "of files while it is active."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "handle-squashfs-sessions-offline",
+      [
+        [
+          "text",
+          "Handle SquashFS sessions offline"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Before backing up a running SquashFS session, use "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Save Now"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and wait for the"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "save and validation to finish. Saving rebuilds "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and atomically"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "replaces the previous snapshot; it does not retain a rollback generation."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Then shut down cleanly."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The current Session Manager implementation rejects SquashFS export and copy."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "After saving, boot without persistence or use another Linux system and copy the"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "SquashFS session from the inactive session store. Preserve the complete"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "numbered session directory and the session-store metadata together. Do not"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "replace or renumber entries in an active "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/changes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " store. See"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/administration/Boot-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Boot recovery"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " before changing boot or disk"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "structures during a restore."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "preserve-every-dynfilefs-segment",
+      [
+        [
+          "text",
+          "Preserve every DynFileFS segment"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A DynFileFS session is one logical container split across a complete set of"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "backing files. An offline copy must include "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.dat"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and every numbered"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "segment such as "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.dat.0"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.dat.1"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", and later segments. Copying"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "only the first file does not produce a usable backup. Do not create a missing"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "segment or repair the only copy."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Normal Session Manager export avoids this container-level concern by exporting"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "the logical session files. For interrupted copies, missing segments, full"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "media, and filesystem repair, follow "
+        ],
+        [
+          "link",
+          "/configuration/DynFileFS-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "DynFileFS and dynblk"
+            ],
+            [
+              "text",
+              "\n"
+            ],
+            [
+              "text",
+              "recovery"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "create-a-whole-media-image",
+      [
+        [
+          "text",
+          "Create a whole-media image"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "link",
+          "/installation/tools/Drive-Utility.md",
+          null,
+          [
+            [
+              "text",
+              "Drive Utility"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " can use "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Create Image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ""
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "to read an entire device into a raw image, optionally with compression. This"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "captures the partition table, boot files, modules, configuration, session"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "store, user-media data, and unused blocks as they exist on the source device."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "The image file therefore needs suitable destination space and may contain"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "recoverable deleted data and secrets."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Create the image offline. Shut MiniOS down and attach the source medium to a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "different running system, or boot from another device. Make sure no source"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "partition is mounted and no persistence, swap, database, or background service"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "is writing to it. Drive Utility normally hides mounted devices, but showing a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "device in the interface does not make a live raw image consistent."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Verify the source by device model, size, and device name. Save the image to a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "different physical device, never to a filesystem on the source being imaged."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "For restoration, "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Write Image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " performs a raw overwrite of the selected target"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "device. Confirm the target with the same care; all existing target data will be"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "lost. Use a target at least as large as the original source unless the image has"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "been prepared explicitly for a smaller device."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "back-up-native-installations",
+      [
+        [
+          "text",
+          "Back up native installations"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A native installation does not use a live persistent session as its root"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "filesystem, so Session Manager export is not a complete native-system backup."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Back up user home directories, selected system configuration, application data,"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "locally maintained files, and recovery credentials with a filesystem-aware"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "backup method. Record the MiniOS release, partition layout, installed package"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "selection, boot mode, and any custom modules or kernels."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "For bare-metal recovery, make an offline whole-disk image or use a tested backup"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "product that supports the native filesystems and partition layout. Keep a"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "separate file-level backup so that individual files can be restored without"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "overwriting a disk. See "
+        ],
+        [
+          "link",
+          "/administration/Boot-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Boot recovery"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "boot-file and bootloader diagnosis."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "validate-backups-and-test-restores",
+      [
+        [
+          "text",
+          "Validate backups and test restores"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A completed copy is not yet a proven backup. For each backup cycle:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Confirm that the backup is on a different device and has the expected date"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "and size."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Record and later compare a cryptographic checksum for archives and disk"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "images."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Open a sample of personal files, including at least one large file and one"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "file from each important application data set."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Import a session archive as a new, inactive session and inspect its files."
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "Test boot it only after preserving the current known-good session selection."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Verify that a DynFileFS offline copy contains the complete segment sequence."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Restore a whole-media image only to a disposable or spare device of adequate"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "size, then test both boot and access to important data."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Test native file restoration to a separate location and verify permissions,"
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "ownership, links, and application readability."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Perform restore tests after changing persistence mode, encryption, partition"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "layout, MiniOS release, or backup software. Keep the last known-good backup"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "until the replacement has passed its restore test. For broader diagnosis, see"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "link",
+          "/administration/Boot-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "Boot recovery"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "link",
+          "/configuration/DynFileFS-Recovery.md",
+          null,
+          [
+            [
+              "text",
+              "DynFileFS and dynblk"
+            ],
+            [
+              "text",
+              "\n"
+            ],
+            [
+              "text",
+              "recovery"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", and "
+        ],
+        [
+          "link",
+          "/administration/Security-Hardening.md",
+          null,
+          [
+            [
+              "text",
+              "Security"
+            ],
+            [
+              "text",
+              "\n"
+            ],
+            [
+              "text",
+              "hardening"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Backup and recovery\nNo single backup protects every part of a MiniOS system. Personal files,\nconfiguration, persistent sessions, modules, and the storage device have\ndifferent restore procedures. Keep more than one copy, keep at least one copy\non another device, and test restoration before the original is needed.\nUse a layered backup strategy\nA practical backup set has these layers:\nBack up irreplaceable personal files frequently and independently of the\nMiniOS session.\nRecord configuration and module choices whenever they change.\nExport each healthy, non-running session in a supported mode.\nKeep an offline copy of data that Session Manager cannot export.\nCreate an occasional whole-media image after the source is shut down and no\nlonger receiving writes.\nUse versioned destinations rather than replacing the previous known-good\nbackup. Keep a record of the MiniOS release, edition, architecture, backup date,\nsession mode, and encryption status with each backup. A whole-media image is a\nuseful final safety net, but it should not be the only copy of personal files.\nBack up personal data first\nBack up the complete home directory when possible, including hidden\napplication settings. At minimum, include work stored in Desktop, Documents,\nDownloads, Music, Pictures, Public, Templates, and Videos, plus any project or\ndata directories created outside those standard locations.\nMiniOS user-media support can link or bind the standard user directories to a\nseparate location on the writable MiniOS medium. The default configured path is\n/minios/userdata, but LIVE_USER_DIRS_PATH can select another safe path. Data\nthere is outside the normal session layer and must be backed up separately.\nCheck the actual link or mount targets instead of assuming that exporting a\nsession includes them. Also back up files intentionally stored on other mounted\nvolumes.\nClose applications that write databases, mail stores, browser profiles, or\nvirtual machine images before copying their data. For important data, prefer a\nbackup method that preserves ownership, permissions, links, extended\nattributes, and timestamps when the destination supports them.\nBack up configuration\nPreserve the configuration that controls future boots, not only the files seen\nin the current root filesystem. Relevant locations can include:\nminios/config.conf and minios/config.conf.d/ on writable MiniOS media.\n/etc/live/config.conf and /etc/live/config.conf.d/ in a persistent or\nnative system.\nReviewed hooks, preseeds, boot-menu changes, and a note of custom boot\nparameters.\nUser configuration under the home directory and selected system\nconfiguration under /etc for a native installation.\nConfiguration may contain password hashes, network credentials, keys, and\nservice settings. Protect its backup accordingly. Do not store plaintext\npassphrases beside an encrypted session backup. See Security\nhardening for encryption and media\nhandling guidance.\nBack up modules\nBack up custom .sb files from durable module storage and record their order,\nsource, MiniOS release, and purpose. Do not infer the next boot from what is\nvisible in the current root filesystem:\nRunning Now is the module set composing the current live system.\nNext Boot is the module set selected by current boot rules.\nA module activated only for the current session may not be present in durable\nstorage. A module added for the next boot may not be active now. Review and\nrecord both views before backup. Boot filters such as load, noload, and\nbext can also change the effective next-boot set. See Module\nManager.\nExport persistent sessions\nUse Session management to identify the\nRunning Now session and the session selected for the next boot. Activating a\ndifferent session changes only the next boot; it does not make the current\nsession safe to export. Reboot into another session, or boot without\npersistence, before backing up the former running session.\nSession Manager can export a non-running native, dynfilefs, raw, or luks\nsession as a .tar.zst archive. Export is a logical backup of the files in the\nsession, not necessarily a byte-for-byte copy of its storage container. Keep\nthe archive on another device. Import creates a new numbered session; inspect\nit and activate it explicitly only after validation.\nA LUKS export contains decrypted logical session data, not the encrypted\nchanges.luks container. Encrypt the backup destination or archive by a\nseparate, reviewed method if the exported data must remain confidential.\nImporting into LUKS creates a new encrypted container and requires a new target\npassphrase.\nDo not manually copy a mounted session directory. The session may be changing,\nand a container-backed filesystem may not be represented by a consistent set\nof files while it is active.\nHandle SquashFS sessions offline\nBefore backing up a running SquashFS session, use Save Now and wait for the\nsave and validation to finish. Saving rebuilds changes.sb and atomically\nreplaces the previous snapshot; it does not retain a rollback generation.\nThen shut down cleanly.\nThe current Session Manager implementation rejects SquashFS export and copy.\nAfter saving, boot without persistence or use another Linux system and copy the\nSquashFS session from the inactive session store. Preserve the complete\nnumbered session directory and the session-store metadata together. Do not\nreplace or renumber entries in an active minios/changes store. See\nBoot recovery before changing boot or disk\nstructures during a restore.\nPreserve every DynFileFS segment\nA DynFileFS session is one logical container split across a complete set of\nbacking files. An offline copy must include changes.dat and every numbered\nsegment such as changes.dat.0, changes.dat.1, and later segments. Copying\nonly the first file does not produce a usable backup. Do not create a missing\nsegment or repair the only copy.\nNormal Session Manager export avoids this container-level concern by exporting\nthe logical session files. For interrupted copies, missing segments, full\nmedia, and filesystem repair, follow DynFileFS and dynblk\nrecovery.\nCreate a whole-media image\nDrive Utility can use Create Image\nto read an entire device into a raw image, optionally with compression. This\ncaptures the partition table, boot files, modules, configuration, session\nstore, user-media data, and unused blocks as they exist on the source device.\nThe image file therefore needs suitable destination space and may contain\nrecoverable deleted data and secrets.\nCreate the image offline. Shut MiniOS down and attach the source medium to a\ndifferent running system, or boot from another device. Make sure no source\npartition is mounted and no persistence, swap, database, or background service\nis writing to it. Drive Utility normally hides mounted devices, but showing a\ndevice in the interface does not make a live raw image consistent.\nVerify the source by device model, size, and device name. Save the image to a\ndifferent physical device, never to a filesystem on the source being imaged.\nFor restoration, Write Image performs a raw overwrite of the selected target\ndevice. Confirm the target with the same care; all existing target data will be\nlost. Use a target at least as large as the original source unless the image has\nbeen prepared explicitly for a smaller device.\nBack up native installations\nA native installation does not use a live persistent session as its root\nfilesystem, so Session Manager export is not a complete native-system backup.\nBack up user home directories, selected system configuration, application data,\nlocally maintained files, and recovery credentials with a filesystem-aware\nbackup method. Record the MiniOS release, partition layout, installed package\nselection, boot mode, and any custom modules or kernels.\nFor bare-metal recovery, make an offline whole-disk image or use a tested backup\nproduct that supports the native filesystems and partition layout. Keep a\nseparate file-level backup so that individual files can be restored without\noverwriting a disk. See Boot recovery for\nboot-file and bootloader diagnosis.\nValidate backups and test restores\nA completed copy is not yet a proven backup. For each backup cycle:\nConfirm that the backup is on a different device and has the expected date\nand size.\nRecord and later compare a cryptographic checksum for archives and disk\nimages.\nOpen a sample of personal files, including at least one large file and one\nfile from each important application data set.\nImport a session archive as a new, inactive session and inspect its files.\nTest boot it only after preserving the current known-good session selection.\nVerify that a DynFileFS offline copy contains the complete segment sequence.\nRestore a whole-media image only to a disposable or spare device of adequate\nsize, then test both boot and access to important data.\nTest native file restoration to a separate location and verify permissions,\nownership, links, and application readability.\nPerform restore tests after changing persistence mode, encryption, partition\nlayout, MiniOS release, or backup software. Keep the last known-good backup\nuntil the replacement has passed its restore test. For broader diagnosis, see\nBoot recovery, DynFileFS and dynblk\nrecovery, and Security\nhardening.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}
