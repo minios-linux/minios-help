@@ -22,8 +22,10 @@ class CompilerTests(unittest.TestCase):
         self.mmdc = self.root / "fake-mmdc.py"
         self.mmdc.write_text(
             "#!/usr/bin/env python3\n"
-            "import pathlib, sys\n"
+            "import json, pathlib, sys\n"
             "args=sys.argv[1:]\n"
+            "config=pathlib.Path(args[args.index('-c')+1])\n"
+            "assert json.loads(config.read_text())['handDrawnSeed'] == 1\n"
             "out=pathlib.Path(args[args.index('-o')+1])\n"
             "out.write_text('''<svg xmlns=\"http://www.w3.org/2000/svg\">"
             "<style>@keyframes dash{to{stroke-dashoffset:0;}}"
