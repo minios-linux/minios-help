@@ -685,7 +685,7 @@
     ],
     [
       "code_block",
-      "d=DISTRIBUTION\nda=DISTRIBUTION_ARCH\ndt=DISTRIBUTION_TYPE\nde=DESKTOP_ENVIRONMENT\npv=PACKAGE_VARIANT\nik=INSTALL_KERNEL\nkf=KERNEL_FLAVOUR\nka=KERNEL_AUFS\nkbd=KERNEL_BUILD_DKMS\nib=INITRAMFS_BUILDER\nlo=LOCALE\nml=MULTILINGUAL\nkl=KEEP_LOCALES",
+      "d=DISTRIBUTION\nda=DISTRIBUTION_ARCH\ndp=DISTRIBUTION_PROFILE\nis=INIT_SYSTEM\nde=DESKTOP_ENVIRONMENT\npv=PACKAGE_VARIANT\nik=INSTALL_KERNEL\nkf=KERNEL_FLAVOUR\nkp=KERNEL_PROVIDER\nkc=KERNEL_CAPABILITIES\nkbd=KERNEL_BUILD_DKMS\nib=INITRAMFS_BUILDER\nlo=LOCALE\nml=MULTILINGUAL\nkl=KEEP_LOCALES",
       "",
       []
     ],
@@ -765,7 +765,7 @@
                 ],
                 [
                   "text",
-                  " — целевая дистрибуция (bookworm, trixie, jammy, noble)"
+                  " — целевой дистрибутив (bookworm, trixie, jammy, noble)"
                 ]
               ]
             ]
@@ -843,7 +843,7 @@
                 ],
                 [
                   "text",
-                  " — вариант пакета (minimum, standard, toolbox, ultra)"
+                  " — вариант набора пакетов (minimum, standard, toolbox, ultra)"
                 ]
               ]
             ]
@@ -895,7 +895,7 @@
                 ],
                 [
                   "text",
-                  " — вариант ядра (none, rt, cloud)"
+                  " — тип ядра (none, rt, cloud)"
                 ]
               ]
             ]
@@ -915,13 +915,65 @@
                   [
                     [
                       "text",
-                      "KERNEL_AUFS"
+                      "KERNEL_PROVIDER"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " — поддержка AUFS (true/false)"
+                  " — поставщик пакета ядра (distribution, minios)"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "MINIOS_KERNEL_SERIES"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — серия ядра MiniOS (auto, 6.1, 6.12)"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "KERNEL_PAYLOAD_MODE"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — режим загрузки ядра (runtime, full)"
                 ]
               ]
             ]
@@ -1073,7 +1125,7 @@
           [
             [
               "text",
-              "Автоматически вычисляемые переменные (из "
+              "Автоматически рассчитываемые переменные (из "
             ],
             [
               "span",
@@ -1118,114 +1170,161 @@
                   [
                     [
                       "text",
-                      "DISTRIBUTION_TYPE"
+                      "DISTRIBUTION_PROFILE"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " — тип дистрибуции (debian, ubuntu) — определяется автоматически на основе "
-                ],
+                  " — семейство пакетов (debian или ubuntu)"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
                 [
                   "span",
                   "code",
                   [
                     [
                       "text",
-                      "DISTRIBUTION"
-                    ]
-                  ]
-                ]
-              ]
-            ],
-            [
-              "list",
-              {
-                "ordered": false,
-                "start": 1
-              },
-              [
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "span",
-                          "code",
-                          [
-                            [
-                              "text",
-                              "legacy"
-                            ]
-                          ]
-                        ],
-                        [
-                          "text",
-                          ": stretch, buster, orel, bionic"
-                        ]
-                      ]
+                      "INIT_SYSTEM"
                     ]
                   ]
                 ],
                 [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "span",
-                          "code",
-                          [
-                            [
-                              "text",
-                              "current"
-                            ]
-                          ]
-                        ],
-                        [
-                          "text",
-                          ": bullseye, bookworm, focal, jammy, noble"
-                        ]
-                      ]
-                    ]
-                  ]
-                ],
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "span",
-                          "code",
-                          [
-                            [
-                              "text",
-                              "future"
-                            ]
-                          ]
-                        ],
-                        [
-                          "text",
-                          ": trixie, kali-rolling, sid"
-                        ]
-                      ]
-                    ]
-                  ]
+                  "text",
+                  " — выбранная для цели система инициализации (systemd или sysvinit)"
                 ]
               ]
             ]
           ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "KERNEL_CAPABILITIES"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " отличается от обычных переменных "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "build.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Скрипт сборки "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "01-kernel"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " формирует этот массив после установки и анализа выбранного ядра. CondinAPT использует "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "kc"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " как точный фильтр по членству в массиве при выборе дополнительных инструментов сборки и пакетов DKMS. Текущие значения включают "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "aufs"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "ntfs3"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "btf_modules"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", а также поддерживаемые встроенные драйверы "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "rtw88_*"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
         ]
       ]
     ],
@@ -1451,7 +1550,7 @@
     ],
     [
       "code_block",
-      "# DKMS modules with kernel and distribution conditions\nntfs3-dkms -ka=true -d=buster -d=trixie -d=sid\nzfs-dkms +{pv=toolbox|pv=ultra} +da=amd64 +kbd=true -kf=none\n\n# Drivers for old systems\nbroadcom-sta-dkms -d=jammy -ka=true -da=i386\naufs-dkms +dt=debian +d=buster\n\n# Exclusion for new distributions\nrealtek-rtl8821cu-dkms -d=trixie -d=sid\nfirmware-b43-installer -d=bionic\n\n# Complex alternatives with filters\nexfatprogs -pv=minimum || exfat-utils -pv=minimum && exfat-fuse -pv=minimum\n\n# Localization with exclusions and conditions\nvlc-l10n -lo=en_US +{pv=toolbox|pv=ultra}\nlanguage-pack-gnome-ru-base +lo=ru_RU +dt=ubuntu\nlanguage-pack-gnome-ru-base +ml=true +dt=ubuntu\nlanguage-pack-gnome-ru-base +kl=true +dt=ubuntu",
+      "# Kernel build tools and DKMS modules selected from actual kernel capabilities\npahole +kc=btf_modules || dwarves +kc=btf_modules\nntfs3-dkms -kc=ntfs3\nzfs-dkms +{pv=toolbox|pv=ultra} +da=amd64 +kbd=true -kf=none\n\n# Distribution filters remain where package availability or compatibility requires them\nbroadcom-sta-dkms -d=jammy -da=i386\naufs-dkms +dp=debian +d=buster +d=beowulf -kc=aufs\n\n# Do not build a vendor driver already provided by the selected kernel\nrealtek-rtl8821cu-dkms -kc=rtw88_8821cu\nfirmware-b43-installer -d=bionic\n\n# Complex alternatives with filters\nexfatprogs -pv=minimum || exfat-utils -pv=minimum && exfat-fuse -pv=minimum\n\n# Localization with exclusions and conditions\nvlc-l10n -lo=en_US +{pv=toolbox|pv=ultra}\nlanguage-pack-gnome-ru-base +lo=ru_RU +dp=ubuntu\nlanguage-pack-gnome-ru-base +ml=true +dp=ubuntu\nlanguage-pack-gnome-ru-base +kl=true +dp=ubuntu",
       "",
       []
     ],
@@ -2139,7 +2238,7 @@
       ]
     ]
   ],
-  "plain_text": "CondinAPT в MiniOS: Руководство по интеграции\nВ этом документе описаны особенности использования CondinAPT в системе сборки MiniOS.\nОсновная документация: Для базовых возможностей CondinAPT см. основной документ CondinAPT.md\nОглавление\nИнтеграция с системой сборки MiniOS\nКонфигурация MiniOS\nИспользование в модулях\nПримеры для MiniOS\nИнтеграция с системой сборки MiniOS\nИспользование в модулях MiniOS\nCondinAPT — стандартный инструмент для установки пакетов в модулях MiniOS. Он интегрируется в процесс сборки через стандартный интерфейс модуля.\nВ скрипте установки модуля (install):\n#!/bin/bash\nset -e\n\n# Load MiniOS library\n. /minioslib || exit 1\n\n# Install packages via CondinAPT\n/linux-live/condinapt \\\n    -l \"$CWD/packages.list\" \\\n    -c /linux-live/build.conf \\\n    -m /linux-live/condinapt.map\nСтруктура модуля MiniOS\nКаждый модуль в /linux-live/scripts/ имеет стандартизированную структуру:\nXX-module-name/\n├── packages.list                     # Package list with conditions\n├── install                           # Installation script (uses CondinAPT)\n├── rootcopy-install/                 # (optional) Files to copy\n└── rootcopy-postinstall/             # (optional) Files after installation\nКонфигурация MiniOS\nСодержимое condinapt.map в MiniOS\nd=DISTRIBUTION\nda=DISTRIBUTION_ARCH\ndt=DISTRIBUTION_TYPE\nde=DESKTOP_ENVIRONMENT\npv=PACKAGE_VARIANT\nik=INSTALL_KERNEL\nkf=KERNEL_FLAVOUR\nka=KERNEL_AUFS\nkbd=KERNEL_BUILD_DKMS\nib=INITRAMFS_BUILDER\nlo=LOCALE\nml=MULTILINGUAL\nkl=KEEP_LOCALES\nПеременные конфигурации MiniOS\nОсновные переменные из build.conf:\nDISTRIBUTION — целевая дистрибуция (bookworm, trixie, jammy, noble)\nDISTRIBUTION_ARCH — архитектура (amd64, i386, i386-pae)\nDESKTOP_ENVIRONMENT — рабочее окружение (core, flux, xfce, lxqt)\nPACKAGE_VARIANT — вариант пакета (minimum, standard, toolbox, ultra)\nINSTALL_KERNEL — устанавливать пакет ядра (true/false)\nKERNEL_FLAVOUR — вариант ядра (none, rt, cloud)\nKERNEL_AUFS — поддержка AUFS (true/false)\nKERNEL_BUILD_DKMS — собирать модули DKMS (true/false)\nINITRAMFS_BUILDER — сборщик initramfs (livekit, dracut)\nLOCALE — системная локаль (C, en_US, ru_RU, es_ES, pt_BR)\nMULTILINGUAL — поддержка мультиязычности (true/false)\nKEEP_LOCALES — сохранять локали (true/false)\nАвтоматически вычисляемые переменные (из minioslib):\nDISTRIBUTION_TYPE — тип дистрибуции (debian, ubuntu) — определяется автоматически на основе DISTRIBUTION\nlegacy: stretch, buster, orel, bionic\ncurrent: bullseye, bookworm, focal, jammy, noble\nfuture: trixie, kali-rolling, sid\nИспользование в модулях\nПример мультимедийного модуля\npackages.list:\n# Basic multimedia codecs - always\ngstreamer1.0-plugins-base\ngstreamer1.0-plugins-good\n\n# Additional codecs - not for minimal variant\ngstreamer1.0-plugins-bad -pv=minimum\ngstreamer1.0-plugins-ugly -pv=minimum\ngstreamer1.0-libav -pv=minimum\n\n# Professional tools - only for toolbox and ultra\naudacity +{pv=toolbox|pv=ultra}\nkdenlive +{pv=toolbox|pv=ultra} +{de=xfce|de=lxqt}\n\n---\n\n# Distribution-specific packages from backports\nffmpeg @bookworm-backports +d=bookworm\nПример модуля драйверов\npackages.list:\n# Basic drivers\nmesa-utils\nxserver-xorg-video-all\n\n# NVIDIA drivers - only for non-free distributions\nnvidia-driver +d=bookworm -{pv=minimum&de=core}\n\n# AMD drivers - for modern distributions\nfirmware-amd-graphics +{d=trixie|d=noble}\nmesa-vulkan-drivers +{d=trixie|d=noble}\n\n# Old drivers - for old systems\nxserver-xorg-video-radeon +d=bookworm\nПример модуля локализации\npackages.list:\n# Basic locales - always\nlocales\n\n# Russian localization\nlanguage-pack-ru +lo=ru_RU\nfonts-liberation +lo=ru_RU\nfirefox-esr-l10n-ru +lo=ru_RU +{de=xfce|de=lxqt}\n\n# Multilingual support\ntask-russian +ml=true +lo=ru_RU\nhunspell-ru +ml=true +lo=ru_RU\n\n# Keeping locales\nvlc-l10n +kl=true +{pv=toolbox|pv=ultra}\n\n# Regional settings for different locales\nlanguage-pack-pt +lo=pt_BR\nlanguage-pack-de +lo=de_DE\nlanguage-pack-fr +lo=fr_FR\nПримеры для MiniOS\nПродвинутое использование фильтра в MiniOS\npackages.list:\n# DKMS modules with kernel and distribution conditions\nntfs3-dkms -ka=true -d=buster -d=trixie -d=sid\nzfs-dkms +{pv=toolbox|pv=ultra} +da=amd64 +kbd=true -kf=none\n\n# Drivers for old systems\nbroadcom-sta-dkms -d=jammy -ka=true -da=i386\naufs-dkms +dt=debian +d=buster\n\n# Exclusion for new distributions\nrealtek-rtl8821cu-dkms -d=trixie -d=sid\nfirmware-b43-installer -d=bionic\n\n# Complex alternatives with filters\nexfatprogs -pv=minimum || exfat-utils -pv=minimum && exfat-fuse -pv=minimum\n\n# Localization with exclusions and conditions\nvlc-l10n -lo=en_US +{pv=toolbox|pv=ultra}\nlanguage-pack-gnome-ru-base +lo=ru_RU +dt=ubuntu\nlanguage-pack-gnome-ru-base +ml=true +dt=ubuntu\nlanguage-pack-gnome-ru-base +kl=true +dt=ubuntu\nОптимизация для MiniOS\nГруппировка по функционалу:\n#=== Core System ===\nsystemd +pv=standard +pv=toolbox +pv=ultra\ndbus\n\n#=== Desktop Environment ===\nxfce4-panel +de=xfce\nlxqt-panel +de=lxqt\nfluxbox +de=flux\n\n#=== Applications by Variant ===\nfirefox-esr +{pv=standard|pv=toolbox|pv=ultra}\nthunderbird +{pv=toolbox|pv=ultra}\nlibreoffice +pv=ultra\nИнтеграция с процессом сборки MiniOS\nПеременные окружения модуля\nВ контексте модуля MiniOS доступны следующие переменные:\n$CWD — текущий каталог модуля\n$LIVEKITNAME — имя системы (обычно \"minios\")\n$MODULE — имя текущего модуля\nИспользование minioslib\n#!/bin/bash\nset -e\n\n# Load MiniOS library\n. /minioslib || exit 1\n\n# Check module conditions\nif [ \"$PACKAGE_VARIANT\" = \"minimum\" ] && [ \"$DESKTOP_ENVIRONMENT\" = \"core\" ]; then\n    echo \"Skipping module for minimal core build\"\n    exit 0\nfi\n\n# Install packages\n/linux-live/condinapt \\\n    -l \"$CWD/packages.list\" \\\n    -c /linux-live/build.conf \\\n    -m /linux-live/condinapt.map\nДля получения полной информации о возможностях CondinAPT смотрите основной документ CondinAPT.md",
+  "plain_text": "CondinAPT в MiniOS: Руководство по интеграции\nВ этом документе описаны особенности использования CondinAPT в системе сборки MiniOS.\nОсновная документация: Для базовых возможностей CondinAPT см. основной документ CondinAPT.md\nОглавление\nИнтеграция с системой сборки MiniOS\nКонфигурация MiniOS\nИспользование в модулях\nПримеры для MiniOS\nИнтеграция с системой сборки MiniOS\nИспользование в модулях MiniOS\nCondinAPT — стандартный инструмент для установки пакетов в модулях MiniOS. Он интегрируется в процесс сборки через стандартный интерфейс модуля.\nВ скрипте установки модуля (install):\n#!/bin/bash\nset -e\n\n# Load MiniOS library\n. /minioslib || exit 1\n\n# Install packages via CondinAPT\n/linux-live/condinapt \\\n    -l \"$CWD/packages.list\" \\\n    -c /linux-live/build.conf \\\n    -m /linux-live/condinapt.map\nСтруктура модуля MiniOS\nКаждый модуль в /linux-live/scripts/ имеет стандартизированную структуру:\nXX-module-name/\n├── packages.list                     # Package list with conditions\n├── install                           # Installation script (uses CondinAPT)\n├── rootcopy-install/                 # (optional) Files to copy\n└── rootcopy-postinstall/             # (optional) Files after installation\nКонфигурация MiniOS\nСодержимое condinapt.map в MiniOS\nd=DISTRIBUTION\nda=DISTRIBUTION_ARCH\ndp=DISTRIBUTION_PROFILE\nis=INIT_SYSTEM\nde=DESKTOP_ENVIRONMENT\npv=PACKAGE_VARIANT\nik=INSTALL_KERNEL\nkf=KERNEL_FLAVOUR\nkp=KERNEL_PROVIDER\nkc=KERNEL_CAPABILITIES\nkbd=KERNEL_BUILD_DKMS\nib=INITRAMFS_BUILDER\nlo=LOCALE\nml=MULTILINGUAL\nkl=KEEP_LOCALES\nПеременные конфигурации MiniOS\nОсновные переменные из build.conf:\nDISTRIBUTION — целевой дистрибутив (bookworm, trixie, jammy, noble)\nDISTRIBUTION_ARCH — архитектура (amd64, i386, i386-pae)\nDESKTOP_ENVIRONMENT — рабочее окружение (core, flux, xfce, lxqt)\nPACKAGE_VARIANT — вариант набора пакетов (minimum, standard, toolbox, ultra)\nINSTALL_KERNEL — устанавливать пакет ядра (true/false)\nKERNEL_FLAVOUR — тип ядра (none, rt, cloud)\nKERNEL_PROVIDER — поставщик пакета ядра (distribution, minios)\nMINIOS_KERNEL_SERIES — серия ядра MiniOS (auto, 6.1, 6.12)\nKERNEL_PAYLOAD_MODE — режим загрузки ядра (runtime, full)\nKERNEL_BUILD_DKMS — собирать модули DKMS (true/false)\nINITRAMFS_BUILDER — сборщик initramfs (livekit, dracut)\nLOCALE — системная локаль (C, en_US, ru_RU, es_ES, pt_BR)\nMULTILINGUAL — поддержка мультиязычности (true/false)\nKEEP_LOCALES — сохранять локали (true/false)\nАвтоматически рассчитываемые переменные (из minioslib):\nDISTRIBUTION_PROFILE — семейство пакетов (debian или ubuntu)\nINIT_SYSTEM — выбранная для цели система инициализации (systemd или sysvinit)\nKERNEL_CAPABILITIES отличается от обычных переменных build.conf. Скрипт сборки 01-kernel формирует этот массив после установки и анализа выбранного ядра. CondinAPT использует kc как точный фильтр по членству в массиве при выборе дополнительных инструментов сборки и пакетов DKMS. Текущие значения включают aufs, ntfs3, btf_modules, а также поддерживаемые встроенные драйверы rtw88_*.\nИспользование в модулях\nПример мультимедийного модуля\npackages.list:\n# Basic multimedia codecs - always\ngstreamer1.0-plugins-base\ngstreamer1.0-plugins-good\n\n# Additional codecs - not for minimal variant\ngstreamer1.0-plugins-bad -pv=minimum\ngstreamer1.0-plugins-ugly -pv=minimum\ngstreamer1.0-libav -pv=minimum\n\n# Professional tools - only for toolbox and ultra\naudacity +{pv=toolbox|pv=ultra}\nkdenlive +{pv=toolbox|pv=ultra} +{de=xfce|de=lxqt}\n\n---\n\n# Distribution-specific packages from backports\nffmpeg @bookworm-backports +d=bookworm\nПример модуля драйверов\npackages.list:\n# Basic drivers\nmesa-utils\nxserver-xorg-video-all\n\n# NVIDIA drivers - only for non-free distributions\nnvidia-driver +d=bookworm -{pv=minimum&de=core}\n\n# AMD drivers - for modern distributions\nfirmware-amd-graphics +{d=trixie|d=noble}\nmesa-vulkan-drivers +{d=trixie|d=noble}\n\n# Old drivers - for old systems\nxserver-xorg-video-radeon +d=bookworm\nПример модуля локализации\npackages.list:\n# Basic locales - always\nlocales\n\n# Russian localization\nlanguage-pack-ru +lo=ru_RU\nfonts-liberation +lo=ru_RU\nfirefox-esr-l10n-ru +lo=ru_RU +{de=xfce|de=lxqt}\n\n# Multilingual support\ntask-russian +ml=true +lo=ru_RU\nhunspell-ru +ml=true +lo=ru_RU\n\n# Keeping locales\nvlc-l10n +kl=true +{pv=toolbox|pv=ultra}\n\n# Regional settings for different locales\nlanguage-pack-pt +lo=pt_BR\nlanguage-pack-de +lo=de_DE\nlanguage-pack-fr +lo=fr_FR\nПримеры для MiniOS\nПродвинутое использование фильтра в MiniOS\npackages.list:\n# Kernel build tools and DKMS modules selected from actual kernel capabilities\npahole +kc=btf_modules || dwarves +kc=btf_modules\nntfs3-dkms -kc=ntfs3\nzfs-dkms +{pv=toolbox|pv=ultra} +da=amd64 +kbd=true -kf=none\n\n# Distribution filters remain where package availability or compatibility requires them\nbroadcom-sta-dkms -d=jammy -da=i386\naufs-dkms +dp=debian +d=buster +d=beowulf -kc=aufs\n\n# Do not build a vendor driver already provided by the selected kernel\nrealtek-rtl8821cu-dkms -kc=rtw88_8821cu\nfirmware-b43-installer -d=bionic\n\n# Complex alternatives with filters\nexfatprogs -pv=minimum || exfat-utils -pv=minimum && exfat-fuse -pv=minimum\n\n# Localization with exclusions and conditions\nvlc-l10n -lo=en_US +{pv=toolbox|pv=ultra}\nlanguage-pack-gnome-ru-base +lo=ru_RU +dp=ubuntu\nlanguage-pack-gnome-ru-base +ml=true +dp=ubuntu\nlanguage-pack-gnome-ru-base +kl=true +dp=ubuntu\nОптимизация для MiniOS\nГруппировка по функционалу:\n#=== Core System ===\nsystemd +pv=standard +pv=toolbox +pv=ultra\ndbus\n\n#=== Desktop Environment ===\nxfce4-panel +de=xfce\nlxqt-panel +de=lxqt\nfluxbox +de=flux\n\n#=== Applications by Variant ===\nfirefox-esr +{pv=standard|pv=toolbox|pv=ultra}\nthunderbird +{pv=toolbox|pv=ultra}\nlibreoffice +pv=ultra\nИнтеграция с процессом сборки MiniOS\nПеременные окружения модуля\nВ контексте модуля MiniOS доступны следующие переменные:\n$CWD — текущий каталог модуля\n$LIVEKITNAME — имя системы (обычно \"minios\")\n$MODULE — имя текущего модуля\nИспользование minioslib\n#!/bin/bash\nset -e\n\n# Load MiniOS library\n. /minioslib || exit 1\n\n# Check module conditions\nif [ \"$PACKAGE_VARIANT\" = \"minimum\" ] && [ \"$DESKTOP_ENVIRONMENT\" = \"core\" ]; then\n    echo \"Skipping module for minimal core build\"\n    exit 0\nfi\n\n# Install packages\n/linux-live/condinapt \\\n    -l \"$CWD/packages.list\" \\\n    -c /linux-live/build.conf \\\n    -m /linux-live/condinapt.map\nДля получения полной информации о возможностях CondinAPT смотрите основной документ CondinAPT.md",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

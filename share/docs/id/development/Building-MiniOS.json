@@ -722,7 +722,7 @@
       [
         [
           "text",
-          "Utilitas command-line yang memudahkan konfigurasi dan inisiasi build. Alat ini menyediakan antarmuka yang ramah pengguna untuk mengatur berbagai parameter build:"
+          "Utilitas baris perintah yang memudahkan konfigurasi dan inisiasi proses build. Alat ini menyediakan antarmuka yang ramah pengguna untuk mengatur berbagai parameter build:"
         ]
       ]
     ],
@@ -807,7 +807,7 @@
               [
                 [
                   "text",
-                  "Opsi kernel"
+                  "Penyedia kernel, seri kernel MiniOS, mode payload, dan opsi build DKMS"
                 ]
               ]
             ]
@@ -823,7 +823,7 @@
               [
                 [
                   "text",
-                  "Pengaturan lokal dan zona waktu"
+                  "Pengaturan locale dan zona waktu"
                 ]
               ]
             ]
@@ -857,7 +857,7 @@
     ],
     [
       "code_block",
-      "# Build with default configuration\nminios-cmd -d bookworm -a amd64 -de xfce -pv standard\n\n# Build with custom options\nminios-cmd -d bookworm -a amd64 -de xfce -pv toolbox -c zstd -l en_US -tz \"Europe/Prague\"",
+      "# Build with default configuration\nminios-cmd -d bookworm -a amd64 -de xfce -pv standard\n\n# Build with custom options\nminios-cmd -d bookworm -a amd64 -de xfce -pv toolbox -c zstd -l en_US -tz \"Europe/Prague\"\n\n# Build with the AUFS-enabled MiniOS kernel and optional DKMS drivers\nminios-cmd -d bookworm -a amd64 -de xfce -pv standard -mk -dkms",
       "bash",
       [
         [
@@ -1165,6 +1165,150 @@
           "\"Europe/Prague\"",
           "#032F62",
           "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "# Build with the AUFS-enabled MiniOS kernel and optional DKMS drivers",
+          "#6A737D",
+          "#6A737D"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "minios-cmd",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "bookworm",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-a",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "amd64",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-de",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "xfce",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-pv",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "standard",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-mk",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-dkms",
+          "#005CC5",
+          "#79B8FF"
         ]
       ]
     ],
@@ -1539,7 +1683,7 @@
     ],
     [
       "diagram",
-      "assets/mermaid-0577979502c0254f1fbc.svg",
+      "assets/mermaid-5c14fa88c024660e2419.svg",
       "Mermaid diagram"
     ],
     [
@@ -2359,7 +2503,7 @@
                 ],
                 [
                   "text",
-                  ": tipe, dukungan AUFS, kompilasi DKMS"
+                  ": penyedia distribusi atau MiniOS, seri MiniOS, payload runtime atau full, dan opsi kompilasi DKMS"
                 ]
               ]
             ]
@@ -2383,7 +2527,7 @@
                   [
                     [
                       "text",
-                      "Pengaturan lokal"
+                      "Pengaturan locale"
                     ]
                   ]
                 ],
@@ -2425,6 +2569,53 @@
         [
           "text",
           "Dibuat secara otomatis selama proses build dan berisi pengaturan khusus runtime untuk lingkungan chroot."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "AUFS disediakan oleh "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "KERNEL_PROVIDER=minios"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "; ini bukan toggle kernel terpisah saat ini."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Kernel distribusi didapatkan dengan paket APT yang terisolasi dan ditandatangani. Jika DKMS diaktifkan, header yang sesuai akan diambil bersama kernel dan hanya digunakan saat modul eksternal dibangun. Lihat "
+        ],
+        [
+          "link",
+          "/development/Build-Commands.md#pemilihan-kernel",
+          null,
+          [
+            [
+              "text",
+              "Perintah Build"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk opsi frontend dan aturan payload."
         ]
       ]
     ],
@@ -5415,13 +5606,13 @@
                   [
                     [
                       "text",
-                      "+dt=type"
+                      "+dp=profile"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " - Tipe distribusi (debian, ubuntu)"
+                  " - Keluarga paket (debian, ubuntu)"
                 ]
               ]
             ]
@@ -10545,7 +10736,7 @@
       ]
     ]
   ],
-  "plain_text": "Membangun MiniOS\nPanduan ini membahas proses lengkap untuk membangun MiniOS, termasuk pembuatan sistem, pengembangan modul, dan opsi konfigurasi lanjutan.\nRingkasan\nMiniOS menggunakan sistem build modular di mana sistem operasi dibangun dari modul-modul individual dalam format SquashFS. Setiap modul berisi paket perangkat lunak atau komponen tertentu, dan dimuat secara berurutan untuk membentuk sistem yang lengkap.\nMemulai\nPrasyarat\nVersi terbaru Debian atau Ubuntu untuk proses build\nRuang disk yang cukup (disarankan: minimal 20GB ruang kosong)\nKoneksi internet untuk mengunduh paket\nPaket yang diperlukan tercantum di linux-live/prerequisites.list\nInstalasi Prasyarat\nFile prerequisites.list menggunakan format condinapt dengan penanda kondisi. Instal paket yang diperlukan secara manual:\nsudo apt-get update\nsudo apt-get install sudo binutils debootstrap squashfs-tools xz-utils lz4 zstd xorriso mtools rsync curl\nsudo apt-get install grub-efi-amd64-bin grub-pc-bin\nSebagai alternatif, Anda dapat menggunakan condinapt untuk memproses daftar prasyarat jika tersedia di sistem Anda.\nAlat Build\nMiniOS menyediakan dua alat utama untuk proses build:\nminios-cmd (Direkomendasikan)\nUtilitas command-line yang memudahkan konfigurasi dan inisiasi build. Alat ini menyediakan antarmuka yang ramah pengguna untuk mengatur berbagai parameter build:\nDistribusi target (buster, bookworm, trixie, dll.)\nArsitektur (amd64, i386)\nLingkungan desktop (core, flux, xfce, lxqt)\nVarian paket (minimum, standard, toolbox, ultra)\nOpsi kernel\nPengaturan lokal dan zona waktu\nPenggunaan:\n# Build with default configuration\nminios-cmd -d bookworm -a amd64 -de xfce -pv standard\n\n# Build with custom options\nminios-cmd -d bookworm -a amd64 -de xfce -pv toolbox -c zstd -l en_US -tz \"Europe/Prague\"\nUntuk informasi penggunaan lebih detail, lihat dokumentasi minios-cmd.\nminios-live (Lanjutan)\nSkrip build inti yang mengatur proses build langkah demi langkah:\nMenyiapkan lingkungan build\nMenginstal sistem dasar\nMengintegrasikan lingkungan desktop yang dipilih\nMembuat filesystem SquashFS\nMengkonfigurasi proses boot\nMenghasilkan image ISO bootable\nPenggunaan:\n# Complete build\n./minios-live -\n\n# Specific stages\n./minios-live build-bootstrap\n./minios-live build-chroot - build-live\nUntuk informasi penggunaan lebih detail, lihat dokumentasi minios-live.\nStruktur Proyek\nSistem build MiniOS diorganisasikan sebagai berikut:\nminios-live/\n├── linux-live/                 # Core scripts and build libraries\n│   ├── bootfiles/              # Files and templates for booting (GRUB, ISOLINUX, EFI, etc.)\n│   ├── environments/           # Environment descriptions and settings\n│   ├── initramfs/              # Scripts for creating initramfs\n│   ├── scripts/                # Module scripts and templates\n│   ├── build-initramfs         # Script for separate initramfs build\n│   ├── build.conf              # Main build configuration file\n│   ├── condinapt               # Script/tool for working with package lists\n│   ├── install-chroot          # Script for installing into the chroot environment\n│   ├── minioslib               # Core Bash function library\n│   └── prerequisites.list      # List of required packages for installation on the host for building\n├── tools/                      # Auxiliary build scripts\n├── minios-cmd                  # CLI utility for setting build parameters\n└── minios-live                 # Main script for building MiniOS\nProses Build\nProses build mengikuti urutan tahapan yang terstruktur:\nMermaid diagram\nPenjelasan Tahapan Build\nbuild-bootstrap - Membuat sistem dasar minimal menggunakan debootstrap\nbuild-chroot - Menginstal paket dan mengonfigurasi sistem di lingkungan chroot\nbuild-live - Membuat image utama SquashFS dengan sistem inti\nbuild-modules - Membangun modul SquashFS tambahan untuk perangkat lunak ekstra\nbuild-boot - Menyiapkan file bootloader dan kernel\nbuild-config - Menghasilkan file konfigurasi boot\nbuild-iso - Membuat image ISO final yang dapat di-boot\nOpsi Build\nBuild Sistem Lengkap\n# Full automated build\n./minios-live -\n# or\n./minios-live build-bootstrap - build-iso\nBuild Inkremental\n# Run only bootstrap stage\n./minios-live build-bootstrap\n\n# Run from chroot to live stages\n./minios-live build-chroot - build-live\n\n# Run from modules to completion\n./minios-live build-modules -\n\n# Build only ISO from existing data\n./minios-live build-iso\nSistem Konfigurasi\nFile Konfigurasi Build\nKonfigurasi Utama: linux-live/build.conf\nIni adalah file konfigurasi utama yang mendefinisikan:\nPengaturan distribusi: Distribusi target (buster, bookworm, trixie, sid)\nArsitektur: amd64, i386, i386-pae (khusus bookworm dan sebelumnya; trixie dan sid hanya mendukung amd64)\nLingkungan desktop: core, flux, xfce, lxqt\nVarian paket: minimum, standard, toolbox, ultra\nKompresi: xz, lzo, gz, lz4, zstd\nPengaturan kernel: tipe, dukungan AUFS, kompilasi DKMS\nPengaturan lokal: bahasa, zona waktu, tata letak keyboard\nKonfigurasi Runtime: minios_build.conf\nDibuat secara otomatis selama proses build dan berisi pengaturan khusus runtime untuk lingkungan chroot.\nVarian Paket\nMiniOS mendukung berbagai varian paket yang menentukan perangkat lunak apa saja yang disertakan:\nminimum: Hanya paket esensial\nstandard: Aplikasi desktop standar\ntoolbox: Alat pengembangan dan utilitas lanjutan\nultra: Paket perangkat lunak lengkap dengan aplikasi tambahan\nPemilihan paket dikontrol menggunakan marker kondisional di file packages.list:\n# Install only in toolbox and ultra variants\nfirefox +pv=toolbox +pv=ultra\n\n# Install only in minimum variant\nbasic-tool +pv=minimum\nSistem Modul\nStruktur Modul\nSistem build menggunakan struktur modul bernomor yang terletak di linux-live/scripts/:\n00-core/          # Base system packages\n01-kernel/        # Linux kernel\n02-firmware/      # Hardware firmware\n03-gui-base/      # Basic GUI libraries\n04-xfce-desktop/  # Desktop environment\n05-apps/          # Desktop applications\n10-example/       # Example module template\nKomponen Modul\nSetiap direktori modul berisi:\npackages.list: Daftar paket yang akan diinstal dengan marker kondisional\ninstall: Skrip Bash yang dijalankan saat build modul\nrootcopy-install/: File yang disalin ke sistem selama build\nrootcopy-postinstall/: File yang disalin setelah instalasi paket\n.minios-ownership: Manifest kepemilikan opsional di dalam direktori rootcopy-* untuk file yang memerlukan pemilik non-root\nskip_conditions.conf: Kondisi untuk melewati build modul\npatches/: Patch yang diterapkan sebelum build (tidak tersedia untuk 00-core)\nFile di rootcopy-install/ dan rootcopy-postinstall/ disalin sebagai template build. Kepemilikan checkout host tidak dipertahankan; file biasanya menjadi root:root di pohon target. Jika file atau direktori membutuhkan pemilik non-root, buat .minios-ownership di direktori rootcopy terkait:\nowner:group relative/path\nPath bersifat relatif terhadap direktori rootcopy tersebut. Path absolut dan path yang mengandung ../ akan ditolak. Pemilik dan grup harus sudah ada saat manifest diterapkan. Jika dibuat oleh paket yang diinstal kemudian, gunakan rootcopy-postinstall/ atau atur kepemilikan di install/postinstall.\nContoh Template Modul\nModul 10-example/ berfungsi sebagai template untuk membuat modul baru. Modul ini berisi:\nFile packages.list lengkap dengan contoh marker kondisional\nSkrip dasar install yang menunjukkan penggunaan condinapt yang benar\nContoh direktori rootcopy-install/ dan rootcopy-postinstall/\nKomentar dokumentasi yang menjelaskan setiap komponen\nUntuk membuat modul baru: Salin direktori 10-example dan modifikasi sesuai kebutuhan Anda:\ncp -r linux-live/scripts/10-example linux-live/scripts/06-my-module\nTemplate ini digunakan di seluruh dokumentasi ini dan merupakan titik awal terbaik untuk modul kustom.\nPemuatan Modul Berdasarkan Lingkungan\nSistem modul bekerja melalui konfigurasi lingkungan di linux-live/environments/. Setiap direktori lingkungan berisi symbolic link ke modul-modul yang harus disertakan untuk lingkungan desktop dan varian paket tertentu.\nLingkungan yang Tersedia\nlinux-live/environments/\n├── core/          # Core system (no desktop)\n├── flux/          # Flux desktop environment\n├── lxqt/          # LXQt desktop environment\n├── xfce/          # XFCE desktop environment\n└── xfce-debug/    # XFCE with debug modules\nSetiap direktori lingkungan berisi symbolic link ke direktori modul di linux-live/scripts/:\n# Example: XFCE environment\nlinux-live/environments/xfce/\n├── 01-kernel -> ../../scripts/01-kernel\n├── 02-firmware -> ../../scripts/02-firmware\n├── 03-gui-base -> ../../scripts/03-gui-base\n├── 04-xfce-desktop -> ../../scripts/04-xfce-desktop\n├── 05-apps -> ../../scripts/05-apps\n└── 06-firefox -> ../../scripts/10-firefox\nMembangun Modul\nUntuk membangun modul, gunakan perintah build-modules:\n# Build all unbuilt modules for the current environment\n./minios-live build-modules\n\n# This will build all modules that:\n# 1. Are linked in the current environment directory\n# 2. Haven't been built yet\n# 3. Meet the skip conditions (if any)\nSkrip Instalasi Modul\nSkrip install di setiap modul:\nMemuat /minioslib untuk fungsi umum\nMemuat /minios_build.conf untuk konfigurasi build\nMengatur seleksi debconf untuk konfigurasi paket otomatis\nMelakukan konfigurasi kustom dan modifikasi file\nMenggunakan warna konsol untuk format output\nContoh struktur:\n#!/bin/bash\nset -e          # exit on error\nset -o pipefail # exit on pipeline error\nset -u          # treat unset variable as error\n\n. /minioslib\n. /minios_build.conf\n\nSCRIPT_DIR=\"$(dirname \"$(readlink -f \"$0\")\")\"\nconsole_colors\n\n# Debconf pre-configurations\nDEBCONF_SETTINGS=(\n    \"package-name package-name/option boolean true\"\n)\n\n# Apply debconf settings\nfor SETTING in \"${DEBCONF_SETTINGS[@]}\"; do\n    echo \"${SETTING}\" | debconf-set-selections -v\ndone\n\n# Custom installation and configuration logic\n# ...\nManajemen Paket dengan CondinAPT\nCondinAPT adalah sistem instalasi paket kondisional milik MiniOS yang menangani pemilihan paket berdasarkan parameter build seperti lingkungan desktop, distribusi, dan varian paket.\nPenggunaan Dasar\nSetiap modul berisi file packages.list dengan spesifikasi paket kondisional:\n# Basic syntax examples\npackage-name                    # Always install\npackage-name +pv=toolbox       # Install only for toolbox variant\npackage-name +de=xfce          # Install only for XFCE desktop\npackage-name -pv=minimum       # Install except for minimum variant\npreferred-pkg || fallback-pkg  # Try first, use second if unavailable\nMenggunakan CondinAPT di Skrip Modul\nPenggunaan standar di skrip instalasi modul:\n# Load MiniOS library and install packages\n. /minioslib || exit 1\n/linux-live/condinapt \\\n    -l \"$CWD/packages.list\" \\\n    -c /linux-live/build.conf \\\n    -m /linux-live/condinapt.map\nDokumentasi Lengkap\nUntuk dokumentasi CondinAPT yang komprehensif termasuk sintaks lanjutan, filter, antrean prioritas, mode debugging, dan contoh nyata, lihat: CondinAPT.md\nFilter Kondisi Umum\n+pv=variant - Varian paket (minimum, standard, toolbox, ultra)\n+d=distribution - Distribusi (bookworm, trixie, jammy, noble)\n+de=desktop - Lingkungan desktop (core, flux, xfce, lxqt)\n+da=architecture - Arsitektur (amd64, i386)\n+dt=type - Tipe distribusi (debian, ubuntu)\nMembangun ISO Pertama Anda\nMulai Cepat\nClone repository dan persiapkan:\ngit clone https://github.com/minios-linux/minios-live.git\ncd minios-live\nInstal prasyarat:\nsudo apt-get update\nsudo apt-get install sudo binutils debootstrap squashfs-tools xz-utils lz4 zstd xorriso mtools rsync grub-efi-amd64-bin grub-pc-bin\nBuild dengan minios-cmd (disarankan):\n./minios-cmd -d bookworm -a amd64 -de xfce -pv standard\nAtau build dengan minios-live:\n./minios-live -\nKustomisasi Build Anda\nSalin dan edit konfigurasi:\ncp linux-live/build.conf linux-live/build-custom.conf\n# Edit build-custom.conf with your preferences\nBuild dengan konfigurasi kustom:\nBUILD_CONF=linux-live/build-custom.conf ./minios-live -\nKustomisasi Lanjutan\nMembuat Lingkungan Kustom\nAnda dapat membuat lingkungan desktop baru sepenuhnya dengan membuat direktori lingkungan baru dan mengonfigurasi modul yang sesuai. Berikut cara membuat lingkungan GNOME sebagai contoh:\nBuat direktori lingkungan:\nmkdir -p linux-live/environments/gnome\nBuat modul desktop dasar (04-gnome-desktop):\n# Start with the example template for a clean base\ncp -r linux-live/scripts/10-example linux-live/scripts/04-gnome-desktop\n\n# Configure GNOME-specific packages\ncat > linux-live/scripts/04-gnome-desktop/packages.list << EOF\n# Base GNOME desktop packages\ngdm3\ngnome-shell\ngnome-session\ngnome-settings-daemon\ngnome-control-center\nnautilus\ngnome-terminal\n\n# Standard GNOME applications\ngnome-calculator +pv=standard +pv=toolbox +pv=ultra\ngnome-text-editor +pv=standard +pv=toolbox +pv=ultra\neog +pv=standard +pv=toolbox +pv=ultra\nevince +pv=standard +pv=toolbox +pv=ultra\n\n# Additional GNOME tools\ngnome-tweaks +pv=toolbox +pv=ultra\ngnome-extensions-app +pv=toolbox +pv=ultra\ndconf-editor +pv=toolbox +pv=ultra\nEOF\n\n# Create a custom install script for GNOME-specific configuration\ncat > linux-live/scripts/04-gnome-desktop/install << 'EOF'\n#!/bin/bash\nset -e\nset -o pipefail\nset -u\n\n. /minioslib\n. /minios_build.conf\n\nSCRIPT_DIR=\"$(dirname \"$(readlink -f \"$0\")\")\"\n\n# Install packages using condinapt\n/condinapt -l \"${SCRIPT_DIR}/packages.list\" -c \"${SCRIPT_DIR}/minios_build.conf\" -m \"${SCRIPT_DIR}/condinapt.conf\"\nif [ $? -ne 0 ]; then\n    echo \"Failed to install packages.\"\n    exit 1\nfi\n\n# Set GNOME as default session\necho 'gnome' > /etc/skel/.dmrc\necho '[Desktop]' > /etc/skel/.dmrc\necho 'Session=gnome' >> /etc/skel/.dmrc\n\nEOF\nchmod +x linux-live/scripts/04-gnome-desktop/install\nBuat modul aplikasi GNOME (05-gnome-apps):\ncp -r linux-live/scripts/10-example linux-live/scripts/05-gnome-apps\n\ncat > linux-live/scripts/05-gnome-apps/packages.list << EOF\n# GNOME Applications\ngnome-software +pv=standard +pv=toolbox +pv=ultra\ngnome-system-monitor +pv=standard +pv=toolbox +pv=ultra\ngnome-disk-utility +pv=standard +pv=toolbox +pv=ultra\ngnome-screenshot +pv=standard +pv=toolbox +pv=ultra\ngnome-calendar +pv=toolbox +pv=ultra\ngnome-weather +pv=toolbox +pv=ultra\ngnome-maps +pv=ultra\nrhythmbox +pv=toolbox +pv=ultra\ntotem +pv=toolbox +pv=ultra\nEOF\n\n# Create a custom install script for GNOME applications\ncat > linux-live/scripts/05-gnome-apps/install << 'EOF'\n#!/bin/bash\nset -e\nset -o pipefail\nset -u\n\n. /minioslib\n. /minios_build.conf\n\nSCRIPT_DIR=\"$(dirname \"$(readlink -f \"$0\")\")\"\n\n# Install packages using condinapt\n/condinapt -l \"${SCRIPT_DIR}/packages.list\" -c \"${SCRIPT_DIR}/minios_build.conf\" -m \"${SCRIPT_DIR}/condinapt.conf\"\nif [ $? -ne 0 ]; then\n    echo \"Failed to install packages.\"\n    exit 1\nfi\n\n# Configure default applications for GNOME\nmkdir -p /etc/skel/.config\n\n# Set default applications\ncat > /etc/skel/.config/mimeapps.list << 'MIME_EOF'\n[Default Applications]\ntext/plain=gnome-text-editor.desktop\nimage/jpeg=eog.desktop\nimage/png=eog.desktop\napplication/pdf=evince.desktop\nvideo/mp4=totem.desktop\naudio/mpeg=rhythmbox.desktop\nMIME_EOF\n\nEOF\nchmod +x linux-live/scripts/05-gnome-apps/install\nLink modul ke lingkungan GNOME:\n# Link base system modules (same for all environments)\nln -s ../../scripts/01-kernel linux-live/environments/gnome/01-kernel\nln -s ../../scripts/02-firmware linux-live/environments/gnome/02-firmware\nln -s ../../scripts/03-gui-base linux-live/environments/gnome/03-gui-base\n\n# Link GNOME-specific modules\nln -s ../../scripts/04-gnome-desktop linux-live/environments/gnome/04-gnome-desktop\nln -s ../../scripts/05-gnome-apps linux-live/environments/gnome/05-gnome-apps\n\n# Link additional modules as needed\nln -s ../../scripts/10-firefox linux-live/environments/gnome/06-firefox\nKonfigurasi build untuk lingkungan GNOME:\n# Copy and modify build configuration\ncp linux-live/build.conf linux-live/build-gnome.conf\nsed -i 's/DESKTOP_ENVIRONMENT=\".*\"/DESKTOP_ENVIRONMENT=\"gnome\"/' linux-live/build-gnome.conf\nsed -i 's/PACKAGE_VARIANT=\".*\"/PACKAGE_VARIANT=\"standard\"/' linux-live/build-gnome.conf\n\n# Build the GNOME system\nBUILD_CONF=linux-live/build-gnome.conf ./minios-live -\nPraktik Terbaik Struktur Lingkungan\nSaat membuat lingkungan kustom:\nModul dasar (01-03): Biasanya sama untuk semua lingkungan\nModul desktop (04): Berisi paket dan konfigurasi inti lingkungan desktop\nModul aplikasi (05): Aplikasi khusus desktop\nModul opsional (06+): Paket perangkat lunak tambahan\nKonvensi penamaan modul:\nGunakan format 04-{desktop}-desktop untuk modul desktop utama\nGunakan 05-{desktop}-apps atau 05-apps untuk aplikasi\nNomori modul tambahan secara berurutan (06, 07, 08, dst.)\nPertimbangan konfigurasi:\nSetiap lingkungan membutuhkan kondisi skip yang sesuai di modul\nPaket khusus desktop sebaiknya menggunakan kondisi +de={environment}\nUji secara menyeluruh dengan berbagai varian paket (minimum, standard, toolbox, ultra)\nMenambahkan Modul Kustom\nBuat modul baru menggunakan template:\ncp -r linux-live/scripts/10-example linux-live/scripts/06-custom-module\nEdit packages.list:\n# Edit linux-live/scripts/06-custom-module/packages.list\n# Add your packages with appropriate conditional markers\nKustomisasi skrip instalasi:\n# Edit linux-live/scripts/06-custom-module/install\n# Add custom configuration and setup commands\nLink modul ke lingkungan Anda:\nln -s ../../scripts/06-custom-module linux-live/environments/xfce/06-custom-module\nBuild modul:\n./minios-live build-modules\nPemecahan Masalah\nMasalah Umum\nBuild gagal dimulai - Koneksi internet diperlukan:\nMasalah: minios-live melakukan pengecekan konektivitas internet wajib saat startup\nSolusi: Pastikan koneksi internet stabil sebelum memulai build\nCek: Verifikasi resolusi DNS: nslookup deb.debian.org\nProxy: Atur pengaturan proxy jika berada di balik firewall perusahaan\nCatatan: Build tidak dapat dilanjutkan tanpa akses internet\nBuild gagal saat bootstrap:\nPastikan repository distribusi target tersedia\nPastikan prasyarat sudah terinstal\nTes: wget -q --spider http://deb.debian.org\nError build modul:\nCek ketersediaan paket di distribusi target\nVerifikasi sintaks marker kondisional\nTinjau skrip instalasi untuk error\nPaket hilang:\nCek kondisi condinapt\nVerifikasi nama paket untuk distribusi target\nTinjau pengaturan varian paket\nMasalah boot:\nCek konfigurasi GRUB\nVerifikasi pembuatan kernel dan initramfs\nTinjau file bootloader\nMode Debug\nAktifkan output debug dengan mengatur tingkat verbosity di konfigurasi build Anda:\nOpsi 1: Edit build.conf\n# Edit linux-live/build.conf and set:\nVERBOSITY_LEVEL=2   # Very verbose output with detailed tracing\n# or\nVERBOSITY_LEVEL=1   # Verbose output (default)\n# or\nVERBOSITY_LEVEL=0   # Minimal output\nOpsi 2: Buat konfigurasi kustom dengan pengaturan debug\ncp linux-live/build.conf linux-live/build-debug.conf\nsed -i 's/VERBOSITY_LEVEL=.*/VERBOSITY_LEVEL=2/' linux-live/build-debug.conf\n\n# Enable additional debug options\nsed -i 's/DEBUG_SSH_KEYS=\"false\"/DEBUG_SSH_KEYS=\"true\"/' linux-live/build-debug.conf\nsed -i 's/DEBUG_SET_ROOT_PASSWORD=\"false\"/DEBUG_SET_ROOT_PASSWORD=\"true\"/' linux-live/build-debug.conf\n\n# Build with debug configuration\nBUILD_CONF=linux-live/build-debug.conf ./minios-live -\nTingkat verbosity:\n0: Output minimal - hanya pesan penting\n1: Output verbose - informasi build standar (default)\n2: Output sangat verbose - tracing detail dengan debugging bash aktif\nFile Log\nLog build disimpan di:\nbuild/log/ - Log build umum\nMendapatkan Bantuan\nCek wiki resmi\nTinjau isu yang sudah ada di GitHub\nBergabung dengan forum komunitas di minios.dev\nDokumentasi Terkait\nMembuat Modul - Pelajari cara membuat modul SquashFS kustom dengan perangkat lunak tambahan\nMenyusun image ISO - Remaster sistem MiniOS yang sudah ada dengan minios-image-compose\nCondinAPT - Pahami sistem manajemen paket kondisional yang digunakan dalam proses build",
+  "plain_text": "Membangun MiniOS\nPanduan ini membahas proses lengkap untuk membangun MiniOS, termasuk pembuatan sistem, pengembangan modul, dan opsi konfigurasi lanjutan.\nRingkasan\nMiniOS menggunakan sistem build modular di mana sistem operasi dibangun dari modul-modul individual dalam format SquashFS. Setiap modul berisi paket perangkat lunak atau komponen tertentu, dan dimuat secara berurutan untuk membentuk sistem yang lengkap.\nMemulai\nPrasyarat\nVersi terbaru Debian atau Ubuntu untuk proses build\nRuang disk yang cukup (disarankan: minimal 20GB ruang kosong)\nKoneksi internet untuk mengunduh paket\nPaket yang diperlukan tercantum di linux-live/prerequisites.list\nInstalasi Prasyarat\nFile prerequisites.list menggunakan format condinapt dengan penanda kondisi. Instal paket yang diperlukan secara manual:\nsudo apt-get update\nsudo apt-get install sudo binutils debootstrap squashfs-tools xz-utils lz4 zstd xorriso mtools rsync curl\nsudo apt-get install grub-efi-amd64-bin grub-pc-bin\nSebagai alternatif, Anda dapat menggunakan condinapt untuk memproses daftar prasyarat jika tersedia di sistem Anda.\nAlat Build\nMiniOS menyediakan dua alat utama untuk proses build:\nminios-cmd (Direkomendasikan)\nUtilitas baris perintah yang memudahkan konfigurasi dan inisiasi proses build. Alat ini menyediakan antarmuka yang ramah pengguna untuk mengatur berbagai parameter build:\nDistribusi target (buster, bookworm, trixie, dll.)\nArsitektur (amd64, i386)\nLingkungan desktop (core, flux, xfce, lxqt)\nVarian paket (minimum, standard, toolbox, ultra)\nPenyedia kernel, seri kernel MiniOS, mode payload, dan opsi build DKMS\nPengaturan locale dan zona waktu\nPenggunaan:\n# Build with default configuration\nminios-cmd -d bookworm -a amd64 -de xfce -pv standard\n\n# Build with custom options\nminios-cmd -d bookworm -a amd64 -de xfce -pv toolbox -c zstd -l en_US -tz \"Europe/Prague\"\n\n# Build with the AUFS-enabled MiniOS kernel and optional DKMS drivers\nminios-cmd -d bookworm -a amd64 -de xfce -pv standard -mk -dkms\nUntuk informasi penggunaan lebih detail, lihat dokumentasi minios-cmd.\nminios-live (Lanjutan)\nSkrip build inti yang mengatur proses build langkah demi langkah:\nMenyiapkan lingkungan build\nMenginstal sistem dasar\nMengintegrasikan lingkungan desktop yang dipilih\nMembuat filesystem SquashFS\nMengkonfigurasi proses boot\nMenghasilkan image ISO bootable\nPenggunaan:\n# Complete build\n./minios-live -\n\n# Specific stages\n./minios-live build-bootstrap\n./minios-live build-chroot - build-live\nUntuk informasi penggunaan lebih detail, lihat dokumentasi minios-live.\nStruktur Proyek\nSistem build MiniOS diorganisasikan sebagai berikut:\nminios-live/\n├── linux-live/                 # Core scripts and build libraries\n│   ├── bootfiles/              # Files and templates for booting (GRUB, ISOLINUX, EFI, etc.)\n│   ├── environments/           # Environment descriptions and settings\n│   ├── initramfs/              # Scripts for creating initramfs\n│   ├── scripts/                # Module scripts and templates\n│   ├── build-initramfs         # Script for separate initramfs build\n│   ├── build.conf              # Main build configuration file\n│   ├── condinapt               # Script/tool for working with package lists\n│   ├── install-chroot          # Script for installing into the chroot environment\n│   ├── minioslib               # Core Bash function library\n│   └── prerequisites.list      # List of required packages for installation on the host for building\n├── tools/                      # Auxiliary build scripts\n├── minios-cmd                  # CLI utility for setting build parameters\n└── minios-live                 # Main script for building MiniOS\nProses Build\nProses build mengikuti urutan tahapan yang terstruktur:\nMermaid diagram\nPenjelasan Tahapan Build\nbuild-bootstrap - Membuat sistem dasar minimal menggunakan debootstrap\nbuild-chroot - Menginstal paket dan mengonfigurasi sistem di lingkungan chroot\nbuild-live - Membuat image utama SquashFS dengan sistem inti\nbuild-modules - Membangun modul SquashFS tambahan untuk perangkat lunak ekstra\nbuild-boot - Menyiapkan file bootloader dan kernel\nbuild-config - Menghasilkan file konfigurasi boot\nbuild-iso - Membuat image ISO final yang dapat di-boot\nOpsi Build\nBuild Sistem Lengkap\n# Full automated build\n./minios-live -\n# or\n./minios-live build-bootstrap - build-iso\nBuild Inkremental\n# Run only bootstrap stage\n./minios-live build-bootstrap\n\n# Run from chroot to live stages\n./minios-live build-chroot - build-live\n\n# Run from modules to completion\n./minios-live build-modules -\n\n# Build only ISO from existing data\n./minios-live build-iso\nSistem Konfigurasi\nFile Konfigurasi Build\nKonfigurasi Utama: linux-live/build.conf\nIni adalah file konfigurasi utama yang mendefinisikan:\nPengaturan distribusi: Distribusi target (buster, bookworm, trixie, sid)\nArsitektur: amd64, i386, i386-pae (khusus bookworm dan sebelumnya; trixie dan sid hanya mendukung amd64)\nLingkungan desktop: core, flux, xfce, lxqt\nVarian paket: minimum, standard, toolbox, ultra\nKompresi: xz, lzo, gz, lz4, zstd\nPengaturan kernel: penyedia distribusi atau MiniOS, seri MiniOS, payload runtime atau full, dan opsi kompilasi DKMS\nPengaturan locale: bahasa, zona waktu, tata letak keyboard\nKonfigurasi Runtime: minios_build.conf\nDibuat secara otomatis selama proses build dan berisi pengaturan khusus runtime untuk lingkungan chroot.\nAUFS disediakan oleh KERNEL_PROVIDER=minios; ini bukan toggle kernel terpisah saat ini.\nKernel distribusi didapatkan dengan paket APT yang terisolasi dan ditandatangani. Jika DKMS diaktifkan, header yang sesuai akan diambil bersama kernel dan hanya digunakan saat modul eksternal dibangun. Lihat Perintah Build untuk opsi frontend dan aturan payload.\nVarian Paket\nMiniOS mendukung berbagai varian paket yang menentukan perangkat lunak apa saja yang disertakan:\nminimum: Hanya paket esensial\nstandard: Aplikasi desktop standar\ntoolbox: Alat pengembangan dan utilitas lanjutan\nultra: Paket perangkat lunak lengkap dengan aplikasi tambahan\nPemilihan paket dikontrol menggunakan marker kondisional di file packages.list:\n# Install only in toolbox and ultra variants\nfirefox +pv=toolbox +pv=ultra\n\n# Install only in minimum variant\nbasic-tool +pv=minimum\nSistem Modul\nStruktur Modul\nSistem build menggunakan struktur modul bernomor yang terletak di linux-live/scripts/:\n00-core/          # Base system packages\n01-kernel/        # Linux kernel\n02-firmware/      # Hardware firmware\n03-gui-base/      # Basic GUI libraries\n04-xfce-desktop/  # Desktop environment\n05-apps/          # Desktop applications\n10-example/       # Example module template\nKomponen Modul\nSetiap direktori modul berisi:\npackages.list: Daftar paket yang akan diinstal dengan marker kondisional\ninstall: Skrip Bash yang dijalankan saat build modul\nrootcopy-install/: File yang disalin ke sistem selama build\nrootcopy-postinstall/: File yang disalin setelah instalasi paket\n.minios-ownership: Manifest kepemilikan opsional di dalam direktori rootcopy-* untuk file yang memerlukan pemilik non-root\nskip_conditions.conf: Kondisi untuk melewati build modul\npatches/: Patch yang diterapkan sebelum build (tidak tersedia untuk 00-core)\nFile di rootcopy-install/ dan rootcopy-postinstall/ disalin sebagai template build. Kepemilikan checkout host tidak dipertahankan; file biasanya menjadi root:root di pohon target. Jika file atau direktori membutuhkan pemilik non-root, buat .minios-ownership di direktori rootcopy terkait:\nowner:group relative/path\nPath bersifat relatif terhadap direktori rootcopy tersebut. Path absolut dan path yang mengandung ../ akan ditolak. Pemilik dan grup harus sudah ada saat manifest diterapkan. Jika dibuat oleh paket yang diinstal kemudian, gunakan rootcopy-postinstall/ atau atur kepemilikan di install/postinstall.\nContoh Template Modul\nModul 10-example/ berfungsi sebagai template untuk membuat modul baru. Modul ini berisi:\nFile packages.list lengkap dengan contoh marker kondisional\nSkrip dasar install yang menunjukkan penggunaan condinapt yang benar\nContoh direktori rootcopy-install/ dan rootcopy-postinstall/\nKomentar dokumentasi yang menjelaskan setiap komponen\nUntuk membuat modul baru: Salin direktori 10-example dan modifikasi sesuai kebutuhan Anda:\ncp -r linux-live/scripts/10-example linux-live/scripts/06-my-module\nTemplate ini digunakan di seluruh dokumentasi ini dan merupakan titik awal terbaik untuk modul kustom.\nPemuatan Modul Berdasarkan Lingkungan\nSistem modul bekerja melalui konfigurasi lingkungan di linux-live/environments/. Setiap direktori lingkungan berisi symbolic link ke modul-modul yang harus disertakan untuk lingkungan desktop dan varian paket tertentu.\nLingkungan yang Tersedia\nlinux-live/environments/\n├── core/          # Core system (no desktop)\n├── flux/          # Flux desktop environment\n├── lxqt/          # LXQt desktop environment\n├── xfce/          # XFCE desktop environment\n└── xfce-debug/    # XFCE with debug modules\nSetiap direktori lingkungan berisi symbolic link ke direktori modul di linux-live/scripts/:\n# Example: XFCE environment\nlinux-live/environments/xfce/\n├── 01-kernel -> ../../scripts/01-kernel\n├── 02-firmware -> ../../scripts/02-firmware\n├── 03-gui-base -> ../../scripts/03-gui-base\n├── 04-xfce-desktop -> ../../scripts/04-xfce-desktop\n├── 05-apps -> ../../scripts/05-apps\n└── 06-firefox -> ../../scripts/10-firefox\nMembangun Modul\nUntuk membangun modul, gunakan perintah build-modules:\n# Build all unbuilt modules for the current environment\n./minios-live build-modules\n\n# This will build all modules that:\n# 1. Are linked in the current environment directory\n# 2. Haven't been built yet\n# 3. Meet the skip conditions (if any)\nSkrip Instalasi Modul\nSkrip install di setiap modul:\nMemuat /minioslib untuk fungsi umum\nMemuat /minios_build.conf untuk konfigurasi build\nMengatur seleksi debconf untuk konfigurasi paket otomatis\nMelakukan konfigurasi kustom dan modifikasi file\nMenggunakan warna konsol untuk format output\nContoh struktur:\n#!/bin/bash\nset -e          # exit on error\nset -o pipefail # exit on pipeline error\nset -u          # treat unset variable as error\n\n. /minioslib\n. /minios_build.conf\n\nSCRIPT_DIR=\"$(dirname \"$(readlink -f \"$0\")\")\"\nconsole_colors\n\n# Debconf pre-configurations\nDEBCONF_SETTINGS=(\n    \"package-name package-name/option boolean true\"\n)\n\n# Apply debconf settings\nfor SETTING in \"${DEBCONF_SETTINGS[@]}\"; do\n    echo \"${SETTING}\" | debconf-set-selections -v\ndone\n\n# Custom installation and configuration logic\n# ...\nManajemen Paket dengan CondinAPT\nCondinAPT adalah sistem instalasi paket kondisional milik MiniOS yang menangani pemilihan paket berdasarkan parameter build seperti lingkungan desktop, distribusi, dan varian paket.\nPenggunaan Dasar\nSetiap modul berisi file packages.list dengan spesifikasi paket kondisional:\n# Basic syntax examples\npackage-name                    # Always install\npackage-name +pv=toolbox       # Install only for toolbox variant\npackage-name +de=xfce          # Install only for XFCE desktop\npackage-name -pv=minimum       # Install except for minimum variant\npreferred-pkg || fallback-pkg  # Try first, use second if unavailable\nMenggunakan CondinAPT di Skrip Modul\nPenggunaan standar di skrip instalasi modul:\n# Load MiniOS library and install packages\n. /minioslib || exit 1\n/linux-live/condinapt \\\n    -l \"$CWD/packages.list\" \\\n    -c /linux-live/build.conf \\\n    -m /linux-live/condinapt.map\nDokumentasi Lengkap\nUntuk dokumentasi CondinAPT yang komprehensif termasuk sintaks lanjutan, filter, antrean prioritas, mode debugging, dan contoh nyata, lihat: CondinAPT.md\nFilter Kondisi Umum\n+pv=variant - Varian paket (minimum, standard, toolbox, ultra)\n+d=distribution - Distribusi (bookworm, trixie, jammy, noble)\n+de=desktop - Lingkungan desktop (core, flux, xfce, lxqt)\n+da=architecture - Arsitektur (amd64, i386)\n+dp=profile - Keluarga paket (debian, ubuntu)\nMembangun ISO Pertama Anda\nMulai Cepat\nClone repository dan persiapkan:\ngit clone https://github.com/minios-linux/minios-live.git\ncd minios-live\nInstal prasyarat:\nsudo apt-get update\nsudo apt-get install sudo binutils debootstrap squashfs-tools xz-utils lz4 zstd xorriso mtools rsync grub-efi-amd64-bin grub-pc-bin\nBuild dengan minios-cmd (disarankan):\n./minios-cmd -d bookworm -a amd64 -de xfce -pv standard\nAtau build dengan minios-live:\n./minios-live -\nKustomisasi Build Anda\nSalin dan edit konfigurasi:\ncp linux-live/build.conf linux-live/build-custom.conf\n# Edit build-custom.conf with your preferences\nBuild dengan konfigurasi kustom:\nBUILD_CONF=linux-live/build-custom.conf ./minios-live -\nKustomisasi Lanjutan\nMembuat Lingkungan Kustom\nAnda dapat membuat lingkungan desktop baru sepenuhnya dengan membuat direktori lingkungan baru dan mengonfigurasi modul yang sesuai. Berikut cara membuat lingkungan GNOME sebagai contoh:\nBuat direktori lingkungan:\nmkdir -p linux-live/environments/gnome\nBuat modul desktop dasar (04-gnome-desktop):\n# Start with the example template for a clean base\ncp -r linux-live/scripts/10-example linux-live/scripts/04-gnome-desktop\n\n# Configure GNOME-specific packages\ncat > linux-live/scripts/04-gnome-desktop/packages.list << EOF\n# Base GNOME desktop packages\ngdm3\ngnome-shell\ngnome-session\ngnome-settings-daemon\ngnome-control-center\nnautilus\ngnome-terminal\n\n# Standard GNOME applications\ngnome-calculator +pv=standard +pv=toolbox +pv=ultra\ngnome-text-editor +pv=standard +pv=toolbox +pv=ultra\neog +pv=standard +pv=toolbox +pv=ultra\nevince +pv=standard +pv=toolbox +pv=ultra\n\n# Additional GNOME tools\ngnome-tweaks +pv=toolbox +pv=ultra\ngnome-extensions-app +pv=toolbox +pv=ultra\ndconf-editor +pv=toolbox +pv=ultra\nEOF\n\n# Create a custom install script for GNOME-specific configuration\ncat > linux-live/scripts/04-gnome-desktop/install << 'EOF'\n#!/bin/bash\nset -e\nset -o pipefail\nset -u\n\n. /minioslib\n. /minios_build.conf\n\nSCRIPT_DIR=\"$(dirname \"$(readlink -f \"$0\")\")\"\n\n# Install packages using condinapt\n/condinapt -l \"${SCRIPT_DIR}/packages.list\" -c \"${SCRIPT_DIR}/minios_build.conf\" -m \"${SCRIPT_DIR}/condinapt.conf\"\nif [ $? -ne 0 ]; then\n    echo \"Failed to install packages.\"\n    exit 1\nfi\n\n# Set GNOME as default session\necho 'gnome' > /etc/skel/.dmrc\necho '[Desktop]' > /etc/skel/.dmrc\necho 'Session=gnome' >> /etc/skel/.dmrc\n\nEOF\nchmod +x linux-live/scripts/04-gnome-desktop/install\nBuat modul aplikasi GNOME (05-gnome-apps):\ncp -r linux-live/scripts/10-example linux-live/scripts/05-gnome-apps\n\ncat > linux-live/scripts/05-gnome-apps/packages.list << EOF\n# GNOME Applications\ngnome-software +pv=standard +pv=toolbox +pv=ultra\ngnome-system-monitor +pv=standard +pv=toolbox +pv=ultra\ngnome-disk-utility +pv=standard +pv=toolbox +pv=ultra\ngnome-screenshot +pv=standard +pv=toolbox +pv=ultra\ngnome-calendar +pv=toolbox +pv=ultra\ngnome-weather +pv=toolbox +pv=ultra\ngnome-maps +pv=ultra\nrhythmbox +pv=toolbox +pv=ultra\ntotem +pv=toolbox +pv=ultra\nEOF\n\n# Create a custom install script for GNOME applications\ncat > linux-live/scripts/05-gnome-apps/install << 'EOF'\n#!/bin/bash\nset -e\nset -o pipefail\nset -u\n\n. /minioslib\n. /minios_build.conf\n\nSCRIPT_DIR=\"$(dirname \"$(readlink -f \"$0\")\")\"\n\n# Install packages using condinapt\n/condinapt -l \"${SCRIPT_DIR}/packages.list\" -c \"${SCRIPT_DIR}/minios_build.conf\" -m \"${SCRIPT_DIR}/condinapt.conf\"\nif [ $? -ne 0 ]; then\n    echo \"Failed to install packages.\"\n    exit 1\nfi\n\n# Configure default applications for GNOME\nmkdir -p /etc/skel/.config\n\n# Set default applications\ncat > /etc/skel/.config/mimeapps.list << 'MIME_EOF'\n[Default Applications]\ntext/plain=gnome-text-editor.desktop\nimage/jpeg=eog.desktop\nimage/png=eog.desktop\napplication/pdf=evince.desktop\nvideo/mp4=totem.desktop\naudio/mpeg=rhythmbox.desktop\nMIME_EOF\n\nEOF\nchmod +x linux-live/scripts/05-gnome-apps/install\nLink modul ke lingkungan GNOME:\n# Link base system modules (same for all environments)\nln -s ../../scripts/01-kernel linux-live/environments/gnome/01-kernel\nln -s ../../scripts/02-firmware linux-live/environments/gnome/02-firmware\nln -s ../../scripts/03-gui-base linux-live/environments/gnome/03-gui-base\n\n# Link GNOME-specific modules\nln -s ../../scripts/04-gnome-desktop linux-live/environments/gnome/04-gnome-desktop\nln -s ../../scripts/05-gnome-apps linux-live/environments/gnome/05-gnome-apps\n\n# Link additional modules as needed\nln -s ../../scripts/10-firefox linux-live/environments/gnome/06-firefox\nKonfigurasi build untuk lingkungan GNOME:\n# Copy and modify build configuration\ncp linux-live/build.conf linux-live/build-gnome.conf\nsed -i 's/DESKTOP_ENVIRONMENT=\".*\"/DESKTOP_ENVIRONMENT=\"gnome\"/' linux-live/build-gnome.conf\nsed -i 's/PACKAGE_VARIANT=\".*\"/PACKAGE_VARIANT=\"standard\"/' linux-live/build-gnome.conf\n\n# Build the GNOME system\nBUILD_CONF=linux-live/build-gnome.conf ./minios-live -\nPraktik Terbaik Struktur Lingkungan\nSaat membuat lingkungan kustom:\nModul dasar (01-03): Biasanya sama untuk semua lingkungan\nModul desktop (04): Berisi paket dan konfigurasi inti lingkungan desktop\nModul aplikasi (05): Aplikasi khusus desktop\nModul opsional (06+): Paket perangkat lunak tambahan\nKonvensi penamaan modul:\nGunakan format 04-{desktop}-desktop untuk modul desktop utama\nGunakan 05-{desktop}-apps atau 05-apps untuk aplikasi\nNomori modul tambahan secara berurutan (06, 07, 08, dst.)\nPertimbangan konfigurasi:\nSetiap lingkungan membutuhkan kondisi skip yang sesuai di modul\nPaket khusus desktop sebaiknya menggunakan kondisi +de={environment}\nUji secara menyeluruh dengan berbagai varian paket (minimum, standard, toolbox, ultra)\nMenambahkan Modul Kustom\nBuat modul baru menggunakan template:\ncp -r linux-live/scripts/10-example linux-live/scripts/06-custom-module\nEdit packages.list:\n# Edit linux-live/scripts/06-custom-module/packages.list\n# Add your packages with appropriate conditional markers\nKustomisasi skrip instalasi:\n# Edit linux-live/scripts/06-custom-module/install\n# Add custom configuration and setup commands\nLink modul ke lingkungan Anda:\nln -s ../../scripts/06-custom-module linux-live/environments/xfce/06-custom-module\nBuild modul:\n./minios-live build-modules\nPemecahan Masalah\nMasalah Umum\nBuild gagal dimulai - Koneksi internet diperlukan:\nMasalah: minios-live melakukan pengecekan konektivitas internet wajib saat startup\nSolusi: Pastikan koneksi internet stabil sebelum memulai build\nCek: Verifikasi resolusi DNS: nslookup deb.debian.org\nProxy: Atur pengaturan proxy jika berada di balik firewall perusahaan\nCatatan: Build tidak dapat dilanjutkan tanpa akses internet\nBuild gagal saat bootstrap:\nPastikan repository distribusi target tersedia\nPastikan prasyarat sudah terinstal\nTes: wget -q --spider http://deb.debian.org\nError build modul:\nCek ketersediaan paket di distribusi target\nVerifikasi sintaks marker kondisional\nTinjau skrip instalasi untuk error\nPaket hilang:\nCek kondisi condinapt\nVerifikasi nama paket untuk distribusi target\nTinjau pengaturan varian paket\nMasalah boot:\nCek konfigurasi GRUB\nVerifikasi pembuatan kernel dan initramfs\nTinjau file bootloader\nMode Debug\nAktifkan output debug dengan mengatur tingkat verbosity di konfigurasi build Anda:\nOpsi 1: Edit build.conf\n# Edit linux-live/build.conf and set:\nVERBOSITY_LEVEL=2   # Very verbose output with detailed tracing\n# or\nVERBOSITY_LEVEL=1   # Verbose output (default)\n# or\nVERBOSITY_LEVEL=0   # Minimal output\nOpsi 2: Buat konfigurasi kustom dengan pengaturan debug\ncp linux-live/build.conf linux-live/build-debug.conf\nsed -i 's/VERBOSITY_LEVEL=.*/VERBOSITY_LEVEL=2/' linux-live/build-debug.conf\n\n# Enable additional debug options\nsed -i 's/DEBUG_SSH_KEYS=\"false\"/DEBUG_SSH_KEYS=\"true\"/' linux-live/build-debug.conf\nsed -i 's/DEBUG_SET_ROOT_PASSWORD=\"false\"/DEBUG_SET_ROOT_PASSWORD=\"true\"/' linux-live/build-debug.conf\n\n# Build with debug configuration\nBUILD_CONF=linux-live/build-debug.conf ./minios-live -\nTingkat verbosity:\n0: Output minimal - hanya pesan penting\n1: Output verbose - informasi build standar (default)\n2: Output sangat verbose - tracing detail dengan debugging bash aktif\nFile Log\nLog build disimpan di:\nbuild/log/ - Log build umum\nMendapatkan Bantuan\nCek wiki resmi\nTinjau isu yang sudah ada di GitHub\nBergabung dengan forum komunitas di minios.dev\nDokumentasi Terkait\nMembuat Modul - Pelajari cara membuat modul SquashFS kustom dengan perangkat lunak tambahan\nMenyusun image ISO - Remaster sistem MiniOS yang sudah ada dengan minios-image-compose\nCondinAPT - Pahami sistem manajemen paket kondisional yang digunakan dalam proses build",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

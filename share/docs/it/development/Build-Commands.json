@@ -11,24 +11,29 @@
       "title": "Requisiti di root"
     },
     {
-      "anchor": "build-frontend",
+      "anchor": "build-del-frontend",
       "level": 2,
-      "title": "Build frontend"
+      "title": "Build del frontend"
     },
     {
-      "anchor": "configurazione-backend",
-      "level": 2,
-      "title": "Configurazione backend"
+      "anchor": "selezione-del-kernel",
+      "level": 3,
+      "title": "Selezione del kernel"
     },
     {
-      "anchor": "stadi-backend",
+      "anchor": "configurazione-del-backend",
       "level": 2,
-      "title": "Stadi backend"
+      "title": "Configurazione del backend"
     },
     {
-      "anchor": "dipendenze-tra-stadi",
+      "anchor": "fasi-del-backend",
       "level": 2,
-      "title": "Dipendenze tra stadi"
+      "title": "Fasi del backend"
+    },
+    {
+      "anchor": "dipendenze-tra-le-fasi",
+      "level": 2,
+      "title": "Dipendenze tra le fasi"
     },
     {
       "anchor": "output-e-log",
@@ -446,11 +451,11 @@
     [
       "heading",
       2,
-      "build-frontend",
+      "build-del-frontend",
       [
         [
           "text",
-          "Build frontend"
+          "Build del frontend"
         ]
       ]
     ],
@@ -768,7 +773,7 @@
       [
         [
           "text",
-          "Le impostazioni opzionali più comuni includono compressione, comportamento del kernel, lingua, fuso orario, builder initramfs, lingua del menu di avvio e directory di build. Verifica "
+          "Le impostazioni opzionali comuni includono compressione, comportamento del kernel, lingua, fuso orario, builder initramfs, lingua del menu di avvio e directory di build. Verifica "
         ],
         [
           "span",
@@ -787,12 +792,793 @@
       ]
     ],
     [
+      "heading",
+      3,
+      "selezione-del-kernel",
+      [
+        [
+          "text",
+          "Selezione del kernel"
+        ]
+      ]
+    ],
+    [
       "block",
       "paragraph",
       [
         [
           "text",
-          "Il frontend copia il template di configurazione, scrive i valori frontend forniti nella copia e invoca "
+          "Il frontend espone direttamente le impostazioni correnti del kernel:"
+        ]
+      ]
+    ],
+    [
+      "table",
+      [
+        [
+          "table_row",
+          true,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Opzione"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Effetto"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "-kp"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "--kernel-provider"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Seleziona "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "distribution"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " o "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "minios"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "-mk"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "--minios-kernel"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Seleziona il kernel MiniOS abilitato AUFS con selezione automatica della serie"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "-mks"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "--minios-kernel-series"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Seleziona "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "auto"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "6.1"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " o "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "6.12"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " e implica il provider MiniOS"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "-kpm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "--kernel-payload-mode"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Seleziona il payload del modulo kernel "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "runtime"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " o "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "full"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "-dkms"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "--kernel-build-dkms"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Compila i driver DKMS opzionali selezionati per il kernel effettivo"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ad esempio:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo ./minios-cmd -d bookworm -a amd64 -de xfce -pv standard \\\n  -mks 6.1 -kpm runtime -dkms",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "./minios-cmd",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "bookworm",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-a",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "amd64",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-de",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "xfce",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-pv",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "standard",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "\\",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "  ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-mks",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "6.1",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-kpm",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "runtime",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-dkms",
+          "#005CC5",
+          "#79B8FF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Il provider "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "distribution"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " risolve una chiusura del pacchetto kernel firmato in uno stato APT isolato. Quando DKMS è abilitato, quella chiusura fornisce anche gli header corrispondenti al kernel selezionato; la fase DKMS successiva non li sostituisce con il metapacchetto header generico della distribuzione userspace. Gli endpoint normali degli archivi kernel usano HTTP così che apt-cacher-ng possa memorizzare nella cache il contenuto dei pacchetti. APT comunque valida i metadati "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "InRelease"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " firmati e gli hash dei pacchetti."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Il provider "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " installa "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "linux-image-SERIES-mos-ARCH"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", verifica che il kernel abbia il supporto AUFS e usa "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "linux-headers-SERIES-mos-ARCH"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " per DKMS."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "KERNEL_FLAVOUR"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " deve essere "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "none"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", le architetture dei pacchetti userspace e kernel devono corrispondere e la policy di aggiornamento è bloccata. La selezione automatica della serie usa 6.1 per i386, Buster, Bullseye, Bookworm e Jammy; gli altri target supportati usano 6.12. I kernel MiniOS i386 supportano solo la serie 6.1."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "KERNEL_PAYLOAD_MODE=runtime"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pubblica l'albero dei moduli kernel, la configurazione del kernel, System.map, i metadati di deployment e i file di integrazione runtime sotto "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "modprobe.d"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "modules-load.d"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " e "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "udev/rules.d"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Esclude il database dpkg di lavoro, gli header, i link di build, i sorgenti DKMS, la toolchain del compilatore, i pacchetti initramfs e il firmware. Il firmware appartiene a "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "02-firmware"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". La modalità "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "full"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " mantiene un payload diagnostico più ampio."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Il frontend copia il template di configurazione, scrive i valori forniti dal frontend nella copia e invoca "
         ],
         [
           "span",
@@ -983,7 +1769,7 @@
       [
         [
           "text",
-          "Senza una destinazione diversa, questo scrive "
+          "Senza un'altra destinazione, questo scrive "
         ],
         [
           "span",
@@ -1017,7 +1803,7 @@
         ],
         [
           "text",
-          " seleziona un file di configurazione. L'aiuto del comando attuale indica che tutte le altre opzioni vengono ignorate in questa modalità, quindi non combinarlo con opzioni di target o tuning:"
+          " seleziona un file di configurazione. L'help del comando attuale indica che tutte le altre opzioni vengono ignorate in questa modalità, quindi non combinarlo con opzioni di target o tuning:"
         ]
       ]
     ],
@@ -1076,18 +1862,18 @@
       [
         [
           "text",
-          "Per la modalità opzioni frontend, i valori forniti da riga di comando vengono scritti sopra quelli corrispondenti del template. Per la modalità file di configurazione, considera il file selezionato come input di configurazione invece di tentare di sovrascriverlo con altri flag frontend."
+          "Per la modalità opzione frontend, i valori espliciti da riga di comando sovrascrivono i valori corrispondenti del template. Per la modalità file di configurazione, considera il file selezionato come input di configurazione invece di provare a sovrascriverlo con altri flag del frontend."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "configurazione-backend",
+      "configurazione-del-backend",
       [
         [
           "text",
-          "Configurazione backend"
+          "Configurazione del backend"
         ]
       ]
     ],
@@ -1139,7 +1925,7 @@
         ],
         [
           "text",
-          ". Il backend importa il file selezionato prima di calcolare i percorsi di destinazione e non dispone di flag a riga di comando per sovrascrivere singole impostazioni di configurazione."
+          ". Il backend importa il file selezionato prima di calcolare i percorsi target e non dispone di flag da riga di comando per sovrascrivere singole impostazioni di configurazione."
         ]
       ]
     ],
@@ -1395,7 +2181,7 @@
       [
         [
           "text",
-          "Non modificare i file generati sotto una directory di lavoro target come sostituto della manutenzione della configurazione selezionata. Vedi "
+          "Non modificare i file generati sotto una directory di lavoro target come sostituto della manutenzione della configurazione selezionata. Consulta "
         ],
         [
           "span",
@@ -1416,11 +2202,11 @@
     [
       "heading",
       2,
-      "stadi-backend",
+      "fasi-del-backend",
       [
         [
           "text",
-          "Stadi backend"
+          "Fasi del backend"
         ]
       ]
     ],
@@ -1430,7 +2216,7 @@
       [
         [
           "text",
-          "Gli stadi vengono eseguiti in questo ordine:"
+          "Le fasi vengono eseguite in questo ordine:"
         ]
       ]
     ],
@@ -1625,7 +2411,7 @@
       [
         [
           "text",
-          "I nomi degli stadi con trattino mostrati nell'aiuto sono accettati dallo script."
+          "I nomi delle fasi con trattino mostrati dall'help sono accettati dallo script."
         ]
       ]
     ],
@@ -1635,7 +2421,7 @@
       [
         [
           "text",
-          "Esegui l'intera pipeline:"
+          "Esegui la pipeline completa:"
         ]
       ]
     ],
@@ -1682,7 +2468,7 @@
       [
         [
           "text",
-          "Esegui solo uno stadio:"
+          "Esegui solo una fase:"
         ]
       ]
     ],
@@ -1729,7 +2515,7 @@
       [
         [
           "text",
-          "Esegui un intervallo inclusivo:"
+          "Esegui un intervallo incluso:"
         ]
       ]
     ],
@@ -1800,7 +2586,7 @@
       [
         [
           "text",
-          "Esegui dal primo stadio fino a uno selezionato:"
+          "Esegui dalla prima fase fino a una fase selezionata:"
         ]
       ]
     ],
@@ -1859,7 +2645,7 @@
       [
         [
           "text",
-          "Esegui da uno stadio selezionato fino all'ultimo stadio:"
+          "Esegui da una fase selezionata fino all'ultima fase:"
         ]
       ]
     ],
@@ -1981,11 +2767,11 @@
     [
       "heading",
       2,
-      "dipendenze-tra-stadi",
+      "dipendenze-tra-le-fasi",
       [
         [
           "text",
-          "Dipendenze tra stadi"
+          "Dipendenze tra le fasi"
         ]
       ]
     ],
@@ -1995,7 +2781,7 @@
       [
         [
           "text",
-          "Un comando parziale non ricrea gli output degli stadi precedenti omessi. Gli stadi successivi utilizzano il filesystem root, i moduli SquashFS, i file di avvio e la configurazione prodotti dagli stadi precedenti."
+          "Un comando parziale non ricrea gli output delle fasi precedenti omesse. Le fasi successive utilizzano il filesystem root, i moduli SquashFS, i file di avvio e la configurazione prodotti dalle fasi precedenti."
         ]
       ]
     ],
@@ -2005,7 +2791,7 @@
       [
         [
           "text",
-          "Ricostruire uno stadio precedente può quindi rendere obsoleti tutti gli output successivi che ne dipendono. Ricostruisci fino all'ultimo stadio interessato e non conservare moduli con numero superiore dopo aver modificato un modulo inferiore su cui sono stati basati. In particolare, "
+          "Ricostruire una fase precedente può quindi rendere obsoleti tutti gli output successivi dipendenti. Ricostruisci fino all'ultima fase interessata e non mantenere moduli con numerazione superiore dopo aver modificato un modulo inferiore su cui sono stati costruiti. In particolare, "
         ],
         [
           "span",
@@ -2019,7 +2805,7 @@
         ],
         [
           "text",
-          " impacchetta dati immagine precedentemente preparati; non ricostruisce tali dati."
+          " impacchetta i dati immagine preparati in precedenza; non ricostruisce quei dati."
         ]
       ]
     ],
@@ -2029,7 +2815,7 @@
       [
         [
           "text",
-          "Esegui una build completa per un nuovo target o quando non esistono gli output richiesti degli stadi precedenti:"
+          "Utilizza una build completa per un nuovo target o quando gli output precedenti richiesti non esistono:"
         ]
       ]
     ],
@@ -2171,7 +2957,7 @@
       [
         [
           "text",
-          "Con la configurazione e la root di build predefinite del checkout, l'esempio trixie utilizza queste posizioni verificate:"
+          "Con la configurazione di checkout e la root di build predefinite, l'esempio trixie utilizza queste posizioni verificate:"
         ]
       ]
     ],
@@ -2202,7 +2988,7 @@
                 ],
                 [
                   "text",
-                  " per il filesystem core modificabile"
+                  " per il filesystem core mutabile"
                 ]
               ]
             ]
@@ -2254,7 +3040,7 @@
                 ],
                 [
                   "text",
-                  " per i moduli e il payload MiniOS generati"
+                  " per i moduli e i payload MiniOS generati"
                 ]
               ]
             ]
@@ -2280,7 +3066,7 @@
                 ],
                 [
                   "text",
-                  " per i file ISO e i rispettivi sidecar "
+                  " per i file ISO e i relativi sidecar "
                 ],
                 [
                   "span",
@@ -2316,7 +3102,7 @@
                 ],
                 [
                   "text",
-                  " per il log di build acquisito"
+                  " per il log di build catturato"
                 ]
               ]
             ]
@@ -2344,7 +3130,7 @@
         ],
         [
           "text",
-          ". I nomi base degli ISO includono le impostazioni di build e, per build non di rilascio, un timestamp; utilizza il percorso stampato dalla build riuscita invece di prevedere il nome file completo."
+          ". I nomi base delle ISO includono le impostazioni di build e, per le build non di rilascio, un timestamp; utilizza il percorso stampato dalla build completata con successo invece di prevedere il nome file completo."
         ]
       ]
     ],
@@ -2375,7 +3161,7 @@
         ],
         [
           "text",
-          " abilita l'uso di Ubuntu Pro durante una build frontend. Il codice di build si collega all'interno del chroot, poi si scollega e rimuove lo stato Pro, l'autenticazione dei repository, le preferenze e le tracce della keyring prima di creare l'immagine. Questa pulizia non rende il token sicuro da esporre sull'host."
+          " abilita l'uso di Ubuntu Pro durante una build frontend. Il codice di build si collega all'interno del chroot, poi si scollega e rimuove lo stato Pro, l'autenticazione del repository, le preferenze e le tracce della keyring prima di creare l'immagine. Questa pulizia non rende il token sicuro da esporre sull'host."
         ]
       ]
     ],
@@ -2385,7 +3171,7 @@
       [
         [
           "text",
-          "Non inserire un token reale nella documentazione, nel controllo versione, nella cronologia della shell, nell'output CI o su una riga di comando condivisa. Preferisci un file di configurazione privato fuori dal repository, limitato al solo proprietario, e passa solo il suo percorso:"
+          "Non inserire un token reale nella documentazione, nel controllo versione, nella cronologia della shell, nell'output CI o in una riga di comando condivisa. Preferisci un file di configurazione privato fuori dal repository, limitato al solo proprietario, e passa solo il suo percorso:"
         ]
       ]
     ],
@@ -2544,12 +3330,12 @@
         ],
         [
           "text",
-          " in quel file privato. Proteggi ed elimina qualsiasi configurazione di lavoro lato host contenente il token quando non è più necessaria e verifica che nessun token o dato di autenticazione Pro sia presente negli artefatti pubblicati."
+          " in quel file privato. Proteggi e rimuovi qualsiasi configurazione di lavoro lato host contenente il token quando non è più necessaria e verifica che nessun token o dato di autenticazione Pro sia presente negli artefatti pubblicati."
         ]
       ]
     ]
   ],
-  "plain_text": "Comandi di build\nMiniOS offre due interfacce a riga di comando per la build. Esegui i comandi dalla directory sorgente minios-live a meno che tu non stia usando una copia installata.\nminios-cmd è il frontend. Accetta le opzioni comuni per il target, genera una configurazione funzionante e avvia una build completa.\nminios-live è il backend a stadi. Legge una configurazione di build ed esegue uno stadio, un intervallo inclusivo di stadi, oppure l'intera pipeline.\nPer la versione installata, utilizza ./minios-cmd --help, ./minios-live --help e il build.conf attivo. Questi sono autorevoli quando esempi o documentazione precedente risultano in disaccordo. I valori supportati per i target possono cambiare, quindi questa pagina non definisce una matrice di supporto.\nRequisiti di root\nLa visualizzazione dell'aiuto non richiede i privilegi di root:\n./minios-cmd --help\n./minios-live --help\nLe operazioni di build richiedono i privilegi di root perché utilizzano debootstrap, chroot, mount e strumenti per la creazione di immagini. L'attuale frontend verifica anche la presenza dei privilegi di root prima di scrivere una configurazione con --config-only.\nsudo ./minios-cmd -d trixie -a amd64 -de xfce -pv standard\nIl backend controlla e installa i prerequisiti dell'host elencati in linux-live/prerequisites.list a meno che SKIP_SETUP_HOST=true sia impostato nella configurazione.\nBuild frontend\nUna normale invocazione di minios-cmd richiede tutte e quattro le opzioni di selezione del target:\n-d, --distribution\n-a, --architecture\n-de, --desktop-environment\n-pv, --package-variant\nAd esempio:\nsudo ./minios-cmd -d trixie -a amd64 -de xfce -pv standard\nLe impostazioni opzionali più comuni includono compressione, comportamento del kernel, lingua, fuso orario, builder initramfs, lingua del menu di avvio e directory di build. Verifica ./minios-cmd --help invece di presumere che un'opzione sia disponibile.\nIl frontend copia il template di configurazione, scrive i valori frontend forniti nella copia e invoca minios-live -. Per impostazione predefinita, la copia di lavoro per questo esempio è:\nbuild/trixie-standard-amd64/build.conf\nGenera una configurazione senza avviare la build:\nsudo ./minios-cmd --config-only \\\n  -d trixie -a amd64 -de xfce -pv standard\nSenza una destinazione diversa, questo scrive build/build.conf.\n--config-file FILE seleziona un file di configurazione. L'aiuto del comando attuale indica che tutte le altre opzioni vengono ignorate in questa modalità, quindi non combinarlo con opzioni di target o tuning:\nsudo ./minios-cmd --config-file /absolute/path/build-trixie.conf\nPer la modalità opzioni frontend, i valori forniti da riga di comando vengono scritti sopra quelli corrispondenti del template. Per la modalità file di configurazione, considera il file selezionato come input di configurazione invece di tentare di sovrascriverlo con altri flag frontend.\nConfigurazione backend\nIn una copia del sorgente, minios-live legge linux-live/build.conf per impostazione predefinita. Una copia installata utilizza /etc/minios-live/build.conf. Il backend importa il file selezionato prima di calcolare i percorsi di destinazione e non dispone di flag a riga di comando per sovrascrivere singole impostazioni di configurazione.\nSeleziona un file diverso tramite BUILD_CONF. Usa un percorso assoluto quando attraversi il confine sudo:\nsudo env BUILD_CONF=/absolute/path/build-trixie.conf ./minios-live -\nBUILD_DIR seleziona un'altra root di output della build:\nsudo env \\\n  BUILD_CONF=/absolute/path/build-trixie.conf \\\n  BUILD_DIR=/absolute/path/minios-build \\\n  ./minios-live -\nNon modificare i file generati sotto una directory di lavoro target come sostituto della manutenzione della configurazione selezionata. Vedi linux-live/build.conf per opzioni avanzate su kernel, bootloader, lingua, cache, snapshot, moduli, pulizia e pubblicazione.\nStadi backend\nGli stadi vengono eseguiti in questo ordine:\nbuild-bootstrap\nbuild-chroot\nbuild-live\nbuild-modules\nbuild-boot\nbuild-config\nbuild-iso\nremove-sources\nI nomi degli stadi con trattino mostrati nell'aiuto sono accettati dallo script.\nEsegui l'intera pipeline:\nsudo ./minios-live -\nEsegui solo uno stadio:\nsudo ./minios-live build-iso\nEsegui un intervallo inclusivo:\nsudo ./minios-live build-chroot - build-live\nEsegui dal primo stadio fino a uno selezionato:\nsudo ./minios-live - build-live\nEsegui da uno stadio selezionato fino all'ultimo stadio:\nsudo ./minios-live build-modules -\nQuesti esempi backend utilizzano il target selezionato nella configurazione attiva. Per gli esempi in questa pagina, imposta prima DISTRIBUTION=\"trixie\", DISTRIBUTION_ARCH=\"amd64\", DESKTOP_ENVIRONMENT=\"xfce\" e PACKAGE_VARIANT=\"standard\".\nDipendenze tra stadi\nUn comando parziale non ricrea gli output degli stadi precedenti omessi. Gli stadi successivi utilizzano il filesystem root, i moduli SquashFS, i file di avvio e la configurazione prodotti dagli stadi precedenti.\nRicostruire uno stadio precedente può quindi rendere obsoleti tutti gli output successivi che ne dipendono. Ricostruisci fino all'ultimo stadio interessato e non conservare moduli con numero superiore dopo aver modificato un modulo inferiore su cui sono stati basati. In particolare, build-iso impacchetta dati immagine precedentemente preparati; non ricostruisce tali dati.\nEsegui una build completa per un nuovo target o quando non esistono gli output richiesti degli stadi precedenti:\nsudo ./minios-cmd -d trixie -a amd64 -de xfce -pv standard\nOutput e log\nCon la configurazione e la root di build predefinite del checkout, l'esempio trixie utilizza queste posizioni verificate:\nbuild/trixie-standard-amd64/core/ per il filesystem core modificabile\nbuild/trixie-standard-amd64/image/ per l'albero ISO preparato\nbuild/trixie-standard-amd64/image/minios/ per i moduli e il payload MiniOS generati\nbuild/iso/ per i file ISO e i rispettivi sidecar .iso.sha256\nbuild/log/build-YYYYMMDD-HHMMSS.log per il log di build acquisito\nTutti i percorsi sono relativi a BUILD_DIR. I nomi base degli ISO includono le impostazioni di build e, per build non di rilascio, un timestamp; utilizza il percorso stampato dalla build riuscita invece di prevedere il nome file completo.\nToken Ubuntu Pro\n--ubuntu-pro-token abilita l'uso di Ubuntu Pro durante una build frontend. Il codice di build si collega all'interno del chroot, poi si scollega e rimuove lo stato Pro, l'autenticazione dei repository, le preferenze e le tracce della keyring prima di creare l'immagine. Questa pulizia non rende il token sicuro da esporre sull'host.\nNon inserire un token reale nella documentazione, nel controllo versione, nella cronologia della shell, nell'output CI o su una riga di comando condivisa. Preferisci un file di configurazione privato fuori dal repository, limitato al solo proprietario, e passa solo il suo percorso:\ninstall -m 600 linux-live/build.conf /private/path/build-trixie.conf\nsudo env BUILD_CONF=/private/path/build-trixie.conf ./minios-live -\nImposta USE_UBUNTU_PRO=\"true\" e UBUNTU_PRO_TOKEN=\"...\" in quel file privato. Proteggi ed elimina qualsiasi configurazione di lavoro lato host contenente il token quando non è più necessaria e verifica che nessun token o dato di autenticazione Pro sia presente negli artefatti pubblicati.",
+  "plain_text": "Comandi di build\nMiniOS offre due interfacce a riga di comando per la build. Esegui i comandi dalla directory sorgente minios-live a meno che tu non stia usando una copia installata.\nminios-cmd è il frontend. Accetta le opzioni comuni per il target, genera una configurazione funzionante e avvia una build completa.\nminios-live è il backend a stadi. Legge una configurazione di build ed esegue uno stadio, un intervallo inclusivo di stadi, oppure l'intera pipeline.\nPer la versione installata, utilizza ./minios-cmd --help, ./minios-live --help e il build.conf attivo. Questi sono autorevoli quando esempi o documentazione precedente risultano in disaccordo. I valori supportati per i target possono cambiare, quindi questa pagina non definisce una matrice di supporto.\nRequisiti di root\nLa visualizzazione dell'aiuto non richiede i privilegi di root:\n./minios-cmd --help\n./minios-live --help\nLe operazioni di build richiedono i privilegi di root perché utilizzano debootstrap, chroot, mount e strumenti per la creazione di immagini. L'attuale frontend verifica anche la presenza dei privilegi di root prima di scrivere una configurazione con --config-only.\nsudo ./minios-cmd -d trixie -a amd64 -de xfce -pv standard\nIl backend controlla e installa i prerequisiti dell'host elencati in linux-live/prerequisites.list a meno che SKIP_SETUP_HOST=true sia impostato nella configurazione.\nBuild del frontend\nUna normale invocazione di minios-cmd richiede tutte e quattro le opzioni di selezione del target:\n-d, --distribution\n-a, --architecture\n-de, --desktop-environment\n-pv, --package-variant\nAd esempio:\nsudo ./minios-cmd -d trixie -a amd64 -de xfce -pv standard\nLe impostazioni opzionali comuni includono compressione, comportamento del kernel, lingua, fuso orario, builder initramfs, lingua del menu di avvio e directory di build. Verifica ./minios-cmd --help invece di presumere che un'opzione sia disponibile.\nSelezione del kernel\nIl frontend espone direttamente le impostazioni correnti del kernel:\nOpzione | Effetto\n-kp, --kernel-provider | Seleziona distribution o minios\n-mk, --minios-kernel | Seleziona il kernel MiniOS abilitato AUFS con selezione automatica della serie\n-mks, --minios-kernel-series | Seleziona auto, 6.1 o 6.12 e implica il provider MiniOS\n-kpm, --kernel-payload-mode | Seleziona il payload del modulo kernel runtime o full\n-dkms, --kernel-build-dkms | Compila i driver DKMS opzionali selezionati per il kernel effettivo\nAd esempio:\nsudo ./minios-cmd -d bookworm -a amd64 -de xfce -pv standard \\\n  -mks 6.1 -kpm runtime -dkms\nIl provider distribution risolve una chiusura del pacchetto kernel firmato in uno stato APT isolato. Quando DKMS è abilitato, quella chiusura fornisce anche gli header corrispondenti al kernel selezionato; la fase DKMS successiva non li sostituisce con il metapacchetto header generico della distribuzione userspace. Gli endpoint normali degli archivi kernel usano HTTP così che apt-cacher-ng possa memorizzare nella cache il contenuto dei pacchetti. APT comunque valida i metadati InRelease firmati e gli hash dei pacchetti.\nIl provider minios installa linux-image-SERIES-mos-ARCH, verifica che il kernel abbia il supporto AUFS e usa linux-headers-SERIES-mos-ARCH per DKMS.\nKERNEL_FLAVOUR deve essere none, le architetture dei pacchetti userspace e kernel devono corrispondere e la policy di aggiornamento è bloccata. La selezione automatica della serie usa 6.1 per i386, Buster, Bullseye, Bookworm e Jammy; gli altri target supportati usano 6.12. I kernel MiniOS i386 supportano solo la serie 6.1.\nKERNEL_PAYLOAD_MODE=runtime pubblica l'albero dei moduli kernel, la configurazione del kernel, System.map, i metadati di deployment e i file di integrazione runtime sotto modprobe.d, modules-load.d e udev/rules.d. Esclude il database dpkg di lavoro, gli header, i link di build, i sorgenti DKMS, la toolchain del compilatore, i pacchetti initramfs e il firmware. Il firmware appartiene a 02-firmware. La modalità full mantiene un payload diagnostico più ampio.\nIl frontend copia il template di configurazione, scrive i valori forniti dal frontend nella copia e invoca minios-live -. Per impostazione predefinita, la copia di lavoro per questo esempio è:\nbuild/trixie-standard-amd64/build.conf\nGenera una configurazione senza avviare la build:\nsudo ./minios-cmd --config-only \\\n  -d trixie -a amd64 -de xfce -pv standard\nSenza un'altra destinazione, questo scrive build/build.conf.\n--config-file FILE seleziona un file di configurazione. L'help del comando attuale indica che tutte le altre opzioni vengono ignorate in questa modalità, quindi non combinarlo con opzioni di target o tuning:\nsudo ./minios-cmd --config-file /absolute/path/build-trixie.conf\nPer la modalità opzione frontend, i valori espliciti da riga di comando sovrascrivono i valori corrispondenti del template. Per la modalità file di configurazione, considera il file selezionato come input di configurazione invece di provare a sovrascriverlo con altri flag del frontend.\nConfigurazione del backend\nIn una copia del sorgente, minios-live legge linux-live/build.conf per impostazione predefinita. Una copia installata utilizza /etc/minios-live/build.conf. Il backend importa il file selezionato prima di calcolare i percorsi target e non dispone di flag da riga di comando per sovrascrivere singole impostazioni di configurazione.\nSeleziona un file diverso tramite BUILD_CONF. Usa un percorso assoluto quando attraversi il confine sudo:\nsudo env BUILD_CONF=/absolute/path/build-trixie.conf ./minios-live -\nBUILD_DIR seleziona un'altra root di output della build:\nsudo env \\\n  BUILD_CONF=/absolute/path/build-trixie.conf \\\n  BUILD_DIR=/absolute/path/minios-build \\\n  ./minios-live -\nNon modificare i file generati sotto una directory di lavoro target come sostituto della manutenzione della configurazione selezionata. Consulta linux-live/build.conf per opzioni avanzate su kernel, bootloader, lingua, cache, snapshot, moduli, pulizia e pubblicazione.\nFasi del backend\nLe fasi vengono eseguite in questo ordine:\nbuild-bootstrap\nbuild-chroot\nbuild-live\nbuild-modules\nbuild-boot\nbuild-config\nbuild-iso\nremove-sources\nI nomi delle fasi con trattino mostrati dall'help sono accettati dallo script.\nEsegui la pipeline completa:\nsudo ./minios-live -\nEsegui solo una fase:\nsudo ./minios-live build-iso\nEsegui un intervallo incluso:\nsudo ./minios-live build-chroot - build-live\nEsegui dalla prima fase fino a una fase selezionata:\nsudo ./minios-live - build-live\nEsegui da una fase selezionata fino all'ultima fase:\nsudo ./minios-live build-modules -\nQuesti esempi backend utilizzano il target selezionato nella configurazione attiva. Per gli esempi in questa pagina, imposta prima DISTRIBUTION=\"trixie\", DISTRIBUTION_ARCH=\"amd64\", DESKTOP_ENVIRONMENT=\"xfce\" e PACKAGE_VARIANT=\"standard\".\nDipendenze tra le fasi\nUn comando parziale non ricrea gli output delle fasi precedenti omesse. Le fasi successive utilizzano il filesystem root, i moduli SquashFS, i file di avvio e la configurazione prodotti dalle fasi precedenti.\nRicostruire una fase precedente può quindi rendere obsoleti tutti gli output successivi dipendenti. Ricostruisci fino all'ultima fase interessata e non mantenere moduli con numerazione superiore dopo aver modificato un modulo inferiore su cui sono stati costruiti. In particolare, build-iso impacchetta i dati immagine preparati in precedenza; non ricostruisce quei dati.\nUtilizza una build completa per un nuovo target o quando gli output precedenti richiesti non esistono:\nsudo ./minios-cmd -d trixie -a amd64 -de xfce -pv standard\nOutput e log\nCon la configurazione di checkout e la root di build predefinite, l'esempio trixie utilizza queste posizioni verificate:\nbuild/trixie-standard-amd64/core/ per il filesystem core mutabile\nbuild/trixie-standard-amd64/image/ per l'albero ISO preparato\nbuild/trixie-standard-amd64/image/minios/ per i moduli e i payload MiniOS generati\nbuild/iso/ per i file ISO e i relativi sidecar .iso.sha256\nbuild/log/build-YYYYMMDD-HHMMSS.log per il log di build catturato\nTutti i percorsi sono relativi a BUILD_DIR. I nomi base delle ISO includono le impostazioni di build e, per le build non di rilascio, un timestamp; utilizza il percorso stampato dalla build completata con successo invece di prevedere il nome file completo.\nToken Ubuntu Pro\n--ubuntu-pro-token abilita l'uso di Ubuntu Pro durante una build frontend. Il codice di build si collega all'interno del chroot, poi si scollega e rimuove lo stato Pro, l'autenticazione del repository, le preferenze e le tracce della keyring prima di creare l'immagine. Questa pulizia non rende il token sicuro da esporre sull'host.\nNon inserire un token reale nella documentazione, nel controllo versione, nella cronologia della shell, nell'output CI o in una riga di comando condivisa. Preferisci un file di configurazione privato fuori dal repository, limitato al solo proprietario, e passa solo il suo percorso:\ninstall -m 600 linux-live/build.conf /private/path/build-trixie.conf\nsudo env BUILD_CONF=/private/path/build-trixie.conf ./minios-live -\nImposta USE_UBUNTU_PRO=\"true\" e UBUNTU_PRO_TOKEN=\"...\" in quel file privato. Proteggi e rimuovi qualsiasi configurazione di lavoro lato host contenente il token quando non è più necessaria e verifica che nessun token o dato di autenticazione Pro sia presente negli artefatti pubblicati.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
