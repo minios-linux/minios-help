@@ -1,0 +1,1205 @@
+{
+  "headings": [
+    {
+      "anchor": "security",
+      "level": 1,
+      "title": "Security"
+    },
+    {
+      "anchor": "start-with-trusted-media",
+      "level": 2,
+      "title": "Start with trusted media"
+    },
+    {
+      "anchor": "replace-default-credentials",
+      "level": 2,
+      "title": "Replace default credentials"
+    },
+    {
+      "anchor": "use-configurator-security-controls",
+      "level": 2,
+      "title": "Use Configurator security controls"
+    },
+    {
+      "anchor": "secure-remote-access",
+      "level": 2,
+      "title": "Secure remote access"
+    },
+    {
+      "anchor": "encrypt-persistent-data",
+      "level": 2,
+      "title": "Encrypt persistent data"
+    },
+    {
+      "anchor": "apply-updates-deliberately",
+      "level": 2,
+      "title": "Apply updates deliberately"
+    },
+    {
+      "anchor": "treat-hooks-and-preseeding-as-code-execution",
+      "level": 2,
+      "title": "Treat hooks and preseeding as code execution"
+    },
+    {
+      "anchor": "back-up-and-retire-media-safely",
+      "level": 2,
+      "title": "Back up and retire media safely"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "security",
+      [
+        [
+          "text",
+          "Security"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS security controls are designed around the live system: temporary sessions, persistent sessions, portable media, and boot-time configuration. MiniOS Installer can also perform a native conversion. The resulting system keeps the selected desktop environment and MiniOS visual identity, but the live-specific MiniOS software is removed, so secure and maintain it with the normal Debian tools rather than treating it as another live mode."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Protect the running session, persistent data, boot media, and any configuration that is applied at startup."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "start-with-trusted-media",
+      [
+        [
+          "text",
+          "Start with trusted media"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Download MiniOS from an official source and verify the ISO before writing it."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Follow "
+        ],
+        [
+          "link",
+          "/installing-minios/Verifying-Downloads.md",
+          null,
+          [
+            [
+              "text",
+              "Verifying downloads"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and compare the result before booting or installing. Verification detects a damaged or substituted download; it does not prove that an already modified USB device is safe."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Keep the USB device under physical control. Firmware passwords and restricted boot order can reduce casual unauthorized booting, but do not encrypt files on the device. Secure Boot may provide additional boot-chain protection on images and hardware that support it; check the actual release and firmware behavior rather than assuming support."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "replace-default-credentials",
+      [
+        [
+          "text",
+          "Replace default credentials"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "An uncustomized MiniOS live image uses the published credentials "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "live"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " / "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "evil"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "root"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " / "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toor"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", with automatic login and passwordless administrative access in its convenience-oriented configuration. Anyone who can reach the system may be able to use those credentials, especially if SSH is active."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Before joining an untrusted network:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Set unique user and root passwords in MiniOS Configurator."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Select an appropriate security profile and review every populated control."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Disable SSH and XRDP unless remote access is required."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Reboot into a new session when changing one-shot account or security settings, then verify the resulting login and privilege behavior."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The Configurator stores encrypted password hashes rather than plaintext passwords. If changing an already created persistent account, use "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "passwd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for the current user and "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "sudo passwd root"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for root. After native conversion, use the normal Debian account-management tools."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "use-configurator-security-controls",
+      [
+        [
+          "text",
+          "Use Configurator security controls"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS Configurator provides three profiles. A profile fills concrete settings; the profile name itself is not saved as a runtime configuration key, and each setting remains independently editable."
+        ]
+      ]
+    ],
+    [
+      "table",
+      [
+        [
+          "table_row",
+          true,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Profile"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Main behavior"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "convenient"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Autologin-compatible, passwordless sudo and PolicyKit, root and password SSH allowed, relaxed XRDP/X11/lock screen, password hints shown."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "balanced"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "No autologin, password-required sudo and PolicyKit, SSH root login denied but password SSH allowed, hardened XRDP/X11/lock screen."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "strict"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "No autologin, password-required sudo and PolicyKit, SSH root and password login denied, XRDP disabled, hardened X11/lock screen, password hints hidden."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The installer defaults differ by deployment mode: live installations favor "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "convenient"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", while native conversion starts from "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "balanced"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". The native setting is applied during conversion; after installation, use the normal Debian security configuration. These are defaults, not recommendations for every threat model."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The same settings are available as documented configuration keys, including "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_SUDO_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_POLKIT_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_SSH_PERMIT_ROOT_LOGIN"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_SSH_PASSWORD_AUTHENTICATION"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_XRDP_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_X11_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_ISSUE_PASSWORD_HINTS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", and "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_LOCKSCREEN_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Prefer these keys or the Configurator over editing generated sudoers, PolicyKit, display-manager, or SSH files. See "
+        ],
+        [
+          "link",
+          "/reference/configuration/config.conf.md",
+          null,
+          [
+            [
+              "text",
+              "Configuration file"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "For save behavior and setting applicability, see "
+        ],
+        [
+          "link",
+          "/preparing-and-customizing/Preconfiguring-MiniOS.md",
+          null,
+          [
+            [
+              "text",
+              "MiniOS Configurator"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Account creation, passwords, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_CONFIG_NOROOT"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", and the security posture are one-shot settings used when a new session is created. The Configurator shows applicability for each control. Reconfigurable settings such as services are applied after reboot."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "secure-remote-access",
+      [
+        [
+          "text",
+          "Secure remote access"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "SSH may be enabled in a MiniOS image for recovery use. On a network where other users are not trusted, assume the published default credentials are exposed until you have confirmed otherwise."
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "If SSH is unnecessary, add "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "ssh"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " to "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "DISABLE_SERVICES"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " in Configurator and remove it from "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "ENABLE_SERVICES"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " if present."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "If SSH is required, deny root login with "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_SSH_PERMIT_ROOT_LOGIN=false"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Prefer key authentication. Confirm key login in a separate connection before setting "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_SSH_PASSWORD_AUTHENTICATION=false"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Restrict inbound access with the network firewall or router, and do not expose a portable recovery system directly to the Internet."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Review XRDP separately. The strict profile disables it; the balanced profile hardens it but does not necessarily disable its service."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Boot parameters can override configuration-file values. Inspect unexpected service behavior against "
+        ],
+        [
+          "link",
+          "/reference/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Boot parameters"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "encrypt-persistent-data",
+      [
+        [
+          "text",
+          "Encrypt persistent data"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Unencrypted native, DynFileFS, and raw persistence can be read by someone who obtains the device. MiniOS Installer can configure an encrypted LUKS container for a live session when the source initrd advertises LUKS support. The initrd creates "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " on first boot and asks for its passphrase; the installer does not receive or store that passphrase."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "LUKS persistence protects the contents while the container is closed. It does not protect data after unlock, the unencrypted boot files, copied files outside the container, or a native root filesystem. LUKS session persistence is not native root encryption. Use a strong passphrase and keep a tested backup."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "See "
+        ],
+        [
+          "link",
+          "/installing-minios/MiniOS-Installer.md",
+          null,
+          [
+            [
+              "text",
+              "MiniOS Installer"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and "
+        ],
+        [
+          "link",
+          "/using-minios/Sessions-and-Persistence.md",
+          null,
+          [
+            [
+              "text",
+              "Session management"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "apply-updates-deliberately",
+      [
+        [
+          "text",
+          "Apply updates deliberately"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Refresh package metadata and install Debian security updates in persistent live sessions with the normal APT workflow when that is appropriate. APT changes in a fresh live session disappear at reboot. Base SquashFS modules are read-only, so replacing the ISO or modules with a newer trusted MiniOS release is often the cleanest way to update the base live system. After native conversion, package security maintenance is simply the ordinary Debian APT workflow for that installed system."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "See "
+        ],
+        [
+          "link",
+          "/maintenance-and-recovery/Updating-MiniOS.md",
+          null,
+          [
+            [
+              "text",
+              "Software updates"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for the separate APT, module, image, and kernel workflows."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Before a large update:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Back up important files and persistent sessions."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Confirm enough free space is available."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Avoid interrupting writes or powering off the device."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Reboot and verify the updated system before discarding the previous known-good media or session."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "treat-hooks-and-preseeding-as-code-execution",
+      [
+        [
+          "text",
+          "Treat hooks and preseeding as code execution"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "hooks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " boot option and live-config hooks can execute files from the root filesystem, boot medium, or a URL. Remote hooks, modified media hooks, and unreviewed preseeds can run with system privileges. Use only reviewed files from a trusted source, prefer authenticated distribution, and avoid remote hooks on untrusted networks. See "
+        ],
+        [
+          "link",
+          "/reference/configuration/live-config.md",
+          null,
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for the execution order and supported locations."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "back-up-and-retire-media-safely",
+      [
+        [
+          "text",
+          "Back up and retire media safely"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Persistence is not a backup. Keep a separate copy of user files and export or copy sessions while they are healthy. Test restoration on different media."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Shut down cleanly before removing writable storage, and keep free space for session metadata and filesystem operation."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Before disposing of a device, securely erase it according to the storage technology and sensitivity of the data. Deleting files or reformatting alone may not make old data unrecoverable."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Security\nMiniOS security controls are designed around the live system: temporary sessions, persistent sessions, portable media, and boot-time configuration. MiniOS Installer can also perform a native conversion. The resulting system keeps the selected desktop environment and MiniOS visual identity, but the live-specific MiniOS software is removed, so secure and maintain it with the normal Debian tools rather than treating it as another live mode.\nProtect the running session, persistent data, boot media, and any configuration that is applied at startup.\nStart with trusted media\nDownload MiniOS from an official source and verify the ISO before writing it.\nFollow Verifying downloads and compare the result before booting or installing. Verification detects a damaged or substituted download; it does not prove that an already modified USB device is safe.\nKeep the USB device under physical control. Firmware passwords and restricted boot order can reduce casual unauthorized booting, but do not encrypt files on the device. Secure Boot may provide additional boot-chain protection on images and hardware that support it; check the actual release and firmware behavior rather than assuming support.\nReplace default credentials\nAn uncustomized MiniOS live image uses the published credentials live / evil and root / toor, with automatic login and passwordless administrative access in its convenience-oriented configuration. Anyone who can reach the system may be able to use those credentials, especially if SSH is active.\nBefore joining an untrusted network:\nSet unique user and root passwords in MiniOS Configurator.\nSelect an appropriate security profile and review every populated control.\nDisable SSH and XRDP unless remote access is required.\nReboot into a new session when changing one-shot account or security settings, then verify the resulting login and privilege behavior.\nThe Configurator stores encrypted password hashes rather than plaintext passwords. If changing an already created persistent account, use passwd for the current user and sudo passwd root for root. After native conversion, use the normal Debian account-management tools.\nUse Configurator security controls\nMiniOS Configurator provides three profiles. A profile fills concrete settings; the profile name itself is not saved as a runtime configuration key, and each setting remains independently editable.\nProfile | Main behavior\nconvenient | Autologin-compatible, passwordless sudo and PolicyKit, root and password SSH allowed, relaxed XRDP/X11/lock screen, password hints shown.\nbalanced | No autologin, password-required sudo and PolicyKit, SSH root login denied but password SSH allowed, hardened XRDP/X11/lock screen.\nstrict | No autologin, password-required sudo and PolicyKit, SSH root and password login denied, XRDP disabled, hardened X11/lock screen, password hints hidden.\nThe installer defaults differ by deployment mode: live installations favor convenient, while native conversion starts from balanced. The native setting is applied during conversion; after installation, use the normal Debian security configuration. These are defaults, not recommendations for every threat model.\nThe same settings are available as documented configuration keys, including LIVE_SUDO_MODE, LIVE_POLKIT_MODE, LIVE_SSH_PERMIT_ROOT_LOGIN, LIVE_SSH_PASSWORD_AUTHENTICATION, LIVE_XRDP_MODE, LIVE_X11_MODE, LIVE_ISSUE_PASSWORD_HINTS, and LIVE_LOCKSCREEN_MODE. Prefer these keys or the Configurator over editing generated sudoers, PolicyKit, display-manager, or SSH files. See Configuration file.\nFor save behavior and setting applicability, see MiniOS Configurator.\nAccount creation, passwords, LIVE_CONFIG_NOROOT, and the security posture are one-shot settings used when a new session is created. The Configurator shows applicability for each control. Reconfigurable settings such as services are applied after reboot.\nSecure remote access\nSSH may be enabled in a MiniOS image for recovery use. On a network where other users are not trusted, assume the published default credentials are exposed until you have confirmed otherwise.\nIf SSH is unnecessary, add ssh to DISABLE_SERVICES in Configurator and remove it from ENABLE_SERVICES if present.\nIf SSH is required, deny root login with LIVE_SSH_PERMIT_ROOT_LOGIN=false.\nPrefer key authentication. Confirm key login in a separate connection before setting LIVE_SSH_PASSWORD_AUTHENTICATION=false.\nRestrict inbound access with the network firewall or router, and do not expose a portable recovery system directly to the Internet.\nReview XRDP separately. The strict profile disables it; the balanced profile hardens it but does not necessarily disable its service.\nBoot parameters can override configuration-file values. Inspect unexpected service behavior against Boot parameters.\nEncrypt persistent data\nUnencrypted native, DynFileFS, and raw persistence can be read by someone who obtains the device. MiniOS Installer can configure an encrypted LUKS container for a live session when the source initrd advertises LUKS support. The initrd creates changes.luks on first boot and asks for its passphrase; the installer does not receive or store that passphrase.\nLUKS persistence protects the contents while the container is closed. It does not protect data after unlock, the unencrypted boot files, copied files outside the container, or a native root filesystem. LUKS session persistence is not native root encryption. Use a strong passphrase and keep a tested backup.\nSee MiniOS Installer and Session management.\nApply updates deliberately\nRefresh package metadata and install Debian security updates in persistent live sessions with the normal APT workflow when that is appropriate. APT changes in a fresh live session disappear at reboot. Base SquashFS modules are read-only, so replacing the ISO or modules with a newer trusted MiniOS release is often the cleanest way to update the base live system. After native conversion, package security maintenance is simply the ordinary Debian APT workflow for that installed system.\nSee Software updates for the separate APT, module, image, and kernel workflows.\nBefore a large update:\nBack up important files and persistent sessions.\nConfirm enough free space is available.\nAvoid interrupting writes or powering off the device.\nReboot and verify the updated system before discarding the previous known-good media or session.\nTreat hooks and preseeding as code execution\nThe hooks boot option and live-config hooks can execute files from the root filesystem, boot medium, or a URL. Remote hooks, modified media hooks, and unreviewed preseeds can run with system privileges. Use only reviewed files from a trusted source, prefer authenticated distribution, and avoid remote hooks on untrusted networks. See live-config for the execution order and supported locations.\nBack up and retire media safely\nPersistence is not a backup. Keep a separate copy of user files and export or copy sessions while they are healthy. Test restoration on different media.\nShut down cleanly before removing writable storage, and keep free space for session metadata and filesystem operation.\nBefore disposing of a device, securely erase it according to the storage technology and sensitivity of the data. Deleting files or reformatting alone may not make old data unrecoverable.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

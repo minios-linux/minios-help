@@ -139,8 +139,36 @@ class SynchronizerTests(unittest.TestCase):
             self.fx.compiled("ru", "about/Other"), ensure_ascii=False)
         self.assertIn("#якорь-здесь", unquote(other))
 
-    def test_sidebar_missing_document_is_error(self):
-        self.fx.sidebar[0]["items"] = self.fx.sidebar[0]["items"][:1]
+    def test_unlisted_markdown_is_not_bundled(self):
+        self.fx.write("notes/Internal.md", "# Internal note\n")
+        manifest = self.fx.run()
+        canonical = [item["canonical_id"] for item in manifest["documents"]]
+        self.assertNotIn("notes/Internal", canonical)
+
+    def test_sidebar_discovers_documents_in_arbitrary_directories(self):
+        self.fx.write("future-layout/New-Page.md", "# New page\n\nFuture docs.\n")
+        self.fx.sidebar.append({
+            "key": "sidebar.future",
+            "text": "Future",
+            "items": [{
+                "key": "sidebar.newPage",
+                "text": "New page",
+                "link": "/future-layout/New-Page",
+            }],
+        })
+        self.fx._write_json(".vitepress/sidebar.json", self.fx.sidebar)
+        manifest = self.fx.run()
+        canonical = [item["canonical_id"] for item in manifest["documents"]]
+        self.assertIn("future-layout/New-Page", canonical)
+        compiled = self.fx.compiled("en", "future-layout/New-Page")
+        self.assertTrue(compiled["plain_text"].startswith("New page"))
+
+    def test_missing_sidebar_source_is_error(self):
+        self.fx.sidebar.append({
+            "key": "sidebar.future",
+            "text": "Future",
+            "link": "/some-new-layout/Missing",
+        })
         self.fx._write_json(".vitepress/sidebar.json", self.fx.sidebar)
         with self.assertRaises(sync.SyncError):
             self.fx.run()
@@ -151,7 +179,12 @@ class SynchronizerTests(unittest.TestCase):
             self.fx.run()
 
     def test_conflicting_canonical_id_is_error(self):
-        self.fx.write("about/page.md", "# duplicate\n")
+        self.fx.sidebar[0]["items"].append({
+            "key": "sidebar.pageDuplicate",
+            "text": "Duplicate",
+            "link": "/about/page",
+        })
+        self.fx._write_json(".vitepress/sidebar.json", self.fx.sidebar)
         with self.assertRaises(sync.SyncError):
             self.fx.run()
 
@@ -163,7 +196,8 @@ class SynchronizerTests(unittest.TestCase):
     @unittest.skipIf(os.name == "nt", "symlink semantics differ on Windows")
     def test_symlink_is_error(self):
         target = self.fx.root / "about" / "Other.md"
-        link = self.fx.root / "about" / "Linked.md"
+        link = self.fx.root / "about" / "Page.md"
+        link.unlink()
         link.symlink_to(target)
         with self.assertRaises(sync.SyncError):
             self.fx.run()

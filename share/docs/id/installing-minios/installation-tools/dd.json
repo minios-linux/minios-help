@@ -1,0 +1,776 @@
+{
+  "headings": [
+    {
+      "anchor": "dd",
+      "level": 1,
+      "title": "dd"
+    },
+    {
+      "anchor": "penting",
+      "level": 2,
+      "title": "Penting"
+    },
+    {
+      "anchor": "persyaratan-drive",
+      "level": 2,
+      "title": "Persyaratan Drive"
+    },
+    {
+      "anchor": "ukuran-drive",
+      "level": 3,
+      "title": "Ukuran Drive"
+    },
+    {
+      "anchor": "persiapan",
+      "level": 2,
+      "title": "Persiapan"
+    },
+    {
+      "anchor": "membuat-usb-drive-bootable",
+      "level": 2,
+      "title": "Membuat USB Drive Bootable"
+    },
+    {
+      "anchor": "hasil-dan-persistensi",
+      "level": 2,
+      "title": "Hasil dan persistensi"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "dd",
+      [
+        [
+          "text",
+          "dd"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " adalah utilitas command-line serbaguna untuk menyalin data secara bit-per-bit antara file dan perangkat. Paling sering digunakan untuk menulis image ISO ke USB drive, membuat cadangan, dan pemulihan data."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "penting",
+      [
+        [
+          "text",
+          "Penting"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Peringatan:"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " Pemilihan perangkat yang salah akan menyebabkan kehilangan data! Selalu periksa kembali drive yang dipilih dan lakukan backup data penting."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "persyaratan-drive",
+      [
+        [
+          "text",
+          "Persyaratan Drive"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "ukuran-drive",
+      [
+        [
+          "text",
+          "Ukuran Drive"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Lihat "
+        ],
+        [
+          "link",
+          "/getting-started/Hardware-Compatibility.md",
+          null,
+          [
+            [
+              "text",
+              "Panduan Kompatibilitas Hardware"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk detail persyaratan sistem dan ukuran drive."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "persiapan",
+      [
+        [
+          "text",
+          "Persiapan"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Identifikasi USB drive Anda:"
+                ]
+              ]
+            ],
+            [
+              "list",
+              {
+                "ordered": false,
+                "start": 1
+              },
+              [
+                [
+                  "item",
+                  null,
+                  [
+                    [
+                      "block",
+                      "paragraph",
+                      [
+                        [
+                          "text",
+                          ""
+                        ],
+                        [
+                          "span",
+                          "strong",
+                          [
+                            [
+                              "text",
+                              "Linux:"
+                            ]
+                          ]
+                        ],
+                        [
+                          "text",
+                          " "
+                        ],
+                        [
+                          "span",
+                          "code",
+                          [
+                            [
+                              "text",
+                              "lsblk"
+                            ]
+                          ]
+                        ],
+                        [
+                          "text",
+                          " atau "
+                        ],
+                        [
+                          "span",
+                          "code",
+                          [
+                            [
+                              "text",
+                              "sudo fdisk -l"
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "item",
+                  null,
+                  [
+                    [
+                      "block",
+                      "paragraph",
+                      [
+                        [
+                          "text",
+                          ""
+                        ],
+                        [
+                          "span",
+                          "strong",
+                          [
+                            [
+                              "text",
+                              "macOS:"
+                            ]
+                          ]
+                        ],
+                        [
+                          "text",
+                          " "
+                        ],
+                        [
+                          "span",
+                          "code",
+                          [
+                            [
+                              "text",
+                              "diskutil list"
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Unmount drive:"
+                ]
+              ]
+            ],
+            [
+              "list",
+              {
+                "ordered": false,
+                "start": 1
+              },
+              [
+                [
+                  "item",
+                  null,
+                  [
+                    [
+                      "block",
+                      "paragraph",
+                      [
+                        [
+                          "text",
+                          ""
+                        ],
+                        [
+                          "span",
+                          "strong",
+                          [
+                            [
+                              "text",
+                              "Linux:"
+                            ]
+                          ]
+                        ],
+                        [
+                          "text",
+                          " "
+                        ],
+                        [
+                          "span",
+                          "code",
+                          [
+                            [
+                              "text",
+                              "sudo umount /dev/sdX*"
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "item",
+                  null,
+                  [
+                    [
+                      "block",
+                      "paragraph",
+                      [
+                        [
+                          "text",
+                          ""
+                        ],
+                        [
+                          "span",
+                          "strong",
+                          [
+                            [
+                              "text",
+                              "macOS:"
+                            ]
+                          ]
+                        ],
+                        [
+                          "text",
+                          " "
+                        ],
+                        [
+                          "span",
+                          "code",
+                          [
+                            [
+                              "text",
+                              "sudo diskutil unmountDisk /dev/diskX"
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "membuat-usb-drive-bootable",
+      [
+        [
+          "text",
+          "Membuat USB Drive Bootable"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Linux:"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ""
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo dd if=MiniOS.iso of=/dev/sdX bs=4M status=progress conv=fsync",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "dd",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "if=MiniOS.iso",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "of=/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "bs=4M",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "status=progress",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "conv=fsync",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "macOS:"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ""
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo dd if=MiniOS.iso of=/dev/diskX bs=4m",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "dd",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "if=MiniOS.iso",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "of=/dev/diskX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "bs=4m",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Ganti:"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ""
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "MiniOS.iso"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " - path ke file ISO Anda"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/dev/sdX"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " - USB drive Anda (misal: "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/dev/sdb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "hasil-dan-persistensi",
+      [
+        [
+          "text",
+          "Hasil dan persistensi"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " melakukan penulisan image mentah: ini menyalin tata letak ISO ke seluruh perangkat target. Proses ini tidak membuat partisi ext4 di ruang yang tidak terpakai, tidak membuat sesi persistensi, atau melakukan deployment MiniOS Penginstal MiniOS."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Persistensi hanya diaktifkan ketika entri boot atau baris perintah kernel memintanya, dan tetap membutuhkan media penyimpanan yang dapat ditulis. Lihat "
+        ],
+        [
+          "link",
+          "/using-minios/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Mode Boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dan "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Persistence-Internals.md",
+          null,
+          [
+            [
+              "text",
+              "Persistensi Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " sebelum mengandalkan perubahan yang tersimpan."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "dd\ndd adalah utilitas command-line serbaguna untuk menyalin data secara bit-per-bit antara file dan perangkat. Paling sering digunakan untuk menulis image ISO ke USB drive, membuat cadangan, dan pemulihan data.\nPenting\nPeringatan: Pemilihan perangkat yang salah akan menyebabkan kehilangan data! Selalu periksa kembali drive yang dipilih dan lakukan backup data penting.\nPersyaratan Drive\nUkuran Drive\nLihat Panduan Kompatibilitas Hardware untuk detail persyaratan sistem dan ukuran drive.\nPersiapan\nIdentifikasi USB drive Anda:\nLinux: lsblk atau sudo fdisk -l\nmacOS: diskutil list\nUnmount drive:\nLinux: sudo umount /dev/sdX*\nmacOS: sudo diskutil unmountDisk /dev/diskX\nMembuat USB Drive Bootable\nLinux:\nsudo dd if=MiniOS.iso of=/dev/sdX bs=4M status=progress conv=fsync\nmacOS:\nsudo dd if=MiniOS.iso of=/dev/diskX bs=4m\nGanti:\nMiniOS.iso - path ke file ISO Anda\n/dev/sdX - USB drive Anda (misal: /dev/sdb)\nHasil dan persistensi\ndd melakukan penulisan image mentah: ini menyalin tata letak ISO ke seluruh perangkat target. Proses ini tidak membuat partisi ext4 di ruang yang tidak terpakai, tidak membuat sesi persistensi, atau melakukan deployment MiniOS Penginstal MiniOS.\nPersistensi hanya diaktifkan ketika entri boot atau baris perintah kernel memintanya, dan tetap membutuhkan media penyimpanan yang dapat ditulis. Lihat Mode Boot dan Persistensi Initrd sebelum mengandalkan perubahan yang tersimpan.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

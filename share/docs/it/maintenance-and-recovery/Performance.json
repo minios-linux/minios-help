@@ -1,0 +1,766 @@
+{
+  "headings": [
+    {
+      "anchor": "prestazioni",
+      "level": 1,
+      "title": "Prestazioni"
+    },
+    {
+      "anchor": "parametri-di-avvio-per-le-prestazioni",
+      "level": 2,
+      "title": "Parametri di avvio per le prestazioni"
+    },
+    {
+      "anchor": "caricamento-del-sistema-in-ram-toram",
+      "level": 3,
+      "title": "Caricamento del sistema in RAM (toram)"
+    },
+    {
+      "anchor": "filtraggio-dei-moduli-load-e-noload",
+      "level": 3,
+      "title": "Filtraggio dei moduli (load e noload)"
+    },
+    {
+      "anchor": "ottimizzazione-della-persistenza",
+      "level": 2,
+      "title": "Ottimizzazione della persistenza"
+    },
+    {
+      "anchor": "modalità-di-persistenza-perchmode",
+      "level": 3,
+      "title": "Modalità di persistenza (perchmode)"
+    },
+    {
+      "anchor": "configurazione-zram",
+      "level": 2,
+      "title": "Configurazione ZRAM"
+    },
+    {
+      "anchor": "filesystem-e-hardware-di-storage",
+      "level": 2,
+      "title": "Filesystem e hardware di storage"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "prestazioni",
+      [
+        [
+          "text",
+          "Prestazioni"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "L'ottimizzazione delle prestazioni in MiniOS è principalmente un compromesso tra tempo di avvio, utilizzo di RAM, letture in fase di esecuzione, overhead della persistenza e durabilità dello storage. Per dettagli precisi sulle opzioni e sui limiti di sicurezza, consulta "
+        ],
+        [
+          "link",
+          "/using-minios/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Modalità di avvio"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Caricamento moduli Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " e "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Persistence-Internals.md",
+          null,
+          [
+            [
+              "text",
+              "Persistenza Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "parametri-di-avvio-per-le-prestazioni",
+      [
+        [
+          "text",
+          "Parametri di avvio per le prestazioni"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "I parametri di avvio possono spostare il lavoro di startup e le letture del sistema attivo tra RAM e il dispositivo di origine. Consulta "
+        ],
+        [
+          "link",
+          "/reference/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Parametri di avvio"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " per la documentazione completa."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "caricamento-del-sistema-in-ram-toram",
+      [
+        [
+          "text",
+          "Caricamento del sistema in RAM ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " può ridurre la latenza in fase di esecuzione dovuta a dispositivi USB lenti o a ISO su rete, a fronte di un tempo di avvio più lungo e di un maggiore utilizzo di RAM. Il semplice "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " utilizza il percorso di copia completa. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " di solito consuma meno RAM, ma la sua copia più ristretta può escludere dati o moduli necessari successivamente."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Lascia spazio per il layer scrivibile, le applicazioni, le cache e zram invece di dimensionare solo per i file dei moduli. Più RAM assegnata alla copia live significa meno risorse disponibili per il carico di lavoro. Segui "
+        ],
+        [
+          "link",
+          "/using-minios/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Modalità di avvio"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " per la durabilità della copia e i vincoli di rimozione dei supporti."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "filtraggio-dei-moduli-load-e-noload",
+      [
+        [
+          "text",
+          "Filtraggio dei moduli ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "load"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " e "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noload"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Il filtraggio può ridurre i dati copiati e i layer montati, in particolare con "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Il costo è un sistema meno completo e una maggiore probabilità di errori in fase di avvio o di esecuzione se viene omessa una dipendenza. Verifica il set di moduli risultante; la sintassi dei filtri e le limitazioni sui moduli protetti sono definite in "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Caricamento moduli Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "ottimizzazione-della-persistenza",
+      [
+        [
+          "text",
+          "Ottimizzazione della persistenza"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La persistenza sposta le operazioni di I/O del layer scrivibile dalla RAM temporanea allo storage o a un container. La scelta del backend influisce su latenza, compatibilità, gestione della capacità e complessità di recupero."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "modalità-di-persistenza-perchmode",
+      [
+        [
+          "text",
+          "Modalità di persistenza ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchmode"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "native"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Evita un layer filesystem-in-a-file ed è la scelta più semplice su filesystem POSIX compatibili, ma non è disponibile su filesystem che non possono preservare i metadati richiesti da Linux."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "raw"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Offre capacità fissa prevedibile e comportamento ext4 convenzionale, ma riserva la dimensione del file e non può crescere oltre lo spazio disponibile sul supporto."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "dynfilefs"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Si espande su richiesta e supporta anche supporti altrimenti non idonei, con maggiore complessità di mapping e recupero."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "luks"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Aggiunge riservatezza a fronte di lavoro di sblocco e overhead di cifratura."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "squashfs"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Scambia la compressione al momento del salvataggio e il lavoro di estrazione RAM per uno snapshot compatto; non è un backend scrivibile a bassa latenza di tipo generale."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Esegui benchmark di carichi di lavoro rappresentativi sul dispositivo reale. Differenze tra controller flash, filesystem, bridge USB e carico di lavoro sono più affidabili di una classifica universale delle modalità di persistenza."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "configurazione-zram",
+      [
+        [
+          "text",
+          "Configurazione ZRAM"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Zram scambia tempo CPU con capacità di memoria compressa e può evitare swap su storage molto più lento. Un dispositivo zram più grande può assorbire più pagine inattive ma non crea RAM fisica; carichi di lavoro non comprimibili consumano comunque memoria."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Gli algoritmi di compressione bilanciano throughput e utilizzo CPU rispetto al rapporto di compressione, e la disponibilità dipende dal kernel. Parti dal valore predefinito e modifica "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramsize"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramcomp"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " o "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "nozram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " solo per un carico di lavoro misurato; consulta "
+        ],
+        [
+          "link",
+          "/reference/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Parametri di avvio"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " per i valori accettati."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "filesystem-e-hardware-di-storage",
+      [
+        [
+          "text",
+          "Filesystem e hardware di storage"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Scelta del dispositivo:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Un throughput sequenziale più elevato riduce i tempi di copia di moduli di grandi dimensioni, mentre una bassa latenza I/O casuale è più importante per carichi di lavoro desktop persistenti."
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "Misura il dispositivo e il box insieme; la sola generazione USB non predice le prestazioni della flash o dell'SSD."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Scelta del filesystem:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Un filesystem Linux nativo può utilizzare la persistenza nativa senza overhead da container. Filesystem multipiattaforma migliorano la portabilità ma richiedono un backend container compatibile per i metadati Linux, aggiungendo mapping e layer di filesystem. Scegli in base alle esigenze di portabilità e recupero oltre che ai risultati dei benchmark."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Prestazioni\nL'ottimizzazione delle prestazioni in MiniOS è principalmente un compromesso tra tempo di avvio, utilizzo di RAM, letture in fase di esecuzione, overhead della persistenza e durabilità dello storage. Per dettagli precisi sulle opzioni e sui limiti di sicurezza, consulta Modalità di avvio, Caricamento moduli Initrd e Persistenza Initrd.\nParametri di avvio per le prestazioni\nI parametri di avvio possono spostare il lavoro di startup e le letture del sistema attivo tra RAM e il dispositivo di origine. Consulta Parametri di avvio per la documentazione completa.\nCaricamento del sistema in RAM (toram)\ntoram può ridurre la latenza in fase di esecuzione dovuta a dispositivi USB lenti o a ISO su rete, a fronte di un tempo di avvio più lungo e di un maggiore utilizzo di RAM. Il semplice toram utilizza il percorso di copia completa. toram=trim di solito consuma meno RAM, ma la sua copia più ristretta può escludere dati o moduli necessari successivamente.\nLascia spazio per il layer scrivibile, le applicazioni, le cache e zram invece di dimensionare solo per i file dei moduli. Più RAM assegnata alla copia live significa meno risorse disponibili per il carico di lavoro. Segui Modalità di avvio per la durabilità della copia e i vincoli di rimozione dei supporti.\nFiltraggio dei moduli (load e noload)\nIl filtraggio può ridurre i dati copiati e i layer montati, in particolare con toram=trim. Il costo è un sistema meno completo e una maggiore probabilità di errori in fase di avvio o di esecuzione se viene omessa una dipendenza. Verifica il set di moduli risultante; la sintassi dei filtri e le limitazioni sui moduli protetti sono definite in Caricamento moduli Initrd.\nOttimizzazione della persistenza\nLa persistenza sposta le operazioni di I/O del layer scrivibile dalla RAM temporanea allo storage o a un container. La scelta del backend influisce su latenza, compatibilità, gestione della capacità e complessità di recupero.\nModalità di persistenza (perchmode)\nnative: Evita un layer filesystem-in-a-file ed è la scelta più semplice su filesystem POSIX compatibili, ma non è disponibile su filesystem che non possono preservare i metadati richiesti da Linux.\nraw: Offre capacità fissa prevedibile e comportamento ext4 convenzionale, ma riserva la dimensione del file e non può crescere oltre lo spazio disponibile sul supporto.\ndynfilefs: Si espande su richiesta e supporta anche supporti altrimenti non idonei, con maggiore complessità di mapping e recupero.\nluks: Aggiunge riservatezza a fronte di lavoro di sblocco e overhead di cifratura.\nsquashfs: Scambia la compressione al momento del salvataggio e il lavoro di estrazione RAM per uno snapshot compatto; non è un backend scrivibile a bassa latenza di tipo generale.\nEsegui benchmark di carichi di lavoro rappresentativi sul dispositivo reale. Differenze tra controller flash, filesystem, bridge USB e carico di lavoro sono più affidabili di una classifica universale delle modalità di persistenza.\nConfigurazione ZRAM\nZram scambia tempo CPU con capacità di memoria compressa e può evitare swap su storage molto più lento. Un dispositivo zram più grande può assorbire più pagine inattive ma non crea RAM fisica; carichi di lavoro non comprimibili consumano comunque memoria.\nGli algoritmi di compressione bilanciano throughput e utilizzo CPU rispetto al rapporto di compressione, e la disponibilità dipende dal kernel. Parti dal valore predefinito e modifica zramsize, zramcomp o nozram solo per un carico di lavoro misurato; consulta Parametri di avvio per i valori accettati.\nFilesystem e hardware di storage\nScelta del dispositivo: Un throughput sequenziale più elevato riduce i tempi di copia di moduli di grandi dimensioni, mentre una bassa latenza I/O casuale è più importante per carichi di lavoro desktop persistenti.\nMisura il dispositivo e il box insieme; la sola generazione USB non predice le prestazioni della flash o dell'SSD.\nScelta del filesystem: Un filesystem Linux nativo può utilizzare la persistenza nativa senza overhead da container. Filesystem multipiattaforma migliorano la portabilità ma richiedono un backend container compatibile per i metadati Linux, aggiungendo mapping e layer di filesystem. Scegli in base alle esigenze di portabilità e recupero oltre che ai risultati dei benchmark.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

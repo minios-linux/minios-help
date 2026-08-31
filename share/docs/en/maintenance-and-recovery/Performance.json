@@ -1,0 +1,766 @@
+{
+  "headings": [
+    {
+      "anchor": "performance",
+      "level": 1,
+      "title": "Performance"
+    },
+    {
+      "anchor": "boot-parameters-for-performance",
+      "level": 2,
+      "title": "Boot Parameters for Performance"
+    },
+    {
+      "anchor": "loading-the-system-into-ram-toram",
+      "level": 3,
+      "title": "Loading the System into RAM (toram)"
+    },
+    {
+      "anchor": "filtering-modules-load-and-noload",
+      "level": 3,
+      "title": "Filtering Modules (load and noload)"
+    },
+    {
+      "anchor": "persistence-optimization",
+      "level": 2,
+      "title": "Persistence Optimization"
+    },
+    {
+      "anchor": "persistence-modes-perchmode",
+      "level": 3,
+      "title": "Persistence Modes (perchmode)"
+    },
+    {
+      "anchor": "zram-configuration",
+      "level": 2,
+      "title": "ZRAM Configuration"
+    },
+    {
+      "anchor": "filesystem-and-storage-hardware",
+      "level": 2,
+      "title": "Filesystem and Storage Hardware"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "performance",
+      [
+        [
+          "text",
+          "Performance"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Performance tuning in MiniOS is mainly a tradeoff between boot time, RAM use, runtime reads, persistence overhead, and storage durability. For exact option semantics and safety boundaries, use "
+        ],
+        [
+          "link",
+          "/using-minios/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Boot modes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Initrd module loading"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", and "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Persistence-Internals.md",
+          null,
+          [
+            [
+              "text",
+              "Initrd persistence"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "boot-parameters-for-performance",
+      [
+        [
+          "text",
+          "Boot Parameters for Performance"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Boot parameters can move startup work and live-system reads between RAM and the source device. See "
+        ],
+        [
+          "link",
+          "/reference/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Boot parameters"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for the complete reference."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "loading-the-system-into-ram-toram",
+      [
+        [
+          "text",
+          "Loading the System into RAM ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " can reduce runtime latency from a slow USB device or network-backed ISO, at the cost of a longer boot and substantially more occupied RAM. Bare "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " uses the full-copy path. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " usually consumes less RAM, but its narrower copy can omit data or modules needed later."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Leave room for the writable layer, applications, caches, and zram rather than sizing only for module files. More RAM assigned to the live copy means less is available to the workload. Follow "
+        ],
+        [
+          "link",
+          "/using-minios/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Boot modes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for copy durability and media-removal constraints."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "filtering-modules-load-and-noload",
+      [
+        [
+          "text",
+          "Filtering Modules ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "load"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noload"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Filtering can reduce copied data and mounted layers, particularly with "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". The cost is a less capable system and a greater chance of boot or runtime failure if a dependency is omitted. Verify the resulting module set; filter syntax and protected-module limitations are defined in "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Initrd module loading"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "persistence-optimization",
+      [
+        [
+          "text",
+          "Persistence Optimization"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Persistence moves writable-layer I/O from temporary RAM to storage or a container. Backend choice affects latency, compatibility, capacity management, and recovery complexity."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "persistence-modes-perchmode",
+      [
+        [
+          "text",
+          "Persistence Modes ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchmode"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "native"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Avoids a filesystem-in-a-file layer and is the simplest choice on a suitable POSIX filesystem, but is unavailable on filesystems that cannot preserve required Linux metadata."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "raw"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Has predictable fixed capacity and conventional ext4 behavior, but reserves its file size and cannot grow beyond available backing storage."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "dynfilefs"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Expands on demand and supports otherwise unsuitable media, with additional mapping and recovery complexity."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "luks"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Adds confidentiality at the cost of unlock work and encryption overhead."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "squashfs"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Trades save-time compression and RAM extraction work for a compact snapshot; it is not a general low-latency writable backend."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Benchmark representative workloads on the actual device. Flash-controller, filesystem, USB bridge, and workload differences are more reliable than a universal ranking of persistence modes."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "zram-configuration",
+      [
+        [
+          "text",
+          "ZRAM Configuration"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Zram trades CPU time for compressed memory capacity and can avoid much slower storage-backed swap. A larger zram device can absorb more inactive pages but does not create physical RAM; incompressible workloads still consume memory."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Compression algorithms trade throughput and CPU use against compression ratio, and availability depends on the kernel. Start with the default and change "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramsize"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramcomp"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", or "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "nozram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " only for a measured workload; see "
+        ],
+        [
+          "link",
+          "/reference/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Boot parameters"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for accepted values."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "filesystem-and-storage-hardware",
+      [
+        [
+          "text",
+          "Filesystem and Storage Hardware"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Device choice:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Higher sequential throughput shortens large module copies, while low random-I/O latency matters more for persistent desktop workloads."
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "Measure the device and enclosure together; the USB generation alone does not predict flash or SSD performance."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Filesystem choice:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " A native Linux filesystem can use native persistence without container overhead. Cross-platform filesystems improve portability but require a compatible container backend for Linux metadata, adding mapping and filesystem layers. Choose based on portability and recovery needs as well as benchmark results."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Performance\nPerformance tuning in MiniOS is mainly a tradeoff between boot time, RAM use, runtime reads, persistence overhead, and storage durability. For exact option semantics and safety boundaries, use Boot modes, Initrd module loading, and Initrd persistence.\nBoot Parameters for Performance\nBoot parameters can move startup work and live-system reads between RAM and the source device. See Boot parameters for the complete reference.\nLoading the System into RAM (toram)\ntoram can reduce runtime latency from a slow USB device or network-backed ISO, at the cost of a longer boot and substantially more occupied RAM. Bare toram uses the full-copy path. toram=trim usually consumes less RAM, but its narrower copy can omit data or modules needed later.\nLeave room for the writable layer, applications, caches, and zram rather than sizing only for module files. More RAM assigned to the live copy means less is available to the workload. Follow Boot modes for copy durability and media-removal constraints.\nFiltering Modules (load and noload)\nFiltering can reduce copied data and mounted layers, particularly with toram=trim. The cost is a less capable system and a greater chance of boot or runtime failure if a dependency is omitted. Verify the resulting module set; filter syntax and protected-module limitations are defined in Initrd module loading.\nPersistence Optimization\nPersistence moves writable-layer I/O from temporary RAM to storage or a container. Backend choice affects latency, compatibility, capacity management, and recovery complexity.\nPersistence Modes (perchmode)\nnative: Avoids a filesystem-in-a-file layer and is the simplest choice on a suitable POSIX filesystem, but is unavailable on filesystems that cannot preserve required Linux metadata.\nraw: Has predictable fixed capacity and conventional ext4 behavior, but reserves its file size and cannot grow beyond available backing storage.\ndynfilefs: Expands on demand and supports otherwise unsuitable media, with additional mapping and recovery complexity.\nluks: Adds confidentiality at the cost of unlock work and encryption overhead.\nsquashfs: Trades save-time compression and RAM extraction work for a compact snapshot; it is not a general low-latency writable backend.\nBenchmark representative workloads on the actual device. Flash-controller, filesystem, USB bridge, and workload differences are more reliable than a universal ranking of persistence modes.\nZRAM Configuration\nZram trades CPU time for compressed memory capacity and can avoid much slower storage-backed swap. A larger zram device can absorb more inactive pages but does not create physical RAM; incompressible workloads still consume memory.\nCompression algorithms trade throughput and CPU use against compression ratio, and availability depends on the kernel. Start with the default and change zramsize, zramcomp, or nozram only for a measured workload; see Boot parameters for accepted values.\nFilesystem and Storage Hardware\nDevice choice: Higher sequential throughput shortens large module copies, while low random-I/O latency matters more for persistent desktop workloads.\nMeasure the device and enclosure together; the USB generation alone does not predict flash or SSD performance.\nFilesystem choice: A native Linux filesystem can use native persistence without container overhead. Cross-platform filesystems improve portability but require a compatible container backend for Linux metadata, adding mapping and filesystem layers. Choose based on portability and recovery needs as well as benchmark results.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

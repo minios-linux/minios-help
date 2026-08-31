@@ -1,0 +1,639 @@
+{
+  "headings": [
+    {
+      "anchor": "aktualisierung-von-minios",
+      "level": 1,
+      "title": "Aktualisierung von MiniOS"
+    },
+    {
+      "anchor": "apt-ist-erlaubt",
+      "level": 2,
+      "title": "APT ist erlaubt"
+    },
+    {
+      "anchor": "modulares-live-minios",
+      "level": 3,
+      "title": "Modulares Live-MiniOS"
+    },
+    {
+      "anchor": "native-minios",
+      "level": 3,
+      "title": "Native MiniOS"
+    },
+    {
+      "anchor": "wechsel-zu-einer-neueren-minios-version",
+      "level": 2,
+      "title": "Wechsel zu einer neueren MiniOS-Version"
+    },
+    {
+      "anchor": "module-und-kernel-sind-separate-wartungsaufgaben",
+      "level": 2,
+      "title": "Module und Kernel sind separate Wartungsaufgaben"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "aktualisierung-von-minios",
+      [
+        [
+          "text",
+          "Aktualisierung von MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Für MiniOS gibt es "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "kein"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " unterstütztes In-Place-Upgrade-Verfahren von einer MiniOS-Version auf eine andere. Das modulare Live-System wird aus schreibgeschützten SquashFS-Modulen und einer beschreibbaren Sitzungsschicht zusammengesetzt. Das Ändern von Debian-Paketen im laufenden System ersetzt daher nicht die MiniOS-Version selbst."
+        ]
+      ]
+    ],
+    [
+      "admonition",
+      "warning",
+      "Eine neuere MiniOS-Version ist eine Neuinstallation",
+      [
+        [
+          "block",
+          "paragraph",
+          [
+            [
+              "text",
+              "Es gibt kein MiniOS-Äquivalent zu "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "dist-upgrade"
+                ]
+              ]
+            ],
+            [
+              "text",
+              ", das eine installierte oder persistente Kopie einer MiniOS-Version in eine andere Version umwandelt. Der Umstieg auf eine neuere MiniOS-Version bedeutet, diese Version zu installieren und anschließend die gewünschten Daten und Einstellungen zu migrieren."
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "apt-ist-erlaubt",
+      [
+        [
+          "text",
+          "APT ist erlaubt"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS blockiert oder verbietet APT nicht. Sie können Debian-Pakete installieren und aktualisieren, wenn das sinnvoll ist:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo apt update\nsudo apt upgrade",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "apt",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "update",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "apt",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "upgrade",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "modulares-live-minios",
+      [
+        [
+          "text",
+          "Modulares Live-MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "In einer Live-MiniOS-Sitzung schreibt APT Paketdateien und Paketmetadaten in die beschreibbare Schicht. Mit Persistenz können diese Änderungen einen Neustart überstehen. Die darunterliegenden schreibgeschützten "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "-Module werden dabei nicht verändert; aktualisierte Dateien in der Sitzung überschreiben lediglich die Dateien aus den Modulen."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Dies ist eine Paketpflege "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "innerhalb dieser Sitzung"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", kein Update von MiniOS."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Zudem wird dabei Persistenzspeicher verbraucht und die Sitzung kann sich dadurch deutlich vom veröffentlichten Abbild unterscheiden. Eine neue Sitzung startet dennoch immer mit dem Paketbestand, der in den MiniOS-Modulen enthalten ist."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ändern Sie nicht die APT-Quellen auf eine andere Debian-Version und führen Sie "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "full-upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " oder "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dist-upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " aus, in der Erwartung, eine neuere MiniOS-Version zu erhalten."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Das führt zu einem gemischten Systemzustand; es reproduziert nicht den Modulsatz, die Startdateien, die Firmware-Auswahl, MiniOS-Pakete oder andere Entscheidungen einer veröffentlichten MiniOS-Version."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "native-minios",
+      [
+        [
+          "text",
+          "Native MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Eine native Installation verfügt über ein herkömmliches beschreibbares Root-Dateisystem, sodass APT wie gewohnt unter Debian arbeitet. Die Paketpflege entspricht daher der normalen APT-Verwaltung. Auch hier definiert MiniOS jedoch keinen In-Place-Upgrade-Pfad für MiniOS-Versionen. Ein Upgrade von Debian-Paketen ist nicht dasselbe wie das System als spätere MiniOS-Version neu aufzubauen."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "wechsel-zu-einer-neueren-minios-version",
+      [
+        [
+          "text",
+          "Wechsel zu einer neueren MiniOS-Version"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Behandeln Sie eine neuere MiniOS-Version als separates System:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Laden Sie das neue Abbild herunter und "
+                ],
+                [
+                  "link",
+                  "/installing-minios/Verifying-Downloads.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "verifizieren"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Sie es."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Sichern Sie wichtige Dateien, Konfigurationen, Benutzermodule und persistente Sitzungen wie in "
+                ],
+                [
+                  "link",
+                  "/maintenance-and-recovery/Backing-Up-MiniOS.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Sicherung von MiniOS"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " beschrieben."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Installieren Sie die neue Version mit der passenden "
+                ],
+                [
+                  "link",
+                  "/installing-minios/Installation-Methods.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Installationsmethode"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Starten Sie sie zunächst mit einer frischen Sitzung und prüfen Sie, ob die benötigte Hardware und Anwendungen funktionieren."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Migrieren Sie persönliche Dateien und ausgewählte Konfigurationen. Wo der Session Manager die alte Sitzung exportieren kann, importieren Sie dessen Archiv und lassen Sie die Kompatibilitätsprüfungen laufen, statt einen Live-Sitzungsspeicher manuell zu kopieren."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Erstellen oder installieren Sie benutzerdefinierte Module neu, sofern diese nicht nachweislich mit der Zielversion kompatibel sind."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Bewahren Sie die alte Installation oder ein Backup auf, bis die neue Version getestet wurde."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Kombinieren Sie keine Basismodule, Startdateien, Kernel- oder Initramfs-Dateien aus verschiedenen MiniOS-Versionen, um ein Upgrade zu erzwingen."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "module-und-kernel-sind-separate-wartungsaufgaben",
+      [
+        [
+          "text",
+          "Module und Kernel sind separate Wartungsaufgaben"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ein vom Benutzer erstelltes "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "-Modul kann bei Bedarf unabhängig ersetzt oder neu gebaut werden. Das verändert die Anpassungsschicht, aber nicht die MiniOS-Version. Siehe "
+        ],
+        [
+          "link",
+          "/preparing-and-customizing/Managing-Modules.md",
+          null,
+          [
+            [
+              "text",
+              "Module verwalten"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Der MiniOS-Kernel wird ebenfalls als abgestimmtes Kernel-Modul, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "vmlinuz"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", und initramfs-Set verwaltet. Nutzen Sie dafür "
+        ],
+        [
+          "link",
+          "/preparing-and-customizing/Managing-Kernels.md",
+          null,
+          [
+            [
+              "text",
+              "Kernel verwalten"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Nur ein "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "linux-image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "-Paket mit APT zu aktualisieren, ist nicht der MiniOS-Kernel-Management-Workflow, und das Ändern des Kernels aktualisiert nicht die MiniOS-Version."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Aktualisierung von MiniOS\nFür MiniOS gibt es kein unterstütztes In-Place-Upgrade-Verfahren von einer MiniOS-Version auf eine andere. Das modulare Live-System wird aus schreibgeschützten SquashFS-Modulen und einer beschreibbaren Sitzungsschicht zusammengesetzt. Das Ändern von Debian-Paketen im laufenden System ersetzt daher nicht die MiniOS-Version selbst.\nEine neuere MiniOS-Version ist eine Neuinstallation\nEs gibt kein MiniOS-Äquivalent zu dist-upgrade, das eine installierte oder persistente Kopie einer MiniOS-Version in eine andere Version umwandelt. Der Umstieg auf eine neuere MiniOS-Version bedeutet, diese Version zu installieren und anschließend die gewünschten Daten und Einstellungen zu migrieren.\nAPT ist erlaubt\nMiniOS blockiert oder verbietet APT nicht. Sie können Debian-Pakete installieren und aktualisieren, wenn das sinnvoll ist:\nsudo apt update\nsudo apt upgrade\nModulares Live-MiniOS\nIn einer Live-MiniOS-Sitzung schreibt APT Paketdateien und Paketmetadaten in die beschreibbare Schicht. Mit Persistenz können diese Änderungen einen Neustart überstehen. Die darunterliegenden schreibgeschützten .sb-Module werden dabei nicht verändert; aktualisierte Dateien in der Sitzung überschreiben lediglich die Dateien aus den Modulen.\nDies ist eine Paketpflege innerhalb dieser Sitzung, kein Update von MiniOS.\nZudem wird dabei Persistenzspeicher verbraucht und die Sitzung kann sich dadurch deutlich vom veröffentlichten Abbild unterscheiden. Eine neue Sitzung startet dennoch immer mit dem Paketbestand, der in den MiniOS-Modulen enthalten ist.\nÄndern Sie nicht die APT-Quellen auf eine andere Debian-Version und führen Sie upgrade, full-upgrade oder dist-upgrade aus, in der Erwartung, eine neuere MiniOS-Version zu erhalten.\nDas führt zu einem gemischten Systemzustand; es reproduziert nicht den Modulsatz, die Startdateien, die Firmware-Auswahl, MiniOS-Pakete oder andere Entscheidungen einer veröffentlichten MiniOS-Version.\nNative MiniOS\nEine native Installation verfügt über ein herkömmliches beschreibbares Root-Dateisystem, sodass APT wie gewohnt unter Debian arbeitet. Die Paketpflege entspricht daher der normalen APT-Verwaltung. Auch hier definiert MiniOS jedoch keinen In-Place-Upgrade-Pfad für MiniOS-Versionen. Ein Upgrade von Debian-Paketen ist nicht dasselbe wie das System als spätere MiniOS-Version neu aufzubauen.\nWechsel zu einer neueren MiniOS-Version\nBehandeln Sie eine neuere MiniOS-Version als separates System:\nLaden Sie das neue Abbild herunter und verifizieren Sie es.\nSichern Sie wichtige Dateien, Konfigurationen, Benutzermodule und persistente Sitzungen wie in Sicherung von MiniOS beschrieben.\nInstallieren Sie die neue Version mit der passenden Installationsmethode.\nStarten Sie sie zunächst mit einer frischen Sitzung und prüfen Sie, ob die benötigte Hardware und Anwendungen funktionieren.\nMigrieren Sie persönliche Dateien und ausgewählte Konfigurationen. Wo der Session Manager die alte Sitzung exportieren kann, importieren Sie dessen Archiv und lassen Sie die Kompatibilitätsprüfungen laufen, statt einen Live-Sitzungsspeicher manuell zu kopieren.\nErstellen oder installieren Sie benutzerdefinierte Module neu, sofern diese nicht nachweislich mit der Zielversion kompatibel sind.\nBewahren Sie die alte Installation oder ein Backup auf, bis die neue Version getestet wurde.\nKombinieren Sie keine Basismodule, Startdateien, Kernel- oder Initramfs-Dateien aus verschiedenen MiniOS-Versionen, um ein Upgrade zu erzwingen.\nModule und Kernel sind separate Wartungsaufgaben\nEin vom Benutzer erstelltes .sb-Modul kann bei Bedarf unabhängig ersetzt oder neu gebaut werden. Das verändert die Anpassungsschicht, aber nicht die MiniOS-Version. Siehe Module verwalten.\nDer MiniOS-Kernel wird ebenfalls als abgestimmtes Kernel-Modul, vmlinuz, und initramfs-Set verwaltet. Nutzen Sie dafür Kernel verwalten. Nur ein linux-image-Paket mit APT zu aktualisieren, ist nicht der MiniOS-Kernel-Management-Workflow, und das Ändern des Kernels aktualisiert nicht die MiniOS-Version.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

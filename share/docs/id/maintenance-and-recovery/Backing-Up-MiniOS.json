@@ -1,0 +1,874 @@
+{
+  "headings": [
+    {
+      "anchor": "mencadangkan-minios",
+      "level": 1,
+      "title": "Mencadangkan MiniOS"
+    },
+    {
+      "anchor": "apa-yang-perlu-dicadangkan",
+      "level": 2,
+      "title": "Apa yang perlu dicadangkan"
+    },
+    {
+      "anchor": "ekspor-sesi-persisten",
+      "level": 2,
+      "title": "Ekspor sesi persisten"
+    },
+    {
+      "anchor": "sesi-squashfs",
+      "level": 3,
+      "title": "Sesi SquashFS"
+    },
+    {
+      "anchor": "cadangkan-konfigurasi-dan-modul",
+      "level": 2,
+      "title": "Cadangkan konfigurasi dan modul"
+    },
+    {
+      "anchor": "membuat-image-seluruh-perangkat",
+      "level": 2,
+      "title": "Membuat image seluruh perangkat"
+    },
+    {
+      "anchor": "memulihkan-arsip-sesi",
+      "level": 2,
+      "title": "Memulihkan arsip sesi"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "mencadangkan-minios",
+      [
+        [
+          "text",
+          "Mencadangkan MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Cadangan adalah jalur pemulihan yang andal untuk MiniOS. Dokumentasi tidak menjanjikan prosedur perbaikan umum untuk bootloader, filesystem, atau container persistensi yang rusak. Simpan salinan yang dapat dipulihkan sebelum mengubah rilis, kernel, tata letak penyimpanan, atau sesi penting."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "apa-yang-perlu-dicadangkan",
+      [
+        [
+          "text",
+          "Apa yang perlu dicadangkan"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Simpan bagian-bagian yang tidak dapat dengan mudah dibuat ulang dari image MiniOS:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "file pribadi, termasuk data aplikasi tersembunyi yang penting bagi Anda;"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "file "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", file "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "config.conf.d"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " yang sudah ditinjau, dan perubahan boot-menu atau parameter boot yang disengaja;"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "modul "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " yang dibuat pengguna dan catatan rilis MiniOS tempat modul tersebut dibuat;"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "sesi persisten yang berisi status sistem atau aplikasi yang Anda butuhkan;"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "kunci enkripsi, kredensial pemulihan, dan rahasia lain yang disimpan terpisah dari cadangan yang mereka lindungi."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "File yang disimpan di luar layer sesi, misalnya di lokasi data pengguna terpisah, harus dicadangkan secara terpisah. Jangan berasumsi bahwa arsip sesi berisi data yang di-mount dari filesystem lain."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "ekspor-sesi-persisten",
+      [
+        [
+          "text",
+          "Ekspor sesi persisten"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS Manajer Sesi MiniOS dapat mengekspor sesi "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "yang tidak berjalan"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "native"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dynfilefs"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "raw"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", atau "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ke arsip "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".tar.zst"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " yang telah diverifikasi. Pertama, identifikasi sesi tersebut:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "minios-session list\nminios-session running",
+      "bash",
+      [
+        [
+          "syntax",
+          "minios-session",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "list",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "minios-session",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "running",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Kemudian jalankan sesi lain atau pilih "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Mulai tanpa menyimpan"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dan ekspor sesi yang tidak aktif:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo minios-session export <id> /path/to/session.tar.zst",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-session",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "export",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "<",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "i",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "d",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          ">",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/session.tar.zst",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ekspor ini merupakan salinan logis dari isi sesi, bukan salinan byte-per-byte dari wadah penyimpanannya. Simpan arsip ini di perangkat lain."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Untuk sesi LUKS, arsip berisi file logis yang telah didekripsi. Lindungi arsip secara terpisah jika data harus tetap terenkripsi."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "sesi-squashfs",
+      [
+        [
+          "text",
+          "Sesi SquashFS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Session Manager saat ini tidak mengekspor atau menyalin sesi SquashFS. Gunakan "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Simpan Sekarang"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " sebelum mematikan agar snapshot saat ini lengkap, lalu lindungi file penting secara terpisah. Jika Anda memerlukan salinan lengkap yang dapat dipulihkan dari seluruh perangkat MiniOS, buat image perangkat secara offline."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Jangan mengandalkan penyalinan manual direktori sesi yang di-mount atau merekonstruksi "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "session.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", segmen DynFileFS, atau metadata container sebagai metode cadangan."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "cadangkan-konfigurasi-dan-modul",
+      [
+        [
+          "text",
+          "Cadangkan konfigurasi dan modul"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Pada media MiniOS yang dapat ditulis, simpan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/config.conf.d/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", dan modul buatan pengguna yang disimpan di bawah "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/modules/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Catat juga parameter boot kustom atau perubahan boot-menu yang tidak terlihat jelas dari file-file tersebut."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Modul yang dibuat untuk satu rilis MiniOS tidak otomatis cocok untuk rilis lain."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Simpan sumber atau resep yang dibutuhkan untuk membangun ulang modul kustom yang penting."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "membuat-image-seluruh-perangkat",
+      [
+        [
+          "text",
+          "Membuat image seluruh perangkat"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Image seluruh perangkat berguna ketika Anda ingin mempertahankan tabel partisi, file boot, modul, konfigurasi, sesi, dan data lainnya secara bersamaan. Buat image secara offline: matikan MiniOS dan buat image perangkat dari sistem lain yang sedang berjalan."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "link",
+          "/installing-minios/installation-tools/Drive-Utility.md",
+          null,
+          [
+            [
+              "text",
+              "Utilitas Disk"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " menyediakan operasi "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Buat Image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dan "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Tulis Image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Simpan image ke perangkat fisik yang berbeda. Pemulihan image seluruh perangkat akan menimpa target yang dipilih, jadi pastikan model dan kapasitas target sudah benar sebelum menulisnya."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Image perangkat adalah pelengkap, bukan pengganti, cadangan terpisah untuk file pribadi penting."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "memulihkan-arsip-sesi",
+      [
+        [
+          "text",
+          "Memulihkan arsip sesi"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Mengimpor arsip Session Manager akan membuat sesi baru yang diberi nomor; sesi yang sudah ada tidak akan ditimpa:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo minios-session import /path/to/session.tar.zst --auto-convert",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-session",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "import",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/session.tar.zst",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--auto-convert",
+          "#005CC5",
+          "#79B8FF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Pemeriksaan kompatibilitas akan dijalankan saat impor. Periksa sesi yang diimpor sebelum mengaktifkannya dan simpan sesi yang sudah terbukti berfungsi sampai salinan hasil pemulihan telah diuji."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Saat berpindah ke rilis MiniOS lain, sebaiknya migrasikan data pribadi dan konfigurasi yang dipilih. Jangan berasumsi bahwa sesi lengkap lama atau modul kustom kompatibel dengan rilis baru hanya karena dapat disalin ke sana."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Lihat "
+        ],
+        [
+          "link",
+          "/using-minios/Sessions-and-Persistence.md",
+          null,
+          [
+            [
+              "text",
+              "Sessions and persistence"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk manajemen sesi dan "
+        ],
+        [
+          "link",
+          "/maintenance-and-recovery/Updating-MiniOS.md",
+          null,
+          [
+            [
+              "text",
+              "Updating MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk berpindah antar rilis MiniOS."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Mencadangkan MiniOS\nCadangan adalah jalur pemulihan yang andal untuk MiniOS. Dokumentasi tidak menjanjikan prosedur perbaikan umum untuk bootloader, filesystem, atau container persistensi yang rusak. Simpan salinan yang dapat dipulihkan sebelum mengubah rilis, kernel, tata letak penyimpanan, atau sesi penting.\nApa yang perlu dicadangkan\nSimpan bagian-bagian yang tidak dapat dengan mudah dibuat ulang dari image MiniOS:\nfile pribadi, termasuk data aplikasi tersembunyi yang penting bagi Anda;\nfile config.conf, file config.conf.d yang sudah ditinjau, dan perubahan boot-menu atau parameter boot yang disengaja;\nmodul .sb yang dibuat pengguna dan catatan rilis MiniOS tempat modul tersebut dibuat;\nsesi persisten yang berisi status sistem atau aplikasi yang Anda butuhkan;\nkunci enkripsi, kredensial pemulihan, dan rahasia lain yang disimpan terpisah dari cadangan yang mereka lindungi.\nFile yang disimpan di luar layer sesi, misalnya di lokasi data pengguna terpisah, harus dicadangkan secara terpisah. Jangan berasumsi bahwa arsip sesi berisi data yang di-mount dari filesystem lain.\nEkspor sesi persisten\nMiniOS Manajer Sesi MiniOS dapat mengekspor sesi yang tidak berjalan native, dynfilefs, raw, atau luks ke arsip .tar.zst yang telah diverifikasi. Pertama, identifikasi sesi tersebut:\nminios-session list\nminios-session running\nKemudian jalankan sesi lain atau pilih Mulai tanpa menyimpan dan ekspor sesi yang tidak aktif:\nsudo minios-session export <id> /path/to/session.tar.zst\nEkspor ini merupakan salinan logis dari isi sesi, bukan salinan byte-per-byte dari wadah penyimpanannya. Simpan arsip ini di perangkat lain.\nUntuk sesi LUKS, arsip berisi file logis yang telah didekripsi. Lindungi arsip secara terpisah jika data harus tetap terenkripsi.\nSesi SquashFS\nSession Manager saat ini tidak mengekspor atau menyalin sesi SquashFS. Gunakan Simpan Sekarang sebelum mematikan agar snapshot saat ini lengkap, lalu lindungi file penting secara terpisah. Jika Anda memerlukan salinan lengkap yang dapat dipulihkan dari seluruh perangkat MiniOS, buat image perangkat secara offline.\nJangan mengandalkan penyalinan manual direktori sesi yang di-mount atau merekonstruksi session.conf, segmen DynFileFS, atau metadata container sebagai metode cadangan.\nCadangkan konfigurasi dan modul\nPada media MiniOS yang dapat ditulis, simpan minios/config.conf, minios/config.conf.d/, dan modul buatan pengguna yang disimpan di bawah minios/modules/.\nCatat juga parameter boot kustom atau perubahan boot-menu yang tidak terlihat jelas dari file-file tersebut.\nModul yang dibuat untuk satu rilis MiniOS tidak otomatis cocok untuk rilis lain.\nSimpan sumber atau resep yang dibutuhkan untuk membangun ulang modul kustom yang penting.\nMembuat image seluruh perangkat\nImage seluruh perangkat berguna ketika Anda ingin mempertahankan tabel partisi, file boot, modul, konfigurasi, sesi, dan data lainnya secara bersamaan. Buat image secara offline: matikan MiniOS dan buat image perangkat dari sistem lain yang sedang berjalan.\nUtilitas Disk menyediakan operasi Buat Image dan Tulis Image. Simpan image ke perangkat fisik yang berbeda. Pemulihan image seluruh perangkat akan menimpa target yang dipilih, jadi pastikan model dan kapasitas target sudah benar sebelum menulisnya.\nImage perangkat adalah pelengkap, bukan pengganti, cadangan terpisah untuk file pribadi penting.\nMemulihkan arsip sesi\nMengimpor arsip Session Manager akan membuat sesi baru yang diberi nomor; sesi yang sudah ada tidak akan ditimpa:\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nPemeriksaan kompatibilitas akan dijalankan saat impor. Periksa sesi yang diimpor sebelum mengaktifkannya dan simpan sesi yang sudah terbukti berfungsi sampai salinan hasil pemulihan telah diuji.\nSaat berpindah ke rilis MiniOS lain, sebaiknya migrasikan data pribadi dan konfigurasi yang dipilih. Jangan berasumsi bahwa sesi lengkap lama atau modul kustom kompatibel dengan rilis baru hanya karena dapat disalin ke sana.\nLihat Sessions and persistence untuk manajemen sesi dan Updating MiniOS untuk berpindah antar rilis MiniOS.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

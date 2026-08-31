@@ -122,6 +122,92 @@ class ApplicationTests(unittest.TestCase):
         self.assertIs(self.window.search_entry.get_parent(), self.window.controls_row)
         self.assertIs(self.window.locale_combo.get_parent(), self.window.controls_row)
 
+    def test_language_combo_uses_list_popup(self):
+        self.assertIsInstance(self.window.locale_combo, Gtk.ComboBoxText)
+        self.assertTrue(
+            self.window.locale_combo.style_get_property("appears-as-list"))
+        self.assertEqual(
+            type(self.window.locale_combo.get_popup_accessible()).__name__,
+            "TreeViewAccessible")
+
+    def test_document_rendering_is_owned_by_minios_gui(self):
+        context = self.window.markdown.get_style_context()
+        self.assertTrue(context.has_class("minios-document-view"))
+        self.assertFalse(context.has_class("minios-help-document"))
+        css = (Path(__file__).resolve().parents[1] / "share" / "styles" /
+               "style.css").read_text(encoding="utf-8")
+        self.assertNotIn("minios-document-", css)
+
+    def test_navigation_and_document_panes_use_same_rounded_frame(self):
+        self.assertIsInstance(self.window.sidebar_frame, Gtk.Frame)
+        self.assertIsInstance(self.window.document_frame, Gtk.Frame)
+        self.assertTrue(self.window.sidebar_frame.get_style_context().has_class(
+            "minios-help-pane"))
+        self.assertTrue(self.window.document_frame.get_style_context().has_class(
+            "minios-help-pane"))
+        self.assertEqual(
+            self.window.sidebar_scroll.get_shadow_type(), Gtk.ShadowType.NONE)
+        self.assertEqual(
+            self.window.document_scroll.get_shadow_type(), Gtk.ShadowType.NONE)
+        self.assertIs(self.window.sidebar_frame.get_child(), self.window.sidebar_scroll)
+        self.assertIs(self.window.document_frame.get_child(), self.window.document_scroll)
+        css = (Path(__file__).resolve().parents[1] / "share" / "styles" /
+               "style.css").read_text(encoding="utf-8")
+        self.assertNotIn("minios-document-", css)
+        self.assertIn("frame.minios-help-pane", css)
+        self.assertIn("border-radius: 4px;", css)
+        self.assertIn("padding: 2px;", css)
+
+    def test_page_outline_lists_document_headings_and_can_be_hidden(self):
+        self.window._open_document("about/Page")
+        self._drain()
+        self.assertTrue(self.window._toc_available)
+        self.assertTrue(self.window.toc_button.get_sensitive())
+        self.assertTrue(self.window.toc_title.get_style_context().has_class(
+            "minios-help-toc-title"))
+        self.assertEqual(len(self.window._toc_rows), 1)
+        self.assertEqual(self.window._toc_rows[0].anchor, "anchor-here")
+        self.assertEqual(
+            self.window._toc_rows[0].get_child().get_text(), "Anchor Here")
+        self.window._toc_manual = True
+        self.window._last_toc_narrow = False
+        self.window._sync_toc_visibility()
+        self.assertTrue(self.window.toc_revealer.get_reveal_child())
+        self.window._on_toc_toggle()
+        self.assertFalse(self.window.toc_revealer.get_reveal_child())
+        self.window._on_toc_toggle()
+        self.assertTrue(self.window.toc_revealer.get_reveal_child())
+
+    def test_page_outline_heading_is_bold_and_translatable(self):
+        root = Path(__file__).resolve().parents[1]
+        css = (root / "share" / "styles" / "style.css").read_text(
+            encoding="utf-8")
+        source = (root / "lib" / "minios_help" / "application.py").read_text(
+            encoding="utf-8")
+        pot = (root / "po" / "messages.pot").read_text(encoding="utf-8")
+        russian = (root / "po" / "ru.po").read_text(encoding="utf-8")
+        self.assertIn(
+            ".minios-help-toc-title {\n    font-weight: bold;", css)
+        self.assertIn('label=_("On this page")', source)
+        self.assertIn('msgid "On this page"', pot)
+        self.assertIn('msgstr "На этой странице"', russian)
+
+    def test_page_outline_row_scrolls_to_anchor(self):
+        self.window._open_document("about/Page")
+        self._drain()
+        row = self.window._toc_rows[0]
+        with mock.patch.object(
+                self.window.markdown, "scroll_to_anchor", return_value=True) as scroll:
+            self.window._on_toc_row_activated(self.window.toc_list, row)
+        scroll.assert_called_once_with("anchor-here")
+        self.assertEqual(self.window.history.current.anchor, "anchor-here")
+
+    def test_page_outline_is_disabled_without_section_headings(self):
+        self.window._open_document("index")
+        self._drain()
+        self.assertFalse(self.window._toc_available)
+        self.assertFalse(self.window.toc_button.get_sensitive())
+        self.assertFalse(self.window.toc_revealer.get_reveal_child())
 
     def test_search_results_do_not_use_modal_keyboard_grab(self):
         self.window.search_worker.index.build()

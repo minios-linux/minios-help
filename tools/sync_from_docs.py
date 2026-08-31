@@ -26,7 +26,6 @@ NODE_COMPILER = Path(os.environ.get(
 DEFAULT_LOCALE = "en"
 PRODUCT_KIND = "minios-help-documents"
 SCHEMA_VERSION = 2
-DOC_DIRS = ("about", "administration", "configuration", "development", "installation")
 SAFE_EXTERNAL_SCHEMES = ("http", "https", "mailto")
 LOCALE_RE = re.compile(r"^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8})?$")
 LINK_RE = re.compile(r"(?<!!)\[([^\]]+)\]\(([^)\n]+)\)")
@@ -85,46 +84,82 @@ def _reject_symlink(path, label):
         raise SyncError("symbolic links are not allowed in {}: {}".format(label, path.name))
 
 
-def collect_documents(root):
-    """Return canonical-id -> source path without following symlinks."""
+def _sidebar_canonical_id(target):
+    """Return the canonical document id addressed by a sidebar link."""
+    if not isinstance(target, str) or not target or _has_control(target):
+        raise SyncError("invalid sidebar link: {!r}".format(target))
+    parsed = urlsplit(target)
+    if parsed.scheme or target.startswith("//") or parsed.query or parsed.fragment:
+        raise SyncError("sidebar link must point directly to a local document: {}".format(target))
+    path = unquote(parsed.path or "")
+    if "\\" in path:
+        raise SyncError("backslashes are not allowed in sidebar link {}".format(target))
+    if path.startswith("/docs/"):
+        path = path[len("/docs/"):]
+    elif path.startswith("/"):
+        path = path[1:]
+    else:
+        raise SyncError("sidebar document link must be absolute: {}".format(target))
+    if path.endswith(".md"):
+        path = path[:-3]
+    path = posixpath.normpath(path)
+    if path in ("", "."):
+        return "index"
+    if path == ".." or path.startswith("../") or path.startswith("/"):
+        raise SyncError("sidebar link escapes documentation root: {}".format(target))
+    if any(part in ("", ".", "..") for part in path.split("/")):
+        raise SyncError("invalid sidebar document path: {}".format(target))
+    return path
+
+
+def sidebar_document_ids(sidebar):
+    """Discover the document set from the sidebar, the navigation source of truth."""
+    documents = ["index"]
+    folded = {"index": "index"}
+
+    def walk(nodes):
+        for node in nodes:
+            link = node.get("link")
+            if link:
+                canon = _sidebar_canonical_id(link)
+                key = canon.casefold()
+                previous = folded.get(key)
+                if previous is not None and previous != canon:
+                    raise SyncError(
+                        "conflicting canonical IDs: {} and {}".format(previous, canon))
+                if previous is None:
+                    folded[key] = canon
+                    documents.append(canon)
+            walk(node.get("items", []))
+
+    walk(sidebar)
+    return documents
+
+
+def collect_documents(root, expected, required=True):
+    """Return sidebar-selected canonical-id -> source path without symlinks."""
     root = Path(root)
     documents = {}
-    folded = {}
-
-    index_path = root / "index.md"
-    if index_path.exists():
-        _reject_symlink(index_path, "documentation")
-        documents["index"] = index_path
-        folded["index"] = "index"
-
-    for dirname in DOC_DIRS:
-        base = root / dirname
-        if not base.exists():
+    root_resolved = root.resolve()
+    for canon in expected:
+        relative = "index.md" if canon == "index" else canon + ".md"
+        validate_name(relative, "relative path")
+        path = root / Path(relative)
+        current = root
+        for part in Path(relative).parts:
+            current = current / part
+            _reject_symlink(current, "documentation")
+        if not path.exists():
+            if required:
+                raise SyncError("missing documentation source: {}".format(relative))
             continue
-        _reject_symlink(base, "documentation")
-        for current, dirs, files in os.walk(str(base), followlinks=False):
-            current_path = Path(current)
-            for name in list(dirs):
-                validate_name(name, "directory name")
-                child = current_path / name
-                if child.is_symlink():
-                    raise SyncError("symbolic links are not allowed in documentation: {}".format(name))
-            for name in files:
-                validate_name(name, "file name")
-                if not name.endswith(".md"):
-                    continue
-                path = current_path / name
-                _reject_symlink(path, "documentation")
-                rel = path.relative_to(root).as_posix()
-                validate_name(rel, "relative path")
-                canon = canonical_id(rel)
-                key = canon.casefold()
-                if key in folded and folded[key] != canon:
-                    raise SyncError("conflicting canonical IDs: {} and {}".format(folded[key], canon))
-                if canon in documents:
-                    raise SyncError("duplicate canonical ID: {}".format(canon))
-                folded[key] = canon
-                documents[canon] = path
+        if not path.is_file():
+            raise SyncError("documentation source is not a file: {}".format(relative))
+        try:
+            path.resolve().relative_to(root_resolved)
+        except ValueError:
+            raise SyncError("documentation source escapes root: {}".format(relative))
+        documents[canon] = path
     return documents
 
 
@@ -712,10 +747,8 @@ def sync_docs(docs_root, output_root, stderr=None, node_command=None,
     validate_sidebar(sidebar)
 
     locales = discover_locales(docs_root)
-    english_sources = collect_documents(docs_root)
-    if "index" not in english_sources:
-        raise SyncError("missing English index.md")
-    known = sorted(english_sources)
+    known = sidebar_document_ids(sidebar)
+    english_sources = collect_documents(docs_root, known, required=True)
     known_folded = {}
     for canon in known:
         folded = canon.casefold()
@@ -728,10 +761,7 @@ def sync_docs(docs_root, output_root, stderr=None, node_command=None,
         if locale_name == DEFAULT_LOCALE:
             continue
         locale_root = docs_root / "translations" / locale_name
-        localized = collect_documents(locale_root)
-        for canon in localized:
-            if canon.casefold() not in known_folded:
-                raise SyncError("translation has no English source: {} ({})".format(canon, locale_name))
+        localized = collect_documents(locale_root, known, required=False)
         sources_by_locale[locale_name] = localized
 
     messages_by_locale = {}

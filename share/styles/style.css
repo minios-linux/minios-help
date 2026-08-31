@@ -1,2 +1,39 @@
 /* MiniOS Help uses /usr/share/minios/minios.css as its base stylesheet.
- * Keep only application-specific rules here. */
+ * Document rendering stays entirely in minios-gui; only application layout
+ * such as the pane frames and page-outline list is styled here. */
+
+/* Inset the scrollable child so its square drawing window cannot overwrite
+ * the rounded corners. Both panes use this exact same entry-like frame. */
+frame.minios-help-pane {
+    background-color: @theme_base_color;
+    border: 1px solid alpha(@borders, 0.75);
+    border-radius: 4px;
+    padding: 2px;
+}
+
+frame.minios-help-pane > border {
+    border: none;
+}
+
+.minios-help-toc-title {
+    font-weight: bold;
+}
+
+.minios-help-toc {
+    background-color: transparent;
+}
+
+.minios-help-toc row {
+    border-radius: 4px;
+}
+
+.minios-help-toc row:selected,
+.minios-help-toc row:selected:hover {
+    background-color: alpha(@theme_selected_bg_color, 0.10);
+    color: @theme_fg_color;
+}
+
+.minios-help-toc row:selected label {
+    color: @theme_selected_bg_color;
+    font-weight: 600;
+}

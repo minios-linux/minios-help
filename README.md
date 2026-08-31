@@ -36,9 +36,11 @@ The shared `minios-gui` build toolchain uses Node.js 20 or newer and includes
 `@mermaid-js/mermaid-cli@11.16.0`. `--mermaid-command /path/to/mmdc` remains
 available when an alternate Mermaid CLI executable is required.
 
-The synchronizer validates the sidebar contract, UTF-8 input, internal links,
-anchors, path containment, compiled document checksums and asset checksums
-before atomically replacing the bundle. Browser-only Mermaid CSS animations,
+The sidebar is the source of truth for which documentation pages belong in the
+offline bundle, so adding or moving a section does not require changing the
+synchronizer. It validates that contract, UTF-8 input, internal links, anchors,
+path containment, compiled document checksums and asset checksums before
+atomically replacing the bundle. Browser-only Mermaid CSS animations,
 drop shadows and custom properties are stripped from the static SVG; output
 containing scripts or `foreignObject` is rejected. This keeps the assets
 renderable by the native GTK SVG loader, including librsvg 2.40 in Ubuntu 18.04.

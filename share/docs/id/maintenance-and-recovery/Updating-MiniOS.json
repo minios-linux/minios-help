@@ -1,0 +1,639 @@
+{
+  "headings": [
+    {
+      "anchor": "memperbarui-minios",
+      "level": 1,
+      "title": "Memperbarui MiniOS"
+    },
+    {
+      "anchor": "apt-diizinkan",
+      "level": 2,
+      "title": "APT diizinkan"
+    },
+    {
+      "anchor": "live-modular-minios",
+      "level": 3,
+      "title": "Live modular MiniOS"
+    },
+    {
+      "anchor": "instalasi-native-minios",
+      "level": 3,
+      "title": "Instalasi native MiniOS"
+    },
+    {
+      "anchor": "berpindah-ke-rilis-minios-yang-lebih-baru",
+      "level": 2,
+      "title": "Berpindah ke rilis MiniOS yang lebih baru"
+    },
+    {
+      "anchor": "modul-dan-kernel-adalah-tugas-pemeliharaan-terpisah",
+      "level": 2,
+      "title": "Modul dan kernel adalah tugas pemeliharaan terpisah"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "memperbarui-minios",
+      [
+        [
+          "text",
+          "Memperbarui MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "tidak"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " memiliki prosedur upgrade in-place yang didukung dari satu rilis MiniOS ke rilis lainnya. Sistem live modular ini dirakit dari modul SquashFS yang hanya-baca ditambah lapisan sesi yang dapat ditulis, sehingga mengubah paket Debian di sistem yang sedang berjalan tidak akan menggantikan rilis MiniOS itu sendiri."
+        ]
+      ]
+    ],
+    [
+      "admonition",
+      "warning",
+      "Rilis MiniOS yang lebih baru adalah instalasi baru",
+      [
+        [
+          "block",
+          "paragraph",
+          [
+            [
+              "text",
+              "Tidak ada padanan MiniOS dari "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "dist-upgrade"
+                ]
+              ]
+            ],
+            [
+              "text",
+              " yang dapat mengubah salinan terpasang atau persisten dari satu rilis MiniOS menjadi rilis lain. Berpindah ke rilis MiniOS yang lebih baru berarti menginstal rilis tersebut, lalu memigrasikan data dan pengaturan yang ingin Anda simpan."
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "apt-diizinkan",
+      [
+        [
+          "text",
+          "APT diizinkan"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS tidak memblokir atau melarang penggunaan APT. Anda dapat memasang dan memperbarui paket Debian jika diperlukan:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo apt update\nsudo apt upgrade",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "apt",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "update",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "apt",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "upgrade",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "live-modular-minios",
+      [
+        [
+          "text",
+          "Live modular MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Dalam sesi live MiniOS, APT akan menulis file paket dan metadata paket ke lapisan yang dapat ditulis. Dengan persistensi, perubahan tersebut dapat bertahan setelah reboot. Modul "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " yang hanya-baca di bawah lapisan itu tidak berubah; file yang diperbarui di sesi hanya menimpa file dari modul."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ini adalah pemeliharaan paket "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "di dalam sesi tersebut"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", bukan pembaruan MiniOS."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Hal ini juga mengonsumsi ruang persistensi dan dapat membuat sesi berbeda secara signifikan dari image yang dipublikasikan. Sesi baru tetap akan dimulai dari kumpulan paket yang ada di modul MiniOS."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Jangan ubah sumber APT ke rilis Debian lain dan menjalankan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "full-upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", atau "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dist-upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dengan harapan mendapatkan rilis MiniOS yang lebih baru."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Tindakan tersebut akan menciptakan status sistem campuran; tidak akan mereproduksi kumpulan modul, file boot, pemilihan firmware, paket MiniOS, atau pilihan lain dari rilis MiniOS yang dipublikasikan."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "instalasi-native-minios",
+      [
+        [
+          "text",
+          "Instalasi native MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Instalasi native memiliki root filesystem yang dapat ditulis secara konvensional, sehingga APT berjalan seperti biasa di Debian. Pemeliharaan paket di sini adalah pemeliharaan APT biasa. Namun demikian, MiniOS tetap tidak menyediakan jalur upgrade in-place antar rilis MiniOS. Upgrade paket Debian tidak sama dengan membangun ulang sistem sebagai rilis MiniOS yang lebih baru."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "berpindah-ke-rilis-minios-yang-lebih-baru",
+      [
+        [
+          "text",
+          "Berpindah ke rilis MiniOS yang lebih baru"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Perlakukan rilis MiniOS yang lebih baru sebagai sistem terpisah:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Unduh dan "
+                ],
+                [
+                  "link",
+                  "/installing-minios/Verifying-Downloads.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "verifikasi"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " image baru."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Cadangkan file penting, konfigurasi, modul pengguna, dan sesi persisten seperti dijelaskan di "
+                ],
+                [
+                  "link",
+                  "/maintenance-and-recovery/Backing-Up-MiniOS.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Mencadangkan MiniOS"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Instal rilis baru menggunakan "
+                ],
+                [
+                  "link",
+                  "/installing-minios/Installation-Methods.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "metode instalasi"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " yang sesuai."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Boot terlebih dahulu dengan sesi baru dan verifikasi perangkat keras serta aplikasi yang Anda butuhkan."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Migrasikan file pribadi dan konfigurasi terpilih. Jika Session Manager dapat mengekspor sesi lama, impor arsipnya dan biarkan pemeriksaan kompatibilitas berjalan, daripada menyalin store sesi live secara manual."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Bangun ulang atau instal ulang modul kustom jika belum dipastikan kompatibel dengan rilis tujuan."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Simpan instalasi lama atau cadangan hingga rilis baru telah diuji."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Jangan menggabungkan modul dasar, file boot, file kernel, atau file initramfs dari rilis MiniOS yang berbeda untuk mencoba membuat upgrade."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "modul-dan-kernel-adalah-tugas-pemeliharaan-terpisah",
+      [
+        [
+          "text",
+          "Modul dan kernel adalah tugas pemeliharaan terpisah"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Modul "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " yang dibuat pengguna dapat diganti atau dibangun ulang secara independen jika memang diinginkan. Hal ini hanya mengubah lapisan kustomisasi; tidak mengubah rilis MiniOS. Lihat "
+        ],
+        [
+          "link",
+          "/preparing-and-customizing/Managing-Modules.md",
+          null,
+          [
+            [
+              "text",
+              "Mengelola modul"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Kernel MiniOS juga dikelola sebagai satu set kernel module, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "vmlinuz"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", dan initramfs yang terkoordinasi. Gunakan "
+        ],
+        [
+          "link",
+          "/preparing-and-customizing/Managing-Kernels.md",
+          null,
+          [
+            [
+              "text",
+              "Mengelola kernel"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk operasi tersebut. Memperbarui hanya paket "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "linux-image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dengan APT bukanlah workflow manajemen kernel MiniOS, dan mengganti kernel tidak memperbarui rilis MiniOS."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Memperbarui MiniOS\nMiniOS tidak memiliki prosedur upgrade in-place yang didukung dari satu rilis MiniOS ke rilis lainnya. Sistem live modular ini dirakit dari modul SquashFS yang hanya-baca ditambah lapisan sesi yang dapat ditulis, sehingga mengubah paket Debian di sistem yang sedang berjalan tidak akan menggantikan rilis MiniOS itu sendiri.\nRilis MiniOS yang lebih baru adalah instalasi baru\nTidak ada padanan MiniOS dari dist-upgrade yang dapat mengubah salinan terpasang atau persisten dari satu rilis MiniOS menjadi rilis lain. Berpindah ke rilis MiniOS yang lebih baru berarti menginstal rilis tersebut, lalu memigrasikan data dan pengaturan yang ingin Anda simpan.\nAPT diizinkan\nMiniOS tidak memblokir atau melarang penggunaan APT. Anda dapat memasang dan memperbarui paket Debian jika diperlukan:\nsudo apt update\nsudo apt upgrade\nLive modular MiniOS\nDalam sesi live MiniOS, APT akan menulis file paket dan metadata paket ke lapisan yang dapat ditulis. Dengan persistensi, perubahan tersebut dapat bertahan setelah reboot. Modul .sb yang hanya-baca di bawah lapisan itu tidak berubah; file yang diperbarui di sesi hanya menimpa file dari modul.\nIni adalah pemeliharaan paket di dalam sesi tersebut, bukan pembaruan MiniOS.\nHal ini juga mengonsumsi ruang persistensi dan dapat membuat sesi berbeda secara signifikan dari image yang dipublikasikan. Sesi baru tetap akan dimulai dari kumpulan paket yang ada di modul MiniOS.\nJangan ubah sumber APT ke rilis Debian lain dan menjalankan upgrade, full-upgrade, atau dist-upgrade dengan harapan mendapatkan rilis MiniOS yang lebih baru.\nTindakan tersebut akan menciptakan status sistem campuran; tidak akan mereproduksi kumpulan modul, file boot, pemilihan firmware, paket MiniOS, atau pilihan lain dari rilis MiniOS yang dipublikasikan.\nInstalasi native MiniOS\nInstalasi native memiliki root filesystem yang dapat ditulis secara konvensional, sehingga APT berjalan seperti biasa di Debian. Pemeliharaan paket di sini adalah pemeliharaan APT biasa. Namun demikian, MiniOS tetap tidak menyediakan jalur upgrade in-place antar rilis MiniOS. Upgrade paket Debian tidak sama dengan membangun ulang sistem sebagai rilis MiniOS yang lebih baru.\nBerpindah ke rilis MiniOS yang lebih baru\nPerlakukan rilis MiniOS yang lebih baru sebagai sistem terpisah:\nUnduh dan verifikasi image baru.\nCadangkan file penting, konfigurasi, modul pengguna, dan sesi persisten seperti dijelaskan di Mencadangkan MiniOS.\nInstal rilis baru menggunakan metode instalasi yang sesuai.\nBoot terlebih dahulu dengan sesi baru dan verifikasi perangkat keras serta aplikasi yang Anda butuhkan.\nMigrasikan file pribadi dan konfigurasi terpilih. Jika Session Manager dapat mengekspor sesi lama, impor arsipnya dan biarkan pemeriksaan kompatibilitas berjalan, daripada menyalin store sesi live secara manual.\nBangun ulang atau instal ulang modul kustom jika belum dipastikan kompatibel dengan rilis tujuan.\nSimpan instalasi lama atau cadangan hingga rilis baru telah diuji.\nJangan menggabungkan modul dasar, file boot, file kernel, atau file initramfs dari rilis MiniOS yang berbeda untuk mencoba membuat upgrade.\nModul dan kernel adalah tugas pemeliharaan terpisah\nModul .sb yang dibuat pengguna dapat diganti atau dibangun ulang secara independen jika memang diinginkan. Hal ini hanya mengubah lapisan kustomisasi; tidak mengubah rilis MiniOS. Lihat Mengelola modul.\nKernel MiniOS juga dikelola sebagai satu set kernel module, vmlinuz, dan initramfs yang terkoordinasi. Gunakan Mengelola kernel untuk operasi tersebut. Memperbarui hanya paket linux-image dengan APT bukanlah workflow manajemen kernel MiniOS, dan mengganti kernel tidak memperbarui rilis MiniOS.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

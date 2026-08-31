@@ -1,0 +1,639 @@
+{
+  "headings": [
+    {
+      "anchor": "atualizando-minios",
+      "level": 1,
+      "title": "Atualizando MiniOS"
+    },
+    {
+      "anchor": "apt-é-permitido",
+      "level": 2,
+      "title": "APT é permitido"
+    },
+    {
+      "anchor": "minios-live-modular",
+      "level": 3,
+      "title": "MiniOS live modular"
+    },
+    {
+      "anchor": "minios-nativo",
+      "level": 3,
+      "title": "MiniOS nativo"
+    },
+    {
+      "anchor": "migrando-para-uma-versão-minios-mais-recente",
+      "level": 2,
+      "title": "Migrando para uma versão MiniOS mais recente"
+    },
+    {
+      "anchor": "módulos-e-kernels-são-tarefas-de-manutenção-separadas",
+      "level": 2,
+      "title": "Módulos e kernels são tarefas de manutenção separadas"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "atualizando-minios",
+      [
+        [
+          "text",
+          "Atualizando MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "não"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " possui um procedimento de atualização in-place suportado de uma versão MiniOS para outra. O sistema modular live é montado a partir de módulos SquashFS somente leitura, além de uma camada de sessão gravável, então alterar pacotes Debian no sistema em execução não substitui a própria versão MiniOS."
+        ]
+      ]
+    ],
+    [
+      "admonition",
+      "warning",
+      "Uma nova versão MiniOS é uma nova instalação",
+      [
+        [
+          "block",
+          "paragraph",
+          [
+            [
+              "text",
+              "Não existe um equivalente MiniOS ao "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "dist-upgrade"
+                ]
+              ]
+            ],
+            [
+              "text",
+              " que transforme uma cópia instalada ou persistente de uma versão MiniOS em outra versão. Migrar para uma versão MiniOS mais recente significa instalar essa versão e, em seguida, migrar os dados e configurações que você deseja manter."
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "apt-é-permitido",
+      [
+        [
+          "text",
+          "APT é permitido"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS não bloqueia nem proíbe o uso do APT. Você pode instalar e atualizar pacotes Debian quando isso for útil:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo apt update\nsudo apt upgrade",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "apt",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "update",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "apt",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "upgrade",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "minios-live-modular",
+      [
+        [
+          "text",
+          "MiniOS live modular"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Em uma sessão live MiniOS, o APT grava arquivos de pacotes e metadados de pacotes na camada gravável. Com persistência, essas alterações podem sobreviver a uma reinicialização. Os módulos "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " somente leitura abaixo dessa camada não são alterados; arquivos atualizados na sessão simplesmente sobrescrevem os arquivos dos módulos."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Isso é manutenção de pacotes "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "dentro dessa sessão"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", não uma atualização do MiniOS."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Também consome espaço de persistência e pode fazer a sessão diferir substancialmente da imagem publicada. Uma nova sessão ainda inicia a partir do conjunto de pacotes contido nos módulos MiniOS."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Não altere as fontes do APT para outra versão do Debian e execute "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "full-upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ou "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dist-upgrade"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " esperando obter uma versão MiniOS mais recente."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Isso cria um estado de sistema misto; não reproduz o conjunto de módulos, arquivos de boot, seleção de firmware, pacotes MiniOS ou outras escolhas de uma versão MiniOS publicada."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "minios-nativo",
+      [
+        [
+          "text",
+          "MiniOS nativo"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Uma instalação nativa possui um sistema de arquivos raiz convencional gravável, então o APT opera da forma padrão do Debian. A manutenção de pacotes, portanto, é a manutenção comum via APT. Mesmo assim, MiniOS não define um caminho de atualização in-place entre versões MiniOS. Atualizar pacotes Debian não é o mesmo que reconstruir o sistema como uma versão MiniOS posterior."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "migrando-para-uma-versão-minios-mais-recente",
+      [
+        [
+          "text",
+          "Migrando para uma versão MiniOS mais recente"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Trate uma nova versão MiniOS como um sistema separado:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": true,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Baixe e "
+                ],
+                [
+                  "link",
+                  "/installing-minios/Verifying-Downloads.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "verifique"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " a nova imagem."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Faça backup de arquivos importantes, configurações, módulos de usuário e sessões persistentes conforme descrito em "
+                ],
+                [
+                  "link",
+                  "/maintenance-and-recovery/Backing-Up-MiniOS.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Backup de MiniOS"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Instale a nova versão usando o "
+                ],
+                [
+                  "link",
+                  "/installing-minios/Installation-Methods.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "método de instalação"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " apropriado."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Inicialize primeiro com uma sessão nova e verifique o hardware e os aplicativos necessários."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Migre arquivos pessoais e configurações selecionadas. Onde o Session Manager puder exportar a sessão antiga, importe o arquivo compactado e deixe as verificações de compatibilidade rodarem, em vez de copiar manualmente o armazenamento da sessão ativa."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Reconstrua ou reinstale módulos personalizados quando não houver certeza de compatibilidade com a versão de destino."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Mantenha a instalação antiga ou o backup até testar a nova versão."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Não misture módulos base, arquivos de boot, arquivos de kernel ou arquivos initramfs de versões MiniOS diferentes tentando fabricar uma atualização."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "módulos-e-kernels-são-tarefas-de-manutenção-separadas",
+      [
+        [
+          "text",
+          "Módulos e kernels são tarefas de manutenção separadas"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Um módulo "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " criado pelo usuário pode ser substituído ou reconstruído de forma independente quando isso for intencional. Isso altera uma camada de customização; não altera a versão MiniOS. Veja "
+        ],
+        [
+          "link",
+          "/preparing-and-customizing/Managing-Modules.md",
+          null,
+          [
+            [
+              "text",
+              "Gerenciando módulos"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "O kernel MiniOS também é gerenciado como um módulo de kernel coordenado, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "vmlinuz"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", e conjunto de initramfs. Use "
+        ],
+        [
+          "link",
+          "/preparing-and-customizing/Managing-Kernels.md",
+          null,
+          [
+            [
+              "text",
+              "Gerenciando kernels"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para essa operação. Atualizar apenas um pacote "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "linux-image"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " com o APT não é o fluxo de trabalho de gerenciamento de kernel MiniOS, e alterar o kernel não atualiza a versão MiniOS."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Atualizando MiniOS\nMiniOS não possui um procedimento de atualização in-place suportado de uma versão MiniOS para outra. O sistema modular live é montado a partir de módulos SquashFS somente leitura, além de uma camada de sessão gravável, então alterar pacotes Debian no sistema em execução não substitui a própria versão MiniOS.\nUma nova versão MiniOS é uma nova instalação\nNão existe um equivalente MiniOS ao dist-upgrade que transforme uma cópia instalada ou persistente de uma versão MiniOS em outra versão. Migrar para uma versão MiniOS mais recente significa instalar essa versão e, em seguida, migrar os dados e configurações que você deseja manter.\nAPT é permitido\nMiniOS não bloqueia nem proíbe o uso do APT. Você pode instalar e atualizar pacotes Debian quando isso for útil:\nsudo apt update\nsudo apt upgrade\nMiniOS live modular\nEm uma sessão live MiniOS, o APT grava arquivos de pacotes e metadados de pacotes na camada gravável. Com persistência, essas alterações podem sobreviver a uma reinicialização. Os módulos .sb somente leitura abaixo dessa camada não são alterados; arquivos atualizados na sessão simplesmente sobrescrevem os arquivos dos módulos.\nIsso é manutenção de pacotes dentro dessa sessão, não uma atualização do MiniOS.\nTambém consome espaço de persistência e pode fazer a sessão diferir substancialmente da imagem publicada. Uma nova sessão ainda inicia a partir do conjunto de pacotes contido nos módulos MiniOS.\nNão altere as fontes do APT para outra versão do Debian e execute upgrade, full-upgrade ou dist-upgrade esperando obter uma versão MiniOS mais recente.\nIsso cria um estado de sistema misto; não reproduz o conjunto de módulos, arquivos de boot, seleção de firmware, pacotes MiniOS ou outras escolhas de uma versão MiniOS publicada.\nMiniOS nativo\nUma instalação nativa possui um sistema de arquivos raiz convencional gravável, então o APT opera da forma padrão do Debian. A manutenção de pacotes, portanto, é a manutenção comum via APT. Mesmo assim, MiniOS não define um caminho de atualização in-place entre versões MiniOS. Atualizar pacotes Debian não é o mesmo que reconstruir o sistema como uma versão MiniOS posterior.\nMigrando para uma versão MiniOS mais recente\nTrate uma nova versão MiniOS como um sistema separado:\nBaixe e verifique a nova imagem.\nFaça backup de arquivos importantes, configurações, módulos de usuário e sessões persistentes conforme descrito em Backup de MiniOS.\nInstale a nova versão usando o método de instalação apropriado.\nInicialize primeiro com uma sessão nova e verifique o hardware e os aplicativos necessários.\nMigre arquivos pessoais e configurações selecionadas. Onde o Session Manager puder exportar a sessão antiga, importe o arquivo compactado e deixe as verificações de compatibilidade rodarem, em vez de copiar manualmente o armazenamento da sessão ativa.\nReconstrua ou reinstale módulos personalizados quando não houver certeza de compatibilidade com a versão de destino.\nMantenha a instalação antiga ou o backup até testar a nova versão.\nNão misture módulos base, arquivos de boot, arquivos de kernel ou arquivos initramfs de versões MiniOS diferentes tentando fabricar uma atualização.\nMódulos e kernels são tarefas de manutenção separadas\nUm módulo .sb criado pelo usuário pode ser substituído ou reconstruído de forma independente quando isso for intencional. Isso altera uma camada de customização; não altera a versão MiniOS. Veja Gerenciando módulos.\nO kernel MiniOS também é gerenciado como um módulo de kernel coordenado, vmlinuz, e conjunto de initramfs. Use Gerenciando kernels para essa operação. Atualizar apenas um pacote linux-image com o APT não é o fluxo de trabalho de gerenciamento de kernel MiniOS, e alterar o kernel não atualiza a versão MiniOS.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

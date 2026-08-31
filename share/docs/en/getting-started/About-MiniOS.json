@@ -1,0 +1,966 @@
+{
+  "headings": [
+    {
+      "anchor": "about-minios",
+      "level": 1,
+      "title": "About MiniOS"
+    },
+    {
+      "anchor": "what-makes-minios-different",
+      "level": 2,
+      "title": "What makes MiniOS different"
+    },
+    {
+      "anchor": "portable-by-design",
+      "level": 3,
+      "title": "Portable by design"
+    },
+    {
+      "anchor": "modular-by-design",
+      "level": 3,
+      "title": "Modular by design"
+    },
+    {
+      "anchor": "small-without-sacrificing-convenience",
+      "level": 3,
+      "title": "Small without sacrificing convenience"
+    },
+    {
+      "anchor": "debian-not-a-separate-ecosystem",
+      "level": 3,
+      "title": "Debian, not a separate ecosystem"
+    },
+    {
+      "anchor": "transparent-and-adaptable",
+      "level": 3,
+      "title": "Transparent and adaptable"
+    },
+    {
+      "anchor": "how-minios-works",
+      "level": 2,
+      "title": "How MiniOS works"
+    },
+    {
+      "anchor": "editions",
+      "level": 2,
+      "title": "Editions"
+    },
+    {
+      "anchor": "next-steps",
+      "level": 2,
+      "title": "Next steps"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "about-minios",
+      [
+        [
+          "text",
+          "About MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS is a Debian-based Linux distribution designed primarily as a portable operating system. It can run from removable media or a local disk while keeping the operating system, applications, and user environment independent of any particular computer."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A conventional desktop installation gradually becomes tied to the machine on which it was installed. MiniOS takes a different approach: the working environment can stay with the user and move between compatible computers."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Settings, files, installed software, and persistent sessions can travel with the system instead of remaining on one internal disk."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS is therefore intended to be more than a temporary live environment. Its goal is to provide a complete portable Linux system that remains practical for daily work, maintenance, recovery, experimentation, and specialized tasks."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "what-makes-minios-different",
+      [
+        [
+          "text",
+          "What makes MiniOS different"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "portable-by-design",
+      [
+        [
+          "text",
+          "Portable by design"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS is built around a simple idea: "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "the operating system should belong to the user, not to the device on which it runs"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The computer provides the processor, memory, display, storage interfaces, and peripherals. The MiniOS environment can remain on the user's own media and be started on different hardware. This makes the computer the place where the system runs today rather than the place to which the system permanently belongs."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "modular-by-design",
+      [
+        [
+          "text",
+          "Modular by design"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS is assembled from separate read-only SquashFS modules rather than one large writable system image. The base system, kernel, firmware, desktop, applications, and additional software can remain separate layers."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "User changes can be stored independently from those base modules. This makes it possible to add, replace, disable, or test parts of the system without rewriting the entire operating system, and makes returning to a known base state easier when an experiment does not work as intended."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Modularity also lets different MiniOS editions and custom systems share the same architecture instead of becoming unrelated products."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "small-without-sacrificing-convenience",
+      [
+        [
+          "text",
+          "Small without sacrificing convenience"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The name "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " reflects an important project goal: keeping the system as small as reasonably possible. But size is not pursued at the expense of making the system inconvenient, fragile, or narrowly useful."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A very small live image is easy to produce when firmware, localization, filesystem support, persistence, desktop integration, recovery tools, and applications are removed. A portable operating system has a different problem: it should remain useful when it is started on hardware that was not known when the image was built."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS therefore aims for the "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "smallest practical size while preserving the maximum reasonable convenience, hardware support, and functionality"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". A component is not removed merely because it makes the ISO larger; the important question is whether the space it uses provides enough practical value."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "This is why some MiniOS editions are larger than the name may initially suggest."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "The additional size is deliberate when it improves everyday usability or makes the same portable system useful on a wider range of computers. Users who need a smaller system can choose a lighter edition or a reduced module set, while users who need a complete workstation can keep more functionality."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "debian-not-a-separate-ecosystem",
+      [
+        [
+          "text",
+          "Debian, not a separate ecosystem"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS is based on Debian and deliberately remains part of the Debian ecosystem."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "It uses normal Debian packages, APT, standard services, and familiar Linux conventions. MiniOS-specific infrastructure is added where a portable modular system needs behavior that a conventional installation does not provide."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The project prefers established Linux mechanisms when they already solve the problem instead of replacing them with MiniOS-specific equivalents."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "transparent-and-adaptable",
+      [
+        [
+          "text",
+          "Transparent and adaptable"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS tries to automate routine work without hiding the structure of the system. A user can stay within the graphical tools and ready-made images, but the same system can also be inspected, reconfigured, extended with modules, or rebuilt for a specialized purpose."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "This allows MiniOS to serve different tasks without splitting into unrelated products. A lightweight portable desktop, a recovery toolkit, and a broader workstation can use the same underlying model and differ mainly in the modules and applications they include."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "how-minios-works",
+      [
+        [
+          "text",
+          "How MiniOS works"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "At boot, MiniOS combines read-only SquashFS modules into one running root filesystem and adds a writable layer for the current session. Without persistence that writable state is temporary. With persistence, selected changes can survive a reboot while the base modules remain separate."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The modular live system is not merely one installation option: "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "it is the defining MiniOS model"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". MiniOS modules, persistent sessions, boot-time configuration, modular kernel management, image composition, and the MiniOS management applications are designed around this live architecture."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS Installer also provides a "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "native"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " installation path for users who prefer a conventional desktop system on a writable root filesystem. Native installation keeps the familiar MiniOS desktop experience — its selected desktop environment, visual identity, and ordinary applications — but it leaves the modular live model: MiniOS sessions, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " module workflows, modular kernel management, and the MiniOS-specific utilities designed for live operation are removed. The installed system is then maintained as a conventional Debian desktop with APT, Debian kernel packages, a normal initramfs, and the installed bootloader."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "For technical details, see "
+        ],
+        [
+          "link",
+          "/reference/System-Architecture.md",
+          null,
+          [
+            [
+              "text",
+              "MiniOS system architecture"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "For user-visible session behavior and storage choices, see "
+        ],
+        [
+          "link",
+          "/using-minios/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Boot modes"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " and "
+        ],
+        [
+          "link",
+          "/using-minios/Sessions-and-Persistence.md",
+          null,
+          [
+            [
+              "text",
+              "Session management"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "editions",
+      [
+        [
+          "text",
+          "Editions"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS editions are different configurations of the same architecture rather than separate operating systems."
+        ]
+      ]
+    ],
+    [
+      "table",
+      [
+        [
+          "table_row",
+          true,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Edition"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Purpose"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Standard"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Minimal Xfce system with basic functionality for everyday computing; recommended for most users"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Toolbox"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "System administration and diagnostics for professional IT work and system recovery"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Ultra"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Full-featured desktop with a wide range of applications and professional tools for creativity and development"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Flux"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Ultra-lightweight Fluxbox edition for minimal resource use and older hardware; not recommended for beginners"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Exact desktop and package availability depends on the release and target platform. For the maintained package selection and edition relationships, see "
+        ],
+        [
+          "link",
+          "/reference/Package-and-Edition-Contents.md",
+          null,
+          [
+            [
+              "text",
+              "Packages and editions"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". For the MiniOS-specific tools available in the system, see "
+        ],
+        [
+          "link",
+          "/using-minios/MiniOS-Applications.md",
+          null,
+          [
+            [
+              "text",
+              "MiniOS applications and tools"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "next-steps",
+      [
+        [
+          "text",
+          "Next steps"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/getting-started/Quick-Start.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Quick start"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — start using MiniOS."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/using-minios/MiniOS-Applications.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "MiniOS applications and tools"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — discover the included MiniOS utilities."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/reference/System-Architecture.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "MiniOS system architecture"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — understand the module, session, and boot model in more detail."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/reference/Package-and-Edition-Contents.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Packages and editions"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — compare maintained edition contents."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Project resources:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "https://minios.dev",
+                  null,
+                  [
+                    [
+                      "text",
+                      "MiniOS website"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "https://github.com/minios-linux/minios-live",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Source code"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "https://github.com/minios-linux/minios-live/issues",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Issue tracker"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "About MiniOS\nMiniOS is a Debian-based Linux distribution designed primarily as a portable operating system. It can run from removable media or a local disk while keeping the operating system, applications, and user environment independent of any particular computer.\nA conventional desktop installation gradually becomes tied to the machine on which it was installed. MiniOS takes a different approach: the working environment can stay with the user and move between compatible computers.\nSettings, files, installed software, and persistent sessions can travel with the system instead of remaining on one internal disk.\nMiniOS is therefore intended to be more than a temporary live environment. Its goal is to provide a complete portable Linux system that remains practical for daily work, maintenance, recovery, experimentation, and specialized tasks.\nWhat makes MiniOS different\nPortable by design\nMiniOS is built around a simple idea: the operating system should belong to the user, not to the device on which it runs.\nThe computer provides the processor, memory, display, storage interfaces, and peripherals. The MiniOS environment can remain on the user's own media and be started on different hardware. This makes the computer the place where the system runs today rather than the place to which the system permanently belongs.\nModular by design\nMiniOS is assembled from separate read-only SquashFS modules rather than one large writable system image. The base system, kernel, firmware, desktop, applications, and additional software can remain separate layers.\nUser changes can be stored independently from those base modules. This makes it possible to add, replace, disable, or test parts of the system without rewriting the entire operating system, and makes returning to a known base state easier when an experiment does not work as intended.\nModularity also lets different MiniOS editions and custom systems share the same architecture instead of becoming unrelated products.\nSmall without sacrificing convenience\nThe name MiniOS reflects an important project goal: keeping the system as small as reasonably possible. But size is not pursued at the expense of making the system inconvenient, fragile, or narrowly useful.\nA very small live image is easy to produce when firmware, localization, filesystem support, persistence, desktop integration, recovery tools, and applications are removed. A portable operating system has a different problem: it should remain useful when it is started on hardware that was not known when the image was built.\nMiniOS therefore aims for the smallest practical size while preserving the maximum reasonable convenience, hardware support, and functionality. A component is not removed merely because it makes the ISO larger; the important question is whether the space it uses provides enough practical value.\nThis is why some MiniOS editions are larger than the name may initially suggest.\nThe additional size is deliberate when it improves everyday usability or makes the same portable system useful on a wider range of computers. Users who need a smaller system can choose a lighter edition or a reduced module set, while users who need a complete workstation can keep more functionality.\nDebian, not a separate ecosystem\nMiniOS is based on Debian and deliberately remains part of the Debian ecosystem.\nIt uses normal Debian packages, APT, standard services, and familiar Linux conventions. MiniOS-specific infrastructure is added where a portable modular system needs behavior that a conventional installation does not provide.\nThe project prefers established Linux mechanisms when they already solve the problem instead of replacing them with MiniOS-specific equivalents.\nTransparent and adaptable\nMiniOS tries to automate routine work without hiding the structure of the system. A user can stay within the graphical tools and ready-made images, but the same system can also be inspected, reconfigured, extended with modules, or rebuilt for a specialized purpose.\nThis allows MiniOS to serve different tasks without splitting into unrelated products. A lightweight portable desktop, a recovery toolkit, and a broader workstation can use the same underlying model and differ mainly in the modules and applications they include.\nHow MiniOS works\nAt boot, MiniOS combines read-only SquashFS modules into one running root filesystem and adds a writable layer for the current session. Without persistence that writable state is temporary. With persistence, selected changes can survive a reboot while the base modules remain separate.\nThe modular live system is not merely one installation option: it is the defining MiniOS model. MiniOS modules, persistent sessions, boot-time configuration, modular kernel management, image composition, and the MiniOS management applications are designed around this live architecture.\nMiniOS Installer also provides a native installation path for users who prefer a conventional desktop system on a writable root filesystem. Native installation keeps the familiar MiniOS desktop experience — its selected desktop environment, visual identity, and ordinary applications — but it leaves the modular live model: MiniOS sessions, .sb module workflows, modular kernel management, and the MiniOS-specific utilities designed for live operation are removed. The installed system is then maintained as a conventional Debian desktop with APT, Debian kernel packages, a normal initramfs, and the installed bootloader.\nFor technical details, see MiniOS system architecture.\nFor user-visible session behavior and storage choices, see Boot modes and Session management.\nEditions\nMiniOS editions are different configurations of the same architecture rather than separate operating systems.\nEdition | Purpose\nStandard | Minimal Xfce system with basic functionality for everyday computing; recommended for most users\nToolbox | System administration and diagnostics for professional IT work and system recovery\nUltra | Full-featured desktop with a wide range of applications and professional tools for creativity and development\nFlux | Ultra-lightweight Fluxbox edition for minimal resource use and older hardware; not recommended for beginners\nExact desktop and package availability depends on the release and target platform. For the maintained package selection and edition relationships, see Packages and editions. For the MiniOS-specific tools available in the system, see MiniOS applications and tools.\nNext steps\nQuick start — start using MiniOS.\nMiniOS applications and tools — discover the included MiniOS utilities.\nMiniOS system architecture — understand the module, session, and boot model in more detail.\nPackages and editions — compare maintained edition contents.\nProject resources:\nMiniOS website\nSource code\nIssue tracker",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

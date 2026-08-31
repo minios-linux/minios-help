@@ -32,6 +32,7 @@ class CompilerTests(unittest.TestCase):
             ".node{filter:drop-shadow(1px 2px 2px rgba(0,0,0,1));"
             "animation:dash 5s linear infinite;stroke:#123456;}"
             ":root{--mermaid-font-family:sans-serif;}</style>"
+            "<text><tspan>Bootstrap</tspan><tspan> Failed?</tspan></text>"
             "<path class=\"node\" d=\"M0 0L1 1\"/></svg>''')\n",
             encoding="utf-8")
         self.mmdc.chmod(0o755)
@@ -89,6 +90,22 @@ class CompilerTests(unittest.TestCase):
         self.assertIn("Footnote text", document["plain_text"])
         self.assertEqual(document["headings"][0]["anchor"], "title")
 
+    def test_vitepress_warning_and_danger_containers_compile_to_admonitions(self):
+        document, _response = self.compile(
+            "::: warning\n"
+            "Warning **body**\n"
+            ":::\n\n"
+            "::: danger Check the target device\n"
+            "Danger body\n"
+            ":::\n")
+        raw = json.dumps(document["nodes"], ensure_ascii=False)
+        self.assertIn('"admonition", "warning", "Warning"', raw)
+        self.assertIn(
+            '"admonition", "danger", "Check the target device"', raw)
+        self.assertNotIn(":::", document["plain_text"])
+        self.assertIn("Warning body", document["plain_text"])
+        self.assertIn("Danger body", document["plain_text"])
+
     def test_fenced_code_uses_language_for_syntax_without_rendering_label(self):
         document, _response = self.compile(
             "```bash\nif [ \"$mode\" = live ]; then\n  echo ready # status\nfi\n```\n")
@@ -118,6 +135,8 @@ class CompilerTests(unittest.TestCase):
         self.assertNotIn("animation:", svg)
         self.assertNotIn("--mermaid-font-family", svg)
         self.assertIn("stroke:#123456", svg)
+        self.assertIn('<text xml:space="preserve">', svg)
+        self.assertIn("Bootstrap</tspan><tspan> Failed?", svg)
         self.assertIn(relative, response["assets"])
 
 

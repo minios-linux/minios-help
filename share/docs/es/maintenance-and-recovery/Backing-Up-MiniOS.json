@@ -1,0 +1,874 @@
+{
+  "headings": [
+    {
+      "anchor": "realizar-copias-de-seguridad-de-minios",
+      "level": 1,
+      "title": "Realizar copias de seguridad de MiniOS"
+    },
+    {
+      "anchor": "qué-respaldar",
+      "level": 2,
+      "title": "Qué respaldar"
+    },
+    {
+      "anchor": "exportar-sesiones-persistentes",
+      "level": 2,
+      "title": "Exportar sesiones persistentes"
+    },
+    {
+      "anchor": "sesiones-squashfs",
+      "level": 3,
+      "title": "Sesiones SquashFS"
+    },
+    {
+      "anchor": "respaldar-configuración-y-módulos",
+      "level": 2,
+      "title": "Respaldar configuración y módulos"
+    },
+    {
+      "anchor": "crear-una-imagen-de-todo-el-dispositivo",
+      "level": 2,
+      "title": "Crear una imagen de todo el dispositivo"
+    },
+    {
+      "anchor": "restaurar-un-archivo-de-sesión",
+      "level": 2,
+      "title": "Restaurar un archivo de sesión"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "realizar-copias-de-seguridad-de-minios",
+      [
+        [
+          "text",
+          "Realizar copias de seguridad de MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Una copia de seguridad es la vía confiable para recuperar MiniOS. La documentación no garantiza un procedimiento genérico de reparación para un gestor de arranque, sistema de archivos o contenedor de persistencia dañado. Mantén copias recuperables antes de cambiar una versión, kernel, esquema de almacenamiento o sesión importante."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "qué-respaldar",
+      [
+        [
+          "text",
+          "Qué respaldar"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Conserva las partes que no pueden ser recreadas fácilmente a partir de una imagen de MiniOS:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "archivos personales, incluyendo datos ocultos de aplicaciones que sean importantes para ti;"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "archivos "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "config.conf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", archivos "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "config.conf.d"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " revisados y cambios intencionados en el menú de arranque o en los parámetros de arranque;"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "módulos "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " creados por el usuario y una nota de la versión de MiniOS para la que fueron construidos;"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "sesiones persistentes que contengan estados del sistema o de aplicaciones que necesites;"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "claves de cifrado, credenciales de recuperación y otros secretos almacenados por separado de la copia de seguridad que protegen."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Los archivos almacenados fuera de la capa de sesión, por ejemplo en una ubicación de datos de usuario separada, deben respaldarse por separado. No asumas que un archivo de sesión contiene datos montados desde otro sistema de archivos."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "exportar-sesiones-persistentes",
+      [
+        [
+          "text",
+          "Exportar sesiones persistentes"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El Gestor de Sesiones de MiniOS puede exportar una sesión "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "no activa"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " de "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "native"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dynfilefs"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "raw"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " o "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " a un archivo verificado "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".tar.zst"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Primero identifica la sesión:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "minios-session list\nminios-session running",
+      "bash",
+      [
+        [
+          "syntax",
+          "minios-session",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "list",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "minios-session",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "running",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Luego inicia otra sesión o selecciona "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Iniciar sin guardar"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y exporta la sesión inactiva:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo minios-session export <id> /path/to/session.tar.zst",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-session",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "export",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "<",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "i",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "d",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          ">",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/session.tar.zst",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La exportación es una copia lógica del contenido de la sesión, no una copia bit a bit de su contenedor de almacenamiento. Guárdala en otro dispositivo."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Para una sesión LUKS, el archivo contiene los archivos lógicos ya descifrados. Protege el archivo por separado si los datos deben permanecer cifrados."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "sesiones-squashfs",
+      [
+        [
+          "text",
+          "Sesiones SquashFS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El Gestor de Sesiones actual no exporta ni copia sesiones SquashFS. Utiliza "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Guardar ahora"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " antes de apagar para que la instantánea actual esté completa y luego protege los archivos importantes por separado. Si necesitas una copia completa y restaurable de todo el dispositivo MiniOS, crea una imagen del dispositivo sin conexión."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "No confíes en copiar manualmente un directorio de sesión montado ni en reconstruir "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "session.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", segmentos DynFileFS o metadatos de contenedores como método de respaldo."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "respaldar-configuración-y-módulos",
+      [
+        [
+          "text",
+          "Respaldar configuración y módulos"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "En medios MiniOS con escritura, conserva "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/config.conf.d/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y los módulos creados por el usuario almacenados en "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/modules/"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "También registra los parámetros de arranque personalizados o cambios en el menú de arranque que no sean evidentes en esos archivos."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Un módulo construido para una versión de MiniOS no es automáticamente compatible con otra."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Guarda el código fuente o la receta necesaria para reconstruir los módulos personalizados importantes."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "crear-una-imagen-de-todo-el-dispositivo",
+      [
+        [
+          "text",
+          "Crear una imagen de todo el dispositivo"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Una imagen de todo el dispositivo es útil cuando deseas conservar la tabla de particiones, archivos de arranque, módulos, configuración, sesiones y otros datos en conjunto. Créala sin conexión: apaga MiniOS e imagen el dispositivo desde otro sistema en funcionamiento."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "link",
+          "/installing-minios/installation-tools/Drive-Utility.md",
+          null,
+          [
+            [
+              "text",
+              "Utilidad de disco"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ofrece las operaciones "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Crear imagen"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " y "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Escribir imagen"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Guarda la imagen en un dispositivo físico diferente. Restaurar una imagen de todo el dispositivo sobrescribe el destino seleccionado, así que verifica el modelo y la capacidad del destino antes de escribir."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Una imagen de dispositivo es un complemento, no un reemplazo, de una copia de seguridad independiente de archivos personales importantes."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "restaurar-un-archivo-de-sesión",
+      [
+        [
+          "text",
+          "Restaurar un archivo de sesión"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Importar un archivo del Gestor de Sesiones crea una nueva sesión numerada; no sobrescribe la existente:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo minios-session import /path/to/session.tar.zst --auto-convert",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-session",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "import",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/session.tar.zst",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--auto-convert",
+          "#005CC5",
+          "#79B8FF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Durante la importación se realizan comprobaciones de compatibilidad. Inspecciona la sesión importada antes de activarla y conserva la sesión que sabes que funciona hasta que hayas probado la copia restaurada."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Al migrar a otra versión de MiniOS, es preferible migrar solo los datos personales y la configuración seleccionados. No asumas que una sesión completa antigua o un módulo personalizado son compatibles con la nueva versión solo porque se pueden copiar allí."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Consulta "
+        ],
+        [
+          "link",
+          "/using-minios/Sessions-and-Persistence.md",
+          null,
+          [
+            [
+              "text",
+              "Sesiones y persistencia"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para la gestión de sesiones y "
+        ],
+        [
+          "link",
+          "/maintenance-and-recovery/Updating-MiniOS.md",
+          null,
+          [
+            [
+              "text",
+              "Actualización de MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para moverte entre versiones de MiniOS."
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Realizar copias de seguridad de MiniOS\nUna copia de seguridad es la vía confiable para recuperar MiniOS. La documentación no garantiza un procedimiento genérico de reparación para un gestor de arranque, sistema de archivos o contenedor de persistencia dañado. Mantén copias recuperables antes de cambiar una versión, kernel, esquema de almacenamiento o sesión importante.\nQué respaldar\nConserva las partes que no pueden ser recreadas fácilmente a partir de una imagen de MiniOS:\narchivos personales, incluyendo datos ocultos de aplicaciones que sean importantes para ti;\narchivos config.conf, archivos config.conf.d revisados y cambios intencionados en el menú de arranque o en los parámetros de arranque;\nmódulos .sb creados por el usuario y una nota de la versión de MiniOS para la que fueron construidos;\nsesiones persistentes que contengan estados del sistema o de aplicaciones que necesites;\nclaves de cifrado, credenciales de recuperación y otros secretos almacenados por separado de la copia de seguridad que protegen.\nLos archivos almacenados fuera de la capa de sesión, por ejemplo en una ubicación de datos de usuario separada, deben respaldarse por separado. No asumas que un archivo de sesión contiene datos montados desde otro sistema de archivos.\nExportar sesiones persistentes\nEl Gestor de Sesiones de MiniOS puede exportar una sesión no activa de native, dynfilefs, raw o luks a un archivo verificado .tar.zst. Primero identifica la sesión:\nminios-session list\nminios-session running\nLuego inicia otra sesión o selecciona Iniciar sin guardar y exporta la sesión inactiva:\nsudo minios-session export <id> /path/to/session.tar.zst\nLa exportación es una copia lógica del contenido de la sesión, no una copia bit a bit de su contenedor de almacenamiento. Guárdala en otro dispositivo.\nPara una sesión LUKS, el archivo contiene los archivos lógicos ya descifrados. Protege el archivo por separado si los datos deben permanecer cifrados.\nSesiones SquashFS\nEl Gestor de Sesiones actual no exporta ni copia sesiones SquashFS. Utiliza Guardar ahora antes de apagar para que la instantánea actual esté completa y luego protege los archivos importantes por separado. Si necesitas una copia completa y restaurable de todo el dispositivo MiniOS, crea una imagen del dispositivo sin conexión.\nNo confíes en copiar manualmente un directorio de sesión montado ni en reconstruir session.conf, segmentos DynFileFS o metadatos de contenedores como método de respaldo.\nRespaldar configuración y módulos\nEn medios MiniOS con escritura, conserva minios/config.conf, minios/config.conf.d/ y los módulos creados por el usuario almacenados en minios/modules/.\nTambién registra los parámetros de arranque personalizados o cambios en el menú de arranque que no sean evidentes en esos archivos.\nUn módulo construido para una versión de MiniOS no es automáticamente compatible con otra.\nGuarda el código fuente o la receta necesaria para reconstruir los módulos personalizados importantes.\nCrear una imagen de todo el dispositivo\nUna imagen de todo el dispositivo es útil cuando deseas conservar la tabla de particiones, archivos de arranque, módulos, configuración, sesiones y otros datos en conjunto. Créala sin conexión: apaga MiniOS e imagen el dispositivo desde otro sistema en funcionamiento.\nUtilidad de disco ofrece las operaciones Crear imagen y Escribir imagen. Guarda la imagen en un dispositivo físico diferente. Restaurar una imagen de todo el dispositivo sobrescribe el destino seleccionado, así que verifica el modelo y la capacidad del destino antes de escribir.\nUna imagen de dispositivo es un complemento, no un reemplazo, de una copia de seguridad independiente de archivos personales importantes.\nRestaurar un archivo de sesión\nImportar un archivo del Gestor de Sesiones crea una nueva sesión numerada; no sobrescribe la existente:\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nDurante la importación se realizan comprobaciones de compatibilidad. Inspecciona la sesión importada antes de activarla y conserva la sesión que sabes que funciona hasta que hayas probado la copia restaurada.\nAl migrar a otra versión de MiniOS, es preferible migrar solo los datos personales y la configuración seleccionados. No asumas que una sesión completa antigua o un módulo personalizado son compatibles con la nueva versión solo porque se pueden copiar allí.\nConsulta Sesiones y persistencia para la gestión de sesiones y Actualización de MiniOS para moverte entre versiones de MiniOS.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

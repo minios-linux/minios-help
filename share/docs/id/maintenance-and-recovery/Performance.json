@@ -1,0 +1,766 @@
+{
+  "headings": [
+    {
+      "anchor": "performa",
+      "level": 1,
+      "title": "Performa"
+    },
+    {
+      "anchor": "parameter-boot-untuk-performa",
+      "level": 2,
+      "title": "Parameter Boot untuk Performa"
+    },
+    {
+      "anchor": "memuat-sistem-ke-dalam-ram-toram",
+      "level": 3,
+      "title": "Memuat Sistem ke dalam RAM (toram)"
+    },
+    {
+      "anchor": "memfilter-modul-load-dan-noload",
+      "level": 3,
+      "title": "Memfilter Modul (load dan noload)"
+    },
+    {
+      "anchor": "optimasi-persistensi",
+      "level": 2,
+      "title": "Optimasi Persistensi"
+    },
+    {
+      "anchor": "mode-persistensi-perchmode",
+      "level": 3,
+      "title": "Mode Persistensi (perchmode)"
+    },
+    {
+      "anchor": "konfigurasi-zram",
+      "level": 2,
+      "title": "Konfigurasi ZRAM"
+    },
+    {
+      "anchor": "filesystem-dan-perangkat-penyimpanan",
+      "level": 2,
+      "title": "Filesystem dan Perangkat Penyimpanan"
+    }
+  ],
+  "nodes": [
+    [
+      "heading",
+      1,
+      "performa",
+      [
+        [
+          "text",
+          "Performa"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Pengaturan performa di MiniOS pada dasarnya merupakan kompromi antara waktu boot, penggunaan RAM, pembacaan saat runtime, overhead persistensi, dan daya tahan penyimpanan. Untuk detail semantik opsi dan batasan keamanannya, gunakan "
+        ],
+        [
+          "link",
+          "/using-minios/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Mode Boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Pemrosesan modul Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", dan "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Persistence-Internals.md",
+          null,
+          [
+            [
+              "text",
+              "Persistensi Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "parameter-boot-untuk-performa",
+      [
+        [
+          "text",
+          "Parameter Boot untuk Performa"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Parameter boot dapat memindahkan pekerjaan startup dan pembacaan sistem aktif antara RAM dan perangkat sumber. Lihat "
+        ],
+        [
+          "link",
+          "/reference/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Parameter boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk referensi lengkap."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "memuat-sistem-ke-dalam-ram-toram",
+      [
+        [
+          "text",
+          "Memuat Sistem ke dalam RAM ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dapat mengurangi latensi runtime dari perangkat USB lambat atau ISO berbasis jaringan, dengan konsekuensi waktu boot lebih lama dan penggunaan RAM yang jauh lebih besar. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " secara langsung menggunakan jalur penyalinan penuh. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " biasanya memakai lebih sedikit RAM, namun penyalinan yang lebih sempit dapat melewatkan data atau modul yang dibutuhkan kemudian."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Sisakan ruang untuk layer yang dapat ditulis, aplikasi, cache, dan zram, bukan hanya memperhitungkan ukuran file modul. Semakin banyak RAM yang dialokasikan untuk salinan live, semakin sedikit yang tersedia untuk beban kerja. Ikuti "
+        ],
+        [
+          "link",
+          "/using-minios/Boot-Modes.md",
+          null,
+          [
+            [
+              "text",
+              "Mode Boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk ketahanan salinan dan batasan pelepasan media."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "memfilter-modul-load-dan-noload",
+      [
+        [
+          "text",
+          "Memfilter Modul ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "load"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noload"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Pemfilteran dapat mengurangi data yang disalin dan layer yang di-mount, terutama dengan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Konsekuensinya adalah sistem menjadi kurang kapabel dan risiko kegagalan boot atau runtime lebih tinggi jika ada dependensi yang terlewat. Pastikan set modul yang dihasilkan sudah benar; sintaks filter dan batasan modul yang dilindungi dijelaskan di "
+        ],
+        [
+          "link",
+          "/reference/boot-process/Module-Loading.md",
+          null,
+          [
+            [
+              "text",
+              "Pemrosesan modul Initrd"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "optimasi-persistensi",
+      [
+        [
+          "text",
+          "Optimasi Persistensi"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Persistensi memindahkan I/O layer yang dapat ditulis dari RAM sementara ke penyimpanan atau kontainer. Pilihan backend memengaruhi latensi, kompatibilitas, manajemen kapasitas, dan kompleksitas pemulihan."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "mode-persistensi-perchmode",
+      [
+        [
+          "text",
+          "Mode Persistensi ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchmode"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ")"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "native"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Menghindari layer filesystem-in-a-file dan merupakan pilihan paling sederhana pada filesystem POSIX yang sesuai, namun tidak tersedia pada filesystem yang tidak dapat mempertahankan metadata Linux yang dibutuhkan."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "raw"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Memiliki kapasitas tetap yang dapat diprediksi dan perilaku ext4 konvensional, namun ukuran file-nya dicadangkan dan tidak dapat bertambah melebihi kapasitas penyimpanan yang tersedia."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "dynfilefs"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Dapat berkembang sesuai kebutuhan dan mendukung media yang seharusnya tidak cocok, dengan tambahan kompleksitas pemetaan dan pemulihan."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "luks"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Menambah kerahasiaan dengan konsekuensi pekerjaan unlock dan overhead enkripsi."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "squashfs"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Menukar kompresi saat penyimpanan dan pekerjaan ekstraksi RAM untuk snapshot yang ringkas; ini bukan backend writable berlatensi rendah secara umum."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Uji beban kerja representatif pada perangkat sebenarnya. Perbedaan pada controller flash, filesystem, bridge USB, dan beban kerja lebih menentukan dibandingkan peringkat mode persistensi secara umum."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "konfigurasi-zram",
+      [
+        [
+          "text",
+          "Konfigurasi ZRAM"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Zram menukar waktu CPU dengan kapasitas memori terkompresi dan dapat menghindari swap berbasis penyimpanan yang jauh lebih lambat. Perangkat zram yang lebih besar dapat menyerap lebih banyak halaman tidak aktif, namun tidak menciptakan RAM fisik; beban kerja yang tidak dapat dikompresi tetap mengonsumsi memori."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Algoritma kompresi menyeimbangkan throughput dan penggunaan CPU terhadap rasio kompresi, dan ketersediaannya tergantung kernel. Mulailah dengan pengaturan default dan ubah "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramsize"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramcomp"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", atau "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "nozram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " hanya untuk beban kerja yang sudah diukur; lihat "
+        ],
+        [
+          "link",
+          "/reference/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Parameter boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk nilai yang diterima."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "filesystem-dan-perangkat-penyimpanan",
+      [
+        [
+          "text",
+          "Filesystem dan Perangkat Penyimpanan"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Pilihan perangkat:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Throughput sekuensial yang lebih tinggi mempercepat penyalinan modul besar, sementara latensi I/O acak yang rendah lebih penting untuk beban kerja desktop persisten."
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "Ukur perangkat dan enclosure secara bersamaan; generasi USB saja tidak menjamin performa flash atau SSD."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Pilihan filesystem:"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Filesystem Linux native dapat menggunakan persistensi native tanpa overhead kontainer. Filesystem lintas platform meningkatkan portabilitas namun membutuhkan backend kontainer yang kompatibel untuk metadata Linux, sehingga menambah lapisan pemetaan dan filesystem. Pilih berdasarkan kebutuhan portabilitas dan pemulihan serta hasil benchmark."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ],
+  "plain_text": "Performa\nPengaturan performa di MiniOS pada dasarnya merupakan kompromi antara waktu boot, penggunaan RAM, pembacaan saat runtime, overhead persistensi, dan daya tahan penyimpanan. Untuk detail semantik opsi dan batasan keamanannya, gunakan Mode Boot, Pemrosesan modul Initrd, dan Persistensi Initrd.\nParameter Boot untuk Performa\nParameter boot dapat memindahkan pekerjaan startup dan pembacaan sistem aktif antara RAM dan perangkat sumber. Lihat Parameter boot untuk referensi lengkap.\nMemuat Sistem ke dalam RAM (toram)\ntoram dapat mengurangi latensi runtime dari perangkat USB lambat atau ISO berbasis jaringan, dengan konsekuensi waktu boot lebih lama dan penggunaan RAM yang jauh lebih besar. toram secara langsung menggunakan jalur penyalinan penuh. toram=trim biasanya memakai lebih sedikit RAM, namun penyalinan yang lebih sempit dapat melewatkan data atau modul yang dibutuhkan kemudian.\nSisakan ruang untuk layer yang dapat ditulis, aplikasi, cache, dan zram, bukan hanya memperhitungkan ukuran file modul. Semakin banyak RAM yang dialokasikan untuk salinan live, semakin sedikit yang tersedia untuk beban kerja. Ikuti Mode Boot untuk ketahanan salinan dan batasan pelepasan media.\nMemfilter Modul (load dan noload)\nPemfilteran dapat mengurangi data yang disalin dan layer yang di-mount, terutama dengan toram=trim. Konsekuensinya adalah sistem menjadi kurang kapabel dan risiko kegagalan boot atau runtime lebih tinggi jika ada dependensi yang terlewat. Pastikan set modul yang dihasilkan sudah benar; sintaks filter dan batasan modul yang dilindungi dijelaskan di Pemrosesan modul Initrd.\nOptimasi Persistensi\nPersistensi memindahkan I/O layer yang dapat ditulis dari RAM sementara ke penyimpanan atau kontainer. Pilihan backend memengaruhi latensi, kompatibilitas, manajemen kapasitas, dan kompleksitas pemulihan.\nMode Persistensi (perchmode)\nnative: Menghindari layer filesystem-in-a-file dan merupakan pilihan paling sederhana pada filesystem POSIX yang sesuai, namun tidak tersedia pada filesystem yang tidak dapat mempertahankan metadata Linux yang dibutuhkan.\nraw: Memiliki kapasitas tetap yang dapat diprediksi dan perilaku ext4 konvensional, namun ukuran file-nya dicadangkan dan tidak dapat bertambah melebihi kapasitas penyimpanan yang tersedia.\ndynfilefs: Dapat berkembang sesuai kebutuhan dan mendukung media yang seharusnya tidak cocok, dengan tambahan kompleksitas pemetaan dan pemulihan.\nluks: Menambah kerahasiaan dengan konsekuensi pekerjaan unlock dan overhead enkripsi.\nsquashfs: Menukar kompresi saat penyimpanan dan pekerjaan ekstraksi RAM untuk snapshot yang ringkas; ini bukan backend writable berlatensi rendah secara umum.\nUji beban kerja representatif pada perangkat sebenarnya. Perbedaan pada controller flash, filesystem, bridge USB, dan beban kerja lebih menentukan dibandingkan peringkat mode persistensi secara umum.\nKonfigurasi ZRAM\nZram menukar waktu CPU dengan kapasitas memori terkompresi dan dapat menghindari swap berbasis penyimpanan yang jauh lebih lambat. Perangkat zram yang lebih besar dapat menyerap lebih banyak halaman tidak aktif, namun tidak menciptakan RAM fisik; beban kerja yang tidak dapat dikompresi tetap mengonsumsi memori.\nAlgoritma kompresi menyeimbangkan throughput dan penggunaan CPU terhadap rasio kompresi, dan ketersediaannya tergantung kernel. Mulailah dengan pengaturan default dan ubah zramsize, zramcomp, atau nozram hanya untuk beban kerja yang sudah diukur; lihat Parameter boot untuk nilai yang diterima.\nFilesystem dan Perangkat Penyimpanan\nPilihan perangkat: Throughput sekuensial yang lebih tinggi mempercepat penyalinan modul besar, sementara latensi I/O acak yang rendah lebih penting untuk beban kerja desktop persisten.\nUkur perangkat dan enclosure secara bersamaan; generasi USB saja tidak menjamin performa flash atau SSD.\nPilihan filesystem: Filesystem Linux native dapat menggunakan persistensi native tanpa overhead kontainer. Filesystem lintas platform meningkatkan portabilitas namun membutuhkan backend kontainer yang kompatibel untuk metadata Linux, sehingga menambah lapisan pemetaan dan filesystem. Pilih berdasarkan kebutuhan portabilitas dan pemulihan serta hasil benchmark.",
+  "product_kind": "minios-markup-document",
+  "schema_version": 1
+}

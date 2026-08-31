@@ -23,6 +23,7 @@ APPLICATION_ID = "dev.minios.Help"
 DOMAIN = "minios-help"
 APP_NAME = "MiniOS Help"
 SIDEBAR_THRESHOLD = 760
+TOC_THRESHOLD = 900
 
 
 def _repo_root():
@@ -98,7 +99,11 @@ class HelpWindow(Gtk.ApplicationWindow):
         self._tree_paths = {}
         self._syncing_tree = False
         self._last_narrow = None
+        self._last_toc_narrow = None
         self._sidebar_manual = None
+        self._toc_manual = None
+        self._toc_rows = []
+        self._toc_available = False
         self._search_rows = []
         self._load_store()
         self._build_header()
@@ -141,6 +146,12 @@ class HelpWindow(Gtk.ApplicationWindow):
         header.pack_start(self.back_button)
         header.pack_start(self.forward_button)
         header.pack_start(self.home_button)
+
+        self.toc_button = _header_button(
+            "view-list-symbolic", _("Show or hide page outline"),
+            self._on_toc_toggle)
+        self.toc_button.set_sensitive(False)
+        header.pack_end(self.toc_button)
 
         self._update_nav_buttons()
 
@@ -186,6 +197,16 @@ class HelpWindow(Gtk.ApplicationWindow):
         controls.pack_start(self.search_entry, True, True, 0)
 
         self.locale_combo = Gtk.ComboBoxText()
+        # Keep the native combo-box appearance, but force the popup to use
+        # GTK's list implementation. The menu implementation aligns the active
+        # row with the combo box and can leave a large blank area for items near
+        # the end of the list when the popup is constrained by the screen edge.
+        # This style property must be present before the combo box is realized.
+        self._locale_combo_css = Gtk.CssProvider()
+        self._locale_combo_css.load_from_data(
+            b"* { -GtkComboBox-appears-as-list: true; }")
+        self.locale_combo.get_style_context().add_provider(
+            self._locale_combo_css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
         self.locale_combo.set_tooltip_text(_("Documentation language"))
         _accessible(self.locale_combo, _("Documentation language"))
         self.locale_combo.connect("changed", self._on_locale_changed)
@@ -203,18 +224,24 @@ class HelpWindow(Gtk.ApplicationWindow):
             self.fallback_label, True, True, 0)
         root.pack_start(self.fallback_bar, False, False, 0)
 
-        pane = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
+        pane = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        pane.set_margin_start(8)
+        pane.set_margin_end(8)
+        pane.set_margin_bottom(8)
         root.pack_start(pane, True, True, 0)
 
         self.sidebar_revealer = Gtk.Revealer()
         self.sidebar_revealer.set_transition_type(
             Gtk.RevealerTransitionType.SLIDE_RIGHT)
         self.sidebar_revealer.set_reveal_child(True)
-        sidebar_scroll = Gtk.ScrolledWindow()
-        sidebar_scroll.set_policy(
+        self.sidebar_frame = Gtk.Frame()
+        self.sidebar_frame.set_shadow_type(Gtk.ShadowType.NONE)
+        self.sidebar_frame.set_size_request(250, -1)
+        self.sidebar_frame.get_style_context().add_class("minios-help-pane")
+        self.sidebar_scroll = Gtk.ScrolledWindow()
+        self.sidebar_scroll.set_policy(
             Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        sidebar_scroll.set_size_request(250, -1)
-        sidebar_scroll.get_style_context().add_class("minios-sidebar")
+        self.sidebar_scroll.set_shadow_type(Gtk.ShadowType.NONE)
         self.tree_store = Gtk.TreeStore(str, str)
         self.tree = Gtk.TreeView(model=self.tree_store)
         self.tree.set_headers_visible(False)
@@ -225,13 +252,18 @@ class HelpWindow(Gtk.ApplicationWindow):
         self.tree.append_column(column)
         self.tree.get_selection().connect("changed", self._on_tree_selection)
         _accessible(self.tree, _("Documentation contents"))
-        sidebar_scroll.add(self.tree)
-        self.sidebar_revealer.add(sidebar_scroll)
+        self.sidebar_scroll.add(self.tree)
+        self.sidebar_frame.add(self.sidebar_scroll)
+        self.sidebar_revealer.add(self.sidebar_frame)
         pane.pack_start(self.sidebar_revealer, False, False, 0)
 
+        self.document_frame = Gtk.Frame()
+        self.document_frame.set_shadow_type(Gtk.ShadowType.NONE)
+        self.document_frame.get_style_context().add_class("minios-help-pane")
         self.document_scroll = Gtk.ScrolledWindow()
         self.document_scroll.set_policy(
             Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        self.document_scroll.set_shadow_type(Gtk.ShadowType.NONE)
         self.document_scroll.set_hexpand(True)
         self.document_scroll.set_vexpand(True)
         self.markdown = DocumentTextView(
@@ -242,7 +274,39 @@ class HelpWindow(Gtk.ApplicationWindow):
         self.markdown.set_top_margin(18)
         self.markdown.set_bottom_margin(24)
         self.document_scroll.add(self.markdown)
-        pane.pack_start(self.document_scroll, True, True, 0)
+        self.document_scroll.get_vadjustment().connect(
+            "value-changed", self._on_document_scroll)
+        self.document_frame.add(self.document_scroll)
+        pane.pack_start(self.document_frame, True, True, 0)
+
+        self.toc_revealer = Gtk.Revealer()
+        self.toc_revealer.set_transition_type(
+            Gtk.RevealerTransitionType.SLIDE_LEFT)
+        self.toc_revealer.set_reveal_child(False)
+        toc_outer = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=8)
+        toc_outer.pack_start(
+            Gtk.Separator(orientation=Gtk.Orientation.VERTICAL),
+            False, False, 0)
+        toc_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        toc_box.set_size_request(205, -1)
+        self.toc_title = Gtk.Label(label=_("On this page"), xalign=0)
+        self.toc_title.get_style_context().add_class("minios-help-toc-title")
+        self.toc_title.set_margin_top(4)
+        self.toc_title.set_margin_start(4)
+        toc_box.pack_start(self.toc_title, False, False, 0)
+        self.toc_list = Gtk.ListBox()
+        self.toc_list.set_selection_mode(Gtk.SelectionMode.SINGLE)
+        self.toc_list.get_style_context().add_class("minios-help-toc")
+        self.toc_list.connect("row-activated", self._on_toc_row_activated)
+        self.toc_scroll = Gtk.ScrolledWindow()
+        self.toc_scroll.set_policy(
+            Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        self.toc_scroll.set_shadow_type(Gtk.ShadowType.NONE)
+        self.toc_scroll.add(self.toc_list)
+        toc_box.pack_start(self.toc_scroll, True, True, 0)
+        toc_outer.pack_start(toc_box, True, True, 0)
+        self.toc_revealer.add(toc_outer)
+        pane.pack_end(self.toc_revealer, False, False, 0)
 
     def _show_fatal_error(self):
         self.back_button.set_sensitive(False)
@@ -262,6 +326,7 @@ class HelpWindow(Gtk.ApplicationWindow):
                 ["block", "paragraph", [["text", message]]],
             ],
         })
+        self._rebuild_toc()
 
     def _resolve_document_asset(self, relative):
         if self.store is None:
@@ -315,6 +380,75 @@ class HelpWindow(Gtk.ApplicationWindow):
         self.tree.get_selection().select_path(tree_path)
         self.tree.scroll_to_cell(tree_path, None, False, 0.0, 0.0)
 
+    def _rebuild_toc(self):
+        for row in list(self.toc_list.get_children()):
+            self.toc_list.remove(row)
+        self._toc_rows = []
+        headings = [
+            heading for heading in self.markdown.get_headings()
+            if 2 <= heading[0] <= 3]
+        for level, title, anchor in headings:
+            row = Gtk.ListBoxRow()
+            row.anchor = anchor
+            row.level = level
+            label = Gtk.Label(label=title, xalign=0)
+            label.set_line_wrap(True)
+            label.set_margin_start(4 + (level - 2) * 12)
+            label.set_margin_end(6)
+            label.set_margin_top(4)
+            label.set_margin_bottom(4)
+            row.add(label)
+            self.toc_list.add(row)
+            self._toc_rows.append(row)
+        self.toc_list.show_all()
+        self._toc_available = bool(self._toc_rows)
+        self.toc_button.set_sensitive(self._toc_available)
+        self._sync_toc_visibility()
+        self._on_document_scroll()
+
+    def _sync_toc_visibility(self):
+        if not hasattr(self, "toc_revealer"):
+            return
+        narrow = self.get_allocated_width() < TOC_THRESHOLD
+        if not self._toc_available:
+            visible = False
+        elif self._toc_manual is None:
+            visible = not narrow
+        else:
+            visible = self._toc_manual
+        self.toc_revealer.set_reveal_child(visible)
+
+    def _on_toc_row_activated(self, _listbox, row):
+        anchor = getattr(row, "anchor", "")
+        if not anchor:
+            return
+        if self.markdown.scroll_to_anchor(anchor):
+            if self.history.current is not None:
+                self.history.replace_current(anchor=anchor)
+            self.toc_list.select_row(row)
+
+    def _on_document_scroll(self, _adjustment=None):
+        if not self._toc_rows:
+            return
+        adjustment = self.document_scroll.get_vadjustment()
+        maximum = max(
+            adjustment.get_lower(),
+            adjustment.get_upper() - adjustment.get_page_size())
+        if adjustment.get_value() >= maximum - 1.0:
+            anchor = self._toc_rows[-1].anchor
+        else:
+            current = self.markdown.heading_at_y(
+                adjustment.get_value() + self.markdown.get_top_margin() + 4,
+                min_level=2, max_level=3)
+            anchor = (
+                current[2] if current is not None
+                else self._toc_rows[0].anchor)
+        for row in self._toc_rows:
+            if row.anchor == anchor:
+                if self.toc_list.get_selected_row() is not row:
+                    self.toc_list.select_row(row)
+                break
+
     def _current_scroll(self):
         return self.document_scroll.get_vadjustment().get_value()
 
@@ -345,6 +479,7 @@ class HelpWindow(Gtk.ApplicationWindow):
             return False
         self.current = content
         self.markdown.set_document(content.document)
+        self._rebuild_toc()
         self._syncing_tree = True
         try:
             self._select_tree_document(content.canonical_id)
@@ -550,18 +685,28 @@ class HelpWindow(Gtk.ApplicationWindow):
         self._sidebar_manual = visible
         self._update_sidebar_button_icon()
 
+    def _on_toc_toggle(self, _button=None):
+        if not self._toc_available:
+            return
+        visible = not self.toc_revealer.get_reveal_child()
+        self._toc_manual = visible
+        self._sync_toc_visibility()
+
     def _on_size_allocate(self, _widget, allocation):
         narrow = allocation.width < SIDEBAR_THRESHOLD
-        if narrow == self._last_narrow:
-            return
-        self._last_narrow = narrow
-        if narrow:
-            self.sidebar_revealer.set_reveal_child(False)
-            self._sidebar_manual = None
-        else:
-            self.sidebar_revealer.set_reveal_child(
-                True if self._sidebar_manual is None else self._sidebar_manual)
-        self._update_sidebar_button_icon()
+        if narrow != self._last_narrow:
+            self._last_narrow = narrow
+            if narrow:
+                self.sidebar_revealer.set_reveal_child(False)
+            else:
+                self.sidebar_revealer.set_reveal_child(
+                    True if self._sidebar_manual is None else self._sidebar_manual)
+            self._update_sidebar_button_icon()
+
+        toc_narrow = allocation.width < TOC_THRESHOLD
+        if toc_narrow != self._last_toc_narrow:
+            self._last_toc_narrow = toc_narrow
+            self._sync_toc_visibility()
 
     def _on_key_press(self, _window, event):
         state = event.state
@@ -620,8 +765,5 @@ class MiniOSHelpApplication(Gtk.Application):
 
 def main(argv=None):
     argv = list(sys.argv if argv is None else argv)
-    if hasattr(os, "geteuid") and os.geteuid() == 0:
-        sys.stderr.write(_("MiniOS Help must not be run as root.") + "\n")
-        return 1
     application = MiniOSHelpApplication()
     return application.run(argv)
