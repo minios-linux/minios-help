@@ -372,7 +372,7 @@
       [
         [
           "text",
-          "Beim Start kombiniert MiniOS schreibgeschützte SquashFS-Module zu einem laufenden Root-Dateisystem und fügt eine beschreibbare Ebene für die aktuelle Sitzung hinzu. Ohne Persistenz ist dieser beschreibbare Zustand temporär. Mit Persistenz können ausgewählte Änderungen einen Neustart überstehen, während die Basismodule getrennt bleiben."
+          "Beim Systemstart kombiniert MiniOS schreibgeschützte SquashFS-Module zu einem laufenden Root-Dateisystem und fügt für die aktuelle Sitzung eine beschreibbare Ebene hinzu. Ohne Persistenz ist dieser beschreibbare Zustand nur temporär. Mit Persistenz können ausgewählte Änderungen einen Neustart überdauern, während die Basismodule weiterhin getrennt bleiben."
         ]
       ]
     ],
@@ -382,7 +382,59 @@
       [
         [
           "text",
-          "Das modulare Live-System ist das primäre MiniOS-Modell. Das MiniOS-Installationsprogramm kann ein unterstütztes Abbild auch als herkömmliche native Linux-Installation bereitstellen, wenn ein traditionell erweitertes Root-Dateisystem bevorzugt wird."
+          "Das modulare Live-System ist nicht nur eine von mehreren Installationsoptionen: "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "es ist das prägende MiniOS-Modell"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". MiniOS-Module, persistente Sitzungen, Konfiguration zur Startzeit, modulares Kernel-Management, Image-Zusammenstellung und die MiniOS-Verwaltungsanwendungen sind um diese Live-Architektur herum konzipiert."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Das MiniOS-Installationsprogramm bietet außerdem einen "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "nativen"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " Installationsweg für Nutzer, die ein konventionelles Desktop-System auf einem beschreibbaren Root-Dateisystem bevorzugen. Die native Installation bewahrt das gewohnte MiniOS-Desktop-Erlebnis – mit der gewählten Desktop-Umgebung, dem visuellen Erscheinungsbild und den üblichen Anwendungen – verlässt jedoch das modulare Live-Modell: MiniOS-Sitzungen, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "-Modul-Workflows, modulares Kernel-Management und die für den Live-Betrieb entwickelten MiniOS-spezifischen Werkzeuge entfallen. Das installierte System wird dann als herkömmlicher Debian-Desktop mit APT, Debian-Kernelpaketen, einem normalen initramfs und dem installierten Bootloader gepflegt."
         ]
       ]
     ],
@@ -401,7 +453,7 @@
           [
             [
               "text",
-              "MiniOS system architecture"
+              "MiniOS Systemarchitektur"
             ]
           ]
         ],
@@ -415,7 +467,7 @@
         ],
         [
           "text",
-          "Informationen zum sitzungsbezogenen Verhalten und zu Speicheroptionen finden Sie unter "
+          "Informationen zum Sitzungsverhalten und zu Speicheroptionen finden Sie unter "
         ],
         [
           "link",
@@ -424,7 +476,7 @@
           [
             [
               "text",
-              "Boot-Modi"
+              "Startmodi"
             ]
           ]
         ],
@@ -908,7 +960,7 @@
       ]
     ]
   ],
-  "plain_text": "Über MiniOS\nMiniOS ist eine auf Debian basierende Linux-Distribution, die in erster Linie als portables Betriebssystem konzipiert ist. Sie kann von Wechselmedien oder einer lokalen Festplatte gestartet werden und hält Betriebssystem, Anwendungen und Benutzerumgebung unabhängig von einem bestimmten Computer.\nEine herkömmliche Desktop-Installation wird im Laufe der Zeit immer stärker an das jeweilige Gerät gebunden, auf dem sie installiert wurde. MiniOS verfolgt einen anderen Ansatz: Die Arbeitsumgebung bleibt beim Nutzer und kann zwischen kompatiblen Computern mitgenommen werden.\nEinstellungen, Dateien, installierte Software und persistente Sitzungen können mit dem System reisen, anstatt auf einer internen Festplatte zu verbleiben.\nMiniOS ist daher mehr als nur eine temporäre Live-Umgebung. Ziel ist es, ein vollständiges portables Linux-System bereitzustellen, das sich im Alltag, für Wartung, Wiederherstellung, Experimente und spezielle Aufgaben praktisch einsetzen lässt.\nWas MiniOS besonders macht\nVon Grund auf portabel\nMiniOS basiert auf einer einfachen Idee: Das Betriebssystem soll dem Nutzer gehören, nicht dem Gerät, auf dem es läuft.\nDer Computer stellt Prozessor, Arbeitsspeicher, Anzeige, Speicher-Interfaces und Peripheriegeräte bereit. Die MiniOS-Umgebung kann auf den eigenen Medien des Nutzers verbleiben und auf unterschiedlicher Hardware gestartet werden. Dadurch wird der Computer zum Ort, an dem das System heute läuft – und nicht zu dem, dem das System dauerhaft zugeordnet ist.\nModular aufgebaut\nMiniOS wird aus separaten, schreibgeschützten SquashFS-Modulen zusammengesetzt, anstatt aus einem großen, beschreibbaren Systemabbild zu bestehen. Basissystem, Kernel, Firmware, Desktop, Anwendungen und zusätzliche Software bleiben als eigenständige Schichten erhalten.\nBenutzeränderungen können unabhängig von diesen Basismodulen gespeichert werden. Dadurch ist es möglich, Teile des Systems hinzuzufügen, auszutauschen, zu deaktivieren oder zu testen, ohne das gesamte Betriebssystem neu zu schreiben. Außerdem kann bei fehlgeschlagenen Experimenten leichter auf einen bekannten Ausgangszustand zurückgesetzt werden.\nDie Modularität ermöglicht es zudem, dass verschiedene MiniOS-Editionen und angepasste Systeme die gleiche Architektur teilen, anstatt sich zu eigenständigen Produkten zu entwickeln.\nKompakt ohne Komfortverlust\nDer Name MiniOS spiegelt ein zentrales Projektziel wider: Das System so klein wie sinnvoll möglich zu halten. Die Größe wird jedoch nicht auf Kosten von Komfort, Stabilität oder Vielseitigkeit reduziert.\nEin sehr kleines Live-Image lässt sich leicht erstellen, wenn Firmware, Lokalisierung, Dateisystemunterstützung, Persistenz, Desktop-Integration, Rettungswerkzeuge und Anwendungen entfernt werden. Ein portables Betriebssystem steht jedoch vor einer anderen Herausforderung: Es soll auch dann nützlich bleiben, wenn es auf Hardware gestartet wird, die beim Erstellen des Images noch nicht bekannt war.\nMiniOS strebt daher die kleinstmögliche praktikable Größe bei maximalem Komfort, Hardwareunterstützung und Funktionalität an. Komponenten werden nicht entfernt, nur weil sie das ISO vergrößern; entscheidend ist, ob der Platzbedarf einen praktischen Mehrwert bietet.\nDeshalb sind manche MiniOS-Editionen größer, als es der Name zunächst vermuten lässt.\nDie zusätzliche Größe ist bewusst gewählt, wenn sie die Alltagstauglichkeit verbessert oder das portable System auf mehr Computern nutzbar macht. Nutzer, die ein kleineres System benötigen, können eine leichtere Edition oder eine reduzierte Modulauswahl wählen, während Nutzer, die eine vollständige Workstation wünschen, mehr Funktionen behalten können.\nDebian – kein eigenes Ökosystem\nMiniOS basiert auf Debian und bleibt bewusst Teil des Debian-Ökosystems.\nEs verwendet normale Debian-Pakete, APT, Standarddienste und vertraute Linux-Konventionen. MiniOS-spezifische Infrastruktur wird nur dort ergänzt, wo ein portables, modulares System Funktionen benötigt, die eine herkömmliche Installation nicht bietet.\nDas Projekt bevorzugt bewährte Linux-Mechanismen, wenn sie das Problem bereits lösen, anstatt sie durch MiniOS-eigene Lösungen zu ersetzen.\nTransparent und anpassungsfähig\nMiniOS automatisiert Routinetätigkeiten, ohne die Systemstruktur zu verbergen. Nutzer können ausschließlich mit grafischen Werkzeugen und vorgefertigten Images arbeiten, aber das gleiche System lässt sich auch inspizieren, umkonfigurieren, mit Modulen erweitern oder für spezielle Zwecke neu zusammenstellen.\nSo kann MiniOS verschiedene Aufgaben erfüllen, ohne sich in eigenständige Produkte aufzuspalten. Ein schlanker portabler Desktop, ein Rettungswerkzeugkasten und eine umfassende Workstation können auf demselben Grundmodell basieren und sich hauptsächlich durch die enthaltenen Module und Anwendungen unterscheiden.\nWie MiniOS funktioniert\nBeim Start kombiniert MiniOS schreibgeschützte SquashFS-Module zu einem laufenden Root-Dateisystem und fügt eine beschreibbare Ebene für die aktuelle Sitzung hinzu. Ohne Persistenz ist dieser beschreibbare Zustand temporär. Mit Persistenz können ausgewählte Änderungen einen Neustart überstehen, während die Basismodule getrennt bleiben.\nDas modulare Live-System ist das primäre MiniOS-Modell. Das MiniOS-Installationsprogramm kann ein unterstütztes Abbild auch als herkömmliche native Linux-Installation bereitstellen, wenn ein traditionell erweitertes Root-Dateisystem bevorzugt wird.\nTechnische Details finden Sie unter MiniOS system architecture.\nInformationen zum sitzungsbezogenen Verhalten und zu Speicheroptionen finden Sie unter Boot-Modi und Sitzungsverwaltung.\nEditionen\nMiniOS-Editionen sind verschiedene Konfigurationen derselben Architektur und keine eigenständigen Betriebssysteme.\nEdition | Zweck\nStandard | Minimales Xfce-System mit grundlegender Funktionalität für den Alltag; empfohlen für die meisten Nutzer\nToolbox | Systemadministration und Diagnose für professionelle IT-Arbeit und Systemrettung\nUltra | Voll ausgestatteter Desktop mit einer breiten Palette an Anwendungen und professionellen Tools für Kreativität und Entwicklung\nFlux | Ultraleichte Fluxbox-Edition für minimalen Ressourcenverbrauch und ältere Hardware; nicht für Einsteiger empfohlen\nDie genaue Desktop- und Paketverfügbarkeit hängt von der jeweiligen Veröffentlichung und Zielplattform ab. Für die gepflegte Paketauswahl und die Beziehungen zwischen den Editionen siehe Pakete und Editionen. Informationen zu den MiniOS-spezifischen Werkzeugen im System finden Sie unter MiniOS Anwendungen und Werkzeuge.\nNächste Schritte\nSchnellstart — starten Sie mit MiniOS.\nMiniOS Anwendungen und Werkzeuge — entdecken Sie die enthaltenen MiniOS-Werkzeuge.\nMiniOS Systemarchitektur — erfahren Sie mehr über das Modul-, Sitzungs- und Boot-Modell.\nPakete und Editionen — vergleichen Sie die gepflegten Editionen.\nProjektressourcen:\nMiniOS Website\nQuellcode\nIssue Tracker",
+  "plain_text": "Über MiniOS\nMiniOS ist eine auf Debian basierende Linux-Distribution, die in erster Linie als portables Betriebssystem konzipiert ist. Sie kann von Wechselmedien oder einer lokalen Festplatte gestartet werden und hält Betriebssystem, Anwendungen und Benutzerumgebung unabhängig von einem bestimmten Computer.\nEine herkömmliche Desktop-Installation wird im Laufe der Zeit immer stärker an das jeweilige Gerät gebunden, auf dem sie installiert wurde. MiniOS verfolgt einen anderen Ansatz: Die Arbeitsumgebung bleibt beim Nutzer und kann zwischen kompatiblen Computern mitgenommen werden.\nEinstellungen, Dateien, installierte Software und persistente Sitzungen können mit dem System reisen, anstatt auf einer internen Festplatte zu verbleiben.\nMiniOS ist daher mehr als nur eine temporäre Live-Umgebung. Ziel ist es, ein vollständiges portables Linux-System bereitzustellen, das sich im Alltag, für Wartung, Wiederherstellung, Experimente und spezielle Aufgaben praktisch einsetzen lässt.\nWas MiniOS besonders macht\nVon Grund auf portabel\nMiniOS basiert auf einer einfachen Idee: Das Betriebssystem soll dem Nutzer gehören, nicht dem Gerät, auf dem es läuft.\nDer Computer stellt Prozessor, Arbeitsspeicher, Anzeige, Speicher-Interfaces und Peripheriegeräte bereit. Die MiniOS-Umgebung kann auf den eigenen Medien des Nutzers verbleiben und auf unterschiedlicher Hardware gestartet werden. Dadurch wird der Computer zum Ort, an dem das System heute läuft – und nicht zu dem, dem das System dauerhaft zugeordnet ist.\nModular aufgebaut\nMiniOS wird aus separaten, schreibgeschützten SquashFS-Modulen zusammengesetzt, anstatt aus einem großen, beschreibbaren Systemabbild zu bestehen. Basissystem, Kernel, Firmware, Desktop, Anwendungen und zusätzliche Software bleiben als eigenständige Schichten erhalten.\nBenutzeränderungen können unabhängig von diesen Basismodulen gespeichert werden. Dadurch ist es möglich, Teile des Systems hinzuzufügen, auszutauschen, zu deaktivieren oder zu testen, ohne das gesamte Betriebssystem neu zu schreiben. Außerdem kann bei fehlgeschlagenen Experimenten leichter auf einen bekannten Ausgangszustand zurückgesetzt werden.\nDie Modularität ermöglicht es zudem, dass verschiedene MiniOS-Editionen und angepasste Systeme die gleiche Architektur teilen, anstatt sich zu eigenständigen Produkten zu entwickeln.\nKompakt ohne Komfortverlust\nDer Name MiniOS spiegelt ein zentrales Projektziel wider: Das System so klein wie sinnvoll möglich zu halten. Die Größe wird jedoch nicht auf Kosten von Komfort, Stabilität oder Vielseitigkeit reduziert.\nEin sehr kleines Live-Image lässt sich leicht erstellen, wenn Firmware, Lokalisierung, Dateisystemunterstützung, Persistenz, Desktop-Integration, Rettungswerkzeuge und Anwendungen entfernt werden. Ein portables Betriebssystem steht jedoch vor einer anderen Herausforderung: Es soll auch dann nützlich bleiben, wenn es auf Hardware gestartet wird, die beim Erstellen des Images noch nicht bekannt war.\nMiniOS strebt daher die kleinstmögliche praktikable Größe bei maximalem Komfort, Hardwareunterstützung und Funktionalität an. Komponenten werden nicht entfernt, nur weil sie das ISO vergrößern; entscheidend ist, ob der Platzbedarf einen praktischen Mehrwert bietet.\nDeshalb sind manche MiniOS-Editionen größer, als es der Name zunächst vermuten lässt.\nDie zusätzliche Größe ist bewusst gewählt, wenn sie die Alltagstauglichkeit verbessert oder das portable System auf mehr Computern nutzbar macht. Nutzer, die ein kleineres System benötigen, können eine leichtere Edition oder eine reduzierte Modulauswahl wählen, während Nutzer, die eine vollständige Workstation wünschen, mehr Funktionen behalten können.\nDebian – kein eigenes Ökosystem\nMiniOS basiert auf Debian und bleibt bewusst Teil des Debian-Ökosystems.\nEs verwendet normale Debian-Pakete, APT, Standarddienste und vertraute Linux-Konventionen. MiniOS-spezifische Infrastruktur wird nur dort ergänzt, wo ein portables, modulares System Funktionen benötigt, die eine herkömmliche Installation nicht bietet.\nDas Projekt bevorzugt bewährte Linux-Mechanismen, wenn sie das Problem bereits lösen, anstatt sie durch MiniOS-eigene Lösungen zu ersetzen.\nTransparent und anpassungsfähig\nMiniOS automatisiert Routinetätigkeiten, ohne die Systemstruktur zu verbergen. Nutzer können ausschließlich mit grafischen Werkzeugen und vorgefertigten Images arbeiten, aber das gleiche System lässt sich auch inspizieren, umkonfigurieren, mit Modulen erweitern oder für spezielle Zwecke neu zusammenstellen.\nSo kann MiniOS verschiedene Aufgaben erfüllen, ohne sich in eigenständige Produkte aufzuspalten. Ein schlanker portabler Desktop, ein Rettungswerkzeugkasten und eine umfassende Workstation können auf demselben Grundmodell basieren und sich hauptsächlich durch die enthaltenen Module und Anwendungen unterscheiden.\nWie MiniOS funktioniert\nBeim Systemstart kombiniert MiniOS schreibgeschützte SquashFS-Module zu einem laufenden Root-Dateisystem und fügt für die aktuelle Sitzung eine beschreibbare Ebene hinzu. Ohne Persistenz ist dieser beschreibbare Zustand nur temporär. Mit Persistenz können ausgewählte Änderungen einen Neustart überdauern, während die Basismodule weiterhin getrennt bleiben.\nDas modulare Live-System ist nicht nur eine von mehreren Installationsoptionen: es ist das prägende MiniOS-Modell. MiniOS-Module, persistente Sitzungen, Konfiguration zur Startzeit, modulares Kernel-Management, Image-Zusammenstellung und die MiniOS-Verwaltungsanwendungen sind um diese Live-Architektur herum konzipiert.\nDas MiniOS-Installationsprogramm bietet außerdem einen nativen Installationsweg für Nutzer, die ein konventionelles Desktop-System auf einem beschreibbaren Root-Dateisystem bevorzugen. Die native Installation bewahrt das gewohnte MiniOS-Desktop-Erlebnis – mit der gewählten Desktop-Umgebung, dem visuellen Erscheinungsbild und den üblichen Anwendungen – verlässt jedoch das modulare Live-Modell: MiniOS-Sitzungen, .sb-Modul-Workflows, modulares Kernel-Management und die für den Live-Betrieb entwickelten MiniOS-spezifischen Werkzeuge entfallen. Das installierte System wird dann als herkömmlicher Debian-Desktop mit APT, Debian-Kernelpaketen, einem normalen initramfs und dem installierten Bootloader gepflegt.\nTechnische Details finden Sie unter MiniOS Systemarchitektur.\nInformationen zum Sitzungsverhalten und zu Speicheroptionen finden Sie unter Startmodi und Sitzungsverwaltung.\nEditionen\nMiniOS-Editionen sind verschiedene Konfigurationen derselben Architektur und keine eigenständigen Betriebssysteme.\nEdition | Zweck\nStandard | Minimales Xfce-System mit grundlegender Funktionalität für den Alltag; empfohlen für die meisten Nutzer\nToolbox | Systemadministration und Diagnose für professionelle IT-Arbeit und Systemrettung\nUltra | Voll ausgestatteter Desktop mit einer breiten Palette an Anwendungen und professionellen Tools für Kreativität und Entwicklung\nFlux | Ultraleichte Fluxbox-Edition für minimalen Ressourcenverbrauch und ältere Hardware; nicht für Einsteiger empfohlen\nDie genaue Desktop- und Paketverfügbarkeit hängt von der jeweiligen Veröffentlichung und Zielplattform ab. Für die gepflegte Paketauswahl und die Beziehungen zwischen den Editionen siehe Pakete und Editionen. Informationen zu den MiniOS-spezifischen Werkzeugen im System finden Sie unter MiniOS Anwendungen und Werkzeuge.\nNächste Schritte\nSchnellstart — starten Sie mit MiniOS.\nMiniOS Anwendungen und Werkzeuge — entdecken Sie die enthaltenen MiniOS-Werkzeuge.\nMiniOS Systemarchitektur — erfahren Sie mehr über das Modul-, Sitzungs- und Boot-Modell.\nPakete und Editionen — vergleichen Sie die gepflegten Editionen.\nProjektressourcen:\nMiniOS Website\nQuellcode\nIssue Tracker",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

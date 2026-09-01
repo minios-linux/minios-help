@@ -46,9 +46,9 @@
       "title": "Dépannage"
     },
     {
-      "anchor": "la-minios-boutique-dapplications-minios-est-hors-ligne",
+      "anchor": "la-boutique-dapplications-minios-est-hors-ligne",
       "level": 3,
-      "title": "La MiniOS Boutique d’applications MiniOS est hors ligne"
+      "title": "La Boutique d’applications MiniOS est hors ligne"
     },
     {
       "anchor": "le-navigateur-ne-peut-pas-se-connecter-au-démon",
@@ -99,7 +99,7 @@
       [
         [
           "text",
-          "La MiniOS Boutique d’applications MiniOS propose un catalogue de recettes d’applications sur "
+          "La Boutique d’applications MiniOS propose un catalogue de recettes d’applications sur "
         ],
         [
           "link",
@@ -114,7 +114,7 @@
         ],
         [
           "text",
-          ". Depuis MiniOS Boutique d’applications MiniOS, ces recettes peuvent être installées directement sur le système en cours d’exécution ou servir à construire un ou plusieurs modules SquashFS ("
+          ". Dans l’environnement live MiniOS, ces recettes peuvent être installées directement sur le système en cours d’exécution ou utilisées pour construire un ou plusieurs modules SquashFS ("
         ],
         [
           "span",
@@ -138,7 +138,17 @@
       [
         [
           "text",
-          "La navigation dans le catalogue ne nécessite pas de serveur local. L’installation, en revanche, oui : l’interface web se connecte soit au démon local MiniOS Boutique d’applications MiniOS, soit ouvre le gestionnaire d’URI installé "
+          "Cette page décrit le workflow logiciel live MiniOS. Une installation native conserve le bureau sélectionné et les applications classiques, mais supprime les logiciels spécifiques à MiniOS prévus pour un usage live. Utilisez plutôt le workflow classique de gestion de paquets Debian sur ce système installé."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La navigation dans le catalogue ne nécessite pas de serveur local. L’installation, en revanche, oui : l’interface web se connecte soit au service local de la Boutique d’applications MiniOS, soit ouvre le gestionnaire d’URI "
         ],
         [
           "span",
@@ -152,7 +162,7 @@
         ],
         [
           "text",
-          "."
+          " installé."
         ]
       ]
     ],
@@ -288,7 +298,7 @@
               [
                 [
                   "text",
-                  "Ouvrez la MiniOS Boutique d’applications MiniOS depuis le menu des applications. Le lanceur vérifie "
+                  "Ouvrez la Boutique d’applications MiniOS depuis le menu des applications. Le lanceur vérifie "
                 ],
                 [
                   "span",
@@ -378,20 +388,6 @@
                 ],
                 [
                   "text",
-                  ". Un système MiniOS installé nativement utilise automatiquement le mode "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "System"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
                   "."
                 ]
               ]
@@ -408,7 +404,7 @@
               [
                 [
                   "text",
-                  "Pour plusieurs applications en mode module, sélectionnez un module combiné ou des modules séparés. Un module combiné peut également recevoir un nom personnalisé."
+                  "Pour plusieurs applications en mode module, choisissez un module combiné ou des modules séparés. Un module combiné peut également recevoir un nom personnalisé."
                 ]
               ]
             ]
@@ -466,7 +462,7 @@
       [
         [
           "text",
-          "Un seul lot d’installation via le démon peut être exécuté à la fois. Fermer la boîte de dialogue de progression n’arrête pas nécessairement une installation en cours ; rouvrez l’indicateur d’installation pour la consulter ou annulez-la explicitement."
+          "Un seul lot d’installation par démon peut être lancé à la fois. Fermer la boîte de dialogue de progression n’arrête pas nécessairement l’installation par le démon ; rouvrez l’indicateur d’installation pour la consulter ou annulez-la explicitement."
         ]
       ]
     ],
@@ -526,7 +522,7 @@
         ],
         [
           "text",
-          " dans un environnement isolé de construction de modules. Il écrit les fichiers "
+          " dans un environnement isolé de création de modules. Il enregistre les fichiers "
         ],
         [
           "span",
@@ -603,7 +599,7 @@
       [
         [
           "text",
-          "Le premier chemin correspond au répertoire des modules sur le support de démarrage MiniOS actuel. Un module créé à cet emplacement n’est pas activé dans la session en cours par la MiniOS Boutique d’applications MiniOS. Laissez le module dans ce répertoire et redémarrez pour le charger au prochain démarrage. Le résultat reste disponible uniquement si le support de démarrage sous-jacent est inscriptible et conserve le fichier."
+          "Le premier chemin correspond au répertoire des modules sur le support de démarrage MiniOS actuel. Un module créé à cet emplacement n’est pas activé dans la session en cours par la Boutique d’applications MiniOS. Laissez le module dans ce dossier et redémarrez pour le charger au prochain démarrage. Le résultat reste disponible uniquement si le support de démarrage sous-jacent est inscriptible et conserve le fichier."
         ]
       ]
     ],
@@ -613,7 +609,7 @@
       [
         [
           "text",
-          "Le second chemin est utilisé en secours si le répertoire normal des modules n’est pas inscriptible. Un module dans le répertoire de secours n’est pas automatiquement intégré au prochain démarrage live. Utilisez "
+          "Le second chemin est utilisé en secours lorsque le dossier de modules habituel n’est pas inscriptible. Un module dans le dossier de secours ne sera pas automatiquement inclus au prochain démarrage live. Utilisez "
         ],
         [
           "span",
@@ -627,7 +623,7 @@
         ],
         [
           "text",
-          ", puis copiez le module terminé dans le répertoire "
+          ", puis copiez le module finalisé dans le dossier "
         ],
         [
           "span",
@@ -651,7 +647,7 @@
       [
         [
           "text",
-          "Un module combiné contient toutes les recettes sélectionnées. En cas d’empaquetage séparé, une erreur peut n’affecter qu’une recette tandis que les modules déjà terminés restent dans le répertoire cible."
+          "Un module combiné contient toutes les recettes sélectionnées. Avec un emballage séparé, une erreur peut n’affecter qu’une recette tandis que les modules déjà terminés dans le lot restent dans le dossier cible."
         ]
       ]
     ],
@@ -672,7 +668,7 @@
       [
         [
           "text",
-          "Le mode système utilise APT ou un script de recette directement sur le système de fichiers racine en cours d’exécution. Les modifications prennent effet immédiatement sur le système actuel, sans produire de module. En session live, la persistance de ces modifications après redémarrage dépend de la configuration de la session. Sur un système installé nativement, la MiniOS Boutique d’applications MiniOS utilise toujours le mode système."
+          "Le mode système utilise APT ou un script de recette directement sur le système de fichiers racine en cours d’exécution. Les modifications prennent effet dans le système live actuel plutôt que de produire un module. La persistance de ces modifications après un redémarrage dépend de la configuration de persistance de la session."
         ]
       ]
     ],
@@ -717,7 +713,7 @@
         ],
         [
           "text",
-          " s’exécute en tant que root car la construction de modules et l’installation directe de paquets nécessitent des opérations de montage, overlay, chroot, APT et dpkg. Par défaut, il écoute uniquement sur "
+          " s’exécute en tant que root car la construction de modules et l’installation directe de paquets nécessitent des opérations de montage, overlay, chroot, APT et dpkg. Par défaut, il n’écoute que sur "
         ],
         [
           "span",
@@ -731,7 +727,7 @@
         ],
         [
           "text",
-          ". L’interface web hébergée envoie l’intégralité des données de recette, y compris les scripts et les URL de téléchargement, à ce service local."
+          ". L’interface web hébergée envoie l’ensemble des données de recette, y compris les scripts et les URL de téléchargement, à ce service local."
         ]
       ]
     ],
@@ -741,7 +737,7 @@
       [
         [
           "text",
-          "Le démon valide la structure de la requête et la méthode d’installation prise en charge, mais il n’authentifie ni ne signe indépendamment la charge utile de la recette. Une page pouvant atteindre l’endpoint WebSocket local peut demander des opérations d’installation privilégiées. Par conséquent :"
+          "Le démon valide la structure de la requête et la méthode d’installation prise en charge, mais il n’authentifie ni ne signe indépendamment le contenu de la recette. Une page pouvant accéder à l’endpoint WebSocket local peut demander des opérations d’installation privilégiées. Par conséquent :"
         ]
       ]
     ],
@@ -762,7 +758,7 @@
               [
                 [
                   "text",
-                  "Gardez le démon limité à "
+                  "Gardez le démon lié à "
                 ],
                 [
                   "span",
@@ -790,7 +786,7 @@
                 ],
                 [
                   "text",
-                  " sur un réseau local ou Internet."
+                  " sur le réseau local ou Internet."
                 ]
               ]
             ]
@@ -820,7 +816,7 @@
                 ],
                 [
                   "text",
-                  " sur une adresse autre que loopback sauf si une frontière de sécurité supplémentaire et vérifiée est en place."
+                  " sur une adresse non-loopback sauf si une frontière de sécurité supplémentaire et vérifiée est en place."
                 ]
               ]
             ]
@@ -836,7 +832,7 @@
               [
                 [
                   "text",
-                  "Accédez à la MiniOS Boutique d’applications MiniOS uniquement via son site officiel HTTPS et vérifiez les recettes avant installation."
+                  "Accédez à la Boutique d’applications MiniOS uniquement via son site officiel en HTTPS et examinez les recettes avant toute installation."
                 ]
               ]
             ]
@@ -852,7 +848,7 @@
               [
                 [
                   "text",
-                  "Arrêtez ou désactivez le service lorsque l’installation via navigateur n’est pas nécessaire."
+                  "Arrêtez ou désactivez le service lorsque l’installation via le navigateur n’est pas nécessaire."
                 ]
               ]
             ]
@@ -1117,7 +1113,7 @@
       [
         [
           "text",
-          "Le gestionnaire d’URI est un chemin distinct. Il lance l’installateur GTK via PolicyKit et ne nécessite pas le démon WebSocket. Les entrées URI actuelles sont interprétées comme des noms de paquets APT avec un niveau de module et un réglage de compression demandés. L’installateur démarre après l’autorisation, donc vérifiez la requête du navigateur avant d’accepter la demande d’authentification."
+          "Le gestionnaire d’URI suit une voie distincte. Il lance l’installateur GTK via PolicyKit et ne nécessite pas le démon WebSocket. Les entrées URI actuelles sont interprétées comme des noms de paquets APT avec un niveau de module et un paramètre de compression demandés. L’installateur démarre après autorisation, donc vérifiez la requête du navigateur avant d’accepter l’invite d’authentification."
         ]
       ]
     ],
@@ -1281,11 +1277,11 @@
     [
       "heading",
       3,
-      "la-minios-boutique-dapplications-minios-est-hors-ligne",
+      "la-boutique-dapplications-minios-est-hors-ligne",
       [
         [
           "text",
-          "La MiniOS Boutique d’applications MiniOS est hors ligne"
+          "La Boutique d’applications MiniOS est hors ligne"
         ]
       ]
     ],
@@ -1861,7 +1857,7 @@
       ]
     ]
   ],
-  "plain_text": "Installation de logiciels\nLa MiniOS Boutique d’applications MiniOS propose un catalogue de recettes d’applications sur store.minios.dev. Depuis MiniOS Boutique d’applications MiniOS, ces recettes peuvent être installées directement sur le système en cours d’exécution ou servir à construire un ou plusieurs modules SquashFS (.sb).\nLa navigation dans le catalogue ne nécessite pas de serveur local. L’installation, en revanche, oui : l’interface web se connecte soit au démon local MiniOS Boutique d’applications MiniOS, soit ouvre le gestionnaire d’URI installé minios-store://.\nAvant l’installation\nOuvrez les détails d’une application et examinez les informations suivantes avant de l’ajouter au panier :\nLes noms des paquets et la méthode d’installation.\nLe script d’installation, s’il est affiché.\nLa page d’accueil de l’application et les informations sur le développeur.\nSi la recette télécharge un paquet Debian séparé.\nLes recettes peuvent installer des paquets APT, télécharger des paquets Debian ou exécuter des scripts shell. Les opérations d’installation s’exécutent avec les privilèges root. Considérez une recette et chaque téléchargement ou dépôt utilisé comme du code privilégié.\nInstaller une application\nOuvrez la MiniOS Boutique d’applications MiniOS depuis le menu des applications. Le lanceur vérifie https://store.minios.dev et l’ouvre dans le navigateur par défaut.\nRecherchez ou parcourez par catégorie, ouvrez les détails de l’application et examinez les paquets ou le script.\nAjoutez une ou plusieurs applications au panier.\nLors d’une session live MiniOS, sélectionnez Module ou System. Un système MiniOS installé nativement utilise automatiquement le mode System.\nPour plusieurs applications en mode module, sélectionnez un module combiné ou des modules séparés. Un module combiné peut également recevoir un nom personnalisé.\nSélectionnez Install et suivez la progression ainsi que la sortie des commandes. La page utilise le démon local lorsque son statut est Connected; sinon, elle tente d’utiliser le gestionnaire d’URI et peut afficher une demande d’authentification PolicyKit.\nUn seul lot d’installation via le démon peut être exécuté à la fois. Fermer la boîte de dialogue de progression n’arrête pas nécessairement une installation en cours ; rouvrez l’indicateur d’installation pour la consulter ou annulez-la explicitement.\nModes module et système\nMode module\nLe mode module exécute apt2sb ou script2sb dans un environnement isolé de construction de modules. Il écrit les fichiers .sb générés dans le premier emplacement inscriptible parmi les suivants :\n/run/initramfs/memory/data/minios/modules\n/var/lib/minios-store/modules\nLe premier chemin correspond au répertoire des modules sur le support de démarrage MiniOS actuel. Un module créé à cet emplacement n’est pas activé dans la session en cours par la MiniOS Boutique d’applications MiniOS. Laissez le module dans ce répertoire et redémarrez pour le charger au prochain démarrage. Le résultat reste disponible uniquement si le support de démarrage sous-jacent est inscriptible et conserve le fichier.\nLe second chemin est utilisé en secours si le répertoire normal des modules n’est pas inscriptible. Un module dans le répertoire de secours n’est pas automatiquement intégré au prochain démarrage live. Utilisez Open folder, puis copiez le module terminé dans le répertoire minios/modules sur un support de démarrage MiniOS inscriptible avant de redémarrer.\nUn module combiné contient toutes les recettes sélectionnées. En cas d’empaquetage séparé, une erreur peut n’affecter qu’une recette tandis que les modules déjà terminés restent dans le répertoire cible.\nMode système\nLe mode système utilise APT ou un script de recette directement sur le système de fichiers racine en cours d’exécution. Les modifications prennent effet immédiatement sur le système actuel, sans produire de module. En session live, la persistance de ces modifications après redémarrage dépend de la configuration de la session. Sur un système installé nativement, la MiniOS Boutique d’applications MiniOS utilise toujours le mode système.\nLe mode système n’est pas transactionnel. Une opération échouée ou annulée peut laisser des paquets, l’état du dépôt ou des fichiers modifiés par des commandes précédentes.\nService local et frontière de confiance\nLe service minios-store s’exécute en tant que root car la construction de modules et l’installation directe de paquets nécessitent des opérations de montage, overlay, chroot, APT et dpkg. Par défaut, il écoute uniquement sur ws://127.0.0.1:8765. L’interface web hébergée envoie l’intégralité des données de recette, y compris les scripts et les URL de téléchargement, à ce service local.\nLe démon valide la structure de la requête et la méthode d’installation prise en charge, mais il n’authentifie ni ne signe indépendamment la charge utile de la recette. Une page pouvant atteindre l’endpoint WebSocket local peut demander des opérations d’installation privilégiées. Par conséquent :\nGardez le démon limité à 127.0.0.1. N’exposez pas le port 8765 sur un réseau local ou Internet.\nNe définissez pas MINIOS_STORE_HOST sur une adresse autre que loopback sauf si une frontière de sécurité supplémentaire et vérifiée est en place.\nAccédez à la MiniOS Boutique d’applications MiniOS uniquement via son site officiel HTTPS et vérifiez les recettes avant installation.\nArrêtez ou désactivez le service lorsque l’installation via navigateur n’est pas nécessaire.\nGérez le service systemd avec :\nsudo systemctl status minios-store\nsudo systemctl start minios-store\nsudo systemctl stop minios-store\nsudo systemctl enable minios-store\nsudo systemctl disable minios-store\nLe gestionnaire d’URI est un chemin distinct. Il lance l’installateur GTK via PolicyKit et ne nécessite pas le démon WebSocket. Les entrées URI actuelles sont interprétées comme des noms de paquets APT avec un niveau de module et un réglage de compression demandés. L’installateur démarre après l’autorisation, donc vérifiez la requête du navigateur avant d’accepter la demande d’authentification.\nAnnulation\nSélectionnez Cancel dans la boîte de dialogue de progression web ou Cancel installation dans l’installateur GTK. L’annulation marque le lot comme annulé et termine le processus enfant actuellement suivi. Les recettes restantes ne sont pas lancées.\nL’annulation n’est pas un retour arrière. Les paquets ou modules terminés précédemment restent, et une commande interrompue pendant APT, dpkg, un script, un téléchargement ou la construction d’un module peut laisser un état partiel ou un fichier de sortie incomplet. Après annulation :\nLisez le journal d’installation final.\nVérifiez le répertoire de modules cible pour des fichiers inattendus ou de taille nulle.\nPour le mode système, exécutez sudo dpkg --audit et réparez la configuration des paquets si nécessaire.\nSupprimez uniquement les éléments que vous avez identifiés comme appartenant à l’opération annulée.\nDépannage\nLa MiniOS Boutique d’applications MiniOS est hors ligne\nVérifiez l’accès réseau à https://store.minios.dev. Un statut Offline signifie également que le navigateur n’est pas connecté au démon WebSocket local ; l’installation peut néanmoins se poursuivre via le gestionnaire d’URI si minios-store-gui est installé.\nLe navigateur ne peut pas se connecter au démon\nVérifiez le service et ses journaux :\nsudo systemctl status minios-store\nsudo journalctl -u minios-store\nL’endpoint normal est ws://127.0.0.1:8765. Un conflit de port, un service arrêté, l’absence de python3-websockets ou des restrictions du navigateur peuvent empêcher la connexion. Redémarrer le navigateur ne réactive pas un démon arrêté.\nL’authentification échoue ou aucune invite n’apparaît\nL’installateur URI nécessite PolicyKit, pkexec et un agent d’authentification de bureau actif. Lancez l’installateur depuis une session graphique active et vérifiez que minios-store-gui est installé. N’essayez pas de contourner l’invite en exposant le démon root sur le réseau.\nLa construction du module échoue\nDéveloppez le journal d’installation et utilisez la dernière erreur de commande plutôt que le simple résumé. Les causes courantes incluent des paquets indisponibles, des échecs de dépôt ou de DNS, un espace libre insuffisant, un outil de compression non pris en charge ou un répertoire de modules en lecture seule. Le démon signale lorsqu’il est passé sur /var/lib/minios-store/modules.\nL’application est absente après l’installation\nEn mode module, redémarrez après avoir confirmé que le fichier .sb se trouve dans le répertoire minios/modules du support de démarrage. Un fichier laissé dans le répertoire de secours n’est pas chargé automatiquement. En mode système sur une session live, vérifiez que la session est persistante si l’application a disparu après redémarrage.\nUne installation système annulée a laissé dpkg inachevé\nVérifiez l’état des paquets avant de réessayer :\nsudo dpkg --audit\nsudo dpkg --configure -a\nsudo apt-get -f install\nExaminez les modifications APT proposées avant de valider toute opération de réparation supplémentaire.\nDocumentation associée\nCréer des modules\nReconstruire l’ISO",
+  "plain_text": "Installation de logiciels\nLa Boutique d’applications MiniOS propose un catalogue de recettes d’applications sur store.minios.dev. Dans l’environnement live MiniOS, ces recettes peuvent être installées directement sur le système en cours d’exécution ou utilisées pour construire un ou plusieurs modules SquashFS (.sb).\nCette page décrit le workflow logiciel live MiniOS. Une installation native conserve le bureau sélectionné et les applications classiques, mais supprime les logiciels spécifiques à MiniOS prévus pour un usage live. Utilisez plutôt le workflow classique de gestion de paquets Debian sur ce système installé.\nLa navigation dans le catalogue ne nécessite pas de serveur local. L’installation, en revanche, oui : l’interface web se connecte soit au service local de la Boutique d’applications MiniOS, soit ouvre le gestionnaire d’URI minios-store:// installé.\nAvant l’installation\nOuvrez les détails d’une application et examinez les informations suivantes avant de l’ajouter au panier :\nLes noms des paquets et la méthode d’installation.\nLe script d’installation, s’il est affiché.\nLa page d’accueil de l’application et les informations sur le développeur.\nSi la recette télécharge un paquet Debian séparé.\nLes recettes peuvent installer des paquets APT, télécharger des paquets Debian ou exécuter des scripts shell. Les opérations d’installation s’exécutent avec les privilèges root. Considérez une recette et chaque téléchargement ou dépôt utilisé comme du code privilégié.\nInstaller une application\nOuvrez la Boutique d’applications MiniOS depuis le menu des applications. Le lanceur vérifie https://store.minios.dev et l’ouvre dans le navigateur par défaut.\nRecherchez ou parcourez par catégorie, ouvrez les détails de l’application et examinez les paquets ou le script.\nAjoutez une ou plusieurs applications au panier.\nLors d’une session live MiniOS, sélectionnez Module ou System.\nPour plusieurs applications en mode module, choisissez un module combiné ou des modules séparés. Un module combiné peut également recevoir un nom personnalisé.\nSélectionnez Install et suivez la progression ainsi que la sortie des commandes. La page utilise le démon local lorsque son statut est Connected; sinon, elle tente d’utiliser le gestionnaire d’URI et peut afficher une demande d’authentification PolicyKit.\nUn seul lot d’installation par démon peut être lancé à la fois. Fermer la boîte de dialogue de progression n’arrête pas nécessairement l’installation par le démon ; rouvrez l’indicateur d’installation pour la consulter ou annulez-la explicitement.\nModes module et système\nMode module\nLe mode module exécute apt2sb ou script2sb dans un environnement isolé de création de modules. Il enregistre les fichiers .sb générés dans le premier emplacement inscriptible parmi les suivants :\n/run/initramfs/memory/data/minios/modules\n/var/lib/minios-store/modules\nLe premier chemin correspond au répertoire des modules sur le support de démarrage MiniOS actuel. Un module créé à cet emplacement n’est pas activé dans la session en cours par la Boutique d’applications MiniOS. Laissez le module dans ce dossier et redémarrez pour le charger au prochain démarrage. Le résultat reste disponible uniquement si le support de démarrage sous-jacent est inscriptible et conserve le fichier.\nLe second chemin est utilisé en secours lorsque le dossier de modules habituel n’est pas inscriptible. Un module dans le dossier de secours ne sera pas automatiquement inclus au prochain démarrage live. Utilisez Open folder, puis copiez le module finalisé dans le dossier minios/modules sur un support de démarrage MiniOS inscriptible avant de redémarrer.\nUn module combiné contient toutes les recettes sélectionnées. Avec un emballage séparé, une erreur peut n’affecter qu’une recette tandis que les modules déjà terminés dans le lot restent dans le dossier cible.\nMode système\nLe mode système utilise APT ou un script de recette directement sur le système de fichiers racine en cours d’exécution. Les modifications prennent effet dans le système live actuel plutôt que de produire un module. La persistance de ces modifications après un redémarrage dépend de la configuration de persistance de la session.\nLe mode système n’est pas transactionnel. Une opération échouée ou annulée peut laisser des paquets, l’état du dépôt ou des fichiers modifiés par des commandes précédentes.\nService local et frontière de confiance\nLe service minios-store s’exécute en tant que root car la construction de modules et l’installation directe de paquets nécessitent des opérations de montage, overlay, chroot, APT et dpkg. Par défaut, il n’écoute que sur ws://127.0.0.1:8765. L’interface web hébergée envoie l’ensemble des données de recette, y compris les scripts et les URL de téléchargement, à ce service local.\nLe démon valide la structure de la requête et la méthode d’installation prise en charge, mais il n’authentifie ni ne signe indépendamment le contenu de la recette. Une page pouvant accéder à l’endpoint WebSocket local peut demander des opérations d’installation privilégiées. Par conséquent :\nGardez le démon lié à 127.0.0.1. N’exposez pas le port 8765 sur le réseau local ou Internet.\nNe définissez pas MINIOS_STORE_HOST sur une adresse non-loopback sauf si une frontière de sécurité supplémentaire et vérifiée est en place.\nAccédez à la Boutique d’applications MiniOS uniquement via son site officiel en HTTPS et examinez les recettes avant toute installation.\nArrêtez ou désactivez le service lorsque l’installation via le navigateur n’est pas nécessaire.\nGérez le service systemd avec :\nsudo systemctl status minios-store\nsudo systemctl start minios-store\nsudo systemctl stop minios-store\nsudo systemctl enable minios-store\nsudo systemctl disable minios-store\nLe gestionnaire d’URI suit une voie distincte. Il lance l’installateur GTK via PolicyKit et ne nécessite pas le démon WebSocket. Les entrées URI actuelles sont interprétées comme des noms de paquets APT avec un niveau de module et un paramètre de compression demandés. L’installateur démarre après autorisation, donc vérifiez la requête du navigateur avant d’accepter l’invite d’authentification.\nAnnulation\nSélectionnez Cancel dans la boîte de dialogue de progression web ou Cancel installation dans l’installateur GTK. L’annulation marque le lot comme annulé et termine le processus enfant actuellement suivi. Les recettes restantes ne sont pas lancées.\nL’annulation n’est pas un retour arrière. Les paquets ou modules terminés précédemment restent, et une commande interrompue pendant APT, dpkg, un script, un téléchargement ou la construction d’un module peut laisser un état partiel ou un fichier de sortie incomplet. Après annulation :\nLisez le journal d’installation final.\nVérifiez le répertoire de modules cible pour des fichiers inattendus ou de taille nulle.\nPour le mode système, exécutez sudo dpkg --audit et réparez la configuration des paquets si nécessaire.\nSupprimez uniquement les éléments que vous avez identifiés comme appartenant à l’opération annulée.\nDépannage\nLa Boutique d’applications MiniOS est hors ligne\nVérifiez l’accès réseau à https://store.minios.dev. Un statut Offline signifie également que le navigateur n’est pas connecté au démon WebSocket local ; l’installation peut néanmoins se poursuivre via le gestionnaire d’URI si minios-store-gui est installé.\nLe navigateur ne peut pas se connecter au démon\nVérifiez le service et ses journaux :\nsudo systemctl status minios-store\nsudo journalctl -u minios-store\nL’endpoint normal est ws://127.0.0.1:8765. Un conflit de port, un service arrêté, l’absence de python3-websockets ou des restrictions du navigateur peuvent empêcher la connexion. Redémarrer le navigateur ne réactive pas un démon arrêté.\nL’authentification échoue ou aucune invite n’apparaît\nL’installateur URI nécessite PolicyKit, pkexec et un agent d’authentification de bureau actif. Lancez l’installateur depuis une session graphique active et vérifiez que minios-store-gui est installé. N’essayez pas de contourner l’invite en exposant le démon root sur le réseau.\nLa construction du module échoue\nDéveloppez le journal d’installation et utilisez la dernière erreur de commande plutôt que le simple résumé. Les causes courantes incluent des paquets indisponibles, des échecs de dépôt ou de DNS, un espace libre insuffisant, un outil de compression non pris en charge ou un répertoire de modules en lecture seule. Le démon signale lorsqu’il est passé sur /var/lib/minios-store/modules.\nL’application est absente après l’installation\nEn mode module, redémarrez après avoir confirmé que le fichier .sb se trouve dans le répertoire minios/modules du support de démarrage. Un fichier laissé dans le répertoire de secours n’est pas chargé automatiquement. En mode système sur une session live, vérifiez que la session est persistante si l’application a disparu après redémarrage.\nUne installation système annulée a laissé dpkg inachevé\nVérifiez l’état des paquets avant de réessayer :\nsudo dpkg --audit\nsudo dpkg --configure -a\nsudo apt-get -f install\nExaminez les modifications APT proposées avant de valider toute opération de réparation supplémentaire.\nDocumentation associée\nCréer des modules\nReconstruire l’ISO",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

@@ -59,7 +59,22 @@
       [
         [
           "text",
-          "MiniOS menyediakan alat grafis dan baris perintah untuk konfigurasi sistem, instalasi, pemeliharaan, dan pembuatan ulang citra. Gunakan tabel di bawah ini untuk menemukan alat yang sesuai beserta panduan persyaratan, batasan, dan penggunaannya."
+          "MiniOS menyediakan alat grafis dan baris perintah untuk konfigurasi, instalasi, sesi, modul, kernel, perangkat lunak, dan pembuatan ulang citra. Alat-alat ini dirancang berdasarkan arsitektur live modular yang dijelaskan di "
+        ],
+        [
+          "link",
+          "/getting-started/About-MiniOS.md",
+          null,
+          [
+            [
+              "text",
+              "Tentang MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
         ]
       ]
     ],
@@ -80,7 +95,7 @@
       [
         [
           "text",
-          "Alat yang tersedia tergantung pada paket yang disertakan dalam citra atau sistem yang diinstal. Periksa sistem yang sedang berjalan dengan "
+          "Alat yang tersedia bergantung pada paket yang disertakan dalam citra MiniOS. Periksa sistem live yang sedang berjalan dengan "
         ],
         [
           "span",
@@ -110,6 +125,30 @@
         [
           "text",
           "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Instalasi native mempertahankan pengalaman desktop MiniOS yang sudah dikenal — identitas visual, lingkungan desktop pilihan, dan aplikasi umum — namun tidak menyertakan perangkat lunak manajemen khusus MiniOS yang dirancang untuk arsitektur live. Sesi, modul "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", manajemen kernel modular, dan alur kerja serupa tidak lagi berlaku, sehingga sistem yang terinstal akan menggunakan alat paket, kernel, konfigurasi, dan bootloader Debian standar."
         ]
       ]
     ],
@@ -154,7 +193,7 @@
               [
                 [
                   "text",
-                  "Kesesuaian live dan native"
+                  "Cakupan"
                 ]
               ]
             ],
@@ -178,7 +217,7 @@
               [
                 [
                   "text",
-                  "Edit pengaturan boot-time dan sesi baru MiniOS"
+                  "Edit pengaturan waktu boot dan sesi baru MiniOS"
                 ]
               ]
             ],
@@ -210,7 +249,7 @@
               [
                 [
                   "text",
-                  "Untuk model konfigurasi live MiniOS. Alat ini menulis pengaturan untuk boot live berikutnya dan tidak langsung mengonfigurasi sistem yang sedang berjalan."
+                  "Untuk model konfigurasi live MiniOS. Alat ini menulis pengaturan untuk boot live berikutnya dan tidak langsung mengubah sistem yang sedang berjalan."
                 ]
               ]
             ],
@@ -273,7 +312,7 @@
               [
                 [
                   "text",
-                  "Jalankan dari sesi live MiniOS. Dapat membuat instalasi live modular atau instalasi native konvensional jika image mendukung deployment native."
+                  "Berjalan dari sesi live MiniOS. Mode live mempertahankan lingkungan live MiniOS secara lengkap; mode native membuat desktop Debian konvensional dan menghapus perangkat lunak khusus MiniOS yang ditujukan untuk operasi live."
                 ]
               ]
             ],
@@ -336,7 +375,7 @@
               [
                 [
                   "text",
-                  "Hanya untuk sistem live. Instalasi native menulis langsung ke filesystem root dan tidak menggunakan sesi live MiniOS."
+                  "Hanya untuk sistem live MiniOS."
                 ]
               ]
             ],
@@ -399,7 +438,7 @@
               [
                 [
                   "text",
-                  "Ditujukan untuk instalasi live modular dan repositori kernel MiniOS mereka. Gunakan alur kerja paket kernel distribusi pada instalasi native."
+                  "Hanya untuk sistem live modular MiniOS."
                 ]
               ]
             ],
@@ -462,7 +501,7 @@
               [
                 [
                   "text",
-                  "Pada sistem live, pilih mode modul atau instalasi langsung ke sistem; persistensi menentukan apakah perubahan langsung bertahan setelah reboot. Instalasi native menggunakan mode sistem langsung."
+                  "Sistem live MiniOS. Pilih instalasi modul atau langsung ke sistem; persistensi menentukan apakah perubahan langsung bertahan setelah reboot."
                 ]
               ]
             ],
@@ -493,7 +532,7 @@
               [
                 [
                   "text",
-                  "Remaster citra MiniOS yang sudah ada melalui proyek terpandu"
+                  "Remaster citra MiniOS yang ada melalui proyek terpandu"
                 ]
               ]
             ],
@@ -525,7 +564,7 @@
               [
                 [
                   "text",
-                  "Bekerja dengan konten citra live MiniOS dari sesi live yang sedang berjalan, ISO, atau media optik. Alat ini membuat ISO live baru; tidak memelihara instalasi native atau menggantikan build sumber."
+                  "Bekerja dengan konten citra live MiniOS dari sesi live yang berjalan, ISO, atau media optik. Alat ini membuat ISO live baru."
                 ]
               ]
             ],
@@ -598,7 +637,7 @@
               [
                 [
                   "text",
-                  "Komposisi modul dan aktivasi runtime adalah fitur sistem live. Instalasi native tidak menggunakan model root berlapis "
+                  "Hanya untuk sistem live MiniOS; komposisi modul dan aktivasi saat runtime bergantung pada model root berlapis "
                 ],
                 [
                   "span",
@@ -675,7 +714,7 @@
               [
                 [
                   "text",
-                  "Dapat dijalankan di sistem grafis live atau native jika sudah terinstal. Menulis media bootable; tidak melakukan deployment live atau native seperti Penginstal MiniOS MiniOS."
+                  "Utilitas disk-image generik yang disertakan dengan MiniOS. Alat ini menulis media bootable; tidak melakukan deployment terkelola seperti Penginstal MiniOS."
                 ]
               ]
             ],
@@ -706,7 +745,7 @@
               [
                 [
                   "text",
-                  "Jelajahi dokumentasi terinstal secara offline"
+                  "Jelajahi dokumentasi yang terinstal secara offline"
                 ]
               ]
             ],
@@ -738,7 +777,7 @@
               [
                 [
                   "text",
-                  "Membaca dokumentasi yang sudah dikemas tanpa memerlukan koneksi jaringan."
+                  "Membaca dokumentasi yang sudah dikemas tanpa perlu koneksi jaringan."
                 ]
               ]
             ],
@@ -752,7 +791,7 @@
                   [
                     [
                       "text",
-                      "dokumentasi MiniOS"
+                      "Dokumentasi Bantuan MiniOS"
                     ]
                   ]
                 ]
@@ -852,7 +891,7 @@
               [
                 [
                   "text",
-                  "Kesesuaian live dan native"
+                  "Cakupan"
                 ]
               ]
             ],
@@ -914,7 +953,7 @@
               [
                 [
                   "text",
-                  "Deployment yang didukung dijalankan dari sesi live MiniOS. Instalasi memerlukan akses root dan konfirmasi eksplisit; mode native hanya tersedia jika image mendukungnya."
+                  "Berjalan dari sesi live MiniOS. Instalasi memerlukan akses root dan konfirmasi eksplisit; mode native, jika didukung, akan membuat desktop Debian konvensional dari citra yang dipilih."
                 ]
               ]
             ],
@@ -997,7 +1036,7 @@
               [
                 [
                   "text",
-                  "Memerlukan akses root dan sistem live MiniOS dengan penyimpanan persistensi yang kompatibel. Instalasi native tidak menggunakan sesi live MiniOS."
+                  "Memerlukan akses root dan sistem live MiniOS dengan penyimpanan persistensi yang kompatibel."
                 ]
               ]
             ],
@@ -1076,7 +1115,7 @@
               [
                 [
                   "text",
-                  "Ketersediaan pada mode live dan native"
+                  "Cakupan"
                 ]
               ]
             ],
@@ -1100,7 +1139,7 @@
               [
                 [
                   "text",
-                  "Daftar, paketkan, aktifkan, periksa, atau hapus kernel"
+                  "Daftar, paket, aktifkan, inspeksi, atau hapus kernel"
                 ]
               ]
             ],
@@ -1138,7 +1177,7 @@
               [
                 [
                   "text",
-                  "Memerlukan akses root dan instalasi live modular dengan root MiniOS yang dapat ditulis. Pada instalasi native, gunakan alur kerja paket kernel distribusi."
+                  "Memerlukan akses root dan instalasi live modular MiniOS dengan root MiniOS yang dapat ditulis."
                 ]
               ]
             ],
@@ -1221,7 +1260,7 @@
               [
                 [
                   "text",
-                  "Beroperasi pada konten citra live dan menghasilkan ISO bootable. Tidak mengonversi atau memperbarui instalasi native."
+                  "Beroperasi pada konten citra live MiniOS dan menghasilkan ISO bootable."
                 ]
               ]
             ],
@@ -1235,7 +1274,7 @@
                   [
                     [
                       "text",
-                      "Menyusun citra ISO dari baris perintah"
+                      "Menyusun citra ISO dari command line"
                     ]
                   ]
                 ],
@@ -1300,7 +1339,7 @@
               [
                 [
                   "text",
-                  "Ketersediaan pada mode live dan native"
+                  "Cakupan"
                 ]
               ]
             ],
@@ -1324,7 +1363,7 @@
               [
                 [
                   "text",
-                  "Memeriksa modul dan mengelola set modul yang berjalan atau untuk boot berikutnya"
+                  "Inspeksi modul dan kelola set modul yang berjalan atau untuk boot berikutnya"
                 ]
               ]
             ],
@@ -1362,7 +1401,7 @@
               [
                 [
                   "text",
-                  "Pemeriksaan modul juga dapat dilakukan di luar sesi MiniOS yang berjalan. Operasi berjalan dan boot berikutnya memerlukan tata letak modul live MiniOS; perubahan memerlukan akses root."
+                  "Inspeksi modul juga dapat dilakukan di luar sesi MiniOS yang berjalan. Operasi berjalan dan boot berikutnya memerlukan tata letak modul live MiniOS; perubahan memerlukan akses root."
                 ]
               ]
             ],
@@ -1407,7 +1446,7 @@
               [
                 [
                   "text",
-                  "Membangun modul dari paket repository atau file lokal "
+                  "Bangun modul dari paket repository atau file lokal "
                 ],
                 [
                   "span",
@@ -1455,7 +1494,7 @@
               [
                 [
                   "text",
-                  "Memerlukan akses root dan sesi live MiniOS yang didukung. Paket diinstal ke lingkungan build terisolasi, bukan ke root yang sedang berjalan."
+                  "Memerlukan akses root dan sesi live MiniOS yang didukung. Paket akan diinstal ke lingkungan build terisolasi, bukan root yang sedang berjalan."
                 ]
               ]
             ],
@@ -1500,7 +1539,7 @@
               [
                 [
                   "text",
-                  "Membangun modul dengan menjalankan skrip instalasi"
+                  "Bangun modul dengan menjalankan skrip instalasi"
                 ]
               ]
             ],
@@ -1583,7 +1622,7 @@
               [
                 [
                   "text",
-                  "Membangun modul secara interaktif di lingkungan yang sudah disiapkan"
+                  "Bangun modul secara interaktif di lingkungan yang telah disiapkan"
                 ]
               ]
             ],
@@ -1621,7 +1660,7 @@
               [
                 [
                   "text",
-                  "Memerlukan akses root dan sesi live MiniOS yang didukung. Gunakan ini jika instalasi membutuhkan prompt atau perubahan manual."
+                  "Memerlukan akses root dan sesi live MiniOS yang didukung. Gunakan jika instalasi memerlukan prompt atau perubahan manual."
                 ]
               ]
             ],
@@ -1808,7 +1847,7 @@
               [
                 [
                   "text",
-                  "Menangkap perubahan yang memenuhi syarat dari layer sesi yang dapat ditulis ke dalam modul"
+                  "Tangkap perubahan yang memenuhi syarat dari layer sesi yang dapat ditulis ke dalam modul"
                 ]
               ]
             ],
@@ -1846,7 +1885,7 @@
               [
                 [
                   "text",
-                  "Memerlukan akses root dan sesi live MiniOS yang berjalan dengan backend layer yang dapat ditulis dan didukung."
+                  "Memerlukan akses root dan sesi live MiniOS yang berjalan dengan backend layer-tulis yang didukung."
                 ]
               ]
             ],
@@ -1925,7 +1964,7 @@
               [
                 [
                   "text",
-                  "Kesesuaian live dan native"
+                  "Cakupan"
                 ]
               ]
             ],
@@ -2047,7 +2086,7 @@
               [
                 [
                   "text",
-                  "Dapat dijalankan di sistem live atau native jika sudah terinstal. Penulisan, pemformatan, dan penghapusan bersifat destruktif dan biasanya memerlukan akses root."
+                  "Operasi disk generik. Penulisan, format, dan penghapusan bersifat destruktif dan biasanya memerlukan akses root."
                 ]
               ]
             ],
@@ -2133,7 +2172,7 @@
       [
         [
           "text",
-          "Untuk perubahan pada daftar paket sumber, kernel, artefak boot, atau seluruh rantai modul, gunakan sistem build sumber alih-alih alat remastering image. Lihat "
+          "Untuk perubahan pada daftar paket sumber, kernel, artefak boot, atau seluruh rantai modul, gunakan sistem build sumber daripada alat pembuatan ulang citra. Lihat "
         ],
         [
           "link",
@@ -2153,7 +2192,7 @@
       ]
     ]
   ],
-  "plain_text": "MiniOS aplikasi\nMiniOS menyediakan alat grafis dan baris perintah untuk konfigurasi sistem, instalasi, pemeliharaan, dan pembuatan ulang citra. Gunakan tabel di bawah ini untuk menemukan alat yang sesuai beserta panduan persyaratan, batasan, dan penggunaannya.\nKetersediaan\nAlat yang tersedia tergantung pada paket yang disertakan dalam citra atau sistem yang diinstal. Periksa sistem yang sedang berjalan dengan dpkg-query, atau tinjau modul citra dan daftar paket.\nAlat grafis\nTugas | Alat | Kesesuaian live dan native | Dokumentasi\nEdit pengaturan boot-time dan sesi baru MiniOS | Konfigurator MiniOS | Untuk model konfigurasi live MiniOS. Alat ini menulis pengaturan untuk boot live berikutnya dan tidak langsung mengonfigurasi sistem yang sedang berjalan. | Konfigurator MiniOS\nDeploy MiniOS ke disk lain | Penginstal MiniOS | Jalankan dari sesi live MiniOS. Dapat membuat instalasi live modular atau instalasi native konvensional jika image mendukung deployment native. | Penginstal MiniOS\nMembuat, memilih, mengubah ukuran, menyimpan, atau menghapus sesi persisten | Manajer Sesi MiniOS | Hanya untuk sistem live. Instalasi native menulis langsung ke filesystem root dan tidak menggunakan sesi live MiniOS. | Manajemen sesi\nPaket, aktifkan, inspeksi, atau hapus kernel MiniOS | Manajer Kernel MiniOS | Ditujukan untuk instalasi live modular dan repositori kernel MiniOS mereka. Gunakan alur kerja paket kernel distribusi pada instalasi native. | Manajemen kernel\nInstal aplikasi atau buat modul aplikasi dari resep katalog | Toko Aplikasi MiniOS | Pada sistem live, pilih mode modul atau instalasi langsung ke sistem; persistensi menentukan apakah perubahan langsung bertahan setelah reboot. Instalasi native menggunakan mode sistem langsung. | Toko Aplikasi MiniOS\nRemaster citra MiniOS yang sudah ada melalui proyek terpandu | Pembuat Citra MiniOS | Bekerja dengan konten citra live MiniOS dari sesi live yang sedang berjalan, ISO, atau media optik. Alat ini membuat ISO live baru; tidak memelihara instalasi native atau menggantikan build sumber. | Pembuat Citra MiniOS\nInspeksi, buat, aktifkan, dan pilih modul .sb | Manajer Modul MiniOS | Komposisi modul dan aktivasi runtime adalah fitur sistem live. Instalasi native tidak menggunakan model root berlapis .sb. | Manajer Modul MiniOS\nTulis ISO MiniOS ke USB drive | Utilitas Disk | Dapat dijalankan di sistem grafis live atau native jika sudah terinstal. Menulis media bootable; tidak melakukan deployment live atau native seperti Penginstal MiniOS MiniOS. | Utilitas Disk\nJelajahi dokumentasi terinstal secara offline | Bantuan MiniOS | Membaca dokumentasi yang sudah dikemas tanpa memerlukan koneksi jaringan. | dokumentasi MiniOS\nAlat baris perintah\nSebagian besar alat grafis memiliki padanan baris perintah publik atau backend. Perintah-perintah ini dikirimkan baik dalam paket yang sama dengan aplikasi grafis atau dalam paket pendamping yang diperlukan. Manifest inti bersama mencakup minios-tools dan minios-image-compose. Perintah lainnya mengikuti ketersediaan paket grafis terkait. Kehadiran mereka di sistem atau citra yang diinstal tertentu tetap harus diperiksa secara langsung.\nDeployment dan sesi\nTugas | Alat | Kesesuaian live dan native | Dokumentasi\nDaftar disk target, pratinjau rencana deployment, atau instal MiniOS secara non-interaktif | minios-deploy | Deployment yang didukung dijalankan dari sesi live MiniOS. Instalasi memerlukan akses root dan konfirmasi eksplisit; mode native hanya tersedia jika image mendukungnya. | Penginstal MiniOS; man minios-deploy\nMembuat, mengaktifkan, menyimpan, mengubah ukuran, mengekspor, mengimpor, atau menghapus sesi persisten | minios-session | Memerlukan akses root dan sistem live MiniOS dengan penyimpanan persistensi yang kompatibel. Instalasi native tidak menggunakan sesi live MiniOS. | Manajemen sesi; man minios-session\nKernel dan citra\nTugas | Alat | Ketersediaan pada mode live dan native | Dokumentasi\nDaftar, paketkan, aktifkan, periksa, atau hapus kernel | minios-kernel | Memerlukan akses root dan instalasi live modular dengan root MiniOS yang dapat ditulis. Pada instalasi native, gunakan alur kerja paket kernel distribusi. | Manajemen kernel; man minios-kernel\nRemaster pohon konten MiniOS yang ada dari skrip atau otomatisasi | minios-image-compose | Beroperasi pada konten citra live dan menghasilkan ISO bootable. Tidak mengonversi atau memperbarui instalasi native. | Menyusun citra ISO dari baris perintah; man minios-image-compose\nAlur kerja modul\nTugas | Alat | Ketersediaan pada mode live dan native | Dokumentasi\nMemeriksa modul dan mengelola set modul yang berjalan atau untuk boot berikutnya | sb | Pemeriksaan modul juga dapat dilakukan di luar sesi MiniOS yang berjalan. Operasi berjalan dan boot berikutnya memerlukan tata letak modul live MiniOS; perubahan memerlukan akses root. | Membuat modul; man sb\nMembangun modul dari paket repository atau file lokal .deb | apt2sb | Memerlukan akses root dan sesi live MiniOS yang didukung. Paket diinstal ke lingkungan build terisolasi, bukan ke root yang sedang berjalan. | Membuat modul; man apt2sb\nMembangun modul dengan menjalankan skrip instalasi | script2sb | Memerlukan akses root dan sesi live MiniOS yang didukung. Skrip dijalankan secara non-interaktif di lingkungan build terisolasi. | Membuat modul; man script2sb\nMembangun modul secara interaktif di lingkungan yang sudah disiapkan | chroot2sb | Memerlukan akses root dan sesi live MiniOS yang didukung. Gunakan ini jika instalasi membutuhkan prompt atau perubahan manual. | Membuat modul; man chroot2sb\nKonversi antara pohon direktori dan modul .sb | dir2sb, sb2dir | Konversi biasa tidak memerlukan root dan dapat digunakan di luar sesi live yang berjalan jika alat dan file input yang dibutuhkan tersedia. | Membuat atau mengekstrak modul; man dir2sb, man sb2dir\nMenangkap perubahan yang memenuhi syarat dari layer sesi yang dapat ditulis ke dalam modul | savechanges | Memerlukan akses root dan sesi live MiniOS yang berjalan dengan backend layer yang dapat ditulis dan didukung. | Membuat modul; man savechanges\nAlur kerja penyimpanan\nTugas | Alat | Kesesuaian live dan native | Dokumentasi\nBaca atau tulis citra disk, format perangkat, atau timpa perangkat | driveutility-read, driveutility-write, driveutility-format, driveutility-wipe | Dapat dijalankan di sistem live atau native jika sudah terinstal. Penulisan, pemformatan, dan penghapusan bersifat destruktif dan biasanya memerlukan akses root. | Utilitas Disk; man driveutility-read, man driveutility-write, man driveutility-format, man driveutility-wipe\nUntuk perubahan pada daftar paket sumber, kernel, artefak boot, atau seluruh rantai modul, gunakan sistem build sumber alih-alih alat remastering image. Lihat Membangun MiniOS.",
+  "plain_text": "MiniOS aplikasi\nMiniOS menyediakan alat grafis dan baris perintah untuk konfigurasi, instalasi, sesi, modul, kernel, perangkat lunak, dan pembuatan ulang citra. Alat-alat ini dirancang berdasarkan arsitektur live modular yang dijelaskan di Tentang MiniOS.\nKetersediaan\nAlat yang tersedia bergantung pada paket yang disertakan dalam citra MiniOS. Periksa sistem live yang sedang berjalan dengan dpkg-query, atau tinjau modul citra dan daftar paket.\nInstalasi native mempertahankan pengalaman desktop MiniOS yang sudah dikenal — identitas visual, lingkungan desktop pilihan, dan aplikasi umum — namun tidak menyertakan perangkat lunak manajemen khusus MiniOS yang dirancang untuk arsitektur live. Sesi, modul .sb, manajemen kernel modular, dan alur kerja serupa tidak lagi berlaku, sehingga sistem yang terinstal akan menggunakan alat paket, kernel, konfigurasi, dan bootloader Debian standar.\nAlat grafis\nTugas | Alat | Cakupan | Dokumentasi\nEdit pengaturan waktu boot dan sesi baru MiniOS | Konfigurator MiniOS | Untuk model konfigurasi live MiniOS. Alat ini menulis pengaturan untuk boot live berikutnya dan tidak langsung mengubah sistem yang sedang berjalan. | Konfigurator MiniOS\nDeploy MiniOS ke disk lain | Penginstal MiniOS | Berjalan dari sesi live MiniOS. Mode live mempertahankan lingkungan live MiniOS secara lengkap; mode native membuat desktop Debian konvensional dan menghapus perangkat lunak khusus MiniOS yang ditujukan untuk operasi live. | Penginstal MiniOS\nMembuat, memilih, mengubah ukuran, menyimpan, atau menghapus sesi persisten | Manajer Sesi MiniOS | Hanya untuk sistem live MiniOS. | Manajemen sesi\nPaket, aktifkan, inspeksi, atau hapus kernel MiniOS | Manajer Kernel MiniOS | Hanya untuk sistem live modular MiniOS. | Manajemen kernel\nInstal aplikasi atau buat modul aplikasi dari resep katalog | Toko Aplikasi MiniOS | Sistem live MiniOS. Pilih instalasi modul atau langsung ke sistem; persistensi menentukan apakah perubahan langsung bertahan setelah reboot. | Toko Aplikasi MiniOS\nRemaster citra MiniOS yang ada melalui proyek terpandu | Pembuat Citra MiniOS | Bekerja dengan konten citra live MiniOS dari sesi live yang berjalan, ISO, atau media optik. Alat ini membuat ISO live baru. | Pembuat Citra MiniOS\nInspeksi, buat, aktifkan, dan pilih modul .sb | Manajer Modul MiniOS | Hanya untuk sistem live MiniOS; komposisi modul dan aktivasi saat runtime bergantung pada model root berlapis .sb. | Manajer Modul MiniOS\nTulis ISO MiniOS ke USB drive | Utilitas Disk | Utilitas disk-image generik yang disertakan dengan MiniOS. Alat ini menulis media bootable; tidak melakukan deployment terkelola seperti Penginstal MiniOS. | Utilitas Disk\nJelajahi dokumentasi yang terinstal secara offline | Bantuan MiniOS | Membaca dokumentasi yang sudah dikemas tanpa perlu koneksi jaringan. | Dokumentasi Bantuan MiniOS\nAlat baris perintah\nSebagian besar alat grafis memiliki padanan baris perintah publik atau backend. Perintah-perintah ini dikirimkan baik dalam paket yang sama dengan aplikasi grafis atau dalam paket pendamping yang diperlukan. Manifest inti bersama mencakup minios-tools dan minios-image-compose. Perintah lainnya mengikuti ketersediaan paket grafis terkait. Kehadiran mereka di sistem atau citra yang diinstal tertentu tetap harus diperiksa secara langsung.\nDeployment dan sesi\nTugas | Alat | Cakupan | Dokumentasi\nDaftar disk target, pratinjau rencana deployment, atau instal MiniOS secara non-interaktif | minios-deploy | Berjalan dari sesi live MiniOS. Instalasi memerlukan akses root dan konfirmasi eksplisit; mode native, jika didukung, akan membuat desktop Debian konvensional dari citra yang dipilih. | Penginstal MiniOS; man minios-deploy\nMembuat, mengaktifkan, menyimpan, mengubah ukuran, mengekspor, mengimpor, atau menghapus sesi persisten | minios-session | Memerlukan akses root dan sistem live MiniOS dengan penyimpanan persistensi yang kompatibel. | Manajemen sesi; man minios-session\nKernel dan citra\nTugas | Alat | Cakupan | Dokumentasi\nDaftar, paket, aktifkan, inspeksi, atau hapus kernel | minios-kernel | Memerlukan akses root dan instalasi live modular MiniOS dengan root MiniOS yang dapat ditulis. | Manajemen kernel; man minios-kernel\nRemaster pohon konten MiniOS yang ada dari skrip atau otomatisasi | minios-image-compose | Beroperasi pada konten citra live MiniOS dan menghasilkan ISO bootable. | Menyusun citra ISO dari command line; man minios-image-compose\nAlur kerja modul\nTugas | Alat | Cakupan | Dokumentasi\nInspeksi modul dan kelola set modul yang berjalan atau untuk boot berikutnya | sb | Inspeksi modul juga dapat dilakukan di luar sesi MiniOS yang berjalan. Operasi berjalan dan boot berikutnya memerlukan tata letak modul live MiniOS; perubahan memerlukan akses root. | Membuat modul; man sb\nBangun modul dari paket repository atau file lokal .deb | apt2sb | Memerlukan akses root dan sesi live MiniOS yang didukung. Paket akan diinstal ke lingkungan build terisolasi, bukan root yang sedang berjalan. | Membuat modul; man apt2sb\nBangun modul dengan menjalankan skrip instalasi | script2sb | Memerlukan akses root dan sesi live MiniOS yang didukung. Skrip dijalankan secara non-interaktif di lingkungan build terisolasi. | Membuat modul; man script2sb\nBangun modul secara interaktif di lingkungan yang telah disiapkan | chroot2sb | Memerlukan akses root dan sesi live MiniOS yang didukung. Gunakan jika instalasi memerlukan prompt atau perubahan manual. | Membuat modul; man chroot2sb\nKonversi antara pohon direktori dan modul .sb | dir2sb, sb2dir | Konversi biasa tidak memerlukan root dan dapat digunakan di luar sesi live yang berjalan jika alat dan file input yang dibutuhkan tersedia. | Membuat atau mengekstrak modul; man dir2sb, man sb2dir\nTangkap perubahan yang memenuhi syarat dari layer sesi yang dapat ditulis ke dalam modul | savechanges | Memerlukan akses root dan sesi live MiniOS yang berjalan dengan backend layer-tulis yang didukung. | Membuat modul; man savechanges\nAlur kerja penyimpanan\nTugas | Alat | Cakupan | Dokumentasi\nBaca atau tulis citra disk, format perangkat, atau timpa perangkat | driveutility-read, driveutility-write, driveutility-format, driveutility-wipe | Operasi disk generik. Penulisan, format, dan penghapusan bersifat destruktif dan biasanya memerlukan akses root. | Utilitas Disk; man driveutility-read, man driveutility-write, man driveutility-format, man driveutility-wipe\nUntuk perubahan pada daftar paket sumber, kernel, artefak boot, atau seluruh rantai modul, gunakan sistem build sumber daripada alat pembuatan ulang citra. Lihat Membangun MiniOS.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

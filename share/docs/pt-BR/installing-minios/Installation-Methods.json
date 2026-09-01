@@ -11,9 +11,9 @@
       "title": "Baixe e verifique o ISO"
     },
     {
-      "anchor": "gravar-mídia-inicializável",
+      "anchor": "instalar-minios-em-mídia-removível",
       "level": 2,
-      "title": "Gravar mídia inicializável"
+      "title": "Instalar MiniOS em mídia removível"
     },
     {
       "anchor": "inicializar-a-sessão-live",
@@ -21,9 +21,9 @@
       "title": "Inicializar a sessão live"
     },
     {
-      "anchor": "escolha-uma-estrutura-instalada",
+      "anchor": "escolha-um-layout-de-instalação",
       "level": 2,
-      "title": "Escolha uma estrutura instalada"
+      "title": "Escolha um layout de instalação"
     }
   ],
   "nodes": [
@@ -44,7 +44,17 @@
       [
         [
           "text",
-          "Existem duas tarefas distintas que geralmente são chamadas de instalação:"
+          "MiniOS é um sistema operacional live-first. Instalar o MiniOS normalmente significa colocar seu sistema modular live em uma mídia removível ou outro disco, então gravar ou copiar o MiniOS em um pendrive USB já é um método de instalação, e não apenas uma preparação para uma instalação posterior."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Existem duas grandes famílias de instalação:"
         ]
       ]
     ],
@@ -65,7 +75,21 @@
               [
                 [
                   "text",
-                  "Gravar o ISO em uma mídia removível cria a mídia inicializável usada para iniciar uma sessão live do MiniOS. Ferramentas de gravação de imagem sobrescrevem o dispositivo selecionado com a estrutura do ISO."
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Instalação Live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " mantém a pilha de módulos MiniOS, a configuração de boot, a persistência de sessão e os fluxos de trabalho de gerenciamento MiniOS. Escrita de imagem bruta, instalação baseada em arquivos, Ventoy e o modo Live do Instalador MiniOS produzem formas de executar o sistema live MiniOS."
                 ]
               ]
             ]
@@ -81,7 +105,21 @@
               [
                 [
                   "text",
-                  "Executar o "
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Instalação Nativa"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " é uma conversão opcional realizada pelo "
                 ],
                 [
                   "link",
@@ -96,7 +134,7 @@
                 ],
                 [
                   "text",
-                  " a partir de uma sessão live implanta o MiniOS em outro disco. Ele pode criar uma instalação live modular ou uma instalação Linux nativa convencional."
+                  ". Ela cria um desktop Debian convencional a partir da imagem MiniOS selecionada, mantendo o ambiente de desktop, identidade visual e aplicativos comuns, enquanto remove o software específico do MiniOS que existe para a arquitetura live."
                 ]
               ]
             ]
@@ -188,11 +226,11 @@
     [
       "heading",
       2,
-      "gravar-mídia-inicializável",
+      "instalar-minios-em-mídia-removível",
       [
         [
           "text",
-          "Gravar mídia inicializável"
+          "Instalar MiniOS em mídia removível"
         ]
       ]
     ],
@@ -202,24 +240,61 @@
       [
         [
           "text",
-          "Escolha um método para o seu sistema operacional:"
+          "Escolha o método de acordo com o layout desejado no dispositivo de destino:"
         ]
       ]
     ],
     [
-      "list",
-      {
-        "ordered": false,
-        "start": 1
-      },
+      "table",
       [
         [
-          "item",
-          null,
+          "table_row",
+          true,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Resultado"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Método"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "O que você obtém"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Sistema de arquivos gravável normal que também inicializa o MiniOS"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
               [
                 [
                   "link",
@@ -234,19 +309,47 @@
                 ],
                 [
                   "text",
-                  " no Windows"
+                  " no modo ISO ou "
+                ],
+                [
+                  "link",
+                  "/installing-minios/Manual-File-Based-Installation.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "instalação manual baseada em arquivos"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Arquivos MiniOS e bootloader em um sistema de arquivos normal; o espaço restante permanece utilizável para arquivos comuns"
                 ]
               ]
             ]
           ]
         ],
         [
-          "item",
-          null,
+          "table_row",
+          false,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Dispositivo multiboot com suporte à persistência MiniOS"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
               [
                 [
                   "link",
@@ -258,23 +361,109 @@
                       "Ventoy"
                     ]
                   ]
-                ],
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
                 [
                   "text",
-                  " no Windows ou Linux"
+                  "Partição de dados Ventoy para arquivos ISO mais suporte à sessão persistente MiniOS"
                 ]
               ]
             ]
           ]
         ],
         [
-          "item",
-          null,
+          "table_row",
+          false,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
               [
+                [
+                  "text",
+                  "Instalação modular MiniOS gerenciada"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "link",
+                  "/installing-minios/MiniOS-Installer.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Instalador do MiniOS"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " no modo "
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Layout de módulos MiniOS com armazenamento persistente opcional configurado pelo instalador"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Cópia exata, bloco a bloco, do ISO publicado"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "link",
+                  "/installing-minios/installation-tools/Rufus.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Rufus"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " no modo DD, "
+                ],
                 [
                   "link",
                   "/installing-minios/installation-tools/Balena-Etcher.md",
@@ -288,20 +477,23 @@
                 ],
                 [
                   "text",
-                  " no Windows, Linux ou macOS"
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
+                  ", "
+                ],
+                [
+                  "link",
+                  "/installing-minios/installation-tools/Drive-Utility.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Utilitário de disco"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " ou "
+                ],
                 [
                   "link",
                   "/installing-minios/installation-tools/dd.md",
@@ -318,64 +510,15 @@
                       ]
                     ]
                   ]
-                ],
-                [
-                  "text",
-                  " no Linux ou macOS"
                 ]
               ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
+            ],
             [
-              "block",
-              "paragraph",
+              "table_cell",
               [
                 [
-                  "link",
-                  "/installing-minios/installation-tools/Drive-Utility.md",
-                  null,
-                  [
-                    [
-                      "text",
-                      "Utilitário de disco"
-                    ]
-                  ]
-                ],
-                [
                   "text",
-                  " no Linux"
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "link",
-                  "/installing-minios/Manual-File-Based-Installation.md",
-                  null,
-                  [
-                    [
-                      "text",
-                      "Instalação USB baseada em arquivos"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " para uma estrutura MiniOS preparada manualmente"
+                  "Layout de blocos ISO exatamente igual; simples e previsível, mas o dispositivo de destino deixa de funcionar como um pendrive comum de uso geral"
                 ]
               ]
             ]
@@ -384,36 +527,33 @@
       ]
     ],
     [
-      "block",
-      "paragraph",
+      "admonition",
+      "danger",
+      "A gravação de imagem bruta sobrescreve o layout do destino",
       [
         [
-          "text",
-          "Gravar uma imagem com Rufus, Etcher, "
-        ],
-        [
-          "span",
-          "code",
+          "block",
+          "paragraph",
           [
             [
               "text",
-              "dd"
+              "O modo DD Rufus, Etcher, gravação de imagem pelo Utilitário de disco e "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "dd"
+                ]
+              ]
+            ],
+            [
+              "text",
+              " substituem o layout de blocos existente do dispositivo. Confirme o modelo e a capacidade do destino e faça backup de tudo que for importante antes de começar. Este aviso não se aplica ao modo ISO Rufus, Ventoy ou a uma instalação baseada em arquivos."
             ]
           ]
-        ],
-        [
-          "text",
-          " ou Utilitário de disco é destrutivo. Confirme o caminho do dispositivo, modelo e capacidade antes de começar. Uma gravação de imagem bruta reproduz a estrutura da imagem; ela não configura persistência nem realiza uma implantação live ou nativa com o Instalador do MiniOS."
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          "Ventoy é diferente: instale Ventoy no dispositivo e, em seguida, copie o ISO para sua partição de dados. Isso mantém a estrutura multiboot do Ventoy."
         ]
       ]
     ],
@@ -538,11 +678,11 @@
     [
       "heading",
       2,
-      "escolha-uma-estrutura-instalada",
+      "escolha-um-layout-de-instalação",
       [
         [
           "text",
-          "Escolha uma estrutura instalada"
+          "Escolha um layout de instalação"
         ]
       ]
     ],
@@ -567,7 +707,7 @@
         ],
         [
           "text",
-          " quando quiser o MiniOS em outro pendrive, SSD ou disco rígido."
+          " quando quiser instalar o sistema em outro pendrive USB, SSD ou disco rígido."
         ]
       ]
     ],
@@ -588,7 +728,21 @@
               [
                 [
                   "text",
-                  "O modo live preserva a pilha de módulos compactados e a estrutura de boot live. Ele suporta persistência opcional de sessão e é indicado para instalações portáteis."
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Modo Live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " preserva a pilha de módulos comprimidos, o layout de boot MiniOS, as ferramentas de gerenciamento MiniOS e a persistência de sessão opcional. Escolha esta opção se quiser o próprio MiniOS no disco de destino."
                 ]
               ]
             ]
@@ -604,9 +758,55 @@
               [
                 [
                   "text",
-                  "O modo nativo expande os módulos selecionados em um sistema de arquivos raiz Linux convencional, gera o initramfs e instala um bootloader compatível. O modo nativo está disponível apenas quando a imagem inicializada fornece os metadados necessários do instalador."
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Modo Nativo"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " expande a imagem selecionada em um desktop Debian gravável convencional. O destino mantém o ambiente de desktop, identidade visual e aplicativos comuns da edição selecionada, enquanto o runtime live MiniOS e o software de gerenciamento específico do live são removidos. O sistema instalado utiliza um initramfs Debian convencional, bootloader, pacotes de kernel e fluxo de trabalho de gerenciamento de pacotes."
                 ]
               ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "admonition",
+      "warning",
+      "A instalação nativa utiliza um modelo de sistema diferente",
+      [
+        [
+          "block",
+          "paragraph",
+          [
+            [
+              "text",
+              "A arquitetura definidora MiniOS é o sistema modular live descrito em "
+            ],
+            [
+              "link",
+              "/getting-started/About-MiniOS.md",
+              null,
+              [
+                [
+                  "text",
+                  "Sobre o MiniOS"
+                ]
+              ]
+            ],
+            [
+              "text",
+              ". O modo nativo mantém a experiência de desktop familiar do MiniOS, incluindo identidade visual, ambiente de desktop e aplicativos comuns, mas converte o sistema para uma instalação Debian convencional. As ferramentas específicas do MiniOS para sessões, módulos, kernels modulares e outros fluxos de trabalho live são removidas, pois esses recursos não se aplicam mais. Escolha a instalação live se quiser o conjunto completo de recursos do MiniOS."
             ]
           ]
         ]
@@ -627,13 +827,13 @@
           [
             [
               "text",
-              "Persistência Initrd"
+              "Persistência no Initrd"
             ]
           ]
         ],
         [
           "text",
-          ". Isso não se aplica ao sistema de arquivos raiz convencional usado pelo modo nativo."
+          ". Não se aplica após a conversão nativa."
         ]
       ]
     ],
@@ -663,7 +863,7 @@
       ]
     ]
   ],
-  "plain_text": "Métodos de instalação\nExistem duas tarefas distintas que geralmente são chamadas de instalação:\nGravar o ISO em uma mídia removível cria a mídia inicializável usada para iniciar uma sessão live do MiniOS. Ferramentas de gravação de imagem sobrescrevem o dispositivo selecionado com a estrutura do ISO.\nExecutar o Instalador do MiniOS a partir de uma sessão live implanta o MiniOS em outro disco. Ele pode criar uma instalação live modular ou uma instalação Linux nativa convencional.\nBaixe e verifique o ISO\nBaixe um ISO no site oficial, na página oficial de Releases do GitHub ou no SourceForge. Verifique o arquivo antes de gravá-lo em um dispositivo; veja Verificando downloads.\nGravar mídia inicializável\nEscolha um método para o seu sistema operacional:\nRufus no Windows\nVentoy no Windows ou Linux\nBalena Etcher no Windows, Linux ou macOS\ndd no Linux ou macOS\nUtilitário de disco no Linux\nInstalação USB baseada em arquivos para uma estrutura MiniOS preparada manualmente\nGravar uma imagem com Rufus, Etcher, dd ou Utilitário de disco é destrutivo. Confirme o caminho do dispositivo, modelo e capacidade antes de começar. Uma gravação de imagem bruta reproduz a estrutura da imagem; ela não configura persistência nem realiza uma implantação live ou nativa com o Instalador do MiniOS.\nVentoy é diferente: instale Ventoy no dispositivo e, em seguida, copie o ISO para sua partição de dados. Isso mantém a estrutura multiboot do Ventoy.\nInicializar a sessão live\nReinicie o computador e abra o menu de boot do firmware.\nSelecione o dispositivo USB ou outra mídia inicializável.\nInicie o MiniOS e verifique se armazenamento, rede e dispositivos de entrada funcionam como esperado.\nAs configurações de firmware variam conforme o computador. Uma imagem MiniOS pode inicializar via BIOS ou UEFI; o destino de uma implantação posterior pelo Instalador do MiniOS não está restrito ao MBR.\nUse Modos de boot como guia oficial para o comportamento do boot live. Se o boot inicial não localizar a imagem ou seus módulos, consulte Descoberta do sistema Initrd.\nEscolha uma estrutura instalada\nA partir da sessão live, inicie o Instalador do MiniOS quando quiser o MiniOS em outro pendrive, SSD ou disco rígido.\nO modo live preserva a pilha de módulos compactados e a estrutura de boot live. Ele suporta persistência opcional de sessão e é indicado para instalações portáteis.\nO modo nativo expande os módulos selecionados em um sistema de arquivos raiz Linux convencional, gera o initramfs e instala um bootloader compatível. O modo nativo está disponível apenas quando a imagem inicializada fornece os metadados necessários do instalador.\nA persistência live é preparada durante o boot inicial; o comportamento detalhado está em Persistência Initrd. Isso não se aplica ao sistema de arquivos raiz convencional usado pelo modo nativo.\nO instalador oferece suporte automático para layouts BIOS/MBR, UEFI/MBR e UEFI/GPT. BIOS em GPT não é suportado pelo instalador atual. Veja Usando o Instalador do MiniOS para informações sobre posicionamento, sistema de arquivos, persistência e limites de particionamento.",
+  "plain_text": "Métodos de instalação\nMiniOS é um sistema operacional live-first. Instalar o MiniOS normalmente significa colocar seu sistema modular live em uma mídia removível ou outro disco, então gravar ou copiar o MiniOS em um pendrive USB já é um método de instalação, e não apenas uma preparação para uma instalação posterior.\nExistem duas grandes famílias de instalação:\nInstalação Live mantém a pilha de módulos MiniOS, a configuração de boot, a persistência de sessão e os fluxos de trabalho de gerenciamento MiniOS. Escrita de imagem bruta, instalação baseada em arquivos, Ventoy e o modo Live do Instalador MiniOS produzem formas de executar o sistema live MiniOS.\nInstalação Nativa é uma conversão opcional realizada pelo Instalador do MiniOS. Ela cria um desktop Debian convencional a partir da imagem MiniOS selecionada, mantendo o ambiente de desktop, identidade visual e aplicativos comuns, enquanto remove o software específico do MiniOS que existe para a arquitetura live.\nBaixe e verifique o ISO\nBaixe um ISO no site oficial, na página oficial de Releases do GitHub ou no SourceForge. Verifique o arquivo antes de gravá-lo em um dispositivo; veja Verificando downloads.\nInstalar MiniOS em mídia removível\nEscolha o método de acordo com o layout desejado no dispositivo de destino:\nResultado | Método | O que você obtém\nSistema de arquivos gravável normal que também inicializa o MiniOS | Rufus no modo ISO ou instalação manual baseada em arquivos | Arquivos MiniOS e bootloader em um sistema de arquivos normal; o espaço restante permanece utilizável para arquivos comuns\nDispositivo multiboot com suporte à persistência MiniOS | Ventoy | Partição de dados Ventoy para arquivos ISO mais suporte à sessão persistente MiniOS\nInstalação modular MiniOS gerenciada | Instalador do MiniOS no modo Live | Layout de módulos MiniOS com armazenamento persistente opcional configurado pelo instalador\nCópia exata, bloco a bloco, do ISO publicado | Rufus no modo DD, Balena Etcher, Utilitário de disco ou dd | Layout de blocos ISO exatamente igual; simples e previsível, mas o dispositivo de destino deixa de funcionar como um pendrive comum de uso geral\nA gravação de imagem bruta sobrescreve o layout do destino\nO modo DD Rufus, Etcher, gravação de imagem pelo Utilitário de disco e dd substituem o layout de blocos existente do dispositivo. Confirme o modelo e a capacidade do destino e faça backup de tudo que for importante antes de começar. Este aviso não se aplica ao modo ISO Rufus, Ventoy ou a uma instalação baseada em arquivos.\nInicializar a sessão live\nReinicie o computador e abra o menu de boot do firmware.\nSelecione o dispositivo USB ou outra mídia inicializável.\nInicie o MiniOS e verifique se armazenamento, rede e dispositivos de entrada funcionam como esperado.\nAs configurações de firmware variam conforme o computador. Uma imagem MiniOS pode inicializar via BIOS ou UEFI; o destino de uma implantação posterior pelo Instalador do MiniOS não está restrito ao MBR.\nUse Modos de boot como guia oficial para o comportamento do boot live. Se o boot inicial não localizar a imagem ou seus módulos, consulte Descoberta do sistema Initrd.\nEscolha um layout de instalação\nA partir da sessão live, inicie o Instalador do MiniOS quando quiser instalar o sistema em outro pendrive USB, SSD ou disco rígido.\nModo Live preserva a pilha de módulos comprimidos, o layout de boot MiniOS, as ferramentas de gerenciamento MiniOS e a persistência de sessão opcional. Escolha esta opção se quiser o próprio MiniOS no disco de destino.\nModo Nativo expande a imagem selecionada em um desktop Debian gravável convencional. O destino mantém o ambiente de desktop, identidade visual e aplicativos comuns da edição selecionada, enquanto o runtime live MiniOS e o software de gerenciamento específico do live são removidos. O sistema instalado utiliza um initramfs Debian convencional, bootloader, pacotes de kernel e fluxo de trabalho de gerenciamento de pacotes.\nA instalação nativa utiliza um modelo de sistema diferente\nA arquitetura definidora MiniOS é o sistema modular live descrito em Sobre o MiniOS. O modo nativo mantém a experiência de desktop familiar do MiniOS, incluindo identidade visual, ambiente de desktop e aplicativos comuns, mas converte o sistema para uma instalação Debian convencional. As ferramentas específicas do MiniOS para sessões, módulos, kernels modulares e outros fluxos de trabalho live são removidas, pois esses recursos não se aplicam mais. Escolha a instalação live se quiser o conjunto completo de recursos do MiniOS.\nA persistência live é preparada durante o boot inicial; o comportamento detalhado está em Persistência no Initrd. Não se aplica após a conversão nativa.\nO instalador oferece suporte automático para layouts BIOS/MBR, UEFI/MBR e UEFI/GPT. BIOS em GPT não é suportado pelo instalador atual. Veja Usando o Instalador do MiniOS para informações sobre posicionamento, sistema de arquivos, persistência e limites de particionamento.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

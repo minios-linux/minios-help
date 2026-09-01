@@ -1,9 +1,9 @@
 {
   "headings": [
     {
-      "anchor": "applicazioni-minios",
+      "anchor": "minios-applicazioni",
       "level": 1,
-      "title": "Applicazioni MiniOS"
+      "title": "MiniOS applicazioni"
     },
     {
       "anchor": "disponibilità",
@@ -31,25 +31,25 @@
       "title": "Kernel e immagini"
     },
     {
-      "anchor": "workflow-dei-moduli",
+      "anchor": "flussi-di-lavoro-dei-moduli",
       "level": 3,
-      "title": "Workflow dei moduli"
+      "title": "Flussi di lavoro dei moduli"
     },
     {
-      "anchor": "flussi-di-lavoro-per-lo-storage",
+      "anchor": "flussi-di-lavoro-dello-storage",
       "level": 3,
-      "title": "Flussi di lavoro per lo storage"
+      "title": "Flussi di lavoro dello storage"
     }
   ],
   "nodes": [
     [
       "heading",
       1,
-      "applicazioni-minios",
+      "minios-applicazioni",
       [
         [
           "text",
-          "Applicazioni MiniOS"
+          "MiniOS applicazioni"
         ]
       ]
     ],
@@ -59,7 +59,22 @@
       [
         [
           "text",
-          "MiniOS offre strumenti grafici e da riga di comando per la configurazione del sistema, l’installazione, la manutenzione e il remastering delle immagini. Utilizza le tabelle sottostanti per trovare lo strumento appropriato e la relativa guida ai requisiti, limitazioni e modalità d’uso."
+          "MiniOS offre strumenti grafici e da riga di comando per la configurazione, l'installazione, le sessioni, i moduli, i kernel, il software e la rimasterizzazione delle immagini. Questi strumenti sono progettati attorno all'architettura live modulare descritta in "
+        ],
+        [
+          "link",
+          "/getting-started/About-MiniOS.md",
+          null,
+          [
+            [
+              "text",
+              "Informazioni su MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
         ]
       ]
     ],
@@ -80,7 +95,7 @@
       [
         [
           "text",
-          "Gli strumenti disponibili dipendono dai pacchetti inclusi nell’immagine o nel sistema installato. Verifica un sistema in esecuzione con "
+          "Gli strumenti disponibili dipendono dai pacchetti inclusi nell'immagine MiniOS. Verifica un sistema live in esecuzione con "
         ],
         [
           "span",
@@ -94,7 +109,7 @@
         ],
         [
           "text",
-          ", oppure ispeziona i moduli dell’immagine e i "
+          ", oppure ispeziona i moduli dell'immagine e i "
         ],
         [
           "link",
@@ -110,6 +125,30 @@
         [
           "text",
           "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Un'installazione nativa mantiene la familiare esperienza desktop MiniOS — la sua identità visiva, l'ambiente desktop selezionato e le applicazioni ordinarie — ma non conserva il software di gestione specifico MiniOS progettato per l'architettura live. Sessioni, moduli "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", gestione modulare del kernel e flussi di lavoro simili non sono più applicabili, quindi il sistema installato utilizza invece i normali strumenti Debian per pacchetti, kernel, configurazione e bootloader."
         ]
       ]
     ],
@@ -154,7 +193,7 @@
               [
                 [
                   "text",
-                  "Applicabilità live e nativa"
+                  "Ambito"
                 ]
               ]
             ],
@@ -273,7 +312,7 @@
               [
                 [
                   "text",
-                  "Eseguito da una sessione live MiniOS. Può creare sia un'installazione live modulare che una installazione nativa convenzionale quando l'immagine supporta il deployment nativo."
+                  "Si avvia da una sessione live MiniOS. La modalità live mantiene l'ambiente live completo MiniOS; la modalità nativa crea un desktop Debian convenzionale e rimuove il software specifico MiniOS destinato all'uso live."
                 ]
               ]
             ],
@@ -336,7 +375,7 @@
               [
                 [
                   "text",
-                  "Solo per sistemi live. Le installazioni native scrivono direttamente sul proprio filesystem root e non utilizzano sessioni live MiniOS."
+                  "Solo per sistemi live MiniOS."
                 ]
               ]
             ],
@@ -399,7 +438,7 @@
               [
                 [
                   "text",
-                  "Pensato per installazioni live modulari e il loro repository kernel MiniOS. Su installazione nativa, utilizzare il normale flusso di lavoro dei pacchetti kernel della distribuzione."
+                  "Solo per sistemi live modulari MiniOS."
                 ]
               ]
             ],
@@ -413,7 +452,7 @@
                   [
                     [
                       "text",
-                      "Gestione dei kernel"
+                      "Gestione kernel"
                     ]
                   ]
                 ]
@@ -430,7 +469,7 @@
               [
                 [
                   "text",
-                  "Installare applicazioni o costruire moduli applicativi da ricette del catalogo"
+                  "Installare applicazioni o creare moduli applicativi da ricette del catalogo"
                 ]
               ]
             ],
@@ -462,7 +501,7 @@
               [
                 [
                   "text",
-                  "Nei sistemi live, scegliere tra modulo o installazione diretta sul sistema; la persistenza determina se le modifiche dirette sopravvivono al riavvio. Le installazioni native usano la modalità diretta sul sistema."
+                  "Sistemi live MiniOS. Scegli installazione come modulo o diretta sul sistema; la persistenza determina se le modifiche dirette sopravvivono al riavvio."
                 ]
               ]
             ],
@@ -525,7 +564,7 @@
               [
                 [
                   "text",
-                  "Funziona con il contenuto dell'immagine live MiniOS dalla sessione live in esecuzione, da una ISO o da supporti ottici. Crea un'altra ISO live; non mantiene un'installazione nativa né sostituisce una build di origine."
+                  "Funziona con i contenuti dell'immagine live MiniOS dalla sessione live in esecuzione, da una ISO o da supporti ottici. Crea una nuova ISO live."
                 ]
               ]
             ],
@@ -598,7 +637,7 @@
               [
                 [
                   "text",
-                  "La composizione e l'attivazione dei moduli a runtime sono funzionalità dei sistemi live. Le installazioni native non utilizzano il modello root stratificato "
+                  "Solo per sistemi live MiniOS; la composizione dei moduli e l'attivazione a runtime dipendono dal modello root a livelli "
                 ],
                 [
                   "span",
@@ -675,7 +714,7 @@
               [
                 [
                   "text",
-                  "Può essere eseguita in un sistema grafico live o nativo quando installata. Scrive supporti avviabili; non esegue un deployment live o nativo come l'Installatore MiniOS MiniOS."
+                  "Utilità generica per immagini disco inclusa in MiniOS. Scrive supporti avviabili; non esegue il deployment gestito come l'Installatore MiniOS."
                 ]
               ]
             ],
@@ -852,7 +891,7 @@
               [
                 [
                   "text",
-                  "Applicabilità live e nativa"
+                  "Ambito"
                 ]
               ]
             ],
@@ -876,7 +915,7 @@
               [
                 [
                   "text",
-                  "Elenca i dischi di destinazione, visualizza in anteprima un piano di deployment o installa MiniOS in modalità non interattiva"
+                  "Elencare i dischi di destinazione, visualizzare in anteprima un piano di deployment o installare MiniOS in modo non interattivo"
                 ]
               ]
             ],
@@ -914,7 +953,7 @@
               [
                 [
                   "text",
-                  "Il deployment supportato viene eseguito da una sessione live MiniOS. L'installazione richiede i permessi di root e una conferma esplicita; la modalità nativa è disponibile solo se l'immagine la supporta."
+                  "Si avvia da una sessione live MiniOS. L'installazione richiede i permessi di root e una conferma esplicita; la modalità nativa, quando supportata, crea un desktop Debian convenzionale dall'immagine selezionata."
                 ]
               ]
             ],
@@ -997,7 +1036,7 @@
               [
                 [
                   "text",
-                  "Richiede i permessi di root e un sistema live MiniOS con uno store di persistenza compatibile. Le installazioni native non utilizzano sessioni live MiniOS."
+                  "Richiede root e un sistema live MiniOS compatibile con uno storage di persistenza."
                 ]
               ]
             ],
@@ -1076,7 +1115,7 @@
               [
                 [
                   "text",
-                  "Applicabilità live e nativa"
+                  "Ambito"
                 ]
               ]
             ],
@@ -1100,7 +1139,7 @@
               [
                 [
                   "text",
-                  "Elenco, pacchettizzazione, attivazione, ispezione o rimozione dei kernel"
+                  "Elencare, impacchettare, attivare, ispezionare o rimuovere kernel"
                 ]
               ]
             ],
@@ -1138,7 +1177,7 @@
               [
                 [
                   "text",
-                  "Richiede root e un'installazione live modulare con root MiniOS scrivibile. Sulle installazioni native utilizzare il workflow di pacchettizzazione kernel della distribuzione."
+                  "Richiede root e un'installazione live modulare MiniOS con una root MiniOS scrivibile."
                 ]
               ]
             ],
@@ -1183,7 +1222,7 @@
               [
                 [
                   "text",
-                  "Remastering di un albero contenuti MiniOS esistente tramite script o automazione"
+                  "Rimasterizzare un albero di contenuti MiniOS esistente tramite script o automazione"
                 ]
               ]
             ],
@@ -1221,7 +1260,7 @@
               [
                 [
                   "text",
-                  "Opera sul contenuto dell'immagine live e pubblica un ISO avviabile. Non converte né aggiorna un'installazione nativa."
+                  "Opera sui contenuti dell'immagine live MiniOS e pubblica una ISO avviabile."
                 ]
               ]
             ],
@@ -1262,11 +1301,11 @@
     [
       "heading",
       3,
-      "workflow-dei-moduli",
+      "flussi-di-lavoro-dei-moduli",
       [
         [
           "text",
-          "Workflow dei moduli"
+          "Flussi di lavoro dei moduli"
         ]
       ]
     ],
@@ -1300,7 +1339,7 @@
               [
                 [
                   "text",
-                  "Applicabilità live e nativa"
+                  "Ambito"
                 ]
               ]
             ],
@@ -1324,7 +1363,7 @@
               [
                 [
                   "text",
-                  "Ispezione dei moduli e gestione dei set di moduli in esecuzione o al prossimo avvio"
+                  "Ispezionare i moduli e gestire i set di moduli attivi o per il prossimo avvio"
                 ]
               ]
             ],
@@ -1362,7 +1401,7 @@
               [
                 [
                   "text",
-                  "L'ispezione dei moduli funziona anche al di fuori di una sessione MiniOS attiva. Le operazioni su moduli in esecuzione e al prossimo avvio richiedono un layout moduli live MiniOS; le modifiche richiedono root."
+                  "L'ispezione dei moduli funziona anche al di fuori di una sessione MiniOS in esecuzione. Le operazioni su moduli attivi e per il prossimo avvio richiedono un layout moduli live MiniOS; le modifiche richiedono root."
                 ]
               ]
             ],
@@ -1376,7 +1415,7 @@
                   [
                     [
                       "text",
-                      "Creazione moduli"
+                      "Creazione dei moduli"
                     ]
                   ]
                 ],
@@ -1407,7 +1446,7 @@
               [
                 [
                   "text",
-                  "Creazione di un modulo da pacchetti repository o file locali "
+                  "Creare un modulo da pacchetti di repository o file locali "
                 ],
                 [
                   "span",
@@ -1455,7 +1494,7 @@
               [
                 [
                   "text",
-                  "Richiede root e una sessione live MiniOS supportata. I pacchetti vengono installati in un ambiente di build isolato, non nel root in esecuzione."
+                  "Richiede root e una sessione live MiniOS supportata. I pacchetti vengono installati in un ambiente di build isolato, non nella root in esecuzione."
                 ]
               ]
             ],
@@ -1469,7 +1508,7 @@
                   [
                     [
                       "text",
-                      "Creazione moduli"
+                      "Creazione dei moduli"
                     ]
                   ]
                 ],
@@ -1500,7 +1539,7 @@
               [
                 [
                   "text",
-                  "Creazione di un modulo tramite script di installazione"
+                  "Creare un modulo eseguendo uno script di installazione"
                 ]
               ]
             ],
@@ -1552,7 +1591,7 @@
                   [
                     [
                       "text",
-                      "Creazione moduli"
+                      "Creazione dei moduli"
                     ]
                   ]
                 ],
@@ -1583,7 +1622,7 @@
               [
                 [
                   "text",
-                  "Creazione interattiva di un modulo in un ambiente preparato"
+                  "Creare un modulo in modo interattivo in un ambiente preparato"
                 ]
               ]
             ],
@@ -1621,7 +1660,7 @@
               [
                 [
                   "text",
-                  "Richiede root e una sessione live MiniOS supportata. Utilizzare quando l'installazione necessita di prompt o modifiche manuali."
+                  "Richiede root e una sessione live MiniOS supportata. Usalo quando l'installazione richiede prompt o modifiche manuali."
                 ]
               ]
             ],
@@ -1635,7 +1674,7 @@
                   [
                     [
                       "text",
-                      "Creazione moduli"
+                      "Creazione dei moduli"
                     ]
                   ]
                 ],
@@ -1666,7 +1705,7 @@
               [
                 [
                   "text",
-                  "Conversione tra una struttura di directory e un modulo "
+                  "Convertire tra una struttura di directory e un modulo "
                 ],
                 [
                   "span",
@@ -1734,7 +1773,7 @@
               [
                 [
                   "text",
-                  "La conversione ordinaria non richiede root e può essere eseguita anche fuori da una sessione live quando sono disponibili strumenti e file necessari."
+                  "La conversione ordinaria non richiede root e può essere utilizzata anche fuori da una sessione live in esecuzione, se sono disponibili gli strumenti e i file necessari."
                 ]
               ]
             ],
@@ -1808,7 +1847,7 @@
               [
                 [
                   "text",
-                  "Acquisizione delle modifiche idonee dal layer di sessione scrivibile in un modulo"
+                  "Catturare le modifiche idonee dallo strato scrivibile della sessione in un modulo"
                 ]
               ]
             ],
@@ -1846,7 +1885,7 @@
               [
                 [
                   "text",
-                  "Richiede root e una sessione live MiniOS attiva con backend layer scrivibile supportato."
+                  "Richiede root e una sessione live MiniOS in esecuzione con un backend dello strato scrivibile supportato."
                 ]
               ]
             ],
@@ -1860,7 +1899,7 @@
                   [
                     [
                       "text",
-                      "Creazione moduli"
+                      "Creazione dei moduli"
                     ]
                   ]
                 ],
@@ -1887,11 +1926,11 @@
     [
       "heading",
       3,
-      "flussi-di-lavoro-per-lo-storage",
+      "flussi-di-lavoro-dello-storage",
       [
         [
           "text",
-          "Flussi di lavoro per lo storage"
+          "Flussi di lavoro dello storage"
         ]
       ]
     ],
@@ -1925,7 +1964,7 @@
               [
                 [
                   "text",
-                  "Applicabilità live e nativa"
+                  "Ambito"
                 ]
               ]
             ],
@@ -2047,7 +2086,7 @@
               [
                 [
                   "text",
-                  "Può essere eseguito in un sistema live o nativo quando installato. Scrittura, formattazione e cancellazione sono operazioni distruttive e normalmente richiedono i permessi di root."
+                  "Operazioni generiche su disco. Scrittura, formattazione e cancellazione sono operazioni distruttive e normalmente richiedono i permessi di root."
                 ]
               ]
             ],
@@ -2133,7 +2172,7 @@
       [
         [
           "text",
-          "Per modifiche alle liste dei pacchetti sorgente, ai kernel, agli artefatti di avvio o all'intera catena dei moduli, utilizzare il sistema di build delle sorgenti invece degli strumenti di rimasterizzazione delle immagini. Vedi "
+          "Per modifiche alle liste dei pacchetti sorgente, ai kernel, agli artefatti di boot o all'intera catena dei moduli, utilizzare il sistema di build delle sorgenti invece degli strumenti di rimasterizzazione delle immagini. Vedi "
         ],
         [
           "link",
@@ -2142,7 +2181,7 @@
           [
             [
               "text",
-              "Building MiniOS"
+              "Compilare MiniOS"
             ]
           ]
         ],
@@ -2153,7 +2192,7 @@
       ]
     ]
   ],
-  "plain_text": "Applicazioni MiniOS\nMiniOS offre strumenti grafici e da riga di comando per la configurazione del sistema, l’installazione, la manutenzione e il remastering delle immagini. Utilizza le tabelle sottostanti per trovare lo strumento appropriato e la relativa guida ai requisiti, limitazioni e modalità d’uso.\nDisponibilità\nGli strumenti disponibili dipendono dai pacchetti inclusi nell’immagine o nel sistema installato. Verifica un sistema in esecuzione con dpkg-query, oppure ispeziona i moduli dell’immagine e i manifest dei pacchetti.\nStrumenti grafici\nAttività | Strumento | Applicabilità live e nativa | Documentazione\nModifica delle impostazioni di avvio e di nuova sessione MiniOS | Configuratore MiniOS | Per il modello di configurazione live MiniOS. Scrive le impostazioni per un successivo avvio live e non riconfigura immediatamente il sistema in esecuzione. | Configuratore MiniOS\nDistribuire MiniOS su un altro disco | Installatore MiniOS | Eseguito da una sessione live MiniOS. Può creare sia un'installazione live modulare che una installazione nativa convenzionale quando l'immagine supporta il deployment nativo. | Installatore MiniOS\nCreare, selezionare, ridimensionare, salvare o rimuovere sessioni persistenti | Gestore sessioni MiniOS | Solo per sistemi live. Le installazioni native scrivono direttamente sul proprio filesystem root e non utilizzano sessioni live MiniOS. | Gestione delle sessioni\nImpacchettare, attivare, ispezionare o rimuovere kernel MiniOS | Gestore kernel MiniOS | Pensato per installazioni live modulari e il loro repository kernel MiniOS. Su installazione nativa, utilizzare il normale flusso di lavoro dei pacchetti kernel della distribuzione. | Gestione dei kernel\nInstallare applicazioni o costruire moduli applicativi da ricette del catalogo | Negozio di applicazioni MiniOS | Nei sistemi live, scegliere tra modulo o installazione diretta sul sistema; la persistenza determina se le modifiche dirette sopravvivono al riavvio. Le installazioni native usano la modalità diretta sul sistema. | Negozio di applicazioni MiniOS\nRimasterizzare un'immagine MiniOS esistente tramite un progetto guidato | Generatore di immagini MiniOS | Funziona con il contenuto dell'immagine live MiniOS dalla sessione live in esecuzione, da una ISO o da supporti ottici. Crea un'altra ISO live; non mantiene un'installazione nativa né sostituisce una build di origine. | Generatore di immagini MiniOS\nIspezionare, creare, attivare e selezionare moduli .sb | Gestore moduli MiniOS | La composizione e l'attivazione dei moduli a runtime sono funzionalità dei sistemi live. Le installazioni native non utilizzano il modello root stratificato .sb. | Gestore moduli MiniOS\nScrivere una ISO MiniOS su una chiavetta USB | Utilità disco | Può essere eseguita in un sistema grafico live o nativo quando installata. Scrive supporti avviabili; non esegue un deployment live o nativo come l'Installatore MiniOS MiniOS. | Utilità disco\nConsultare la documentazione installata offline | Guida MiniOS | Legge la documentazione inclusa senza richiedere una connessione di rete. | Documentazione MiniOS\nStrumenti da riga di comando\nLa maggior parte degli strumenti grafici dispone di una controparte pubblica da riga di comando o di un backend. Questi comandi sono forniti sia nello stesso pacchetto dell’applicazione grafica sia in un pacchetto complementare richiesto. Il manifest core condiviso include minios-tools e minios-image-compose. Gli altri comandi seguono la disponibilità dei rispettivi pacchetti grafici. La loro presenza in un sistema installato o in un’immagine specifica deve comunque essere verificata direttamente.\nDeployment e sessioni\nAttività | Strumento | Applicabilità live e nativa | Documentazione\nElenca i dischi di destinazione, visualizza in anteprima un piano di deployment o installa MiniOS in modalità non interattiva | minios-deploy | Il deployment supportato viene eseguito da una sessione live MiniOS. L'installazione richiede i permessi di root e una conferma esplicita; la modalità nativa è disponibile solo se l'immagine la supporta. | Installatore MiniOS; man minios-deploy\nCreare, attivare, salvare, ridimensionare, esportare, importare o rimuovere sessioni persistenti | minios-session | Richiede i permessi di root e un sistema live MiniOS con uno store di persistenza compatibile. Le installazioni native non utilizzano sessioni live MiniOS. | Gestione delle sessioni; man minios-session\nKernel e immagini\nAttività | Strumento | Applicabilità live e nativa | Documentazione\nElenco, pacchettizzazione, attivazione, ispezione o rimozione dei kernel | minios-kernel | Richiede root e un'installazione live modulare con root MiniOS scrivibile. Sulle installazioni native utilizzare il workflow di pacchettizzazione kernel della distribuzione. | Gestione kernel; man minios-kernel\nRemastering di un albero contenuti MiniOS esistente tramite script o automazione | minios-image-compose | Opera sul contenuto dell'immagine live e pubblica un ISO avviabile. Non converte né aggiorna un'installazione nativa. | Composizione di immagini ISO da riga di comando; man minios-image-compose\nWorkflow dei moduli\nAttività | Strumento | Applicabilità live e nativa | Documentazione\nIspezione dei moduli e gestione dei set di moduli in esecuzione o al prossimo avvio | sb | L'ispezione dei moduli funziona anche al di fuori di una sessione MiniOS attiva. Le operazioni su moduli in esecuzione e al prossimo avvio richiedono un layout moduli live MiniOS; le modifiche richiedono root. | Creazione moduli; man sb\nCreazione di un modulo da pacchetti repository o file locali .deb | apt2sb | Richiede root e una sessione live MiniOS supportata. I pacchetti vengono installati in un ambiente di build isolato, non nel root in esecuzione. | Creazione moduli; man apt2sb\nCreazione di un modulo tramite script di installazione | script2sb | Richiede root e una sessione live MiniOS supportata. Lo script viene eseguito in modo non interattivo in un ambiente di build isolato. | Creazione moduli; man script2sb\nCreazione interattiva di un modulo in un ambiente preparato | chroot2sb | Richiede root e una sessione live MiniOS supportata. Utilizzare quando l'installazione necessita di prompt o modifiche manuali. | Creazione moduli; man chroot2sb\nConversione tra una struttura di directory e un modulo .sb | dir2sb, sb2dir | La conversione ordinaria non richiede root e può essere eseguita anche fuori da una sessione live quando sono disponibili strumenti e file necessari. | Creare o estrarre un modulo; man dir2sb, man sb2dir\nAcquisizione delle modifiche idonee dal layer di sessione scrivibile in un modulo | savechanges | Richiede root e una sessione live MiniOS attiva con backend layer scrivibile supportato. | Creazione moduli; man savechanges\nFlussi di lavoro per lo storage\nAttività | Strumento | Applicabilità live e nativa | Documentazione\nLeggere o scrivere immagini disco, formattare un dispositivo o sovrascrivere un dispositivo | driveutility-read, driveutility-write, driveutility-format, driveutility-wipe | Può essere eseguito in un sistema live o nativo quando installato. Scrittura, formattazione e cancellazione sono operazioni distruttive e normalmente richiedono i permessi di root. | Utilità disco; man driveutility-read, man driveutility-write, man driveutility-format, man driveutility-wipe\nPer modifiche alle liste dei pacchetti sorgente, ai kernel, agli artefatti di avvio o all'intera catena dei moduli, utilizzare il sistema di build delle sorgenti invece degli strumenti di rimasterizzazione delle immagini. Vedi Building MiniOS.",
+  "plain_text": "MiniOS applicazioni\nMiniOS offre strumenti grafici e da riga di comando per la configurazione, l'installazione, le sessioni, i moduli, i kernel, il software e la rimasterizzazione delle immagini. Questi strumenti sono progettati attorno all'architettura live modulare descritta in Informazioni su MiniOS.\nDisponibilità\nGli strumenti disponibili dipendono dai pacchetti inclusi nell'immagine MiniOS. Verifica un sistema live in esecuzione con dpkg-query, oppure ispeziona i moduli dell'immagine e i manifest dei pacchetti.\nUn'installazione nativa mantiene la familiare esperienza desktop MiniOS — la sua identità visiva, l'ambiente desktop selezionato e le applicazioni ordinarie — ma non conserva il software di gestione specifico MiniOS progettato per l'architettura live. Sessioni, moduli .sb, gestione modulare del kernel e flussi di lavoro simili non sono più applicabili, quindi il sistema installato utilizza invece i normali strumenti Debian per pacchetti, kernel, configurazione e bootloader.\nStrumenti grafici\nAttività | Strumento | Ambito | Documentazione\nModifica delle impostazioni di avvio e di nuova sessione MiniOS | Configuratore MiniOS | Per il modello di configurazione live MiniOS. Scrive le impostazioni per un successivo avvio live e non riconfigura immediatamente il sistema in esecuzione. | Configuratore MiniOS\nDistribuire MiniOS su un altro disco | Installatore MiniOS | Si avvia da una sessione live MiniOS. La modalità live mantiene l'ambiente live completo MiniOS; la modalità nativa crea un desktop Debian convenzionale e rimuove il software specifico MiniOS destinato all'uso live. | Installatore MiniOS\nCreare, selezionare, ridimensionare, salvare o rimuovere sessioni persistenti | Gestore sessioni MiniOS | Solo per sistemi live MiniOS. | Gestione delle sessioni\nImpacchettare, attivare, ispezionare o rimuovere kernel MiniOS | Gestore kernel MiniOS | Solo per sistemi live modulari MiniOS. | Gestione kernel\nInstallare applicazioni o creare moduli applicativi da ricette del catalogo | Negozio di applicazioni MiniOS | Sistemi live MiniOS. Scegli installazione come modulo o diretta sul sistema; la persistenza determina se le modifiche dirette sopravvivono al riavvio. | Negozio di applicazioni MiniOS\nRimasterizzare un'immagine MiniOS esistente tramite un progetto guidato | Generatore di immagini MiniOS | Funziona con i contenuti dell'immagine live MiniOS dalla sessione live in esecuzione, da una ISO o da supporti ottici. Crea una nuova ISO live. | Generatore di immagini MiniOS\nIspezionare, creare, attivare e selezionare moduli .sb | Gestore moduli MiniOS | Solo per sistemi live MiniOS; la composizione dei moduli e l'attivazione a runtime dipendono dal modello root a livelli .sb. | Gestore moduli MiniOS\nScrivere una ISO MiniOS su una chiavetta USB | Utilità disco | Utilità generica per immagini disco inclusa in MiniOS. Scrive supporti avviabili; non esegue il deployment gestito come l'Installatore MiniOS. | Utilità disco\nConsultare la documentazione installata offline | Guida MiniOS | Legge la documentazione inclusa senza richiedere una connessione di rete. | Documentazione MiniOS\nStrumenti da riga di comando\nLa maggior parte degli strumenti grafici dispone di una controparte pubblica da riga di comando o di un backend. Questi comandi sono forniti sia nello stesso pacchetto dell’applicazione grafica sia in un pacchetto complementare richiesto. Il manifest core condiviso include minios-tools e minios-image-compose. Gli altri comandi seguono la disponibilità dei rispettivi pacchetti grafici. La loro presenza in un sistema installato o in un’immagine specifica deve comunque essere verificata direttamente.\nDeployment e sessioni\nAttività | Strumento | Ambito | Documentazione\nElencare i dischi di destinazione, visualizzare in anteprima un piano di deployment o installare MiniOS in modo non interattivo | minios-deploy | Si avvia da una sessione live MiniOS. L'installazione richiede i permessi di root e una conferma esplicita; la modalità nativa, quando supportata, crea un desktop Debian convenzionale dall'immagine selezionata. | Installatore MiniOS; man minios-deploy\nCreare, attivare, salvare, ridimensionare, esportare, importare o rimuovere sessioni persistenti | minios-session | Richiede root e un sistema live MiniOS compatibile con uno storage di persistenza. | Gestione delle sessioni; man minios-session\nKernel e immagini\nAttività | Strumento | Ambito | Documentazione\nElencare, impacchettare, attivare, ispezionare o rimuovere kernel | minios-kernel | Richiede root e un'installazione live modulare MiniOS con una root MiniOS scrivibile. | Gestione kernel; man minios-kernel\nRimasterizzare un albero di contenuti MiniOS esistente tramite script o automazione | minios-image-compose | Opera sui contenuti dell'immagine live MiniOS e pubblica una ISO avviabile. | Composizione di immagini ISO da riga di comando; man minios-image-compose\nFlussi di lavoro dei moduli\nAttività | Strumento | Ambito | Documentazione\nIspezionare i moduli e gestire i set di moduli attivi o per il prossimo avvio | sb | L'ispezione dei moduli funziona anche al di fuori di una sessione MiniOS in esecuzione. Le operazioni su moduli attivi e per il prossimo avvio richiedono un layout moduli live MiniOS; le modifiche richiedono root. | Creazione dei moduli; man sb\nCreare un modulo da pacchetti di repository o file locali .deb | apt2sb | Richiede root e una sessione live MiniOS supportata. I pacchetti vengono installati in un ambiente di build isolato, non nella root in esecuzione. | Creazione dei moduli; man apt2sb\nCreare un modulo eseguendo uno script di installazione | script2sb | Richiede root e una sessione live MiniOS supportata. Lo script viene eseguito in modo non interattivo in un ambiente di build isolato. | Creazione dei moduli; man script2sb\nCreare un modulo in modo interattivo in un ambiente preparato | chroot2sb | Richiede root e una sessione live MiniOS supportata. Usalo quando l'installazione richiede prompt o modifiche manuali. | Creazione dei moduli; man chroot2sb\nConvertire tra una struttura di directory e un modulo .sb | dir2sb, sb2dir | La conversione ordinaria non richiede root e può essere utilizzata anche fuori da una sessione live in esecuzione, se sono disponibili gli strumenti e i file necessari. | Creare o estrarre un modulo; man dir2sb, man sb2dir\nCatturare le modifiche idonee dallo strato scrivibile della sessione in un modulo | savechanges | Richiede root e una sessione live MiniOS in esecuzione con un backend dello strato scrivibile supportato. | Creazione dei moduli; man savechanges\nFlussi di lavoro dello storage\nAttività | Strumento | Ambito | Documentazione\nLeggere o scrivere immagini disco, formattare un dispositivo o sovrascrivere un dispositivo | driveutility-read, driveutility-write, driveutility-format, driveutility-wipe | Operazioni generiche su disco. Scrittura, formattazione e cancellazione sono operazioni distruttive e normalmente richiedono i permessi di root. | Utilità disco; man driveutility-read, man driveutility-write, man driveutility-format, man driveutility-wipe\nPer modifiche alle liste dei pacchetti sorgente, ai kernel, agli artefatti di boot o all'intera catena dei moduli, utilizzare il sistema di build delle sorgenti invece degli strumenti di rimasterizzazione delle immagini. Vedi Compilare MiniOS.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

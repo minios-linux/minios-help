@@ -36,14 +36,14 @@
       "title": "Konfiguration und Sicherheit"
     },
     {
-      "anchor": "live-session-persistenz",
+      "anchor": "live-sitzungspersistenz",
       "level": 2,
-      "title": "Live-Session-Persistenz"
+      "title": "Live-Sitzungspersistenz"
     },
     {
-      "anchor": "kommandozeilen-installation",
+      "anchor": "kommandozeilenbereitstellung",
       "level": 2,
-      "title": "Kommandozeilen-Installation"
+      "title": "Kommandozeilenbereitstellung"
     }
   ],
   "nodes": [
@@ -64,7 +64,7 @@
       [
         [
           "text",
-          "Das MiniOS-Installationsprogramm ist ein GTK-Assistent und ein Kommandozeilen-Backend zur Bereitstellung von MiniOS aus einer MiniOS-Live-Session. Es installiert auf eine Zieldisk; dies ist nicht dasselbe wie das Schreiben einer ISO auf ein bootfähiges Medium."
+          "Das MiniOS-Installationsprogramm ist ein GTK-Assistent und eine Kommandozeilen-Backend-Lösung zur Bereitstellung eines Systems aus einer laufenden MiniOS Live-Sitzung. Das Schreiben oder Kopieren von MiniOS auf ein Wechseldatenträger ist bereits eine Installationsmethode; das MiniOS-Installationsprogramm ist das verwaltete Bereitstellungstool, das verwendet wird, wenn Sie ein kontrolliertes Ziel-Layout, eine Persistenz-Einrichtung oder eine optionale native Konvertierung wünschen."
         ]
       ]
     ],
@@ -131,42 +131,130 @@
       [
         [
           "text",
-          "Im Live-Modus werden die ausgewählten komprimierten MiniOS-Module und Boot-Komponenten kopiert. Das Ergebnis behält das modulare Live-System-Layout bei und kann MiniOS-Sitzungspersistenz nutzen."
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          "Im Native-Modus werden die ausgewählten Module in ein klassisches Linux-Root-Dateisystem entpackt, das Ziel konfiguriert, benötigte Pakete installiert, initramfs generiert und der Bootloader installiert. Der Installer erkennt native Unterstützung anhand des gestarteten Abbilds. Falls erforderliche Kernel-Metadaten und das EFI-Architektur-Contract fehlen, erlaubt der Kompatibilitätsmodus nur eine Live-Installation."
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          "Diese Bereitstellung unterscheidet sich von einem reinen ISO-Write, einem Ventoy-ISO-Multiboot-Setup oder einem dateibasierten Live-Medien-Tool. Siehe "
+          ""
         ],
         [
-          "link",
-          "/using-minios/Boot-Modes.md",
-          null,
+          "span",
+          "strong",
           [
             [
               "text",
-              "Boot-Modi"
+              "Live-Modus"
             ]
           ]
         ],
         [
           "text",
-          " für die Abgrenzung zwischen Live- und Native-Systemen."
+          " kopiert die ausgewählten komprimierten MiniOS-Module und Boot-Komponenten. Das Ergebnis bleibt MiniOS: Es behält das modulare Live-System-Layout, die MiniOS-Bootkonfiguration, die MiniOS-Verwaltungsabläufe und optional die Sitzungs-Persistenz bei."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Native Modus"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " erstellt aus dem ausgewählten MiniOS-Abbild ein konventionelles Debian-Desktop-System. Die ausgewählten Module werden in ein beschreibbares Root-Dateisystem entpackt, die gewählte Desktop-Umgebung und Standardanwendungen bleiben erhalten, die MiniOS-Live-Laufzeit und live-spezifische Werkzeuge werden entfernt, notwendige Debian-Pakete installiert, ein konventionelles initramfs erzeugt und der Bootloader installiert. Der Installer erkennt native Unterstützung anhand des gestarteten Abbilds. Fehlen die erforderlichen Kernel-Metadaten und der EFI-Architekturvertrag, ist im Kompatibilitätsmodus nur eine Live-Installation möglich."
+        ]
+      ]
+    ],
+    [
+      "admonition",
+      "warning",
+      "Native Modus ändert die Systemverwaltung",
+      [
+        [
+          "block",
+          "paragraph",
+          [
+            [
+              "text",
+              "Das installierte System behält das vertraute MiniOS-Desktop-Erlebnis – Aussehen, gewählte Desktop-Umgebung und Standardanwendungen – nutzt jedoch nicht mehr die MiniOS-Live-Architektur. Während der Konvertierung entfernt der Installer die "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "minios-*"
+                ]
+              ]
+            ],
+            [
+              "text",
+              "-Pakete und andere live-spezifische Werkzeuge, da Sitzungen, "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  ".sb"
+                ]
+              ]
+            ],
+            [
+              "text",
+              "-Module, modulares Kernel-Management und Live-Boot-Konfiguration nicht mehr gelten. Nach dem Neustart verwalten Sie das System wie einen klassischen Debian-Desktop mit APT, Debian-Kernel-Paketen, normalem initramfs und installiertem Bootloader. Siehe "
+            ],
+            [
+              "link",
+              "/getting-started/About-MiniOS.md",
+              null,
+              [
+                [
+                  "text",
+                  "Über MiniOS"
+                ]
+              ]
+            ],
+            [
+              "text",
+              "."
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Diese Bereitstellung unterscheidet sich von einem einfachen ISO-Schreibvorgang, einer Ventoy ISO-Datei-Multiboot-Konfiguration oder einer dateibasierten Live-Installation. Siehe "
+        ],
+        [
+          "link",
+          "/installing-minios/Installation-Methods.md",
+          null,
+          [
+            [
+              "text",
+              "Installationsmethoden"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " für die Unterschiede."
         ]
       ]
     ],
@@ -243,7 +331,7 @@
       [
         [
           "text",
-          "Der grafische Installer bietet folgende Platzierungsoptionen, sofern das Ziel geeignet ist:"
+          "Der grafische Installer bietet folgende Platzierungsoptionen, wenn das Ziel geeignet ist:"
         ]
       ]
     ],
@@ -264,7 +352,7 @@
               [
                 [
                   "text",
-                  "Alles löschen erstellt eine neue Partitionstabelle und löscht alle Daten auf dem Zieldatenträger."
+                  "Alles löschen erstellt eine neue Partitionstabelle und löscht alle Daten auf dem Ziellaufwerk."
                 ]
               ]
             ]
@@ -280,7 +368,7 @@
               [
                 [
                   "text",
-                  "Freier Speicher nutzt geeigneten nicht zugewiesenen Speicherplatz, ohne ein bestehendes Dateisystem zu verkleinern."
+                  "Freier Speicher nutzt geeigneten, nicht zugeordneten Speicherplatz, ohne ein bestehendes Dateisystem zu verkleinern."
                 ]
               ]
             ]
@@ -296,7 +384,7 @@
               [
                 [
                   "text",
-                  "Nebeneinander verkleinert eine geeignete, nicht eingehängte finale ext2-, ext3-, ext4- oder NTFS-Partition. Verschmutzte, eingehängte, verschachtelte, mehrdeutige oder anderweitig unsichere Layouts werden abgelehnt. Der Installer kann vor dem Herunterladen fehlender Dateisystem-Tools nachfragen."
+                  "Nebeneinander verkleinert eine geeignete, nicht eingehängte letzte ext2-, ext3-, ext4- oder NTFS-Partition. Verschmutzte, eingehängte, verschachtelte, mehrdeutige und anderweitig unsichere Layouts werden abgelehnt. Der Installer kann nachfragen, bevor fehlende Dateisystem-Tools heruntergeladen werden."
                 ]
               ]
             ]
@@ -312,7 +400,7 @@
               [
                 [
                   "text",
-                  "Manuelle Partitionierung ist nur für native GUI-Installationen auf geeigneten Direktlaufwerken verfügbar. Änderungen werden bis zur endgültigen Bestätigung zwischengespeichert."
+                  "Manuelle Partitionierung ist nur für native Konvertierungen in der GUI auf geeigneten Direktlaufwerken verfügbar. Änderungen werden bis zur endgültigen Bestätigung zwischengespeichert."
                 ]
               ]
             ]
@@ -326,7 +414,7 @@
       [
         [
           "text",
-          "Automatische Boot-Layouts sind BIOS/MBR, UEFI/MBR und UEFI/GPT. UEFI funktioniert mit GPT- oder primären MBR-Layouts. BIOS wird auf primären MBR, nicht aber auf GPT unterstützt. Erweiterte oder logische MBR-Preserve-Layouts werden nicht unterstützt."
+          "Automatische Boot-Layouts sind BIOS/MBR, UEFI/MBR und UEFI/GPT. UEFI funktioniert mit GPT- oder primären MBR-Layouts. BIOS wird auf primärem MBR, nicht auf GPT unterstützt. Erweiterte oder logische MBR-Preserve-Layouts werden nicht unterstützt."
         ]
       ]
     ],
@@ -336,7 +424,7 @@
       [
         [
           "text",
-          "Im manuellen Modus können Partitionen erstellt, gelöscht, formatiert und wiederverwendet werden; ein unterstütztes Dateisystem kann vom Ende her verkleinert werden; Mountpoints, eine EFI-Systempartition und Swap können zugewiesen werden; Änderungen können rückgängig gemacht oder zurückgesetzt werden. LVM, RAID, native LUKS-Roots, gemappte oder verschachtelte Speicher, bcache, ZFS oder die Bearbeitung von Btrfs-Subvolumes werden nicht unterstützt. LUKS-Sitzungspersistenz verschlüsselt kein natives Root-Dateisystem."
+          "Im manuellen Modus können Partitionen erstellt, gelöscht, formatiert und wiederverwendet werden; ein unterstütztes Dateisystem kann am Ende verkleinert werden; Mountpunkte, eine EFI-Systempartition und Swap können zugewiesen sowie geplante Änderungen rückgängig gemacht oder zurückgesetzt werden. LVM, RAID, native LUKS-Root-Partitionen, gemappte oder verschachtelte Speicher, bcache, ZFS oder Btrfs-Subvolume-Bearbeitung werden nicht unterstützt. LUKS-Sitzungspersistenz verschlüsselt kein natives Root-Dateisystem."
         ]
       ]
     ],
@@ -368,7 +456,7 @@
               [
                 [
                   "text",
-                  "Live-Layouts können ext2, ext4, Btrfs, FAT32 oder NTFS verwenden, sofern die benötigten Tools installiert sind."
+                  "Live-Layouts können ext2, ext4, Btrfs, FAT32 oder NTFS verwenden, wenn die erforderlichen Tools installiert sind."
                 ]
               ]
             ]
@@ -384,7 +472,7 @@
               [
                 [
                   "text",
-                  "Native Root-Dateisysteme können ext2, ext4 oder Btrfs nutzen. Ext4 ist die allgemeine Standardoption."
+                  "Das Root-Dateisystem, das durch native Konvertierung erstellt wird, kann ext2, ext4 oder Btrfs verwenden. Ext4 ist die allgemeine Standardoption."
                 ]
               ]
             ]
@@ -432,7 +520,7 @@
               [
                 [
                   "text",
-                  "NTFS ist nur für Live-Layouts verfügbar, allerdings kann eine geeignete NTFS-Partition für die Nebeneinander-Platzierung verkleinert werden."
+                  "NTFS ist nur für Live-Layouts verfügbar, obwohl eine geeignete NTFS-Partition für die Nebeneinander-Platzierung verkleinert werden kann."
                 ]
               ]
             ]
@@ -446,7 +534,7 @@
       [
         [
           "text",
-          "Der benötigte Speicherplatz umfasst die ausgewählten Moduldaten, Boot-Komponenten, angeforderte Persistenz und eine 25-prozentige Dateisystemreserve. EFI- und nativer Swap-Speicher werden separat berechnet."
+          "Der benötigte Speicherplatz umfasst die ausgewählten Modul-Daten, Boot-Komponenten, angeforderte Persistenz und eine 25-prozentige Dateisystemreserve. EFI- und nativer Swap-Speicher werden separat berechnet."
         ]
       ]
     ],
@@ -467,7 +555,7 @@
       [
         [
           "text",
-          "Der Installer kann Sprache, Zeitzone, Tastatur, Benutzername, Passwörter, Benutzergruppen, Hostname, Dienste, Bootmenü und Modulauswahl festlegen. Die Auswahl eines höheren MiniOS-Moduls schließt die erforderlichen unteren Ebenen mit ein."
+          "Der Installer kann Gebietsschema, Zeitzone, Tastatur, Benutzername, Passwörter, Benutzergruppen, Hostname, Dienste, Bootmenü und Modulauswahl festlegen. Die Auswahl eines höheren MiniOS-Moduls schließt die erforderlichen unteren Schichten ein."
         ]
       ]
     ],
@@ -519,7 +607,7 @@
         ],
         [
           "text",
-          ". Im Live-Modus ist "
+          ". Der Live-Modus verwendet standardmäßig "
         ],
         [
           "span",
@@ -533,7 +621,7 @@
         ],
         [
           "text",
-          " Standard; im Native-Modus "
+          "; die native Konvertierung startet mit "
         ],
         [
           "span",
@@ -547,7 +635,7 @@
         ],
         [
           "text",
-          ". SSH- und XRDP-Steuerungen sind unabhängig vom gewählten Profil. Überprüfen Sie die Fernzugriffsdienste vor der ersten Netzwerkverbindung."
+          ". SSH- und XRDP-Steuerungen sind unabhängig vom gewählten Profil. Überprüfen Sie Remotezugriffs-Dienste vor der ersten Netzwerkverbindung. Nach der nativen Konvertierung erfolgt die weitere Sicherheitskonfiguration nach dem üblichen Debian-Systemverwaltungs-Workflow."
         ]
       ]
     ],
@@ -557,7 +645,7 @@
       [
         [
           "text",
-          "Die Netzwerkkonfiguration umfasst Hostname sowie kabelgebundenes DHCP oder statisches IPv4. Der Installer erstellt oder ändert keine WLAN-Profile. Native und Nebeneinander-Installationen benötigen ggf. mit Ihrer Zustimmung Netzwerkzugriff, um GRUB, EFI, initramfs, "
+          "Die Netzwerkkonfiguration umfasst Hostname sowie kabelgebundenes DHCP oder statisches IPv4. Der Installer erstellt oder ändert keine WLAN-Profile. Native Konvertierung und einige Nebeneinander-Operationen können mit Ihrer Zustimmung Netzwerkzugriff benötigen, um GRUB-, EFI-, initramfs-, "
         ],
         [
           "span",
@@ -571,18 +659,18 @@
         ],
         [
           "text",
-          " oder Dateisystem-Resize-Pakete vor Änderungen am Datenträger zu beziehen."
+          "- oder Dateisystem-Resize-Pakete vor Änderungen an der Festplatte zu beziehen."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "live-session-persistenz",
+      "live-sitzungspersistenz",
       [
         [
           "text",
-          "Live-Session-Persistenz"
+          "Live-Sitzungspersistenz"
         ]
       ]
     ],
@@ -613,7 +701,35 @@
               [
                 [
                   "text",
-                  "Native Persistenz speichert Änderungen direkt auf einem POSIX-kompatiblen Ziel-Dateisystem. Sie wird auf FAT32 oder NTFS nicht angeboten."
+                  "Der "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "native"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "-Persistenzmodus speichert Änderungen der Live-Sitzung direkt auf einem POSIX-kompatiblen Ziel-Dateisystem. Trotz des Namens ist dies ein "
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Live-Persistenz-Backend"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " und steht in keinem Zusammenhang mit einer nativen Installation. Er wird nicht auf FAT32 oder NTFS angeboten."
                 ]
               ]
             ]
@@ -661,7 +777,7 @@
               [
                 [
                   "text",
-                  "LUKS verwendet ein verschlüsseltes Abbild, das beim ersten Start vom initrd erstellt wird. Die Passphrase wird beim Booten abgefragt und niemals vom Installer empfangen oder gespeichert."
+                  "LUKS verwendet ein verschlüsseltes Abbild, das vom initrd beim ersten Start erstellt wird. Die Passphrase wird beim Booten abgefragt und niemals vom Installer empfangen oder gespeichert."
                 ]
               ]
             ]
@@ -675,7 +791,7 @@
       [
         [
           "text",
-          "Container-Modi haben standardmäßig 4000 MiB. Raw- und LUKS-Container dürfen auf FAT32 nicht größer als 4000 MiB sein; DynFileFS unterliegt dieser Einzeldatei-Beschränkung nicht. LUKS wird nur angeboten, wenn sowohl das laufende initrd als auch jedes kopierte Quell-initrd die erforderliche Kryptounterstützung anzeigen."
+          "Container-Modi haben standardmäßig 4000 MiB. Raw- und LUKS-Container dürfen auf FAT32 nicht größer als 4000 MiB sein; DynFileFS unterliegt dieser Einzeldateigröße nicht. LUKS wird nur angeboten, wenn sowohl das laufende initrd als auch jedes kopierte Quell-initrd die erforderliche Kryptounterstützung anzeigen."
         ]
       ]
     ],
@@ -743,18 +859,18 @@
         ],
         [
           "text",
-          " für deren Bedeutung und Aktivierung zur Laufzeit."
+          " für deren Laufzeitbedeutung und Aktivierungsanforderungen."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "kommandozeilen-installation",
+      "kommandozeilenbereitstellung",
       [
         [
           "text",
-          "Kommandozeilen-Installation"
+          "Kommandozeilenbereitstellung"
         ]
       ]
     ],
@@ -774,7 +890,7 @@
         ],
         [
           "text",
-          " ist für Automatisierung, Tests und Wiederherstellung gedacht. Manuelle Partitionierung und interaktive Einrichtung kabelgebundener Netzwerke sind weiterhin nur über die GUI möglich."
+          " ist für Automatisierung, Tests und Wiederherstellung gedacht. Manuelle Partitionierung und interaktive kabelgebundene Netzwerkeinrichtung bleiben ausschließlich der grafischen Oberfläche vorbehalten."
         ]
       ]
     ],
@@ -784,7 +900,7 @@
       [
         [
           "text",
-          "Liste der als installierbar erkannten Laufwerke anzeigen:"
+          "Zeigen Sie die als installierbar erkannten Laufwerke an:"
         ]
       ]
     ],
@@ -833,7 +949,7 @@
         ],
         [
           "text",
-          " durch das verifizierte Ziellaufwerk. Drucken Sie zunächst einen nicht-destruktiven Plan:"
+          " durch das geprüfte Ziellaufwerk. Drucken Sie zunächst einen nicht-destruktiven Plan:"
         ]
       ]
     ],
@@ -1018,7 +1134,7 @@
       [
         [
           "text",
-          "Vorschau der passenden Bereitstellungskommandos ohne Schreibvorgang auf das Laufwerk:"
+          "Vorschau der passenden Bereitstellungskommandos ohne Schreibvorgang auf die Festplatte:"
         ]
       ]
     ],
@@ -1269,7 +1385,7 @@
       [
         [
           "text",
-          "Führen Sie die eigentliche Installation erst nach Überprüfung des Plans, der Zielidentität und der Trockenlauf-Ausgabe durch. "
+          "Führen Sie die echte Installation erst nach Überprüfung des Plans, der Zielidentität und der Testausgabe durch. "
         ],
         [
           "span",
@@ -1534,7 +1650,7 @@
       [
         [
           "text",
-          "Für eine native Installation in bestehenden freien Speicher verwenden Sie dieselben Speicheroptionen für Planung und Installation:"
+          "Wenn Sie gezielt eine native Konvertierung in freien Speicherplatz durchführen möchten, verwenden Sie für Planung und Installation die gleichen Speicheroptionen:"
         ]
       ]
     ],
@@ -1923,7 +2039,7 @@
       [
         [
           "text",
-          "Der Native-Modus erscheint möglicherweise nicht in der CLI-Hilfe, wenn das Abbild keine Native-Install-Unterstützung bietet. Die CLI akzeptiert außerdem Konfigurationsoptionen für Konten, Sprache, Zeitzone, Tastatur, Hostname, Dienste und ein Basis-"
+          "Die native Konvertierung wird möglicherweise nicht in der CLI-Hilfe angezeigt, wenn das Abbild keine native Installationsunterstützung bietet. Die CLI akzeptiert außerdem Konfigurationsoptionen für Konten, Gebietsschema, Zeitzone, Tastatur, Hostname, Dienste und ein Basis-"
         ],
         [
           "span",
@@ -2036,12 +2152,12 @@
         ],
         [
           "text",
-          " in gemeinsam genutzten Umgebungen, da Klartext-Kommandozeilenargumente in der Shell-Historie und der Prozessliste sichtbar sein können. Verwenden Sie stattdessen den grafischen Installer oder einen geschützten Konfigurations-Workflow."
+          " in gemeinsam genutzten Umgebungen, da Klartext-Kommandozeilenargumente in der Shell-Historie und der Prozessliste sichtbar sein können. Verwenden Sie stattdessen das grafische Installationsprogramm oder einen geschützten Konfigurations-Workflow."
         ]
       ]
     ]
   ],
-  "plain_text": "MiniOS-Installationsprogramm\nDas MiniOS-Installationsprogramm ist ein GTK-Assistent und ein Kommandozeilen-Backend zur Bereitstellung von MiniOS aus einer MiniOS-Live-Session. Es installiert auf eine Zieldisk; dies ist nicht dasselbe wie das Schreiben einer ISO auf ein bootfähiges Medium.\nVor dem Start\nEine falsche Auswahl des Ziels oder der Partitionierung kann Daten unwiderruflich zerstören. Sichern Sie wichtige Dateien, trennen Sie nicht benötigte Festplatten und identifizieren Sie das Ziel anhand von Gerätepfad, Modell und Kapazität. Die endgültige Bestätigung ist der letzte Punkt, an dem eine Installation noch sicher abgebrochen werden kann.\nDas Laufwerk, auf dem das aktuelle MiniOS-Live-System läuft, ist von der Zielauswahl ausgeschlossen. Allgemeine Hinweise zur Kapazität finden Sie im Hardware-Kompatibilitätsleitfaden.\nInstallationsmodi\nIm Live-Modus werden die ausgewählten komprimierten MiniOS-Module und Boot-Komponenten kopiert. Das Ergebnis behält das modulare Live-System-Layout bei und kann MiniOS-Sitzungspersistenz nutzen.\nIm Native-Modus werden die ausgewählten Module in ein klassisches Linux-Root-Dateisystem entpackt, das Ziel konfiguriert, benötigte Pakete installiert, initramfs generiert und der Bootloader installiert. Der Installer erkennt native Unterstützung anhand des gestarteten Abbilds. Falls erforderliche Kernel-Metadaten und das EFI-Architektur-Contract fehlen, erlaubt der Kompatibilitätsmodus nur eine Live-Installation.\nDiese Bereitstellung unterscheidet sich von einem reinen ISO-Write, einem Ventoy-ISO-Multiboot-Setup oder einem dateibasierten Live-Medien-Tool. Siehe Boot-Modi für die Abgrenzung zwischen Live- und Native-Systemen.\nDas grafische Installationsprogramm starten\nÖffnen Sie das Anwendungsmenü, wählen Sie System und dann das MiniOS-Installationsprogramm. Es kann auch über ein Terminal gestartet werden:\nsudo minios-installer\nDer Assistent sammelt Einstellungen zum Installationsmodus, zur Sicherheit, zum Standort, zum kabelgebundenen Netzwerk, zur Tastatur, zum Benutzerkonto, zu Modulen, zum Speicher und zum Booten. Überprüfen Sie die genaue Partitionsgeometrie und die Zusammenfassung der Vorgänge, bevor Sie die endgültige, zerstörerische Bestätigung akzeptieren.\nPlatzierung und Boot-Layouts\nDer grafische Installer bietet folgende Platzierungsoptionen, sofern das Ziel geeignet ist:\nAlles löschen erstellt eine neue Partitionstabelle und löscht alle Daten auf dem Zieldatenträger.\nFreier Speicher nutzt geeigneten nicht zugewiesenen Speicherplatz, ohne ein bestehendes Dateisystem zu verkleinern.\nNebeneinander verkleinert eine geeignete, nicht eingehängte finale ext2-, ext3-, ext4- oder NTFS-Partition. Verschmutzte, eingehängte, verschachtelte, mehrdeutige oder anderweitig unsichere Layouts werden abgelehnt. Der Installer kann vor dem Herunterladen fehlender Dateisystem-Tools nachfragen.\nManuelle Partitionierung ist nur für native GUI-Installationen auf geeigneten Direktlaufwerken verfügbar. Änderungen werden bis zur endgültigen Bestätigung zwischengespeichert.\nAutomatische Boot-Layouts sind BIOS/MBR, UEFI/MBR und UEFI/GPT. UEFI funktioniert mit GPT- oder primären MBR-Layouts. BIOS wird auf primären MBR, nicht aber auf GPT unterstützt. Erweiterte oder logische MBR-Preserve-Layouts werden nicht unterstützt.\nIm manuellen Modus können Partitionen erstellt, gelöscht, formatiert und wiederverwendet werden; ein unterstütztes Dateisystem kann vom Ende her verkleinert werden; Mountpoints, eine EFI-Systempartition und Swap können zugewiesen werden; Änderungen können rückgängig gemacht oder zurückgesetzt werden. LVM, RAID, native LUKS-Roots, gemappte oder verschachtelte Speicher, bcache, ZFS oder die Bearbeitung von Btrfs-Subvolumes werden nicht unterstützt. LUKS-Sitzungspersistenz verschlüsselt kein natives Root-Dateisystem.\nDateisysteme\nLive-Layouts können ext2, ext4, Btrfs, FAT32 oder NTFS verwenden, sofern die benötigten Tools installiert sind.\nNative Root-Dateisysteme können ext2, ext4 oder Btrfs nutzen. Ext4 ist die allgemeine Standardoption.\nVorhandene ext3-Dateisysteme können, sofern unterstützt, wiederverwendet oder verkleinert werden, aber ext3 wird für neue Formatierungen nicht angeboten.\nFAT32 ist auf Dateien kleiner als 4 GiB beschränkt und nur für Live-Layouts verfügbar.\nNTFS ist nur für Live-Layouts verfügbar, allerdings kann eine geeignete NTFS-Partition für die Nebeneinander-Platzierung verkleinert werden.\nDer benötigte Speicherplatz umfasst die ausgewählten Moduldaten, Boot-Komponenten, angeforderte Persistenz und eine 25-prozentige Dateisystemreserve. EFI- und nativer Swap-Speicher werden separat berechnet.\nKonfiguration und Sicherheit\nDer Installer kann Sprache, Zeitzone, Tastatur, Benutzername, Passwörter, Benutzergruppen, Hostname, Dienste, Bootmenü und Modulauswahl festlegen. Die Auswahl eines höheren MiniOS-Moduls schließt die erforderlichen unteren Ebenen mit ein.\nSicherheitsprofile sind convenient, balanced und strict. Im Live-Modus ist convenient Standard; im Native-Modus balanced. SSH- und XRDP-Steuerungen sind unabhängig vom gewählten Profil. Überprüfen Sie die Fernzugriffsdienste vor der ersten Netzwerkverbindung.\nDie Netzwerkkonfiguration umfasst Hostname sowie kabelgebundenes DHCP oder statisches IPv4. Der Installer erstellt oder ändert keine WLAN-Profile. Native und Nebeneinander-Installationen benötigen ggf. mit Ihrer Zustimmung Netzwerkzugriff, um GRUB, EFI, initramfs, os-prober oder Dateisystem-Resize-Pakete vor Änderungen am Datenträger zu beziehen.\nLive-Session-Persistenz\nPersistenz gilt nur für Live-Installationen:\nNative Persistenz speichert Änderungen direkt auf einem POSIX-kompatiblen Ziel-Dateisystem. Sie wird auf FAT32 oder NTFS nicht angeboten.\nDynFileFS verwendet einen erweiterbaren Container.\nRaw nutzt ein Abbild mit fester Größe.\nLUKS verwendet ein verschlüsseltes Abbild, das beim ersten Start vom initrd erstellt wird. Die Passphrase wird beim Booten abgefragt und niemals vom Installer empfangen oder gespeichert.\nContainer-Modi haben standardmäßig 4000 MiB. Raw- und LUKS-Container dürfen auf FAT32 nicht größer als 4000 MiB sein; DynFileFS unterliegt dieser Einzeldatei-Beschränkung nicht. LUKS wird nur angeboten, wenn sowohl das laufende initrd als auch jedes kopierte Quell-initrd die erforderliche Kryptounterstützung anzeigen.\nDie resultierenden Boot-Optionen verwenden perchmode und perchsize. Siehe Initrd-Persistenz und Boot-Parameter für deren Bedeutung und Aktivierung zur Laufzeit.\nKommandozeilen-Installation\nminios-deploy ist für Automatisierung, Tests und Wiederherstellung gedacht. Manuelle Partitionierung und interaktive Einrichtung kabelgebundener Netzwerke sind weiterhin nur über die GUI möglich.\nListe der als installierbar erkannten Laufwerke anzeigen:\nminios-deploy list-disks\nErsetzen Sie in jedem Beispiel /dev/sdb durch das verifizierte Ziellaufwerk. Drucken Sie zunächst einen nicht-destruktiven Plan:\nminios-deploy plan /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000\nVorschau der passenden Bereitstellungskommandos ohne Schreibvorgang auf das Laufwerk:\nsudo minios-deploy install /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000 \\\n  --security-profile balanced --dry-run\nFühren Sie die eigentliche Installation erst nach Überprüfung des Plans, der Zielidentität und der Trockenlauf-Ausgabe durch. --yes autorisiert destruktive Änderungen:\nsudo minios-deploy install /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000 \\\n  --security-profile balanced --yes\nFür eine native Installation in bestehenden freien Speicher verwenden Sie dieselben Speicheroptionen für Planung und Installation:\nminios-deploy plan /dev/sdb --mode native --placement free_space \\\n  --filesystem ext4 --boot-layout auto\nsudo minios-deploy install /dev/sdb --mode native --placement free_space \\\n  --filesystem ext4 --boot-layout auto --security-profile balanced \\\n  --download-packages --yes\nDer Native-Modus erscheint möglicherweise nicht in der CLI-Hilfe, wenn das Abbild keine Native-Install-Unterstützung bietet. Die CLI akzeptiert außerdem Konfigurationsoptionen für Konten, Sprache, Zeitzone, Tastatur, Hostname, Dienste und ein Basis-config.conf. Prüfen Sie die genauen Optionen des laufenden Abbilds:\nminios-deploy install --help\nman minios-deploy\nVermeiden Sie --password und --root-password in gemeinsam genutzten Umgebungen, da Klartext-Kommandozeilenargumente in der Shell-Historie und der Prozessliste sichtbar sein können. Verwenden Sie stattdessen den grafischen Installer oder einen geschützten Konfigurations-Workflow.",
+  "plain_text": "MiniOS-Installationsprogramm\nDas MiniOS-Installationsprogramm ist ein GTK-Assistent und eine Kommandozeilen-Backend-Lösung zur Bereitstellung eines Systems aus einer laufenden MiniOS Live-Sitzung. Das Schreiben oder Kopieren von MiniOS auf ein Wechseldatenträger ist bereits eine Installationsmethode; das MiniOS-Installationsprogramm ist das verwaltete Bereitstellungstool, das verwendet wird, wenn Sie ein kontrolliertes Ziel-Layout, eine Persistenz-Einrichtung oder eine optionale native Konvertierung wünschen.\nVor dem Start\nEine falsche Auswahl des Ziels oder der Partitionierung kann Daten unwiderruflich zerstören. Sichern Sie wichtige Dateien, trennen Sie nicht benötigte Festplatten und identifizieren Sie das Ziel anhand von Gerätepfad, Modell und Kapazität. Die endgültige Bestätigung ist der letzte Punkt, an dem eine Installation noch sicher abgebrochen werden kann.\nDas Laufwerk, auf dem das aktuelle MiniOS-Live-System läuft, ist von der Zielauswahl ausgeschlossen. Allgemeine Hinweise zur Kapazität finden Sie im Hardware-Kompatibilitätsleitfaden.\nInstallationsmodi\nLive-Modus kopiert die ausgewählten komprimierten MiniOS-Module und Boot-Komponenten. Das Ergebnis bleibt MiniOS: Es behält das modulare Live-System-Layout, die MiniOS-Bootkonfiguration, die MiniOS-Verwaltungsabläufe und optional die Sitzungs-Persistenz bei.\nNative Modus erstellt aus dem ausgewählten MiniOS-Abbild ein konventionelles Debian-Desktop-System. Die ausgewählten Module werden in ein beschreibbares Root-Dateisystem entpackt, die gewählte Desktop-Umgebung und Standardanwendungen bleiben erhalten, die MiniOS-Live-Laufzeit und live-spezifische Werkzeuge werden entfernt, notwendige Debian-Pakete installiert, ein konventionelles initramfs erzeugt und der Bootloader installiert. Der Installer erkennt native Unterstützung anhand des gestarteten Abbilds. Fehlen die erforderlichen Kernel-Metadaten und der EFI-Architekturvertrag, ist im Kompatibilitätsmodus nur eine Live-Installation möglich.\nNative Modus ändert die Systemverwaltung\nDas installierte System behält das vertraute MiniOS-Desktop-Erlebnis – Aussehen, gewählte Desktop-Umgebung und Standardanwendungen – nutzt jedoch nicht mehr die MiniOS-Live-Architektur. Während der Konvertierung entfernt der Installer die minios-*-Pakete und andere live-spezifische Werkzeuge, da Sitzungen, .sb-Module, modulares Kernel-Management und Live-Boot-Konfiguration nicht mehr gelten. Nach dem Neustart verwalten Sie das System wie einen klassischen Debian-Desktop mit APT, Debian-Kernel-Paketen, normalem initramfs und installiertem Bootloader. Siehe Über MiniOS.\nDiese Bereitstellung unterscheidet sich von einem einfachen ISO-Schreibvorgang, einer Ventoy ISO-Datei-Multiboot-Konfiguration oder einer dateibasierten Live-Installation. Siehe Installationsmethoden für die Unterschiede.\nDas grafische Installationsprogramm starten\nÖffnen Sie das Anwendungsmenü, wählen Sie System und dann das MiniOS-Installationsprogramm. Es kann auch über ein Terminal gestartet werden:\nsudo minios-installer\nDer Assistent sammelt Einstellungen zum Installationsmodus, zur Sicherheit, zum Standort, zum kabelgebundenen Netzwerk, zur Tastatur, zum Benutzerkonto, zu Modulen, zum Speicher und zum Booten. Überprüfen Sie die genaue Partitionsgeometrie und die Zusammenfassung der Vorgänge, bevor Sie die endgültige, zerstörerische Bestätigung akzeptieren.\nPlatzierung und Boot-Layouts\nDer grafische Installer bietet folgende Platzierungsoptionen, wenn das Ziel geeignet ist:\nAlles löschen erstellt eine neue Partitionstabelle und löscht alle Daten auf dem Ziellaufwerk.\nFreier Speicher nutzt geeigneten, nicht zugeordneten Speicherplatz, ohne ein bestehendes Dateisystem zu verkleinern.\nNebeneinander verkleinert eine geeignete, nicht eingehängte letzte ext2-, ext3-, ext4- oder NTFS-Partition. Verschmutzte, eingehängte, verschachtelte, mehrdeutige und anderweitig unsichere Layouts werden abgelehnt. Der Installer kann nachfragen, bevor fehlende Dateisystem-Tools heruntergeladen werden.\nManuelle Partitionierung ist nur für native Konvertierungen in der GUI auf geeigneten Direktlaufwerken verfügbar. Änderungen werden bis zur endgültigen Bestätigung zwischengespeichert.\nAutomatische Boot-Layouts sind BIOS/MBR, UEFI/MBR und UEFI/GPT. UEFI funktioniert mit GPT- oder primären MBR-Layouts. BIOS wird auf primärem MBR, nicht auf GPT unterstützt. Erweiterte oder logische MBR-Preserve-Layouts werden nicht unterstützt.\nIm manuellen Modus können Partitionen erstellt, gelöscht, formatiert und wiederverwendet werden; ein unterstütztes Dateisystem kann am Ende verkleinert werden; Mountpunkte, eine EFI-Systempartition und Swap können zugewiesen sowie geplante Änderungen rückgängig gemacht oder zurückgesetzt werden. LVM, RAID, native LUKS-Root-Partitionen, gemappte oder verschachtelte Speicher, bcache, ZFS oder Btrfs-Subvolume-Bearbeitung werden nicht unterstützt. LUKS-Sitzungspersistenz verschlüsselt kein natives Root-Dateisystem.\nDateisysteme\nLive-Layouts können ext2, ext4, Btrfs, FAT32 oder NTFS verwenden, wenn die erforderlichen Tools installiert sind.\nDas Root-Dateisystem, das durch native Konvertierung erstellt wird, kann ext2, ext4 oder Btrfs verwenden. Ext4 ist die allgemeine Standardoption.\nVorhandene ext3-Dateisysteme können, sofern unterstützt, wiederverwendet oder verkleinert werden, aber ext3 wird für neue Formatierungen nicht angeboten.\nFAT32 ist auf Dateien kleiner als 4 GiB beschränkt und nur für Live-Layouts verfügbar.\nNTFS ist nur für Live-Layouts verfügbar, obwohl eine geeignete NTFS-Partition für die Nebeneinander-Platzierung verkleinert werden kann.\nDer benötigte Speicherplatz umfasst die ausgewählten Modul-Daten, Boot-Komponenten, angeforderte Persistenz und eine 25-prozentige Dateisystemreserve. EFI- und nativer Swap-Speicher werden separat berechnet.\nKonfiguration und Sicherheit\nDer Installer kann Gebietsschema, Zeitzone, Tastatur, Benutzername, Passwörter, Benutzergruppen, Hostname, Dienste, Bootmenü und Modulauswahl festlegen. Die Auswahl eines höheren MiniOS-Moduls schließt die erforderlichen unteren Schichten ein.\nSicherheitsprofile sind convenient, balanced und strict. Der Live-Modus verwendet standardmäßig convenient; die native Konvertierung startet mit balanced. SSH- und XRDP-Steuerungen sind unabhängig vom gewählten Profil. Überprüfen Sie Remotezugriffs-Dienste vor der ersten Netzwerkverbindung. Nach der nativen Konvertierung erfolgt die weitere Sicherheitskonfiguration nach dem üblichen Debian-Systemverwaltungs-Workflow.\nDie Netzwerkkonfiguration umfasst Hostname sowie kabelgebundenes DHCP oder statisches IPv4. Der Installer erstellt oder ändert keine WLAN-Profile. Native Konvertierung und einige Nebeneinander-Operationen können mit Ihrer Zustimmung Netzwerkzugriff benötigen, um GRUB-, EFI-, initramfs-, os-prober- oder Dateisystem-Resize-Pakete vor Änderungen an der Festplatte zu beziehen.\nLive-Sitzungspersistenz\nPersistenz gilt nur für Live-Installationen:\nDer native-Persistenzmodus speichert Änderungen der Live-Sitzung direkt auf einem POSIX-kompatiblen Ziel-Dateisystem. Trotz des Namens ist dies ein Live-Persistenz-Backend und steht in keinem Zusammenhang mit einer nativen Installation. Er wird nicht auf FAT32 oder NTFS angeboten.\nDynFileFS verwendet einen erweiterbaren Container.\nRaw nutzt ein Abbild mit fester Größe.\nLUKS verwendet ein verschlüsseltes Abbild, das vom initrd beim ersten Start erstellt wird. Die Passphrase wird beim Booten abgefragt und niemals vom Installer empfangen oder gespeichert.\nContainer-Modi haben standardmäßig 4000 MiB. Raw- und LUKS-Container dürfen auf FAT32 nicht größer als 4000 MiB sein; DynFileFS unterliegt dieser Einzeldateigröße nicht. LUKS wird nur angeboten, wenn sowohl das laufende initrd als auch jedes kopierte Quell-initrd die erforderliche Kryptounterstützung anzeigen.\nDie resultierenden Boot-Optionen verwenden perchmode und perchsize. Siehe Initrd-Persistenz und Boot-Parameter für deren Laufzeitbedeutung und Aktivierungsanforderungen.\nKommandozeilenbereitstellung\nminios-deploy ist für Automatisierung, Tests und Wiederherstellung gedacht. Manuelle Partitionierung und interaktive kabelgebundene Netzwerkeinrichtung bleiben ausschließlich der grafischen Oberfläche vorbehalten.\nZeigen Sie die als installierbar erkannten Laufwerke an:\nminios-deploy list-disks\nErsetzen Sie in jedem Beispiel /dev/sdb durch das geprüfte Ziellaufwerk. Drucken Sie zunächst einen nicht-destruktiven Plan:\nminios-deploy plan /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000\nVorschau der passenden Bereitstellungskommandos ohne Schreibvorgang auf die Festplatte:\nsudo minios-deploy install /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000 \\\n  --security-profile balanced --dry-run\nFühren Sie die echte Installation erst nach Überprüfung des Plans, der Zielidentität und der Testausgabe durch. --yes autorisiert destruktive Änderungen:\nsudo minios-deploy install /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000 \\\n  --security-profile balanced --yes\nWenn Sie gezielt eine native Konvertierung in freien Speicherplatz durchführen möchten, verwenden Sie für Planung und Installation die gleichen Speicheroptionen:\nminios-deploy plan /dev/sdb --mode native --placement free_space \\\n  --filesystem ext4 --boot-layout auto\nsudo minios-deploy install /dev/sdb --mode native --placement free_space \\\n  --filesystem ext4 --boot-layout auto --security-profile balanced \\\n  --download-packages --yes\nDie native Konvertierung wird möglicherweise nicht in der CLI-Hilfe angezeigt, wenn das Abbild keine native Installationsunterstützung bietet. Die CLI akzeptiert außerdem Konfigurationsoptionen für Konten, Gebietsschema, Zeitzone, Tastatur, Hostname, Dienste und ein Basis-config.conf. Prüfen Sie die genauen Optionen des laufenden Abbilds:\nminios-deploy install --help\nman minios-deploy\nVermeiden Sie --password und --root-password in gemeinsam genutzten Umgebungen, da Klartext-Kommandozeilenargumente in der Shell-Historie und der Prozessliste sichtbar sein können. Verwenden Sie stattdessen das grafische Installationsprogramm oder einen geschützten Konfigurations-Workflow.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

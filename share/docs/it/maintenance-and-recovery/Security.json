@@ -31,9 +31,9 @@
       "title": "Crittografare i dati persistenti"
     },
     {
-      "anchor": "applica-gli-aggiornamenti-in-modo-consapevole",
+      "anchor": "applicare-gli-aggiornamenti-in-modo-deliberato",
       "level": 2,
-      "title": "Applica gli aggiornamenti in modo consapevole"
+      "title": "Applicare gli aggiornamenti in modo deliberato"
     },
     {
       "anchor": "considera-hook-e-preseeding-come-esecuzione-di-codice",
@@ -64,7 +64,7 @@
       [
         [
           "text",
-          "MiniOS può essere eseguito come sistema di recupero live, sistema portatile persistente o installazione nativa. I controlli appropriati dipendono da come viene utilizzato il sistema."
+          "I controlli di sicurezza di MiniOS sono progettati attorno al sistema live: sessioni temporanee, sessioni persistenti, supporti portatili e configurazione all'avvio. L'Installatore MiniOS può anche eseguire una conversione nativa. Il sistema risultante mantiene l'ambiente desktop selezionato e l'identità visiva di MiniOS, ma il software specifico per MiniOS viene rimosso, così da poterlo gestire e mantenere in sicurezza con i normali strumenti Debian, invece di trattarlo come un'altra modalità live."
         ],
         [
           "text",
@@ -203,7 +203,7 @@
         ],
         [
           "text",
-          ", con accesso automatico e privilegi amministrativi senza password nella sua configurazione orientata alla praticità. Chiunque possa raggiungere il sistema potrebbe essere in grado di utilizzare queste credenziali, specialmente se SSH è attivo."
+          ", con accesso automatico e privilegi amministrativi senza password nella sua configurazione orientata alla praticità. Chiunque possa accedere al sistema potrebbe usare queste credenziali, soprattutto se SSH è attivo."
         ]
       ]
     ],
@@ -234,7 +234,7 @@
               [
                 [
                   "text",
-                  "Impostare password uniche per utente e root nel Configuratore MiniOS."
+                  "Imposta password uniche per utente e root nel Configuratore MiniOS."
                 ]
               ]
             ]
@@ -250,7 +250,7 @@
               [
                 [
                   "text",
-                  "Selezionare un profilo di sicurezza appropriato e rivedere ogni controllo impostato."
+                  "Seleziona un profilo di sicurezza appropriato e verifica ogni controllo popolato."
                 ]
               ]
             ]
@@ -266,7 +266,7 @@
               [
                 [
                   "text",
-                  "Disabilitare SSH e XRDP a meno che l'accesso remoto non sia necessario."
+                  "Disattiva SSH e XRDP a meno che l'accesso remoto non sia necessario."
                 ]
               ]
             ]
@@ -282,7 +282,7 @@
               [
                 [
                   "text",
-                  "Riavviare in una nuova sessione dopo aver modificato impostazioni di account \"one-shot\" o di sicurezza, quindi verificare il comportamento risultante di login e privilegi."
+                  "Riavvia in una nuova sessione quando modifichi impostazioni di account o sicurezza \"one-shot\", quindi verifica il comportamento di accesso e privilegi risultante."
                 ]
               ]
             ]
@@ -296,7 +296,7 @@
       [
         [
           "text",
-          "Il Configuratore memorizza gli hash delle password crittografati invece delle password in chiaro. Se si modifica un account persistente o nativo già creato, utilizzare "
+          "Il Configuratore salva gli hash delle password crittografati invece delle password in chiaro. Se stai cambiando un account persistente già creato, usa "
         ],
         [
           "span",
@@ -324,7 +324,7 @@
         ],
         [
           "text",
-          " per root."
+          " per root. Dopo la conversione nativa, utilizza i normali strumenti di gestione account di Debian."
         ]
       ]
     ],
@@ -345,7 +345,7 @@
       [
         [
           "text",
-          "Il Configuratore MiniOS offre tre profili. Un profilo imposta configurazioni concrete; il nome del profilo stesso non viene salvato come chiave di configurazione runtime e ogni impostazione rimane modificabile in modo indipendente."
+          "Il Configuratore MiniOS offre tre profili. Un profilo imposta configurazioni concrete; il nome del profilo stesso non viene salvato come chiave di configurazione runtime, e ogni impostazione resta modificabile in modo indipendente."
         ]
       ]
     ],
@@ -400,7 +400,7 @@
               [
                 [
                   "text",
-                  "Compatibile con accesso automatico, sudo e PolicyKit senza password, root e SSH con password consentiti, XRDP/X11/schermata di blocco rilassati, suggerimenti password visibili."
+                  "Compatibile con autologin, sudo e PolicyKit senza password, SSH root e password consentiti, XRDP/X11/schermata di blocco rilassati, suggerimenti password visibili."
                 ]
               ]
             ]
@@ -430,7 +430,7 @@
               [
                 [
                   "text",
-                  "Nessun accesso automatico, sudo e PolicyKit richiedono password, login SSH come root negato ma SSH con password consentito, XRDP/X11/schermata di blocco rafforzati."
+                  "Nessun autologin, sudo e PolicyKit con password obbligatoria, accesso SSH root negato ma SSH con password consentito, XRDP/X11/schermata di blocco rafforzati."
                 ]
               ]
             ]
@@ -460,7 +460,7 @@
               [
                 [
                   "text",
-                  "Nessun accesso automatico, sudo e PolicyKit richiedono password, login SSH come root e con password negati, XRDP disabilitato, X11/schermata di blocco rafforzati, suggerimenti password nascosti."
+                  "Nessun autologin, sudo e PolicyKit con password obbligatoria, accesso SSH root e con password negato, XRDP disabilitato, X11/schermata di blocco rafforzati, suggerimenti password nascosti."
                 ]
               ]
             ]
@@ -474,7 +474,7 @@
       [
         [
           "text",
-          "Le impostazioni predefinite dell'installer variano in base alla modalità di installazione: le installazioni live privilegiano "
+          "Le impostazioni predefinite dell'installatore variano in base alla modalità di distribuzione: le installazioni live privilegiano "
         ],
         [
           "span",
@@ -488,7 +488,7 @@
         ],
         [
           "text",
-          ", mentre quelle native privilegiano "
+          ", mentre la conversione nativa parte da "
         ],
         [
           "span",
@@ -502,7 +502,7 @@
         ],
         [
           "text",
-          ". Questi sono valori predefiniti, non raccomandazioni per ogni modello di minaccia."
+          ". L'impostazione nativa viene applicata durante la conversione; dopo l'installazione, usa la normale configurazione di sicurezza Debian. Questi sono valori predefiniti, non raccomandazioni per ogni modello di minaccia."
         ]
       ]
     ],
@@ -512,7 +512,7 @@
       [
         [
           "text",
-          "Le stesse impostazioni sono disponibili come chiavi di configurazione documentate, tra cui "
+          "Le stesse impostazioni sono disponibili come chiavi di configurazione documentate, inclusi "
         ],
         [
           "span",
@@ -624,7 +624,7 @@
         ],
         [
           "text",
-          ". Preferire queste chiavi o il Configuratore invece di modificare direttamente i file sudoers generati, PolicyKit, display-manager o SSH. Vedi "
+          ". Preferisci queste chiavi o il Configuratore rispetto alla modifica diretta dei file sudoers, PolicyKit, display-manager o SSH generati. Consulta "
         ],
         [
           "link",
@@ -647,7 +647,7 @@
         ],
         [
           "text",
-          "Per il comportamento del salvataggio e l'applicabilità delle impostazioni, consulta "
+          "Per il comportamento del salvataggio e l'applicabilità delle impostazioni, vedi "
         ],
         [
           "link",
@@ -672,7 +672,7 @@
       [
         [
           "text",
-          "La creazione degli account, le password, "
+          "Creazione account, password, "
         ],
         [
           "span",
@@ -686,7 +686,7 @@
         ],
         [
           "text",
-          " e la postura di sicurezza sono impostazioni \"one-shot\" utilizzate quando viene creata una nuova sessione. Il Configuratore mostra l'applicabilità di ciascun controllo. Le impostazioni riconfigurabili come i servizi vengono applicate dopo il riavvio."
+          " e il profilo di sicurezza sono impostazioni \"one-shot\" usate quando viene creata una nuova sessione. Il Configuratore mostra l'applicabilità di ogni controllo. Le impostazioni riconfigurabili, come i servizi, vengono applicate dopo il riavvio."
         ]
       ]
     ],
@@ -983,11 +983,11 @@
     [
       "heading",
       2,
-      "applica-gli-aggiornamenti-in-modo-consapevole",
+      "applicare-gli-aggiornamenti-in-modo-deliberato",
       [
         [
           "text",
-          "Applica gli aggiornamenti in modo consapevole"
+          "Applicare gli aggiornamenti in modo deliberato"
         ]
       ]
     ],
@@ -997,7 +997,7 @@
       [
         [
           "text",
-          "Aggiorna i metadati dei pacchetti e installa gli aggiornamenti di sicurezza Debian nelle sessioni live persistenti o nelle installazioni native usando il normale flusso di lavoro APT. Le modifiche APT in una sessione live nuova vengono perse al riavvio. I moduli base di SquashFS sono in sola lettura, quindi sostituire l'ISO o i moduli con una nuova release affidabile di MiniOS è spesso il modo più pulito per aggiornare il sistema live di base."
+          "Aggiorna i metadati dei pacchetti e installa gli aggiornamenti di sicurezza Debian nelle sessioni live persistenti utilizzando il normale flusso di lavoro APT, quando opportuno. Le modifiche APT in una nuova sessione live vengono perse al riavvio. I moduli base SquashFS sono in sola lettura, quindi sostituire l'ISO o i moduli con una nuova release MiniOS affidabile è spesso il modo più pulito per aggiornare il sistema live di base. Dopo la conversione nativa, la manutenzione della sicurezza dei pacchetti segue semplicemente il normale flusso di lavoro APT di Debian per quel sistema installato."
         ]
       ]
     ],
@@ -1022,7 +1022,7 @@
         ],
         [
           "text",
-          " per i diversi flussi di lavoro APT, modulo, immagine e kernel."
+          " per i diversi flussi di lavoro di APT, moduli, immagini e kernel."
         ]
       ]
     ],
@@ -1101,7 +1101,7 @@
               [
                 [
                   "text",
-                  "Riavvia e verifica il sistema aggiornato prima di eliminare il supporto o la sessione precedenti e funzionanti."
+                  "Riavvia e verifica il sistema aggiornato prima di eliminare i supporti o le sessioni precedenti considerate affidabili."
                 ]
               ]
             ]
@@ -1199,7 +1199,7 @@
       ]
     ]
   ],
-  "plain_text": "Sicurezza\nMiniOS può essere eseguito come sistema di recupero live, sistema portatile persistente o installazione nativa. I controlli appropriati dipendono da come viene utilizzato il sistema.\nProteggi la sessione in esecuzione, i dati persistenti, il supporto di avvio e qualsiasi configurazione applicata all'avvio.\nInizia da supporti affidabili\nScarica MiniOS da una fonte ufficiale e verifica l'ISO prima di scriverlo.\nSegui la guida Verifica dei download e confronta il risultato prima di avviare o installare. La verifica rileva un download danneggiato o sostituito; non garantisce che un dispositivo USB già modificato sia sicuro.\nTieni il dispositivo USB sotto controllo fisico. Le password del firmware e l'ordine di avvio limitato possono ridurre l'avvio non autorizzato occasionale, ma non cifrano i file presenti sul dispositivo. Secure Boot può offrire una protezione aggiuntiva della catena di avvio su immagini e hardware che la supportano; verifica il comportamento effettivo della release e del firmware invece di presumere il supporto.\nSostituire le credenziali predefinite\nUn'immagine live MiniOS non personalizzata utilizza le credenziali pubblicate live / evil e root / toor, con accesso automatico e privilegi amministrativi senza password nella sua configurazione orientata alla praticità. Chiunque possa raggiungere il sistema potrebbe essere in grado di utilizzare queste credenziali, specialmente se SSH è attivo.\nPrima di collegarsi a una rete non affidabile:\nImpostare password uniche per utente e root nel Configuratore MiniOS.\nSelezionare un profilo di sicurezza appropriato e rivedere ogni controllo impostato.\nDisabilitare SSH e XRDP a meno che l'accesso remoto non sia necessario.\nRiavviare in una nuova sessione dopo aver modificato impostazioni di account \"one-shot\" o di sicurezza, quindi verificare il comportamento risultante di login e privilegi.\nIl Configuratore memorizza gli hash delle password crittografati invece delle password in chiaro. Se si modifica un account persistente o nativo già creato, utilizzare passwd per l'utente corrente e sudo passwd root per root.\nUtilizzare i controlli di sicurezza del Configuratore\nIl Configuratore MiniOS offre tre profili. Un profilo imposta configurazioni concrete; il nome del profilo stesso non viene salvato come chiave di configurazione runtime e ogni impostazione rimane modificabile in modo indipendente.\nProfilo | Comportamento principale\nconvenient | Compatibile con accesso automatico, sudo e PolicyKit senza password, root e SSH con password consentiti, XRDP/X11/schermata di blocco rilassati, suggerimenti password visibili.\nbalanced | Nessun accesso automatico, sudo e PolicyKit richiedono password, login SSH come root negato ma SSH con password consentito, XRDP/X11/schermata di blocco rafforzati.\nstrict | Nessun accesso automatico, sudo e PolicyKit richiedono password, login SSH come root e con password negati, XRDP disabilitato, X11/schermata di blocco rafforzati, suggerimenti password nascosti.\nLe impostazioni predefinite dell'installer variano in base alla modalità di installazione: le installazioni live privilegiano convenient, mentre quelle native privilegiano balanced. Questi sono valori predefiniti, non raccomandazioni per ogni modello di minaccia.\nLe stesse impostazioni sono disponibili come chiavi di configurazione documentate, tra cui LIVE_SUDO_MODE, LIVE_POLKIT_MODE, LIVE_SSH_PERMIT_ROOT_LOGIN, LIVE_SSH_PASSWORD_AUTHENTICATION, LIVE_XRDP_MODE, LIVE_X11_MODE, LIVE_ISSUE_PASSWORD_HINTS e LIVE_LOCKSCREEN_MODE. Preferire queste chiavi o il Configuratore invece di modificare direttamente i file sudoers generati, PolicyKit, display-manager o SSH. Vedi File di configurazione.\nPer il comportamento del salvataggio e l'applicabilità delle impostazioni, consulta Configuratore MiniOS.\nLa creazione degli account, le password, LIVE_CONFIG_NOROOT e la postura di sicurezza sono impostazioni \"one-shot\" utilizzate quando viene creata una nuova sessione. Il Configuratore mostra l'applicabilità di ciascun controllo. Le impostazioni riconfigurabili come i servizi vengono applicate dopo il riavvio.\nProteggi l'accesso remoto\nSSH può essere abilitato in un'immagine MiniOS per scopi di recupero. In una rete dove altri utenti non sono affidabili, considera che le credenziali predefinite pubblicate siano esposte finché non hai confermato il contrario.\nSe SSH non è necessario, aggiungi ssh a DISABLE_SERVICES nel Configuratore e rimuovilo da ENABLE_SERVICES se presente.\nSe SSH è richiesto, nega l'accesso root con LIVE_SSH_PERMIT_ROOT_LOGIN=false.\nPreferisci l'autenticazione tramite chiave. Conferma l'accesso tramite chiave in una connessione separata prima di impostare LIVE_SSH_PASSWORD_AUTHENTICATION=false.\nLimita l'accesso in ingresso tramite firewall di rete o router e non esporre direttamente a Internet un sistema di recupero portatile.\nValuta XRDP separatamente. Il profilo restrittivo lo disabilita; quello bilanciato lo rafforza ma non necessariamente ne disabilita il servizio.\nI parametri di avvio possono sovrascrivere i valori del file di configurazione. Analizza comportamenti inattesi dei servizi confrontandoli con Parametri di avvio.\nCrittografare i dati persistenti\nLa persistenza nativa, DynFileFS e raw non crittografate possono essere lette da chiunque ottenga il dispositivo. L'Installatore MiniOS può configurare un contenitore LUKS crittografato per una sessione live quando l'initrd sorgente supporta LUKS. L'initrd crea changes.luks al primo avvio e richiede la relativa passphrase; l'installatore non riceve né memorizza tale passphrase.\nLa persistenza LUKS protegge i contenuti mentre il contenitore è chiuso. Non protegge i dati dopo lo sblocco, i file di avvio non crittografati, i file copiati fuori dal contenitore o un filesystem root nativo. La persistenza della sessione LUKS non è la crittografia del root nativo. Utilizzare una passphrase robusta e conservare un backup testato.\nVedi Installatore MiniOS e Gestione delle sessioni.\nApplica gli aggiornamenti in modo consapevole\nAggiorna i metadati dei pacchetti e installa gli aggiornamenti di sicurezza Debian nelle sessioni live persistenti o nelle installazioni native usando il normale flusso di lavoro APT. Le modifiche APT in una sessione live nuova vengono perse al riavvio. I moduli base di SquashFS sono in sola lettura, quindi sostituire l'ISO o i moduli con una nuova release affidabile di MiniOS è spesso il modo più pulito per aggiornare il sistema live di base.\nConsulta Aggiornamenti software per i diversi flussi di lavoro APT, modulo, immagine e kernel.\nPrima di un aggiornamento importante:\nEsegui il backup dei file importanti e delle sessioni persistenti.\nVerifica che ci sia spazio libero sufficiente.\nEvita di interrompere le scritture o spegnere il dispositivo.\nRiavvia e verifica il sistema aggiornato prima di eliminare il supporto o la sessione precedenti e funzionanti.\nConsidera hook e preseeding come esecuzione di codice\nL'opzione di avvio hooks e gli hook di live-config possono eseguire file dal filesystem root, dal supporto di avvio o da un URL. Hook remoti, hook su supporti modificati e preseeding non verificati possono essere eseguiti con privilegi di sistema. Usa solo file verificati provenienti da fonti affidabili, preferisci la distribuzione autenticata ed evita hook remoti su reti non affidabili. Consulta live-config per l'ordine di esecuzione e le posizioni supportate.\nEsegui backup e smaltisci i supporti in sicurezza\nLa persistenza non è un backup. Conserva una copia separata dei file utente ed esporta o copia le sessioni mentre sono integre. Verifica il ripristino su supporti diversi.\nSpegni correttamente prima di rimuovere supporti scrivibili e mantieni spazio libero per i metadati di sessione e il funzionamento del filesystem.\nPrima di smaltire un dispositivo, cancellalo in modo sicuro in base alla tecnologia di archiviazione e alla sensibilità dei dati. Eliminare i file o riformattare potrebbe non rendere i vecchi dati irrecuperabili.",
+  "plain_text": "Sicurezza\nI controlli di sicurezza di MiniOS sono progettati attorno al sistema live: sessioni temporanee, sessioni persistenti, supporti portatili e configurazione all'avvio. L'Installatore MiniOS può anche eseguire una conversione nativa. Il sistema risultante mantiene l'ambiente desktop selezionato e l'identità visiva di MiniOS, ma il software specifico per MiniOS viene rimosso, così da poterlo gestire e mantenere in sicurezza con i normali strumenti Debian, invece di trattarlo come un'altra modalità live.\nProteggi la sessione in esecuzione, i dati persistenti, il supporto di avvio e qualsiasi configurazione applicata all'avvio.\nInizia da supporti affidabili\nScarica MiniOS da una fonte ufficiale e verifica l'ISO prima di scriverlo.\nSegui la guida Verifica dei download e confronta il risultato prima di avviare o installare. La verifica rileva un download danneggiato o sostituito; non garantisce che un dispositivo USB già modificato sia sicuro.\nTieni il dispositivo USB sotto controllo fisico. Le password del firmware e l'ordine di avvio limitato possono ridurre l'avvio non autorizzato occasionale, ma non cifrano i file presenti sul dispositivo. Secure Boot può offrire una protezione aggiuntiva della catena di avvio su immagini e hardware che la supportano; verifica il comportamento effettivo della release e del firmware invece di presumere il supporto.\nSostituire le credenziali predefinite\nUn'immagine live MiniOS non personalizzata utilizza le credenziali pubblicate live / evil e root / toor, con accesso automatico e privilegi amministrativi senza password nella sua configurazione orientata alla praticità. Chiunque possa accedere al sistema potrebbe usare queste credenziali, soprattutto se SSH è attivo.\nPrima di collegarsi a una rete non affidabile:\nImposta password uniche per utente e root nel Configuratore MiniOS.\nSeleziona un profilo di sicurezza appropriato e verifica ogni controllo popolato.\nDisattiva SSH e XRDP a meno che l'accesso remoto non sia necessario.\nRiavvia in una nuova sessione quando modifichi impostazioni di account o sicurezza \"one-shot\", quindi verifica il comportamento di accesso e privilegi risultante.\nIl Configuratore salva gli hash delle password crittografati invece delle password in chiaro. Se stai cambiando un account persistente già creato, usa passwd per l'utente corrente e sudo passwd root per root. Dopo la conversione nativa, utilizza i normali strumenti di gestione account di Debian.\nUtilizzare i controlli di sicurezza del Configuratore\nIl Configuratore MiniOS offre tre profili. Un profilo imposta configurazioni concrete; il nome del profilo stesso non viene salvato come chiave di configurazione runtime, e ogni impostazione resta modificabile in modo indipendente.\nProfilo | Comportamento principale\nconvenient | Compatibile con autologin, sudo e PolicyKit senza password, SSH root e password consentiti, XRDP/X11/schermata di blocco rilassati, suggerimenti password visibili.\nbalanced | Nessun autologin, sudo e PolicyKit con password obbligatoria, accesso SSH root negato ma SSH con password consentito, XRDP/X11/schermata di blocco rafforzati.\nstrict | Nessun autologin, sudo e PolicyKit con password obbligatoria, accesso SSH root e con password negato, XRDP disabilitato, X11/schermata di blocco rafforzati, suggerimenti password nascosti.\nLe impostazioni predefinite dell'installatore variano in base alla modalità di distribuzione: le installazioni live privilegiano convenient, mentre la conversione nativa parte da balanced. L'impostazione nativa viene applicata durante la conversione; dopo l'installazione, usa la normale configurazione di sicurezza Debian. Questi sono valori predefiniti, non raccomandazioni per ogni modello di minaccia.\nLe stesse impostazioni sono disponibili come chiavi di configurazione documentate, inclusi LIVE_SUDO_MODE, LIVE_POLKIT_MODE, LIVE_SSH_PERMIT_ROOT_LOGIN, LIVE_SSH_PASSWORD_AUTHENTICATION, LIVE_XRDP_MODE, LIVE_X11_MODE, LIVE_ISSUE_PASSWORD_HINTS e LIVE_LOCKSCREEN_MODE. Preferisci queste chiavi o il Configuratore rispetto alla modifica diretta dei file sudoers, PolicyKit, display-manager o SSH generati. Consulta File di configurazione.\nPer il comportamento del salvataggio e l'applicabilità delle impostazioni, vedi Configuratore MiniOS.\nCreazione account, password, LIVE_CONFIG_NOROOT e il profilo di sicurezza sono impostazioni \"one-shot\" usate quando viene creata una nuova sessione. Il Configuratore mostra l'applicabilità di ogni controllo. Le impostazioni riconfigurabili, come i servizi, vengono applicate dopo il riavvio.\nProteggi l'accesso remoto\nSSH può essere abilitato in un'immagine MiniOS per scopi di recupero. In una rete dove altri utenti non sono affidabili, considera che le credenziali predefinite pubblicate siano esposte finché non hai confermato il contrario.\nSe SSH non è necessario, aggiungi ssh a DISABLE_SERVICES nel Configuratore e rimuovilo da ENABLE_SERVICES se presente.\nSe SSH è richiesto, nega l'accesso root con LIVE_SSH_PERMIT_ROOT_LOGIN=false.\nPreferisci l'autenticazione tramite chiave. Conferma l'accesso tramite chiave in una connessione separata prima di impostare LIVE_SSH_PASSWORD_AUTHENTICATION=false.\nLimita l'accesso in ingresso tramite firewall di rete o router e non esporre direttamente a Internet un sistema di recupero portatile.\nValuta XRDP separatamente. Il profilo restrittivo lo disabilita; quello bilanciato lo rafforza ma non necessariamente ne disabilita il servizio.\nI parametri di avvio possono sovrascrivere i valori del file di configurazione. Analizza comportamenti inattesi dei servizi confrontandoli con Parametri di avvio.\nCrittografare i dati persistenti\nLa persistenza nativa, DynFileFS e raw non crittografate possono essere lette da chiunque ottenga il dispositivo. L'Installatore MiniOS può configurare un contenitore LUKS crittografato per una sessione live quando l'initrd sorgente supporta LUKS. L'initrd crea changes.luks al primo avvio e richiede la relativa passphrase; l'installatore non riceve né memorizza tale passphrase.\nLa persistenza LUKS protegge i contenuti mentre il contenitore è chiuso. Non protegge i dati dopo lo sblocco, i file di avvio non crittografati, i file copiati fuori dal contenitore o un filesystem root nativo. La persistenza della sessione LUKS non è la crittografia del root nativo. Utilizzare una passphrase robusta e conservare un backup testato.\nVedi Installatore MiniOS e Gestione delle sessioni.\nApplicare gli aggiornamenti in modo deliberato\nAggiorna i metadati dei pacchetti e installa gli aggiornamenti di sicurezza Debian nelle sessioni live persistenti utilizzando il normale flusso di lavoro APT, quando opportuno. Le modifiche APT in una nuova sessione live vengono perse al riavvio. I moduli base SquashFS sono in sola lettura, quindi sostituire l'ISO o i moduli con una nuova release MiniOS affidabile è spesso il modo più pulito per aggiornare il sistema live di base. Dopo la conversione nativa, la manutenzione della sicurezza dei pacchetti segue semplicemente il normale flusso di lavoro APT di Debian per quel sistema installato.\nConsulta Aggiornamenti software per i diversi flussi di lavoro di APT, moduli, immagini e kernel.\nPrima di un aggiornamento importante:\nEsegui il backup dei file importanti e delle sessioni persistenti.\nVerifica che ci sia spazio libero sufficiente.\nEvita di interrompere le scritture o spegnere il dispositivo.\nRiavvia e verifica il sistema aggiornato prima di eliminare i supporti o le sessioni precedenti considerate affidabili.\nConsidera hook e preseeding come esecuzione di codice\nL'opzione di avvio hooks e gli hook di live-config possono eseguire file dal filesystem root, dal supporto di avvio o da un URL. Hook remoti, hook su supporti modificati e preseeding non verificati possono essere eseguiti con privilegi di sistema. Usa solo file verificati provenienti da fonti affidabili, preferisci la distribuzione autenticata ed evita hook remoti su reti non affidabili. Consulta live-config per l'ordine di esecuzione e le posizioni supportate.\nEsegui backup e smaltisci i supporti in sicurezza\nLa persistenza non è un backup. Conserva una copia separata dei file utente ed esporta o copia le sessioni mentre sono integre. Verifica il ripristino su supporti diversi.\nSpegni correttamente prima di rimuovere supporti scrivibili e mantieni spazio libero per i metadati di sessione e il funzionamento del filesystem.\nPrima di smaltire un dispositivo, cancellalo in modo sicuro in base alla tecnologia di archiviazione e alla sensibilità dei dati. Eliminare i file o riformattare potrebbe non rendere i vecchi dati irrecuperabili.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

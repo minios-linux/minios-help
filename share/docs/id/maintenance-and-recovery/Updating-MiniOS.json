@@ -16,9 +16,9 @@
       "title": "Live modular MiniOS"
     },
     {
-      "anchor": "instalasi-native-minios",
+      "anchor": "setelah-konversi-native",
       "level": 3,
-      "title": "Instalasi native MiniOS"
+      "title": "Setelah konversi native"
     },
     {
       "anchor": "berpindah-ke-rilis-minios-yang-lebih-baru",
@@ -322,11 +322,11 @@
     [
       "heading",
       3,
-      "instalasi-native-minios",
+      "setelah-konversi-native",
       [
         [
           "text",
-          "Instalasi native MiniOS"
+          "Setelah konversi native"
         ]
       ]
     ],
@@ -336,7 +336,17 @@
       [
         [
           "text",
-          "Instalasi native memiliki root filesystem yang dapat ditulis secara konvensional, sehingga APT berjalan seperti biasa di Debian. Pemeliharaan paket di sini adalah pemeliharaan APT biasa. Namun demikian, MiniOS tetap tidak menyediakan jalur upgrade in-place antar rilis MiniOS. Upgrade paket Debian tidak sama dengan membangun ulang sistem sebagai rilis MiniOS yang lebih baru."
+          "Instalasi native yang dibuat oleh MiniOS adalah instalasi desktop Debian konvensional, bukan sistem live modular MiniOS. Sistem ini tetap mempertahankan pengalaman desktop MiniOS yang sudah dikenal, termasuk lingkungan desktop yang dipilih, identitas visual, dan aplikasi sehari-hari, sementara perangkat lunak live khusus MiniOS dihapus. Sistem yang dihasilkan memiliki filesystem root yang dapat ditulis: APT memperbarui paket seperti biasa, kernel dikelola melalui paket Debian, dan bootloader serta initramfs yang terpasang menggunakan alur kerja Debian konvensional."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Model upgrade rilis MiniOS tidak berlaku untuk sistem yang telah dikonversi tersebut. Identitas visual dan perangkat lunak desktop biasa MiniOS dapat tetap digunakan, sementara pemeliharaan berkelanjutan mengikuti model Debian standar, bukan alur kerja modul/sesi MiniOS."
         ]
       ]
     ],
@@ -633,7 +643,7 @@
       ]
     ]
   ],
-  "plain_text": "Memperbarui MiniOS\nMiniOS tidak memiliki prosedur upgrade in-place yang didukung dari satu rilis MiniOS ke rilis lainnya. Sistem live modular ini dirakit dari modul SquashFS yang hanya-baca ditambah lapisan sesi yang dapat ditulis, sehingga mengubah paket Debian di sistem yang sedang berjalan tidak akan menggantikan rilis MiniOS itu sendiri.\nRilis MiniOS yang lebih baru adalah instalasi baru\nTidak ada padanan MiniOS dari dist-upgrade yang dapat mengubah salinan terpasang atau persisten dari satu rilis MiniOS menjadi rilis lain. Berpindah ke rilis MiniOS yang lebih baru berarti menginstal rilis tersebut, lalu memigrasikan data dan pengaturan yang ingin Anda simpan.\nAPT diizinkan\nMiniOS tidak memblokir atau melarang penggunaan APT. Anda dapat memasang dan memperbarui paket Debian jika diperlukan:\nsudo apt update\nsudo apt upgrade\nLive modular MiniOS\nDalam sesi live MiniOS, APT akan menulis file paket dan metadata paket ke lapisan yang dapat ditulis. Dengan persistensi, perubahan tersebut dapat bertahan setelah reboot. Modul .sb yang hanya-baca di bawah lapisan itu tidak berubah; file yang diperbarui di sesi hanya menimpa file dari modul.\nIni adalah pemeliharaan paket di dalam sesi tersebut, bukan pembaruan MiniOS.\nHal ini juga mengonsumsi ruang persistensi dan dapat membuat sesi berbeda secara signifikan dari image yang dipublikasikan. Sesi baru tetap akan dimulai dari kumpulan paket yang ada di modul MiniOS.\nJangan ubah sumber APT ke rilis Debian lain dan menjalankan upgrade, full-upgrade, atau dist-upgrade dengan harapan mendapatkan rilis MiniOS yang lebih baru.\nTindakan tersebut akan menciptakan status sistem campuran; tidak akan mereproduksi kumpulan modul, file boot, pemilihan firmware, paket MiniOS, atau pilihan lain dari rilis MiniOS yang dipublikasikan.\nInstalasi native MiniOS\nInstalasi native memiliki root filesystem yang dapat ditulis secara konvensional, sehingga APT berjalan seperti biasa di Debian. Pemeliharaan paket di sini adalah pemeliharaan APT biasa. Namun demikian, MiniOS tetap tidak menyediakan jalur upgrade in-place antar rilis MiniOS. Upgrade paket Debian tidak sama dengan membangun ulang sistem sebagai rilis MiniOS yang lebih baru.\nBerpindah ke rilis MiniOS yang lebih baru\nPerlakukan rilis MiniOS yang lebih baru sebagai sistem terpisah:\nUnduh dan verifikasi image baru.\nCadangkan file penting, konfigurasi, modul pengguna, dan sesi persisten seperti dijelaskan di Mencadangkan MiniOS.\nInstal rilis baru menggunakan metode instalasi yang sesuai.\nBoot terlebih dahulu dengan sesi baru dan verifikasi perangkat keras serta aplikasi yang Anda butuhkan.\nMigrasikan file pribadi dan konfigurasi terpilih. Jika Session Manager dapat mengekspor sesi lama, impor arsipnya dan biarkan pemeriksaan kompatibilitas berjalan, daripada menyalin store sesi live secara manual.\nBangun ulang atau instal ulang modul kustom jika belum dipastikan kompatibel dengan rilis tujuan.\nSimpan instalasi lama atau cadangan hingga rilis baru telah diuji.\nJangan menggabungkan modul dasar, file boot, file kernel, atau file initramfs dari rilis MiniOS yang berbeda untuk mencoba membuat upgrade.\nModul dan kernel adalah tugas pemeliharaan terpisah\nModul .sb yang dibuat pengguna dapat diganti atau dibangun ulang secara independen jika memang diinginkan. Hal ini hanya mengubah lapisan kustomisasi; tidak mengubah rilis MiniOS. Lihat Mengelola modul.\nKernel MiniOS juga dikelola sebagai satu set kernel module, vmlinuz, dan initramfs yang terkoordinasi. Gunakan Mengelola kernel untuk operasi tersebut. Memperbarui hanya paket linux-image dengan APT bukanlah workflow manajemen kernel MiniOS, dan mengganti kernel tidak memperbarui rilis MiniOS.",
+  "plain_text": "Memperbarui MiniOS\nMiniOS tidak memiliki prosedur upgrade in-place yang didukung dari satu rilis MiniOS ke rilis lainnya. Sistem live modular ini dirakit dari modul SquashFS yang hanya-baca ditambah lapisan sesi yang dapat ditulis, sehingga mengubah paket Debian di sistem yang sedang berjalan tidak akan menggantikan rilis MiniOS itu sendiri.\nRilis MiniOS yang lebih baru adalah instalasi baru\nTidak ada padanan MiniOS dari dist-upgrade yang dapat mengubah salinan terpasang atau persisten dari satu rilis MiniOS menjadi rilis lain. Berpindah ke rilis MiniOS yang lebih baru berarti menginstal rilis tersebut, lalu memigrasikan data dan pengaturan yang ingin Anda simpan.\nAPT diizinkan\nMiniOS tidak memblokir atau melarang penggunaan APT. Anda dapat memasang dan memperbarui paket Debian jika diperlukan:\nsudo apt update\nsudo apt upgrade\nLive modular MiniOS\nDalam sesi live MiniOS, APT akan menulis file paket dan metadata paket ke lapisan yang dapat ditulis. Dengan persistensi, perubahan tersebut dapat bertahan setelah reboot. Modul .sb yang hanya-baca di bawah lapisan itu tidak berubah; file yang diperbarui di sesi hanya menimpa file dari modul.\nIni adalah pemeliharaan paket di dalam sesi tersebut, bukan pembaruan MiniOS.\nHal ini juga mengonsumsi ruang persistensi dan dapat membuat sesi berbeda secara signifikan dari image yang dipublikasikan. Sesi baru tetap akan dimulai dari kumpulan paket yang ada di modul MiniOS.\nJangan ubah sumber APT ke rilis Debian lain dan menjalankan upgrade, full-upgrade, atau dist-upgrade dengan harapan mendapatkan rilis MiniOS yang lebih baru.\nTindakan tersebut akan menciptakan status sistem campuran; tidak akan mereproduksi kumpulan modul, file boot, pemilihan firmware, paket MiniOS, atau pilihan lain dari rilis MiniOS yang dipublikasikan.\nSetelah konversi native\nInstalasi native yang dibuat oleh MiniOS adalah instalasi desktop Debian konvensional, bukan sistem live modular MiniOS. Sistem ini tetap mempertahankan pengalaman desktop MiniOS yang sudah dikenal, termasuk lingkungan desktop yang dipilih, identitas visual, dan aplikasi sehari-hari, sementara perangkat lunak live khusus MiniOS dihapus. Sistem yang dihasilkan memiliki filesystem root yang dapat ditulis: APT memperbarui paket seperti biasa, kernel dikelola melalui paket Debian, dan bootloader serta initramfs yang terpasang menggunakan alur kerja Debian konvensional.\nModel upgrade rilis MiniOS tidak berlaku untuk sistem yang telah dikonversi tersebut. Identitas visual dan perangkat lunak desktop biasa MiniOS dapat tetap digunakan, sementara pemeliharaan berkelanjutan mengikuti model Debian standar, bukan alur kerja modul/sesi MiniOS.\nBerpindah ke rilis MiniOS yang lebih baru\nPerlakukan rilis MiniOS yang lebih baru sebagai sistem terpisah:\nUnduh dan verifikasi image baru.\nCadangkan file penting, konfigurasi, modul pengguna, dan sesi persisten seperti dijelaskan di Mencadangkan MiniOS.\nInstal rilis baru menggunakan metode instalasi yang sesuai.\nBoot terlebih dahulu dengan sesi baru dan verifikasi perangkat keras serta aplikasi yang Anda butuhkan.\nMigrasikan file pribadi dan konfigurasi terpilih. Jika Session Manager dapat mengekspor sesi lama, impor arsipnya dan biarkan pemeriksaan kompatibilitas berjalan, daripada menyalin store sesi live secara manual.\nBangun ulang atau instal ulang modul kustom jika belum dipastikan kompatibel dengan rilis tujuan.\nSimpan instalasi lama atau cadangan hingga rilis baru telah diuji.\nJangan menggabungkan modul dasar, file boot, file kernel, atau file initramfs dari rilis MiniOS yang berbeda untuk mencoba membuat upgrade.\nModul dan kernel adalah tugas pemeliharaan terpisah\nModul .sb yang dibuat pengguna dapat diganti atau dibangun ulang secara independen jika memang diinginkan. Hal ini hanya mengubah lapisan kustomisasi; tidak mengubah rilis MiniOS. Lihat Mengelola modul.\nKernel MiniOS juga dikelola sebagai satu set kernel module, vmlinuz, dan initramfs yang terkoordinasi. Gunakan Mengelola kernel untuk operasi tersebut. Memperbarui hanya paket linux-image dengan APT bukanlah workflow manajemen kernel MiniOS, dan mengganti kernel tidak memperbarui rilis MiniOS.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

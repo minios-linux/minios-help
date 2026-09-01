@@ -827,26 +827,19 @@
       ]
     ],
     [
-      "block",
-      "paragraph",
+      "admonition",
+      "warning",
+      "Instalasi native mengubah model sistem",
       [
         [
-          "text",
-          "Instalasi native adalah instalasi Linux konvensional dengan filesystem root yang telah diekstrak. Instalasi ini tidak menggunakan sesi live MiniOS atau root "
-        ],
-        [
-          "span",
-          "code",
+          "block",
+          "paragraph",
           [
             [
               "text",
-              ".sb"
+              "Instalasi native mempertahankan pengalaman desktop MiniOS yang sudah dikenal — identitas visualnya, lingkungan desktop yang dipilih, dan aplikasi-aplikasi biasa — namun mengubah live image menjadi desktop Debian konvensional. Alat khusus MiniOS untuk sesi, modul, kernel modular, dan alur kerja live lainnya akan dihapus karena fitur-fitur tersebut tidak lagi berlaku."
             ]
           ]
-        ],
-        [
-          "text",
-          " berlapis seperti pada live boot. Ikuti dokumentasi instalasi native, bukan petunjuk persistensi live."
         ]
       ]
     ],
@@ -856,7 +849,32 @@
       [
         [
           "text",
-          "Instalasi native tidak termasuk dalam pilihan live boot pada tabel di atas. Gunakan "
+          "Setelah konversi native, gunakan alat paket, kernel, konfigurasi, dan bootloader Debian seperti biasa. Hasilnya tetap terlihat familiar dan mempertahankan aplikasi desktop standar dari edisi yang dipilih, namun fitur live khusus MiniOS tidak lagi tersedia. Arsitektur live MiniOS dijelaskan di "
+        ],
+        [
+          "link",
+          "/getting-started/About-MiniOS.md",
+          null,
+          [
+            [
+              "text",
+              "Tentang MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Gunakan "
         ],
         [
           "link",
@@ -871,7 +889,7 @@
         ],
         [
           "text",
-          " untuk membuatnya jika image yang dipilih mendukung deployment native."
+          " hanya jika Anda memang ingin melakukan konversi tersebut dan image yang dipilih mendukung deployment native."
         ]
       ]
     ],
@@ -1034,7 +1052,7 @@
       ]
     ]
   ],
-  "plain_text": "Mode boot\nMode boot menentukan apakah MiniOS akan memulai dari awal, membuka sesi yang tersimpan, atau berjalan sebagai sistem terinstal konvensional. Anda tidak perlu memahami proses boot internal untuk membuat pilihan ini.\nLabel menu dapat sedikit berbeda antara rilis, mode firmware, dan alat boot. Pilih berdasarkan hasil yang Anda butuhkan, bukan dari kata-kata persisnya.\nPilihan cepat\nEntri default normal adalah Mulai MiniOS. Ini menggunakan pemilihan persistensi otomatis: MiniOS mencoba melanjutkan sesi default yang kompatibel dan dapat membuat pengganti yang kompatibel jika tidak ada sesi yang dapat digunakan dan tersedia media penyimpanan yang dapat ditulis.\nEntri menu | Gunakan saat | Apakah perubahan disimpan? | Apakah USB tetap terhubung?\nMulai MiniOS (default) | Penggunaan portabel normal | Ya, jika aktivasi persistensi otomatis berhasil | Ya\nMulai sesi baru | Anda ingin ruang kerja terpisah | Hanya jika sesi baru berhasil dibuat dan diaktifkan | Ya\nPilih sesi tersimpan | Anda ingin memilih salah satu dari beberapa workspace yang ada | Hanya jika sesi yang dipilih berhasil diaktifkan | Ya\nMulai tanpa menyimpan | Anda ingin boot sementara yang bersih tanpa persistensi | Tidak | Ya\nJalankan dari RAM | Anda ingin menyalin MiniOS ke RAM untuk boot ini | Tidak; salinan RAM dianggap sementara | Hingga MiniOS berhasil melepaskan sumber\nUntuk boot pertama yang normal, biarkan Mulai MiniOS tetap dipilih. Gunakan Mulai tanpa menyimpan jika Anda memang membutuhkan sesi pengujian perangkat keras atau pemulihan sementara yang bersih dan tidak boleh membuka atau membuat persistensi.\nPastikan persistensi aktif\nMemilih entri menu persisten meminta sesi; ini tidak menjamin sesi dapat dibuka. Jika penyimpanan hanya-baca, penuh, rusak, atau tidak kompatibel, MiniOS dapat melanjutkan tanpa menyimpan perubahan. Periksa peringatan saat startup sebelum memulai pekerjaan yang harus disimpan.\nMulai MiniOS\nMulai MiniOS adalah entri menu pertama dan default. Ini ditujukan untuk penggunaan normal, termasuk boot pertama pada perangkat MiniOS yang baru disiapkan.\nMiniOS secara otomatis mencari sesi persisten yang kompatibel. Jika sesi default yang dapat digunakan tersedia, sesi tersebut akan dilanjutkan. Jika tidak ada, MiniOS dapat membuat sesi yang kompatibel secara otomatis jika tersedia penyimpanan yang dapat ditulis.\nJika persistensi tidak dapat dibuat atau diaktifkan karena penyimpanan hanya-baca, penuh, rusak, atau tidak sesuai, MiniOS akan melanjutkan dengan layer tulis sementara dan melaporkan bahwa sesi tidak persisten. Periksa peringatan tersebut sebelum melakukan pekerjaan yang harus bertahan setelah reboot.\nMulai sesi baru\nMiniOS membuat sesi persisten tambahan dengan nomor baru dan membiarkan sesi yang sudah ada tetap utuh. Gunakan fitur ini untuk memisahkan workspace atau menguji konfigurasi baru tanpa mengganti sesi kerja Anda saat ini.\nPembuatan membutuhkan penyimpanan yang kompatibel dan dapat ditulis serta ruang kosong yang cukup. Sesi baru bukanlah cadangan dari sesi yang sudah ada.\nPilih sesi tersimpan\nMiniOS menampilkan sesi tersimpan yang tersedia dan memungkinkan Anda memilih salah satunya. Gunakan fitur ini jika satu perangkat berisi beberapa workspace. Untuk membuat sesi pertama di penyimpanan kosong, pilih Mulai sesi baru.\nSebuah sesi bisa tidak kompatibel jika berasal dari rilis atau edisi MiniOS yang berbeda. Pengaturan union= yang berbeda juga dapat menyebabkan sesi menjadi tidak kompatibel.\nPemilihan interaktif tidak membuat sesi yang tidak kompatibel menjadi aman.\nMulai tanpa menyimpan\nMode ini sengaja menonaktifkan persistensi untuk boot saat ini. MiniOS menggunakan area tulis sementara di RAM, sehingga file yang dibuat di sistem live, paket yang diinstal, dan pengaturan yang diubah akan hilang saat shutdown.\nGunakan mode ini jika Anda secara khusus ingin:\nmenguji perangkat keras tanpa membuka atau membuat sesi persisten;\nmendiagnosis masalah tanpa mengubah status yang tersimpan;\nbekerja secara sementara ketika tidak ada yang perlu disimpan.\nMemulai tanpa menyimpan tidak berarti media boot dapat dilepas. Sistem yang berjalan biasanya tetap membaca modul sistemnya dari media tersebut.\nJalankan dari RAM\nMode ini menyalin data MiniOS ke RAM untuk mengurangi pembacaan dari sumber. Diperlukan memori yang cukup untuk sistem yang disalin dan beban kerja yang berjalan.\nAnggap sesi yang dimuat melalui RAM sebagai sementara. Menggabungkan toram dengan persistensi akan menyalin data sesi yang dipilih ke RAM; perubahan selanjutnya tidak akan disalin kembali ke penyimpanan persistensi asli.\nJangan melepas perangkat boot hanya karena Jalankan dari RAM dipilih. Ini hanya aman setelah MiniOS berhasil melepaskan filesystem sumber, loop ISO, dan semua pemetaan Ventoy. Jika operasi tersebut gagal, sumber masih tetap digunakan.\nInstalasi native\nInstalasi native adalah instalasi Linux konvensional dengan filesystem root yang telah diekstrak. Instalasi ini tidak menggunakan sesi live MiniOS atau root .sb berlapis seperti pada live boot. Ikuti dokumentasi instalasi native, bukan petunjuk persistensi live.\nInstalasi native tidak termasuk dalam pilihan live boot pada tabel di atas. Gunakan Penginstal MiniOS untuk membuatnya jika image yang dipilih mendukung deployment native.\nJika Anda membutuhkan detail lebih lanjut\nMenu boot menjelaskan navigasi dan pengeditan sementara entri menu.\nManajemen sesi menjelaskan mode penyimpanan, pembuatan sesi, perubahan ukuran, dan penghapusan.\nParameter boot adalah referensi lengkap baris perintah.\nPenemuan sistem initrd, pemanggilan modul, dan persistensi menjelaskan bagaimana grup parameter terkait diproses saat startup.",
+  "plain_text": "Mode boot\nMode boot menentukan apakah MiniOS akan memulai dari awal, membuka sesi yang tersimpan, atau berjalan sebagai sistem terinstal konvensional. Anda tidak perlu memahami proses boot internal untuk membuat pilihan ini.\nLabel menu dapat sedikit berbeda antara rilis, mode firmware, dan alat boot. Pilih berdasarkan hasil yang Anda butuhkan, bukan dari kata-kata persisnya.\nPilihan cepat\nEntri default normal adalah Mulai MiniOS. Ini menggunakan pemilihan persistensi otomatis: MiniOS mencoba melanjutkan sesi default yang kompatibel dan dapat membuat pengganti yang kompatibel jika tidak ada sesi yang dapat digunakan dan tersedia media penyimpanan yang dapat ditulis.\nEntri menu | Gunakan saat | Apakah perubahan disimpan? | Apakah USB tetap terhubung?\nMulai MiniOS (default) | Penggunaan portabel normal | Ya, jika aktivasi persistensi otomatis berhasil | Ya\nMulai sesi baru | Anda ingin ruang kerja terpisah | Hanya jika sesi baru berhasil dibuat dan diaktifkan | Ya\nPilih sesi tersimpan | Anda ingin memilih salah satu dari beberapa workspace yang ada | Hanya jika sesi yang dipilih berhasil diaktifkan | Ya\nMulai tanpa menyimpan | Anda ingin boot sementara yang bersih tanpa persistensi | Tidak | Ya\nJalankan dari RAM | Anda ingin menyalin MiniOS ke RAM untuk boot ini | Tidak; salinan RAM dianggap sementara | Hingga MiniOS berhasil melepaskan sumber\nUntuk boot pertama yang normal, biarkan Mulai MiniOS tetap dipilih. Gunakan Mulai tanpa menyimpan jika Anda memang membutuhkan sesi pengujian perangkat keras atau pemulihan sementara yang bersih dan tidak boleh membuka atau membuat persistensi.\nPastikan persistensi aktif\nMemilih entri menu persisten meminta sesi; ini tidak menjamin sesi dapat dibuka. Jika penyimpanan hanya-baca, penuh, rusak, atau tidak kompatibel, MiniOS dapat melanjutkan tanpa menyimpan perubahan. Periksa peringatan saat startup sebelum memulai pekerjaan yang harus disimpan.\nMulai MiniOS\nMulai MiniOS adalah entri menu pertama dan default. Ini ditujukan untuk penggunaan normal, termasuk boot pertama pada perangkat MiniOS yang baru disiapkan.\nMiniOS secara otomatis mencari sesi persisten yang kompatibel. Jika sesi default yang dapat digunakan tersedia, sesi tersebut akan dilanjutkan. Jika tidak ada, MiniOS dapat membuat sesi yang kompatibel secara otomatis jika tersedia penyimpanan yang dapat ditulis.\nJika persistensi tidak dapat dibuat atau diaktifkan karena penyimpanan hanya-baca, penuh, rusak, atau tidak sesuai, MiniOS akan melanjutkan dengan layer tulis sementara dan melaporkan bahwa sesi tidak persisten. Periksa peringatan tersebut sebelum melakukan pekerjaan yang harus bertahan setelah reboot.\nMulai sesi baru\nMiniOS membuat sesi persisten tambahan dengan nomor baru dan membiarkan sesi yang sudah ada tetap utuh. Gunakan fitur ini untuk memisahkan workspace atau menguji konfigurasi baru tanpa mengganti sesi kerja Anda saat ini.\nPembuatan membutuhkan penyimpanan yang kompatibel dan dapat ditulis serta ruang kosong yang cukup. Sesi baru bukanlah cadangan dari sesi yang sudah ada.\nPilih sesi tersimpan\nMiniOS menampilkan sesi tersimpan yang tersedia dan memungkinkan Anda memilih salah satunya. Gunakan fitur ini jika satu perangkat berisi beberapa workspace. Untuk membuat sesi pertama di penyimpanan kosong, pilih Mulai sesi baru.\nSebuah sesi bisa tidak kompatibel jika berasal dari rilis atau edisi MiniOS yang berbeda. Pengaturan union= yang berbeda juga dapat menyebabkan sesi menjadi tidak kompatibel.\nPemilihan interaktif tidak membuat sesi yang tidak kompatibel menjadi aman.\nMulai tanpa menyimpan\nMode ini sengaja menonaktifkan persistensi untuk boot saat ini. MiniOS menggunakan area tulis sementara di RAM, sehingga file yang dibuat di sistem live, paket yang diinstal, dan pengaturan yang diubah akan hilang saat shutdown.\nGunakan mode ini jika Anda secara khusus ingin:\nmenguji perangkat keras tanpa membuka atau membuat sesi persisten;\nmendiagnosis masalah tanpa mengubah status yang tersimpan;\nbekerja secara sementara ketika tidak ada yang perlu disimpan.\nMemulai tanpa menyimpan tidak berarti media boot dapat dilepas. Sistem yang berjalan biasanya tetap membaca modul sistemnya dari media tersebut.\nJalankan dari RAM\nMode ini menyalin data MiniOS ke RAM untuk mengurangi pembacaan dari sumber. Diperlukan memori yang cukup untuk sistem yang disalin dan beban kerja yang berjalan.\nAnggap sesi yang dimuat melalui RAM sebagai sementara. Menggabungkan toram dengan persistensi akan menyalin data sesi yang dipilih ke RAM; perubahan selanjutnya tidak akan disalin kembali ke penyimpanan persistensi asli.\nJangan melepas perangkat boot hanya karena Jalankan dari RAM dipilih. Ini hanya aman setelah MiniOS berhasil melepaskan filesystem sumber, loop ISO, dan semua pemetaan Ventoy. Jika operasi tersebut gagal, sumber masih tetap digunakan.\nInstalasi native\nInstalasi native mengubah model sistem\nInstalasi native mempertahankan pengalaman desktop MiniOS yang sudah dikenal — identitas visualnya, lingkungan desktop yang dipilih, dan aplikasi-aplikasi biasa — namun mengubah live image menjadi desktop Debian konvensional. Alat khusus MiniOS untuk sesi, modul, kernel modular, dan alur kerja live lainnya akan dihapus karena fitur-fitur tersebut tidak lagi berlaku.\nSetelah konversi native, gunakan alat paket, kernel, konfigurasi, dan bootloader Debian seperti biasa. Hasilnya tetap terlihat familiar dan mempertahankan aplikasi desktop standar dari edisi yang dipilih, namun fitur live khusus MiniOS tidak lagi tersedia. Arsitektur live MiniOS dijelaskan di Tentang MiniOS.\nGunakan Penginstal MiniOS hanya jika Anda memang ingin melakukan konversi tersebut dan image yang dipilih mendukung deployment native.\nJika Anda membutuhkan detail lebih lanjut\nMenu boot menjelaskan navigasi dan pengeditan sementara entri menu.\nManajemen sesi menjelaskan mode penyimpanan, pembuatan sesi, perubahan ukuran, dan penghapusan.\nParameter boot adalah referensi lengkap baris perintah.\nPenemuan sistem initrd, pemanggilan modul, dan persistensi menjelaskan bagaimana grup parameter terkait diproses saat startup.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

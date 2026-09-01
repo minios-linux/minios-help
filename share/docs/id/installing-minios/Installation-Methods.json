@@ -11,9 +11,9 @@
       "title": "Unduh dan verifikasi ISO"
     },
     {
-      "anchor": "tulis-media-bootable",
+      "anchor": "instal-minios-ke-media-yang-dapat-dilepas",
       "level": 2,
-      "title": "Tulis media bootable"
+      "title": "Instal MiniOS ke media yang dapat dilepas"
     },
     {
       "anchor": "boot-ke-sesi-live",
@@ -21,9 +21,9 @@
       "title": "Boot ke sesi live"
     },
     {
-      "anchor": "pilih-tata-letak-yang-diinstal",
+      "anchor": "pilih-tata-letak-instalasi",
       "level": 2,
-      "title": "Pilih tata letak yang diinstal"
+      "title": "Pilih tata letak instalasi"
     }
   ],
   "nodes": [
@@ -44,7 +44,17 @@
       [
         [
           "text",
-          "Ada dua tugas terpisah yang sering disebut instalasi:"
+          "MiniOS adalah sistem operasi live-first. Menginstal MiniOS biasanya berarti menempatkan sistem live modularnya ke media yang dapat dilepas atau disk lain, sehingga menulis atau menyalin MiniOS ke USB drive sendiri sudah merupakan metode instalasi, bukan sekadar persiapan untuk instalasi berikutnya."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ada dua keluarga instalasi utama:"
         ]
       ]
     ],
@@ -65,7 +75,21 @@
               [
                 [
                   "text",
-                  "Menulis ISO ke media yang dapat dilepas akan membuat media bootable yang digunakan untuk memulai sesi live MiniOS. Alat penulis image akan menimpa perangkat yang dipilih dengan tata letak ISO."
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Instalasi Live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " mempertahankan tumpukan modul MiniOS, konfigurasi saat boot, persistensi sesi, dan alur kerja manajemen MiniOS. Penulisan image mentah, instalasi berbasis file, Ventoy, dan mode Live Penginstal MiniOS semuanya menghasilkan cara untuk menjalankan sistem live MiniOS."
                 ]
               ]
             ]
@@ -81,7 +105,21 @@
               [
                 [
                   "text",
-                  "Menjalankan "
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Instalasi Native"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " adalah konversi opsional yang dilakukan oleh "
                 ],
                 [
                   "link",
@@ -90,13 +128,13 @@
                   [
                     [
                       "text",
-                      "MiniOS Penginstal MiniOS"
+                      "Penginstal MiniOS"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " dari sesi live akan menerapkan MiniOS ke disk lain. Ini dapat membuat instalasi live modular atau instalasi Linux native konvensional."
+                  ". Ini membuat desktop Debian konvensional dari image MiniOS yang dipilih, mempertahankan lingkungan desktop, identitas visual, dan aplikasi umum, sambil menghapus perangkat lunak khusus MiniOS yang hanya ada untuk arsitektur live."
                 ]
               ]
             ]
@@ -188,11 +226,11 @@
     [
       "heading",
       2,
-      "tulis-media-bootable",
+      "instal-minios-ke-media-yang-dapat-dilepas",
       [
         [
           "text",
-          "Tulis media bootable"
+          "Instal MiniOS ke media yang dapat dilepas"
         ]
       ]
     ],
@@ -202,24 +240,61 @@
       [
         [
           "text",
-          "Pilih metode sesuai sistem operasi Anda:"
+          "Pilih metode berdasarkan tata letak yang Anda inginkan pada perangkat target:"
         ]
       ]
     ],
     [
-      "list",
-      {
-        "ordered": false,
-        "start": 1
-      },
+      "table",
       [
         [
-          "item",
-          null,
+          "table_row",
+          true,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Hasil"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Metode"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Yang Anda dapatkan"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Filesystem dapat ditulis normal yang juga dapat melakukan boot MiniOS"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
               [
                 [
                   "link",
@@ -234,19 +309,47 @@
                 ],
                 [
                   "text",
-                  " di Windows"
+                  " dalam mode ISO atau "
+                ],
+                [
+                  "link",
+                  "/installing-minios/Manual-File-Based-Installation.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "instalasi manual berbasis file"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "File MiniOS dan bootloader pada filesystem normal; sisa ruang tetap dapat digunakan untuk file biasa"
                 ]
               ]
             ]
           ]
         ],
         [
-          "item",
-          null,
+          "table_row",
+          false,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Perangkat multiboot dengan dukungan persistensi MiniOS"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
               [
                 [
                   "link",
@@ -258,23 +361,109 @@
                       "Ventoy"
                     ]
                   ]
-                ],
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
                 [
                   "text",
-                  " di Windows atau Linux"
+                  "Partisi data Ventoy untuk file ISO plus dukungan sesi-persisten MiniOS"
                 ]
               ]
             ]
           ]
         ],
         [
-          "item",
-          null,
+          "table_row",
+          false,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
               [
+                [
+                  "text",
+                  "Instalasi modular MiniOS yang dikelola"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "link",
+                  "/installing-minios/MiniOS-Installer.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Penginstal MiniOS"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " dalam mode "
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Tata letak modul MiniOS dengan opsi penyimpanan persisten yang dikonfigurasi oleh penginstal"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Salinan blok demi blok persis dari ISO yang dipublikasikan"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "link",
+                  "/installing-minios/installation-tools/Rufus.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Rufus"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " dalam mode DD, "
+                ],
                 [
                   "link",
                   "/installing-minios/installation-tools/Balena-Etcher.md",
@@ -288,20 +477,23 @@
                 ],
                 [
                   "text",
-                  " di Windows, Linux, atau macOS"
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
+                  ", "
+                ],
+                [
+                  "link",
+                  "/installing-minios/installation-tools/Drive-Utility.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Utilitas Disk"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", atau "
+                ],
                 [
                   "link",
                   "/installing-minios/installation-tools/dd.md",
@@ -318,64 +510,15 @@
                       ]
                     ]
                   ]
-                ],
-                [
-                  "text",
-                  " di Linux atau macOS"
                 ]
               ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
+            ],
             [
-              "block",
-              "paragraph",
+              "table_cell",
               [
                 [
-                  "link",
-                  "/installing-minios/installation-tools/Drive-Utility.md",
-                  null,
-                  [
-                    [
-                      "text",
-                      "Utilitas Disk"
-                    ]
-                  ]
-                ],
-                [
                   "text",
-                  " di Linux"
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "link",
-                  "/installing-minios/Manual-File-Based-Installation.md",
-                  null,
-                  [
-                    [
-                      "text",
-                      "Instalasi USB berbasis file"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " untuk tata letak MiniOS yang disiapkan secara manual"
+                  "Tata letak blok ISO persis; sederhana dan dapat diprediksi, tetapi target tidak lagi berfungsi seperti flash drive umum"
                 ]
               ]
             ]
@@ -384,36 +527,33 @@
       ]
     ],
     [
-      "block",
-      "paragraph",
+      "admonition",
+      "danger",
+      "Penulisan image mentah akan menimpa tata letak target",
       [
         [
-          "text",
-          "Menulis image dengan Rufus, Etcher, "
-        ],
-        [
-          "span",
-          "code",
+          "block",
+          "paragraph",
           [
             [
               "text",
-              "dd"
+              "Mode DD Rufus, Etcher, penulisan image Utilitas Disk, dan "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "dd"
+                ]
+              ]
+            ],
+            [
+              "text",
+              " akan menggantikan tata letak blok perangkat yang ada. Pastikan model dan kapasitas target, serta cadangkan data penting sebelum memulai. Peringatan ini tidak berlaku untuk mode ISO Rufus, Ventoy, atau instalasi berbasis file."
             ]
           ]
-        ],
-        [
-          "text",
-          ", atau Utilitas Disk bersifat destruktif. Pastikan jalur perangkat, model, dan kapasitas sebelum memulai. Penulisan image mentah akan menyalin tata letak image; ini tidak secara otomatis mengatur persistensi atau melakukan deployment live maupun native dengan Penginstal MiniOS."
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          "Ventoy berbeda: instal Ventoy di perangkat, lalu salin ISO ke partisi datanya. Ini mempertahankan tata letak multiboot Ventoy."
         ]
       ]
     ],
@@ -538,11 +678,11 @@
     [
       "heading",
       2,
-      "pilih-tata-letak-yang-diinstal",
+      "pilih-tata-letak-instalasi",
       [
         [
           "text",
-          "Pilih tata letak yang diinstal"
+          "Pilih tata letak instalasi"
         ]
       ]
     ],
@@ -561,13 +701,13 @@
           [
             [
               "text",
-              "MiniOS Penginstal MiniOS"
+              "Penginstal MiniOS"
             ]
           ]
         ],
         [
           "text",
-          " jika Anda ingin MiniOS di USB drive lain, SSD, atau hard disk."
+          " ketika Anda ingin sistem dipasang ke USB drive, SSD, atau hard disk lain."
         ]
       ]
     ],
@@ -588,7 +728,21 @@
               [
                 [
                   "text",
-                  "Mode live mempertahankan stack modul terkompresi dan tata letak boot live. Mendukung opsi persistensi sesi dan cocok untuk instalasi portabel."
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Mode Live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " mempertahankan tumpukan modul terkompresi, tata letak boot MiniOS, alat manajemen MiniOS, dan opsi persistensi sesi. Pilih ini jika Anda ingin MiniOS langsung pada disk target."
                 ]
               ]
             ]
@@ -604,9 +758,55 @@
               [
                 [
                   "text",
-                  "Mode native mengekstrak modul terpilih ke filesystem root Linux konvensional, menghasilkan initramfs, dan menginstal bootloader yang didukung. Mode native hanya tersedia jika image yang diboot menyediakan metadata installer yang dibutuhkan."
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Mode Native"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " mengekspansi image yang dipilih menjadi desktop Debian yang dapat ditulis secara konvensional. Target tetap menggunakan lingkungan desktop, identitas visual, dan aplikasi umum dari edisi yang dipilih, sementara runtime live MiniOS dan perangkat lunak manajemen khusus live dihapus. Sistem yang diinstal menggunakan initramfs Debian konvensional, bootloader, paket kernel, dan alur kerja manajemen paket."
                 ]
               ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "admonition",
+      "warning",
+      "Instalasi native menggunakan model sistem yang berbeda",
+      [
+        [
+          "block",
+          "paragraph",
+          [
+            [
+              "text",
+              "Arsitektur utama MiniOS adalah sistem live modular seperti dijelaskan pada "
+            ],
+            [
+              "link",
+              "/getting-started/About-MiniOS.md",
+              null,
+              [
+                [
+                  "text",
+                  "Tentang MiniOS"
+                ]
+              ]
+            ],
+            [
+              "text",
+              ". Mode native mempertahankan pengalaman desktop MiniOS yang sudah dikenal, termasuk identitas visual, lingkungan desktop, dan aplikasi umum, namun mengubah sistem menjadi instalasi Debian konvensional. Alat khusus MiniOS untuk sesi, modul, kernel modular, dan alur kerja live lainnya dihapus karena fitur tersebut tidak lagi berlaku. Pilih instalasi live jika Anda menginginkan seluruh fitur MiniOS."
             ]
           ]
         ]
@@ -618,7 +818,7 @@
       [
         [
           "text",
-          "Persistensi live disiapkan saat boot awal; perilaku detailnya ada di "
+          "Persistensi live disiapkan saat boot awal; perilaku detailnya dapat dilihat di "
         ],
         [
           "link",
@@ -633,7 +833,7 @@
         ],
         [
           "text",
-          ". Ini tidak berlaku untuk filesystem root konvensional yang digunakan oleh mode native."
+          ". Fitur ini tidak berlaku setelah konversi native."
         ]
       ]
     ],
@@ -643,7 +843,7 @@
       [
         [
           "text",
-          "Installer mendukung tata letak otomatis BIOS/MBR, UEFI/MBR, dan UEFI/GPT. BIOS pada GPT tidak didukung oleh installer saat ini. Lihat "
+          "Penginstal mendukung tata letak otomatis BIOS/MBR, UEFI/MBR, dan UEFI/GPT. BIOS pada GPT belum didukung oleh penginstal saat ini. Lihat "
         ],
         [
           "link",
@@ -652,7 +852,7 @@
           [
             [
               "text",
-              "Menggunakan MiniOS Penginstal MiniOS"
+              "Menggunakan Penginstal MiniOS"
             ]
           ]
         ],
@@ -663,7 +863,7 @@
       ]
     ]
   ],
-  "plain_text": "Metode instalasi\nAda dua tugas terpisah yang sering disebut instalasi:\nMenulis ISO ke media yang dapat dilepas akan membuat media bootable yang digunakan untuk memulai sesi live MiniOS. Alat penulis image akan menimpa perangkat yang dipilih dengan tata letak ISO.\nMenjalankan MiniOS Penginstal MiniOS dari sesi live akan menerapkan MiniOS ke disk lain. Ini dapat membuat instalasi live modular atau instalasi Linux native konvensional.\nUnduh dan verifikasi ISO\nUnduh ISO dari situs resmi, halaman resmi GitHub Releases, atau SourceForge. Verifikasi terlebih dahulu sebelum menulisnya ke perangkat; lihat Memverifikasi unduhan.\nTulis media bootable\nPilih metode sesuai sistem operasi Anda:\nRufus di Windows\nVentoy di Windows atau Linux\nBalena Etcher di Windows, Linux, atau macOS\ndd di Linux atau macOS\nUtilitas Disk di Linux\nInstalasi USB berbasis file untuk tata letak MiniOS yang disiapkan secara manual\nMenulis image dengan Rufus, Etcher, dd, atau Utilitas Disk bersifat destruktif. Pastikan jalur perangkat, model, dan kapasitas sebelum memulai. Penulisan image mentah akan menyalin tata letak image; ini tidak secara otomatis mengatur persistensi atau melakukan deployment live maupun native dengan Penginstal MiniOS.\nVentoy berbeda: instal Ventoy di perangkat, lalu salin ISO ke partisi datanya. Ini mempertahankan tata letak multiboot Ventoy.\nBoot ke sesi live\nRestart komputer dan buka menu boot firmware-nya.\nPilih perangkat USB atau media bootable lainnya.\nMulai MiniOS dan pastikan penyimpanan, jaringan, serta perangkat input berfungsi sebagaimana mestinya.\nPengaturan firmware berbeda-beda tergantung komputer. Image MiniOS dapat boot melalui BIOS atau UEFI; target deployment Penginstal MiniOS berikutnya tidak terbatas pada MBR.\nGunakan Mode Boot sebagai panduan utama perilaku boot live. Jika saat boot awal image atau modulnya tidak ditemukan, lihat Penemuan sistem Initrd.\nPilih tata letak yang diinstal\nDari sesi live, jalankan MiniOS Penginstal MiniOS jika Anda ingin MiniOS di USB drive lain, SSD, atau hard disk.\nMode live mempertahankan stack modul terkompresi dan tata letak boot live. Mendukung opsi persistensi sesi dan cocok untuk instalasi portabel.\nMode native mengekstrak modul terpilih ke filesystem root Linux konvensional, menghasilkan initramfs, dan menginstal bootloader yang didukung. Mode native hanya tersedia jika image yang diboot menyediakan metadata installer yang dibutuhkan.\nPersistensi live disiapkan saat boot awal; perilaku detailnya ada di Persistensi Initrd. Ini tidak berlaku untuk filesystem root konvensional yang digunakan oleh mode native.\nInstaller mendukung tata letak otomatis BIOS/MBR, UEFI/MBR, dan UEFI/GPT. BIOS pada GPT tidak didukung oleh installer saat ini. Lihat Menggunakan MiniOS Penginstal MiniOS untuk penempatan, filesystem, persistensi, dan batasan partisi.",
+  "plain_text": "Metode instalasi\nMiniOS adalah sistem operasi live-first. Menginstal MiniOS biasanya berarti menempatkan sistem live modularnya ke media yang dapat dilepas atau disk lain, sehingga menulis atau menyalin MiniOS ke USB drive sendiri sudah merupakan metode instalasi, bukan sekadar persiapan untuk instalasi berikutnya.\nAda dua keluarga instalasi utama:\nInstalasi Live mempertahankan tumpukan modul MiniOS, konfigurasi saat boot, persistensi sesi, dan alur kerja manajemen MiniOS. Penulisan image mentah, instalasi berbasis file, Ventoy, dan mode Live Penginstal MiniOS semuanya menghasilkan cara untuk menjalankan sistem live MiniOS.\nInstalasi Native adalah konversi opsional yang dilakukan oleh Penginstal MiniOS. Ini membuat desktop Debian konvensional dari image MiniOS yang dipilih, mempertahankan lingkungan desktop, identitas visual, dan aplikasi umum, sambil menghapus perangkat lunak khusus MiniOS yang hanya ada untuk arsitektur live.\nUnduh dan verifikasi ISO\nUnduh ISO dari situs resmi, halaman resmi GitHub Releases, atau SourceForge. Verifikasi terlebih dahulu sebelum menulisnya ke perangkat; lihat Memverifikasi unduhan.\nInstal MiniOS ke media yang dapat dilepas\nPilih metode berdasarkan tata letak yang Anda inginkan pada perangkat target:\nHasil | Metode | Yang Anda dapatkan\nFilesystem dapat ditulis normal yang juga dapat melakukan boot MiniOS | Rufus dalam mode ISO atau instalasi manual berbasis file | File MiniOS dan bootloader pada filesystem normal; sisa ruang tetap dapat digunakan untuk file biasa\nPerangkat multiboot dengan dukungan persistensi MiniOS | Ventoy | Partisi data Ventoy untuk file ISO plus dukungan sesi-persisten MiniOS\nInstalasi modular MiniOS yang dikelola | Penginstal MiniOS dalam mode Live | Tata letak modul MiniOS dengan opsi penyimpanan persisten yang dikonfigurasi oleh penginstal\nSalinan blok demi blok persis dari ISO yang dipublikasikan | Rufus dalam mode DD, Balena Etcher, Utilitas Disk, atau dd | Tata letak blok ISO persis; sederhana dan dapat diprediksi, tetapi target tidak lagi berfungsi seperti flash drive umum\nPenulisan image mentah akan menimpa tata letak target\nMode DD Rufus, Etcher, penulisan image Utilitas Disk, dan dd akan menggantikan tata letak blok perangkat yang ada. Pastikan model dan kapasitas target, serta cadangkan data penting sebelum memulai. Peringatan ini tidak berlaku untuk mode ISO Rufus, Ventoy, atau instalasi berbasis file.\nBoot ke sesi live\nRestart komputer dan buka menu boot firmware-nya.\nPilih perangkat USB atau media bootable lainnya.\nMulai MiniOS dan pastikan penyimpanan, jaringan, serta perangkat input berfungsi sebagaimana mestinya.\nPengaturan firmware berbeda-beda tergantung komputer. Image MiniOS dapat boot melalui BIOS atau UEFI; target deployment Penginstal MiniOS berikutnya tidak terbatas pada MBR.\nGunakan Mode Boot sebagai panduan utama perilaku boot live. Jika saat boot awal image atau modulnya tidak ditemukan, lihat Penemuan sistem Initrd.\nPilih tata letak instalasi\nDari sesi live, jalankan Penginstal MiniOS ketika Anda ingin sistem dipasang ke USB drive, SSD, atau hard disk lain.\nMode Live mempertahankan tumpukan modul terkompresi, tata letak boot MiniOS, alat manajemen MiniOS, dan opsi persistensi sesi. Pilih ini jika Anda ingin MiniOS langsung pada disk target.\nMode Native mengekspansi image yang dipilih menjadi desktop Debian yang dapat ditulis secara konvensional. Target tetap menggunakan lingkungan desktop, identitas visual, dan aplikasi umum dari edisi yang dipilih, sementara runtime live MiniOS dan perangkat lunak manajemen khusus live dihapus. Sistem yang diinstal menggunakan initramfs Debian konvensional, bootloader, paket kernel, dan alur kerja manajemen paket.\nInstalasi native menggunakan model sistem yang berbeda\nArsitektur utama MiniOS adalah sistem live modular seperti dijelaskan pada Tentang MiniOS. Mode native mempertahankan pengalaman desktop MiniOS yang sudah dikenal, termasuk identitas visual, lingkungan desktop, dan aplikasi umum, namun mengubah sistem menjadi instalasi Debian konvensional. Alat khusus MiniOS untuk sesi, modul, kernel modular, dan alur kerja live lainnya dihapus karena fitur tersebut tidak lagi berlaku. Pilih instalasi live jika Anda menginginkan seluruh fitur MiniOS.\nPersistensi live disiapkan saat boot awal; perilaku detailnya dapat dilihat di Persistensi Initrd. Fitur ini tidak berlaku setelah konversi native.\nPenginstal mendukung tata letak otomatis BIOS/MBR, UEFI/MBR, dan UEFI/GPT. BIOS pada GPT belum didukung oleh penginstal saat ini. Lihat Menggunakan Penginstal MiniOS untuk penempatan, filesystem, persistensi, dan batasan partisi.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

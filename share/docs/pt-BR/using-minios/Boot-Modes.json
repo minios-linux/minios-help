@@ -827,26 +827,19 @@
       ]
     ],
     [
-      "block",
-      "paragraph",
+      "admonition",
+      "warning",
+      "A instalação nativa altera o modelo do sistema",
       [
         [
-          "text",
-          "Uma instalação nativa é uma instalação convencional do Linux com um sistema de arquivos raiz expandido. Ela não utiliza sessões ao vivo MiniOS nem o root em camadas "
-        ],
-        [
-          "span",
-          "code",
+          "block",
+          "paragraph",
           [
             [
               "text",
-              ".sb"
+              "Uma instalação nativa mantém a experiência de desktop familiar do MiniOS — sua identidade visual, ambiente de área de trabalho selecionado e aplicativos comuns — mas converte a imagem live em um desktop Debian convencional. As ferramentas específicas do MiniOS para sessões, módulos, kernels modulares e outros fluxos de trabalho live são removidas, pois esses recursos deixam de se aplicar."
             ]
           ]
-        ],
-        [
-          "text",
-          " da mesma forma que um boot ao vivo. Siga a documentação de instalação nativa em vez das instruções de persistência ao vivo."
         ]
       ]
     ],
@@ -856,7 +849,32 @@
       [
         [
           "text",
-          "A instalação nativa não é uma das opções de boot ao vivo na tabela acima. Use o "
+          "Após a conversão nativa, utilize as ferramentas normais do Debian para pacotes, kernel, configuração e bootloader. O resultado permanece visualmente familiar e mantém os aplicativos de desktop comuns da edição selecionada, mas o conjunto de recursos live específicos do MiniOS não estará mais presente. A arquitetura live do MiniOS é descrita em "
+        ],
+        [
+          "link",
+          "/getting-started/About-MiniOS.md",
+          null,
+          [
+            [
+              "text",
+              "Sobre MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Use o "
         ],
         [
           "link",
@@ -871,7 +889,7 @@
         ],
         [
           "text",
-          " para criá-la quando a imagem selecionada oferecer suporte à implantação nativa."
+          " apenas quando desejar deliberadamente essa conversão e a imagem selecionada oferecer suporte à implantação nativa."
         ]
       ]
     ],
@@ -1034,7 +1052,7 @@
       ]
     ]
   ],
-  "plain_text": "Modos de inicialização\nO modo de inicialização determina se o MiniOS inicia do zero, abre uma sessão salva ou executa como um sistema convencional instalado. Você não precisa entender o processo interno de inicialização para fazer essa escolha.\nOs rótulos do menu podem variar um pouco entre versões, modos de firmware e ferramentas de boot. Escolha pela finalidade desejada, não pela redação exata.\nEscolha rápida\nA entrada padrão é Iniciar MiniOS. Ela utiliza seleção automática de persistência: MiniOS tenta retomar uma sessão padrão compatível e pode criar uma substituta compatível caso não exista uma sessão utilizável e haja armazenamento gravável disponível.\nEntrada do menu | Quando usar | As alterações são salvas? | Manter o USB conectado?\nIniciar MiniOS (padrão) | Uso portátil normal | Sim, se a ativação automática da persistência for bem-sucedida | Sim\nIniciar uma nova sessão | Você deseja um novo espaço de trabalho separado | Somente se a nova sessão for criada e ativada com sucesso | Sim\nEscolher uma sessão salva | Você deseja selecionar um dos vários espaços de trabalho existentes | Somente se a sessão selecionada for ativada com sucesso | Sim\nIniciar sem salvar | Você deseja um boot limpo e temporário sem persistência | Não | Sim\nExecutar a partir de RAM | Você deseja copiar MiniOS para RAM nesta inicialização | Não; trate a cópia RAM como temporária | Até que MiniOS tenha desconectado a origem com sucesso\nPara o primeiro boot normal, mantenha Iniciar MiniOS selecionado. Use Iniciar sem salvar quando precisar de um teste de hardware temporário ou sessão de recuperação que não deve abrir nem criar persistência.\nConfirme se a persistência está ativa\nEscolher uma entrada persistente no menu solicita uma sessão; não garante que ela será aberta. Se o armazenamento estiver somente leitura, cheio, danificado ou incompatível, MiniOS pode continuar sem salvar alterações. Verifique o aviso de inicialização antes de começar um trabalho que precisa ser mantido.\nIniciar MiniOS\nIniciar MiniOS é a primeira e padrão entrada do menu. É indicada para uso normal, incluindo o primeiro boot de um dispositivo MiniOS recém-preparado.\nMiniOS procura automaticamente por uma sessão persistente compatível. Se existir uma sessão padrão utilizável, ela será retomada. Caso não exista, MiniOS pode criar uma sessão compatível automaticamente, se houver armazenamento gravável disponível.\nSe a persistência não puder ser criada ou ativada porque o armazenamento está somente leitura, cheio, danificado ou inadequado, MiniOS continua com uma camada temporária gravável e informa que a sessão não é persistente. Verifique esse aviso antes de realizar trabalhos que precisam sobreviver a uma reinicialização.\nIniciar uma nova sessão\nMiniOS cria uma sessão persistente adicional numerada e mantém as sessões existentes inalteradas. Use esta opção para manter espaços de trabalho separados ou testar uma nova configuração sem substituir sua sessão atual.\nA criação exige armazenamento compatível gravável e espaço livre suficiente. Uma nova sessão não é um backup de uma existente.\nEscolher uma sessão salva\nMiniOS exibe as sessões salvas disponíveis e permite que você selecione uma delas. Use esta opção quando um dispositivo contém vários espaços de trabalho. Para criar a primeira sessão em um armazenamento vazio, escolha Iniciar uma nova sessão.\nUma sessão pode ser incompatível se vier de outra versão ou edição do MiniOS. Uma configuração diferente de union= também pode tornar uma sessão incompatível.\nA seleção interativa não torna uma sessão incompatível segura.\nIniciar sem salvar\nEste modo desativa deliberadamente a persistência para o boot atual. MiniOS utiliza uma área temporária gravável na RAM, portanto arquivos criados no sistema live, pacotes instalados e configurações alteradas desaparecem ao desligar.\nUse este modo quando você quiser especificamente:\ntestar hardware sem abrir ou criar uma sessão persistente;\ndiagnosticar um problema sem alterar o estado salvo;\ntrabalhar temporariamente quando nada precisa ser mantido.\nIniciar sem salvar não significa que o meio de boot pode ser removido. O sistema em execução normalmente continua lendo seus módulos a partir desse meio.\nExecutar a partir de RAM\nEste modo copia os dados de MiniOS para a RAM para reduzir leituras da fonte. É necessário ter memória suficiente para o sistema copiado e para a carga de trabalho em execução.\nConsidere uma sessão carregada via RAM como temporária. Ao combinar toram com persistência, os dados da sessão selecionada são copiados para RAM; alterações posteriores não são copiadas de volta para o armazenamento de persistência original.\nNão remova o dispositivo de boot apenas porque Executar a partir de RAM foi selecionado. Só é seguro após MiniOS desconectar com sucesso o sistema de arquivos de origem, o loop ISO e quaisquer mapeamentos Ventoy. Se essa operação falhar, a origem permanecerá em uso.\nInstalação nativa\nUma instalação nativa é uma instalação convencional do Linux com um sistema de arquivos raiz expandido. Ela não utiliza sessões ao vivo MiniOS nem o root em camadas .sb da mesma forma que um boot ao vivo. Siga a documentação de instalação nativa em vez das instruções de persistência ao vivo.\nA instalação nativa não é uma das opções de boot ao vivo na tabela acima. Use o Instalador do MiniOS para criá-la quando a imagem selecionada oferecer suporte à implantação nativa.\nQuando você precisar de mais detalhes\nMenus de boot explica a navegação e a edição temporária de uma entrada do menu.\nGerenciamento de sessões explica modos de armazenamento, criação, redimensionamento e remoção de sessões.\nParâmetros de boot é a referência completa da linha de comando.\nDescoberta do sistema no initrd, carregamento de módulos e persistência explicam como os grupos de parâmetros relacionados são processados durante a inicialização.",
+  "plain_text": "Modos de inicialização\nO modo de inicialização determina se o MiniOS inicia do zero, abre uma sessão salva ou executa como um sistema convencional instalado. Você não precisa entender o processo interno de inicialização para fazer essa escolha.\nOs rótulos do menu podem variar um pouco entre versões, modos de firmware e ferramentas de boot. Escolha pela finalidade desejada, não pela redação exata.\nEscolha rápida\nA entrada padrão é Iniciar MiniOS. Ela utiliza seleção automática de persistência: MiniOS tenta retomar uma sessão padrão compatível e pode criar uma substituta compatível caso não exista uma sessão utilizável e haja armazenamento gravável disponível.\nEntrada do menu | Quando usar | As alterações são salvas? | Manter o USB conectado?\nIniciar MiniOS (padrão) | Uso portátil normal | Sim, se a ativação automática da persistência for bem-sucedida | Sim\nIniciar uma nova sessão | Você deseja um novo espaço de trabalho separado | Somente se a nova sessão for criada e ativada com sucesso | Sim\nEscolher uma sessão salva | Você deseja selecionar um dos vários espaços de trabalho existentes | Somente se a sessão selecionada for ativada com sucesso | Sim\nIniciar sem salvar | Você deseja um boot limpo e temporário sem persistência | Não | Sim\nExecutar a partir de RAM | Você deseja copiar MiniOS para RAM nesta inicialização | Não; trate a cópia RAM como temporária | Até que MiniOS tenha desconectado a origem com sucesso\nPara o primeiro boot normal, mantenha Iniciar MiniOS selecionado. Use Iniciar sem salvar quando precisar de um teste de hardware temporário ou sessão de recuperação que não deve abrir nem criar persistência.\nConfirme se a persistência está ativa\nEscolher uma entrada persistente no menu solicita uma sessão; não garante que ela será aberta. Se o armazenamento estiver somente leitura, cheio, danificado ou incompatível, MiniOS pode continuar sem salvar alterações. Verifique o aviso de inicialização antes de começar um trabalho que precisa ser mantido.\nIniciar MiniOS\nIniciar MiniOS é a primeira e padrão entrada do menu. É indicada para uso normal, incluindo o primeiro boot de um dispositivo MiniOS recém-preparado.\nMiniOS procura automaticamente por uma sessão persistente compatível. Se existir uma sessão padrão utilizável, ela será retomada. Caso não exista, MiniOS pode criar uma sessão compatível automaticamente, se houver armazenamento gravável disponível.\nSe a persistência não puder ser criada ou ativada porque o armazenamento está somente leitura, cheio, danificado ou inadequado, MiniOS continua com uma camada temporária gravável e informa que a sessão não é persistente. Verifique esse aviso antes de realizar trabalhos que precisam sobreviver a uma reinicialização.\nIniciar uma nova sessão\nMiniOS cria uma sessão persistente adicional numerada e mantém as sessões existentes inalteradas. Use esta opção para manter espaços de trabalho separados ou testar uma nova configuração sem substituir sua sessão atual.\nA criação exige armazenamento compatível gravável e espaço livre suficiente. Uma nova sessão não é um backup de uma existente.\nEscolher uma sessão salva\nMiniOS exibe as sessões salvas disponíveis e permite que você selecione uma delas. Use esta opção quando um dispositivo contém vários espaços de trabalho. Para criar a primeira sessão em um armazenamento vazio, escolha Iniciar uma nova sessão.\nUma sessão pode ser incompatível se vier de outra versão ou edição do MiniOS. Uma configuração diferente de union= também pode tornar uma sessão incompatível.\nA seleção interativa não torna uma sessão incompatível segura.\nIniciar sem salvar\nEste modo desativa deliberadamente a persistência para o boot atual. MiniOS utiliza uma área temporária gravável na RAM, portanto arquivos criados no sistema live, pacotes instalados e configurações alteradas desaparecem ao desligar.\nUse este modo quando você quiser especificamente:\ntestar hardware sem abrir ou criar uma sessão persistente;\ndiagnosticar um problema sem alterar o estado salvo;\ntrabalhar temporariamente quando nada precisa ser mantido.\nIniciar sem salvar não significa que o meio de boot pode ser removido. O sistema em execução normalmente continua lendo seus módulos a partir desse meio.\nExecutar a partir de RAM\nEste modo copia os dados de MiniOS para a RAM para reduzir leituras da fonte. É necessário ter memória suficiente para o sistema copiado e para a carga de trabalho em execução.\nConsidere uma sessão carregada via RAM como temporária. Ao combinar toram com persistência, os dados da sessão selecionada são copiados para RAM; alterações posteriores não são copiadas de volta para o armazenamento de persistência original.\nNão remova o dispositivo de boot apenas porque Executar a partir de RAM foi selecionado. Só é seguro após MiniOS desconectar com sucesso o sistema de arquivos de origem, o loop ISO e quaisquer mapeamentos Ventoy. Se essa operação falhar, a origem permanecerá em uso.\nInstalação nativa\nA instalação nativa altera o modelo do sistema\nUma instalação nativa mantém a experiência de desktop familiar do MiniOS — sua identidade visual, ambiente de área de trabalho selecionado e aplicativos comuns — mas converte a imagem live em um desktop Debian convencional. As ferramentas específicas do MiniOS para sessões, módulos, kernels modulares e outros fluxos de trabalho live são removidas, pois esses recursos deixam de se aplicar.\nApós a conversão nativa, utilize as ferramentas normais do Debian para pacotes, kernel, configuração e bootloader. O resultado permanece visualmente familiar e mantém os aplicativos de desktop comuns da edição selecionada, mas o conjunto de recursos live específicos do MiniOS não estará mais presente. A arquitetura live do MiniOS é descrita em Sobre MiniOS.\nUse o Instalador do MiniOS apenas quando desejar deliberadamente essa conversão e a imagem selecionada oferecer suporte à implantação nativa.\nQuando você precisar de mais detalhes\nMenus de boot explica a navegação e a edição temporária de uma entrada do menu.\nGerenciamento de sessões explica modos de armazenamento, criação, redimensionamento e remoção de sessões.\nParâmetros de boot é a referência completa da linha de comando.\nDescoberta do sistema no initrd, carregamento de módulos e persistência explicam como os grupos de parâmetros relacionados são processados durante a inicialização.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

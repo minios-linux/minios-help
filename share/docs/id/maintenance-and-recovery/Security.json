@@ -16,9 +16,9 @@
       "title": "Ganti kredensial default"
     },
     {
-      "anchor": "gunakan-kontrol-keamanan-konfigurator-minios",
+      "anchor": "gunakan-kontrol-keamanan-konfigurator",
       "level": 2,
-      "title": "Gunakan kontrol keamanan Konfigurator MiniOS"
+      "title": "Gunakan kontrol keamanan Konfigurator"
     },
     {
       "anchor": "amankan-akses-jarak-jauh",
@@ -64,7 +64,7 @@
       [
         [
           "text",
-          "MiniOS dapat dijalankan sebagai sistem pemulihan live, sistem portabel persisten, atau instalasi native. Kontrol yang sesuai bergantung pada cara sistem digunakan."
+          "Kontrol keamanan MiniOS dirancang untuk sistem live: sesi sementara, sesi persisten, media portabel, dan konfigurasi saat boot. Penginstal MiniOS juga dapat melakukan konversi native. Sistem hasil konversi akan mempertahankan lingkungan desktop dan identitas visual MiniOS yang dipilih, tetapi perangkat lunak khusus live MiniOS akan dihapus. Karena itu, amankan dan pelihara sistem tersebut menggunakan alat Debian standar, bukan sebagai mode live lain."
         ],
         [
           "text",
@@ -72,7 +72,7 @@
         ],
         [
           "text",
-          "Lindungi sesi yang sedang berjalan, data persisten, media boot, dan konfigurasi apa pun yang diterapkan saat startup."
+          "Lindungi sesi yang sedang berjalan, data persisten, media boot, dan setiap konfigurasi yang diterapkan saat startup."
         ]
       ]
     ],
@@ -126,7 +126,7 @@
       [
         [
           "text",
-          "Jaga perangkat USB tetap dalam kendali fisik Anda. Password firmware dan pengaturan urutan boot yang dibatasi dapat mengurangi risiko booting tidak sah secara kasual, namun tidak mengenkripsi file di perangkat. Secure Boot dapat memberikan perlindungan tambahan pada proses boot untuk image dan perangkat keras yang mendukungnya; periksa perilaku rilis dan firmware sebenarnya, jangan hanya mengasumsikan dukungan."
+          "Jaga perangkat USB tetap dalam kendali fisik Anda. Kata sandi firmware dan pembatasan urutan boot dapat menghambat upaya boot tanpa izin yang sederhana, tetapi tidak mengenkripsi file di perangkat. Secure Boot dapat memberikan perlindungan tambahan pada proses boot untuk image dan perangkat keras yang mendukungnya; periksa dukungan pada rilis yang digunakan dan perilaku firmware yang sebenarnya, jangan hanya mengasumsikannya."
         ]
       ]
     ],
@@ -147,7 +147,7 @@
       [
         [
           "text",
-          "Live image MiniOS yang belum dikustomisasi menggunakan kredensial yang dipublikasikan "
+          "Image live MiniOS yang belum dikustomisasi menggunakan kredensial yang dipublikasikan "
         ],
         [
           "span",
@@ -203,7 +203,7 @@
         ],
         [
           "text",
-          ", dengan login otomatis dan akses administratif tanpa password dalam konfigurasi yang berorientasi pada kemudahan. Siapa pun yang dapat mengakses sistem mungkin dapat menggunakan kredensial tersebut, terutama jika SSH aktif."
+          ", dengan login otomatis dan akses administratif tanpa kata sandi pada konfigurasi yang berorientasi kenyamanan. Siapa pun yang dapat mengakses sistem mungkin dapat menggunakan kredensial tersebut, terutama jika SSH aktif."
         ]
       ]
     ],
@@ -234,7 +234,7 @@
               [
                 [
                   "text",
-                  "Atur password unik untuk user dan root di Konfigurator MiniOS."
+                  "Atur kata sandi unik untuk user dan root di Konfigurator MiniOS."
                 ]
               ]
             ]
@@ -266,7 +266,7 @@
               [
                 [
                   "text",
-                  "Nonaktifkan SSH dan XRDP kecuali akses jarak jauh memang dibutuhkan."
+                  "Nonaktifkan SSH dan XRDP kecuali akses jarak jauh diperlukan."
                 ]
               ]
             ]
@@ -282,7 +282,7 @@
               [
                 [
                   "text",
-                  "Reboot ke sesi baru saat mengubah pengaturan akun satu kali atau pengaturan keamanan, lalu verifikasi perilaku login dan hak akses setelahnya."
+                  "Reboot ke sesi baru saat mengubah pengaturan akun atau keamanan yang hanya diterapkan sekali, lalu verifikasi perilaku login dan hak akses yang dihasilkan."
                 ]
               ]
             ]
@@ -296,7 +296,7 @@
       [
         [
           "text",
-          "Konfigurator menyimpan hash password terenkripsi, bukan password dalam bentuk teks. Jika mengubah akun persisten atau native yang sudah dibuat, gunakan "
+          "Konfigurator menyimpan hash kata sandi terenkripsi, bukan kata sandi dalam bentuk teks. Jika mengubah akun persisten yang sudah dibuat, gunakan "
         ],
         [
           "span",
@@ -324,18 +324,18 @@
         ],
         [
           "text",
-          " untuk root."
+          " untuk root. Setelah konversi native, gunakan alat manajemen akun Debian seperti biasa."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "gunakan-kontrol-keamanan-konfigurator-minios",
+      "gunakan-kontrol-keamanan-konfigurator",
       [
         [
           "text",
-          "Gunakan kontrol keamanan Konfigurator MiniOS"
+          "Gunakan kontrol keamanan Konfigurator"
         ]
       ]
     ],
@@ -345,7 +345,7 @@
       [
         [
           "text",
-          "MiniOS Konfigurator MiniOS menyediakan tiga profil. Setiap profil mengisi pengaturan secara spesifik; nama profil itu sendiri tidak disimpan sebagai kunci konfigurasi runtime, dan setiap pengaturan tetap dapat diedit secara independen."
+          "Konfigurator MiniOS menyediakan tiga profil. Sebuah profil akan mengisi pengaturan konkret; nama profil itu sendiri tidak disimpan sebagai kunci konfigurasi runtime, dan setiap pengaturan tetap dapat diedit secara independen."
         ]
       ]
     ],
@@ -400,7 +400,7 @@
               [
                 [
                   "text",
-                  "Kompatibel autologin, sudo dan PolicyKit tanpa sandi, SSH root dan sandi diizinkan, XRDP/X11/lock screen lebih longgar, petunjuk sandi ditampilkan."
+                  "Kompatibel dengan autologin, sudo dan PolicyKit tanpa kata sandi, login root melalui SSH dan autentikasi SSH dengan kata sandi diizinkan, pengaturan XRDP/X11/layar kunci dilonggarkan, petunjuk kata sandi ditampilkan."
                 ]
               ]
             ]
@@ -430,7 +430,7 @@
               [
                 [
                   "text",
-                  "Tanpa autologin, sudo dan PolicyKit memerlukan sandi, login SSH root ditolak namun SSH sandi diizinkan, XRDP/X11/lock screen diperketat."
+                  "Tanpa autologin, sudo dan PolicyKit memerlukan kata sandi, login root melalui SSH ditolak tetapi autentikasi SSH dengan kata sandi diizinkan, pengaturan XRDP/X11/layar kunci diperketat."
                 ]
               ]
             ]
@@ -460,7 +460,7 @@
               [
                 [
                   "text",
-                  "Tanpa autologin, sudo dan PolicyKit memerlukan sandi, login SSH root dan sandi ditolak, XRDP dinonaktifkan, X11/lock screen diperketat, petunjuk sandi disembunyikan."
+                  "Tanpa autologin, sudo dan PolicyKit memerlukan kata sandi, login root melalui SSH dan autentikasi SSH dengan kata sandi ditolak, XRDP dinonaktifkan, pengaturan X11/layar kunci diperketat, petunjuk kata sandi disembunyikan."
                 ]
               ]
             ]
@@ -474,7 +474,7 @@
       [
         [
           "text",
-          "Default installer berbeda tergantung mode instalasi: instalasi live menggunakan "
+          "Default penginstal berbeda tergantung mode deployment: instalasi live menggunakan "
         ],
         [
           "span",
@@ -488,7 +488,7 @@
         ],
         [
           "text",
-          ", sedangkan instalasi native menggunakan "
+          ", sedangkan konversi native dimulai dari "
         ],
         [
           "span",
@@ -502,7 +502,7 @@
         ],
         [
           "text",
-          ". Ini adalah default, bukan rekomendasi untuk setiap model ancaman."
+          ". Pengaturan native diterapkan saat konversi; setelah instalasi, gunakan konfigurasi keamanan Debian seperti biasa. Ini adalah default, bukan rekomendasi untuk setiap model ancaman."
         ]
       ]
     ],
@@ -624,7 +624,7 @@
         ],
         [
           "text",
-          ". Utamakan penggunaan kunci ini atau Konfigurator MiniOS daripada mengedit file sudoers, PolicyKit, display-manager, atau SSH yang dihasilkan. Lihat "
+          ". Gunakan kunci ini atau Konfigurator daripada mengedit file sudoers, PolicyKit, display-manager, atau SSH yang dihasilkan. Lihat "
         ],
         [
           "link",
@@ -633,7 +633,7 @@
           [
             [
               "text",
-              "Berkas konfigurasi"
+              "File konfigurasi"
             ]
           ]
         ],
@@ -647,7 +647,7 @@
         ],
         [
           "text",
-          "Untuk perilaku penyimpanan dan penerapan pengaturan, lihat "
+          "Untuk perilaku penyimpanan dan keberlakuan pengaturan, lihat "
         ],
         [
           "link",
@@ -656,7 +656,7 @@
           [
             [
               "text",
-              "MiniOS Konfigurator MiniOS"
+              "Konfigurator MiniOS"
             ]
           ]
         ],
@@ -672,7 +672,7 @@
       [
         [
           "text",
-          "Pembuatan akun, sandi, "
+          "Pembuatan akun, kata sandi, "
         ],
         [
           "span",
@@ -686,7 +686,7 @@
         ],
         [
           "text",
-          ", dan postur keamanan adalah pengaturan satu kali yang digunakan saat sesi baru dibuat. Konfigurator MiniOS menampilkan penerapan untuk setiap kontrol. Pengaturan yang dapat dikonfigurasi ulang seperti layanan akan diterapkan setelah reboot."
+          ", dan postur keamanan adalah pengaturan satu kali yang digunakan saat sesi baru dibuat. Konfigurator menunjukkan kapan setiap kontrol berlaku. Pengaturan yang dapat dikonfigurasi ulang seperti layanan akan diterapkan setelah reboot."
         ]
       ]
     ],
@@ -756,7 +756,7 @@
                 ],
                 [
                   "text",
-                  " di Configurator dan hapus dari "
+                  " di Konfigurator dan hapus dari "
                 ],
                 [
                   "span",
@@ -912,7 +912,7 @@
       [
         [
           "text",
-          "Data persisten native, DynFileFS, dan raw yang tidak dienkripsi dapat dibaca oleh siapa pun yang mendapatkan perangkat. Penginstal MiniOS dapat mengonfigurasi kontainer LUKS terenkripsi untuk sesi live ketika initrd sumber mendukung LUKS. Initrd akan membuat "
+          "Data persisten native, DynFileFS, dan raw yang tidak dienkripsi dapat dibaca oleh siapa pun yang mendapatkan perangkat. Penginstal MiniOS dapat mengonfigurasi kontainer LUKS terenkripsi untuk sesi live ketika initrd sumber menandai dukungan LUKS. Initrd akan membuat "
         ],
         [
           "span",
@@ -997,7 +997,7 @@
       [
         [
           "text",
-          "Segarkan metadata paket dan instal pembaruan keamanan Debian pada sesi live persisten atau instalasi native menggunakan alur kerja APT seperti biasa. Perubahan APT pada sesi live baru akan hilang setelah reboot. Modul dasar SquashFS bersifat read-only, sehingga mengganti ISO atau modul dengan rilis MiniOS yang lebih baru dan tepercaya sering kali merupakan cara paling bersih untuk memperbarui sistem live dasar."
+          "Segarkan metadata paket dan instal pembaruan keamanan Debian pada sesi live persisten menggunakan workflow APT seperti biasa jika memang diperlukan. Perubahan APT pada sesi live baru akan hilang setelah reboot. Modul dasar SquashFS bersifat read-only, jadi mengganti ISO atau modul dengan rilis MiniOS yang lebih baru dan tepercaya sering kali menjadi cara paling bersih untuk memperbarui sistem live dasar. Setelah konversi native, pemeliharaan keamanan paket cukup mengikuti workflow APT Debian seperti biasa untuk sistem yang sudah terpasang."
         ]
       ]
     ],
@@ -1022,7 +1022,7 @@
         ],
         [
           "text",
-          " untuk alur kerja APT, modul, image, dan kernel yang terpisah."
+          " untuk workflow APT, modul, image, dan kernel yang terpisah."
         ]
       ]
     ],
@@ -1085,7 +1085,7 @@
               [
                 [
                   "text",
-                  "Hindari gangguan penulisan atau mematikan perangkat saat proses berlangsung."
+                  "Hindari interupsi proses penulisan atau mematikan perangkat."
                 ]
               ]
             ]
@@ -1194,12 +1194,12 @@
       [
         [
           "text",
-          "Sebelum membuang perangkat, hapus secara aman sesuai dengan teknologi penyimpanan dan tingkat sensitivitas data. Menghapus file atau memformat ulang saja belum tentu membuat data lama tidak dapat dipulihkan."
+          "Sebelum membuang perangkat, hapus seluruh data di dalamnya secara aman sesuai dengan teknologi penyimpanan dan tingkat sensitivitas data. Menghapus file atau memformat ulang saja belum tentu membuat data lama tidak dapat dipulihkan."
         ]
       ]
     ]
   ],
-  "plain_text": "Keamanan\nMiniOS dapat dijalankan sebagai sistem pemulihan live, sistem portabel persisten, atau instalasi native. Kontrol yang sesuai bergantung pada cara sistem digunakan.\nLindungi sesi yang sedang berjalan, data persisten, media boot, dan konfigurasi apa pun yang diterapkan saat startup.\nMulai dengan media tepercaya\nUnduh MiniOS dari sumber resmi dan verifikasi file ISO sebelum menulisnya.\nIkuti panduan Memverifikasi unduhan dan bandingkan hasilnya sebelum melakukan booting atau instalasi. Verifikasi mendeteksi unduhan yang rusak atau telah diganti; namun tidak membuktikan bahwa perangkat USB yang sudah dimodifikasi aman.\nJaga perangkat USB tetap dalam kendali fisik Anda. Password firmware dan pengaturan urutan boot yang dibatasi dapat mengurangi risiko booting tidak sah secara kasual, namun tidak mengenkripsi file di perangkat. Secure Boot dapat memberikan perlindungan tambahan pada proses boot untuk image dan perangkat keras yang mendukungnya; periksa perilaku rilis dan firmware sebenarnya, jangan hanya mengasumsikan dukungan.\nGanti kredensial default\nLive image MiniOS yang belum dikustomisasi menggunakan kredensial yang dipublikasikan live / evil dan root / toor, dengan login otomatis dan akses administratif tanpa password dalam konfigurasi yang berorientasi pada kemudahan. Siapa pun yang dapat mengakses sistem mungkin dapat menggunakan kredensial tersebut, terutama jika SSH aktif.\nSebelum terhubung ke jaringan yang tidak tepercaya:\nAtur password unik untuk user dan root di Konfigurator MiniOS.\nPilih profil keamanan yang sesuai dan tinjau setiap kontrol yang terisi.\nNonaktifkan SSH dan XRDP kecuali akses jarak jauh memang dibutuhkan.\nReboot ke sesi baru saat mengubah pengaturan akun satu kali atau pengaturan keamanan, lalu verifikasi perilaku login dan hak akses setelahnya.\nKonfigurator menyimpan hash password terenkripsi, bukan password dalam bentuk teks. Jika mengubah akun persisten atau native yang sudah dibuat, gunakan passwd untuk user saat ini dan sudo passwd root untuk root.\nGunakan kontrol keamanan Konfigurator MiniOS\nMiniOS Konfigurator MiniOS menyediakan tiga profil. Setiap profil mengisi pengaturan secara spesifik; nama profil itu sendiri tidak disimpan sebagai kunci konfigurasi runtime, dan setiap pengaturan tetap dapat diedit secara independen.\nProfil | Perilaku utama\nconvenient | Kompatibel autologin, sudo dan PolicyKit tanpa sandi, SSH root dan sandi diizinkan, XRDP/X11/lock screen lebih longgar, petunjuk sandi ditampilkan.\nbalanced | Tanpa autologin, sudo dan PolicyKit memerlukan sandi, login SSH root ditolak namun SSH sandi diizinkan, XRDP/X11/lock screen diperketat.\nstrict | Tanpa autologin, sudo dan PolicyKit memerlukan sandi, login SSH root dan sandi ditolak, XRDP dinonaktifkan, X11/lock screen diperketat, petunjuk sandi disembunyikan.\nDefault installer berbeda tergantung mode instalasi: instalasi live menggunakan convenient, sedangkan instalasi native menggunakan balanced. Ini adalah default, bukan rekomendasi untuk setiap model ancaman.\nPengaturan yang sama tersedia sebagai kunci konfigurasi terdokumentasi, termasuk LIVE_SUDO_MODE, LIVE_POLKIT_MODE, LIVE_SSH_PERMIT_ROOT_LOGIN, LIVE_SSH_PASSWORD_AUTHENTICATION, LIVE_XRDP_MODE, LIVE_X11_MODE, LIVE_ISSUE_PASSWORD_HINTS, dan LIVE_LOCKSCREEN_MODE. Utamakan penggunaan kunci ini atau Konfigurator MiniOS daripada mengedit file sudoers, PolicyKit, display-manager, atau SSH yang dihasilkan. Lihat Berkas konfigurasi.\nUntuk perilaku penyimpanan dan penerapan pengaturan, lihat MiniOS Konfigurator MiniOS.\nPembuatan akun, sandi, LIVE_CONFIG_NOROOT, dan postur keamanan adalah pengaturan satu kali yang digunakan saat sesi baru dibuat. Konfigurator MiniOS menampilkan penerapan untuk setiap kontrol. Pengaturan yang dapat dikonfigurasi ulang seperti layanan akan diterapkan setelah reboot.\nAmankan akses jarak jauh\nSSH dapat diaktifkan pada image MiniOS untuk keperluan pemulihan. Pada jaringan di mana pengguna lain tidak tepercaya, anggap kredensial default yang dipublikasikan terekspos sampai Anda memastikan sebaliknya.\nJika SSH tidak diperlukan, tambahkan ssh ke DISABLE_SERVICES di Configurator dan hapus dari ENABLE_SERVICES jika ada.\nJika SSH diperlukan, tolak login root dengan LIVE_SSH_PERMIT_ROOT_LOGIN=false.\nUtamakan autentikasi kunci. Pastikan login dengan kunci berhasil di koneksi terpisah sebelum mengatur LIVE_SSH_PASSWORD_AUTHENTICATION=false.\nBatasi akses masuk dengan firewall jaringan atau router, dan jangan mengekspos sistem pemulihan portabel langsung ke Internet.\nTinjau XRDP secara terpisah. Profil ketat akan menonaktifkannya; profil seimbang memperketatnya namun tidak selalu menonaktifkan layanannya.\nParameter boot dapat menimpa nilai file konfigurasi. Periksa perilaku layanan yang tidak terduga dengan Parameter boot.\nEnkripsi data persisten\nData persisten native, DynFileFS, dan raw yang tidak dienkripsi dapat dibaca oleh siapa pun yang mendapatkan perangkat. Penginstal MiniOS dapat mengonfigurasi kontainer LUKS terenkripsi untuk sesi live ketika initrd sumber mendukung LUKS. Initrd akan membuat changes.luks pada boot pertama dan meminta frasa sandinya; penginstal tidak menerima atau menyimpan frasa sandi tersebut.\nPersistensi LUKS melindungi isi kontainer selama kontainer tersebut tertutup. Ini tidak melindungi data setelah kontainer dibuka, file boot yang tidak dienkripsi, file yang disalin ke luar kontainer, atau filesystem root native. Persistensi sesi LUKS bukanlah enkripsi root native. Gunakan frasa sandi yang kuat dan simpan cadangan yang telah diuji.\nLihat Penginstal MiniOS dan Manajemen sesi.\nTerapkan pembaruan secara sengaja\nSegarkan metadata paket dan instal pembaruan keamanan Debian pada sesi live persisten atau instalasi native menggunakan alur kerja APT seperti biasa. Perubahan APT pada sesi live baru akan hilang setelah reboot. Modul dasar SquashFS bersifat read-only, sehingga mengganti ISO atau modul dengan rilis MiniOS yang lebih baru dan tepercaya sering kali merupakan cara paling bersih untuk memperbarui sistem live dasar.\nLihat Pembaruan perangkat lunak untuk alur kerja APT, modul, image, dan kernel yang terpisah.\nSebelum melakukan pembaruan besar:\nCadangkan file penting dan sesi persisten.\nPastikan ruang kosong yang cukup tersedia.\nHindari gangguan penulisan atau mematikan perangkat saat proses berlangsung.\nReboot dan verifikasi sistem yang telah diperbarui sebelum membuang media atau sesi yang sebelumnya sudah terbukti stabil.\nPerlakukan hook dan preseeding sebagai eksekusi kode\nOpsi boot hooks dan live-config hook dapat mengeksekusi file dari filesystem root, media boot, atau URL. Hook jarak jauh, hook media yang telah dimodifikasi, dan preseed yang belum ditinjau dapat berjalan dengan hak istimewa sistem. Gunakan hanya file yang telah ditinjau dari sumber tepercaya, utamakan distribusi yang terautentikasi, dan hindari hook jarak jauh di jaringan yang tidak tepercaya. Lihat live-config untuk urutan eksekusi dan lokasi yang didukung.\nCadangkan dan pensiunkan media dengan aman\nPersistensi bukanlah backup. Simpan salinan terpisah untuk file pengguna dan ekspor atau salin sesi saat masih sehat. Uji proses pemulihan di media yang berbeda.\nMatikan perangkat dengan benar sebelum melepas media penyimpanan yang dapat ditulis, dan sisakan ruang kosong untuk metadata sesi serta operasi filesystem.\nSebelum membuang perangkat, hapus secara aman sesuai dengan teknologi penyimpanan dan tingkat sensitivitas data. Menghapus file atau memformat ulang saja belum tentu membuat data lama tidak dapat dipulihkan.",
+  "plain_text": "Keamanan\nKontrol keamanan MiniOS dirancang untuk sistem live: sesi sementara, sesi persisten, media portabel, dan konfigurasi saat boot. Penginstal MiniOS juga dapat melakukan konversi native. Sistem hasil konversi akan mempertahankan lingkungan desktop dan identitas visual MiniOS yang dipilih, tetapi perangkat lunak khusus live MiniOS akan dihapus. Karena itu, amankan dan pelihara sistem tersebut menggunakan alat Debian standar, bukan sebagai mode live lain.\nLindungi sesi yang sedang berjalan, data persisten, media boot, dan setiap konfigurasi yang diterapkan saat startup.\nMulai dengan media tepercaya\nUnduh MiniOS dari sumber resmi dan verifikasi file ISO sebelum menulisnya.\nIkuti panduan Memverifikasi unduhan dan bandingkan hasilnya sebelum melakukan booting atau instalasi. Verifikasi mendeteksi unduhan yang rusak atau telah diganti; namun tidak membuktikan bahwa perangkat USB yang sudah dimodifikasi aman.\nJaga perangkat USB tetap dalam kendali fisik Anda. Kata sandi firmware dan pembatasan urutan boot dapat menghambat upaya boot tanpa izin yang sederhana, tetapi tidak mengenkripsi file di perangkat. Secure Boot dapat memberikan perlindungan tambahan pada proses boot untuk image dan perangkat keras yang mendukungnya; periksa dukungan pada rilis yang digunakan dan perilaku firmware yang sebenarnya, jangan hanya mengasumsikannya.\nGanti kredensial default\nImage live MiniOS yang belum dikustomisasi menggunakan kredensial yang dipublikasikan live / evil dan root / toor, dengan login otomatis dan akses administratif tanpa kata sandi pada konfigurasi yang berorientasi kenyamanan. Siapa pun yang dapat mengakses sistem mungkin dapat menggunakan kredensial tersebut, terutama jika SSH aktif.\nSebelum terhubung ke jaringan yang tidak tepercaya:\nAtur kata sandi unik untuk user dan root di Konfigurator MiniOS.\nPilih profil keamanan yang sesuai dan tinjau setiap kontrol yang terisi.\nNonaktifkan SSH dan XRDP kecuali akses jarak jauh diperlukan.\nReboot ke sesi baru saat mengubah pengaturan akun atau keamanan yang hanya diterapkan sekali, lalu verifikasi perilaku login dan hak akses yang dihasilkan.\nKonfigurator menyimpan hash kata sandi terenkripsi, bukan kata sandi dalam bentuk teks. Jika mengubah akun persisten yang sudah dibuat, gunakan passwd untuk user saat ini dan sudo passwd root untuk root. Setelah konversi native, gunakan alat manajemen akun Debian seperti biasa.\nGunakan kontrol keamanan Konfigurator\nKonfigurator MiniOS menyediakan tiga profil. Sebuah profil akan mengisi pengaturan konkret; nama profil itu sendiri tidak disimpan sebagai kunci konfigurasi runtime, dan setiap pengaturan tetap dapat diedit secara independen.\nProfil | Perilaku utama\nconvenient | Kompatibel dengan autologin, sudo dan PolicyKit tanpa kata sandi, login root melalui SSH dan autentikasi SSH dengan kata sandi diizinkan, pengaturan XRDP/X11/layar kunci dilonggarkan, petunjuk kata sandi ditampilkan.\nbalanced | Tanpa autologin, sudo dan PolicyKit memerlukan kata sandi, login root melalui SSH ditolak tetapi autentikasi SSH dengan kata sandi diizinkan, pengaturan XRDP/X11/layar kunci diperketat.\nstrict | Tanpa autologin, sudo dan PolicyKit memerlukan kata sandi, login root melalui SSH dan autentikasi SSH dengan kata sandi ditolak, XRDP dinonaktifkan, pengaturan X11/layar kunci diperketat, petunjuk kata sandi disembunyikan.\nDefault penginstal berbeda tergantung mode deployment: instalasi live menggunakan convenient, sedangkan konversi native dimulai dari balanced. Pengaturan native diterapkan saat konversi; setelah instalasi, gunakan konfigurasi keamanan Debian seperti biasa. Ini adalah default, bukan rekomendasi untuk setiap model ancaman.\nPengaturan yang sama tersedia sebagai kunci konfigurasi terdokumentasi, termasuk LIVE_SUDO_MODE, LIVE_POLKIT_MODE, LIVE_SSH_PERMIT_ROOT_LOGIN, LIVE_SSH_PASSWORD_AUTHENTICATION, LIVE_XRDP_MODE, LIVE_X11_MODE, LIVE_ISSUE_PASSWORD_HINTS, dan LIVE_LOCKSCREEN_MODE. Gunakan kunci ini atau Konfigurator daripada mengedit file sudoers, PolicyKit, display-manager, atau SSH yang dihasilkan. Lihat File konfigurasi.\nUntuk perilaku penyimpanan dan keberlakuan pengaturan, lihat Konfigurator MiniOS.\nPembuatan akun, kata sandi, LIVE_CONFIG_NOROOT, dan postur keamanan adalah pengaturan satu kali yang digunakan saat sesi baru dibuat. Konfigurator menunjukkan kapan setiap kontrol berlaku. Pengaturan yang dapat dikonfigurasi ulang seperti layanan akan diterapkan setelah reboot.\nAmankan akses jarak jauh\nSSH dapat diaktifkan pada image MiniOS untuk keperluan pemulihan. Pada jaringan di mana pengguna lain tidak tepercaya, anggap kredensial default yang dipublikasikan terekspos sampai Anda memastikan sebaliknya.\nJika SSH tidak diperlukan, tambahkan ssh ke DISABLE_SERVICES di Konfigurator dan hapus dari ENABLE_SERVICES jika ada.\nJika SSH diperlukan, tolak login root dengan LIVE_SSH_PERMIT_ROOT_LOGIN=false.\nUtamakan autentikasi kunci. Pastikan login dengan kunci berhasil di koneksi terpisah sebelum mengatur LIVE_SSH_PASSWORD_AUTHENTICATION=false.\nBatasi akses masuk dengan firewall jaringan atau router, dan jangan mengekspos sistem pemulihan portabel langsung ke Internet.\nTinjau XRDP secara terpisah. Profil ketat akan menonaktifkannya; profil seimbang memperketatnya namun tidak selalu menonaktifkan layanannya.\nParameter boot dapat menimpa nilai file konfigurasi. Periksa perilaku layanan yang tidak terduga dengan Parameter boot.\nEnkripsi data persisten\nData persisten native, DynFileFS, dan raw yang tidak dienkripsi dapat dibaca oleh siapa pun yang mendapatkan perangkat. Penginstal MiniOS dapat mengonfigurasi kontainer LUKS terenkripsi untuk sesi live ketika initrd sumber menandai dukungan LUKS. Initrd akan membuat changes.luks pada boot pertama dan meminta frasa sandinya; penginstal tidak menerima atau menyimpan frasa sandi tersebut.\nPersistensi LUKS melindungi isi kontainer selama kontainer tersebut tertutup. Ini tidak melindungi data setelah kontainer dibuka, file boot yang tidak dienkripsi, file yang disalin ke luar kontainer, atau filesystem root native. Persistensi sesi LUKS bukanlah enkripsi root native. Gunakan frasa sandi yang kuat dan simpan cadangan yang telah diuji.\nLihat Penginstal MiniOS dan Manajemen sesi.\nTerapkan pembaruan secara sengaja\nSegarkan metadata paket dan instal pembaruan keamanan Debian pada sesi live persisten menggunakan workflow APT seperti biasa jika memang diperlukan. Perubahan APT pada sesi live baru akan hilang setelah reboot. Modul dasar SquashFS bersifat read-only, jadi mengganti ISO atau modul dengan rilis MiniOS yang lebih baru dan tepercaya sering kali menjadi cara paling bersih untuk memperbarui sistem live dasar. Setelah konversi native, pemeliharaan keamanan paket cukup mengikuti workflow APT Debian seperti biasa untuk sistem yang sudah terpasang.\nLihat Pembaruan perangkat lunak untuk workflow APT, modul, image, dan kernel yang terpisah.\nSebelum melakukan pembaruan besar:\nCadangkan file penting dan sesi persisten.\nPastikan ruang kosong yang cukup tersedia.\nHindari interupsi proses penulisan atau mematikan perangkat.\nReboot dan verifikasi sistem yang telah diperbarui sebelum membuang media atau sesi yang sebelumnya sudah terbukti stabil.\nPerlakukan hook dan preseeding sebagai eksekusi kode\nOpsi boot hooks dan live-config hook dapat mengeksekusi file dari filesystem root, media boot, atau URL. Hook jarak jauh, hook media yang telah dimodifikasi, dan preseed yang belum ditinjau dapat berjalan dengan hak istimewa sistem. Gunakan hanya file yang telah ditinjau dari sumber tepercaya, utamakan distribusi yang terautentikasi, dan hindari hook jarak jauh di jaringan yang tidak tepercaya. Lihat live-config untuk urutan eksekusi dan lokasi yang didukung.\nCadangkan dan pensiunkan media dengan aman\nPersistensi bukanlah backup. Simpan salinan terpisah untuk file pengguna dan ekspor atau salin sesi saat masih sehat. Uji proses pemulihan di media yang berbeda.\nMatikan perangkat dengan benar sebelum melepas media penyimpanan yang dapat ditulis, dan sisakan ruang kosong untuk metadata sesi serta operasi filesystem.\nSebelum membuang perangkat, hapus seluruh data di dalamnya secara aman sesuai dengan teknologi penyimpanan dan tingkat sensitivitas data. Menghapus file atau memformat ulang saja belum tentu membuat data lama tidak dapat dipulihkan.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

@@ -1,9 +1,9 @@
 {
   "headings": [
     {
-      "anchor": "minios-penginstal-minios",
+      "anchor": "penginstal-minios",
       "level": 1,
-      "title": "MiniOS Penginstal MiniOS"
+      "title": "Penginstal MiniOS"
     },
     {
       "anchor": "sebelum-memulai",
@@ -50,11 +50,11 @@
     [
       "heading",
       1,
-      "minios-penginstal-minios",
+      "penginstal-minios",
       [
         [
           "text",
-          "MiniOS Penginstal MiniOS"
+          "Penginstal MiniOS"
         ]
       ]
     ],
@@ -64,7 +64,7 @@
       [
         [
           "text",
-          "MiniOS Penginstal MiniOS adalah wizard GTK dan backend command-line untuk melakukan deployment MiniOS dari sesi live MiniOS. Penginstal ini memasang ke disk target; ini berbeda dengan menulis ISO ke media bootable."
+          "Penginstal MiniOS adalah wizard GTK dan backend command-line untuk melakukan deployment sistem dari sesi live MiniOS yang sedang berjalan. Menulis atau menyalin MiniOS ke media yang dapat dilepas memang sudah merupakan metode instalasi; Penginstal MiniOS adalah alat deployment terkelola yang digunakan ketika Anda menginginkan tata letak target yang terkontrol, pengaturan persistensi, atau konversi native opsional."
         ]
       ]
     ],
@@ -131,42 +131,130 @@
       [
         [
           "text",
-          "Mode Live menyalin modul MiniOS terkompresi yang dipilih beserta aset boot. Hasilnya mempertahankan tata letak sistem live yang modular dan dapat menggunakan fitur persistensi sesi MiniOS."
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          "Mode Native mengekstrak modul yang dipilih ke filesystem root Linux konvensional, mengonfigurasi target, menginstal paket yang diperlukan, menghasilkan initramfs, dan memasang bootloader. Installer mendeteksi dukungan native dari image yang sedang dijalankan. Jika metadata kernel yang diperlukan dan kontrak arsitektur EFI tidak tersedia, mode kompatibilitas hanya mengizinkan instalasi live."
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          "Proses ini berbeda dengan menulis ISO secara mentah, setup multiboot file ISO Ventoy, atau alat live-media berbasis file. Lihat "
+          ""
         ],
         [
-          "link",
-          "/using-minios/Boot-Modes.md",
-          null,
+          "span",
+          "strong",
           [
             [
               "text",
-              "Mode Boot"
+              "Live mode"
             ]
           ]
         ],
         [
           "text",
-          " untuk batasan antara sistem live dan native."
+          " menyalin modul MiniOS terkompresi yang dipilih beserta aset boot. Hasilnya tetap MiniOS: tetap menggunakan tata letak live-system modular, konfigurasi boot MiniOS, workflow manajemen MiniOS, dan opsi persistensi sesi."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Native mode"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " membuat desktop Debian konvensional dari image MiniOS yang dipilih. Mode ini mengekstrak modul yang dipilih ke filesystem root yang dapat ditulis, mempertahankan lingkungan desktop dan aplikasi biasa yang dipilih, menghapus runtime live MiniOS dan utilitas khusus live, menginstal paket Debian yang diperlukan, menghasilkan initramfs konvensional, dan memasang bootloader. Penginstal akan mendeteksi dukungan native dari image yang sedang dijalankan. Jika metadata kernel yang dibutuhkan dan kontrak arsitektur EFI tidak tersedia, mode kompatibilitas hanya mengizinkan instalasi live."
+        ]
+      ]
+    ],
+    [
+      "admonition",
+      "warning",
+      "Mode native mengubah cara sistem dikelola",
+      [
+        [
+          "block",
+          "paragraph",
+          [
+            [
+              "text",
+              "Sistem yang terinstal tetap mempertahankan pengalaman desktop MiniOS yang sudah dikenal — tampilannya, lingkungan desktop yang dipilih, dan aplikasi biasa — namun tidak lagi menggunakan arsitektur live MiniOS. Selama proses konversi, penginstal akan menghapus paket "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "minios-*"
+                ]
+              ]
+            ],
+            [
+              "text",
+              " dan utilitas khusus live lainnya karena sesi, modul "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  ".sb"
+                ]
+              ]
+            ],
+            [
+              "text",
+              ", manajemen kernel modular, dan konfigurasi boot live tidak lagi berlaku. Setelah reboot, kelola sistem sebagai desktop Debian konvensional menggunakan APT, paket kernel Debian, initramfs normal, dan bootloader yang terpasang. Lihat "
+            ],
+            [
+              "link",
+              "/getting-started/About-MiniOS.md",
+              null,
+              [
+                [
+                  "text",
+                  "Tentang MiniOS"
+                ]
+              ]
+            ],
+            [
+              "text",
+              "."
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Deployment ini berbeda dengan menulis ISO mentah, setup multiboot file ISO Ventoy, atau instalasi live berbasis file. Lihat "
+        ],
+        [
+          "link",
+          "/installing-minios/Installation-Methods.md",
+          null,
+          [
+            [
+              "text",
+              "Metode instalasi"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk perbedaannya."
         ]
       ]
     ],
@@ -243,7 +331,7 @@
       [
         [
           "text",
-          "Installer grafis menawarkan pilihan penempatan berikut jika target memenuhi syarat:"
+          "Penginstal grafis menawarkan pilihan penempatan berikut saat target memenuhi syarat:"
         ]
       ]
     ],
@@ -264,7 +352,7 @@
               [
                 [
                   "text",
-                  "Hapus semua akan membuat tabel partisi baru dan menghapus seluruh data di disk target."
+                  "Erase all membuat tabel partisi baru dan menghapus semua data di disk target."
                 ]
               ]
             ]
@@ -280,7 +368,7 @@
               [
                 [
                   "text",
-                  "Ruang kosong menggunakan ruang tidak terpakai yang sesuai tanpa mengecilkan filesystem yang sudah ada."
+                  "Free space menggunakan ruang kosong yang tersedia tanpa mengecilkan filesystem yang sudah ada."
                 ]
               ]
             ]
@@ -296,7 +384,7 @@
               [
                 [
                   "text",
-                  "Berdampingan akan mengecilkan partisi ext2, ext3, ext4, atau NTFS terakhir yang memenuhi syarat dan tidak ter-mount. Tata letak yang kotor, ter-mount, bersarang, ambigu, atau tidak aman akan ditolak. Installer mungkin meminta izin sebelum mengunduh alat filesystem yang belum tersedia."
+                  "Alongside mengecilkan partisi ext2, ext3, ext4, atau NTFS terakhir yang memenuhi syarat dan tidak ter-mount. Tata letak yang kotor, ter-mount, nested, ambigu, atau tidak aman lainnya akan ditolak. Penginstal dapat meminta konfirmasi sebelum mengunduh alat filesystem yang belum tersedia."
                 ]
               ]
             ]
@@ -312,7 +400,7 @@
               [
                 [
                   "text",
-                  "Partisi manual hanya tersedia untuk instalasi native melalui GUI pada disk langsung yang memenuhi syarat. Perubahan akan disimpan sementara hingga konfirmasi akhir."
+                  "Manual partitioning hanya tersedia untuk konversi native di GUI pada disk langsung yang memenuhi syarat. Perubahan akan disimpan sementara hingga konfirmasi akhir."
                 ]
               ]
             ]
@@ -326,7 +414,7 @@
       [
         [
           "text",
-          "Tata letak boot otomatis yang didukung adalah BIOS/MBR, UEFI/MBR, dan UEFI/GPT. UEFI dapat digunakan dengan GPT atau MBR primer. BIOS hanya didukung pada MBR primer, bukan GPT. Tata letak preserve extended atau logical MBR tidak didukung."
+          "Tata letak boot otomatis yang didukung adalah BIOS/MBR, UEFI/MBR, dan UEFI/GPT. UEFI bekerja dengan layout GPT atau MBR primer. BIOS didukung pada MBR primer, bukan GPT. Layout MBR extended atau logical preserve tidak didukung."
         ]
       ]
     ],
@@ -336,7 +424,7 @@
       [
         [
           "text",
-          "Mode manual memungkinkan Anda membuat, menghapus, memformat, dan menggunakan kembali partisi; mengecilkan filesystem yang didukung dari ujungnya; menetapkan mount point, partisi sistem EFI, dan swap; serta membatalkan atau mereset perubahan yang disimpan sementara. Tidak mendukung LVM, RAID, root LUKS native, penyimpanan yang dipetakan atau bersarang, bcache, ZFS, atau pengeditan subvolume Btrfs. Persistensi sesi LUKS tidak mengenkripsi filesystem root native."
+          "Mode manual dapat membuat, menghapus, memformat, dan menggunakan kembali partisi; mengecilkan filesystem yang didukung dari ujungnya; menetapkan mount point, partisi sistem EFI, dan swap; serta membatalkan atau mereset perubahan yang telah disimpan sementara. Tidak mendukung LVM, RAID, root LUKS native, storage yang dipetakan atau nested, bcache, ZFS, atau pengeditan subvolume Btrfs. Persistensi sesi LUKS tidak mengenkripsi filesystem root native."
         ]
       ]
     ],
@@ -368,7 +456,7 @@
               [
                 [
                   "text",
-                  "Tata letak live dapat menggunakan ext2, ext4, Btrfs, FAT32, atau NTFS jika alat yang diperlukan telah terpasang."
+                  "Tata letak live dapat menggunakan ext2, ext4, Btrfs, FAT32, atau NTFS jika alat yang diperlukan sudah terpasang."
                 ]
               ]
             ]
@@ -384,7 +472,7 @@
               [
                 [
                   "text",
-                  "Filesystem root native dapat menggunakan ext2, ext4, atau Btrfs. Ext4 adalah default untuk penggunaan umum."
+                  "Filesystem root yang dibuat oleh konversi native dapat menggunakan ext2, ext4, atau Btrfs. Ext4 adalah default serbaguna."
                 ]
               ]
             ]
@@ -400,7 +488,7 @@
               [
                 [
                   "text",
-                  "Filesystem ext3 yang sudah ada dapat digunakan ulang atau dikecilkan jika didukung, namun ext3 tidak tersedia untuk format baru."
+                  "Filesystem ext3 yang sudah ada dapat digunakan ulang atau dikecilkan jika didukung, tetapi ext3 tidak ditawarkan untuk format baru."
                 ]
               ]
             ]
@@ -416,7 +504,7 @@
               [
                 [
                   "text",
-                  "FAT32 hanya mendukung file berukuran kurang dari 4 GiB dan hanya tersedia untuk tata letak live."
+                  "FAT32 terbatas pada file berukuran kurang dari 4 GiB dan hanya tersedia untuk tata letak live."
                 ]
               ]
             ]
@@ -432,7 +520,7 @@
               [
                 [
                   "text",
-                  "NTFS hanya tersedia untuk tata letak live, meskipun partisi NTFS yang memenuhi syarat dapat dikecilkan untuk penempatan berdampingan."
+                  "NTFS hanya tersedia untuk tata letak live, meskipun partisi NTFS yang memenuhi syarat dapat dikecilkan untuk penempatan alongside."
                 ]
               ]
             ]
@@ -467,7 +555,7 @@
       [
         [
           "text",
-          "Installer dapat mengatur lokal, zona waktu, keyboard, nama pengguna, kata sandi, grup pengguna, hostname, layanan, menu boot, dan pemilihan modul. Memilih modul MiniOS yang lebih tinggi akan otomatis menyertakan layer yang lebih rendah yang dibutuhkan."
+          "Penginstal dapat mengatur lokal, zona waktu, keyboard, nama pengguna, kata sandi, grup pengguna, hostname, layanan, menu boot, dan pemilihan modul. Memilih modul MiniOS yang lebih tinggi akan otomatis menyertakan layer yang lebih rendah yang diperlukan."
         ]
       ]
     ],
@@ -533,7 +621,7 @@
         ],
         [
           "text",
-          "; mode native menggunakan "
+          "; konversi native dimulai dari "
         ],
         [
           "span",
@@ -547,7 +635,7 @@
         ],
         [
           "text",
-          ". Kontrol SSH dan XRDP terpisah dari profil yang dipilih. Tinjau layanan akses jarak jauh sebelum koneksi jaringan pertama."
+          ". Kontrol SSH dan XRDP terpisah dari profil yang dipilih. Tinjau layanan akses jarak jauh sebelum koneksi jaringan pertama. Setelah konversi native, konfigurasi keamanan selanjutnya mengikuti workflow administrasi sistem Debian biasa."
         ]
       ]
     ],
@@ -557,7 +645,7 @@
       [
         [
           "text",
-          "Konfigurasi jaringan mencakup hostname dan DHCP kabel atau IPv4 statis. Installer tidak membuat atau mengubah profil Wi-Fi. Instalasi native dan berdampingan mungkin memerlukan akses jaringan, dengan persetujuan Anda, untuk mengunduh GRUB, EFI, initramfs, "
+          "Konfigurasi jaringan mencakup hostname dan DHCP kabel atau IPv4 statik. Penginstal tidak membuat atau mengubah profil Wi-Fi. Konversi native dan beberapa operasi alongside mungkin memerlukan akses jaringan, dengan persetujuan Anda, untuk mendapatkan paket GRUB, EFI, initramfs, "
         ],
         [
           "span",
@@ -571,7 +659,7 @@
         ],
         [
           "text",
-          ", atau paket resize filesystem sebelum perubahan disk dilakukan."
+          ", atau resize filesystem sebelum perubahan disk dilakukan."
         ]
       ]
     ],
@@ -613,7 +701,35 @@
               [
                 [
                   "text",
-                  "Persistensi native menyimpan perubahan langsung pada filesystem target yang kompatibel dengan POSIX. Opsi ini tidak tersedia pada FAT32 atau NTFS."
+                  "Mode persistensi "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "native"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " menyimpan perubahan sesi live langsung pada filesystem target yang kompatibel dengan POSIX. Meski namanya demikian, ini adalah "
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "backend persistensi live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " dan tidak berhubungan dengan instalasi native. Tidak tersedia pada FAT32 atau NTFS."
                 ]
               ]
             ]
@@ -629,7 +745,7 @@
               [
                 [
                   "text",
-                  "DynFileFS menggunakan kontainer yang dapat diperluas."
+                  "DynFileFS menggunakan kontainer yang dapat diperbesar."
                 ]
               ]
             ]
@@ -661,7 +777,7 @@
               [
                 [
                   "text",
-                  "LUKS menggunakan image terenkripsi yang dibuat oleh initrd saat boot pertama. Kata sandi diminta saat boot dan tidak pernah diterima atau disimpan oleh installer."
+                  "LUKS menggunakan image terenkripsi yang dibuat oleh initrd saat boot pertama. Kata sandi diminta saat boot dan tidak pernah diterima atau disimpan oleh penginstal."
                 ]
               ]
             ]
@@ -675,7 +791,7 @@
       [
         [
           "text",
-          "Mode kontainer secara default berukuran 4000 MiB. Kontainer Raw dan LUKS tidak dapat melebihi 4000 MiB pada FAT32; DynFileFS tidak terpengaruh oleh batas ukuran file tunggal tersebut. LUKS hanya tersedia jika initrd yang berjalan dan setiap initrd sumber yang disalin mendukung fitur kriptografi yang dibutuhkan."
+          "Mode kontainer default ke 4000 MiB. Kontainer Raw dan LUKS tidak dapat melebihi 4000 MiB pada FAT32; DynFileFS tidak terkena batas ukuran file tunggal tersebut. LUKS hanya ditawarkan jika initrd yang berjalan dan setiap initrd sumber yang disalin mendukung kriptografi yang diperlukan."
         ]
       ]
     ],
@@ -743,7 +859,7 @@
         ],
         [
           "text",
-          " untuk makna runtime dan persyaratan aktivasi."
+          " untuk arti dan syarat aktivasi saat runtime."
         ]
       ]
     ],
@@ -774,7 +890,7 @@
         ],
         [
           "text",
-          " ditujukan untuk otomatisasi, pengujian, dan pemulihan. Partisi manual dan pengaturan jaringan kabel interaktif hanya tersedia di GUI."
+          " ditujukan untuk otomasi, pengujian, dan pemulihan. Partisi manual dan pengaturan jaringan kabel interaktif tetap hanya tersedia di GUI."
         ]
       ]
     ],
@@ -784,7 +900,7 @@
       [
         [
           "text",
-          "Tampilkan daftar disk yang dikenali sebagai target instalasi:"
+          "Daftar disk yang dikenali sebagai target instalasi:"
         ]
       ]
     ],
@@ -833,7 +949,7 @@
         ],
         [
           "text",
-          " pada setiap contoh dengan disk target yang telah diverifikasi. Cetak rencana non-destruktif terlebih dahulu:"
+          " pada setiap contoh dengan disk target yang sudah diverifikasi. Cetak rencana non-destruktif terlebih dahulu:"
         ]
       ]
     ],
@@ -1269,7 +1385,7 @@
       [
         [
           "text",
-          "Jalankan instalasi sebenarnya hanya setelah memeriksa rencana, identitas target, dan hasil dry-run. "
+          "Jalankan instalasi nyata hanya setelah memeriksa rencana, identitas target, dan output dry-run. "
         ],
         [
           "span",
@@ -1534,7 +1650,7 @@
       [
         [
           "text",
-          "Untuk instalasi native ke ruang kosong yang sudah ada, gunakan opsi penyimpanan yang sama untuk perencanaan dan instalasi:"
+          "Jika Anda memang ingin melakukan konversi native ke ruang kosong yang ada, gunakan opsi storage yang sama untuk perencanaan dan instalasi:"
         ]
       ]
     ],
@@ -1923,7 +2039,7 @@
       [
         [
           "text",
-          "Mode native mungkin tidak muncul di bantuan CLI pada image yang tidak mendukung instalasi native. CLI juga menerima opsi konfigurasi untuk akun, lokal, zona waktu, keyboard, hostname, layanan, dan "
+          "Konversi native mungkin tidak muncul di bantuan CLI pada image yang tidak mendukung native-install. CLI juga menerima opsi konfigurasi untuk akun, lokal, zona waktu, keyboard, hostname, layanan, dan base "
         ],
         [
           "span",
@@ -1937,7 +2053,7 @@
         ],
         [
           "text",
-          " dasar. Periksa opsi yang tersedia pada image yang sedang berjalan:"
+          ". Periksa opsi pasti yang disediakan oleh image yang sedang berjalan:"
         ]
       ]
     ],
@@ -2008,7 +2124,7 @@
       [
         [
           "text",
-          "Hindari penggunaan "
+          "Hindari "
         ],
         [
           "span",
@@ -2036,12 +2152,12 @@
         ],
         [
           "text",
-          " di lingkungan bersama karena argumen command-line dalam bentuk plaintext dapat terlihat di riwayat shell dan daftar proses. Gunakan installer grafis atau alur kerja konfigurasi yang terlindungi sebagai alternatif."
+          " di lingkungan bersama karena argumen command-line dalam bentuk plaintext dapat terekspos di riwayat shell dan daftar proses. Gunakan penginstal grafis atau workflow konfigurasi yang terlindungi sebagai gantinya."
         ]
       ]
     ]
   ],
-  "plain_text": "MiniOS Penginstal MiniOS\nMiniOS Penginstal MiniOS adalah wizard GTK dan backend command-line untuk melakukan deployment MiniOS dari sesi live MiniOS. Penginstal ini memasang ke disk target; ini berbeda dengan menulis ISO ke media bootable.\nSebelum memulai\nPilihan target atau partisi yang salah dapat menyebabkan hilangnya data. Cadangkan file penting, lepaskan disk yang tidak diperlukan, dan identifikasi target berdasarkan path perangkat, model, dan kapasitas. Konfirmasi terakhir adalah titik akhir di mana instalasi masih bisa dibatalkan dengan aman.\nDisk yang berisi sistem live MiniOS yang sedang berjalan tidak akan muncul dalam pilihan target. Untuk panduan kapasitas secara umum, lihat Panduan kompatibilitas perangkat keras.\nMode instalasi\nMode Live menyalin modul MiniOS terkompresi yang dipilih beserta aset boot. Hasilnya mempertahankan tata letak sistem live yang modular dan dapat menggunakan fitur persistensi sesi MiniOS.\nMode Native mengekstrak modul yang dipilih ke filesystem root Linux konvensional, mengonfigurasi target, menginstal paket yang diperlukan, menghasilkan initramfs, dan memasang bootloader. Installer mendeteksi dukungan native dari image yang sedang dijalankan. Jika metadata kernel yang diperlukan dan kontrak arsitektur EFI tidak tersedia, mode kompatibilitas hanya mengizinkan instalasi live.\nProses ini berbeda dengan menulis ISO secara mentah, setup multiboot file ISO Ventoy, atau alat live-media berbasis file. Lihat Mode Boot untuk batasan antara sistem live dan native.\nMulai penginstal grafis\nBuka menu aplikasi, pilih Sistem, lalu pilih Penginstal MiniOS. Anda juga dapat menjalankannya dari terminal:\nsudo minios-installer\nWizard akan mengumpulkan mode instalasi, keamanan, lokasi, jaringan kabel, keyboard, akun, modul, penyimpanan, dan pengaturan boot. Tinjau geometri partisi secara detail dan ringkasan operasi sebelum menyetujui konfirmasi akhir yang bersifat destruktif.\nPenempatan dan tata letak boot\nInstaller grafis menawarkan pilihan penempatan berikut jika target memenuhi syarat:\nHapus semua akan membuat tabel partisi baru dan menghapus seluruh data di disk target.\nRuang kosong menggunakan ruang tidak terpakai yang sesuai tanpa mengecilkan filesystem yang sudah ada.\nBerdampingan akan mengecilkan partisi ext2, ext3, ext4, atau NTFS terakhir yang memenuhi syarat dan tidak ter-mount. Tata letak yang kotor, ter-mount, bersarang, ambigu, atau tidak aman akan ditolak. Installer mungkin meminta izin sebelum mengunduh alat filesystem yang belum tersedia.\nPartisi manual hanya tersedia untuk instalasi native melalui GUI pada disk langsung yang memenuhi syarat. Perubahan akan disimpan sementara hingga konfirmasi akhir.\nTata letak boot otomatis yang didukung adalah BIOS/MBR, UEFI/MBR, dan UEFI/GPT. UEFI dapat digunakan dengan GPT atau MBR primer. BIOS hanya didukung pada MBR primer, bukan GPT. Tata letak preserve extended atau logical MBR tidak didukung.\nMode manual memungkinkan Anda membuat, menghapus, memformat, dan menggunakan kembali partisi; mengecilkan filesystem yang didukung dari ujungnya; menetapkan mount point, partisi sistem EFI, dan swap; serta membatalkan atau mereset perubahan yang disimpan sementara. Tidak mendukung LVM, RAID, root LUKS native, penyimpanan yang dipetakan atau bersarang, bcache, ZFS, atau pengeditan subvolume Btrfs. Persistensi sesi LUKS tidak mengenkripsi filesystem root native.\nFilesystem\nTata letak live dapat menggunakan ext2, ext4, Btrfs, FAT32, atau NTFS jika alat yang diperlukan telah terpasang.\nFilesystem root native dapat menggunakan ext2, ext4, atau Btrfs. Ext4 adalah default untuk penggunaan umum.\nFilesystem ext3 yang sudah ada dapat digunakan ulang atau dikecilkan jika didukung, namun ext3 tidak tersedia untuk format baru.\nFAT32 hanya mendukung file berukuran kurang dari 4 GiB dan hanya tersedia untuk tata letak live.\nNTFS hanya tersedia untuk tata letak live, meskipun partisi NTFS yang memenuhi syarat dapat dikecilkan untuk penempatan berdampingan.\nRuang yang dibutuhkan mencakup data modul yang dipilih, aset boot, permintaan persistensi, dan cadangan filesystem sebesar 25 persen. Ruang EFI dan swap native dihitung secara terpisah.\nKonfigurasi dan keamanan\nInstaller dapat mengatur lokal, zona waktu, keyboard, nama pengguna, kata sandi, grup pengguna, hostname, layanan, menu boot, dan pemilihan modul. Memilih modul MiniOS yang lebih tinggi akan otomatis menyertakan layer yang lebih rendah yang dibutuhkan.\nProfil keamanan yang tersedia adalah convenient, balanced, dan strict. Mode live secara default menggunakan convenient; mode native menggunakan balanced. Kontrol SSH dan XRDP terpisah dari profil yang dipilih. Tinjau layanan akses jarak jauh sebelum koneksi jaringan pertama.\nKonfigurasi jaringan mencakup hostname dan DHCP kabel atau IPv4 statis. Installer tidak membuat atau mengubah profil Wi-Fi. Instalasi native dan berdampingan mungkin memerlukan akses jaringan, dengan persetujuan Anda, untuk mengunduh GRUB, EFI, initramfs, os-prober, atau paket resize filesystem sebelum perubahan disk dilakukan.\nPersistensi sesi live\nPersistensi hanya berlaku untuk instalasi live:\nPersistensi native menyimpan perubahan langsung pada filesystem target yang kompatibel dengan POSIX. Opsi ini tidak tersedia pada FAT32 atau NTFS.\nDynFileFS menggunakan kontainer yang dapat diperluas.\nRaw menggunakan image berukuran tetap.\nLUKS menggunakan image terenkripsi yang dibuat oleh initrd saat boot pertama. Kata sandi diminta saat boot dan tidak pernah diterima atau disimpan oleh installer.\nMode kontainer secara default berukuran 4000 MiB. Kontainer Raw dan LUKS tidak dapat melebihi 4000 MiB pada FAT32; DynFileFS tidak terpengaruh oleh batas ukuran file tunggal tersebut. LUKS hanya tersedia jika initrd yang berjalan dan setiap initrd sumber yang disalin mendukung fitur kriptografi yang dibutuhkan.\nOpsi boot yang dihasilkan menggunakan perchmode dan perchsize. Lihat Persistensi initrd dan Parameter boot untuk makna runtime dan persyaratan aktivasi.\nDeployment via command-line\nminios-deploy ditujukan untuk otomatisasi, pengujian, dan pemulihan. Partisi manual dan pengaturan jaringan kabel interaktif hanya tersedia di GUI.\nTampilkan daftar disk yang dikenali sebagai target instalasi:\nminios-deploy list-disks\nGanti /dev/sdb pada setiap contoh dengan disk target yang telah diverifikasi. Cetak rencana non-destruktif terlebih dahulu:\nminios-deploy plan /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000\nPratinjau perintah deployment yang sesuai tanpa menulis ke disk:\nsudo minios-deploy install /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000 \\\n  --security-profile balanced --dry-run\nJalankan instalasi sebenarnya hanya setelah memeriksa rencana, identitas target, dan hasil dry-run. --yes mengotorisasi perubahan destruktif:\nsudo minios-deploy install /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000 \\\n  --security-profile balanced --yes\nUntuk instalasi native ke ruang kosong yang sudah ada, gunakan opsi penyimpanan yang sama untuk perencanaan dan instalasi:\nminios-deploy plan /dev/sdb --mode native --placement free_space \\\n  --filesystem ext4 --boot-layout auto\nsudo minios-deploy install /dev/sdb --mode native --placement free_space \\\n  --filesystem ext4 --boot-layout auto --security-profile balanced \\\n  --download-packages --yes\nMode native mungkin tidak muncul di bantuan CLI pada image yang tidak mendukung instalasi native. CLI juga menerima opsi konfigurasi untuk akun, lokal, zona waktu, keyboard, hostname, layanan, dan config.conf dasar. Periksa opsi yang tersedia pada image yang sedang berjalan:\nminios-deploy install --help\nman minios-deploy\nHindari penggunaan --password dan --root-password di lingkungan bersama karena argumen command-line dalam bentuk plaintext dapat terlihat di riwayat shell dan daftar proses. Gunakan installer grafis atau alur kerja konfigurasi yang terlindungi sebagai alternatif.",
+  "plain_text": "Penginstal MiniOS\nPenginstal MiniOS adalah wizard GTK dan backend command-line untuk melakukan deployment sistem dari sesi live MiniOS yang sedang berjalan. Menulis atau menyalin MiniOS ke media yang dapat dilepas memang sudah merupakan metode instalasi; Penginstal MiniOS adalah alat deployment terkelola yang digunakan ketika Anda menginginkan tata letak target yang terkontrol, pengaturan persistensi, atau konversi native opsional.\nSebelum memulai\nPilihan target atau partisi yang salah dapat menyebabkan hilangnya data. Cadangkan file penting, lepaskan disk yang tidak diperlukan, dan identifikasi target berdasarkan path perangkat, model, dan kapasitas. Konfirmasi terakhir adalah titik akhir di mana instalasi masih bisa dibatalkan dengan aman.\nDisk yang berisi sistem live MiniOS yang sedang berjalan tidak akan muncul dalam pilihan target. Untuk panduan kapasitas secara umum, lihat Panduan kompatibilitas perangkat keras.\nMode instalasi\nLive mode menyalin modul MiniOS terkompresi yang dipilih beserta aset boot. Hasilnya tetap MiniOS: tetap menggunakan tata letak live-system modular, konfigurasi boot MiniOS, workflow manajemen MiniOS, dan opsi persistensi sesi.\nNative mode membuat desktop Debian konvensional dari image MiniOS yang dipilih. Mode ini mengekstrak modul yang dipilih ke filesystem root yang dapat ditulis, mempertahankan lingkungan desktop dan aplikasi biasa yang dipilih, menghapus runtime live MiniOS dan utilitas khusus live, menginstal paket Debian yang diperlukan, menghasilkan initramfs konvensional, dan memasang bootloader. Penginstal akan mendeteksi dukungan native dari image yang sedang dijalankan. Jika metadata kernel yang dibutuhkan dan kontrak arsitektur EFI tidak tersedia, mode kompatibilitas hanya mengizinkan instalasi live.\nMode native mengubah cara sistem dikelola\nSistem yang terinstal tetap mempertahankan pengalaman desktop MiniOS yang sudah dikenal — tampilannya, lingkungan desktop yang dipilih, dan aplikasi biasa — namun tidak lagi menggunakan arsitektur live MiniOS. Selama proses konversi, penginstal akan menghapus paket minios-* dan utilitas khusus live lainnya karena sesi, modul .sb, manajemen kernel modular, dan konfigurasi boot live tidak lagi berlaku. Setelah reboot, kelola sistem sebagai desktop Debian konvensional menggunakan APT, paket kernel Debian, initramfs normal, dan bootloader yang terpasang. Lihat Tentang MiniOS.\nDeployment ini berbeda dengan menulis ISO mentah, setup multiboot file ISO Ventoy, atau instalasi live berbasis file. Lihat Metode instalasi untuk perbedaannya.\nMulai penginstal grafis\nBuka menu aplikasi, pilih Sistem, lalu pilih Penginstal MiniOS. Anda juga dapat menjalankannya dari terminal:\nsudo minios-installer\nWizard akan mengumpulkan mode instalasi, keamanan, lokasi, jaringan kabel, keyboard, akun, modul, penyimpanan, dan pengaturan boot. Tinjau geometri partisi secara detail dan ringkasan operasi sebelum menyetujui konfirmasi akhir yang bersifat destruktif.\nPenempatan dan tata letak boot\nPenginstal grafis menawarkan pilihan penempatan berikut saat target memenuhi syarat:\nErase all membuat tabel partisi baru dan menghapus semua data di disk target.\nFree space menggunakan ruang kosong yang tersedia tanpa mengecilkan filesystem yang sudah ada.\nAlongside mengecilkan partisi ext2, ext3, ext4, atau NTFS terakhir yang memenuhi syarat dan tidak ter-mount. Tata letak yang kotor, ter-mount, nested, ambigu, atau tidak aman lainnya akan ditolak. Penginstal dapat meminta konfirmasi sebelum mengunduh alat filesystem yang belum tersedia.\nManual partitioning hanya tersedia untuk konversi native di GUI pada disk langsung yang memenuhi syarat. Perubahan akan disimpan sementara hingga konfirmasi akhir.\nTata letak boot otomatis yang didukung adalah BIOS/MBR, UEFI/MBR, dan UEFI/GPT. UEFI bekerja dengan layout GPT atau MBR primer. BIOS didukung pada MBR primer, bukan GPT. Layout MBR extended atau logical preserve tidak didukung.\nMode manual dapat membuat, menghapus, memformat, dan menggunakan kembali partisi; mengecilkan filesystem yang didukung dari ujungnya; menetapkan mount point, partisi sistem EFI, dan swap; serta membatalkan atau mereset perubahan yang telah disimpan sementara. Tidak mendukung LVM, RAID, root LUKS native, storage yang dipetakan atau nested, bcache, ZFS, atau pengeditan subvolume Btrfs. Persistensi sesi LUKS tidak mengenkripsi filesystem root native.\nFilesystem\nTata letak live dapat menggunakan ext2, ext4, Btrfs, FAT32, atau NTFS jika alat yang diperlukan sudah terpasang.\nFilesystem root yang dibuat oleh konversi native dapat menggunakan ext2, ext4, atau Btrfs. Ext4 adalah default serbaguna.\nFilesystem ext3 yang sudah ada dapat digunakan ulang atau dikecilkan jika didukung, tetapi ext3 tidak ditawarkan untuk format baru.\nFAT32 terbatas pada file berukuran kurang dari 4 GiB dan hanya tersedia untuk tata letak live.\nNTFS hanya tersedia untuk tata letak live, meskipun partisi NTFS yang memenuhi syarat dapat dikecilkan untuk penempatan alongside.\nRuang yang dibutuhkan mencakup data modul yang dipilih, aset boot, permintaan persistensi, dan cadangan filesystem sebesar 25 persen. Ruang EFI dan swap native dihitung secara terpisah.\nKonfigurasi dan keamanan\nPenginstal dapat mengatur lokal, zona waktu, keyboard, nama pengguna, kata sandi, grup pengguna, hostname, layanan, menu boot, dan pemilihan modul. Memilih modul MiniOS yang lebih tinggi akan otomatis menyertakan layer yang lebih rendah yang diperlukan.\nProfil keamanan yang tersedia adalah convenient, balanced, dan strict. Mode live secara default menggunakan convenient; konversi native dimulai dari balanced. Kontrol SSH dan XRDP terpisah dari profil yang dipilih. Tinjau layanan akses jarak jauh sebelum koneksi jaringan pertama. Setelah konversi native, konfigurasi keamanan selanjutnya mengikuti workflow administrasi sistem Debian biasa.\nKonfigurasi jaringan mencakup hostname dan DHCP kabel atau IPv4 statik. Penginstal tidak membuat atau mengubah profil Wi-Fi. Konversi native dan beberapa operasi alongside mungkin memerlukan akses jaringan, dengan persetujuan Anda, untuk mendapatkan paket GRUB, EFI, initramfs, os-prober, atau resize filesystem sebelum perubahan disk dilakukan.\nPersistensi sesi live\nPersistensi hanya berlaku untuk instalasi live:\nMode persistensi native menyimpan perubahan sesi live langsung pada filesystem target yang kompatibel dengan POSIX. Meski namanya demikian, ini adalah backend persistensi live dan tidak berhubungan dengan instalasi native. Tidak tersedia pada FAT32 atau NTFS.\nDynFileFS menggunakan kontainer yang dapat diperbesar.\nRaw menggunakan image berukuran tetap.\nLUKS menggunakan image terenkripsi yang dibuat oleh initrd saat boot pertama. Kata sandi diminta saat boot dan tidak pernah diterima atau disimpan oleh penginstal.\nMode kontainer default ke 4000 MiB. Kontainer Raw dan LUKS tidak dapat melebihi 4000 MiB pada FAT32; DynFileFS tidak terkena batas ukuran file tunggal tersebut. LUKS hanya ditawarkan jika initrd yang berjalan dan setiap initrd sumber yang disalin mendukung kriptografi yang diperlukan.\nOpsi boot yang dihasilkan menggunakan perchmode dan perchsize. Lihat Persistensi initrd dan Parameter boot untuk arti dan syarat aktivasi saat runtime.\nDeployment via command-line\nminios-deploy ditujukan untuk otomasi, pengujian, dan pemulihan. Partisi manual dan pengaturan jaringan kabel interaktif tetap hanya tersedia di GUI.\nDaftar disk yang dikenali sebagai target instalasi:\nminios-deploy list-disks\nGanti /dev/sdb pada setiap contoh dengan disk target yang sudah diverifikasi. Cetak rencana non-destruktif terlebih dahulu:\nminios-deploy plan /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000\nPratinjau perintah deployment yang sesuai tanpa menulis ke disk:\nsudo minios-deploy install /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000 \\\n  --security-profile balanced --dry-run\nJalankan instalasi nyata hanya setelah memeriksa rencana, identitas target, dan output dry-run. --yes mengotorisasi perubahan destruktif:\nsudo minios-deploy install /dev/sdb --mode live --placement free_space \\\n  --filesystem ext4 --persistence-mode dynfilefs --persistence-size 8000 \\\n  --security-profile balanced --yes\nJika Anda memang ingin melakukan konversi native ke ruang kosong yang ada, gunakan opsi storage yang sama untuk perencanaan dan instalasi:\nminios-deploy plan /dev/sdb --mode native --placement free_space \\\n  --filesystem ext4 --boot-layout auto\nsudo minios-deploy install /dev/sdb --mode native --placement free_space \\\n  --filesystem ext4 --boot-layout auto --security-profile balanced \\\n  --download-packages --yes\nKonversi native mungkin tidak muncul di bantuan CLI pada image yang tidak mendukung native-install. CLI juga menerima opsi konfigurasi untuk akun, lokal, zona waktu, keyboard, hostname, layanan, dan base config.conf. Periksa opsi pasti yang disediakan oleh image yang sedang berjalan:\nminios-deploy install --help\nman minios-deploy\nHindari --password dan --root-password di lingkungan bersama karena argumen command-line dalam bentuk plaintext dapat terekspos di riwayat shell dan daftar proses. Gunakan penginstal grafis atau workflow konfigurasi yang terlindungi sebagai gantinya.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

@@ -725,7 +725,7 @@
         ],
         [
           "text",
-          " esegue una scrittura raw dell’immagine: copia la struttura ISO sull’intero dispositivo di destinazione. Non crea una partizione ext4 nello spazio inutilizzato, non crea una sessione di persistenza e non esegue il deployment dell’MiniOS Installatore MiniOS."
+          " esegue una scrittura raw dell’immagine: copia la struttura ISO sull’intero dispositivo di destinazione. Non crea una partizione ext4 nello spazio non utilizzato, non avvia una sessione di persistenza e non esegue il deploy dell’Installatore MiniOS."
         ]
       ]
     ],
@@ -735,7 +735,7 @@
       [
         [
           "text",
-          "La persistenza viene abilitata solo quando una voce di avvio o una riga di comando del kernel la richiede, e richiede comunque uno spazio di archiviazione scrivibile adeguato. Consulta "
+          "La persistenza viene abilitata solo se richiesta da una voce di avvio o dalla riga di comando del kernel, e richiede comunque uno spazio di archiviazione scrivibile adeguato. Consulta "
         ],
         [
           "link",
@@ -770,7 +770,7 @@
       ]
     ]
   ],
-  "plain_text": "dd\ndd è un'utilità da riga di comando versatile per la copia bit a bit dei dati tra file e dispositivi. È usato principalmente per scrivere immagini ISO su unità USB, creare backup e per il recupero dati.\nImportante\nAttenzione: La selezione errata del dispositivo comporterà la perdita dei dati! Controlla sempre attentamente l'unità selezionata ed esegui il backup dei dati importanti.\nRequisiti dell’unità\nDimensione dell’unità\nConsulta la Guida alla compatibilità hardware per i requisiti di sistema dettagliati e le dimensioni delle unità.\nPreparazione\nIdentifica la tua unità USB:\nLinux: lsblk o sudo fdisk -l\nmacOS: diskutil list\nSmonta l’unità:\nLinux: sudo umount /dev/sdX*\nmacOS: sudo diskutil unmountDisk /dev/diskX\nCreazione di una chiavetta USB avviabile\nLinux:\nsudo dd if=MiniOS.iso of=/dev/sdX bs=4M status=progress conv=fsync\nmacOS:\nsudo dd if=MiniOS.iso of=/dev/diskX bs=4m\nSostituisci:\nMiniOS.iso - percorso del tuo file ISO\n/dev/sdX - la tua unità USB (ad es. /dev/sdb)\nRisultato e persistenza\ndd esegue una scrittura raw dell’immagine: copia la struttura ISO sull’intero dispositivo di destinazione. Non crea una partizione ext4 nello spazio inutilizzato, non crea una sessione di persistenza e non esegue il deployment dell’MiniOS Installatore MiniOS.\nLa persistenza viene abilitata solo quando una voce di avvio o una riga di comando del kernel la richiede, e richiede comunque uno spazio di archiviazione scrivibile adeguato. Consulta Modalità di avvio e Persistenza Initrd prima di fare affidamento sulle modifiche salvate.",
+  "plain_text": "dd\ndd è un'utilità da riga di comando versatile per la copia bit a bit dei dati tra file e dispositivi. È usato principalmente per scrivere immagini ISO su unità USB, creare backup e per il recupero dati.\nImportante\nAttenzione: La selezione errata del dispositivo comporterà la perdita dei dati! Controlla sempre attentamente l'unità selezionata ed esegui il backup dei dati importanti.\nRequisiti dell’unità\nDimensione dell’unità\nConsulta la Guida alla compatibilità hardware per i requisiti di sistema dettagliati e le dimensioni delle unità.\nPreparazione\nIdentifica la tua unità USB:\nLinux: lsblk o sudo fdisk -l\nmacOS: diskutil list\nSmonta l’unità:\nLinux: sudo umount /dev/sdX*\nmacOS: sudo diskutil unmountDisk /dev/diskX\nCreazione di una chiavetta USB avviabile\nLinux:\nsudo dd if=MiniOS.iso of=/dev/sdX bs=4M status=progress conv=fsync\nmacOS:\nsudo dd if=MiniOS.iso of=/dev/diskX bs=4m\nSostituisci:\nMiniOS.iso - percorso del tuo file ISO\n/dev/sdX - la tua unità USB (ad es. /dev/sdb)\nRisultato e persistenza\ndd esegue una scrittura raw dell’immagine: copia la struttura ISO sull’intero dispositivo di destinazione. Non crea una partizione ext4 nello spazio non utilizzato, non avvia una sessione di persistenza e non esegue il deploy dell’Installatore MiniOS.\nLa persistenza viene abilitata solo se richiesta da una voce di avvio o dalla riga di comando del kernel, e richiede comunque uno spazio di archiviazione scrivibile adeguato. Consulta Modalità di avvio e Persistenza Initrd prima di fare affidamento sulle modifiche salvate.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

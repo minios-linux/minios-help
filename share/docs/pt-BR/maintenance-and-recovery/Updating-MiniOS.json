@@ -16,9 +16,9 @@
       "title": "MiniOS live modular"
     },
     {
-      "anchor": "minios-nativo",
+      "anchor": "após-a-conversão-nativa",
       "level": 3,
-      "title": "MiniOS nativo"
+      "title": "Após a conversão nativa"
     },
     {
       "anchor": "migrando-para-uma-versão-minios-mais-recente",
@@ -322,11 +322,11 @@
     [
       "heading",
       3,
-      "minios-nativo",
+      "após-a-conversão-nativa",
       [
         [
           "text",
-          "MiniOS nativo"
+          "Após a conversão nativa"
         ]
       ]
     ],
@@ -336,7 +336,17 @@
       [
         [
           "text",
-          "Uma instalação nativa possui um sistema de arquivos raiz convencional gravável, então o APT opera da forma padrão do Debian. A manutenção de pacotes, portanto, é a manutenção comum via APT. Mesmo assim, MiniOS não define um caminho de atualização in-place entre versões MiniOS. Atualizar pacotes Debian não é o mesmo que reconstruir o sistema como uma versão MiniOS posterior."
+          "Uma instalação nativa criada pelo MiniOS é um desktop Debian convencional, em vez do sistema live modular MiniOS. Ela mantém a experiência familiar do desktop MiniOS, incluindo o ambiente de área de trabalho selecionado, identidade visual e aplicativos comuns, enquanto o software live específico para MiniOS é removido. O sistema resultante possui um sistema de arquivos raiz gravável: o APT atualiza os pacotes normalmente, o kernel é gerenciado por meio de pacotes Debian e o bootloader e o initramfs instalados utilizam o fluxo de trabalho convencional do Debian."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "O modelo de upgrade de versão do MiniOS não se aplica a esse sistema convertido. A identidade visual e os softwares de desktop comuns do MiniOS podem permanecer, enquanto a manutenção contínua segue o modelo normal do Debian, e não o fluxo de trabalho de módulos/sessões do MiniOS."
         ]
       ]
     ],
@@ -633,7 +643,7 @@
       ]
     ]
   ],
-  "plain_text": "Atualizando MiniOS\nMiniOS não possui um procedimento de atualização in-place suportado de uma versão MiniOS para outra. O sistema modular live é montado a partir de módulos SquashFS somente leitura, além de uma camada de sessão gravável, então alterar pacotes Debian no sistema em execução não substitui a própria versão MiniOS.\nUma nova versão MiniOS é uma nova instalação\nNão existe um equivalente MiniOS ao dist-upgrade que transforme uma cópia instalada ou persistente de uma versão MiniOS em outra versão. Migrar para uma versão MiniOS mais recente significa instalar essa versão e, em seguida, migrar os dados e configurações que você deseja manter.\nAPT é permitido\nMiniOS não bloqueia nem proíbe o uso do APT. Você pode instalar e atualizar pacotes Debian quando isso for útil:\nsudo apt update\nsudo apt upgrade\nMiniOS live modular\nEm uma sessão live MiniOS, o APT grava arquivos de pacotes e metadados de pacotes na camada gravável. Com persistência, essas alterações podem sobreviver a uma reinicialização. Os módulos .sb somente leitura abaixo dessa camada não são alterados; arquivos atualizados na sessão simplesmente sobrescrevem os arquivos dos módulos.\nIsso é manutenção de pacotes dentro dessa sessão, não uma atualização do MiniOS.\nTambém consome espaço de persistência e pode fazer a sessão diferir substancialmente da imagem publicada. Uma nova sessão ainda inicia a partir do conjunto de pacotes contido nos módulos MiniOS.\nNão altere as fontes do APT para outra versão do Debian e execute upgrade, full-upgrade ou dist-upgrade esperando obter uma versão MiniOS mais recente.\nIsso cria um estado de sistema misto; não reproduz o conjunto de módulos, arquivos de boot, seleção de firmware, pacotes MiniOS ou outras escolhas de uma versão MiniOS publicada.\nMiniOS nativo\nUma instalação nativa possui um sistema de arquivos raiz convencional gravável, então o APT opera da forma padrão do Debian. A manutenção de pacotes, portanto, é a manutenção comum via APT. Mesmo assim, MiniOS não define um caminho de atualização in-place entre versões MiniOS. Atualizar pacotes Debian não é o mesmo que reconstruir o sistema como uma versão MiniOS posterior.\nMigrando para uma versão MiniOS mais recente\nTrate uma nova versão MiniOS como um sistema separado:\nBaixe e verifique a nova imagem.\nFaça backup de arquivos importantes, configurações, módulos de usuário e sessões persistentes conforme descrito em Backup de MiniOS.\nInstale a nova versão usando o método de instalação apropriado.\nInicialize primeiro com uma sessão nova e verifique o hardware e os aplicativos necessários.\nMigre arquivos pessoais e configurações selecionadas. Onde o Session Manager puder exportar a sessão antiga, importe o arquivo compactado e deixe as verificações de compatibilidade rodarem, em vez de copiar manualmente o armazenamento da sessão ativa.\nReconstrua ou reinstale módulos personalizados quando não houver certeza de compatibilidade com a versão de destino.\nMantenha a instalação antiga ou o backup até testar a nova versão.\nNão misture módulos base, arquivos de boot, arquivos de kernel ou arquivos initramfs de versões MiniOS diferentes tentando fabricar uma atualização.\nMódulos e kernels são tarefas de manutenção separadas\nUm módulo .sb criado pelo usuário pode ser substituído ou reconstruído de forma independente quando isso for intencional. Isso altera uma camada de customização; não altera a versão MiniOS. Veja Gerenciando módulos.\nO kernel MiniOS também é gerenciado como um módulo de kernel coordenado, vmlinuz, e conjunto de initramfs. Use Gerenciando kernels para essa operação. Atualizar apenas um pacote linux-image com o APT não é o fluxo de trabalho de gerenciamento de kernel MiniOS, e alterar o kernel não atualiza a versão MiniOS.",
+  "plain_text": "Atualizando MiniOS\nMiniOS não possui um procedimento de atualização in-place suportado de uma versão MiniOS para outra. O sistema modular live é montado a partir de módulos SquashFS somente leitura, além de uma camada de sessão gravável, então alterar pacotes Debian no sistema em execução não substitui a própria versão MiniOS.\nUma nova versão MiniOS é uma nova instalação\nNão existe um equivalente MiniOS ao dist-upgrade que transforme uma cópia instalada ou persistente de uma versão MiniOS em outra versão. Migrar para uma versão MiniOS mais recente significa instalar essa versão e, em seguida, migrar os dados e configurações que você deseja manter.\nAPT é permitido\nMiniOS não bloqueia nem proíbe o uso do APT. Você pode instalar e atualizar pacotes Debian quando isso for útil:\nsudo apt update\nsudo apt upgrade\nMiniOS live modular\nEm uma sessão live MiniOS, o APT grava arquivos de pacotes e metadados de pacotes na camada gravável. Com persistência, essas alterações podem sobreviver a uma reinicialização. Os módulos .sb somente leitura abaixo dessa camada não são alterados; arquivos atualizados na sessão simplesmente sobrescrevem os arquivos dos módulos.\nIsso é manutenção de pacotes dentro dessa sessão, não uma atualização do MiniOS.\nTambém consome espaço de persistência e pode fazer a sessão diferir substancialmente da imagem publicada. Uma nova sessão ainda inicia a partir do conjunto de pacotes contido nos módulos MiniOS.\nNão altere as fontes do APT para outra versão do Debian e execute upgrade, full-upgrade ou dist-upgrade esperando obter uma versão MiniOS mais recente.\nIsso cria um estado de sistema misto; não reproduz o conjunto de módulos, arquivos de boot, seleção de firmware, pacotes MiniOS ou outras escolhas de uma versão MiniOS publicada.\nApós a conversão nativa\nUma instalação nativa criada pelo MiniOS é um desktop Debian convencional, em vez do sistema live modular MiniOS. Ela mantém a experiência familiar do desktop MiniOS, incluindo o ambiente de área de trabalho selecionado, identidade visual e aplicativos comuns, enquanto o software live específico para MiniOS é removido. O sistema resultante possui um sistema de arquivos raiz gravável: o APT atualiza os pacotes normalmente, o kernel é gerenciado por meio de pacotes Debian e o bootloader e o initramfs instalados utilizam o fluxo de trabalho convencional do Debian.\nO modelo de upgrade de versão do MiniOS não se aplica a esse sistema convertido. A identidade visual e os softwares de desktop comuns do MiniOS podem permanecer, enquanto a manutenção contínua segue o modelo normal do Debian, e não o fluxo de trabalho de módulos/sessões do MiniOS.\nMigrando para uma versão MiniOS mais recente\nTrate uma nova versão MiniOS como um sistema separado:\nBaixe e verifique a nova imagem.\nFaça backup de arquivos importantes, configurações, módulos de usuário e sessões persistentes conforme descrito em Backup de MiniOS.\nInstale a nova versão usando o método de instalação apropriado.\nInicialize primeiro com uma sessão nova e verifique o hardware e os aplicativos necessários.\nMigre arquivos pessoais e configurações selecionadas. Onde o Session Manager puder exportar a sessão antiga, importe o arquivo compactado e deixe as verificações de compatibilidade rodarem, em vez de copiar manualmente o armazenamento da sessão ativa.\nReconstrua ou reinstale módulos personalizados quando não houver certeza de compatibilidade com a versão de destino.\nMantenha a instalação antiga ou o backup até testar a nova versão.\nNão misture módulos base, arquivos de boot, arquivos de kernel ou arquivos initramfs de versões MiniOS diferentes tentando fabricar uma atualização.\nMódulos e kernels são tarefas de manutenção separadas\nUm módulo .sb criado pelo usuário pode ser substituído ou reconstruído de forma independente quando isso for intencional. Isso altera uma camada de customização; não altera a versão MiniOS. Veja Gerenciando módulos.\nO kernel MiniOS também é gerenciado como um módulo de kernel coordenado, vmlinuz, e conjunto de initramfs. Use Gerenciando kernels para essa operação. Atualizar apenas um pacote linux-image com o APT não é o fluxo de trabalho de gerenciamento de kernel MiniOS, e alterar o kernel não atualiza a versão MiniOS.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

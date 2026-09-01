@@ -725,7 +725,7 @@
         ],
         [
           "text",
-          " melakukan penulisan image mentah: ini menyalin tata letak ISO ke seluruh perangkat target. Proses ini tidak membuat partisi ext4 di ruang yang tidak terpakai, tidak membuat sesi persistensi, atau melakukan deployment MiniOS Penginstal MiniOS."
+          " melakukan penulisan image secara mentah: menyalin tata letak ISO ke seluruh perangkat target. Proses ini tidak membuat partisi ext4 di ruang yang tidak terpakai, tidak membuat sesi persistensi, maupun melakukan deployment Penginstal MiniOS."
         ]
       ]
     ],
@@ -735,7 +735,7 @@
       [
         [
           "text",
-          "Persistensi hanya diaktifkan ketika entri boot atau baris perintah kernel memintanya, dan tetap membutuhkan media penyimpanan yang dapat ditulis. Lihat "
+          "Persistensi hanya diaktifkan jika entri boot atau baris perintah kernel memintanya, dan tetap membutuhkan media penyimpanan yang dapat ditulis. Lihat "
         ],
         [
           "link",
@@ -765,12 +765,12 @@
         ],
         [
           "text",
-          " sebelum mengandalkan perubahan yang tersimpan."
+          " sebelum mengandalkan perubahan yang disimpan."
         ]
       ]
     ]
   ],
-  "plain_text": "dd\ndd adalah utilitas command-line serbaguna untuk menyalin data secara bit-per-bit antara file dan perangkat. Paling sering digunakan untuk menulis image ISO ke USB drive, membuat cadangan, dan pemulihan data.\nPenting\nPeringatan: Pemilihan perangkat yang salah akan menyebabkan kehilangan data! Selalu periksa kembali drive yang dipilih dan lakukan backup data penting.\nPersyaratan Drive\nUkuran Drive\nLihat Panduan Kompatibilitas Hardware untuk detail persyaratan sistem dan ukuran drive.\nPersiapan\nIdentifikasi USB drive Anda:\nLinux: lsblk atau sudo fdisk -l\nmacOS: diskutil list\nUnmount drive:\nLinux: sudo umount /dev/sdX*\nmacOS: sudo diskutil unmountDisk /dev/diskX\nMembuat USB Drive Bootable\nLinux:\nsudo dd if=MiniOS.iso of=/dev/sdX bs=4M status=progress conv=fsync\nmacOS:\nsudo dd if=MiniOS.iso of=/dev/diskX bs=4m\nGanti:\nMiniOS.iso - path ke file ISO Anda\n/dev/sdX - USB drive Anda (misal: /dev/sdb)\nHasil dan persistensi\ndd melakukan penulisan image mentah: ini menyalin tata letak ISO ke seluruh perangkat target. Proses ini tidak membuat partisi ext4 di ruang yang tidak terpakai, tidak membuat sesi persistensi, atau melakukan deployment MiniOS Penginstal MiniOS.\nPersistensi hanya diaktifkan ketika entri boot atau baris perintah kernel memintanya, dan tetap membutuhkan media penyimpanan yang dapat ditulis. Lihat Mode Boot dan Persistensi Initrd sebelum mengandalkan perubahan yang tersimpan.",
+  "plain_text": "dd\ndd adalah utilitas command-line serbaguna untuk menyalin data secara bit-per-bit antara file dan perangkat. Paling sering digunakan untuk menulis image ISO ke USB drive, membuat cadangan, dan pemulihan data.\nPenting\nPeringatan: Pemilihan perangkat yang salah akan menyebabkan kehilangan data! Selalu periksa kembali drive yang dipilih dan lakukan backup data penting.\nPersyaratan Drive\nUkuran Drive\nLihat Panduan Kompatibilitas Hardware untuk detail persyaratan sistem dan ukuran drive.\nPersiapan\nIdentifikasi USB drive Anda:\nLinux: lsblk atau sudo fdisk -l\nmacOS: diskutil list\nUnmount drive:\nLinux: sudo umount /dev/sdX*\nmacOS: sudo diskutil unmountDisk /dev/diskX\nMembuat USB Drive Bootable\nLinux:\nsudo dd if=MiniOS.iso of=/dev/sdX bs=4M status=progress conv=fsync\nmacOS:\nsudo dd if=MiniOS.iso of=/dev/diskX bs=4m\nGanti:\nMiniOS.iso - path ke file ISO Anda\n/dev/sdX - USB drive Anda (misal: /dev/sdb)\nHasil dan persistensi\ndd melakukan penulisan image secara mentah: menyalin tata letak ISO ke seluruh perangkat target. Proses ini tidak membuat partisi ext4 di ruang yang tidak terpakai, tidak membuat sesi persistensi, maupun melakukan deployment Penginstal MiniOS.\nPersistensi hanya diaktifkan jika entri boot atau baris perintah kernel memintanya, dan tetap membutuhkan media penyimpanan yang dapat ditulis. Lihat Mode Boot dan Persistensi Initrd sebelum mengandalkan perubahan yang disimpan.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
