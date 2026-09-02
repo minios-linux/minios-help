@@ -41,9 +41,9 @@
       "title": "Medienbaum"
     },
     {
-      "anchor": "verwandte-dokumentation",
+      "anchor": "zugehörige-dokumentation",
       "level": 2,
-      "title": "Verwandte Dokumentation"
+      "title": "Zugehörige Dokumentation"
     }
   ],
   "nodes": [
@@ -1108,18 +1108,18 @@
         ],
         [
           "text",
-          " sind Implementierungs-Mounts, keine zweite persistente Kopie dieses Baums."
+          " sind Implementierungs-Mounts und keine zweite persistente Kopie dieses Baums."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "verwandte-dokumentation",
+      "zugehörige-dokumentation",
       [
         [
           "text",
-          "Verwandte Dokumentation"
+          "Zugehörige Dokumentation"
         ]
       ]
     ],
@@ -1145,7 +1145,7 @@
                   [
                     [
                       "text",
-                      "Boot modes"
+                      "Boot-Modi"
                     ]
                   ]
                 ]
@@ -1168,7 +1168,7 @@
                   [
                     [
                       "text",
-                      "Initrd system discovery"
+                      "Initrd-Systemerkennung"
                     ]
                   ]
                 ]
@@ -1191,7 +1191,7 @@
                   [
                     [
                       "text",
-                      "Initrd module loading"
+                      "Initrd-Modulladen"
                     ]
                   ]
                 ]
@@ -1214,7 +1214,7 @@
                   [
                     [
                       "text",
-                      "Initrd persistence"
+                      "Initrd-Persistenz"
                     ]
                   ]
                 ]
@@ -1237,7 +1237,7 @@
                   [
                     [
                       "text",
-                      "Boot parameters"
+                      "Boot-Parameter"
                     ]
                   ]
                 ]
@@ -1260,7 +1260,7 @@
                   [
                     [
                       "text",
-                      "Boot menus"
+                      "Boot-Menüs"
                     ]
                   ]
                 ]
@@ -1283,7 +1283,7 @@
                   [
                     [
                       "text",
-                      "Configuration file"
+                      "Konfigurationsdatei"
                     ]
                   ]
                 ]
@@ -1306,7 +1306,7 @@
                   [
                     [
                       "text",
-                      "Session management"
+                      "Sitzungsverwaltung"
                     ]
                   ]
                 ]
@@ -1329,7 +1329,7 @@
                   [
                     [
                       "text",
-                      "Network boot"
+                      "Netzwerk-Boot"
                     ]
                   ]
                 ]
@@ -1347,12 +1347,12 @@
               [
                 [
                   "link",
-                  "/preparing-and-customizing/Managing-Modules.md",
+                  "/preparing-and-customizing/Managing-Modules.md#module-erstellen",
                   null,
                   [
                     [
                       "text",
-                      "Creating modules"
+                      "Module erstellen"
                     ]
                   ]
                 ]
@@ -1363,7 +1363,7 @@
       ]
     ]
   ],
-  "plain_text": "Systemarchitektur\nMiniOS startet ein schreibgeschütztes Betriebssystem, das aus SquashFS-Modulen zusammengesetzt ist, und fügt eine beschreibbare Schicht für die aktuelle Sitzung hinzu. Das initramfs ist dafür verantwortlich, das Medium zu finden, Module und Persistenz auszuwählen, das Root-Dateisystem zu erstellen, frühe Konfigurationen anzuwenden und die Kontrolle an das installierte Init-System zu übergeben.\nBoot-Erkennung\nDer BIOS- oder UEFI-Bootloader lädt einen Linux-Kernel und MiniOS initramfs von minios/boot/. Das initramfs erkennt dann den MiniOS-Datenbaum, der die Live-Module enthält. Eine Quelle kann lokal sein, interaktiv ausgewählt oder über einen unterstützten Netzwerkpfad bereitgestellt werden; ein lokales ISO wird per Loop-Mount eingebunden, bevor dessen Datenbaum verwendet wird. Die genaue Reihenfolge und akzeptierte from=-Formate sind unter Initrd-Systemerkennung dokumentiert.\nDie gleiche Erkennungsphase unterstützt HTTP-ISO- und PXE-Quellen. Optionales Netzwerk im Frühstart dient ausschließlich zum Laden von MiniOS über das Netzwerk (PXE / HTTP ISO). Es handelt sich dabei nicht um eine dauerhafte Netzwerkkonfiguration für die Sitzung. Siehe Netzwerk-Boot.\nNach der Erkennung kann MiniOS optional eine RAM-Kopie vorbereiten. Ob die Originalquelle weiterhin benötigt wird, hängt vom Kopiermodus, der Persistenz und dem erfolgreichen Trennen ab. Das Betriebsmodell finden Sie unter Boot-Modi.\nModulkombination\nJede .sb-Datei ist ein schreibgeschütztes SquashFS-Dateisystem. Eingebaute Module werden direkt unter minios/ gespeichert; zusätzliche Modulpfade können zur geordneten Zusammensetzung beitragen. Das initramfs wählt, ordnet und mountet die resultierenden schreibgeschützten Schichten. Kandidatenebenen, Basename-Ersetzung, Filter, benutzerdefinierte Bundle-Erweiterungen und Koordination mit dem laufenden Kernel sind unter Initrd-Modulladung beschrieben.\nEin typisches Xfce-Image enthält die folgenden geordneten Rollen, wobei genaue Namen und Anzahl vom Build und ausgelassenen Modulen für das jeweilige Ziel abhängen:\n00-core-<arch>.sb\n01-kernel-<version>-<arch>.sb\n02-firmware-<arch>.sb\n03-gui-base-<arch>.sb\n04-xfce-desktop-<arch>.sb\n05-apps-<arch>.sb or the next applicable module\nSpätere Module haben eine höhere Priorität und können Pfade ersetzen, die von früheren Modulen bereitgestellt werden. Ein Modul kann von Dateien in jedem niedriger nummerierten Modul abhängen, daher ist eine Menge von Moduldateien eine geordnete Komposition und keine Sammlung unabhängiger Pakete.\nAUFS und OverlayFS\nMiniOS verwendet ein Union-Dateisystem, um die Module und die beschreibbare Ebene als ein gemeinsames Root-Dateisystem darzustellen. Es wählt AUFS, wenn der laufende Kernel dies unterstützt, und greift andernfalls auf OverlayFS zurück. union=aufs fordert AUFS an, fällt aber dennoch auf OverlayFS zurück, wenn AUFS nicht verfügbar ist; union=overlayfs wählt OverlayFS aus.\nDie beiden Implementierungen unterscheiden sich in einem wichtigen Betriebsaspekt:\nAUFS startet mit dem beschreibbaren Zweig und fügt eingehängte Module als schreibgeschützte Zweige hinzu. MiniOS kann ein Modul im laufenden Root aktivieren oder deaktivieren, sofern das AUFS-Mount diese Operation unterstützt.\nOverlayFS erhält beim Einhängen des Root seine vollständige, geordnete lowerdir-Liste sowie ein upperdir und workdir. Die Menge der unteren Module kann durch den MiniOS-Modulmanager nicht im laufenden Betrieb geändert werden.\nDer MiniOS-Modulmanager trennt daher Jetzt aktiv, also die aktuell eingehängte Modulmenge, von Nächster Start, den durch aktuelle Medien und Bootregeln ausgewählten Modulen. Das Hinzufügen oder Entfernen eines dauerhaften Moduls wirkt sich normalerweise nur auf den nächsten Start aus. Das Erstellen oder Öffnen eines Moduls aktiviert es nicht. Die Aktivierung und Deaktivierung zur Laufzeit ist nur mit AUFS möglich.\nNachdem das Root-Dateisystem zusammengesetzt und die frühe Initialisierung abgeschlossen ist, verwendet das LiveKit-initrd pivot_root, behält das alte initrd für die Abschaltaufgaben bei und startet das Init des neuen Root. Der Dracut-Pfad bereitet dasselbe zusammengesetzte Root vor, überlässt aber den abschließenden switch_root Dracut. Siehe Initrd-Modulladen für die genaue Übergabegrenze.\nBeschreibbare Schicht und Sitzungen\nOhne Persistenz ist die beschreibbare Schicht speicherbasiert und verschwindet beim Herunterfahren. Mit Persistenz kann stattdessen eine nummerierte Sitzung mit einem unterstützten Speicher-Backend aktiviert werden. Auswahl, Kompatibilität, Aktivierungsfehler, Autorität des aktuellen Boots und Dauerhaftigkeit sind unter Initrd-Persistenz definiert.\nModus | Beschreibbarer Speicher | Hinweise\nnative | Dateien werden direkt im Sitzungsverzeichnis gespeichert | Erfordert ein beschreibbares POSIX-Dateisystem, das Linux-Metadaten erhält.\ndynfilefs | Erweiterbares ext4-Dateisystem, verteilt auf mehrere Backing-Dateien | Unterstützt POSIX-Dateisysteme sowie FAT32, NTFS oder exFAT-Medien.\nraw | Feste Größe changes.img mit ext4 | Unterstützt POSIX-Dateisysteme sowie FAT32, NTFS oder exFAT-Medien.\nluks | LUKS2-changes.luks mit ext4 | Erfordert cryptsetup und ein initramfs mit MiniOS-Verschlüsselungsunterstützung. Die Passphrase wird beim Booten abgefragt.\nsquashfs | Komprimierter changes.sb-Snapshot | Wird für die Nutzung in RAM entpackt; Speichern erstellt einen neuen Snapshot und ersetzt ihn atomar. Das Persistenz-Dateisystem muss beim Speichern Linux-Metadaten erhalten.\nDie aktive Sitzung, die für einen zukünftigen Resume ausgewählt wurde, und die tatsächlich für den aktuellen Boot autorisierte beschreibbare Schicht sind verwandte, aber unterschiedliche Zustände. Eine Änderung der zukünftigen Auswahl ersetzt nicht die laufende beschreibbare Schicht.\nSiehe Sitzungsverwaltung für Befehle zu Erstellung, Auswahl, Größenanpassung, Verschlüsselung, Konvertierung, Export und Wiederherstellung.\nKonfigurationspriorität\nDie Medienkonfiguration ist minios/config.conf, mit optionalen Fragmenten in minios/config.conf.d/. Die Laufzeitkopien sind /etc/live/config.conf und /etc/live/config.conf.d/ im zusammengesetzten Root.\nBeim Booten vergleicht MiniOS die Änderungszeiten und kopiert eine neuere Mediendatei in das Laufzeit-Root. Ist das Medium beschreibbar und die Laufzeitkopie neuer, wird sie zurück auf das Medium kopiert. Fragmentdateien werden in beide Richtungen nach Dateinamen synchronisiert. Wenn die Uhr seit der letzten Synchronisierung zurückgestellt wurde, vermeidet MiniOS das Ersetzen von Zeitstempeln und füllt nur fehlende Ziele auf.\nKernel-Befehlszeilenoptionen überschreiben die entsprechenden Werte aus der Laufzeitkonfiguration für diesen Boot. Daraus ergibt sich folgende Reihenfolge für eine explizit unterstützte Einstellung: Boot-Parameter, dann die synchronisierte Laufzeit-/Medienkonfiguration, dann der eingebaute Standardwert. Persistente Laufzeitänderungen können zur Medienkonfiguration werden, wenn die Quelle beschreibbar ist; schreibgeschützte ISO-Medien können dieses Update nicht erhalten.\nSiehe Konfigurationsdatei und live-config für die unterstützten Einstellungen.\nShutdown- und Speicher-Lebenszyklus\nBeim regulären Herunterfahren erhält das laufende System zunächst die Möglichkeit, Dienste und Sitzungsdaten zu schreiben. Eine SquashFS-Sitzung mit aktiviertem Speichern beim Herunterfahren wird vor dem Aushängen des Dateisystems neu aufgebaut und validiert. Das Speicher-Backend schreibt einen Abschlussmarker für genau die laufende Sitzung; das Shutdown-initramfs prüft diesen Marker und belässt die Sitzung im Fehlerfall als \"dirty\".\nDas Shutdown-initramfs trennt dann ungenutzte Loop-Devices, hängt das alte Root und die beschreibbare Schicht aus, markiert eine erfolgreiche Sitzung als sauber, hängt das Medium aus und schließt ein von MiniOS verwaltetes LUKS-Mapping. Optische Medien können danach vor dem Ausschalten oder Neustart ausgeworfen werden. Manuelle und periodische SquashFS-Sicherungen nutzen dasselbe Snapshot-Backend, aber nur die konfigurierte Shutdown-Policy blockiert die saubere Finalisierung bei fehlendem Shutdown-Save.\nMedienbaum\nEin aktuelles Image ist wie folgt organisiert. Optionale Verzeichnisse erscheinen nur, wenn die zugehörige Funktion Inhalte erstellt hat.\n/\n|-- .disk/                         ISO metadata\n|-- EFI/                           UEFI boot files\n`-- minios/\n    |-- 00-core-<arch>.sb          base userspace\n    |-- 01-kernel-<version>-<arch>.sb\n    |-- 02-firmware-<arch>.sb\n    |-- NN-<name>-<arch>.sb        ordered system modules\n    |-- boot/                      kernels, initramfs, GRUB, and Syslinux data\n    |-- changes/                   session metadata and numbered sessions\n    |-- modules/                   additional next-boot modules\n    |-- config.conf                main media configuration\n    |-- config.conf.d/             optional configuration fragments\n    |-- kernels/                   optional inactive kernel repository\n    |-- userdata/                  optional linked or bound user directories\n    `-- log/                       optional exported boot logs\nDie gebooteten Pfade unter /run/initramfs/memory/ sind Implementierungs-Mounts, keine zweite persistente Kopie dieses Baums.\nVerwandte Dokumentation\nBoot modes\nInitrd system discovery\nInitrd module loading\nInitrd persistence\nBoot parameters\nBoot menus\nConfiguration file\nSession management\nNetwork boot\nCreating modules",
+  "plain_text": "Systemarchitektur\nMiniOS startet ein schreibgeschütztes Betriebssystem, das aus SquashFS-Modulen zusammengesetzt ist, und fügt eine beschreibbare Schicht für die aktuelle Sitzung hinzu. Das initramfs ist dafür verantwortlich, das Medium zu finden, Module und Persistenz auszuwählen, das Root-Dateisystem zu erstellen, frühe Konfigurationen anzuwenden und die Kontrolle an das installierte Init-System zu übergeben.\nBoot-Erkennung\nDer BIOS- oder UEFI-Bootloader lädt einen Linux-Kernel und MiniOS initramfs von minios/boot/. Das initramfs erkennt dann den MiniOS-Datenbaum, der die Live-Module enthält. Eine Quelle kann lokal sein, interaktiv ausgewählt oder über einen unterstützten Netzwerkpfad bereitgestellt werden; ein lokales ISO wird per Loop-Mount eingebunden, bevor dessen Datenbaum verwendet wird. Die genaue Reihenfolge und akzeptierte from=-Formate sind unter Initrd-Systemerkennung dokumentiert.\nDie gleiche Erkennungsphase unterstützt HTTP-ISO- und PXE-Quellen. Optionales Netzwerk im Frühstart dient ausschließlich zum Laden von MiniOS über das Netzwerk (PXE / HTTP ISO). Es handelt sich dabei nicht um eine dauerhafte Netzwerkkonfiguration für die Sitzung. Siehe Netzwerk-Boot.\nNach der Erkennung kann MiniOS optional eine RAM-Kopie vorbereiten. Ob die Originalquelle weiterhin benötigt wird, hängt vom Kopiermodus, der Persistenz und dem erfolgreichen Trennen ab. Das Betriebsmodell finden Sie unter Boot-Modi.\nModulkombination\nJede .sb-Datei ist ein schreibgeschütztes SquashFS-Dateisystem. Eingebaute Module werden direkt unter minios/ gespeichert; zusätzliche Modulpfade können zur geordneten Zusammensetzung beitragen. Das initramfs wählt, ordnet und mountet die resultierenden schreibgeschützten Schichten. Kandidatenebenen, Basename-Ersetzung, Filter, benutzerdefinierte Bundle-Erweiterungen und Koordination mit dem laufenden Kernel sind unter Initrd-Modulladung beschrieben.\nEin typisches Xfce-Image enthält die folgenden geordneten Rollen, wobei genaue Namen und Anzahl vom Build und ausgelassenen Modulen für das jeweilige Ziel abhängen:\n00-core-<arch>.sb\n01-kernel-<version>-<arch>.sb\n02-firmware-<arch>.sb\n03-gui-base-<arch>.sb\n04-xfce-desktop-<arch>.sb\n05-apps-<arch>.sb or the next applicable module\nSpätere Module haben eine höhere Priorität und können Pfade ersetzen, die von früheren Modulen bereitgestellt werden. Ein Modul kann von Dateien in jedem niedriger nummerierten Modul abhängen, daher ist eine Menge von Moduldateien eine geordnete Komposition und keine Sammlung unabhängiger Pakete.\nAUFS und OverlayFS\nMiniOS verwendet ein Union-Dateisystem, um die Module und die beschreibbare Ebene als ein gemeinsames Root-Dateisystem darzustellen. Es wählt AUFS, wenn der laufende Kernel dies unterstützt, und greift andernfalls auf OverlayFS zurück. union=aufs fordert AUFS an, fällt aber dennoch auf OverlayFS zurück, wenn AUFS nicht verfügbar ist; union=overlayfs wählt OverlayFS aus.\nDie beiden Implementierungen unterscheiden sich in einem wichtigen Betriebsaspekt:\nAUFS startet mit dem beschreibbaren Zweig und fügt eingehängte Module als schreibgeschützte Zweige hinzu. MiniOS kann ein Modul im laufenden Root aktivieren oder deaktivieren, sofern das AUFS-Mount diese Operation unterstützt.\nOverlayFS erhält beim Einhängen des Root seine vollständige, geordnete lowerdir-Liste sowie ein upperdir und workdir. Die Menge der unteren Module kann durch den MiniOS-Modulmanager nicht im laufenden Betrieb geändert werden.\nDer MiniOS-Modulmanager trennt daher Jetzt aktiv, also die aktuell eingehängte Modulmenge, von Nächster Start, den durch aktuelle Medien und Bootregeln ausgewählten Modulen. Das Hinzufügen oder Entfernen eines dauerhaften Moduls wirkt sich normalerweise nur auf den nächsten Start aus. Das Erstellen oder Öffnen eines Moduls aktiviert es nicht. Die Aktivierung und Deaktivierung zur Laufzeit ist nur mit AUFS möglich.\nNachdem das Root-Dateisystem zusammengesetzt und die frühe Initialisierung abgeschlossen ist, verwendet das LiveKit-initrd pivot_root, behält das alte initrd für die Abschaltaufgaben bei und startet das Init des neuen Root. Der Dracut-Pfad bereitet dasselbe zusammengesetzte Root vor, überlässt aber den abschließenden switch_root Dracut. Siehe Initrd-Modulladen für die genaue Übergabegrenze.\nBeschreibbare Schicht und Sitzungen\nOhne Persistenz ist die beschreibbare Schicht speicherbasiert und verschwindet beim Herunterfahren. Mit Persistenz kann stattdessen eine nummerierte Sitzung mit einem unterstützten Speicher-Backend aktiviert werden. Auswahl, Kompatibilität, Aktivierungsfehler, Autorität des aktuellen Boots und Dauerhaftigkeit sind unter Initrd-Persistenz definiert.\nModus | Beschreibbarer Speicher | Hinweise\nnative | Dateien werden direkt im Sitzungsverzeichnis gespeichert | Erfordert ein beschreibbares POSIX-Dateisystem, das Linux-Metadaten erhält.\ndynfilefs | Erweiterbares ext4-Dateisystem, verteilt auf mehrere Backing-Dateien | Unterstützt POSIX-Dateisysteme sowie FAT32, NTFS oder exFAT-Medien.\nraw | Feste Größe changes.img mit ext4 | Unterstützt POSIX-Dateisysteme sowie FAT32, NTFS oder exFAT-Medien.\nluks | LUKS2-changes.luks mit ext4 | Erfordert cryptsetup und ein initramfs mit MiniOS-Verschlüsselungsunterstützung. Die Passphrase wird beim Booten abgefragt.\nsquashfs | Komprimierter changes.sb-Snapshot | Wird für die Nutzung in RAM entpackt; Speichern erstellt einen neuen Snapshot und ersetzt ihn atomar. Das Persistenz-Dateisystem muss beim Speichern Linux-Metadaten erhalten.\nDie aktive Sitzung, die für einen zukünftigen Resume ausgewählt wurde, und die tatsächlich für den aktuellen Boot autorisierte beschreibbare Schicht sind verwandte, aber unterschiedliche Zustände. Eine Änderung der zukünftigen Auswahl ersetzt nicht die laufende beschreibbare Schicht.\nSiehe Sitzungsverwaltung für Befehle zu Erstellung, Auswahl, Größenanpassung, Verschlüsselung, Konvertierung, Export und Wiederherstellung.\nKonfigurationspriorität\nDie Medienkonfiguration ist minios/config.conf, mit optionalen Fragmenten in minios/config.conf.d/. Die Laufzeitkopien sind /etc/live/config.conf und /etc/live/config.conf.d/ im zusammengesetzten Root.\nBeim Booten vergleicht MiniOS die Änderungszeiten und kopiert eine neuere Mediendatei in das Laufzeit-Root. Ist das Medium beschreibbar und die Laufzeitkopie neuer, wird sie zurück auf das Medium kopiert. Fragmentdateien werden in beide Richtungen nach Dateinamen synchronisiert. Wenn die Uhr seit der letzten Synchronisierung zurückgestellt wurde, vermeidet MiniOS das Ersetzen von Zeitstempeln und füllt nur fehlende Ziele auf.\nKernel-Befehlszeilenoptionen überschreiben die entsprechenden Werte aus der Laufzeitkonfiguration für diesen Boot. Daraus ergibt sich folgende Reihenfolge für eine explizit unterstützte Einstellung: Boot-Parameter, dann die synchronisierte Laufzeit-/Medienkonfiguration, dann der eingebaute Standardwert. Persistente Laufzeitänderungen können zur Medienkonfiguration werden, wenn die Quelle beschreibbar ist; schreibgeschützte ISO-Medien können dieses Update nicht erhalten.\nSiehe Konfigurationsdatei und live-config für die unterstützten Einstellungen.\nShutdown- und Speicher-Lebenszyklus\nBeim regulären Herunterfahren erhält das laufende System zunächst die Möglichkeit, Dienste und Sitzungsdaten zu schreiben. Eine SquashFS-Sitzung mit aktiviertem Speichern beim Herunterfahren wird vor dem Aushängen des Dateisystems neu aufgebaut und validiert. Das Speicher-Backend schreibt einen Abschlussmarker für genau die laufende Sitzung; das Shutdown-initramfs prüft diesen Marker und belässt die Sitzung im Fehlerfall als \"dirty\".\nDas Shutdown-initramfs trennt dann ungenutzte Loop-Devices, hängt das alte Root und die beschreibbare Schicht aus, markiert eine erfolgreiche Sitzung als sauber, hängt das Medium aus und schließt ein von MiniOS verwaltetes LUKS-Mapping. Optische Medien können danach vor dem Ausschalten oder Neustart ausgeworfen werden. Manuelle und periodische SquashFS-Sicherungen nutzen dasselbe Snapshot-Backend, aber nur die konfigurierte Shutdown-Policy blockiert die saubere Finalisierung bei fehlendem Shutdown-Save.\nMedienbaum\nEin aktuelles Image ist wie folgt organisiert. Optionale Verzeichnisse erscheinen nur, wenn die zugehörige Funktion Inhalte erstellt hat.\n/\n|-- .disk/                         ISO metadata\n|-- EFI/                           UEFI boot files\n`-- minios/\n    |-- 00-core-<arch>.sb          base userspace\n    |-- 01-kernel-<version>-<arch>.sb\n    |-- 02-firmware-<arch>.sb\n    |-- NN-<name>-<arch>.sb        ordered system modules\n    |-- boot/                      kernels, initramfs, GRUB, and Syslinux data\n    |-- changes/                   session metadata and numbered sessions\n    |-- modules/                   additional next-boot modules\n    |-- config.conf                main media configuration\n    |-- config.conf.d/             optional configuration fragments\n    |-- kernels/                   optional inactive kernel repository\n    |-- userdata/                  optional linked or bound user directories\n    `-- log/                       optional exported boot logs\nDie gebooteten Pfade unter /run/initramfs/memory/ sind Implementierungs-Mounts und keine zweite persistente Kopie dieses Baums.\nZugehörige Dokumentation\nBoot-Modi\nInitrd-Systemerkennung\nInitrd-Modulladen\nInitrd-Persistenz\nBoot-Parameter\nBoot-Menüs\nKonfigurationsdatei\nSitzungsverwaltung\nNetzwerk-Boot\nModule erstellen",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

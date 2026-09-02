@@ -61,24 +61,24 @@
       "title": "Créer un module de façon interactive"
     },
     {
-      "anchor": "créer-un-module-à-partir-dun-dossier",
+      "anchor": "créer-un-module-à-partir-dun-répertoire",
       "level": 3,
-      "title": "Créer un module à partir d’un dossier"
+      "title": "Créer un module à partir d’un répertoire"
     },
     {
-      "anchor": "capturer-les-modifications-de-la-session-courante",
+      "anchor": "capturer-les-modifications-de-la-session-en-cours",
       "level": 3,
-      "title": "Capturer les modifications de la session courante"
+      "title": "Capturer les modifications de la session en cours"
     },
     {
-      "anchor": "inspection-et-extraction-de-modules",
+      "anchor": "inspecter-et-extraire-des-modules",
       "level": 3,
-      "title": "Inspection et extraction de modules"
+      "title": "Inspecter et extraire des modules"
     },
     {
-      "anchor": "gérer-les-modules-en-cours-dexécution-et-au-prochain-démarrage",
+      "anchor": "gérer-les-modules-actifs-et-au-prochain-démarrage",
       "level": 3,
-      "title": "Gérer les modules en cours d’exécution et au prochain démarrage"
+      "title": "Gérer les modules actifs et au prochain démarrage"
     },
     {
       "anchor": "documentation-associée-1",
@@ -526,7 +526,7 @@
       [
         [
           "text",
-          "L’espace Créer suit un flux "
+          "L’espace de travail Créer utilise un flux "
         ],
         [
           "span",
@@ -568,7 +568,7 @@
         ],
         [
           "text",
-          " et "
+          ", puis "
         ],
         [
           "span",
@@ -582,7 +582,7 @@
         ],
         [
           "text",
-          ". Un module créé avec succès reste un fichier à l’emplacement de sortie. Il n’est pas activé ni ajouté automatiquement au prochain démarrage."
+          ". Un module créé avec succès reste un fichier à l’emplacement de sortie. Il n’est pas activé et n’est pas ajouté automatiquement au prochain démarrage."
         ]
       ]
     ],
@@ -592,7 +592,7 @@
       [
         [
           "text",
-          "Les méthodes disponibles sont :"
+          "Méthodes disponibles :"
         ]
       ]
     ],
@@ -627,7 +627,7 @@
                 ],
                 [
                   "text",
-                  " installe des paquets de dépôt et des fichiers locaux "
+                  " installe les paquets du dépôt et les fichiers locaux sélectionnés "
                 ],
                 [
                   "span",
@@ -641,7 +641,7 @@
                 ],
                 [
                   "text",
-                  " sélectionnés, ainsi que leurs dépendances, dans un environnement de construction MiniOS isolé. L’installation de paquets requiert une authentification administrateur."
+                  ", ainsi que leurs dépendances, dans un environnement de build isolé MiniOS. L’installation des paquets nécessite une authentification administrateur."
                 ]
               ]
             ]
@@ -671,7 +671,7 @@
                 ],
                 [
                   "text",
-                  " exécute un script vérifié sans terminal interactif. Un dossier de départ optionnel peut fournir des fichiers initiaux. Le script s’exécute avec les privilèges administrateur mais n’est pas conservé dans le module résultant."
+                  " exécute un script vérifié sans terminal interactif. Un dossier de préconfiguration optionnel peut fournir les fichiers initiaux. Le script s’exécute avec les droits administrateur mais n’est pas conservé dans le module généré."
                 ]
               ]
             ]
@@ -715,7 +715,7 @@
                 ],
                 [
                   "text",
-                  " lorsque vous avez terminé, puis créez le module, rouvrez le shell ou abandonnez les modifications. Fermer ou abandonner la session n’affecte pas le système en cours d’exécution."
+                  " lorsque vous avez terminé, puis créez le module, rouvrez le shell ou annulez les modifications. Fermer ou annuler la session ne modifie pas le système en cours d’exécution."
                 ]
               ]
             ]
@@ -745,7 +745,7 @@
                 ],
                 [
                   "text",
-                  " empaquette le contenu d’un répertoire existant. Le répertoire source n’est pas imbriqué dans le module. La conversion classique de dossier ne nécessite pas les droits root, ne modifie pas la source et normalise la propriété à root dans le module."
+                  " empaquette le contenu d’un répertoire existant. Le répertoire source n’est pas inclus dans le module. La conversion classique d’un dossier ne nécessite pas les droits root, ne modifie pas la source et normalise la propriété dans le module à root."
                 ]
               ]
             ]
@@ -769,13 +769,13 @@
                   [
                     [
                       "text",
-                      "Modifications de la session courante"
+                      "Modifications de la session en cours"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " capture les fichiers et suppressions éligibles de la couche de session inscriptible actuelle. Elle utilise la politique standard "
+                  " capture les fichiers et suppressions éligibles de la couche session modifiable en cours. Elle utilise la politique standard MiniOS "
                 ],
                 [
                   "span",
@@ -789,7 +789,7 @@
                 ],
                 [
                   "text",
-                  " de MiniOS, qui omet les journaux, caches, données de démarrage et chemins temporaires. Lire l’intégralité de la couche inscriptible nécessite une authentification administrateur."
+                  " qui exclut les journaux, caches, données de démarrage et chemins temporaires d’exécution. La lecture de la couche modifiable complète nécessite une authentification administrateur."
                 ]
               ]
             ]
@@ -803,7 +803,7 @@
       [
         [
           "text",
-          "Choisissez un nouveau chemin de sortie pour chaque flux de travail. Les fichiers existants ne sont jamais écrasés. La progression et les diagnostics restent visibles pendant l’exécution, et la capture de session peut être annulée."
+          "Choisissez un nouveau chemin de sortie pour chaque flux de travail. Les fichiers existants ne sont jamais écrasés. L’avancement et les diagnostics du backend restent visibles pendant l’opération, et la capture de la session en cours peut être annulée."
         ]
       ]
     ],
@@ -813,7 +813,7 @@
       [
         [
           "text",
-          "La capture de session courante vise une sauvegarde standard pratique, sans permettre la révision de chaque chemin inclus. Une couche inscriptible active peut contenir des données personnelles ou confidentielles. Pour des politiques explicites sur "
+          "La fonction Modifications de la session en cours est conçue pour une capture standard pratique, et non pour examiner chaque chemin inclus. Une couche modifiable active peut contenir des données personnelles ou confidentielles. Pour une capture explicite "
         ],
         [
           "span",
@@ -841,7 +841,7 @@
         ],
         [
           "text",
-          " ou des chemins sélectionnés, utilisez le flux de travail en ligne de commande "
+          ", ou des politiques de confidentialité par chemin, utilisez le flux de travail en ligne de commande "
         ],
         [
           "span",
@@ -859,12 +859,12 @@
         ],
         [
           "link",
-          "/preparing-and-customizing/Managing-Modules.md",
+          "/preparing-and-customizing/Managing-Modules.md#capturer-les-modifications-de-la-session-en-cours",
           null,
           [
             [
               "text",
-              "Création de modules"
+              "Capturer les modifications de la session en cours"
             ]
           ]
         ],
@@ -1020,7 +1020,7 @@
               [
                 [
                   "link",
-                  "/preparing-and-customizing/Managing-Modules.md",
+                  "/preparing-and-customizing/Managing-Modules.md#cr%C3%A9ation-de-modules",
                   null,
                   [
                     [
@@ -1048,7 +1048,7 @@
                   [
                     [
                       "text",
-                      "Chargement des modules Initrd"
+                      "Chargement des modules initrd"
                     ]
                   ]
                 ]
@@ -1089,7 +1089,7 @@
               [
                 [
                   "link",
-                  "/preparing-and-customizing/Creating-Custom-MiniOS-Images.md",
+                  "/preparing-and-customizing/Creating-Custom-MiniOS-Images.md#composer-des-images-iso-minios-en-ligne-de-commande",
                   null,
                   [
                     [
@@ -2463,7 +2463,7 @@
         ],
         [
           "text",
-          " copie un script d’installation dans un chroot privé, le rend exécutable, l’exécute en root sans terminal interactif, le supprime, puis capture les modifications du système de fichiers. Un script échoué ne produit aucun module."
+          " copie un script d’installation dans un chroot privé, le rend exécutable, l’exécute en tant que root sans terminal interactif, le supprime, puis capture les modifications du système de fichiers résultantes. Si le script échoue, aucun module n’est créé."
         ]
       ]
     ],
@@ -2680,7 +2680,7 @@
         ],
         [
           "text",
-          " copie tout le contenu source, y compris les fichiers cachés, dans la racine du module avant l’exécution du script. Organisez le dossier de départ comme un arbre de fichiers :"
+          " copie tous les fichiers sources, y compris les fichiers cachés, dans la racine du module avant l’exécution du script. Organisez le répertoire seed comme un arbre de fichiers :"
         ]
       ]
     ],
@@ -2710,7 +2710,7 @@
         ],
         [
           "text",
-          " si l’installation nécessite des invites ou des interventions manuelles."
+          " à la place si l’installation nécessite des interactions ou des actions manuelles."
         ]
       ]
     ],
@@ -2741,7 +2741,7 @@
         ],
         [
           "text",
-          " crée une union de compilation privée et ouvre un shell root à l’intérieur. Installez des paquets ou modifiez des fichiers, puis quittez le shell pour capturer les modifications :"
+          " crée une union de construction privée et ouvre un shell root à l’intérieur. Installez des paquets ou modifiez des fichiers, puis quittez le shell pour capturer les changements :"
         ]
       ]
     ],
@@ -2920,7 +2920,7 @@
       [
         [
           "text",
-          "Les commandes saisies dans le shell ne sont pas rejouées lors du chargement du module ; le module est un instantané de l’état du système de fichiers obtenu. L’historique du shell est supprimé du résultat. Si aucun nom n’est fourni, le nom généré utilise la date et l’heure courantes."
+          "Les commandes saisies dans le shell ne sont pas rejouées lors du chargement du module ; le module est un instantané de l’état du système de fichiers obtenu. L’historique du shell est supprimé du résultat. Si aucun nom n’est fourni, un nom généré utilise la date et l’heure actuelles."
         ]
       ]
     ],
@@ -2986,18 +2986,18 @@
         ],
         [
           "text",
-          " existe pour les interfaces graphiques protégées. Pour une utilisation normale en terminal, utilisez la commande interactive unique ci-dessus."
+          " existe pour les interfaces graphiques protégées. Pour une utilisation classique en terminal, utilisez la commande interactive unique indiquée ci-dessus."
         ]
       ]
     ],
     [
       "heading",
       3,
-      "créer-un-module-à-partir-dun-dossier",
+      "créer-un-module-à-partir-dun-répertoire",
       [
         [
           "text",
-          "Créer un module à partir d’un dossier"
+          "Créer un module à partir d’un répertoire"
         ]
       ]
     ],
@@ -3017,7 +3017,7 @@
         ],
         [
           "text",
-          " empaquette le contenu d’un dossier préparé dans un nouveau module. Les deux opérandes sont obligatoires :"
+          " emballe le contenu d’un répertoire préparé dans un nouveau module. Les deux paramètres sont obligatoires :"
         ]
       ]
     ],
@@ -3124,7 +3124,7 @@
       [
         [
           "text",
-          "La conversion classique ne nécessite pas les droits root. Elle ne modifie pas la source, normalise la propriété à root dans le module, rejette les nœuds de périphérique, sockets et FIFO, et n’écrase jamais la cible. Utilisez "
+          "La conversion standard ne nécessite pas les droits root. Elle laisse la source inchangée, normalise la propriété des fichiers à root dans le module, rejette les nœuds de périphérique, sockets et FIFOs, et n’écrase jamais la cible. Utilisez "
         ],
         [
           "span",
@@ -3152,18 +3152,18 @@
         ],
         [
           "text",
-          " uniquement si ces privilèges sont nécessaires."
+          " uniquement si ces comportements privilégiés sont nécessaires."
         ]
       ]
     ],
     [
       "heading",
       3,
-      "capturer-les-modifications-de-la-session-courante",
+      "capturer-les-modifications-de-la-session-en-cours",
       [
         [
           "text",
-          "Capturer les modifications de la session courante"
+          "Capturer les modifications de la session en cours"
         ]
       ]
     ],
@@ -3183,7 +3183,7 @@
         ],
         [
           "text",
-          " lit la couche inscriptible de référence d’une session MiniOS en cours. Cela nécessite les droits root car cette couche peut contenir des fichiers accessibles uniquement par root. L’emplacement des modifications est détecté automatiquement par défaut :"
+          " lit le calque modifiable de référence d’une session MiniOS en cours d’exécution. Cette opération requiert les droits root car ce calque peut contenir des fichiers accessibles uniquement à root. L’emplacement par défaut des modifications est détecté automatiquement :"
         ]
       ]
     ],
@@ -3304,7 +3304,7 @@
         ],
         [
           "text",
-          ", la politique historique de MiniOS omet les dossiers vides, caches, journaux, données de démarrage, chemins temporaires, pseudo-systèmes de fichiers et certains fichiers système ou de session. C’est pratique pour la création classique de modules, mais ce n’est pas une garantie de confidentialité explicite."
+          ", la politique historique MiniOS omet les répertoires vides, caches, journaux, données de démarrage, chemins d’exécution, pseudo-systèmes de fichiers, ainsi que certains fichiers de session et système. Ceci est pratique pour la création de modules traditionnelle, mais ne constitue pas une garantie explicite de confidentialité."
         ]
       ]
     ],
@@ -3314,7 +3314,7 @@
       [
         [
           "text",
-          "Les profils explicites sont :"
+          "Les profils explicites sont :"
         ]
       ]
     ],
@@ -3345,7 +3345,7 @@
                 ],
                 [
                   "text",
-                  " préserve les modifications représentables, y compris les données utilisateur, journaux, caches, fichiers d’identité, identifiants et métadonnées de suppression prises en charge. Il rejette les objets système non pris en charge au lieu de les perdre silencieusement."
+                  " conserve toutes les modifications représentables, y compris les données utilisateur, journaux, caches, fichiers d’identité, identifiants et métadonnées de suppression prises en charge. Les objets système de fichiers non pris en charge sont rejetés plutôt que perdus silencieusement."
                 ]
               ]
             ]
@@ -3371,7 +3371,7 @@
                 ],
                 [
                   "text",
-                  " utilise une liste blanche de chemins orientée logiciel. Il exclut les données personnelles et root, journaux, caches, identités, configuration réseau, identifiants, configuration système arbitraire et "
+                  " utilise une liste d’autorisation de chemins restreinte, orientée logiciel. Il exclut les données personnelles et root, journaux, caches, identités, configuration réseau, identifiants, toute configuration système arbitraire, ainsi que "
                 ],
                 [
                   "span",
@@ -3385,7 +3385,7 @@
                 ],
                 [
                   "text",
-                  ". Cela réduit l’exposition aux données sensibles mais ne garantit pas qu’un fichier logiciel autorisé ne contient aucune donnée secrète."
+                  ". Cela réduit l’exposition des données, mais ne garantit pas qu’un fichier logiciel autorisé ne contient aucune information sensible."
                 ]
               ]
             ]
@@ -3411,7 +3411,7 @@
                 ],
                 [
                   "text",
-                  " inclut uniquement les chemins relatifs validés à partir d’un fichier d’inventaire et de sélection. Les exclusions explicites sont prioritaires. Ce profil convient lorsque le module doit contenir un sous-ensemble contrôlé des modifications de session."
+                  " inclut uniquement les chemins relatifs validés à partir d’un fichier d’inventaire et de sélection. Les exclusions explicites priment. Ce profil est adapté si le module doit contenir un sous-ensemble contrôlé des modifications de session."
                 ]
               ]
             ]
@@ -3425,7 +3425,7 @@
       [
         [
           "text",
-          "Exemples :"
+          "Exemples :"
         ]
       ]
     ],
@@ -3712,7 +3712,7 @@
       [
         [
           "text",
-          "Un fichier de sélection a cette structure JSON stricte :"
+          "Un fichier de sélection respecte cette structure JSON stricte :"
         ]
       ]
     ],
@@ -3903,7 +3903,7 @@
       [
         [
           "text",
-          "Les chemins sont normalisés, non vides et relatifs à la racine des modifications. Générez et vérifiez d’abord l’inventaire ; chaque inclusion doit correspondre à une donnée d’inventaire. L’inventaire enregistre des métadonnées telles que le chemin, le type, la catégorie, la sensibilité et la taille, mais ne lit ni n’exporte le contenu des fichiers, cibles de liens symboliques ou valeurs secrètes. Les sorties et inventaires à profil explicite sont en mode "
+          "Les chemins sont normalisés, non vides et relatifs à la racine des modifications. Générez puis vérifiez l’inventaire en premier ; chaque inclusion doit correspondre à une donnée d’inventaire. L’inventaire enregistre des métadonnées telles que le chemin, le type, la catégorie, la sensibilité et la taille, mais ne lit ni n’exporte le contenu des fichiers, les cibles de liens symboliques ou les valeurs secrètes. Les sorties de profils explicites et les inventaires sont en mode "
         ],
         [
           "span",
@@ -3917,7 +3917,7 @@
         ],
         [
           "text",
-          " ; les modules en politique héritée sont en mode "
+          " ; les modules en politique héritée sont en mode "
         ],
         [
           "span",
@@ -3941,18 +3941,18 @@
       [
         [
           "text",
-          "La capture de session peut conserver les suppressions de fichiers prises en charge et l’opacité des dossiers pour le backend AUFS ou OverlayFS actif. Elle exclut les montages runtime, systèmes de fichiers imbriqués, données d’union et la sortie elle-même. Une cible existante n’est jamais remplacée."
+          "La capture de session peut conserver les suppressions de fichiers prises en charge et l’opacité des répertoires pour le backend AUFS ou OverlayFS actif. Les montages d’exécution, systèmes de fichiers imbriqués, gestion d’union et la sortie elle-même sont exclus. Une cible existante n’est jamais remplacée."
         ]
       ]
     ],
     [
       "heading",
       3,
-      "inspection-et-extraction-de-modules",
+      "inspecter-et-extraire-des-modules",
       [
         [
           "text",
-          "Inspection et extraction de modules"
+          "Inspecter et extraire des modules"
         ]
       ]
     ],
@@ -3962,7 +3962,7 @@
       [
         [
           "text",
-          "Inspectez un module sans le monter ni l’extraire :"
+          "Inspectez un module sans le monter ni l’extraire :"
         ]
       ]
     ],
@@ -4057,7 +4057,7 @@
       [
         [
           "text",
-          "L’inspection ne nécessite pas les droits root et fonctionne aussi hors d’une session MiniOS active."
+          "L’inspection ne nécessite pas les droits root et fonctionne également en dehors d’une session MiniOS en cours."
         ]
       ]
     ],
@@ -4067,7 +4067,7 @@
       [
         [
           "text",
-          "Extrayez un module dans un nouveau dossier :"
+          "Extrayez un module dans un nouveau répertoire :"
         ]
       ]
     ],
@@ -4114,7 +4114,7 @@
       [
         [
           "text",
-          "L’extraction classique ne nécessite pas les droits root et ne modifie pas la source. Le dossier cible ne doit pas exister. Les fichiers spéciaux sont rejetés sauf si "
+          "L’extraction standard ne nécessite pas les droits root et ne modifie pas la source. Le répertoire cible ne doit pas exister. Les fichiers spéciaux sont rejetés sauf si "
         ],
         [
           "span",
@@ -4138,7 +4138,7 @@
       [
         [
           "text",
-          "Les dossiers produits par les outils actuels "
+          "Les répertoires produits par "
         ],
         [
           "span",
@@ -4152,7 +4152,7 @@
         ],
         [
           "text",
-          " sont des dossiers ordinaires. "
+          " sont des répertoires classiques. "
         ],
         [
           "span",
@@ -4194,18 +4194,18 @@
         ],
         [
           "text",
-          " sont des commandes de compatibilité obsolètes qui refusent toujours la suppression ; elles ne démontent ni ne suppriment rien de façon récursive. Vérifiez un chemin extrait et son contenu avant de le supprimer avec les outils classiques du système de fichiers."
+          " sont d’anciennes commandes de compatibilité qui refusent toujours la suppression ; elles ne démontent ni ne suppriment rien de façon récursive. Vérifiez un chemin extrait et son contenu avant de le supprimer avec les outils standards du système de fichiers."
         ]
       ]
     ],
     [
       "heading",
       3,
-      "gérer-les-modules-en-cours-dexécution-et-au-prochain-démarrage",
+      "gérer-les-modules-actifs-et-au-prochain-démarrage",
       [
         [
           "text",
-          "Gérer les modules en cours d’exécution et au prochain démarrage"
+          "Gérer les modules actifs et au prochain démarrage"
         ]
       ]
     ],
@@ -4215,22 +4215,22 @@
       [
         [
           "text",
-          "En cours d’exécution et Prochain démarrage sont deux compositions indépendantes. Consultez "
+          "Les compositions Actif et Prochain démarrage sont indépendantes. Voir "
         ],
         [
           "link",
-          "/reference/boot-process/Module-Loading.md",
+          "/reference/boot-process/Module-Loading.md#construction-de-lunion",
           null,
           [
             [
               "text",
-              "construction d’union et activation à chaud"
+              "construction d’union et activation à l’exécution"
             ]
           ]
         ],
         [
           "text",
-          " pour comprendre la frontière entre démarrage et exécution, et pourquoi les deux listes peuvent différer."
+          " pour comprendre la séparation démarrage/exécution et pourquoi les deux listes peuvent différer."
         ]
       ]
     ],
@@ -4240,7 +4240,7 @@
       [
         [
           "text",
-          "Listez les modules qui composent effectivement la racine AUFS ou OverlayFS actuelle, du plus faible au plus haut niveau de priorité :"
+          "Liste les modules effectivement utilisés pour composer le root AUFS ou OverlayFS, du plus faible au plus fort :"
         ]
       ]
     ],
@@ -4311,7 +4311,7 @@
       [
         [
           "text",
-          "Listez les modules sélectionnés par les règles de démarrage actuelles :"
+          "Liste les modules sélectionnés par les règles de démarrage en cours :"
         ]
       ]
     ],
@@ -4386,18 +4386,18 @@
         ],
         [
           "link",
-          "/reference/boot-process/Module-Loading.md",
+          "/reference/boot-process/Module-Loading.md#niveaux-de-candidats",
           null,
           [
             [
               "text",
-              "de niveau candidat et de remplacement"
+              "de priorité des candidats et de remplacement"
             ]
           ]
         ],
         [
           "text",
-          " déterminent quelle source fournit chaque nom de base pour Prochain démarrage."
+          " déterminent quelle source fournit chaque nom de module pour le prochain démarrage."
         ]
       ]
     ],
@@ -4407,7 +4407,7 @@
       [
         [
           "text",
-          "Pour rendre un module utilisateur disponible au prochain démarrage :"
+          "Pour rendre un module utilisateur disponible au prochain démarrage :"
         ]
       ]
     ],
@@ -4478,7 +4478,7 @@
       [
         [
           "text",
-          "MiniOS utilise un stockage durable et inscriptible approprié, prépare et valide la copie, puis la publie de manière atomique sans remplacer un module existant. Le nom du fichier doit satisfaire les filtres de démarrage en vigueur. Pour retirer un module utilisateur sélectionné par son nom de base exact :"
+          "MiniOS utilise un stockage persistant adapté, prépare et valide la copie, puis la publie de façon atomique sans remplacer un module existant. Le nom de fichier doit respecter les filtres de démarrage actuels. Pour retirer un module utilisateur sélectionné, indiquez son nom exact :"
         ]
       ]
     ],
@@ -4549,7 +4549,7 @@
       [
         [
           "text",
-          "La suppression est refusée pour les modules de base et ceux provenant de sources en lecture seule ou volatiles."
+          "La suppression est refusée pour les modules de base et ceux présents sur des sources en lecture seule ou volatiles."
         ]
       ]
     ],
@@ -4559,7 +4559,7 @@
       [
         [
           "text",
-          "L’activation à chaud est une opération distincte, limitée à la session en cours :"
+          "L’activation à l’exécution est une opération distincte, valable uniquement pour la session en cours :"
         ]
       ]
     ],
@@ -4680,7 +4680,7 @@
         ],
         [
           "text",
-          " est actuellement une union AUFS. Elles sont indisponibles sur OverlayFS, et le seul support du noyau pour AUFS n’est pas suffisant. Aucune de ces commandes ne modifie Prochain démarrage."
+          " est actuellement une union AUFS. Elles sont indisponibles sur OverlayFS, et le seul support du noyau AUFS ne suffit pas. Aucune de ces commandes ne modifie le prochain démarrage."
         ]
       ]
     ],
@@ -4690,7 +4690,7 @@
       [
         [
           "text",
-          "Le répartiteur du convertisseur de compatibilité exige les deux opérandes :"
+          "Le répartiteur de conversion de compatibilité requiert les deux opérandes :"
         ]
       ]
     ],
@@ -4835,7 +4835,7 @@
         ],
         [
           "text",
-          " et "
+          " et de "
         ],
         [
           "span",
@@ -4849,7 +4849,7 @@
         ],
         [
           "text",
-          " est préférable car la conversion ordinaire peut s’exécuter sans droits root."
+          " est préférable, car la conversion classique peut s’effectuer sans droits root."
         ]
       ]
     ],
@@ -5012,7 +5012,7 @@
       ]
     ]
   ],
-  "plain_text": "Gestion des modules\nLe Gestionnaire de modules MiniOS est l’application graphique permettant d’inspecter, de créer et de gérer les modules MiniOS .sb. Il propose deux espaces de travail : Modules pour la composition du système et Créer pour la création de nouveaux modules.\nLancez-le depuis le menu des applications ou exécutez :\nminios-module-manager\nL’application elle-même s’exécute sous votre utilisateur de session. Elle demande une authentification administrateur uniquement lorsqu’une opération le nécessite.\nExécution actuelle et prochain démarrage\nL’espace de travail Modules propose deux vues distinctes :\nEn cours d’exécution correspond à l’ensemble ordonné des modules qui composent actuellement le système en direct.\nProchain démarrage est l’ensemble ordonné sélectionné par les règles de démarrage MiniOS en vigueur.\nModifier une vue ne change pas silencieusement l’autre. Par exemple, Activer pour cette session n’affecte que le système en cours, tandis que Ajouter au prochain démarrage copie un module dans le stockage durable des modules sans l’activer immédiatement.\nPour les règles officielles appliquées au démarrage, incluant les niveaux de source candidats, le remplacement exact par nom de base, l’ordre numérique et les filtres load=, noload= et bext=, consultez Chargement des modules Initrd. Ce guide explique également pourquoi En cours d’exécution et Prochain démarrage peuvent différer.\nL’activation et la désactivation à chaud ne sont disponibles que lorsque le système de fichiers racine utilise actuellement AUFS. Elles ne sont pas disponibles sur un root OverlayFS, même si le noyau prend en charge AUFS. Les modules de base ne peuvent pas être désactivés via l’application.\nLes modifications du prochain démarrage ne sont possibles que si MiniOS détecte un stockage de modules durable et inscriptible. Les modules de base ainsi que ceux stockés sur des supports en lecture seule ou volatiles ne peuvent pas être supprimés. Les filtres de démarrage comme load, noload et bext déterminent toujours les modules sélectionnés.\nInspection d’un module\nSélectionnez un module pour afficher sa source, sa taille compressée et son contenu système de fichiers. Si son fichier source est disponible, Extraire dans un dossier crée un nouveau répertoire contenant les fichiers du module.\nL’inspection et l’extraction simple ne nécessitent pas de privilèges administrateur. L’extraction ne remplace jamais une destination existante.\nVous pouvez également ouvrir un fichier local .sb depuis le gestionnaire de fichiers. Ouvrir un fichier permet uniquement de l’inspecter ; cela ne l’active pas et ne l’ajoute pas au prochain démarrage.\nCréation d’un module\nL’espace Créer suit un flux Configurer, Vérifier, Exécuter et Résultat. Un module créé avec succès reste un fichier à l’emplacement de sortie. Il n’est pas activé ni ajouté automatiquement au prochain démarrage.\nLes méthodes disponibles sont :\nPaquets installe des paquets de dépôt et des fichiers locaux .deb sélectionnés, ainsi que leurs dépendances, dans un environnement de construction MiniOS isolé. L’installation de paquets requiert une authentification administrateur.\nScript d’installation exécute un script vérifié sans terminal interactif. Un dossier de départ optionnel peut fournir des fichiers initiaux. Le script s’exécute avec les privilèges administrateur mais n’est pas conservé dans le module résultant.\nChroot interactif ouvre un shell root temporaire dans le terminal intégré. Tapez exit lorsque vous avez terminé, puis créez le module, rouvrez le shell ou abandonnez les modifications. Fermer ou abandonner la session n’affecte pas le système en cours d’exécution.\nDossier empaquette le contenu d’un répertoire existant. Le répertoire source n’est pas imbriqué dans le module. La conversion classique de dossier ne nécessite pas les droits root, ne modifie pas la source et normalise la propriété à root dans le module.\nModifications de la session courante capture les fichiers et suppressions éligibles de la couche de session inscriptible actuelle. Elle utilise la politique standard savechanges de MiniOS, qui omet les journaux, caches, données de démarrage et chemins temporaires. Lire l’intégralité de la couche inscriptible nécessite une authentification administrateur.\nChoisissez un nouveau chemin de sortie pour chaque flux de travail. Les fichiers existants ne sont jamais écrasés. La progression et les diagnostics restent visibles pendant l’exécution, et la capture de session peut être annulée.\nLa capture de session courante vise une sauvegarde standard pratique, sans permettre la révision de chaque chemin inclus. Une couche inscriptible active peut contenir des données personnelles ou confidentielles. Pour des politiques explicites sur exact, clean ou des chemins sélectionnés, utilisez le flux de travail en ligne de commande savechanges décrit dans Création de modules.\nGlisser-déposer\nLe glisser-déposer ne sert qu’à remplir un champ ou à ouvrir une inspection :\nUn module ouvre ses détails.\nLes fichiers .deb sont ajoutés à Paquets.\nUn dossier est sélectionné pour Dossier.\nUn autre fichier ordinaire est sélectionné comme Script d’installation.\nDéposer un élément n’exécute aucun code et ne modifie ni En cours d’exécution ni Prochain démarrage.\nDocumentation associée\nCréation de modules\nChargement des modules Initrd\nModes de démarrage\nComposer des images ISO en ligne de commande\nParamètres de démarrage\nCréation de modules\nLes modules MiniOS sont des images de système de fichiers SquashFS en lecture seule, généralement nommées avec l’extension .sb. Au démarrage, MiniOS assemble les modules sélectionnés dans un système de fichiers racine en couches. Les fichiers d’une couche prioritaire peuvent compléter ou masquer ceux des couches inférieures. Ce pipeline live modulaire fait partie de l’architecture MiniOS décrite dans À propos de MiniOS et Modes de démarrage. Après conversion native, la racine en couches .sb est remplacée par un système de fichiers Debian classique, accessible en écriture. Le logiciel de gestion des modules MiniOS est supprimé car les workflows de modules ne sont plus nécessaires, tandis que l’environnement de bureau choisi et les applications ordinaires restent installés comme des paquets classiques.\nCe guide documente les workflows actuels en ligne de commande des outils MiniOS. Pour l’application graphique, consultez le Gestionnaire de modules MiniOS. Pour le processus complet de création d’images et l’architecture système, voir Construire MiniOS. Les listes de paquets utilisées lors de la construction de MiniOS sont décrites dans la documentation CondinAPT.\nSécurité et privilèges\nToutes les opérations sur les modules ne nécessitent pas les droits root :\nOpération | Privilège\nLister En cours d’exécution ou Prochain démarrage avec sb | Sans root\nInspecter un module avec sb inspect | Sans root\nConversion classique dir2sb et sb2dir | Sans root\nPréserver la propriété ou autoriser des fichiers spéciaux lors de la conversion | Root\nConstruire avec apt2sb, script2sb ou chroot2sb | Root\nCapturer la session avec savechanges | Root\nActiver, désactiver, ajouter au prochain démarrage ou retirer du prochain démarrage | Root\nLes outils de création utilisent une union isolée et n’installent pas de paquets ni de modifications de script dans la racine active. La création n’active pas non plus le résultat ni ne le sélectionne pour le prochain démarrage.\nLes convertisseurs et générateurs actuels publient sans remplacement. Une cible déjà existante, y compris un lien symbolique, n’est jamais écrasée. Choisissez un nouveau chemin de sortie ou supprimez explicitement l’ancien résultat.\nUtilisez la sortie --help de chaque commande comme référence de version installée. Les options de compression standard sont zstd (par défaut), gzip, lzo et xz ; dir2sb prend aussi en charge lz4.\nNoms de modules et niveaux de filtre\nLes noms commencent souvent par un chiffre comme 06-browser.sb car l’ordre des couches influe sur la résolution des conflits. Un module doit contenir des chemins relatifs à la racine du système, comme usr/bin/example, et non un dossier supplémentaire contenant cet arbre.\nPour les niveaux de source candidats exacts, le comportement en cas de collision de nom de base, l’ordre numérique et les règles concernant bext=, load= et noload=, consultez Chargement des modules Initrd. En particulier, utilisez un nom de base unique sauf si le module doit remplacer un emplacement du même nom provenant d’un niveau de source antérieur.\nL’option --level LEVEL sur apt2sb, script2sb et chroot2sb limite les couches de base utilisées pour construire l’union de compilation. Avec --level 3, les couches numérotées jusqu’à 03 sont utilisées et les couches de numéro supérieur sont filtrées. Cela peut rendre un module moins dépendant des couches optionnelles supérieures, au prix d’inclure davantage de dépendances dans le résultat.\nCréer un module à partir de paquets\napt2sb installe des paquets du dépôt ou des fichiers locaux .deb lisibles dans une union de compilation privée et capture le résultat. Nécessite une session live MiniOS compatible et les droits root.\nsudo apt2sb install chromium chromium-sandbox\nsudo apt2sb install -y --level 3 -n 06-browser.sb chromium chromium-sandbox\nsudo apt2sb install -y --no-install-recommends ./example_amd64.deb -n 06-example.sb\nSans --name, le nom de sortie est dérivé du premier paquet. Les options APT utiles incluent --install-recommends, --no-install-recommends, --install-suggests, --no-install-suggests, --allow-downgrades et --target-release RELEASE. L’option target-release s’applique uniquement à install.\nPour capturer la mise à jour de paquets déjà installés :\nsudo apt2sb upgrade -y -n upgrades.sb\nCréer un module à partir d’un script\nscript2sb copie un script d’installation dans un chroot privé, le rend exécutable, l’exécute en root sans terminal interactif, le supprime, puis capture les modifications du système de fichiers. Un script échoué ne produit aucun module.\nsudo script2sb --script ./install-example.sh -n 06-example.sb\nsudo script2sb --script ./install-example.sh --directory ./seed-root --level 3 -n 06-example.sb\nL’option --directory DIR copie tout le contenu source, y compris les fichiers cachés, dans la racine du module avant l’exécution du script. Organisez le dossier de départ comme un arbre de fichiers :\nseed-root/\n`-- usr/\n    `-- share/\n        `-- applications/\n            `-- example.desktop\nVérifiez le script avant de l’exécuter. Il s’exécute avec les privilèges administrateur et peut lancer n’importe quelle commande. Utilisez chroot2sb si l’installation nécessite des invites ou des interventions manuelles.\nCréer un module de façon interactive\nchroot2sb crée une union de compilation privée et ouvre un shell root à l’intérieur. Installez des paquets ou modifiez des fichiers, puis quittez le shell pour capturer les modifications :\nsudo chroot2sb --level 3 -n 06-custom.sb\nsudo chroot2sb --directory ./seed-root -c xz -n 06-custom.sb\nLes commandes saisies dans le shell ne sont pas rejouées lors du chargement du module ; le module est un instantané de l’état du système de fichiers obtenu. L’historique du shell est supprimé du résultat. Si aucun nom n’est fourni, le nom généré utilise la date et l’heure courantes.\nLe cycle de vie fractionné prepare, shell, finish et cancel existe pour les interfaces graphiques protégées. Pour une utilisation normale en terminal, utilisez la commande interactive unique ci-dessus.\nCréer un module à partir d’un dossier\ndir2sb empaquette le contenu d’un dossier préparé dans un nouveau module. Les deux opérandes sont obligatoires :\ndir2sb my-app-root 06-my-app.sb\ndir2sb --comp xz my-app-root 06-my-app-xz.sb\nLa conversion classique ne nécessite pas les droits root. Elle ne modifie pas la source, normalise la propriété à root dans le module, rejette les nœuds de périphérique, sockets et FIFO, et n’écrase jamais la cible. Utilisez --keep-ownership ou --allow-special uniquement si ces privilèges sont nécessaires.\nCapturer les modifications de la session courante\nsavechanges lit la couche inscriptible de référence d’une session MiniOS en cours. Cela nécessite les droits root car cette couche peut contenir des fichiers accessibles uniquement par root. L’emplacement des modifications est détecté automatiquement par défaut :\nsudo savechanges session-changes.sb\nsudo savechanges --comp xz session-changes-xz.sb\nSans --profile, la politique historique de MiniOS omet les dossiers vides, caches, journaux, données de démarrage, chemins temporaires, pseudo-systèmes de fichiers et certains fichiers système ou de session. C’est pratique pour la création classique de modules, mais ce n’est pas une garantie de confidentialité explicite.\nLes profils explicites sont :\nexact préserve les modifications représentables, y compris les données utilisateur, journaux, caches, fichiers d’identité, identifiants et métadonnées de suppression prises en charge. Il rejette les objets système non pris en charge au lieu de les perdre silencieusement.\nclean utilise une liste blanche de chemins orientée logiciel. Il exclut les données personnelles et root, journaux, caches, identités, configuration réseau, identifiants, configuration système arbitraire et /usr/local. Cela réduit l’exposition aux données sensibles mais ne garantit pas qu’un fichier logiciel autorisé ne contient aucune donnée secrète.\nselected inclut uniquement les chemins relatifs validés à partir d’un fichier d’inventaire et de sélection. Les exclusions explicites sont prioritaires. Ce profil convient lorsque le module doit contenir un sous-ensemble contrôlé des modifications de session.\nExemples :\nsudo savechanges --profile exact exact-session.sb\nsudo savechanges --profile clean --comp xz software-session.sb\nsudo savechanges --inventory-json session-inventory.json\nsudo savechanges --profile selected --selection selection.json selected-session.sb\nUn fichier de sélection a cette structure JSON stricte :\n{\n  \"product_kind\": \"minios-session-selection\",\n  \"schema_version\": 1,\n  \"include_paths\": [\"etc/default\", \"opt/my-app\"],\n  \"exclude_paths\": [\"opt/my-app/private\"]\n}\nLes chemins sont normalisés, non vides et relatifs à la racine des modifications. Générez et vérifiez d’abord l’inventaire ; chaque inclusion doit correspondre à une donnée d’inventaire. L’inventaire enregistre des métadonnées telles que le chemin, le type, la catégorie, la sensibilité et la taille, mais ne lit ni n’exporte le contenu des fichiers, cibles de liens symboliques ou valeurs secrètes. Les sorties et inventaires à profil explicite sont en mode 0600 ; les modules en politique héritée sont en mode 0644.\nLa capture de session peut conserver les suppressions de fichiers prises en charge et l’opacité des dossiers pour le backend AUFS ou OverlayFS actif. Elle exclut les montages runtime, systèmes de fichiers imbriqués, données d’union et la sortie elle-même. Une cible existante n’est jamais remplacée.\nInspection et extraction de modules\nInspectez un module sans le monter ni l’extraire :\nsb inspect 06-example.sb\nsb inspect 06-example.sb --json\nL’inspection ne nécessite pas les droits root et fonctionne aussi hors d’une session MiniOS active.\nExtrayez un module dans un nouveau dossier :\nsb2dir 06-example.sb example-root\nL’extraction classique ne nécessite pas les droits root et ne modifie pas la source. Le dossier cible ne doit pas exister. Les fichiers spéciaux sont rejetés sauf si --allow-special est demandé avec les privilèges nécessaires.\nLes dossiers produits par les outils actuels sb2dir sont des dossiers ordinaires. rmsbdir, sb rm et sb rmdir sont des commandes de compatibilité obsolètes qui refusent toujours la suppression ; elles ne démontent ni ne suppriment rien de façon récursive. Vérifiez un chemin extrait et son contenu avant de le supprimer avec les outils classiques du système de fichiers.\nGérer les modules en cours d’exécution et au prochain démarrage\nEn cours d’exécution et Prochain démarrage sont deux compositions indépendantes. Consultez construction d’union et activation à chaud pour comprendre la frontière entre démarrage et exécution, et pourquoi les deux listes peuvent différer.\nListez les modules qui composent effectivement la racine AUFS ou OverlayFS actuelle, du plus faible au plus haut niveau de priorité :\nsb list\nsb list --json\nListez les modules sélectionnés par les règles de démarrage actuelles :\nsb next-boot\nsb next-boot --json\nCes requêtes ne nécessitent pas les droits root. Les règles canoniques de niveau candidat et de remplacement déterminent quelle source fournit chaque nom de base pour Prochain démarrage.\nPour rendre un module utilisateur disponible au prochain démarrage :\nsudo sb next-boot add 50-extra.sb\nMiniOS utilise un stockage durable et inscriptible approprié, prépare et valide la copie, puis la publie de manière atomique sans remplacer un module existant. Le nom du fichier doit satisfaire les filtres de démarrage en vigueur. Pour retirer un module utilisateur sélectionné par son nom de base exact :\nsudo sb next-boot remove 50-extra.sb\nLa suppression est refusée pour les modules de base et ceux provenant de sources en lecture seule ou volatiles.\nL’activation à chaud est une opération distincte, limitée à la session en cours :\nsudo sb activate 50-extra.sb\nsudo sb deactivate 50-extra.sb\nL’activation et la désactivation ne fonctionnent que si / est actuellement une union AUFS. Elles sont indisponibles sur OverlayFS, et le seul support du noyau pour AUFS n’est pas suffisant. Aucune de ces commandes ne modifie Prochain démarrage.\nLe répartiteur du convertisseur de compatibilité exige les deux opérandes :\nsudo sb conv my-app-root 06-my-app.sb\nsudo sb conv 06-my-app.sb example-root\nL’utilisation directe de dir2sb et sb2dir est préférable car la conversion ordinaire peut s’exécuter sans droits root.\nDocumentation associée\nGestionnaire de modules MiniOS\nChargement de modules Initrd\nModes de démarrage\nReconstruction d’images ISO\nConstruction de MiniOS\nParamètres de démarrage",
+  "plain_text": "Gestion des modules\nLe Gestionnaire de modules MiniOS est l’application graphique permettant d’inspecter, de créer et de gérer les modules MiniOS .sb. Il propose deux espaces de travail : Modules pour la composition du système et Créer pour la création de nouveaux modules.\nLancez-le depuis le menu des applications ou exécutez :\nminios-module-manager\nL’application elle-même s’exécute sous votre utilisateur de session. Elle demande une authentification administrateur uniquement lorsqu’une opération le nécessite.\nExécution actuelle et prochain démarrage\nL’espace de travail Modules propose deux vues distinctes :\nEn cours d’exécution correspond à l’ensemble ordonné des modules qui composent actuellement le système en direct.\nProchain démarrage est l’ensemble ordonné sélectionné par les règles de démarrage MiniOS en vigueur.\nModifier une vue ne change pas silencieusement l’autre. Par exemple, Activer pour cette session n’affecte que le système en cours, tandis que Ajouter au prochain démarrage copie un module dans le stockage durable des modules sans l’activer immédiatement.\nPour les règles officielles appliquées au démarrage, incluant les niveaux de source candidats, le remplacement exact par nom de base, l’ordre numérique et les filtres load=, noload= et bext=, consultez Chargement des modules Initrd. Ce guide explique également pourquoi En cours d’exécution et Prochain démarrage peuvent différer.\nL’activation et la désactivation à chaud ne sont disponibles que lorsque le système de fichiers racine utilise actuellement AUFS. Elles ne sont pas disponibles sur un root OverlayFS, même si le noyau prend en charge AUFS. Les modules de base ne peuvent pas être désactivés via l’application.\nLes modifications du prochain démarrage ne sont possibles que si MiniOS détecte un stockage de modules durable et inscriptible. Les modules de base ainsi que ceux stockés sur des supports en lecture seule ou volatiles ne peuvent pas être supprimés. Les filtres de démarrage comme load, noload et bext déterminent toujours les modules sélectionnés.\nInspection d’un module\nSélectionnez un module pour afficher sa source, sa taille compressée et son contenu système de fichiers. Si son fichier source est disponible, Extraire dans un dossier crée un nouveau répertoire contenant les fichiers du module.\nL’inspection et l’extraction simple ne nécessitent pas de privilèges administrateur. L’extraction ne remplace jamais une destination existante.\nVous pouvez également ouvrir un fichier local .sb depuis le gestionnaire de fichiers. Ouvrir un fichier permet uniquement de l’inspecter ; cela ne l’active pas et ne l’ajoute pas au prochain démarrage.\nCréation d’un module\nL’espace de travail Créer utilise un flux Configurer, Vérifier, Exécuter, puis Résultat. Un module créé avec succès reste un fichier à l’emplacement de sortie. Il n’est pas activé et n’est pas ajouté automatiquement au prochain démarrage.\nMéthodes disponibles :\nPaquets installe les paquets du dépôt et les fichiers locaux sélectionnés .deb, ainsi que leurs dépendances, dans un environnement de build isolé MiniOS. L’installation des paquets nécessite une authentification administrateur.\nScript d’installation exécute un script vérifié sans terminal interactif. Un dossier de préconfiguration optionnel peut fournir les fichiers initiaux. Le script s’exécute avec les droits administrateur mais n’est pas conservé dans le module généré.\nChroot interactif ouvre un shell root temporaire dans le terminal intégré. Tapez exit lorsque vous avez terminé, puis créez le module, rouvrez le shell ou annulez les modifications. Fermer ou annuler la session ne modifie pas le système en cours d’exécution.\nDossier empaquette le contenu d’un répertoire existant. Le répertoire source n’est pas inclus dans le module. La conversion classique d’un dossier ne nécessite pas les droits root, ne modifie pas la source et normalise la propriété dans le module à root.\nModifications de la session en cours capture les fichiers et suppressions éligibles de la couche session modifiable en cours. Elle utilise la politique standard MiniOS savechanges qui exclut les journaux, caches, données de démarrage et chemins temporaires d’exécution. La lecture de la couche modifiable complète nécessite une authentification administrateur.\nChoisissez un nouveau chemin de sortie pour chaque flux de travail. Les fichiers existants ne sont jamais écrasés. L’avancement et les diagnostics du backend restent visibles pendant l’opération, et la capture de la session en cours peut être annulée.\nLa fonction Modifications de la session en cours est conçue pour une capture standard pratique, et non pour examiner chaque chemin inclus. Une couche modifiable active peut contenir des données personnelles ou confidentielles. Pour une capture explicite exact, clean, ou des politiques de confidentialité par chemin, utilisez le flux de travail en ligne de commande savechanges décrit dans Capturer les modifications de la session en cours.\nGlisser-déposer\nLe glisser-déposer ne sert qu’à remplir un champ ou à ouvrir une inspection :\nUn module ouvre ses détails.\nLes fichiers .deb sont ajoutés à Paquets.\nUn dossier est sélectionné pour Dossier.\nUn autre fichier ordinaire est sélectionné comme Script d’installation.\nDéposer un élément n’exécute aucun code et ne modifie ni En cours d’exécution ni Prochain démarrage.\nDocumentation associée\nCréation de modules\nChargement des modules initrd\nModes de démarrage\nComposer des images ISO en ligne de commande\nParamètres de démarrage\nCréation de modules\nLes modules MiniOS sont des images de système de fichiers SquashFS en lecture seule, généralement nommées avec l’extension .sb. Au démarrage, MiniOS assemble les modules sélectionnés dans un système de fichiers racine en couches. Les fichiers d’une couche prioritaire peuvent compléter ou masquer ceux des couches inférieures. Ce pipeline live modulaire fait partie de l’architecture MiniOS décrite dans À propos de MiniOS et Modes de démarrage. Après conversion native, la racine en couches .sb est remplacée par un système de fichiers Debian classique, accessible en écriture. Le logiciel de gestion des modules MiniOS est supprimé car les workflows de modules ne sont plus nécessaires, tandis que l’environnement de bureau choisi et les applications ordinaires restent installés comme des paquets classiques.\nCe guide documente les workflows actuels en ligne de commande des outils MiniOS. Pour l’application graphique, consultez le Gestionnaire de modules MiniOS. Pour le processus complet de création d’images et l’architecture système, voir Construire MiniOS. Les listes de paquets utilisées lors de la construction de MiniOS sont décrites dans la documentation CondinAPT.\nSécurité et privilèges\nToutes les opérations sur les modules ne nécessitent pas les droits root :\nOpération | Privilège\nLister En cours d’exécution ou Prochain démarrage avec sb | Sans root\nInspecter un module avec sb inspect | Sans root\nConversion classique dir2sb et sb2dir | Sans root\nPréserver la propriété ou autoriser des fichiers spéciaux lors de la conversion | Root\nConstruire avec apt2sb, script2sb ou chroot2sb | Root\nCapturer la session avec savechanges | Root\nActiver, désactiver, ajouter au prochain démarrage ou retirer du prochain démarrage | Root\nLes outils de création utilisent une union isolée et n’installent pas de paquets ni de modifications de script dans la racine active. La création n’active pas non plus le résultat ni ne le sélectionne pour le prochain démarrage.\nLes convertisseurs et générateurs actuels publient sans remplacement. Une cible déjà existante, y compris un lien symbolique, n’est jamais écrasée. Choisissez un nouveau chemin de sortie ou supprimez explicitement l’ancien résultat.\nUtilisez la sortie --help de chaque commande comme référence de version installée. Les options de compression standard sont zstd (par défaut), gzip, lzo et xz ; dir2sb prend aussi en charge lz4.\nNoms de modules et niveaux de filtre\nLes noms commencent souvent par un chiffre comme 06-browser.sb car l’ordre des couches influe sur la résolution des conflits. Un module doit contenir des chemins relatifs à la racine du système, comme usr/bin/example, et non un dossier supplémentaire contenant cet arbre.\nPour les niveaux de source candidats exacts, le comportement en cas de collision de nom de base, l’ordre numérique et les règles concernant bext=, load= et noload=, consultez Chargement des modules Initrd. En particulier, utilisez un nom de base unique sauf si le module doit remplacer un emplacement du même nom provenant d’un niveau de source antérieur.\nL’option --level LEVEL sur apt2sb, script2sb et chroot2sb limite les couches de base utilisées pour construire l’union de compilation. Avec --level 3, les couches numérotées jusqu’à 03 sont utilisées et les couches de numéro supérieur sont filtrées. Cela peut rendre un module moins dépendant des couches optionnelles supérieures, au prix d’inclure davantage de dépendances dans le résultat.\nCréer un module à partir de paquets\napt2sb installe des paquets du dépôt ou des fichiers locaux .deb lisibles dans une union de compilation privée et capture le résultat. Nécessite une session live MiniOS compatible et les droits root.\nsudo apt2sb install chromium chromium-sandbox\nsudo apt2sb install -y --level 3 -n 06-browser.sb chromium chromium-sandbox\nsudo apt2sb install -y --no-install-recommends ./example_amd64.deb -n 06-example.sb\nSans --name, le nom de sortie est dérivé du premier paquet. Les options APT utiles incluent --install-recommends, --no-install-recommends, --install-suggests, --no-install-suggests, --allow-downgrades et --target-release RELEASE. L’option target-release s’applique uniquement à install.\nPour capturer la mise à jour de paquets déjà installés :\nsudo apt2sb upgrade -y -n upgrades.sb\nCréer un module à partir d’un script\nscript2sb copie un script d’installation dans un chroot privé, le rend exécutable, l’exécute en tant que root sans terminal interactif, le supprime, puis capture les modifications du système de fichiers résultantes. Si le script échoue, aucun module n’est créé.\nsudo script2sb --script ./install-example.sh -n 06-example.sb\nsudo script2sb --script ./install-example.sh --directory ./seed-root --level 3 -n 06-example.sb\nL’option --directory DIR copie tous les fichiers sources, y compris les fichiers cachés, dans la racine du module avant l’exécution du script. Organisez le répertoire seed comme un arbre de fichiers :\nseed-root/\n`-- usr/\n    `-- share/\n        `-- applications/\n            `-- example.desktop\nVérifiez le script avant de l’exécuter. Il s’exécute avec les privilèges administrateur et peut lancer n’importe quelle commande. Utilisez chroot2sb à la place si l’installation nécessite des interactions ou des actions manuelles.\nCréer un module de façon interactive\nchroot2sb crée une union de construction privée et ouvre un shell root à l’intérieur. Installez des paquets ou modifiez des fichiers, puis quittez le shell pour capturer les changements :\nsudo chroot2sb --level 3 -n 06-custom.sb\nsudo chroot2sb --directory ./seed-root -c xz -n 06-custom.sb\nLes commandes saisies dans le shell ne sont pas rejouées lors du chargement du module ; le module est un instantané de l’état du système de fichiers obtenu. L’historique du shell est supprimé du résultat. Si aucun nom n’est fourni, un nom généré utilise la date et l’heure actuelles.\nLe cycle de vie fractionné prepare, shell, finish et cancel existe pour les interfaces graphiques protégées. Pour une utilisation classique en terminal, utilisez la commande interactive unique indiquée ci-dessus.\nCréer un module à partir d’un répertoire\ndir2sb emballe le contenu d’un répertoire préparé dans un nouveau module. Les deux paramètres sont obligatoires :\ndir2sb my-app-root 06-my-app.sb\ndir2sb --comp xz my-app-root 06-my-app-xz.sb\nLa conversion standard ne nécessite pas les droits root. Elle laisse la source inchangée, normalise la propriété des fichiers à root dans le module, rejette les nœuds de périphérique, sockets et FIFOs, et n’écrase jamais la cible. Utilisez --keep-ownership ou --allow-special uniquement si ces comportements privilégiés sont nécessaires.\nCapturer les modifications de la session en cours\nsavechanges lit le calque modifiable de référence d’une session MiniOS en cours d’exécution. Cette opération requiert les droits root car ce calque peut contenir des fichiers accessibles uniquement à root. L’emplacement par défaut des modifications est détecté automatiquement :\nsudo savechanges session-changes.sb\nsudo savechanges --comp xz session-changes-xz.sb\nSans --profile, la politique historique MiniOS omet les répertoires vides, caches, journaux, données de démarrage, chemins d’exécution, pseudo-systèmes de fichiers, ainsi que certains fichiers de session et système. Ceci est pratique pour la création de modules traditionnelle, mais ne constitue pas une garantie explicite de confidentialité.\nLes profils explicites sont :\nexact conserve toutes les modifications représentables, y compris les données utilisateur, journaux, caches, fichiers d’identité, identifiants et métadonnées de suppression prises en charge. Les objets système de fichiers non pris en charge sont rejetés plutôt que perdus silencieusement.\nclean utilise une liste d’autorisation de chemins restreinte, orientée logiciel. Il exclut les données personnelles et root, journaux, caches, identités, configuration réseau, identifiants, toute configuration système arbitraire, ainsi que /usr/local. Cela réduit l’exposition des données, mais ne garantit pas qu’un fichier logiciel autorisé ne contient aucune information sensible.\nselected inclut uniquement les chemins relatifs validés à partir d’un fichier d’inventaire et de sélection. Les exclusions explicites priment. Ce profil est adapté si le module doit contenir un sous-ensemble contrôlé des modifications de session.\nExemples :\nsudo savechanges --profile exact exact-session.sb\nsudo savechanges --profile clean --comp xz software-session.sb\nsudo savechanges --inventory-json session-inventory.json\nsudo savechanges --profile selected --selection selection.json selected-session.sb\nUn fichier de sélection respecte cette structure JSON stricte :\n{\n  \"product_kind\": \"minios-session-selection\",\n  \"schema_version\": 1,\n  \"include_paths\": [\"etc/default\", \"opt/my-app\"],\n  \"exclude_paths\": [\"opt/my-app/private\"]\n}\nLes chemins sont normalisés, non vides et relatifs à la racine des modifications. Générez puis vérifiez l’inventaire en premier ; chaque inclusion doit correspondre à une donnée d’inventaire. L’inventaire enregistre des métadonnées telles que le chemin, le type, la catégorie, la sensibilité et la taille, mais ne lit ni n’exporte le contenu des fichiers, les cibles de liens symboliques ou les valeurs secrètes. Les sorties de profils explicites et les inventaires sont en mode 0600 ; les modules en politique héritée sont en mode 0644.\nLa capture de session peut conserver les suppressions de fichiers prises en charge et l’opacité des répertoires pour le backend AUFS ou OverlayFS actif. Les montages d’exécution, systèmes de fichiers imbriqués, gestion d’union et la sortie elle-même sont exclus. Une cible existante n’est jamais remplacée.\nInspecter et extraire des modules\nInspectez un module sans le monter ni l’extraire :\nsb inspect 06-example.sb\nsb inspect 06-example.sb --json\nL’inspection ne nécessite pas les droits root et fonctionne également en dehors d’une session MiniOS en cours.\nExtrayez un module dans un nouveau répertoire :\nsb2dir 06-example.sb example-root\nL’extraction standard ne nécessite pas les droits root et ne modifie pas la source. Le répertoire cible ne doit pas exister. Les fichiers spéciaux sont rejetés sauf si --allow-special est demandé avec les privilèges nécessaires.\nLes répertoires produits par sb2dir sont des répertoires classiques. rmsbdir, sb rm et sb rmdir sont d’anciennes commandes de compatibilité qui refusent toujours la suppression ; elles ne démontent ni ne suppriment rien de façon récursive. Vérifiez un chemin extrait et son contenu avant de le supprimer avec les outils standards du système de fichiers.\nGérer les modules actifs et au prochain démarrage\nLes compositions Actif et Prochain démarrage sont indépendantes. Voir construction d’union et activation à l’exécution pour comprendre la séparation démarrage/exécution et pourquoi les deux listes peuvent différer.\nListe les modules effectivement utilisés pour composer le root AUFS ou OverlayFS, du plus faible au plus fort :\nsb list\nsb list --json\nListe les modules sélectionnés par les règles de démarrage en cours :\nsb next-boot\nsb next-boot --json\nCes requêtes ne nécessitent pas les droits root. Les règles canoniques de priorité des candidats et de remplacement déterminent quelle source fournit chaque nom de module pour le prochain démarrage.\nPour rendre un module utilisateur disponible au prochain démarrage :\nsudo sb next-boot add 50-extra.sb\nMiniOS utilise un stockage persistant adapté, prépare et valide la copie, puis la publie de façon atomique sans remplacer un module existant. Le nom de fichier doit respecter les filtres de démarrage actuels. Pour retirer un module utilisateur sélectionné, indiquez son nom exact :\nsudo sb next-boot remove 50-extra.sb\nLa suppression est refusée pour les modules de base et ceux présents sur des sources en lecture seule ou volatiles.\nL’activation à l’exécution est une opération distincte, valable uniquement pour la session en cours :\nsudo sb activate 50-extra.sb\nsudo sb deactivate 50-extra.sb\nL’activation et la désactivation ne fonctionnent que si / est actuellement une union AUFS. Elles sont indisponibles sur OverlayFS, et le seul support du noyau AUFS ne suffit pas. Aucune de ces commandes ne modifie le prochain démarrage.\nLe répartiteur de conversion de compatibilité requiert les deux opérandes :\nsudo sb conv my-app-root 06-my-app.sb\nsudo sb conv 06-my-app.sb example-root\nL’utilisation directe de dir2sb et de sb2dir est préférable, car la conversion classique peut s’effectuer sans droits root.\nDocumentation associée\nGestionnaire de modules MiniOS\nChargement de modules Initrd\nModes de démarrage\nReconstruction d’images ISO\nConstruction de MiniOS\nParamètres de démarrage",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

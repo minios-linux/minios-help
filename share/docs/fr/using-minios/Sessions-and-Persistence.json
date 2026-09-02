@@ -36,9 +36,9 @@
       "title": "Chiffrement"
     },
     {
-      "anchor": "sauvegardes-et-sessions-défaillantes",
+      "anchor": "sauvegardes-et-sessions-échouées",
       "level": 2,
-      "title": "Sauvegardes et sessions défaillantes"
+      "title": "Sauvegardes et sessions échouées"
     }
   ],
   "nodes": [
@@ -652,7 +652,7 @@
       [
         [
           "text",
-          "Tout paramètre de persistance reconnu active la gestion de la persistance. Les menus de démarrage MiniOS proposent généralement des entrées pour reprendre, créer une nouvelle session, sélectionner ou démarrer sans persistance. La description canonique des logiques de sélection, compatibilité, secours et activation se trouve dans "
+          "Tout paramètre de persistance reconnu active la gestion de la persistance. Les menus de démarrage MiniOS proposent généralement des entrées pour reprendre, créer une nouvelle session, sélectionner ou démarrer sans persistance. La description de référence des sélecteurs, de la compatibilité, du repli et des modes d’activation se trouve dans "
         ],
         [
           "link",
@@ -661,7 +661,7 @@
           [
             [
               "text",
-              "Initrd persistence"
+              "Persistance initrd"
             ]
           ]
         ],
@@ -722,7 +722,7 @@
               [
                 [
                   "text",
-                  "Utilise le chemin de reprise hérité best-effort. Il tente la valeur par défaut des métadonnées mais ne crée pas de remplacement si aucune n’est utilisable."
+                  "Utilise le chemin de reprise hérité au mieux. Il tente d’utiliser la valeur par défaut des métadonnées mais ne crée pas de remplacement si aucune n’est utilisable."
                 ]
               ]
             ]
@@ -752,7 +752,7 @@
               [
                 [
                   "text",
-                  "Reprend la valeur par défaut des métadonnées et, si elle est absente ou incompatible, permet à l’initrd de créer un nouveau remplacement compatible. C’est le comportement actuel du menu de démarrage pour la reprise."
+                  "Reprend la valeur par défaut des métadonnées et, si elle est absente ou incompatible, permet à l’initrd de créer un nouveau remplacement compatible. Il s’agit du comportement actuel de reprise dans le menu de démarrage."
                 ]
               ]
             ]
@@ -812,7 +812,7 @@
               [
                 [
                   "text",
-                  "Sélectionne une session existante ou en crée une lors du démarrage."
+                  "Permet de sélectionner une session existante ou d’en créer une lors du démarrage."
                 ]
               ]
             ]
@@ -872,7 +872,7 @@
               [
                 [
                   "text",
-                  "Utilise un emplacement de persistance sur un périphérique, y compris les formes "
+                  "Utilise un emplacement de persistance sur un périphérique, y compris "
                 ],
                 [
                   "span",
@@ -900,7 +900,7 @@
                 ],
                 [
                   "text",
-                  " gérées par l’initrd."
+                  " les formats pris en charge par l’initrd."
                 ]
               ]
             ]
@@ -986,7 +986,7 @@
                 ],
                 [
                   "text",
-                  " ou "
+                  ", ou "
                 ],
                 [
                   "span",
@@ -1030,7 +1030,7 @@
               [
                 [
                   "text",
-                  "Définit une nouvelle taille de conteneur ou l’agrandit ; les valeurs simples sont allouées en Mio et les suffixes "
+                  "Définit une nouvelle taille de conteneur ou une taille supérieure ; les valeurs simples sont allouées en Mio et "
                 ],
                 [
                   "span",
@@ -1058,7 +1058,7 @@
                 ],
                 [
                   "text",
-                  " et "
+                  ", et "
                 ],
                 [
                   "span",
@@ -1072,7 +1072,7 @@
                 ],
                 [
                   "text",
-                  " sont acceptés."
+                  " les suffixes sont acceptés."
                 ]
               ]
             ]
@@ -1086,7 +1086,7 @@
       [
         [
           "text",
-          "Si aucun mode n’est spécifié pour une nouvelle session, le démarrage utilise le mode natif. Sur FAT32/NTFS/exFAT, la création native bascule sur DynFileFS. Un nouveau conteneur raw ou LUKS démarre par défaut à 4000 Mio ; une nouvelle session DynFileFS sans "
+          "Si aucun mode n’est spécifié pour une nouvelle session, le démarrage utilise le mode natif. Sur FAT32/NTFS/exFAT, la création native bascule sur DynFileFS si nécessaire. Un nouveau conteneur raw ou LUKS démarre à 4000 Mio ; une nouvelle session DynFileFS sans "
         ],
         [
           "span",
@@ -1100,7 +1100,7 @@
         ],
         [
           "text",
-          " est dimensionnée selon l’espace disponible tout en conservant une réserve de sécurité."
+          " est dimensionnée selon l’espace disponible tout en conservant une marge de sécurité."
         ],
         [
           "text",
@@ -1108,7 +1108,7 @@
         ],
         [
           "text",
-          "Les sessions SquashFS sont capturées depuis le système en cours d’exécution avec le gestionnaire de sessions MiniOS ou "
+          "Les sessions SquashFS sont capturées depuis le système en cours d’exécution avec le Gestionnaire de sessions MiniOS ou "
         ],
         [
           "span",
@@ -1136,7 +1136,7 @@
         ],
         [
           "text",
-          " ne crée pas d’instantané dans l’initrd."
+          " ne crée pas de capture instantanée dans l’initrd."
         ]
       ]
     ],
@@ -1146,7 +1146,7 @@
       [
         [
           "text",
-          "Lors de la reprise, MiniOS vérifie la version enregistrée, l’édition, le système de fichiers union et le mode. L’utilisation littérale de "
+          "Lors de la reprise, MiniOS vérifie la version enregistrée, l’édition, le système de fichiers union et le mode. Le paramètre littéral "
         ],
         [
           "span",
@@ -1160,7 +1160,7 @@
         ],
         [
           "text",
-          " peut créer une nouvelle session au lieu d’utiliser une valeur par défaut absente ou incompatible. Les requêtes "
+          " peut créer une nouvelle session au lieu d’utiliser une valeur par défaut absente ou incompatible. Les demandes de reprise directes, "
         ],
         [
           "span",
@@ -1174,7 +1174,7 @@
         ],
         [
           "text",
-          " simples, la sélection numérique directe et d’autres demandes de reprise héritées ne créent pas automatiquement ce remplacement."
+          ", la sélection numérique directe et les autres reprises héritées ne créent pas automatiquement ce remplacement."
         ],
         [
           "text",
@@ -1182,7 +1182,7 @@
         ],
         [
           "text",
-          "La sélection interactive affiche un avertissement avant d’autoriser une session incompatible. Si la sélection ou l’activation échoue, le démarrage continue normalement avec un upper RAM et un avertissement de persistance."
+          "La sélection interactive affiche un avertissement avant d’autoriser une session incompatible. Si la sélection ou l’activation échoue encore, le démarrage continue normalement avec un upper RAM et un avertissement de persistance."
         ]
       ]
     ],
@@ -1192,7 +1192,7 @@
       [
         [
           "text",
-          "Le magasin de sessions a cette forme :"
+          "Le magasin de sessions a la forme suivante :"
         ]
       ]
     ],
@@ -1218,7 +1218,7 @@
         ],
         [
           "text",
-          " enregistre les identifiants par défaut et en cours d’utilisation, ainsi que le mode, la version, l’édition, le système de fichiers union, la taille, l’état et les paramètres spécifiques à chaque session."
+          " enregistre les identifiants par défaut et en cours, ainsi que le mode, la version, l’édition, le système de fichiers union, la taille, l’état et les paramètres spécifiques à chaque session."
         ],
         [
           "text",
@@ -1226,7 +1226,7 @@
         ],
         [
           "text",
-          "Il s’agit de métadonnées persistantes validées par l’implémentation du démarrage, sans garantir à elles seules l’état d’exécution actuel. Ne modifiez pas ce fichier et ne déplacez pas les données de session numérotées lorsqu’une session est montée ; utilisez le gestionnaire de sessions MiniOS ou "
+          "Il s’agit de métadonnées persistantes validées par l’implémentation du démarrage, mais elles ne prouvent pas à elles seules l’état d’exécution actuel. Ne les modifiez pas et ne déplacez pas les données de session numérotées pendant qu’une session est montée ; utilisez le Gestionnaire de sessions MiniOS ou "
         ],
         [
           "span",
@@ -1312,7 +1312,7 @@
               [
                 [
                   "text",
-                  "Conceptuellement, la session "
+                  "Sur le plan conceptuel, la session "
                 ],
                 [
                   "span",
@@ -1320,13 +1320,13 @@
                   [
                     [
                       "text",
-                      "en cours d’exécution"
+                      "en cours"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " est celle dont la couche writable fournit effectivement la persistance au démarrage actuel."
+                  " est celle dont la couche modifiable assure effectivement la persistance pour le démarrage actuel."
                 ]
               ]
             ]
@@ -1354,7 +1354,7 @@
         ],
         [
           "text",
-          " enregistre cette relation prévue. Un crash, une construction de l’union échouée, une copie du magasin ou un arrêt interrompu peuvent le rendre obsolète même si le démarrage actuel utilise RAM ou une autre session. Les opérations telles que la sauvegarde SquashFS nécessitent donc l’état protégé de l’initrd lié à l’ID de démarrage actuel et un upper monté vérifié ; elles ne se fient pas uniquement à "
+          " enregistre cette relation prévue. Un crash, un échec de construction de l’union, une copie du stockage ou un arrêt interrompu peuvent le rendre obsolète, même si le démarrage actuel utilise RAM ou une autre session. Des opérations comme la sauvegarde SquashFS nécessitent donc l’état actuel protégé de l’initrd, lié à l’ID de démarrage, et la vérification du montage de la couche supérieure ; elles ne se fient pas à "
         ],
         [
           "span",
@@ -1368,16 +1368,16 @@
         ],
         [
           "text",
-          ". Voir "
+          " seul. Voir "
         ],
         [
           "link",
-          "/reference/boot-process/Persistence-Internals.md",
+          "/reference/boot-process/Persistence-Internals.md#%C3%A9tat-actif-en-cours-et-du-d%C3%A9marrage-actuel",
           null,
           [
             [
               "text",
-              "État actif, en cours et démarrage actuel"
+              "État actif, en cours d’exécution et démarrage actuel"
             ]
           ]
         ],
@@ -1393,7 +1393,7 @@
       [
         [
           "text",
-          "Activer une session modifie le prochain démarrage mais ne change pas le système de fichiers union en cours :"
+          "L’activation d’une session modifie le prochain démarrage mais ne change pas le système de fichiers union en cours :"
         ]
       ]
     ],
@@ -1542,7 +1542,7 @@
       [
         [
           "text",
-          "La session active ne peut pas être supprimée ni convertie sur place. Une session en cours d’exécution ne peut normalement pas être supprimée, exportée, copiée, redimensionnée ou convertie. Le nettoyage protège également les deux identifiants."
+          "La session active ne peut pas être supprimée ou convertie sur place. Une session en cours ne peut normalement pas être supprimée, exportée, copiée, redimensionnée ou convertie. Le nettoyage protège également les deux identifiants."
         ]
       ]
     ],
@@ -2195,7 +2195,7 @@
         ],
         [
           "text",
-          " sans mode sélectionne le mode natif. La création SquashFS capture les modifications en cours et n’a pas de taille fixe. Sa politique d’arrêt est par défaut "
+          " sans mode sélectionne natif. La création SquashFS capture les modifications actives en cours et n’a pas de taille fixe. Sa politique d’arrêt par défaut est "
         ],
         [
           "span",
@@ -2670,7 +2670,7 @@
         ],
         [
           "text",
-          " et "
+          ", et "
         ],
         [
           "span",
@@ -2698,7 +2698,7 @@
         ],
         [
           "text",
-          " désactive la sauvegarde périodique. Les réglages d’arrêt et de périodicité sont indépendants."
+          " désactive la sauvegarde périodique. Les réglages arrêt et périodique sont indépendants."
         ]
       ]
     ],
@@ -2708,7 +2708,7 @@
       [
         [
           "text",
-          "Exporter et importer des archives "
+          "Exporter et importer des "
         ],
         [
           "span",
@@ -2722,7 +2722,7 @@
         ],
         [
           "text",
-          " :"
+          " archives :"
         ]
       ]
     ],
@@ -2991,7 +2991,7 @@
       [
         [
           "text",
-          "Seuls les imports "
+          "Seuls les imports de "
         ],
         [
           "span",
@@ -3033,7 +3033,7 @@
         ],
         [
           "text",
-          " sélectionne explicitement un mode disponible. L’export, la copie et la conversion ne sont pas pris en charge pour les sessions SquashFS ; sauvegardez l’instantané et copiez plutôt le répertoire de session inactif complet."
+          " sélectionne explicitement un mode disponible. L’export, la copie et la conversion ne sont pas pris en charge pour les sessions SquashFS ; sauvegardez l’instantané et copiez à la place le répertoire complet de la session inactive."
         ]
       ]
     ],
@@ -3460,7 +3460,7 @@
         ],
         [
           "text",
-          " attribue toujours un nouvel ID de session. "
+          " attribue toujours un nouvel identifiant de session. "
         ],
         [
           "span",
@@ -3488,7 +3488,7 @@
         ],
         [
           "text",
-          " pour préserver la source. Une taille n’est pertinente que pour une cible de type conteneur."
+          " pour préserver la source. Une taille n’est pertinente que pour une cible de conteneur."
         ]
       ]
     ],
@@ -3749,7 +3749,7 @@
       [
         [
           "text",
-          "Le redimensionnement prend en charge les sessions DynFileFS, raw et LUKS et nécessite une taille supérieure à la taille actuelle. Le nettoyage cible par défaut les sessions de plus de 30 jours."
+          "Le redimensionnement prend en charge les sessions DynFileFS, raw et LUKS et nécessite une taille supérieure à l’actuelle. Le nettoyage cible par défaut les sessions de plus de 30 jours."
         ]
       ]
     ],
@@ -3787,7 +3787,7 @@
         ],
         [
           "text",
-          " :"
+          ":"
         ]
       ]
     ],
@@ -3917,7 +3917,7 @@
       [
         [
           "text",
-          "Une session SquashFS est décompressée dans RAM pour la couche writable en cours d’exécution. La sauvegarde reconstruit et valide un instantané exact, puis remplace "
+          "Une session SquashFS est décompressée dans RAM pour la couche inscriptible en cours d’exécution. La sauvegarde reconstruit et valide un instantané exact, puis remplace atomiquement "
         ],
         [
           "span",
@@ -3931,7 +3931,7 @@
         ],
         [
           "text",
-          " de façon atomique."
+          "."
         ],
         [
           "text",
@@ -3939,7 +3939,7 @@
         ],
         [
           "text",
-          "Aucune génération de rollback n’est conservée. « Sauvegarder maintenant » est disponible depuis l’icône de la barre système, le gestionnaire de sessions MiniOS ou "
+          "Aucune génération de restauration n’est conservée. Sauvegarder maintenant est disponible depuis l’icône de la zone de notification, le Gestionnaire de sessions MiniOS ou "
         ],
         [
           "span",
@@ -3977,7 +3977,7 @@
         ],
         [
           "text",
-          ", elle ne dépend donc pas de l’ouverture ou de l’installation du gestionnaire de sessions MiniOS. La sauvegarde périodique est vérifiée toutes les 30 minutes par un timer systemd ou un worker SysV, qui appellent tous deux le même backend d’autosauvegarde. La reconstruction de l’instantané consomme du CPU et écrit l’instantané complet ; des intervalles d’une heure ou plus sont recommandés."
+          ", elle ne dépend donc pas que le Gestionnaire de sessions MiniOS soit ouvert ou installé. La sauvegarde périodique est vérifiée toutes les 30 minutes par un minuteur systemd ou un worker SysV, tous deux appelant le même backend d’enregistrement automatique. La reconstruction de l’instantané consomme du CPU et écrit l’instantané complet ; il est recommandé d’utiliser des intervalles d’une heure ou plus."
         ]
       ]
     ],
@@ -3987,7 +3987,7 @@
       [
         [
           "text",
-          "Pendant le fonctionnement avec RAM en backend SquashFS, un instantané SquashFS nouvellement capturé et activé peut prendre la possession de la cible de sauvegarde en cours d’exécution. Après ce transfert, l’ancien instantané en cours peut être supprimé sans redémarrage :"
+          "Pendant le fonctionnement avec persistance RAM (SquashFS), un instantané nouvellement capturé et activé SquashFS peut prendre le contrôle de la cible de sauvegarde en cours. Après ce transfert, l’ancien instantané en cours peut être supprimé sans redémarrage :"
         ]
       ]
     ],
@@ -4142,7 +4142,7 @@
       [
         [
           "text",
-          "Cette exception ne s’applique qu’à un transfert valide de SquashFS pour le démarrage en cours. Les autres modes de persistance en cours restent protégés contre la suppression."
+          "Cette exception s’applique uniquement à un transfert valide de SquashFS du démarrage actuel. Les autres modes de persistance en cours restent protégés contre la suppression."
         ]
       ]
     ],
@@ -4290,11 +4290,11 @@
     [
       "heading",
       2,
-      "sauvegardes-et-sessions-défaillantes",
+      "sauvegardes-et-sessions-échouées",
       [
         [
           "text",
-          "Sauvegardes et sessions défaillantes"
+          "Sauvegardes et sessions échouées"
         ]
       ]
     ],
@@ -4326,7 +4326,7 @@
         ],
         [
           "text",
-          "Pour les procédures de sauvegarde SquashFS et de périphérique complet, voir "
+          "Pour les procédures de sauvegarde SquashFS et de périphérique entier, voir "
         ],
         [
           "link",
@@ -4335,7 +4335,7 @@
           [
             [
               "text",
-              "Sauvegarder MiniOS"
+              "Sauvegarde de MiniOS"
             ]
           ]
         ],
@@ -4351,7 +4351,7 @@
       [
         [
           "text",
-          "Si une session échoue après un remplissage du stockage, une écriture interrompue ou la création répétée de sessions vides, arrêtez toute modification du stockage concerné. Exportez d’abord une session non active lisible si possible, puis suivez la page "
+          "Si une session échoue après un remplissage du stockage, une interruption d’écriture ou la création répétée de sessions vides, arrêtez de modifier le stockage concerné. Exportez d’abord une session non active lisible si possible, puis suivez "
         ],
         [
           "link",
@@ -4567,7 +4567,7 @@
       [
         [
           "text",
-          "Au démarrage, les systèmes de fichiers des conteneurs sont vérifiés avant l’activation en écriture. Les échecs graves de vérification du système de fichiers préservent le conteneur pour la récupération au lieu de le monter en écriture. SquashFS détecte un état précédent non propre et restaure le dernier instantané sauvegardé avec succès. Supprimez les sessions uniquement via le gestionnaire de sessions MiniOS ou "
+          "Au démarrage, les systèmes de fichiers des conteneurs sont vérifiés avant l’activation en écriture. Les échecs sérieux de vérification préservent le conteneur pour la récupération au lieu de le monter en écriture. SquashFS détecte un état antérieur non propre et restaure le dernier instantané sauvegardé avec succès. Supprimez les sessions uniquement via le Gestionnaire de sessions MiniOS ou "
         ],
         [
           "span",
@@ -4581,12 +4581,12 @@
         ],
         [
           "text",
-          " ; ne supprimez pas les répertoires de session manuellement."
+          " ; ne supprimez pas manuellement les répertoires de session."
         ]
       ]
     ]
   ],
-  "plain_text": "Sessions et persistance\nLes sessions MiniOS conservent les modifications apportées au système en direct après les redémarrages. Chaque session correspond à un répertoire numéroté sous minios/changes/ ; les modules MiniOS restent en lecture seule et la session sélectionnée fournit la couche writable du système de fichiers union.\nUtilisez le gestionnaire de sessions MiniOS depuis un système MiniOS en cours d’exécution :\nminios-session-manager\nL’outil équivalent en ligne de commande est minios-session. Ses commandes de modification nécessitent des privilèges administrateur, donc les exemples ci-dessous utilisent sudo.\nModes de session\nMode | Stockage | Contraintes principales\nnative | Modifications stockées directement dans le répertoire de session | Nécessite un système de fichiers POSIX inscriptible comme ext2/3/4, Btrfs, XFS, F2FS ou ReiserFS.\ndynfilefs | Conteneur ext4 extensible découpé en fichiers de support | Fonctionne sur POSIX inscriptible, FAT32, NTFS et exFAT. Nécessite le backend DynFileFS.\nraw | changes.img de taille fixe contenant ext4 | Fonctionne sur POSIX inscriptible, FAT32, NTFS et exFAT.\nluks | changes.luks chiffré LUKS2 contenant ext4 | Nécessite cryptsetup, le support loop et le hook initrd LUKS MiniOS.\nsquashfs | Instantané compressé dans changes.sb | L’enregistrement nécessite un système de fichiers de persistance POSIX capable de préserver les liens, propriétaires, modes, xattrs, ACLs, capacités et whiteouts.\ndynfilefs, raw et luks créés avec minios-session ont une taille par défaut de 4000 Mio. Les valeurs de taille sont allouées en Mio ; les suffixes GB et TB convertissent respectivement en 1000 et 1 000 000 Mio. Le gestionnaire de sessions MiniOS limite les fichiers raw et LUKS à 4000 Mio sur FAT32. Ne considérez pas cela comme une garantie générale de l’initrd : une demande de démarrage raw surdimensionnée peut atteindre l’allocation et échouer au lieu d’être réduite. Les opérations de redimensionnement de conteneur ne permettent que d’augmenter la taille d’une session ; la réduction n’est pas prise en charge.\nLe mode natif est le choix le plus simple et le plus rapide sur un système de fichiers compatible.\nUtilisez DynFileFS lorsque le système de fichiers de persistance ne peut pas représenter les métadonnées Linux.\nUtilisez raw si une allocation fixe est requise, LUKS si la session doit être chiffrée, et SquashFS pour un instantané compressé exact.\nExécutez les commandes suivantes pour inspecter le système de fichiers de persistance réel et les modes disponibles dessus :\nsudo minios-session info\nsudo minios-session status\nAucune session ne peut être créée sur un support en lecture seule. L’initrd peut lire et activer un instantané SquashFS existant stocké sur FAT, exFAT ou NTFS inscriptible car il extrait l’instantané dans un upper ext4 temporaire. La création ou l’enregistrement exact d’un instantané est différent : son espace de travail privé doit se trouver sur un système de fichiers POSIX adapté qui préserve les métadonnées Linux et les whiteouts du système de fichiers union.\nSélection du démarrage\nTout paramètre de persistance reconnu active la gestion de la persistance. Les menus de démarrage MiniOS proposent généralement des entrées pour reprendre, créer une nouvelle session, sélectionner ou démarrer sans persistance. La description canonique des logiques de sélection, compatibilité, secours et activation se trouve dans Initrd persistence.\nParamètre | Signification\nperch | Utilise le chemin de reprise hérité best-effort. Il tente la valeur par défaut des métadonnées mais ne crée pas de remplacement si aucune n’est utilisable.\nperchdir=resume | Reprend la valeur par défaut des métadonnées et, si elle est absente ou incompatible, permet à l’initrd de créer un nouveau remplacement compatible. C’est le comportement actuel du menu de démarrage pour la reprise.\nperchdir=new | Alloue une nouvelle session numérotée.\nperchdir=ask | Sélectionne une session existante ou en crée une lors du démarrage.\nperchdir=<id> | Sélectionne directement cette session numérotée.\nperchdir=<device/path> | Utilise un emplacement de persistance sur un périphérique, y compris les formes /dev/... et label:... gérées par l’initrd.\nperchmode=<mode> | Définit native, dynfilefs, raw, luks ou squashfs.\nperchsize=<size> | Définit une nouvelle taille de conteneur ou l’agrandit ; les valeurs simples sont allouées en Mio et les suffixes MB, GB et TB sont acceptés.\nSi aucun mode n’est spécifié pour une nouvelle session, le démarrage utilise le mode natif. Sur FAT32/NTFS/exFAT, la création native bascule sur DynFileFS. Un nouveau conteneur raw ou LUKS démarre par défaut à 4000 Mio ; une nouvelle session DynFileFS sans perchsize est dimensionnée selon l’espace disponible tout en conservant une réserve de sécurité.\nLes sessions SquashFS sont capturées depuis le système en cours d’exécution avec le gestionnaire de sessions MiniOS ou minios-session create squashfs ; perchdir=new perchmode=squashfs ne crée pas d’instantané dans l’initrd.\nLors de la reprise, MiniOS vérifie la version enregistrée, l’édition, le système de fichiers union et le mode. L’utilisation littérale de perchdir=resume peut créer une nouvelle session au lieu d’utiliser une valeur par défaut absente ou incompatible. Les requêtes perch simples, la sélection numérique directe et d’autres demandes de reprise héritées ne créent pas automatiquement ce remplacement.\nLa sélection interactive affiche un avertissement avant d’autoriser une session incompatible. Si la sélection ou l’activation échoue, le démarrage continue normalement avec un upper RAM et un avertissement de persistance.\nLe magasin de sessions a cette forme :\nminios/changes/\n|-- session.conf\n|-- 1/\n|-- 2/\n`-- N/\nsession.conf enregistre les identifiants par défaut et en cours d’utilisation, ainsi que le mode, la version, l’édition, le système de fichiers union, la taille, l’état et les paramètres spécifiques à chaque session.\nIl s’agit de métadonnées persistantes validées par l’implémentation du démarrage, sans garantir à elles seules l’état d’exécution actuel. Ne modifiez pas ce fichier et ne déplacez pas les données de session numérotées lorsqu’une session est montée ; utilisez le gestionnaire de sessions MiniOS ou minios-session.\nSessions actives et en cours d’exécution\nCes termes décrivent des états différents :\nLa session active est celle sélectionnée par défaut pour le prochain démarrage.\nConceptuellement, la session en cours d’exécution est celle dont la couche writable fournit effectivement la persistance au démarrage actuel.\nLe champ persistant running= enregistre cette relation prévue. Un crash, une construction de l’union échouée, une copie du magasin ou un arrêt interrompu peuvent le rendre obsolète même si le démarrage actuel utilise RAM ou une autre session. Les opérations telles que la sauvegarde SquashFS nécessitent donc l’état protégé de l’initrd lié à l’ID de démarrage actuel et un upper monté vérifié ; elles ne se fient pas uniquement à running=. Voir État actif, en cours et démarrage actuel.\nActiver une session modifie le prochain démarrage mais ne change pas le système de fichiers union en cours :\nsudo minios-session active\nsudo minios-session running\nsudo minios-session activate <id>\nLa session active ne peut pas être supprimée ni convertie sur place. Une session en cours d’exécution ne peut normalement pas être supprimée, exportée, copiée, redimensionnée ou convertie. Le nettoyage protège également les deux identifiants.\nRéférence des commandes\nLister les sessions et inspecter le magasin :\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session info\nsudo minios-session status\nCréer des sessions :\nsudo minios-session create\nsudo minios-session create native\nsudo minios-session create dynfilefs\nsudo minios-session create raw 4GB\nsudo minios-session create luks 4GB\nsudo minios-session create squashfs --policy shutdown\nsudo minios-session create squashfs --policy manual --autosave 60\ncreate sans mode sélectionne le mode natif. La création SquashFS capture les modifications en cours et n’a pas de taille fixe. Sa politique d’arrêt est par défaut shutdown ; la sauvegarde périodique est désactivée par défaut.\nSauvegarder et configurer une session SquashFS :\nsudo minios-session save <running-squashfs-id>\nsudo minios-session settings <squashfs-id> --shutdown on\nsudo minios-session settings <squashfs-id> --shutdown off --autosave 0\nsudo minios-session settings <squashfs-id> --shutdown on --autosave 60\nLes intervalles périodiques valides sont 30, 60, 120, 240 et 480 minutes ; 0 désactive la sauvegarde périodique. Les réglages d’arrêt et de périodicité sont indépendants.\nExporter et importer des archives .tar.zst :\nsudo minios-session export <id> /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nsudo minios-session import /path/to/session.tar.zst --force-mode dynfilefs\nSeuls les imports .tar.zst sont acceptés. Les chemins et membres d’archive sont validés, et l’extraction est limitée. --auto-convert choisit un mode compatible avec le système de fichiers actuel. --force-mode <mode> sélectionne explicitement un mode disponible. L’export, la copie et la conversion ne sont pas pris en charge pour les sessions SquashFS ; sauvegardez l’instantané et copiez plutôt le répertoire de session inactif complet.\nCopier ou convertir une session :\nsudo minios-session copy <id>\nsudo minios-session copy <id> --to-mode raw --size 4GB\nsudo minios-session convert <id> dynfilefs --size 4GB\nsudo minios-session convert <id> luks --size 4GB --new-session\ncopy attribue toujours un nouvel ID de session. convert remplace la source par défaut ; utilisez --new-session pour préserver la source. Une taille n’est pertinente que pour une cible de type conteneur.\nAgrandir, supprimer ou nettoyer des sessions :\nsudo minios-session resize <id> 8GB\nsudo minios-session delete <id>\nsudo minios-session cleanup\nsudo minios-session cleanup --days 30\nLe redimensionnement prend en charge les sessions DynFileFS, raw et LUKS et nécessite une taille supérieure à la taille actuelle. Le nettoyage cible par défaut les sessions de plus de 30 jours.\nToutes les commandes acceptent --json, et un autre magasin de sessions peut être sélectionné avec --sessions-dir PATH :\nsudo minios-session --json list\nsudo minios-session --sessions-dir /mnt/store/minios/changes list\nComportement de sauvegarde SquashFS\nUne session SquashFS est décompressée dans RAM pour la couche writable en cours d’exécution. La sauvegarde reconstruit et valide un instantané exact, puis remplace changes.sb de façon atomique.\nAucune génération de rollback n’est conservée. « Sauvegarder maintenant » est disponible depuis l’icône de la barre système, le gestionnaire de sessions MiniOS ou minios-session save indépendamment de la politique automatique.\nLa sauvegarde à l’arrêt est assurée par le déclencheur d’arrêt principal MiniOS et le backend minios-squashfs-save, elle ne dépend donc pas de l’ouverture ou de l’installation du gestionnaire de sessions MiniOS. La sauvegarde périodique est vérifiée toutes les 30 minutes par un timer systemd ou un worker SysV, qui appellent tous deux le même backend d’autosauvegarde. La reconstruction de l’instantané consomme du CPU et écrit l’instantané complet ; des intervalles d’une heure ou plus sont recommandés.\nPendant le fonctionnement avec RAM en backend SquashFS, un instantané SquashFS nouvellement capturé et activé peut prendre la possession de la cible de sauvegarde en cours d’exécution. Après ce transfert, l’ancien instantané en cours peut être supprimé sans redémarrage :\nsudo minios-session activate <new-squashfs-id>\nsudo minios-session delete <old-running-squashfs-id> --handoff\nCette exception ne s’applique qu’à un transfert valide de SquashFS pour le démarrage en cours. Les autres modes de persistance en cours restent protégés contre la suppression.\nChiffrement\nLe mode LUKS stocke un système de fichiers ext4 directement dans un fichier LUKS2 changes.luks ; il n’y a pas de table de partitions ni de conteneur DynFileFS imbriqué. Les options LUKS sont disponibles uniquement lorsque /run/initramfs/etc/minios-initramfs-crypt, cryptsetup et losetup sont présents.\nLa création interactive d’un conteneur LUKS demande la phrase de passe deux fois. Les opérations qui lisent ou créent des données LUKS peuvent les lire depuis l’entrée standard avec --password-stdin.\nLes phrases de passe ne sont jamais placées dans les arguments de commande ni dans les métadonnées de session. Au démarrage, l’initrd demande la phrase de passe sur la console et ne bascule pas vers une persistance non chiffrée si l’activation échoue.\nLes exports LUKS contiennent les fichiers logiques de session déchiffrés, et non changes.luks.\nL’import ou la conversion vers LUKS crée un nouveau conteneur chiffré.\nSauvegardes et sessions défaillantes\nPour les sessions natives, DynFileFS, raw et LUKS, utilisez export pour les sauvegardes plutôt que de copier un répertoire de session monté. Conservez l’archive obtenue sur un autre périphérique et vérifiez qu’elle peut être importée avant de vous y fier. L’import crée toujours une nouvelle session numérotée ; activez-la explicitement lorsqu’elle est prête à être utilisée.\nPour les procédures de sauvegarde SquashFS et de périphérique complet, voir Sauvegarder MiniOS.\nSi une session échoue après un remplissage du stockage, une écriture interrompue ou la création répétée de sessions vides, arrêtez toute modification du stockage concerné. Exportez d’abord une session non active lisible si possible, puis suivez la page Dépannage.\nCommencez le diagnostic sans modifier les données de session :\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session status\nsudo minios-session info\nAu démarrage, les systèmes de fichiers des conteneurs sont vérifiés avant l’activation en écriture. Les échecs graves de vérification du système de fichiers préservent le conteneur pour la récupération au lieu de le monter en écriture. SquashFS détecte un état précédent non propre et restaure le dernier instantané sauvegardé avec succès. Supprimez les sessions uniquement via le gestionnaire de sessions MiniOS ou minios-session delete ; ne supprimez pas les répertoires de session manuellement.",
+  "plain_text": "Sessions et persistance\nLes sessions MiniOS conservent les modifications apportées au système en direct après les redémarrages. Chaque session correspond à un répertoire numéroté sous minios/changes/ ; les modules MiniOS restent en lecture seule et la session sélectionnée fournit la couche writable du système de fichiers union.\nUtilisez le gestionnaire de sessions MiniOS depuis un système MiniOS en cours d’exécution :\nminios-session-manager\nL’outil équivalent en ligne de commande est minios-session. Ses commandes de modification nécessitent des privilèges administrateur, donc les exemples ci-dessous utilisent sudo.\nModes de session\nMode | Stockage | Contraintes principales\nnative | Modifications stockées directement dans le répertoire de session | Nécessite un système de fichiers POSIX inscriptible comme ext2/3/4, Btrfs, XFS, F2FS ou ReiserFS.\ndynfilefs | Conteneur ext4 extensible découpé en fichiers de support | Fonctionne sur POSIX inscriptible, FAT32, NTFS et exFAT. Nécessite le backend DynFileFS.\nraw | changes.img de taille fixe contenant ext4 | Fonctionne sur POSIX inscriptible, FAT32, NTFS et exFAT.\nluks | changes.luks chiffré LUKS2 contenant ext4 | Nécessite cryptsetup, le support loop et le hook initrd LUKS MiniOS.\nsquashfs | Instantané compressé dans changes.sb | L’enregistrement nécessite un système de fichiers de persistance POSIX capable de préserver les liens, propriétaires, modes, xattrs, ACLs, capacités et whiteouts.\ndynfilefs, raw et luks créés avec minios-session ont une taille par défaut de 4000 Mio. Les valeurs de taille sont allouées en Mio ; les suffixes GB et TB convertissent respectivement en 1000 et 1 000 000 Mio. Le gestionnaire de sessions MiniOS limite les fichiers raw et LUKS à 4000 Mio sur FAT32. Ne considérez pas cela comme une garantie générale de l’initrd : une demande de démarrage raw surdimensionnée peut atteindre l’allocation et échouer au lieu d’être réduite. Les opérations de redimensionnement de conteneur ne permettent que d’augmenter la taille d’une session ; la réduction n’est pas prise en charge.\nLe mode natif est le choix le plus simple et le plus rapide sur un système de fichiers compatible.\nUtilisez DynFileFS lorsque le système de fichiers de persistance ne peut pas représenter les métadonnées Linux.\nUtilisez raw si une allocation fixe est requise, LUKS si la session doit être chiffrée, et SquashFS pour un instantané compressé exact.\nExécutez les commandes suivantes pour inspecter le système de fichiers de persistance réel et les modes disponibles dessus :\nsudo minios-session info\nsudo minios-session status\nAucune session ne peut être créée sur un support en lecture seule. L’initrd peut lire et activer un instantané SquashFS existant stocké sur FAT, exFAT ou NTFS inscriptible car il extrait l’instantané dans un upper ext4 temporaire. La création ou l’enregistrement exact d’un instantané est différent : son espace de travail privé doit se trouver sur un système de fichiers POSIX adapté qui préserve les métadonnées Linux et les whiteouts du système de fichiers union.\nSélection du démarrage\nTout paramètre de persistance reconnu active la gestion de la persistance. Les menus de démarrage MiniOS proposent généralement des entrées pour reprendre, créer une nouvelle session, sélectionner ou démarrer sans persistance. La description de référence des sélecteurs, de la compatibilité, du repli et des modes d’activation se trouve dans Persistance initrd.\nParamètre | Signification\nperch | Utilise le chemin de reprise hérité au mieux. Il tente d’utiliser la valeur par défaut des métadonnées mais ne crée pas de remplacement si aucune n’est utilisable.\nperchdir=resume | Reprend la valeur par défaut des métadonnées et, si elle est absente ou incompatible, permet à l’initrd de créer un nouveau remplacement compatible. Il s’agit du comportement actuel de reprise dans le menu de démarrage.\nperchdir=new | Alloue une nouvelle session numérotée.\nperchdir=ask | Permet de sélectionner une session existante ou d’en créer une lors du démarrage.\nperchdir=<id> | Sélectionne directement cette session numérotée.\nperchdir=<device/path> | Utilise un emplacement de persistance sur un périphérique, y compris /dev/... et label:... les formats pris en charge par l’initrd.\nperchmode=<mode> | Définit native, dynfilefs, raw, luks, ou squashfs.\nperchsize=<size> | Définit une nouvelle taille de conteneur ou une taille supérieure ; les valeurs simples sont allouées en Mio et MB, GB, et TB les suffixes sont acceptés.\nSi aucun mode n’est spécifié pour une nouvelle session, le démarrage utilise le mode natif. Sur FAT32/NTFS/exFAT, la création native bascule sur DynFileFS si nécessaire. Un nouveau conteneur raw ou LUKS démarre à 4000 Mio ; une nouvelle session DynFileFS sans perchsize est dimensionnée selon l’espace disponible tout en conservant une marge de sécurité.\nLes sessions SquashFS sont capturées depuis le système en cours d’exécution avec le Gestionnaire de sessions MiniOS ou minios-session create squashfs ; perchdir=new perchmode=squashfs ne crée pas de capture instantanée dans l’initrd.\nLors de la reprise, MiniOS vérifie la version enregistrée, l’édition, le système de fichiers union et le mode. Le paramètre littéral perchdir=resume peut créer une nouvelle session au lieu d’utiliser une valeur par défaut absente ou incompatible. Les demandes de reprise directes, perch, la sélection numérique directe et les autres reprises héritées ne créent pas automatiquement ce remplacement.\nLa sélection interactive affiche un avertissement avant d’autoriser une session incompatible. Si la sélection ou l’activation échoue encore, le démarrage continue normalement avec un upper RAM et un avertissement de persistance.\nLe magasin de sessions a la forme suivante :\nminios/changes/\n|-- session.conf\n|-- 1/\n|-- 2/\n`-- N/\nsession.conf enregistre les identifiants par défaut et en cours, ainsi que le mode, la version, l’édition, le système de fichiers union, la taille, l’état et les paramètres spécifiques à chaque session.\nIl s’agit de métadonnées persistantes validées par l’implémentation du démarrage, mais elles ne prouvent pas à elles seules l’état d’exécution actuel. Ne les modifiez pas et ne déplacez pas les données de session numérotées pendant qu’une session est montée ; utilisez le Gestionnaire de sessions MiniOS ou minios-session.\nSessions actives et en cours d’exécution\nCes termes décrivent des états différents :\nLa session active est celle sélectionnée par défaut pour le prochain démarrage.\nSur le plan conceptuel, la session en cours est celle dont la couche modifiable assure effectivement la persistance pour le démarrage actuel.\nLe champ persistant running= enregistre cette relation prévue. Un crash, un échec de construction de l’union, une copie du stockage ou un arrêt interrompu peuvent le rendre obsolète, même si le démarrage actuel utilise RAM ou une autre session. Des opérations comme la sauvegarde SquashFS nécessitent donc l’état actuel protégé de l’initrd, lié à l’ID de démarrage, et la vérification du montage de la couche supérieure ; elles ne se fient pas à running= seul. Voir État actif, en cours d’exécution et démarrage actuel.\nL’activation d’une session modifie le prochain démarrage mais ne change pas le système de fichiers union en cours :\nsudo minios-session active\nsudo minios-session running\nsudo minios-session activate <id>\nLa session active ne peut pas être supprimée ou convertie sur place. Une session en cours ne peut normalement pas être supprimée, exportée, copiée, redimensionnée ou convertie. Le nettoyage protège également les deux identifiants.\nRéférence des commandes\nLister les sessions et inspecter le magasin :\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session info\nsudo minios-session status\nCréer des sessions :\nsudo minios-session create\nsudo minios-session create native\nsudo minios-session create dynfilefs\nsudo minios-session create raw 4GB\nsudo minios-session create luks 4GB\nsudo minios-session create squashfs --policy shutdown\nsudo minios-session create squashfs --policy manual --autosave 60\ncreate sans mode sélectionne natif. La création SquashFS capture les modifications actives en cours et n’a pas de taille fixe. Sa politique d’arrêt par défaut est shutdown ; la sauvegarde périodique est désactivée par défaut.\nSauvegarder et configurer une session SquashFS :\nsudo minios-session save <running-squashfs-id>\nsudo minios-session settings <squashfs-id> --shutdown on\nsudo minios-session settings <squashfs-id> --shutdown off --autosave 0\nsudo minios-session settings <squashfs-id> --shutdown on --autosave 60\nLes intervalles périodiques valides sont 30, 60, 120, 240, et 480 minutes ; 0 désactive la sauvegarde périodique. Les réglages arrêt et périodique sont indépendants.\nExporter et importer des .tar.zst archives :\nsudo minios-session export <id> /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nsudo minios-session import /path/to/session.tar.zst --force-mode dynfilefs\nSeuls les imports de .tar.zst sont acceptés. Les chemins et membres d’archive sont validés, et l’extraction est limitée. --auto-convert choisit un mode compatible avec le système de fichiers actuel. --force-mode <mode> sélectionne explicitement un mode disponible. L’export, la copie et la conversion ne sont pas pris en charge pour les sessions SquashFS ; sauvegardez l’instantané et copiez à la place le répertoire complet de la session inactive.\nCopier ou convertir une session :\nsudo minios-session copy <id>\nsudo minios-session copy <id> --to-mode raw --size 4GB\nsudo minios-session convert <id> dynfilefs --size 4GB\nsudo minios-session convert <id> luks --size 4GB --new-session\ncopy attribue toujours un nouvel identifiant de session. convert remplace la source par défaut ; utilisez --new-session pour préserver la source. Une taille n’est pertinente que pour une cible de conteneur.\nAgrandir, supprimer ou nettoyer des sessions :\nsudo minios-session resize <id> 8GB\nsudo minios-session delete <id>\nsudo minios-session cleanup\nsudo minios-session cleanup --days 30\nLe redimensionnement prend en charge les sessions DynFileFS, raw et LUKS et nécessite une taille supérieure à l’actuelle. Le nettoyage cible par défaut les sessions de plus de 30 jours.\nToutes les commandes acceptent --json, et un autre magasin de sessions peut être sélectionné avec --sessions-dir PATH:\nsudo minios-session --json list\nsudo minios-session --sessions-dir /mnt/store/minios/changes list\nComportement de sauvegarde SquashFS\nUne session SquashFS est décompressée dans RAM pour la couche inscriptible en cours d’exécution. La sauvegarde reconstruit et valide un instantané exact, puis remplace atomiquement changes.sb.\nAucune génération de restauration n’est conservée. Sauvegarder maintenant est disponible depuis l’icône de la zone de notification, le Gestionnaire de sessions MiniOS ou minios-session save indépendamment de la politique automatique.\nLa sauvegarde à l’arrêt est assurée par le déclencheur d’arrêt principal MiniOS et le backend minios-squashfs-save, elle ne dépend donc pas que le Gestionnaire de sessions MiniOS soit ouvert ou installé. La sauvegarde périodique est vérifiée toutes les 30 minutes par un minuteur systemd ou un worker SysV, tous deux appelant le même backend d’enregistrement automatique. La reconstruction de l’instantané consomme du CPU et écrit l’instantané complet ; il est recommandé d’utiliser des intervalles d’une heure ou plus.\nPendant le fonctionnement avec persistance RAM (SquashFS), un instantané nouvellement capturé et activé SquashFS peut prendre le contrôle de la cible de sauvegarde en cours. Après ce transfert, l’ancien instantané en cours peut être supprimé sans redémarrage :\nsudo minios-session activate <new-squashfs-id>\nsudo minios-session delete <old-running-squashfs-id> --handoff\nCette exception s’applique uniquement à un transfert valide de SquashFS du démarrage actuel. Les autres modes de persistance en cours restent protégés contre la suppression.\nChiffrement\nLe mode LUKS stocke un système de fichiers ext4 directement dans un fichier LUKS2 changes.luks ; il n’y a pas de table de partitions ni de conteneur DynFileFS imbriqué. Les options LUKS sont disponibles uniquement lorsque /run/initramfs/etc/minios-initramfs-crypt, cryptsetup et losetup sont présents.\nLa création interactive d’un conteneur LUKS demande la phrase de passe deux fois. Les opérations qui lisent ou créent des données LUKS peuvent les lire depuis l’entrée standard avec --password-stdin.\nLes phrases de passe ne sont jamais placées dans les arguments de commande ni dans les métadonnées de session. Au démarrage, l’initrd demande la phrase de passe sur la console et ne bascule pas vers une persistance non chiffrée si l’activation échoue.\nLes exports LUKS contiennent les fichiers logiques de session déchiffrés, et non changes.luks.\nL’import ou la conversion vers LUKS crée un nouveau conteneur chiffré.\nSauvegardes et sessions échouées\nPour les sessions natives, DynFileFS, raw et LUKS, utilisez export pour les sauvegardes plutôt que de copier un répertoire de session monté. Conservez l’archive obtenue sur un autre périphérique et vérifiez qu’elle peut être importée avant de vous y fier. L’import crée toujours une nouvelle session numérotée ; activez-la explicitement lorsqu’elle est prête à être utilisée.\nPour les procédures de sauvegarde SquashFS et de périphérique entier, voir Sauvegarde de MiniOS.\nSi une session échoue après un remplissage du stockage, une interruption d’écriture ou la création répétée de sessions vides, arrêtez de modifier le stockage concerné. Exportez d’abord une session non active lisible si possible, puis suivez Dépannage.\nCommencez le diagnostic sans modifier les données de session :\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session status\nsudo minios-session info\nAu démarrage, les systèmes de fichiers des conteneurs sont vérifiés avant l’activation en écriture. Les échecs sérieux de vérification préservent le conteneur pour la récupération au lieu de le monter en écriture. SquashFS détecte un état antérieur non propre et restaure le dernier instantané sauvegardé avec succès. Supprimez les sessions uniquement via le Gestionnaire de sessions MiniOS ou minios-session delete ; ne supprimez pas manuellement les répertoires de session.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

@@ -660,7 +660,7 @@
       [
         [
           "text",
-          "Jeder erkannte Persistenz-Parameter aktiviert die Persistenzverwaltung. MiniOS-Bootmenüs bieten in der Regel Resume-, Neu-, Auswahl- und Nicht-Persistent-Einträge. Die maßgebliche Beschreibung von Selector-, Kompatibilitäts-, Fallback- und Aktivierungssemantik findet sich unter "
+          "Jeder erkannte Persistenz-Parameter aktiviert die Persistenzverwaltung. MiniOS-Bootmenüs bieten in der Regel Einträge für Fortsetzen, Neu, Auswahl und Nicht-Persistent. Die maßgebliche Beschreibung der Selektor-, Kompatibilitäts-, Fallback- und Aktivierungslogik findet sich unter "
         ],
         [
           "link",
@@ -730,7 +730,7 @@
               [
                 [
                   "text",
-                  "Verwendet den Legacy-Best-Effort-Resume-Pfad. Versucht den Metadaten-Standard, erstellt aber keinen Ersatz, wenn keiner nutzbar ist."
+                  "Verwendet den alten Best-Effort-Fortsetzungsweg. Es wird der Standardwert aus den Metadaten versucht, aber kein Ersatz erstellt, wenn keiner nutzbar ist."
                 ]
               ]
             ]
@@ -760,7 +760,7 @@
               [
                 [
                   "text",
-                  "Setzt den Metadaten-Standard fort und erlaubt, falls dieser fehlt oder inkompatibel ist, dem initrd, einen neuen kompatiblen Ersatz zu erstellen. Dies ist das aktuelle Resume-Verhalten im Boot-Menü."
+                  "Setzt den Standardwert aus den Metadaten fort und erlaubt, falls dieser fehlt oder inkompatibel ist, dem initrd einen neuen kompatiblen Ersatz zu erstellen. Dies entspricht dem aktuellen Verhalten beim Fortsetzen im Boot-Menü."
                 ]
               ]
             ]
@@ -790,7 +790,7 @@
               [
                 [
                   "text",
-                  "Erstellt eine neue nummerierte Sitzung."
+                  "Eine neue nummerierte Sitzung anlegen."
                 ]
               ]
             ]
@@ -820,7 +820,7 @@
               [
                 [
                   "text",
-                  "Wählt eine bestehende Sitzung aus oder erstellt eine während des Bootvorgangs."
+                  "Eine bestehende Sitzung auswählen oder beim Booten eine neue erstellen."
                 ]
               ]
             ]
@@ -850,7 +850,7 @@
               [
                 [
                   "text",
-                  "Wählt diese nummerierte Sitzung direkt aus."
+                  "Diese nummerierte Sitzung direkt auswählen."
                 ]
               ]
             ]
@@ -880,7 +880,7 @@
               [
                 [
                   "text",
-                  "Verwendet einen Persistenzspeicherort auf einem Gerät, einschließlich der vom initrd unterstützten Formen "
+                  "Eine Persistenz-Position auf einem Gerät verwenden, einschließlich "
                 ],
                 [
                   "span",
@@ -908,7 +908,7 @@
                 ],
                 [
                   "text",
-                  "."
+                  "-Formate, die vom initrd verarbeitet werden."
                 ]
               ]
             ]
@@ -938,7 +938,7 @@
               [
                 [
                   "text",
-                  "Setzt "
+                  "Setze "
                 ],
                 [
                   "span",
@@ -994,7 +994,7 @@
                 ],
                 [
                   "text",
-                  " oder "
+                  ", oder "
                 ],
                 [
                   "span",
@@ -1038,7 +1038,7 @@
               [
                 [
                   "text",
-                  "Legt eine neue oder größere Containergröße fest; einfache Werte werden in MiB zugewiesen und die Suffixe "
+                  "Eine neue oder größere Containergröße festlegen; reine Werte werden in MiB zugewiesen und "
                 ],
                 [
                   "span",
@@ -1066,7 +1066,7 @@
                 ],
                 [
                   "text",
-                  " und "
+                  ", und "
                 ],
                 [
                   "span",
@@ -1080,7 +1080,7 @@
                 ],
                 [
                   "text",
-                  " werden akzeptiert."
+                  "-Suffixe werden akzeptiert."
                 ]
               ]
             ]
@@ -1094,7 +1094,7 @@
       [
         [
           "text",
-          "Wird für eine neue Sitzung kein Modus angegeben, verwendet der Bootvorgang den Native-Modus. Bei FAT32/NTFS/exFAT fällt die Native-Boot-Erstellung auf DynFileFS zurück. Ein neuer Raw- oder LUKS-Boot-Container hat standardmäßig 4000 MiB; eine neue DynFileFS-Boot-Sitzung ohne "
+          "Wenn für eine neue Sitzung kein Modus angegeben ist, wird beim Booten der native Modus verwendet. Auf FAT32/NTFS/exFAT fällt die native Boot-Erstellung auf DynFileFS zurück. Ein neuer Raw- oder LUKS-Boot-Container ist standardmäßig 4000 MiB groß; eine neue DynFileFS-Boot-Sitzung ohne "
         ],
         [
           "span",
@@ -1108,7 +1108,7 @@
         ],
         [
           "text",
-          " wird anhand des verfügbaren Speicherplatzes unter Beibehaltung einer Sicherheitsreserve dimensioniert."
+          " wird anhand des verfügbaren Speicherplatzes unter Berücksichtigung einer Sicherheitsreserve dimensioniert."
         ],
         [
           "text",
@@ -1130,7 +1130,7 @@
         ],
         [
           "text",
-          " erstellt; "
+          "; "
         ],
         [
           "span",
@@ -1144,7 +1144,7 @@
         ],
         [
           "text",
-          " erzeugt keinen Snapshot im initrd."
+          " erstellt kein Snapshot im initrd."
         ]
       ]
     ],
@@ -1154,7 +1154,7 @@
       [
         [
           "text",
-          "Beim Fortsetzen prüft MiniOS die aufgezeichnete Version, Edition, das Union-Dateisystem und den Modus. Das explizite "
+          "Beim Fortsetzen prüft MiniOS die gespeicherte Version, Edition, das Union-Dateisystem und den Modus. Ein wörtliches "
         ],
         [
           "span",
@@ -1168,7 +1168,7 @@
         ],
         [
           "text",
-          " kann eine neue Sitzung erstellen, anstatt einen fehlenden oder inkompatiblen Standard zu verwenden. Reines "
+          " kann eine neue Sitzung erstellen, anstatt einen fehlenden oder inkompatiblen Standard zu verwenden. Reine "
         ],
         [
           "span",
@@ -1182,7 +1182,7 @@
         ],
         [
           "text",
-          ", direkte numerische Auswahl und andere Legacy-Resume-Anfragen erstellen diesen Ersatz nicht automatisch."
+          ", direkte numerische Auswahl und andere alte Fortsetzungsanfragen erstellen diesen Ersatz nicht automatisch."
         ],
         [
           "text",
@@ -1190,7 +1190,7 @@
         ],
         [
           "text",
-          "Die interaktive Auswahl zeigt eine Warnung an, bevor eine inkompatible Sitzung zugelassen wird. Falls Auswahl oder Aktivierung dennoch fehlschlagen, startet das System normalerweise mit einem RAM-Upper und einer Persistenzwarnung."
+          "Bei interaktiver Auswahl erscheint eine Warnung, bevor eine inkompatible Sitzung zugelassen wird. Schlägt die Auswahl oder Aktivierung weiterhin fehl, startet das Booten normalerweise mit einem RAM-Upper und einer Persistenzwarnung."
         ]
       ]
     ],
@@ -1234,7 +1234,7 @@
         ],
         [
           "text",
-          "Dies sind persistente Metadaten, die von der Boot-Implementierung geschrieben werden, aber kein Beweis für den aktuellen Laufzeitstatus sind. Bearbeiten Sie diese nicht und verschieben Sie keine nummerierten Sitzungsdaten, während eine Sitzung eingehängt ist; verwenden Sie den MiniOS-Sitzungsmanager oder "
+          "Es handelt sich um persistente Metadaten, die von der Boot-Implementierung geschrieben werden, aber nicht für den aktuellen Laufzeitstatus bürgen. Bearbeiten oder verschieben Sie nummerierte Sitzungsdaten nicht, solange eine Sitzung eingehängt ist; verwenden Sie stattdessen den MiniOS-Sitzungsmanager oder "
         ],
         [
           "span",
@@ -1304,7 +1304,7 @@
                 ],
                 [
                   "text",
-                  " Sitzung ist die standardmäßig für den nächsten Start ausgewählte Sitzung."
+                  " Sitzung ist standardmäßig für den nächsten Start ausgewählt."
                 ]
               ]
             ]
@@ -1320,7 +1320,7 @@
               [
                 [
                   "text",
-                  "Die "
+                  "Begrifflich ist die "
                 ],
                 [
                   "span",
@@ -1334,7 +1334,7 @@
                 ],
                 [
                   "text",
-                  " Sitzung ist konzeptionell die Sitzung, deren beschreibbare Schicht tatsächlich Persistenz für den aktuellen Start bereitstellt."
+                  " Sitzung diejenige, deren beschreibbare Ebene tatsächlich die Persistenz für den aktuellen Start bereitstellt."
                 ]
               ]
             ]
@@ -1348,7 +1348,7 @@
       [
         [
           "text",
-          "Das persistente Feld "
+          "Das persistente "
         ],
         [
           "span",
@@ -1362,7 +1362,7 @@
         ],
         [
           "text",
-          " dokumentiert diese beabsichtigte Beziehung. Ein Absturz, ein fehlgeschlagener Union-Aufbau, ein kopierter Speicher oder ein unterbrochener Shutdown können dazu führen, dass dieser Wert veraltet ist, selbst wenn der aktuelle Start RAM oder eine andere Sitzung verwendet. Vorgänge wie das SquashFS-Speichern erfordern daher den geschützten, boot-ID-gebundenen Current-Boot-Status des initrd und ein verifiziert eingehängtes Upper; sie verlassen sich nicht allein auf "
+          " Feld dokumentiert diese beabsichtigte Beziehung. Ein Absturz, ein fehlgeschlagener Union-Aufbau, ein kopierter Store oder ein unterbrochener Shutdown können dazu führen, dass es veraltet ist, selbst wenn der aktuelle Start RAM oder eine andere Sitzung verwendet. Vorgänge wie das Speichern von SquashFS erfordern daher den geschützten, boot-ID-gebundenen Current-Boot-Status des initrd und das verifizierte, eingehängte Upper; sie vertrauen nicht nur auf "
         ],
         [
           "span",
@@ -1376,11 +1376,11 @@
         ],
         [
           "text",
-          ". Siehe "
+          " allein. Siehe "
         ],
         [
           "link",
-          "/reference/boot-process/Persistence-Internals.md",
+          "/reference/boot-process/Persistence-Internals.md#aktiver-laufender-und-aktueller-boot-zustand",
           null,
           [
             [
@@ -1550,7 +1550,7 @@
       [
         [
           "text",
-          "Die aktive Sitzung kann nicht gelöscht oder direkt konvertiert werden. Eine laufende Sitzung kann normalerweise nicht gelöscht, exportiert, kopiert, vergrößert oder konvertiert werden. Auch Cleanup schützt beide IDs."
+          "Die aktive Sitzung kann weder gelöscht noch direkt konvertiert werden. Eine laufende Sitzung kann in der Regel nicht gelöscht, exportiert, kopiert, vergrößert oder konvertiert werden. Die Bereinigung schützt außerdem beide IDs."
         ]
       ]
     ],
@@ -2203,7 +2203,7 @@
         ],
         [
           "text",
-          " ohne Modus wählt Native. Die Erstellung von SquashFS erfasst die aktuellen Live-Änderungen und hat keine feste Größe. Die Abschalt-Strategie ist standardmäßig "
+          " ohne Modus wählt nativ aus. Die Erstellung von SquashFS erfasst die aktuellen Live-Änderungen und hat keine feste Größe. Die Abschalt-Strategie ist standardmäßig "
         ],
         [
           "span",
@@ -2227,7 +2227,7 @@
       [
         [
           "text",
-          "Speichern und Konfigurieren einer SquashFS-Sitzung:"
+          "Eine SquashFS-Sitzung speichern und konfigurieren:"
         ]
       ]
     ],
@@ -2678,7 +2678,7 @@
         ],
         [
           "text",
-          " und "
+          ", und "
         ],
         [
           "span",
@@ -2706,7 +2706,7 @@
         ],
         [
           "text",
-          " deaktiviert periodisches Speichern. Die Einstellungen für Abschalten und periodisches Speichern sind unabhängig voneinander."
+          " deaktiviert das periodische Speichern. Die Einstellungen für Abschalten und periodisches Speichern sind unabhängig voneinander."
         ]
       ]
     ],
@@ -2714,6 +2714,10 @@
       "block",
       "paragraph",
       [
+        [
+          "text",
+          "Exportieren und Importieren von "
+        ],
         [
           "span",
           "code",
@@ -2726,7 +2730,7 @@
         ],
         [
           "text",
-          "-Archive exportieren und importieren:"
+          "-Archiven:"
         ]
       ]
     ],
@@ -3009,7 +3013,7 @@
         ],
         [
           "text",
-          "-Importe werden akzeptiert. Pfade und Archiv-Inhalte werden validiert, und die Extraktion ist begrenzt. "
+          "-Importe werden akzeptiert. Pfade und Archiv-Inhalte werden geprüft, und die Extraktion ist begrenzt. "
         ],
         [
           "span",
@@ -3023,7 +3027,7 @@
         ],
         [
           "text",
-          " wählt einen kompatiblen Modus für das aktuelle Dateisystem. "
+          " wählt automatisch einen kompatiblen Modus für das aktuelle Dateisystem. "
         ],
         [
           "span",
@@ -3037,7 +3041,7 @@
         ],
         [
           "text",
-          " wählt explizit einen verfügbaren Modus. Export, Kopieren und Konvertieren werden für SquashFS-Sitzungen nicht unterstützt; speichern Sie stattdessen den Snapshot und kopieren Sie das komplette inaktive Sitzungsverzeichnis."
+          " wählt explizit einen verfügbaren Modus aus. Export, Kopieren und Konvertieren werden für SquashFS-Sitzungen nicht unterstützt; speichern Sie stattdessen das Snapshot und kopieren Sie das komplette inaktive Sitzungsverzeichnis."
         ]
       ]
     ],
@@ -3478,7 +3482,7 @@
         ],
         [
           "text",
-          " ersetzt die Quelle standardmäßig; verwenden Sie "
+          " ersetzt standardmäßig die Quelle; verwenden Sie "
         ],
         [
           "span",
@@ -3492,7 +3496,7 @@
         ],
         [
           "text",
-          ", um die Quelle zu erhalten. Eine Größe ist nur für ein Container-Ziel relevant."
+          " um die Quelle zu bewahren. Eine Größe ist nur für ein Container-Ziel relevant."
         ]
       ]
     ],
@@ -3753,7 +3757,7 @@
       [
         [
           "text",
-          "Resize unterstützt DynFileFS-, Raw- und LUKS-Sitzungen und erfordert eine größere Zielgröße als die aktuelle. Cleanup entfernt standardmäßig Sitzungen, die älter als 30 Tage sind."
+          "Resize unterstützt DynFileFS-, Raw- und LUKS-Sitzungen und erfordert eine größere Zielgröße als die aktuelle. Die Bereinigung betrifft standardmäßig Sitzungen, die älter als 30 Tage sind."
         ]
       ]
     ],
@@ -3921,7 +3925,7 @@
       [
         [
           "text",
-          "Eine SquashFS-Sitzung wird in RAM für die laufende beschreibbare Schicht entpackt. Beim Speichern wird ein exakter Snapshot neu erstellt und validiert, dann "
+          "Eine SquashFS-Sitzung wird in RAM für die laufende beschreibbare Ebene entpackt. Beim Speichern wird ein exaktes Snapshot neu erstellt und validiert, dann wird "
         ],
         [
           "span",
@@ -3935,7 +3939,7 @@
         ],
         [
           "text",
-          " atomar ersetzt."
+          "."
         ],
         [
           "text",
@@ -3967,7 +3971,7 @@
       [
         [
           "text",
-          "Das Speichern beim Herunterfahren wird durch den Core-MiniOS-Shutdown-Trigger und das "
+          "Das Speichern beim Herunterfahren wird vom Core-MiniOS-Shutdown-Trigger und dem "
         ],
         [
           "span",
@@ -3981,7 +3985,7 @@
         ],
         [
           "text",
-          "-Backend umgesetzt, sodass es nicht davon abhängt, dass der MiniOS-Sitzungsmanager geöffnet oder installiert ist. Das periodische Speichern wird alle 30 Minuten durch einen systemd-Timer oder einen SysV-Worker geprüft, beide rufen dasselbe Autosave-Backend auf. Das Neuerstellen des Snapshots benötigt CPU-Leistung und schreibt den kompletten Snapshot; Intervalle von einer Stunde oder länger werden empfohlen."
+          "-Backend umgesetzt, sodass es nicht davon abhängt, ob der MiniOS-Sitzungsmanager geöffnet oder installiert ist. Das periodische Speichern wird alle 30 Minuten von einem systemd-Timer oder einem SysV-Worker geprüft, die beide das gleiche Autosave-Backend aufrufen. Das Neuerstellen des Snapshots beansprucht CPU und schreibt das komplette Snapshot; Intervalle von einer Stunde oder länger werden empfohlen."
         ]
       ]
     ],
@@ -3991,7 +3995,7 @@
       [
         [
           "text",
-          "Während des RAM-gestützten SquashFS-Betriebs kann ein neu erfasster und aktivierter SquashFS-Snapshot das Eigentum am aktuellen Speicherziel übernehmen. Nach dieser Übergabe kann der alte laufende Snapshot ohne Neustart entfernt werden:"
+          "Während des RAM-gestützten SquashFS-Betriebs kann ein neu erfasstes und aktiviertes SquashFS-Snapshot das Ziel für das laufende Speichern übernehmen. Nach dieser Übergabe kann das alte laufende Snapshot ohne Neustart entfernt werden:"
         ]
       ]
     ],
@@ -4146,7 +4150,7 @@
       [
         [
           "text",
-          "Diese Ausnahme gilt nur für eine gültige SquashFS-Übergabe im aktuellen Boot. Andere laufende Persistenzmodi bleiben vor dem Löschen geschützt."
+          "Diese Ausnahme gilt nur für eine gültige Current-Boot-SquashFS-Übergabe. Andere laufende Persistenzmodi bleiben vor dem Löschen geschützt."
         ]
       ]
     ],
@@ -4308,7 +4312,7 @@
       [
         [
           "text",
-          "Für Native-, DynFileFS-, Raw- und LUKS-Sitzungen nutzen Sie "
+          "Für native, DynFileFS-, Raw- und LUKS-Sitzungen verwenden Sie "
         ],
         [
           "span",
@@ -4322,7 +4326,7 @@
         ],
         [
           "text",
-          " für Backups, anstatt ein eingehängtes Sitzungsverzeichnis zu kopieren. Bewahren Sie das resultierende Archiv auf einem anderen Gerät auf und prüfen Sie, dass es importiert werden kann, bevor Sie sich darauf verlassen. Der Import erstellt immer eine neue nummerierte Sitzung; aktivieren Sie diese explizit, wenn sie einsatzbereit ist."
+          " für Backups, statt ein eingehängtes Sitzungsverzeichnis zu kopieren. Bewahren Sie das resultierende Archiv auf einem anderen Gerät auf und prüfen Sie, ob es importiert werden kann, bevor Sie sich darauf verlassen. Beim Import wird immer eine neue nummerierte Sitzung erstellt; aktivieren Sie diese explizit, wenn sie einsatzbereit ist."
         ],
         [
           "text",
@@ -4355,7 +4359,7 @@
       [
         [
           "text",
-          "Wenn eine Sitzung nach vollem Speicher, unterbrochenem Schreibvorgang oder wiederholtem Erstellen leerer Sitzungen fehlschlägt, stoppen Sie alle Änderungen auf dem betroffenen Speicher. Exportieren Sie nach Möglichkeit zuerst eine lesbare, nicht laufende Sitzung und folgen Sie dann der "
+          "Wenn eine Sitzung nach vollem Speicher, unterbrochenem Schreibvorgang oder wiederholtem Anlegen leerer Sitzungen fehlschlägt, verändern Sie den betroffenen Speicher nicht weiter. Exportieren Sie zuerst eine lesbare, nicht laufende Sitzung, wenn möglich, und folgen Sie dann "
         ],
         [
           "link",
@@ -4571,7 +4575,7 @@
       [
         [
           "text",
-          "Beim Booten werden Container-Dateisysteme vor der beschreibbaren Aktivierung geprüft. Schwere Fehler beim Dateisystem-Check bewahren den Container zur Wiederherstellung, anstatt ihn beschreibbar einzuhängen. SquashFS erkennt einen nicht bereinigten vorherigen Zustand und stellt den zuletzt erfolgreich gespeicherten Snapshot wieder her. Löschen Sie Sitzungen nur über den MiniOS-Sitzungsmanager oder "
+          "Beim Booten werden Container-Dateisysteme vor der beschreibbaren Aktivierung geprüft. Schwere Fehler bei der Dateisystemprüfung bewahren den Container zur Wiederherstellung, anstatt ihn beschreibbar einzuhängen. SquashFS erkennt einen nicht bereinigten vorherigen Zustand und stellt das zuletzt erfolgreich gespeicherte Snapshot wieder her. Löschen Sie Sitzungen nur über den MiniOS-Sitzungsmanager oder "
         ],
         [
           "span",
@@ -4590,7 +4594,7 @@
       ]
     ]
   ],
-  "plain_text": "Sitzungen und Persistenz\nMiniOS-Sitzungen bewahren Änderungen am Live-System über Neustarts hinweg. Jede Sitzung ist ein nummeriertes Verzeichnis unter minios/changes/; die schreibgeschützten MiniOS-Module bleiben unverändert und die gewählte Sitzung stellt die beschreibbare Union-Dateisystem-Schicht bereit.\nVerwenden Sie den MiniOS-Sitzungsmanager aus einem laufenden MiniOS-System:\nminios-session-manager\nDas entsprechende Kommandozeilenwerkzeug ist minios-session. Für Befehle, die Änderungen vornehmen, sind Administratorrechte erforderlich, daher verwenden die folgenden Beispiele sudo.\nSitzungsmodi\nModus | Speicherung | Hauptbeschränkungen\nnative | Änderungen werden direkt im Sitzungsverzeichnis gespeichert | Erfordert ein beschreibbares POSIX-Dateisystem wie ext2/3/4, Btrfs, XFS, F2FS oder ReiserFS.\ndynfilefs | Erweiterbarer ext4-Container, aufgeteilt in Backing-Dateien | Funktioniert auf beschreibbaren POSIX-, FAT32-, NTFS- und exFAT-Dateisystemen. Erfordert das DynFileFS-Backend.\nraw | Feste Größe changes.img mit ext4-Inhalt | Funktioniert auf beschreibbaren POSIX-, FAT32-, NTFS- und exFAT-Dateisystemen.\nluks | LUKS2-verschlüsselter changes.luks mit ext4-Inhalt | Erfordert cryptsetup, Loop-Unterstützung und den MiniOS initrd LUKS-Hook.\nsquashfs | Komprimierter Snapshot in changes.sb | Das Speichern erfordert ein POSIX-Persistenzdateisystem, das Links, Besitzrechte, Modi, xattrs, ACLs, Capabilities und Whiteouts erhalten kann.\ndynfilefs, raw und luks, die mit minios-session erstellt wurden, haben standardmäßig 4000 MiB. Größenwerte werden in MiB zugewiesen; die Suffixe GB und TB entsprechen 1000 bzw. 1.000.000 MiB. Der MiniOS-Sitzungsmanager begrenzt Raw- und LUKS-Dateien auf 4000 MiB bei FAT32. Verlassen Sie sich nicht darauf als generelle initrd-Garantie: Eine zu große Raw-Boot-Anfrage kann bis zur Zuweisung gelangen und dann fehlschlagen, statt verkleinert zu werden. Container-Resize-Operationen können eine Sitzung nur vergrößern; Verkleinerungen werden nicht unterstützt.\nDer Native-Modus ist die einfachste und schnellste Wahl auf einem kompatiblen Dateisystem.\nVerwenden Sie DynFileFS, wenn das Persistenzdateisystem keine Linux-Metadaten abbilden kann.\nVerwenden Sie Raw, wenn eine feste Zuweisung erforderlich ist, LUKS, wenn die Sitzung verschlüsselt sein muss, und SquashFS für einen exakten komprimierten Snapshot.\nFühren Sie die folgenden Befehle aus, um das tatsächliche Persistenzdateisystem und die darauf verfügbaren Modi zu prüfen:\nsudo minios-session info\nsudo minios-session status\nAuf schreibgeschützten Medien kann keine Sitzung erstellt werden. Das initrd kann einen bestehenden SquashFS-Snapshot, der auf beschreibbarem FAT, exFAT oder NTFS gespeichert ist, lesen und aktivieren, da es den Snapshot in ein temporäres ext4-Upper extrahiert. Das Erstellen oder exakte Speichern eines Snapshots ist jedoch anders: Der private Arbeitsbereich muss sich auf einem geeigneten POSIX-Dateisystem befinden, das Linux-Metadaten und Union-Whiteouts erhält.\nBoot-Auswahl\nJeder erkannte Persistenz-Parameter aktiviert die Persistenzverwaltung. MiniOS-Bootmenüs bieten in der Regel Resume-, Neu-, Auswahl- und Nicht-Persistent-Einträge. Die maßgebliche Beschreibung von Selector-, Kompatibilitäts-, Fallback- und Aktivierungssemantik findet sich unter Initrd-Persistenz.\nParameter | Bedeutung\nperch | Verwendet den Legacy-Best-Effort-Resume-Pfad. Versucht den Metadaten-Standard, erstellt aber keinen Ersatz, wenn keiner nutzbar ist.\nperchdir=resume | Setzt den Metadaten-Standard fort und erlaubt, falls dieser fehlt oder inkompatibel ist, dem initrd, einen neuen kompatiblen Ersatz zu erstellen. Dies ist das aktuelle Resume-Verhalten im Boot-Menü.\nperchdir=new | Erstellt eine neue nummerierte Sitzung.\nperchdir=ask | Wählt eine bestehende Sitzung aus oder erstellt eine während des Bootvorgangs.\nperchdir=<id> | Wählt diese nummerierte Sitzung direkt aus.\nperchdir=<device/path> | Verwendet einen Persistenzspeicherort auf einem Gerät, einschließlich der vom initrd unterstützten Formen /dev/... und label:....\nperchmode=<mode> | Setzt native, dynfilefs, raw, luks oder squashfs.\nperchsize=<size> | Legt eine neue oder größere Containergröße fest; einfache Werte werden in MiB zugewiesen und die Suffixe MB, GB und TB werden akzeptiert.\nWird für eine neue Sitzung kein Modus angegeben, verwendet der Bootvorgang den Native-Modus. Bei FAT32/NTFS/exFAT fällt die Native-Boot-Erstellung auf DynFileFS zurück. Ein neuer Raw- oder LUKS-Boot-Container hat standardmäßig 4000 MiB; eine neue DynFileFS-Boot-Sitzung ohne perchsize wird anhand des verfügbaren Speicherplatzes unter Beibehaltung einer Sicherheitsreserve dimensioniert.\nSquashFS-Sitzungen werden aus dem laufenden System mit dem MiniOS-Sitzungsmanager oder minios-session create squashfs erstellt; perchdir=new perchmode=squashfs erzeugt keinen Snapshot im initrd.\nBeim Fortsetzen prüft MiniOS die aufgezeichnete Version, Edition, das Union-Dateisystem und den Modus. Das explizite perchdir=resume kann eine neue Sitzung erstellen, anstatt einen fehlenden oder inkompatiblen Standard zu verwenden. Reines perch, direkte numerische Auswahl und andere Legacy-Resume-Anfragen erstellen diesen Ersatz nicht automatisch.\nDie interaktive Auswahl zeigt eine Warnung an, bevor eine inkompatible Sitzung zugelassen wird. Falls Auswahl oder Aktivierung dennoch fehlschlagen, startet das System normalerweise mit einem RAM-Upper und einer Persistenzwarnung.\nDer Sitzungspeicher hat folgendes Format:\nminios/changes/\n|-- session.conf\n|-- 1/\n|-- 2/\n`-- N/\nsession.conf speichert die Standard- und laufenden IDs sowie pro Sitzung Modus, Version, Edition, Union-Dateisystem, Größe, Status und modusspezifische Einstellungen.\nDies sind persistente Metadaten, die von der Boot-Implementierung geschrieben werden, aber kein Beweis für den aktuellen Laufzeitstatus sind. Bearbeiten Sie diese nicht und verschieben Sie keine nummerierten Sitzungsdaten, während eine Sitzung eingehängt ist; verwenden Sie den MiniOS-Sitzungsmanager oder minios-session.\nAktive und laufende Sitzungen\nDiese Begriffe beschreiben unterschiedliche Zustände:\nDie aktive Sitzung ist die standardmäßig für den nächsten Start ausgewählte Sitzung.\nDie laufende Sitzung ist konzeptionell die Sitzung, deren beschreibbare Schicht tatsächlich Persistenz für den aktuellen Start bereitstellt.\nDas persistente Feld running= dokumentiert diese beabsichtigte Beziehung. Ein Absturz, ein fehlgeschlagener Union-Aufbau, ein kopierter Speicher oder ein unterbrochener Shutdown können dazu führen, dass dieser Wert veraltet ist, selbst wenn der aktuelle Start RAM oder eine andere Sitzung verwendet. Vorgänge wie das SquashFS-Speichern erfordern daher den geschützten, boot-ID-gebundenen Current-Boot-Status des initrd und ein verifiziert eingehängtes Upper; sie verlassen sich nicht allein auf running=. Siehe Aktive, laufende und Current-Boot-Zustände.\nDas Aktivieren einer Sitzung ändert den nächsten Start, wechselt aber nicht das aktuelle Union-Dateisystem:\nsudo minios-session active\nsudo minios-session running\nsudo minios-session activate <id>\nDie aktive Sitzung kann nicht gelöscht oder direkt konvertiert werden. Eine laufende Sitzung kann normalerweise nicht gelöscht, exportiert, kopiert, vergrößert oder konvertiert werden. Auch Cleanup schützt beide IDs.\nBefehlsreferenz\nSitzungen auflisten und Speicher prüfen:\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session info\nsudo minios-session status\nSitzungen erstellen:\nsudo minios-session create\nsudo minios-session create native\nsudo minios-session create dynfilefs\nsudo minios-session create raw 4GB\nsudo minios-session create luks 4GB\nsudo minios-session create squashfs --policy shutdown\nsudo minios-session create squashfs --policy manual --autosave 60\ncreate ohne Modus wählt Native. Die Erstellung von SquashFS erfasst die aktuellen Live-Änderungen und hat keine feste Größe. Die Abschalt-Strategie ist standardmäßig shutdown; periodisches Speichern ist standardmäßig deaktiviert.\nSpeichern und Konfigurieren einer SquashFS-Sitzung:\nsudo minios-session save <running-squashfs-id>\nsudo minios-session settings <squashfs-id> --shutdown on\nsudo minios-session settings <squashfs-id> --shutdown off --autosave 0\nsudo minios-session settings <squashfs-id> --shutdown on --autosave 60\nGültige periodische Intervalle sind 30, 60, 120, 240 und 480 Minuten; 0 deaktiviert periodisches Speichern. Die Einstellungen für Abschalten und periodisches Speichern sind unabhängig voneinander.\n.tar.zst-Archive exportieren und importieren:\nsudo minios-session export <id> /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nsudo minios-session import /path/to/session.tar.zst --force-mode dynfilefs\nNur .tar.zst-Importe werden akzeptiert. Pfade und Archiv-Inhalte werden validiert, und die Extraktion ist begrenzt. --auto-convert wählt einen kompatiblen Modus für das aktuelle Dateisystem. --force-mode <mode> wählt explizit einen verfügbaren Modus. Export, Kopieren und Konvertieren werden für SquashFS-Sitzungen nicht unterstützt; speichern Sie stattdessen den Snapshot und kopieren Sie das komplette inaktive Sitzungsverzeichnis.\nSitzung kopieren oder konvertieren:\nsudo minios-session copy <id>\nsudo minios-session copy <id> --to-mode raw --size 4GB\nsudo minios-session convert <id> dynfilefs --size 4GB\nsudo minios-session convert <id> luks --size 4GB --new-session\ncopy weist immer eine neue Sitzungs-ID zu. convert ersetzt die Quelle standardmäßig; verwenden Sie --new-session, um die Quelle zu erhalten. Eine Größe ist nur für ein Container-Ziel relevant.\nSitzungen vergrößern, löschen oder bereinigen:\nsudo minios-session resize <id> 8GB\nsudo minios-session delete <id>\nsudo minios-session cleanup\nsudo minios-session cleanup --days 30\nResize unterstützt DynFileFS-, Raw- und LUKS-Sitzungen und erfordert eine größere Zielgröße als die aktuelle. Cleanup entfernt standardmäßig Sitzungen, die älter als 30 Tage sind.\nAlle Befehle akzeptieren --json, und ein anderer Sitzungspeicher kann mit --sessions-dir PATH ausgewählt werden:\nsudo minios-session --json list\nsudo minios-session --sessions-dir /mnt/store/minios/changes list\nSquashFS-Speicherverhalten\nEine SquashFS-Sitzung wird in RAM für die laufende beschreibbare Schicht entpackt. Beim Speichern wird ein exakter Snapshot neu erstellt und validiert, dann changes.sb atomar ersetzt.\nEs wird keine Rollback-Generation aufbewahrt. \"Jetzt speichern\" ist über das Tray-Icon, den MiniOS-Sitzungsmanager oder minios-session save unabhängig von der automatischen Richtlinie verfügbar.\nDas Speichern beim Herunterfahren wird durch den Core-MiniOS-Shutdown-Trigger und das minios-squashfs-save-Backend umgesetzt, sodass es nicht davon abhängt, dass der MiniOS-Sitzungsmanager geöffnet oder installiert ist. Das periodische Speichern wird alle 30 Minuten durch einen systemd-Timer oder einen SysV-Worker geprüft, beide rufen dasselbe Autosave-Backend auf. Das Neuerstellen des Snapshots benötigt CPU-Leistung und schreibt den kompletten Snapshot; Intervalle von einer Stunde oder länger werden empfohlen.\nWährend des RAM-gestützten SquashFS-Betriebs kann ein neu erfasster und aktivierter SquashFS-Snapshot das Eigentum am aktuellen Speicherziel übernehmen. Nach dieser Übergabe kann der alte laufende Snapshot ohne Neustart entfernt werden:\nsudo minios-session activate <new-squashfs-id>\nsudo minios-session delete <old-running-squashfs-id> --handoff\nDiese Ausnahme gilt nur für eine gültige SquashFS-Übergabe im aktuellen Boot. Andere laufende Persistenzmodi bleiben vor dem Löschen geschützt.\nVerschlüsselung\nIm LUKS-Modus wird ein ext4-Dateisystem direkt in einer LUKS2-changes.luks-Datei gespeichert; es gibt keine Partitionstabelle oder einen verschachtelten DynFileFS-Container. LUKS-Optionen sind nur verfügbar, wenn /run/initramfs/etc/minios-initramfs-crypt, cryptsetup und losetup vorhanden sind.\nBei der interaktiven LUKS-Erstellung wird das Passwort zweimal abgefragt. Vorgänge, die LUKS-Daten lesen oder erstellen, können das Passwort über die Standardeingabe mit --password-stdin einlesen.\nPasswörter werden nicht in Befehlsargumenten oder Sitzungsmetadaten gespeichert. Beim Booten fragt das initrd das Passwort auf der Konsole ab und fällt bei einem Fehlschlag nicht auf unverschlüsselte Persistenz zurück.\nLUKS-Exporte enthalten entschlüsselte logische Sitzungsdateien, nicht changes.luks.\nDas Importieren oder Konvertieren nach LUKS erstellt einen neuen verschlüsselten Container.\nBackups und fehlgeschlagene Sitzungen\nFür Native-, DynFileFS-, Raw- und LUKS-Sitzungen nutzen Sie export für Backups, anstatt ein eingehängtes Sitzungsverzeichnis zu kopieren. Bewahren Sie das resultierende Archiv auf einem anderen Gerät auf und prüfen Sie, dass es importiert werden kann, bevor Sie sich darauf verlassen. Der Import erstellt immer eine neue nummerierte Sitzung; aktivieren Sie diese explizit, wenn sie einsatzbereit ist.\nFür SquashFS- und Komplettgeräte-Backup-Verfahren siehe Backup von MiniOS.\nWenn eine Sitzung nach vollem Speicher, unterbrochenem Schreibvorgang oder wiederholtem Erstellen leerer Sitzungen fehlschlägt, stoppen Sie alle Änderungen auf dem betroffenen Speicher. Exportieren Sie nach Möglichkeit zuerst eine lesbare, nicht laufende Sitzung und folgen Sie dann der Fehlerbehebung.\nBeginnen Sie die Diagnose, ohne Sitzungsdaten zu verändern:\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session status\nsudo minios-session info\nBeim Booten werden Container-Dateisysteme vor der beschreibbaren Aktivierung geprüft. Schwere Fehler beim Dateisystem-Check bewahren den Container zur Wiederherstellung, anstatt ihn beschreibbar einzuhängen. SquashFS erkennt einen nicht bereinigten vorherigen Zustand und stellt den zuletzt erfolgreich gespeicherten Snapshot wieder her. Löschen Sie Sitzungen nur über den MiniOS-Sitzungsmanager oder minios-session delete; entfernen Sie Sitzungsverzeichnisse nicht manuell.",
+  "plain_text": "Sitzungen und Persistenz\nMiniOS-Sitzungen bewahren Änderungen am Live-System über Neustarts hinweg. Jede Sitzung ist ein nummeriertes Verzeichnis unter minios/changes/; die schreibgeschützten MiniOS-Module bleiben unverändert und die gewählte Sitzung stellt die beschreibbare Union-Dateisystem-Schicht bereit.\nVerwenden Sie den MiniOS-Sitzungsmanager aus einem laufenden MiniOS-System:\nminios-session-manager\nDas entsprechende Kommandozeilenwerkzeug ist minios-session. Für Befehle, die Änderungen vornehmen, sind Administratorrechte erforderlich, daher verwenden die folgenden Beispiele sudo.\nSitzungsmodi\nModus | Speicherung | Hauptbeschränkungen\nnative | Änderungen werden direkt im Sitzungsverzeichnis gespeichert | Erfordert ein beschreibbares POSIX-Dateisystem wie ext2/3/4, Btrfs, XFS, F2FS oder ReiserFS.\ndynfilefs | Erweiterbarer ext4-Container, aufgeteilt in Backing-Dateien | Funktioniert auf beschreibbaren POSIX-, FAT32-, NTFS- und exFAT-Dateisystemen. Erfordert das DynFileFS-Backend.\nraw | Feste Größe changes.img mit ext4-Inhalt | Funktioniert auf beschreibbaren POSIX-, FAT32-, NTFS- und exFAT-Dateisystemen.\nluks | LUKS2-verschlüsselter changes.luks mit ext4-Inhalt | Erfordert cryptsetup, Loop-Unterstützung und den MiniOS initrd LUKS-Hook.\nsquashfs | Komprimierter Snapshot in changes.sb | Das Speichern erfordert ein POSIX-Persistenzdateisystem, das Links, Besitzrechte, Modi, xattrs, ACLs, Capabilities und Whiteouts erhalten kann.\ndynfilefs, raw und luks, die mit minios-session erstellt wurden, haben standardmäßig 4000 MiB. Größenwerte werden in MiB zugewiesen; die Suffixe GB und TB entsprechen 1000 bzw. 1.000.000 MiB. Der MiniOS-Sitzungsmanager begrenzt Raw- und LUKS-Dateien auf 4000 MiB bei FAT32. Verlassen Sie sich nicht darauf als generelle initrd-Garantie: Eine zu große Raw-Boot-Anfrage kann bis zur Zuweisung gelangen und dann fehlschlagen, statt verkleinert zu werden. Container-Resize-Operationen können eine Sitzung nur vergrößern; Verkleinerungen werden nicht unterstützt.\nDer Native-Modus ist die einfachste und schnellste Wahl auf einem kompatiblen Dateisystem.\nVerwenden Sie DynFileFS, wenn das Persistenzdateisystem keine Linux-Metadaten abbilden kann.\nVerwenden Sie Raw, wenn eine feste Zuweisung erforderlich ist, LUKS, wenn die Sitzung verschlüsselt sein muss, und SquashFS für einen exakten komprimierten Snapshot.\nFühren Sie die folgenden Befehle aus, um das tatsächliche Persistenzdateisystem und die darauf verfügbaren Modi zu prüfen:\nsudo minios-session info\nsudo minios-session status\nAuf schreibgeschützten Medien kann keine Sitzung erstellt werden. Das initrd kann einen bestehenden SquashFS-Snapshot, der auf beschreibbarem FAT, exFAT oder NTFS gespeichert ist, lesen und aktivieren, da es den Snapshot in ein temporäres ext4-Upper extrahiert. Das Erstellen oder exakte Speichern eines Snapshots ist jedoch anders: Der private Arbeitsbereich muss sich auf einem geeigneten POSIX-Dateisystem befinden, das Linux-Metadaten und Union-Whiteouts erhält.\nBoot-Auswahl\nJeder erkannte Persistenz-Parameter aktiviert die Persistenzverwaltung. MiniOS-Bootmenüs bieten in der Regel Einträge für Fortsetzen, Neu, Auswahl und Nicht-Persistent. Die maßgebliche Beschreibung der Selektor-, Kompatibilitäts-, Fallback- und Aktivierungslogik findet sich unter Initrd-Persistenz.\nParameter | Bedeutung\nperch | Verwendet den alten Best-Effort-Fortsetzungsweg. Es wird der Standardwert aus den Metadaten versucht, aber kein Ersatz erstellt, wenn keiner nutzbar ist.\nperchdir=resume | Setzt den Standardwert aus den Metadaten fort und erlaubt, falls dieser fehlt oder inkompatibel ist, dem initrd einen neuen kompatiblen Ersatz zu erstellen. Dies entspricht dem aktuellen Verhalten beim Fortsetzen im Boot-Menü.\nperchdir=new | Eine neue nummerierte Sitzung anlegen.\nperchdir=ask | Eine bestehende Sitzung auswählen oder beim Booten eine neue erstellen.\nperchdir=<id> | Diese nummerierte Sitzung direkt auswählen.\nperchdir=<device/path> | Eine Persistenz-Position auf einem Gerät verwenden, einschließlich /dev/... und label:...-Formate, die vom initrd verarbeitet werden.\nperchmode=<mode> | Setze native, dynfilefs, raw, luks, oder squashfs.\nperchsize=<size> | Eine neue oder größere Containergröße festlegen; reine Werte werden in MiB zugewiesen und MB, GB, und TB-Suffixe werden akzeptiert.\nWenn für eine neue Sitzung kein Modus angegeben ist, wird beim Booten der native Modus verwendet. Auf FAT32/NTFS/exFAT fällt die native Boot-Erstellung auf DynFileFS zurück. Ein neuer Raw- oder LUKS-Boot-Container ist standardmäßig 4000 MiB groß; eine neue DynFileFS-Boot-Sitzung ohne perchsize wird anhand des verfügbaren Speicherplatzes unter Berücksichtigung einer Sicherheitsreserve dimensioniert.\nSquashFS-Sitzungen werden aus dem laufenden System mit dem MiniOS-Sitzungsmanager oder minios-session create squashfs; perchdir=new perchmode=squashfs erstellt kein Snapshot im initrd.\nBeim Fortsetzen prüft MiniOS die gespeicherte Version, Edition, das Union-Dateisystem und den Modus. Ein wörtliches perchdir=resume kann eine neue Sitzung erstellen, anstatt einen fehlenden oder inkompatiblen Standard zu verwenden. Reine perch, direkte numerische Auswahl und andere alte Fortsetzungsanfragen erstellen diesen Ersatz nicht automatisch.\nBei interaktiver Auswahl erscheint eine Warnung, bevor eine inkompatible Sitzung zugelassen wird. Schlägt die Auswahl oder Aktivierung weiterhin fehl, startet das Booten normalerweise mit einem RAM-Upper und einer Persistenzwarnung.\nDer Sitzungspeicher hat folgendes Format:\nminios/changes/\n|-- session.conf\n|-- 1/\n|-- 2/\n`-- N/\nsession.conf speichert die Standard- und laufenden IDs sowie pro Sitzung Modus, Version, Edition, Union-Dateisystem, Größe, Status und modusspezifische Einstellungen.\nEs handelt sich um persistente Metadaten, die von der Boot-Implementierung geschrieben werden, aber nicht für den aktuellen Laufzeitstatus bürgen. Bearbeiten oder verschieben Sie nummerierte Sitzungsdaten nicht, solange eine Sitzung eingehängt ist; verwenden Sie stattdessen den MiniOS-Sitzungsmanager oder minios-session.\nAktive und laufende Sitzungen\nDiese Begriffe beschreiben unterschiedliche Zustände:\nDie aktive Sitzung ist standardmäßig für den nächsten Start ausgewählt.\nBegrifflich ist die laufende Sitzung diejenige, deren beschreibbare Ebene tatsächlich die Persistenz für den aktuellen Start bereitstellt.\nDas persistente running= Feld dokumentiert diese beabsichtigte Beziehung. Ein Absturz, ein fehlgeschlagener Union-Aufbau, ein kopierter Store oder ein unterbrochener Shutdown können dazu führen, dass es veraltet ist, selbst wenn der aktuelle Start RAM oder eine andere Sitzung verwendet. Vorgänge wie das Speichern von SquashFS erfordern daher den geschützten, boot-ID-gebundenen Current-Boot-Status des initrd und das verifizierte, eingehängte Upper; sie vertrauen nicht nur auf running= allein. Siehe Aktive, laufende und Current-Boot-Zustände.\nDas Aktivieren einer Sitzung ändert den nächsten Start, wechselt aber nicht das aktuelle Union-Dateisystem:\nsudo minios-session active\nsudo minios-session running\nsudo minios-session activate <id>\nDie aktive Sitzung kann weder gelöscht noch direkt konvertiert werden. Eine laufende Sitzung kann in der Regel nicht gelöscht, exportiert, kopiert, vergrößert oder konvertiert werden. Die Bereinigung schützt außerdem beide IDs.\nBefehlsreferenz\nSitzungen auflisten und Speicher prüfen:\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session info\nsudo minios-session status\nSitzungen erstellen:\nsudo minios-session create\nsudo minios-session create native\nsudo minios-session create dynfilefs\nsudo minios-session create raw 4GB\nsudo minios-session create luks 4GB\nsudo minios-session create squashfs --policy shutdown\nsudo minios-session create squashfs --policy manual --autosave 60\ncreate ohne Modus wählt nativ aus. Die Erstellung von SquashFS erfasst die aktuellen Live-Änderungen und hat keine feste Größe. Die Abschalt-Strategie ist standardmäßig shutdown; periodisches Speichern ist standardmäßig deaktiviert.\nEine SquashFS-Sitzung speichern und konfigurieren:\nsudo minios-session save <running-squashfs-id>\nsudo minios-session settings <squashfs-id> --shutdown on\nsudo minios-session settings <squashfs-id> --shutdown off --autosave 0\nsudo minios-session settings <squashfs-id> --shutdown on --autosave 60\nGültige periodische Intervalle sind 30, 60, 120, 240, und 480 Minuten; 0 deaktiviert das periodische Speichern. Die Einstellungen für Abschalten und periodisches Speichern sind unabhängig voneinander.\nExportieren und Importieren von .tar.zst-Archiven:\nsudo minios-session export <id> /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nsudo minios-session import /path/to/session.tar.zst --force-mode dynfilefs\nNur .tar.zst-Importe werden akzeptiert. Pfade und Archiv-Inhalte werden geprüft, und die Extraktion ist begrenzt. --auto-convert wählt automatisch einen kompatiblen Modus für das aktuelle Dateisystem. --force-mode <mode> wählt explizit einen verfügbaren Modus aus. Export, Kopieren und Konvertieren werden für SquashFS-Sitzungen nicht unterstützt; speichern Sie stattdessen das Snapshot und kopieren Sie das komplette inaktive Sitzungsverzeichnis.\nSitzung kopieren oder konvertieren:\nsudo minios-session copy <id>\nsudo minios-session copy <id> --to-mode raw --size 4GB\nsudo minios-session convert <id> dynfilefs --size 4GB\nsudo minios-session convert <id> luks --size 4GB --new-session\ncopy weist immer eine neue Sitzungs-ID zu. convert ersetzt standardmäßig die Quelle; verwenden Sie --new-session um die Quelle zu bewahren. Eine Größe ist nur für ein Container-Ziel relevant.\nSitzungen vergrößern, löschen oder bereinigen:\nsudo minios-session resize <id> 8GB\nsudo minios-session delete <id>\nsudo minios-session cleanup\nsudo minios-session cleanup --days 30\nResize unterstützt DynFileFS-, Raw- und LUKS-Sitzungen und erfordert eine größere Zielgröße als die aktuelle. Die Bereinigung betrifft standardmäßig Sitzungen, die älter als 30 Tage sind.\nAlle Befehle akzeptieren --json, und ein anderer Sitzungspeicher kann mit --sessions-dir PATH ausgewählt werden:\nsudo minios-session --json list\nsudo minios-session --sessions-dir /mnt/store/minios/changes list\nSquashFS-Speicherverhalten\nEine SquashFS-Sitzung wird in RAM für die laufende beschreibbare Ebene entpackt. Beim Speichern wird ein exaktes Snapshot neu erstellt und validiert, dann wird changes.sb.\nEs wird keine Rollback-Generation aufbewahrt. \"Jetzt speichern\" ist über das Tray-Icon, den MiniOS-Sitzungsmanager oder minios-session save unabhängig von der automatischen Richtlinie verfügbar.\nDas Speichern beim Herunterfahren wird vom Core-MiniOS-Shutdown-Trigger und dem minios-squashfs-save-Backend umgesetzt, sodass es nicht davon abhängt, ob der MiniOS-Sitzungsmanager geöffnet oder installiert ist. Das periodische Speichern wird alle 30 Minuten von einem systemd-Timer oder einem SysV-Worker geprüft, die beide das gleiche Autosave-Backend aufrufen. Das Neuerstellen des Snapshots beansprucht CPU und schreibt das komplette Snapshot; Intervalle von einer Stunde oder länger werden empfohlen.\nWährend des RAM-gestützten SquashFS-Betriebs kann ein neu erfasstes und aktiviertes SquashFS-Snapshot das Ziel für das laufende Speichern übernehmen. Nach dieser Übergabe kann das alte laufende Snapshot ohne Neustart entfernt werden:\nsudo minios-session activate <new-squashfs-id>\nsudo minios-session delete <old-running-squashfs-id> --handoff\nDiese Ausnahme gilt nur für eine gültige Current-Boot-SquashFS-Übergabe. Andere laufende Persistenzmodi bleiben vor dem Löschen geschützt.\nVerschlüsselung\nIm LUKS-Modus wird ein ext4-Dateisystem direkt in einer LUKS2-changes.luks-Datei gespeichert; es gibt keine Partitionstabelle oder einen verschachtelten DynFileFS-Container. LUKS-Optionen sind nur verfügbar, wenn /run/initramfs/etc/minios-initramfs-crypt, cryptsetup und losetup vorhanden sind.\nBei der interaktiven LUKS-Erstellung wird das Passwort zweimal abgefragt. Vorgänge, die LUKS-Daten lesen oder erstellen, können das Passwort über die Standardeingabe mit --password-stdin einlesen.\nPasswörter werden nicht in Befehlsargumenten oder Sitzungsmetadaten gespeichert. Beim Booten fragt das initrd das Passwort auf der Konsole ab und fällt bei einem Fehlschlag nicht auf unverschlüsselte Persistenz zurück.\nLUKS-Exporte enthalten entschlüsselte logische Sitzungsdateien, nicht changes.luks.\nDas Importieren oder Konvertieren nach LUKS erstellt einen neuen verschlüsselten Container.\nBackups und fehlgeschlagene Sitzungen\nFür native, DynFileFS-, Raw- und LUKS-Sitzungen verwenden Sie export für Backups, statt ein eingehängtes Sitzungsverzeichnis zu kopieren. Bewahren Sie das resultierende Archiv auf einem anderen Gerät auf und prüfen Sie, ob es importiert werden kann, bevor Sie sich darauf verlassen. Beim Import wird immer eine neue nummerierte Sitzung erstellt; aktivieren Sie diese explizit, wenn sie einsatzbereit ist.\nFür SquashFS- und Komplettgeräte-Backup-Verfahren siehe Backup von MiniOS.\nWenn eine Sitzung nach vollem Speicher, unterbrochenem Schreibvorgang oder wiederholtem Anlegen leerer Sitzungen fehlschlägt, verändern Sie den betroffenen Speicher nicht weiter. Exportieren Sie zuerst eine lesbare, nicht laufende Sitzung, wenn möglich, und folgen Sie dann Fehlerbehebung.\nBeginnen Sie die Diagnose, ohne Sitzungsdaten zu verändern:\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session status\nsudo minios-session info\nBeim Booten werden Container-Dateisysteme vor der beschreibbaren Aktivierung geprüft. Schwere Fehler bei der Dateisystemprüfung bewahren den Container zur Wiederherstellung, anstatt ihn beschreibbar einzuhängen. SquashFS erkennt einen nicht bereinigten vorherigen Zustand und stellt das zuletzt erfolgreich gespeicherte Snapshot wieder her. Löschen Sie Sitzungen nur über den MiniOS-Sitzungsmanager oder minios-session delete; entfernen Sie Sitzungsverzeichnisse nicht manuell.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
