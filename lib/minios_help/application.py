@@ -13,7 +13,8 @@ gi.require_version("Gtk", "3.0")
 gi.require_version("Gdk", "3.0")
 from gi.repository import Gdk, Gio, GLib, Gtk
 
-from minios_gui import DocumentTextView, apply_minios_css, new_header_bar, new_icon
+from minios_gui import (DocumentTextView, apply_minios_css, new_header_bar,
+                        new_header_icon_button, new_icon)
 
 from .documents import DocumentError, DocumentStore, LocalePreference
 from .navigation import NavigationHistory, resolve_link
@@ -74,11 +75,7 @@ def _accessible(widget, name):
 
 
 def _header_button(icon_name, tooltip, callback):
-    button = Gtk.Button()
-    button.set_image(new_icon(icon_name, accessible_name=tooltip))
-    button.set_tooltip_text(tooltip)
-    button.set_focus_on_click(False)
-    _accessible(button, tooltip)
+    button = new_header_icon_button(icon_name, tooltip, tooltip=tooltip)
     button.connect("clicked", callback)
     return button
 
