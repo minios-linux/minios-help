@@ -2,6 +2,7 @@ import json
 import os
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from unittest import mock
 
@@ -11,6 +12,19 @@ from minios_help.documents import (
 from minios_help.navigation import NavigationHistory, resolve_link
 from minios_help.search import SearchIndex
 from tests.runtime_fixture import RuntimeFixture
+
+
+class DesktopIntegrationTests(unittest.TestCase):
+    def test_appstream_launchable_matches_packaged_minios_launcher(self):
+        root = Path(__file__).resolve().parents[1]
+        launchers = sorted(path.name for path in
+                           (root / 'share/applications').glob('*.desktop'))
+        self.assertEqual(launchers, ['minios-help.desktop'])
+        component = ET.parse(
+            str(root / 'share/metainfo/dev.minios.Help.metainfo.xml'))
+        launchable = component.find("launchable[@type='desktop-id']")
+        self.assertIsNotNone(launchable)
+        self.assertEqual(launchable.text, launchers[0])
 
 
 class CoreTests(unittest.TestCase):

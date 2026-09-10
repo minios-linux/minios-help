@@ -32,7 +32,7 @@ check:
 		tools/sync_from_docs.py tests/*.py
 	@for po in $(PO_FILES); do msgfmt --check --check-format -o /dev/null $$po; done
 	@if command -v desktop-file-validate >/dev/null 2>&1; then \
-		desktop-file-validate share/applications/dev.minios.Help.desktop; \
+		desktop-file-validate share/applications/minios-help.desktop; \
 	fi
 	$(MAKE) test
 
@@ -44,8 +44,8 @@ install:
 	install -Dm755 bin/minios-help $(DESTDIR)$(BINDIR)/minios-help
 	install -d $(DESTDIR)$(LIBDIR)/minios_help
 	install -m644 lib/minios_help/*.py $(DESTDIR)$(LIBDIR)/minios_help/
-	install -Dm644 share/applications/dev.minios.Help.desktop \
-		$(DESTDIR)$(APPLICATIONSDIR)/dev.minios.Help.desktop
+	install -Dm644 share/applications/minios-help.desktop \
+		$(DESTDIR)$(APPLICATIONSDIR)/minios-help.desktop
 	install -Dm644 share/metainfo/dev.minios.Help.metainfo.xml \
 		$(DESTDIR)$(METAINFO_DIR)/dev.minios.Help.metainfo.xml
 	install -d $(DESTDIR)$(DATADIR)/docs $(DESTDIR)$(DATADIR)/styles

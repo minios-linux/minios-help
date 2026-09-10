@@ -1,3 +1,4 @@
+import configparser
 import tempfile
 import unittest
 from pathlib import Path
@@ -48,6 +49,15 @@ class ApplicationTests(unittest.TestCase):
     def _drain():
         while Gtk.events_pending():
             Gtk.main_iteration()
+
+    def test_application_windows_use_the_desktop_icon(self):
+        from minios_gui import resolve_icon
+        desktop = configparser.ConfigParser(interpolation=None)
+        desktop.read(str(Path(__file__).resolve().parents[1] /
+                         'share/applications/minios-help.desktop'))
+        expected = resolve_icon(desktop['Desktop Entry']['Icon'],
+                                fallback='help-browser')
+        self.assertEqual(Gtk.Window.get_default_icon_name(), expected)
 
     def test_opens_home_without_duplicate_h1(self):
         self.assertEqual(self.window.current.canonical_id, "index")

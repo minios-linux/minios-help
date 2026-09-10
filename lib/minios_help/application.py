@@ -14,7 +14,7 @@ gi.require_version("Gdk", "3.0")
 from gi.repository import Gdk, Gio, GLib, Gtk
 
 from minios_gui import (DocumentTextView, apply_minios_css, new_header_bar,
-                        new_header_icon_button, new_icon)
+                        new_header_icon_button, new_icon, resolve_icon)
 
 from .documents import DocumentError, DocumentStore, LocalePreference
 from .navigation import NavigationHistory, resolve_link
@@ -747,6 +747,8 @@ class MiniOSHelpApplication(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
+        Gtk.Window.set_default_icon_name(resolve_icon(
+            "system-help", fallback="help-browser"))
         css = data_root() / "styles" / "style.css"
         apply_minios_css(str(css))
 
