@@ -11,7 +11,7 @@ METAINFO_DIR = $(PREFIX)/share/metainfo
 LOCALEDIR = $(PREFIX)/share/locale
 PO_FILES = $(wildcard po/*.po)
 
-.PHONY: all test test-build-tools check install update-pot clean
+.PHONY: all test test-build-tools check-doc-sync check install update-pot clean
 
 all:
 
@@ -26,6 +26,16 @@ test-build-tools:
 	$(NODE) --check $(MARKDOWN_COMPILER)
 	MINIOS_MARKDOWN_COMPILER=$(MARKDOWN_COMPILER) \
 		$(PYTHON) -m unittest tests.test_sync tests.test_compiler -v
+
+check-doc-sync:
+	@test -d ../docs || { echo "Sibling documentation checkout is missing" >&2; exit 1; }
+	@test -d $(MARKDOWN_NODE_MODULES) || { \
+		echo "Node build tools are missing; run ../minios-gui/tools/npm-ci.sh" >&2; exit 1; \
+	}
+	@tmp=$$(mktemp -d); trap 'rm -rf "$$tmp"' EXIT HUP INT TERM; \
+		MINIOS_MARKDOWN_COMPILER=$(MARKDOWN_COMPILER) $(PYTHON) tools/sync_from_docs.py \
+			--docs-root ../docs --output-root "$$tmp/docs" >/dev/null; \
+		diff -qr share/docs "$$tmp/docs"
 
 check:
 	$(PYTHON) -m py_compile bin/minios-help lib/minios_help/*.py \

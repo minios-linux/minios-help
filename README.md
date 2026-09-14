@@ -59,6 +59,13 @@ After `../minios-gui/tools/npm-ci.sh`, compiler and synchronizer tests run with:
 make test-build-tools
 ```
 
+To verify that the committed offline bundle is exactly reproducible from the
+sibling documentation checkout without modifying `share/docs`, run:
+
+```sh
+make check-doc-sync
+```
+
 When developing `minios-help` and `minios-gui` side by side without installing
 the latter, run runtime tests with the sibling source on `PYTHONPATH`.
 

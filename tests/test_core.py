@@ -1,11 +1,13 @@
 import json
 import os
+import re
 import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from unittest import mock
 
+from minios_help import __version__
 from minios_help.documents import (
     DocumentError, DocumentStore, LocalePreference, locale_candidates,
     normalize_locale)
@@ -25,6 +27,19 @@ class DesktopIntegrationTests(unittest.TestCase):
         launchable = component.find("launchable[@type='desktop-id']")
         self.assertIsNotNone(launchable)
         self.assertEqual(launchable.text, launchers[0])
+
+    def test_release_version_mirrors_match_changelog(self):
+        root = Path(__file__).resolve().parents[1]
+        changelog = (root / 'debian/changelog').read_text(encoding='utf-8')
+        match = re.search(r'^minios-help \(([^)]+)\)', changelog)
+        self.assertIsNotNone(match)
+        version = match.group(1)
+        self.assertEqual(__version__, version)
+        component = ET.parse(
+            str(root / 'share/metainfo/dev.minios.Help.metainfo.xml'))
+        releases = component.findall('releases/release')
+        self.assertTrue(releases)
+        self.assertEqual(releases[0].attrib.get('version'), version)
 
 
 class CoreTests(unittest.TestCase):

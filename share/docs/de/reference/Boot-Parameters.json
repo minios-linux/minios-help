@@ -1600,7 +1600,7 @@
               [
                 [
                   "text",
-                  "Jeder Start"
+                  "Bei jedem Start"
                 ]
               ]
             ],
@@ -1609,7 +1609,7 @@
               [
                 [
                   "text",
-                  "Containergröße für "
+                  "Container-Größe für "
                 ],
                 [
                   "span",
@@ -1618,6 +1618,20 @@
                     [
                       "text",
                       "dynfilefs"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "dynblk"
                     ]
                   ]
                 ],
@@ -1763,7 +1777,7 @@
                 ],
                 [
                   "text",
-                  " werden in 1000 bzw. 1.000.000 MiB umgerechnet. Das Limit beträgt 1.000.000 MiB, zusätzlich begrenzt durch den verfügbaren Speicherplatz nach "
+                  " werden zu 1000 bzw. 1.000.000 MiB umgerechnet. Dynblk verwendet standardmäßig ein schlankes 16 GiB-Limit und hat eine virtuelle Obergrenze von 512 GiB; der physische Speicher wächst bei Bedarf. Andere Container-Anfragen sind auf 1.000.000 MiB und den verfügbaren Speicher nach "
                 ],
                 [
                   "span",
@@ -1777,7 +1791,7 @@
                 ],
                 [
                   "text",
-                  ". Der MiniOS-Sitzungsmanager begrenzt Raw- und LUKS-Dateien auf 4000 MiB auf FAT32; initrd-LUKS setzt dieses Limit ebenfalls, aber eine zu große initrd-Raw-Anfrage kann fehlschlagen, statt reduziert zu werden. Neue Raw- und LUKS-Container haben standardmäßig 4000 MiB. Vom Initramfs erstellte DynFileFS-Container verwenden standardmäßig die verfügbare Kapazität, abgerundet auf 1000 MiB; der MiniOS-Sitzungsmanager setzt standardmäßig 4000 MiB."
+                  " begrenzt. MiniOS-Sitzungsmanager begrenzt Raw- und LUKS-Dateien auf 4000 MiB bei FAT32; für initrd LUKS gilt diese Grenze ebenfalls, aber eine zu große initrd Raw-Anfrage kann fehlschlagen, anstatt reduziert zu werden. Neue Raw- und LUKS-Container haben standardmäßig 4000 MiB. Initramfs-erstellte DynFileFS verwenden standardmäßig die verfügbare Kapazität, abgerundet auf 1000 MiB; MiniOS-Sitzungsmanager setzt hier 4000 MiB als Standard."
                 ]
               ]
             ],
@@ -1818,7 +1832,7 @@
                   [
                     [
                       "text",
-                      "perchsize=1TB"
+                      "perchsize=512GB"
                     ]
                   ]
                 ]
@@ -1918,7 +1932,7 @@
               [
                 [
                   "text",
-                  "Jeder Start"
+                  "Bei jedem Start"
                 ]
               ]
             ],
@@ -1945,7 +1959,7 @@
                 ],
                 [
                   "text",
-                  " (Standard): ein Verzeichnis auf einem beschreibbaren POSIX-Dateisystem."
+                  " (Standard): Ein Verzeichnis auf einem beschreibbaren POSIX-Dateisystem."
                 ],
                 [
                   "text",
@@ -1963,7 +1977,53 @@
                 ],
                 [
                   "text",
-                  ": ein erweiterbarer Container, auch auf FAT32, NTFS oder exFAT."
+                  ": Das FUSE-basierte, erweiterbare format-400-Containerformat, auch auf FAT32, NTFS oder exFAT."
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "dynblk"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": Ein separates format-1 Kernel-Blockgerät, das von schlanken "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volumeNNN.db"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "-Dateien unterstützt wird; die tatsächliche "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/dev/dynblkN"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "Anzahl wird dynamisch zugewiesen und mehrere Volumes können gleichzeitig existieren."
                 ],
                 [
                   "text",
@@ -1981,7 +2041,7 @@
                 ],
                 [
                   "text",
-                  ": ein ext4-Image mit fester Größe."
+                  ": Ein ext4-Image mit fester Größe."
                 ],
                 [
                   "text",
@@ -1999,7 +2059,7 @@
                 ],
                 [
                   "text",
-                  ": ein LUKS2-verschlüsselter ext4-Container; Erstellung und Entsperrung erfolgen an der Konsole und erfordern Crypt-Unterstützung im Initramfs."
+                  ": Ein LUKS2-verschlüsselter ext4-Container; Erstellung und Entsperren erfolgen über die Konsole und erfordern Crypt-Unterstützung im Initramfs."
                 ],
                 [
                   "text",
@@ -2017,7 +2077,7 @@
                 ],
                 [
                   "text",
-                  ": ein vorhandener komprimierter Snapshot, der für die Sitzung entpackt wird. Der MiniOS-Sitzungsmanager kann SquashFS-Snapshots aus dem laufenden System erstellen und speichern; das Initramfs kann sie wiederherstellen, aber nicht erstellen."
+                  ": Ein vorhandener, komprimierter Snapshot wird für die Sitzung entpackt. MiniOS-Sitzungsmanager kann SquashFS-Snapshots des laufenden Systems erstellen und speichern; das Initramfs kann Snapshots wiederherstellen, aber nicht erstellen."
                 ]
               ]
             ],
@@ -2045,6 +2105,20 @@
                     [
                       "text",
                       "perchmode=dynfilefs"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchmode=dynblk"
                     ]
                   ]
                 ],
@@ -4648,7 +4722,7 @@
       ]
     ]
   ],
-  "plain_text": "Boot-Parameter\nVerwendung von Boot-Parametern\nBoot-Parameter passen den Start von MiniOS an. Trennen Sie die Parameter auf der Kernel-Befehlszeile mit Leerzeichen.\nSyslinux\nDrücken Sie während des MiniOS-Startvorgangs Esc, um das Boot-Menü aufzurufen.\nDrücken Sie Tab, um die Boot-Optionen zu bearbeiten.\nGeben Sie die gewünschten Parameter ein und drücken Sie Enter, um zu starten.\nGRUB\nDrücken Sie im GRUB-Menü E.\nBearbeiten Sie die Boot-Parameter am Ende der Befehlszeile.\nDrücken Sie F10, um mit den neuen Einstellungen zu starten.\nBoot-Parameter\nDie Spalte „Anwendung“ unterscheidet Parameter, die normalerweise bei jedem Start akzeptiert werden, von Kontoeinstellungen, die für die Ersteinrichtung gedacht sind. Bei Persistenz werden live-config-Komponenten normalerweise nur einmal ausgeführt; siehe live-config.\nDiese Tabelle dient als schnelle Referenz. Die Priorität der Quellen und akzeptierte from=-Formen sind in Initrd-Systemerkennung definiert, die Modulauswahl in Initrd-Modulladen, die Persistenz-Auswahl in Initrd-Persistenz und unterstützte Kombinationen in Boot-Modi.\nParameter | Anwendung | Beschreibung | Beispiel\nfrom | Jeder Start | Lädt MiniOS-Daten aus einem Verzeichnis, einem unterstützten Gerätepfad oder einer ISO. UUID-, PARTUUID- und by-id-Geräteformen werden nicht ausgewertet. Eine wörtliche http:// only-URL hat Vorrang vor ip= und startet den Netzwerk-Boot über httpfs2. | from=/minios/\nfrom=/Downloads/minios.iso\nfrom=http://domain.com/minios.iso\nfrom=/dev/sr0/minios\nfrom=/dev/disk/by-label/MyFlash/minios\nfrom=askdisk\nfrom=askdisk:customdir\nload | Jeder Start | Begrenzt .sb-Kandidaten auf solche, deren Pfad einem nicht verankerten erweiterten regulären Ausdruck entspricht; Kommata werden zu Alternativen, und ein vollständiger aufsteigender Zahlenbereich wird speziell erweitert. Filtert auch toram=trim. Dies kann Kern- oder Kernel-Module ausschließen und das System unbootbar machen. | load=00-core\nload=core,kernel,firmware\nload=00,01,02\nload=00-03\nnoload | Jeder Start | Schließt Kandidaten aus, deren Pfad einem nicht verankerten erweiterten regulären Ausdruck entspricht, auch aus toram=trim; wird nach load angewendet und kann Kern- oder Kernel-Module ausschließen. | noload=05-xfce-apps\nnoload=xfce-apps,firefox\nnoload=05,06\nnoload=04-06\nbext | Jeder Start | Legt die Bundle-Erweiterung fest. Standard: sb. Die Kernel-Koordination verwendet weiterhin wörtliche .sb-Namen, daher kann eine benutzerdefinierte Erweiterung das 01-kernel-Modul nicht koordinieren. | bext=mymod\ntiming | Jeder Start | Aktiviert die Ausgabe der Startzeitmessung. | timing\nunion | Jeder Start | Wählt das Union-Dateisystem aus. | union=aufs\nunion=overlayfs\nip | Jeder Start | Statische Adresse für den frühen Netzwerkabruf. Format: <client-ip>:<server-ip>:<gateway-ip>:<netmask>[:<port>] (Standard-PXE-HTTP-Port 7529). Eine wörtliche from=http://... hat Vorrang vor ip= und verwendet deren Adressfelder; andernfalls erzwingt jeder nicht-leere ip= den PXE-Daten-Download und überspringt lokale Medien. Dies ist keine NetworkManager-Konfiguration für die Sitzung. Siehe Netzwerk-Boot. | ip=192.168.1.10:192.168.1.1:192.168.1.1:255.255.255.0\ncache | Jeder Start | httpfs-Cachegröße in MiB für HTTP-ISO-Netzwerk-Boot (from=http://…). Siehe Netzwerk-Boot. | cache=512\nrd.break | Jeder Start | Öffnet eine Debug-Shell am Ende der Initramfs-Phase. | rd.break\nperchdir | Jeder Start | Wählt eine nummerierte Persistenz-Sitzung oder eine Aktion: resume, new oder ask. Ein nicht vorhandener numerischer Selektor kann auf den Metadaten-Standard zurückfallen; er reserviert oder erstellt diese Nummer nicht. Ein Geräte-/Pfad- oder askdisk-Form wählt einen anderen Persistenzspeicherort. Für einen benutzerdefinierten Pfad einen Doppelpunkt als Suffix verwenden. Ohne Persistenz-Parameter startet MiniOS sauber. | perchdir=1\nperchdir=resume\nperchdir=new\nperchdir=ask\nperchdir=/dev/sda1/changes\nperchdir=/dev/disk/by-label/MyFlash/changes\nperchdir=askdisk\nperchdir=askdisk:customdir\nperchsize | Jeder Start | Containergröße für dynfilefs, raw und luks; gilt nicht für native oder squashfs. Eine reine Zahl oder M/MB-Wert wird in MiB zugewiesen; G/GB und T/TB werden in 1000 bzw. 1.000.000 MiB umgerechnet. Das Limit beträgt 1.000.000 MiB, zusätzlich begrenzt durch den verfügbaren Speicherplatz nach perchreserve. Der MiniOS-Sitzungsmanager begrenzt Raw- und LUKS-Dateien auf 4000 MiB auf FAT32; initrd-LUKS setzt dieses Limit ebenfalls, aber eine zu große initrd-Raw-Anfrage kann fehlschlagen, statt reduziert zu werden. Neue Raw- und LUKS-Container haben standardmäßig 4000 MiB. Vom Initramfs erstellte DynFileFS-Container verwenden standardmäßig die verfügbare Kapazität, abgerundet auf 1000 MiB; der MiniOS-Sitzungsmanager setzt standardmäßig 4000 MiB. | perchsize=4000\nperchsize=32GB\nperchsize=1TB\nperchreserve | Jeder Start | Reservemarge und Warnschwelle für wenig Speicherplatz in MiB. Sie wird beim Anlegen oder Vergrößern neuer Container abgezogen, ist aber kein Laufzeit-Kontingent und verhindert spätere Schreibvorgänge, die das Gerät füllen. Standard: 256; Maximum: 4096. | perchreserve=512\nperchreserve=1024\nperchmode | Jeder Start | Persistenz-Speichermodus.\nnative (Standard): ein Verzeichnis auf einem beschreibbaren POSIX-Dateisystem.\ndynfilefs: ein erweiterbarer Container, auch auf FAT32, NTFS oder exFAT.\nraw: ein ext4-Image mit fester Größe.\nluks: ein LUKS2-verschlüsselter ext4-Container; Erstellung und Entsperrung erfolgen an der Konsole und erfordern Crypt-Unterstützung im Initramfs.\nsquashfs: ein vorhandener komprimierter Snapshot, der für die Sitzung entpackt wird. Der MiniOS-Sitzungsmanager kann SquashFS-Snapshots aus dem laufenden System erstellen und speichern; das Initramfs kann sie wiederherstellen, aber nicht erstellen. | perchmode=native\nperchmode=dynfilefs\nperchmode=raw\nperchmode=luks\nperchmode=squashfs\nperch | Jeder Start | Aktiviert den Legacy-Persistenz-Wiederherstellungspfad. Im Gegensatz zu perchdir=resume wird kein kompatibler Ersatz automatisch erstellt, wenn keine verwendbare Standardsitzung existiert. | perch\ntoram | Jeder Start | Reines toram ist full. Bei Persistenz lässt die vollständige Kopie auf oberster Ebene * Dotfiles aus; ohne Persistenz werden changes ausgelassen, aber andere Einträge auf oberster Ebene, einschließlich Dotfiles, kopiert. Trim kopiert erforderliche config.conf, reguläre authorized_keys, ausgewählte Top-Level- und rekursive Module sowie den vollständigen changes/-Baum, wenn Persistenz angefordert wird; es lässt boot/, kernels/, rootcopy/, config.conf.d/, Logs, andere Nicht-Modul-Daten und die separate Persistenzmodul-Ebene aus. Keiner der Modi prüft zuerst die Kapazität von RAM. Ein auf RAM kopierter Persistenzspeicher ist nicht dauerhaft, Änderungen werden nicht zurückkopiert. Entfernen Sie das Medium erst, nachdem Sie bestätigt haben, dass Quelle, Loops und Zuordnungen erfolgreich getrennt wurden. | toram\ntoram=trim\ntoram=full\ntext | Jeder Start | Startet im Textkonsolenmodus. | text\nautomount | Jeder Start | Aktiviert das automatische Einbinden von Speichermedien. | automount\ndebug | Jeder Start | Aktiviert zusätzliche Startdiagnosen. | debug\nnozram | Jeder Start | Deaktiviert zram-Swap. | nozram\nzramsize | Jeder Start | Legt die zram-Swap-Größe in MiB fest. Wenn nicht angegeben, berechnet MiniOS sie aus dem gesamten RAM. | zramsize=512\nzramsize=2048\nzramcomp | Jeder Start | Wählt lzo, lzo-rle, lz4, lz4hc oder zstd; Verfügbarkeit abhängig vom laufenden Kernel. Wenn nicht angegeben, bleibt der Kernel-Standard erhalten. | zramcomp=lzo\nzramcomp=lz4\ndefault-target | Jeder Start | Legt das Standard-Systemd-Target fest. | default-target=multi-user\ndefault-target=rescue\nenable-services | Jeder Start | Aktiviert angegebene systemd-Dienste beim Booten. | enable-services=ssh,docker\nenable-services=ssh\ndisable-services | Jeder Start | Deaktiviert angegebene systemd-Dienste beim Booten. | disable-services=apache2\ndisable-services=nginx\nnovirtres | Jeder Start | Deaktiviert automatische Bildschirmauflösungsänderungen in virtuellen Maschinen. Die XFCE-Standardeinstellung ist 1280x800. | novirtres\nvirtres | Jeder Start | Legt die XFCE-Bildschirmauflösung in virtuellen Maschinen fest. | virtres=1920x1080\nvirtres=1024x768\ncomponents | Jeder Start | Führt nur die aufgeführten live-config-Komponenten in Komponentenreihenfolge aus. | components=hostname,user-setup,sudo\nnocomponents | Jeder Start | Führt alle live-config-Komponenten außer den aufgeführten aus. | nocomponents=anacron,apport\nhostname | Jeder Start | Legt den System-Hostname fest. | hostname=minios\nusername | Ersteinrichtung | Legt den für Autologin erstellten Benutzernamen fest. | username=live\nuser-default-groups | Ersteinrichtung | Legt die Standardgruppen des erstellten Benutzers fest. | user-default-groups=audio,cdrom,video\nuser-fullname | Ersteinrichtung | Legt den vollständigen Namen des erstellten Benutzers fest. | user-fullname=\"MiniOS Live User\"\nroot-password | Ersteinrichtung | Legt das Root-Passwort im Klartext fest. | root-password=toor\nroot-password-crypted | Ersteinrichtung | Legt das Root-Passwort als Crypt-Hash fest. | root-password-crypted=$y$j9T$...\nuser-password | Ersteinrichtung | Legt das Benutzerpasswort im Klartext fest. | user-password=live\nuser-password-crypted | Ersteinrichtung | Legt das Benutzerpasswort als Crypt-Hash fest. | user-password-crypted=$y$j9T$...\nlocales | Jeder Start | Legt eine oder mehrere System-Locales fest. | locales=en_US.UTF-8\ntimezone | Jeder Start | Legt die Systemzeitzone fest. | timezone=Europe/Berlin\nkeyboard-model | Jeder Start | Legt das Tastaturmodell fest. | keyboard-model=pc105\nkeyboard-layouts | Jeder Start | Legt kommaseparierte Tastaturlayouts fest. | keyboard-layouts=us,de\nkeyboard-variants | Jeder Start | Legt kommaseparierte Tastaturvarianten entsprechend den Layouts fest. | keyboard-variants=,dvorak\nkeyboard-options | Jeder Start | Legt Tastaturoptionen fest. | keyboard-options=grp:alt_shift_toggle\nnoroot | Ersteinrichtung | Verhindert, dass live-config sudo- und policykit-Rechte vergibt. | noroot\nnoautologin | Jeder Start | Verhindert, dass live-config Console- und grafisches Autologin einrichtet; bestehende persistente Konfiguration wird nicht entfernt. | noautologin\nnottyautologin | Jeder Start | Verhindert nur die Einrichtung von Console-Autologin; bestehende persistente Konfiguration wird nicht entfernt. | nottyautologin\nnox11autologin | Jeder Start | Verhindert nur die Einrichtung von grafischem Autologin; bestehende persistente Konfiguration wird nicht entfernt. | nox11autologin\nxorg-driver | Jeder Start | Wählt einen Xorg-Treiber anstelle der automatischen Erkennung. | xorg-driver=nouveau\nxorg-resolution | Jeder Start | Legt die Xorg-Auflösung anstelle der automatischen Erkennung fest. | xorg-resolution=1920x1080\nmodule-mode | Jeder Start | In Verbindung mit merged werden Konfigurationsänderungen in das laufende Live-System übernommen. | module-mode=merged\nhooks | Jeder Start | Ruft Hooks vom Dateisystem, Live-Medium oder von wget-unterstützten URLs ab und führt sie aus. | hooks=filesystem\nhooks=http://example.com/script.sh\nSicherheitshinweise\nDie Kernel-Befehlszeile ist Klartext und normalerweise in der Bootloader-Konfiguration, /proc/cmdline und Diagnosen sichtbar. Legen Sie keine wiederverwendbaren Geheimnisse in root-password= oder user-password= ab. Verwenden Sie vorzugsweise die entsprechenden *-crypted-Parameter, behandeln Sie aber auch veröffentlichte Passwort-Hashes als sensibel.\nHooks werden als privilegierter Boot-Code ausgeführt. Ein http://-Hook bietet weder Transportverschlüsselung noch Serverauthentifizierung, sodass jeder, der den Netzwerkpfad manipulieren kann, ihn ersetzen könnte. Verwenden Sie nur Inhalte und Übertragungswege, denen Sie vertrauen; verwenden Sie keinen nicht authentifizierten HTTP-Hook für sicherheitskritische Starts.\nBefehle werden durch Leerzeichen getrennt. Siehe die Referenzseiten zu man bootparam für weitere Kernel-Parameter, die für alle Linux-Distributionen gelten.\nDetaillierte Informationen zu live-config-Parametern finden Sie unter live-config.\nInformationen zum Laden von MiniOS über das Netzwerk (PXE und HTTP ISO) finden Sie unter Netzwerk-Boot.",
+  "plain_text": "Boot-Parameter\nVerwendung von Boot-Parametern\nBoot-Parameter passen den Start von MiniOS an. Trennen Sie die Parameter auf der Kernel-Befehlszeile mit Leerzeichen.\nSyslinux\nDrücken Sie während des MiniOS-Startvorgangs Esc, um das Boot-Menü aufzurufen.\nDrücken Sie Tab, um die Boot-Optionen zu bearbeiten.\nGeben Sie die gewünschten Parameter ein und drücken Sie Enter, um zu starten.\nGRUB\nDrücken Sie im GRUB-Menü E.\nBearbeiten Sie die Boot-Parameter am Ende der Befehlszeile.\nDrücken Sie F10, um mit den neuen Einstellungen zu starten.\nBoot-Parameter\nDie Spalte „Anwendung“ unterscheidet Parameter, die normalerweise bei jedem Start akzeptiert werden, von Kontoeinstellungen, die für die Ersteinrichtung gedacht sind. Bei Persistenz werden live-config-Komponenten normalerweise nur einmal ausgeführt; siehe live-config.\nDiese Tabelle dient als schnelle Referenz. Die Priorität der Quellen und akzeptierte from=-Formen sind in Initrd-Systemerkennung definiert, die Modulauswahl in Initrd-Modulladen, die Persistenz-Auswahl in Initrd-Persistenz und unterstützte Kombinationen in Boot-Modi.\nParameter | Anwendung | Beschreibung | Beispiel\nfrom | Jeder Start | Lädt MiniOS-Daten aus einem Verzeichnis, einem unterstützten Gerätepfad oder einer ISO. UUID-, PARTUUID- und by-id-Geräteformen werden nicht ausgewertet. Eine wörtliche http:// only-URL hat Vorrang vor ip= und startet den Netzwerk-Boot über httpfs2. | from=/minios/\nfrom=/Downloads/minios.iso\nfrom=http://domain.com/minios.iso\nfrom=/dev/sr0/minios\nfrom=/dev/disk/by-label/MyFlash/minios\nfrom=askdisk\nfrom=askdisk:customdir\nload | Jeder Start | Begrenzt .sb-Kandidaten auf solche, deren Pfad einem nicht verankerten erweiterten regulären Ausdruck entspricht; Kommata werden zu Alternativen, und ein vollständiger aufsteigender Zahlenbereich wird speziell erweitert. Filtert auch toram=trim. Dies kann Kern- oder Kernel-Module ausschließen und das System unbootbar machen. | load=00-core\nload=core,kernel,firmware\nload=00,01,02\nload=00-03\nnoload | Jeder Start | Schließt Kandidaten aus, deren Pfad einem nicht verankerten erweiterten regulären Ausdruck entspricht, auch aus toram=trim; wird nach load angewendet und kann Kern- oder Kernel-Module ausschließen. | noload=05-xfce-apps\nnoload=xfce-apps,firefox\nnoload=05,06\nnoload=04-06\nbext | Jeder Start | Legt die Bundle-Erweiterung fest. Standard: sb. Die Kernel-Koordination verwendet weiterhin wörtliche .sb-Namen, daher kann eine benutzerdefinierte Erweiterung das 01-kernel-Modul nicht koordinieren. | bext=mymod\ntiming | Jeder Start | Aktiviert die Ausgabe der Startzeitmessung. | timing\nunion | Jeder Start | Wählt das Union-Dateisystem aus. | union=aufs\nunion=overlayfs\nip | Jeder Start | Statische Adresse für den frühen Netzwerkabruf. Format: <client-ip>:<server-ip>:<gateway-ip>:<netmask>[:<port>] (Standard-PXE-HTTP-Port 7529). Eine wörtliche from=http://... hat Vorrang vor ip= und verwendet deren Adressfelder; andernfalls erzwingt jeder nicht-leere ip= den PXE-Daten-Download und überspringt lokale Medien. Dies ist keine NetworkManager-Konfiguration für die Sitzung. Siehe Netzwerk-Boot. | ip=192.168.1.10:192.168.1.1:192.168.1.1:255.255.255.0\ncache | Jeder Start | httpfs-Cachegröße in MiB für HTTP-ISO-Netzwerk-Boot (from=http://…). Siehe Netzwerk-Boot. | cache=512\nrd.break | Jeder Start | Öffnet eine Debug-Shell am Ende der Initramfs-Phase. | rd.break\nperchdir | Jeder Start | Wählt eine nummerierte Persistenz-Sitzung oder eine Aktion: resume, new oder ask. Ein nicht vorhandener numerischer Selektor kann auf den Metadaten-Standard zurückfallen; er reserviert oder erstellt diese Nummer nicht. Ein Geräte-/Pfad- oder askdisk-Form wählt einen anderen Persistenzspeicherort. Für einen benutzerdefinierten Pfad einen Doppelpunkt als Suffix verwenden. Ohne Persistenz-Parameter startet MiniOS sauber. | perchdir=1\nperchdir=resume\nperchdir=new\nperchdir=ask\nperchdir=/dev/sda1/changes\nperchdir=/dev/disk/by-label/MyFlash/changes\nperchdir=askdisk\nperchdir=askdisk:customdir\nperchsize | Bei jedem Start | Container-Größe für dynfilefs, dynblk, raw und luks; gilt nicht für native oder squashfs. Eine reine Zahl oder M/MB-Wert wird in MiB zugewiesen; G/GB und T/TB werden zu 1000 bzw. 1.000.000 MiB umgerechnet. Dynblk verwendet standardmäßig ein schlankes 16 GiB-Limit und hat eine virtuelle Obergrenze von 512 GiB; der physische Speicher wächst bei Bedarf. Andere Container-Anfragen sind auf 1.000.000 MiB und den verfügbaren Speicher nach perchreserve begrenzt. MiniOS-Sitzungsmanager begrenzt Raw- und LUKS-Dateien auf 4000 MiB bei FAT32; für initrd LUKS gilt diese Grenze ebenfalls, aber eine zu große initrd Raw-Anfrage kann fehlschlagen, anstatt reduziert zu werden. Neue Raw- und LUKS-Container haben standardmäßig 4000 MiB. Initramfs-erstellte DynFileFS verwenden standardmäßig die verfügbare Kapazität, abgerundet auf 1000 MiB; MiniOS-Sitzungsmanager setzt hier 4000 MiB als Standard. | perchsize=4000\nperchsize=32GB\nperchsize=512GB\nperchreserve | Jeder Start | Reservemarge und Warnschwelle für wenig Speicherplatz in MiB. Sie wird beim Anlegen oder Vergrößern neuer Container abgezogen, ist aber kein Laufzeit-Kontingent und verhindert spätere Schreibvorgänge, die das Gerät füllen. Standard: 256; Maximum: 4096. | perchreserve=512\nperchreserve=1024\nperchmode | Bei jedem Start | Persistenz-Speichermodus.\nnative (Standard): Ein Verzeichnis auf einem beschreibbaren POSIX-Dateisystem.\ndynfilefs: Das FUSE-basierte, erweiterbare format-400-Containerformat, auch auf FAT32, NTFS oder exFAT.\ndynblk: Ein separates format-1 Kernel-Blockgerät, das von schlanken volumeNNN.db-Dateien unterstützt wird; die tatsächliche /dev/dynblkNAnzahl wird dynamisch zugewiesen und mehrere Volumes können gleichzeitig existieren.\nraw: Ein ext4-Image mit fester Größe.\nluks: Ein LUKS2-verschlüsselter ext4-Container; Erstellung und Entsperren erfolgen über die Konsole und erfordern Crypt-Unterstützung im Initramfs.\nsquashfs: Ein vorhandener, komprimierter Snapshot wird für die Sitzung entpackt. MiniOS-Sitzungsmanager kann SquashFS-Snapshots des laufenden Systems erstellen und speichern; das Initramfs kann Snapshots wiederherstellen, aber nicht erstellen. | perchmode=native\nperchmode=dynfilefs\nperchmode=dynblk\nperchmode=raw\nperchmode=luks\nperchmode=squashfs\nperch | Jeder Start | Aktiviert den Legacy-Persistenz-Wiederherstellungspfad. Im Gegensatz zu perchdir=resume wird kein kompatibler Ersatz automatisch erstellt, wenn keine verwendbare Standardsitzung existiert. | perch\ntoram | Jeder Start | Reines toram ist full. Bei Persistenz lässt die vollständige Kopie auf oberster Ebene * Dotfiles aus; ohne Persistenz werden changes ausgelassen, aber andere Einträge auf oberster Ebene, einschließlich Dotfiles, kopiert. Trim kopiert erforderliche config.conf, reguläre authorized_keys, ausgewählte Top-Level- und rekursive Module sowie den vollständigen changes/-Baum, wenn Persistenz angefordert wird; es lässt boot/, kernels/, rootcopy/, config.conf.d/, Logs, andere Nicht-Modul-Daten und die separate Persistenzmodul-Ebene aus. Keiner der Modi prüft zuerst die Kapazität von RAM. Ein auf RAM kopierter Persistenzspeicher ist nicht dauerhaft, Änderungen werden nicht zurückkopiert. Entfernen Sie das Medium erst, nachdem Sie bestätigt haben, dass Quelle, Loops und Zuordnungen erfolgreich getrennt wurden. | toram\ntoram=trim\ntoram=full\ntext | Jeder Start | Startet im Textkonsolenmodus. | text\nautomount | Jeder Start | Aktiviert das automatische Einbinden von Speichermedien. | automount\ndebug | Jeder Start | Aktiviert zusätzliche Startdiagnosen. | debug\nnozram | Jeder Start | Deaktiviert zram-Swap. | nozram\nzramsize | Jeder Start | Legt die zram-Swap-Größe in MiB fest. Wenn nicht angegeben, berechnet MiniOS sie aus dem gesamten RAM. | zramsize=512\nzramsize=2048\nzramcomp | Jeder Start | Wählt lzo, lzo-rle, lz4, lz4hc oder zstd; Verfügbarkeit abhängig vom laufenden Kernel. Wenn nicht angegeben, bleibt der Kernel-Standard erhalten. | zramcomp=lzo\nzramcomp=lz4\ndefault-target | Jeder Start | Legt das Standard-Systemd-Target fest. | default-target=multi-user\ndefault-target=rescue\nenable-services | Jeder Start | Aktiviert angegebene systemd-Dienste beim Booten. | enable-services=ssh,docker\nenable-services=ssh\ndisable-services | Jeder Start | Deaktiviert angegebene systemd-Dienste beim Booten. | disable-services=apache2\ndisable-services=nginx\nnovirtres | Jeder Start | Deaktiviert automatische Bildschirmauflösungsänderungen in virtuellen Maschinen. Die XFCE-Standardeinstellung ist 1280x800. | novirtres\nvirtres | Jeder Start | Legt die XFCE-Bildschirmauflösung in virtuellen Maschinen fest. | virtres=1920x1080\nvirtres=1024x768\ncomponents | Jeder Start | Führt nur die aufgeführten live-config-Komponenten in Komponentenreihenfolge aus. | components=hostname,user-setup,sudo\nnocomponents | Jeder Start | Führt alle live-config-Komponenten außer den aufgeführten aus. | nocomponents=anacron,apport\nhostname | Jeder Start | Legt den System-Hostname fest. | hostname=minios\nusername | Ersteinrichtung | Legt den für Autologin erstellten Benutzernamen fest. | username=live\nuser-default-groups | Ersteinrichtung | Legt die Standardgruppen des erstellten Benutzers fest. | user-default-groups=audio,cdrom,video\nuser-fullname | Ersteinrichtung | Legt den vollständigen Namen des erstellten Benutzers fest. | user-fullname=\"MiniOS Live User\"\nroot-password | Ersteinrichtung | Legt das Root-Passwort im Klartext fest. | root-password=toor\nroot-password-crypted | Ersteinrichtung | Legt das Root-Passwort als Crypt-Hash fest. | root-password-crypted=$y$j9T$...\nuser-password | Ersteinrichtung | Legt das Benutzerpasswort im Klartext fest. | user-password=live\nuser-password-crypted | Ersteinrichtung | Legt das Benutzerpasswort als Crypt-Hash fest. | user-password-crypted=$y$j9T$...\nlocales | Jeder Start | Legt eine oder mehrere System-Locales fest. | locales=en_US.UTF-8\ntimezone | Jeder Start | Legt die Systemzeitzone fest. | timezone=Europe/Berlin\nkeyboard-model | Jeder Start | Legt das Tastaturmodell fest. | keyboard-model=pc105\nkeyboard-layouts | Jeder Start | Legt kommaseparierte Tastaturlayouts fest. | keyboard-layouts=us,de\nkeyboard-variants | Jeder Start | Legt kommaseparierte Tastaturvarianten entsprechend den Layouts fest. | keyboard-variants=,dvorak\nkeyboard-options | Jeder Start | Legt Tastaturoptionen fest. | keyboard-options=grp:alt_shift_toggle\nnoroot | Ersteinrichtung | Verhindert, dass live-config sudo- und policykit-Rechte vergibt. | noroot\nnoautologin | Jeder Start | Verhindert, dass live-config Console- und grafisches Autologin einrichtet; bestehende persistente Konfiguration wird nicht entfernt. | noautologin\nnottyautologin | Jeder Start | Verhindert nur die Einrichtung von Console-Autologin; bestehende persistente Konfiguration wird nicht entfernt. | nottyautologin\nnox11autologin | Jeder Start | Verhindert nur die Einrichtung von grafischem Autologin; bestehende persistente Konfiguration wird nicht entfernt. | nox11autologin\nxorg-driver | Jeder Start | Wählt einen Xorg-Treiber anstelle der automatischen Erkennung. | xorg-driver=nouveau\nxorg-resolution | Jeder Start | Legt die Xorg-Auflösung anstelle der automatischen Erkennung fest. | xorg-resolution=1920x1080\nmodule-mode | Jeder Start | In Verbindung mit merged werden Konfigurationsänderungen in das laufende Live-System übernommen. | module-mode=merged\nhooks | Jeder Start | Ruft Hooks vom Dateisystem, Live-Medium oder von wget-unterstützten URLs ab und führt sie aus. | hooks=filesystem\nhooks=http://example.com/script.sh\nSicherheitshinweise\nDie Kernel-Befehlszeile ist Klartext und normalerweise in der Bootloader-Konfiguration, /proc/cmdline und Diagnosen sichtbar. Legen Sie keine wiederverwendbaren Geheimnisse in root-password= oder user-password= ab. Verwenden Sie vorzugsweise die entsprechenden *-crypted-Parameter, behandeln Sie aber auch veröffentlichte Passwort-Hashes als sensibel.\nHooks werden als privilegierter Boot-Code ausgeführt. Ein http://-Hook bietet weder Transportverschlüsselung noch Serverauthentifizierung, sodass jeder, der den Netzwerkpfad manipulieren kann, ihn ersetzen könnte. Verwenden Sie nur Inhalte und Übertragungswege, denen Sie vertrauen; verwenden Sie keinen nicht authentifizierten HTTP-Hook für sicherheitskritische Starts.\nBefehle werden durch Leerzeichen getrennt. Siehe die Referenzseiten zu man bootparam für weitere Kernel-Parameter, die für alle Linux-Distributionen gelten.\nDetaillierte Informationen zu live-config-Parametern finden Sie unter live-config.\nInformationen zum Laden von MiniOS über das Netzwerk (PXE und HTTP ISO) finden Sie unter Netzwerk-Boot.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

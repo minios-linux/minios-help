@@ -1,19 +1,19 @@
 {
   "headings": [
     {
-      "anchor": "performance",
+      "anchor": "leistung",
       "level": 1,
-      "title": "Performance"
+      "title": "Leistung"
     },
     {
-      "anchor": "boot-parameter-für-performance",
+      "anchor": "startparameter-für-die-leistung",
       "level": 2,
-      "title": "Boot-Parameter für Performance"
+      "title": "Startparameter für die Leistung"
     },
     {
-      "anchor": "laden-des-systems-in-ram-toram",
+      "anchor": "system-in-ram-laden-toram",
       "level": 3,
-      "title": "Laden des Systems in RAM (toram)"
+      "title": "System in RAM laden (toram)"
     },
     {
       "anchor": "module-filtern-load-und-noload",
@@ -21,9 +21,9 @@
       "title": "Module filtern (load und noload)"
     },
     {
-      "anchor": "persistenz-optimierung",
+      "anchor": "optimierung-der-persistenz",
       "level": 2,
-      "title": "Persistenz-Optimierung"
+      "title": "Optimierung der Persistenz"
     },
     {
       "anchor": "persistenzmodi-perchmode",
@@ -45,11 +45,11 @@
     [
       "heading",
       1,
-      "performance",
+      "leistung",
       [
         [
           "text",
-          "Performance"
+          "Leistung"
         ]
       ]
     ],
@@ -59,7 +59,7 @@
       [
         [
           "text",
-          "Das Performance-Tuning in MiniOS ist im Wesentlichen ein Ausbalancieren zwischen Bootzeit, RAM-Verbrauch, Lesezugriffen zur Laufzeit, Persistenz-Overhead und Speicherdauerhaftigkeit. Für genaue Bedeutungen der Optionen und Sicherheitsgrenzen nutzen Sie "
+          "Das Tuning der Leistung in MiniOS ist im Wesentlichen ein Kompromiss zwischen Startzeit, RAM-Verbrauch, Lesezugriffen zur Laufzeit, Persistenz-Overhead und Datenträgerhaltbarkeit. Für genaue Bedeutungen der Optionen und Sicherheitsgrenzen siehe "
         ],
         [
           "link",
@@ -68,7 +68,7 @@
           [
             [
               "text",
-              "Boot-Modi"
+              "Startmodi"
             ]
           ]
         ],
@@ -89,7 +89,7 @@
         ],
         [
           "text",
-          " und "
+          ", und "
         ],
         [
           "link",
@@ -111,11 +111,11 @@
     [
       "heading",
       2,
-      "boot-parameter-für-performance",
+      "startparameter-für-die-leistung",
       [
         [
           "text",
-          "Boot-Parameter für Performance"
+          "Startparameter für die Leistung"
         ]
       ]
     ],
@@ -125,7 +125,7 @@
       [
         [
           "text",
-          "Boot-Parameter können Startvorgänge und Lesezugriffe im laufenden System zwischen RAM und dem Quellgerät verschieben. Eine vollständige Referenz finden Sie unter "
+          "Startparameter können die Arbeit beim Systemstart und Lesezugriffe im Live-Betrieb zwischen RAM und dem Quellgerät verschieben. Siehe "
         ],
         [
           "link",
@@ -134,24 +134,24 @@
           [
             [
               "text",
-              "Boot-Parameter"
+              "Startparameter"
             ]
           ]
         ],
         [
           "text",
-          "."
+          " für die vollständige Referenz."
         ]
       ]
     ],
     [
       "heading",
       3,
-      "laden-des-systems-in-ram-toram",
+      "system-in-ram-laden-toram",
       [
         [
           "text",
-          "Laden des Systems in RAM ("
+          "System in RAM laden ("
         ],
         [
           "span",
@@ -185,7 +185,7 @@
         ],
         [
           "text",
-          " kann die Latenzzeit zur Laufzeit bei langsamen USB-Geräten oder netzwerkbasierten ISOs verringern, allerdings auf Kosten einer längeren Bootzeit und deutlich mehr belegtem RAM. Reines "
+          " kann die Laufzeitlatenz von einem langsamen USB-Gerät oder ISO über Netzwerk reduzieren, führt jedoch zu einer längeren Startzeit und belegt deutlich mehr RAM. Bare "
         ],
         [
           "span",
@@ -199,7 +199,7 @@
         ],
         [
           "text",
-          " nutzt den vollständigen Kopiervorgang. "
+          " verwendet den vollständigen Kopierpfad. "
         ],
         [
           "span",
@@ -213,7 +213,7 @@
         ],
         [
           "text",
-          " benötigt in der Regel weniger RAM, kann aber durch die eingeschränkte Kopie Daten oder Module auslassen, die später benötigt werden."
+          " benötigt in der Regel weniger RAM, aber die eingeschränkte Kopie kann später benötigte Daten oder Module auslassen."
         ]
       ]
     ],
@@ -223,7 +223,7 @@
       [
         [
           "text",
-          "Lassen Sie ausreichend Platz für die beschreibbare Schicht, Anwendungen, Caches und zram, anstatt nur für Moduldateien zu dimensionieren. Mehr zugewiesene RAM für die Live-Kopie bedeutet weniger verfügbare Ressourcen für die eigentliche Arbeitslast. Beachten Sie "
+          "Lassen Sie ausreichend Platz für die beschreibbare Ebene, Anwendungen, Caches und zram, anstatt nur für Moduldaten zu planen. Mehr RAM für die Live-Kopie bedeutet weniger für die eigentliche Arbeitslast. Hinweise zu Kopierhaltbarkeit und Einschränkungen beim Entfernen von Medien finden Sie unter "
         ],
         [
           "link",
@@ -232,13 +232,13 @@
           [
             [
               "text",
-              "Boot-Modi"
+              "Startmodi"
             ]
           ]
         ],
         [
           "text",
-          " für Hinweise zur Kopierdauerhaftigkeit und Einschränkungen beim Entfernen von Medien."
+          "."
         ]
       ]
     ],
@@ -287,7 +287,7 @@
       [
         [
           "text",
-          "Das Filtern kann die zu kopierende Datenmenge und die Anzahl der eingebundenen Layer reduzieren, insbesondere mit "
+          "Durch Filtern können kopierte Daten und eingehängte Ebenen reduziert werden, insbesondere mit "
         ],
         [
           "span",
@@ -301,7 +301,7 @@
         ],
         [
           "text",
-          ". Der Nachteil ist ein weniger leistungsfähiges System und ein erhöhtes Risiko für Boot- oder Laufzeitfehler, falls eine Abhängigkeit ausgelassen wird. Überprüfen Sie das resultierende Modul-Set; Syntax zum Filtern und Einschränkungen für geschützte Module sind in "
+          ". Der Nachteil ist ein weniger funktionsfähiges System und ein erhöhtes Risiko für Start- oder Laufzeitfehler, falls eine Abhängigkeit fehlt. Überprüfen Sie die resultierende Modulliste; Syntax und Einschränkungen für geschützte Module sind definiert unter "
         ],
         [
           "link",
@@ -316,18 +316,18 @@
         ],
         [
           "text",
-          " definiert."
+          "."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "persistenz-optimierung",
+      "optimierung-der-persistenz",
       [
         [
           "text",
-          "Persistenz-Optimierung"
+          "Optimierung der Persistenz"
         ]
       ]
     ],
@@ -337,7 +337,7 @@
       [
         [
           "text",
-          "Persistenz verschiebt Schreibzugriffe der beschreibbaren Schicht von temporärem RAM auf einen Speicher oder in einen Container. Die Wahl des Backends beeinflusst Latenz, Kompatibilität, Kapazitätsverwaltung und Komplexität der Wiederherstellung."
+          "Persistenz verschiebt Schreibzugriffe der beschreibbaren Ebene von temporärem RAM auf einen Speicher oder in einen Container. Die Wahl des Backends beeinflusst Latenz, Kompatibilität, Kapazitätsmanagement und Wiederherstellungskomplexität."
         ]
       ]
     ],
@@ -407,7 +407,7 @@
                 ],
                 [
                   "text",
-                  " Vermeidet eine Dateisystem-in-einer-Datei-Schicht und ist die einfachste Wahl auf einem geeigneten POSIX-Dateisystem, steht jedoch auf Dateisystemen, die die erforderlichen Linux-Metadaten nicht erhalten können, nicht zur Verfügung."
+                  " Verzichtet auf eine Dateisystem-in-Datei-Ebene und ist die einfachste Wahl auf einem geeigneten POSIX-Dateisystem, steht jedoch auf Dateisystemen, die die erforderlichen Linux-Metadaten nicht erhalten können, nicht zur Verfügung."
                 ]
               ]
             ]
@@ -487,7 +487,61 @@
                 ],
                 [
                   "text",
-                  " Erweitert sich bei Bedarf und unterstützt ansonsten ungeeignete Medien, bringt jedoch zusätzliche Zuordnungs- und Wiederherstellungskomplexität mit sich."
+                  " Das FUSE/format-400-Backend wächst bei Bedarf und unterstützt sonst ungeeignete Medien, bringt aber zusätzlichen Mapping- und Wiederherstellungsaufwand mit sich."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "span",
+                      "code",
+                      [
+                        [
+                          "text",
+                          "dynblk"
+                        ]
+                      ]
+                    ],
+                    [
+                      "text",
+                      ":"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Das format-1 Kernel-Block-Backend stellt ein normales Blockgerät bereit, während thin "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volumeNNN.db"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "-Speicher bei Bedarf wächst. Es vermeidet FUSE-I/O, aber jedes angeschlossene Gerät belegt festen Metadaten-Speicher, und Schreibvorgänge bleiben durch freien Speicherplatz und dynblk-Grenzen des Backing-Dateisystems limitiert."
                 ]
               ]
             ]
@@ -527,7 +581,7 @@
                 ],
                 [
                   "text",
-                  " Fügt Vertraulichkeit hinzu, allerdings auf Kosten von zusätzlicher Entsperrarbeit und Verschlüsselungs-Overhead."
+                  " Bietet Vertraulichkeit auf Kosten von Entsperr-Arbeit und Verschlüsselungs-Overhead."
                 ]
               ]
             ]
@@ -567,7 +621,7 @@
                 ],
                 [
                   "text",
-                  " Tauscht Komprimierung beim Speichern und RAM-Entpacken gegen einen kompakten Snapshot; dies ist kein allgemeines, latenzarmes, beschreibbares Backend."
+                  " Komprimiert beim Speichern und tauscht RAM-Dekompression gegen ein kompaktes Abbild; ist kein allgemeines, latenzarmes, beschreibbares Backend."
                 ]
               ]
             ]
@@ -581,7 +635,7 @@
       [
         [
           "text",
-          "Testen Sie repräsentative Arbeitslasten auf dem tatsächlichen Gerät. Unterschiede beim Flash-Controller, Dateisystem, USB-Bridge und der Arbeitslast sind verlässlicher als eine allgemeine Rangfolge der Persistenzmodi."
+          "Testen Sie repräsentative Arbeitslasten direkt auf dem jeweiligen Gerät. Unterschiede bei Flash-Controllern, Dateisystemen, USB-Adaptern und Workloads sind aussagekräftiger als eine allgemeine Rangfolge der Persistenzmodi."
         ]
       ]
     ],
@@ -602,7 +656,7 @@
       [
         [
           "text",
-          "Zram tauscht CPU-Zeit gegen komprimierte Speicherkapazität und kann deutlich langsameren, speicherbasierten Swap vermeiden. Ein größeres zram-Gerät kann mehr inaktive Seiten aufnehmen, erzeugt jedoch keinen physischen RAM; nicht komprimierbare Arbeitslasten belegen weiterhin Speicher."
+          "Zram tauscht CPU-Zeit gegen komprimierten Speicherplatz und kann deutlich langsameren, speicherbasierten Swap vermeiden. Ein größeres zram-Gerät kann mehr inaktive Seiten aufnehmen, schafft aber keinen physischen RAM; nicht komprimierbare Workloads belegen weiterhin Speicher."
         ],
         [
           "text",
@@ -610,7 +664,7 @@
         ],
         [
           "text",
-          "Komprimierungsalgorithmen balancieren Durchsatz und CPU-Auslastung gegen die Kompressionsrate, und ihre Verfügbarkeit hängt vom Kernel ab. Beginnen Sie mit der Standardeinstellung und ändern Sie "
+          "Kompressionsalgorithmen balancieren Durchsatz und CPU-Bedarf gegen die Kompressionsrate, und ihre Verfügbarkeit hängt vom Kernel ab. Beginnen Sie mit dem Standardwert und ändern Sie "
         ],
         [
           "span",
@@ -638,7 +692,7 @@
         ],
         [
           "text",
-          " oder "
+          ", oder "
         ],
         [
           "span",
@@ -661,7 +715,7 @@
           [
             [
               "text",
-              "Boot-Parameter"
+              "Startparameter"
             ]
           ]
         ],
@@ -721,7 +775,7 @@
                 ],
                 [
                   "text",
-                  "Messen Sie das Gerät und das Gehäuse gemeinsam; die USB-Generation allein sagt nichts über die Leistung von Flash oder SSD aus."
+                  "Messen Sie Gerät und Gehäuse gemeinsam; die USB-Generation allein ist kein verlässlicher Indikator für Flash- oder SSD-Leistung."
                 ]
               ]
             ]
@@ -751,7 +805,7 @@
                 ],
                 [
                   "text",
-                  " Ein natives Linux-Dateisystem kann native Persistenz ohne Container-Overhead nutzen. Plattformübergreifende Dateisysteme verbessern die Portabilität, benötigen aber ein kompatibles Container-Backend für Linux-Metadaten und fügen zusätzliche Mapping- und Dateisystem-Layer hinzu. Wählen Sie basierend auf Portabilitäts- und Wiederherstellungsanforderungen sowie Benchmark-Ergebnissen."
+                  " Ein natives Linux-Dateisystem kann native Persistenz ohne Container-Overhead nutzen. Plattformübergreifende Dateisysteme erhöhen die Portabilität, benötigen aber für Linux-Metadaten ein kompatibles Container-Backend und damit zusätzliche Mapping- und Dateisystemebenen. Die Auswahl sollte neben Benchmark-Ergebnissen auch auf Portabilitäts- und Wiederherstellungsanforderungen basieren."
                 ]
               ]
             ]
@@ -760,7 +814,7 @@
       ]
     ]
   ],
-  "plain_text": "Performance\nDas Performance-Tuning in MiniOS ist im Wesentlichen ein Ausbalancieren zwischen Bootzeit, RAM-Verbrauch, Lesezugriffen zur Laufzeit, Persistenz-Overhead und Speicherdauerhaftigkeit. Für genaue Bedeutungen der Optionen und Sicherheitsgrenzen nutzen Sie Boot-Modi, Initrd-Modulladen und Initrd-Persistenz.\nBoot-Parameter für Performance\nBoot-Parameter können Startvorgänge und Lesezugriffe im laufenden System zwischen RAM und dem Quellgerät verschieben. Eine vollständige Referenz finden Sie unter Boot-Parameter.\nLaden des Systems in RAM (toram)\ntoram kann die Latenzzeit zur Laufzeit bei langsamen USB-Geräten oder netzwerkbasierten ISOs verringern, allerdings auf Kosten einer längeren Bootzeit und deutlich mehr belegtem RAM. Reines toram nutzt den vollständigen Kopiervorgang. toram=trim benötigt in der Regel weniger RAM, kann aber durch die eingeschränkte Kopie Daten oder Module auslassen, die später benötigt werden.\nLassen Sie ausreichend Platz für die beschreibbare Schicht, Anwendungen, Caches und zram, anstatt nur für Moduldateien zu dimensionieren. Mehr zugewiesene RAM für die Live-Kopie bedeutet weniger verfügbare Ressourcen für die eigentliche Arbeitslast. Beachten Sie Boot-Modi für Hinweise zur Kopierdauerhaftigkeit und Einschränkungen beim Entfernen von Medien.\nModule filtern (load und noload)\nDas Filtern kann die zu kopierende Datenmenge und die Anzahl der eingebundenen Layer reduzieren, insbesondere mit toram=trim. Der Nachteil ist ein weniger leistungsfähiges System und ein erhöhtes Risiko für Boot- oder Laufzeitfehler, falls eine Abhängigkeit ausgelassen wird. Überprüfen Sie das resultierende Modul-Set; Syntax zum Filtern und Einschränkungen für geschützte Module sind in Initrd-Modulladen definiert.\nPersistenz-Optimierung\nPersistenz verschiebt Schreibzugriffe der beschreibbaren Schicht von temporärem RAM auf einen Speicher oder in einen Container. Die Wahl des Backends beeinflusst Latenz, Kompatibilität, Kapazitätsverwaltung und Komplexität der Wiederherstellung.\nPersistenzmodi (perchmode)\nnative: Vermeidet eine Dateisystem-in-einer-Datei-Schicht und ist die einfachste Wahl auf einem geeigneten POSIX-Dateisystem, steht jedoch auf Dateisystemen, die die erforderlichen Linux-Metadaten nicht erhalten können, nicht zur Verfügung.\nraw: Bietet eine vorhersehbare, feste Kapazität und das übliche ext4-Verhalten, reserviert jedoch die Dateigröße und kann nicht über den verfügbaren Speicherplatz hinaus wachsen.\ndynfilefs: Erweitert sich bei Bedarf und unterstützt ansonsten ungeeignete Medien, bringt jedoch zusätzliche Zuordnungs- und Wiederherstellungskomplexität mit sich.\nluks: Fügt Vertraulichkeit hinzu, allerdings auf Kosten von zusätzlicher Entsperrarbeit und Verschlüsselungs-Overhead.\nsquashfs: Tauscht Komprimierung beim Speichern und RAM-Entpacken gegen einen kompakten Snapshot; dies ist kein allgemeines, latenzarmes, beschreibbares Backend.\nTesten Sie repräsentative Arbeitslasten auf dem tatsächlichen Gerät. Unterschiede beim Flash-Controller, Dateisystem, USB-Bridge und der Arbeitslast sind verlässlicher als eine allgemeine Rangfolge der Persistenzmodi.\nZRAM-Konfiguration\nZram tauscht CPU-Zeit gegen komprimierte Speicherkapazität und kann deutlich langsameren, speicherbasierten Swap vermeiden. Ein größeres zram-Gerät kann mehr inaktive Seiten aufnehmen, erzeugt jedoch keinen physischen RAM; nicht komprimierbare Arbeitslasten belegen weiterhin Speicher.\nKomprimierungsalgorithmen balancieren Durchsatz und CPU-Auslastung gegen die Kompressionsrate, und ihre Verfügbarkeit hängt vom Kernel ab. Beginnen Sie mit der Standardeinstellung und ändern Sie zramsize, zramcomp oder nozram nur für eine gemessene Arbeitslast; akzeptierte Werte finden Sie unter Boot-Parameter.\nDateisystem und Speicherhardware\nGerätewahl: Höherer sequentieller Durchsatz verkürzt große Modulkopien, während niedrige Latenz bei zufälligen I/O-Vorgängen für persistente Desktop-Workloads wichtiger ist.\nMessen Sie das Gerät und das Gehäuse gemeinsam; die USB-Generation allein sagt nichts über die Leistung von Flash oder SSD aus.\nDateisystemwahl: Ein natives Linux-Dateisystem kann native Persistenz ohne Container-Overhead nutzen. Plattformübergreifende Dateisysteme verbessern die Portabilität, benötigen aber ein kompatibles Container-Backend für Linux-Metadaten und fügen zusätzliche Mapping- und Dateisystem-Layer hinzu. Wählen Sie basierend auf Portabilitäts- und Wiederherstellungsanforderungen sowie Benchmark-Ergebnissen.",
+  "plain_text": "Leistung\nDas Tuning der Leistung in MiniOS ist im Wesentlichen ein Kompromiss zwischen Startzeit, RAM-Verbrauch, Lesezugriffen zur Laufzeit, Persistenz-Overhead und Datenträgerhaltbarkeit. Für genaue Bedeutungen der Optionen und Sicherheitsgrenzen siehe Startmodi, Initrd-Modulladen, und Initrd-Persistenz.\nStartparameter für die Leistung\nStartparameter können die Arbeit beim Systemstart und Lesezugriffe im Live-Betrieb zwischen RAM und dem Quellgerät verschieben. Siehe Startparameter für die vollständige Referenz.\nSystem in RAM laden (toram)\ntoram kann die Laufzeitlatenz von einem langsamen USB-Gerät oder ISO über Netzwerk reduzieren, führt jedoch zu einer längeren Startzeit und belegt deutlich mehr RAM. Bare toram verwendet den vollständigen Kopierpfad. toram=trim benötigt in der Regel weniger RAM, aber die eingeschränkte Kopie kann später benötigte Daten oder Module auslassen.\nLassen Sie ausreichend Platz für die beschreibbare Ebene, Anwendungen, Caches und zram, anstatt nur für Moduldaten zu planen. Mehr RAM für die Live-Kopie bedeutet weniger für die eigentliche Arbeitslast. Hinweise zu Kopierhaltbarkeit und Einschränkungen beim Entfernen von Medien finden Sie unter Startmodi.\nModule filtern (load und noload)\nDurch Filtern können kopierte Daten und eingehängte Ebenen reduziert werden, insbesondere mit toram=trim. Der Nachteil ist ein weniger funktionsfähiges System und ein erhöhtes Risiko für Start- oder Laufzeitfehler, falls eine Abhängigkeit fehlt. Überprüfen Sie die resultierende Modulliste; Syntax und Einschränkungen für geschützte Module sind definiert unter Initrd-Modulladen.\nOptimierung der Persistenz\nPersistenz verschiebt Schreibzugriffe der beschreibbaren Ebene von temporärem RAM auf einen Speicher oder in einen Container. Die Wahl des Backends beeinflusst Latenz, Kompatibilität, Kapazitätsmanagement und Wiederherstellungskomplexität.\nPersistenzmodi (perchmode)\nnative: Verzichtet auf eine Dateisystem-in-Datei-Ebene und ist die einfachste Wahl auf einem geeigneten POSIX-Dateisystem, steht jedoch auf Dateisystemen, die die erforderlichen Linux-Metadaten nicht erhalten können, nicht zur Verfügung.\nraw: Bietet eine vorhersehbare, feste Kapazität und das übliche ext4-Verhalten, reserviert jedoch die Dateigröße und kann nicht über den verfügbaren Speicherplatz hinaus wachsen.\ndynfilefs: Das FUSE/format-400-Backend wächst bei Bedarf und unterstützt sonst ungeeignete Medien, bringt aber zusätzlichen Mapping- und Wiederherstellungsaufwand mit sich.\ndynblk: Das format-1 Kernel-Block-Backend stellt ein normales Blockgerät bereit, während thin volumeNNN.db-Speicher bei Bedarf wächst. Es vermeidet FUSE-I/O, aber jedes angeschlossene Gerät belegt festen Metadaten-Speicher, und Schreibvorgänge bleiben durch freien Speicherplatz und dynblk-Grenzen des Backing-Dateisystems limitiert.\nluks: Bietet Vertraulichkeit auf Kosten von Entsperr-Arbeit und Verschlüsselungs-Overhead.\nsquashfs: Komprimiert beim Speichern und tauscht RAM-Dekompression gegen ein kompaktes Abbild; ist kein allgemeines, latenzarmes, beschreibbares Backend.\nTesten Sie repräsentative Arbeitslasten direkt auf dem jeweiligen Gerät. Unterschiede bei Flash-Controllern, Dateisystemen, USB-Adaptern und Workloads sind aussagekräftiger als eine allgemeine Rangfolge der Persistenzmodi.\nZRAM-Konfiguration\nZram tauscht CPU-Zeit gegen komprimierten Speicherplatz und kann deutlich langsameren, speicherbasierten Swap vermeiden. Ein größeres zram-Gerät kann mehr inaktive Seiten aufnehmen, schafft aber keinen physischen RAM; nicht komprimierbare Workloads belegen weiterhin Speicher.\nKompressionsalgorithmen balancieren Durchsatz und CPU-Bedarf gegen die Kompressionsrate, und ihre Verfügbarkeit hängt vom Kernel ab. Beginnen Sie mit dem Standardwert und ändern Sie zramsize, zramcomp, oder nozram nur für eine gemessene Arbeitslast; akzeptierte Werte finden Sie unter Startparameter.\nDateisystem und Speicherhardware\nGerätewahl: Höherer sequentieller Durchsatz verkürzt große Modulkopien, während niedrige Latenz bei zufälligen I/O-Vorgängen für persistente Desktop-Workloads wichtiger ist.\nMessen Sie Gerät und Gehäuse gemeinsam; die USB-Generation allein ist kein verlässlicher Indikator für Flash- oder SSD-Leistung.\nDateisystemwahl: Ein natives Linux-Dateisystem kann native Persistenz ohne Container-Overhead nutzen. Plattformübergreifende Dateisysteme erhöhen die Portabilität, benötigen aber für Linux-Metadaten ein kompatibles Container-Backend und damit zusätzliche Mapping- und Dateisystemebenen. Die Auswahl sollte neben Benchmark-Ergebnissen auch auf Portabilitäts- und Wiederherstellungsanforderungen basieren.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
