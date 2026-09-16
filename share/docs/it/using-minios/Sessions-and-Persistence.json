@@ -11,9 +11,9 @@
       "title": "Modalità sessione"
     },
     {
-      "anchor": "selezione-avvio",
+      "anchor": "selezione-di-avvio",
       "level": 2,
-      "title": "Selezione avvio"
+      "title": "Selezione di avvio"
     },
     {
       "anchor": "sessioni-attive-ed-eseguite",
@@ -31,14 +31,14 @@
       "title": "Comportamento di salvataggio SquashFS"
     },
     {
-      "anchor": "crittografia",
+      "anchor": "cifratura",
       "level": 2,
-      "title": "Crittografia"
+      "title": "Cifratura"
     },
     {
-      "anchor": "backup-e-sessioni-non-riuscite",
+      "anchor": "backup-e-sessioni-fallite",
       "level": 2,
-      "title": "Backup e sessioni non riuscite"
+      "title": "Backup e sessioni fallite"
     }
   ],
   "nodes": [
@@ -179,7 +179,16 @@
               [
                 [
                   "text",
-                  "Principali vincoli"
+                  "Vincoli principali"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "MiniOS livello LUKS2"
                 ]
               ]
             ]
@@ -209,7 +218,7 @@
               [
                 [
                   "text",
-                  "Le modifiche vengono salvate direttamente nella directory della sessione"
+                  "Modifiche salvate direttamente nella directory della sessione"
                 ]
               ]
             ],
@@ -218,7 +227,30 @@
               [
                 [
                   "text",
-                  "Richiede un filesystem POSIX scrivibile come ext2/3/4, Btrfs, XFS, F2FS o ReiserFS."
+                  "Richiede un filesystem scrivibile che preservi i metadati Linux e le operazioni che MiniOS rileva. La capacità segue lo spazio libero di supporto; "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchsize"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " non applicabile."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "No"
                 ]
               ]
             ]
@@ -248,7 +280,21 @@
               [
                 [
                   "text",
-                  "Contenitore ext4 espandibile suddiviso in file di supporto"
+                  "ext4 espandibile "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "virtual.dat"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " supportato da file segmento format-400"
                 ]
               ]
             ],
@@ -257,7 +303,16 @@
               [
                 [
                   "text",
-                  "Funziona su filesystem POSIX scrivibili, FAT32, NTFS ed exFAT. Richiede il backend DynFileFS."
+                  "Funziona su filesystem POSIX scrivibili, FAT32, NTFS ed exFAT. Il payload è leggero, ma l'indice di mappatura cresce in base alla capacità logica dichiarata."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Sì"
                 ]
               ]
             ]
@@ -287,7 +342,7 @@
               [
                 [
                   "text",
-                  "Filesystem ext4 thin su un dispositivo a blocchi del kernel supportato da "
+                  "Filesystem ext4 thin su un dispositivo a blocchi kernel supportato da "
                 ],
                 [
                   "span",
@@ -310,7 +365,16 @@
               [
                 [
                   "text",
-                  "Richiede il CLI dynblk, il modulo kernel e la funzionalità initrd. La dimensione virtuale predefinita è 16 GiB e il limite massimo è 512 GiB."
+                  "Richiede CLI DynBlk, modulo kernel e supporto initrd. La dimensione creata all'avvio è fino a 16 GiB per impostazione predefinita; il limite del formato è 512 GiB. La mappatura sparsa RAM viene gestita separatamente."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Sì"
                 ]
               ]
             ]
@@ -340,7 +404,7 @@
               [
                 [
                   "text",
-                  "File "
+                  "Singolo "
                 ],
                 [
                   "span",
@@ -354,7 +418,7 @@
                 ],
                 [
                   "text",
-                  " a dimensione fissa contenente ext4"
+                  " file contenente ext4"
                 ]
               ]
             ],
@@ -363,28 +427,7 @@
               [
                 [
                   "text",
-                  "Funziona su filesystem POSIX scrivibili, FAT32, NTFS ed exFAT."
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "table_row",
-          false,
-          [
-            [
-              "table_cell",
-              [
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "luks"
-                    ]
-                  ]
+                  "Capacità logica fissa con crescita solo esplicita. Funziona su filesystem POSIX scrivibili, FAT32, NTFS ed exFAT; FAT32 è limitato a 4000 MiB."
                 ]
               ]
             ],
@@ -393,44 +436,7 @@
               [
                 [
                   "text",
-                  "File LUKS2 cifrato "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "changes.luks"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " contenente ext4"
-                ]
-              ]
-            ],
-            [
-              "table_cell",
-              [
-                [
-                  "text",
-                  "Richiede "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "cryptsetup"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ", supporto loop e il hook LUKS initrd MiniOS."
+                  "Sì"
                 ]
               ]
             ]
@@ -471,6 +477,29 @@
                       "changes.sb"
                     ]
                   ]
+                ],
+                [
+                  "text",
+                  "; la parte superiore scrivibile a runtime viene ricostruita in RAM"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchsize"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " non applicabile. Gli snapshot esistenti possono essere ripristinati da supporti scrivibili compatibili, mentre il salvataggio esatto richiede un filesystem di staging compatibile POSIX."
                 ]
               ]
             ],
@@ -479,7 +508,7 @@
               [
                 [
                   "text",
-                  "Il salvataggio richiede un filesystem di persistenza POSIX che possa preservare link, proprietà, permessi, xattrs, ACL, capacità e whiteout."
+                  "No"
                 ]
               ]
             ]
@@ -492,46 +521,8 @@
       "paragraph",
       [
         [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "dynfilefs"
-            ]
-          ]
-        ],
-        [
           "text",
-          ", "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "raw"
-            ]
-          ]
-        ],
-        [
-          "text",
-          ", e "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "luks"
-            ]
-          ]
-        ],
-        [
-          "text",
-          " creati con "
+          "Raw, DynFileFS e DynBlk possono opzionalmente includere un livello di cifratura LUKS2. Il backend di archiviazione resta quello della modalità sessione e i metadati della sessione registrano la cifratura separatamente. DynFileFS e raw creati con "
         ],
         [
           "span",
@@ -545,21 +536,7 @@
         ],
         [
           "text",
-          " hanno dimensione predefinita di 4000 MiB; "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "dynblk"
-            ]
-          ]
-        ],
-        [
-          "text",
-          " predefinito a 16 GiB. Le dimensioni sono allocate in MiB; "
+          " hanno come valore predefinito 4000 MiB; DynBlk predefinito 16 GiB. I valori di dimensione sono allocati in MiB; "
         ],
         [
           "span",
@@ -587,7 +564,7 @@
         ],
         [
           "text",
-          " i suffissi convertono in 1000 e 1.000.000 MiB. Il Gestore sessioni MiniOS limita i file raw e LUKS a 4000 MiB su FAT32. La capacità dynblk è virtuale e thin, non preallocata, ma le scritture effettive sono comunque limitate dallo spazio libero del filesystem sottostante e dalle risorse disponibili per dynblk. Le operazioni di ridimensionamento del contenitore possono solo aumentare la dimensione di una sessione; la riduzione non è supportata."
+          " i suffissi convertono rispettivamente in 1000 e 1.000.000 MiB. Raw è limitato a 4000 MiB su FAT32, sia cifrato che non. I dati payload DynFileFS crescono su richiesta, ma il suo indice format-400 è dimensionato per la piena capacità logica e richiede circa 2 MiB di RAM più circa 2 MiB di spazio di archiviazione per GiB. La capacità DynBlk è thin e la sua mappatura a runtime è sparsa: le mappature dense costano circa 8 MiB/GiB, mentre la capacità virtuale inutilizzata non consuma chunk di mappatura. Il driver DynBlk seleziona automaticamente il proprio budget di mappatura a circa il 25% dello spazio RAM utilizzabile, con un massimo di 4096 MiB; MiniOS non modifica questa politica. Le scritture effettive restano comunque limitate dallo spazio libero del filesystem sottostante e dalle risorse del backend. Le operazioni di ridimensionamento del container possono solo aumentare una sessione; la riduzione non è supportata."
         ]
       ]
     ],
@@ -605,7 +582,7 @@
         ],
         [
           "text",
-          "Utilizza DynFileFS quando il filesystem di persistenza non può rappresentare i metadati Linux."
+          "Usa DynFileFS quando il filesystem di persistenza non può rappresentare i metadati Linux."
         ],
         [
           "text",
@@ -613,7 +590,7 @@
         ],
         [
           "text",
-          "Usa dynblk se desideri un vero dispositivo a blocchi del kernel con file thin di supporto; il driver può mantenere più volumi dynblk indipendenti collegati contemporaneamente e il Gestore sessioni utilizza il percorso del dispositivo restituito dal driver invece di assumere che "
+          "Usa DynBlk se desideri un vero dispositivo a blocchi kernel con file di supporto thin; il driver può mantenere diversi volumi DynBlk indipendenti collegati contemporaneamente e Session Manager utilizza il percorso del dispositivo restituito dal driver invece di assumere che "
         ],
         [
           "span",
@@ -635,7 +612,7 @@
         ],
         [
           "text",
-          "Usa raw quando è richiesta un'allocazione fissa, LUKS quando la sessione deve essere cifrata e SquashFS per uno snapshot compresso esatto."
+          "Usa raw quando è richiesta un'allocazione fissa, aggiungi LUKS2 se la sessione deve essere cifrata e usa SquashFS per uno snapshot compresso esatto."
         ]
       ]
     ],
@@ -645,7 +622,7 @@
       [
         [
           "text",
-          "Esegui i seguenti comandi per ispezionare il filesystem di persistenza effettivo e le modalità disponibili su di esso:"
+          "Esegui i seguenti comandi per ispezionare il filesystem di persistenza effettivo e le modalità disponibili:"
         ]
       ]
     ],
@@ -728,18 +705,18 @@
       [
         [
           "text",
-          "Nessuna sessione può essere creata su supporti in sola lettura. L'initrd può leggere e attivare uno snapshot SquashFS esistente memorizzato su FAT, exFAT o NTFS scrivibili, poiché estrae lo snapshot in una ext4 upper temporanea. La creazione o il salvataggio esatto di uno snapshot è diverso: il suo spazio di lavoro privato deve trovarsi su un filesystem POSIX adatto che preservi i metadati Linux e i whiteout dell'union."
+          "Nessuna sessione può essere creata su supporti di sola lettura. L'initrd può leggere e attivare uno snapshot SquashFS esistente archiviato su FAT, exFAT o NTFS scrivibili perché estrae lo snapshot in una ext4 temporanea superiore. La creazione o il salvataggio esatto di uno snapshot è diverso: il suo workspace di staging privato deve trovarsi su un filesystem POSIX adatto che preservi i metadati Linux e i whiteout dell'unione."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "selezione-avvio",
+      "selezione-di-avvio",
       [
         [
           "text",
-          "Selezione avvio"
+          "Selezione di avvio"
         ]
       ]
     ],
@@ -749,7 +726,7 @@
       [
         [
           "text",
-          "Qualsiasi parametro di persistenza riconosciuto abilita la gestione della persistenza. I menu di avvio MiniOS normalmente offrono voci per ripristino, nuovo, selezione e modalità non persistente. La descrizione canonica di selettore, compatibilità, fallback e semantica di attivazione è "
+          "Qualsiasi parametro di persistenza riconosciuto abilita la gestione della persistenza. I menu di avvio MiniOS normalmente offrono voci di ripresa, nuova, selezione e non persistente. La descrizione canonica di selettore, compatibilità, fallback e semantica di attivazione è in "
         ],
         [
           "link",
@@ -819,7 +796,7 @@
               [
                 [
                   "text",
-                  "Utilizza il percorso legacy best-effort per il ripristino. Prova il valore predefinito dei metadati ma non crea una sostituzione se non è disponibile nulla di utilizzabile."
+                  "Usa il percorso legacy di ripresa best-effort. Prova il valore predefinito dei metadati ma non crea un sostituto se nessuno è utilizzabile."
                 ]
               ]
             ]
@@ -849,7 +826,7 @@
               [
                 [
                   "text",
-                  "Ripristina il valore predefinito dei metadati e, se assente o incompatibile, consente all'initrd di creare una nuova sostituzione compatibile. Questo è il comportamento attuale del ripristino dal menu di avvio."
+                  "Riprende il valore predefinito dei metadati e, se assente o incompatibile, consente all'initrd di creare un nuovo sostituto compatibile. Questo è il comportamento attuale della voce di ripresa nel menu di avvio."
                 ]
               ]
             ]
@@ -879,7 +856,7 @@
               [
                 [
                   "text",
-                  "Crea una nuova sessione numerata."
+                  "Alloca una nuova sessione numerata."
                 ]
               ]
             ]
@@ -909,7 +886,7 @@
               [
                 [
                   "text",
-                  "Seleziona una sessione esistente o creane una durante l'avvio."
+                  "Seleziona una sessione esistente o ne crea una durante l'avvio."
                 ]
               ]
             ]
@@ -969,7 +946,7 @@
               [
                 [
                   "text",
-                  "Utilizza una posizione di persistenza su un dispositivo, incluse "
+                  "Utilizza una posizione di persistenza su un dispositivo, incluse le forme "
                 ],
                 [
                   "span",
@@ -997,7 +974,7 @@
                 ],
                 [
                   "text",
-                  " le forme gestite dall'initrd."
+                  "gestite dall'initrd."
                 ]
               ]
             ]
@@ -1083,20 +1060,6 @@
                 ],
                 [
                   "text",
-                  ", "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "luks"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
                   ", o "
                 ],
                 [
@@ -1130,6 +1093,80 @@
                   [
                     [
                       "text",
+                      "perchencrypt=luks"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Cifra una nuova sessione Raw, DynFileFS o DynBlk con LUKS2. Le sessioni esistenti derivano la cifratura solo dai metadati."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchcomp=<codec>"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Seleziona la compressione backend DynBlk per una nuova sessione DynBlk. La compressione è forzata a "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "none"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "quando DynBlk è avvolto in LUKS2."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
                       "perchsize=<size>"
                     ]
                   ]
@@ -1141,7 +1178,7 @@
               [
                 [
                   "text",
-                  "Imposta una nuova dimensione del contenitore o una dimensione maggiore; i valori semplici sono allocati in MiB e "
+                  "Imposta una nuova dimensione del container o una maggiore; i valori semplici sono allocati in MiB e "
                 ],
                 [
                   "span",
@@ -1183,7 +1220,7 @@
                 ],
                 [
                   "text",
-                  " sono accettati i suffissi."
+                  "i suffissi sono accettati."
                 ]
               ]
             ]
@@ -1197,7 +1234,7 @@
       [
         [
           "text",
-          "Se non viene specificata alcuna modalità per una nuova sessione, l'avvio utilizza la modalità nativa. Su FAT32/NTFS/exFAT, la creazione nativa ricade su DynFileFS. Un nuovo contenitore di avvio raw o LUKS predefinisce 4000 MiB; una nuova sessione di avvio DynFileFS senza "
+          "Se non viene specificata alcuna modalità per una nuova sessione, l'avvio usa la modalità nativa. Su FAT32/NTFS/exFAT, la creazione nativa all'avvio ricade su DynFileFS. Un nuovo container raw predefinisce 4000 MiB. Le nuove sessioni di avvio DynFileFS e DynBlk senza "
         ],
         [
           "span",
@@ -1211,21 +1248,7 @@
         ],
         [
           "text",
-          " viene dimensionata in base allo spazio disponibile mantenendo una riserva di sicurezza. Una nuova sessione di avvio dynblk senza "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "perchsize"
-            ]
-          ]
-        ],
-        [
-          "text",
-          " utilizza il valore predefinito del driver di 16 GiB; la crescita esplicita di dynblk è limitata a 512 GiB."
+          "usano fino a 16 GiB; se dopo la riserva di sicurezza rimane meno spazio di supporto, la dimensione automatica viene ridotta. DynFileFS tiene conto anche del suo overhead di indice e del limite RAM. La crescita esplicita di DynBlk è limitata a 512 GiB."
         ],
         [
           "text",
@@ -1233,7 +1256,7 @@
         ],
         [
           "text",
-          "Le sessioni SquashFS vengono acquisite dal sistema in esecuzione tramite Gestore sessioni MiniOS o "
+          "Le sessioni SquashFS possono essere acquisite dal sistema in esecuzione con il Gestore sessioni MiniOS o "
         ],
         [
           "span",
@@ -1247,7 +1270,7 @@
         ],
         [
           "text",
-          "; "
+          ". L'impostazione initrd crea solo i metadati di sessione di generazione zero e mantiene il layer superiore scrivibile in RAM. Il sistema in esecuzione crea il primo "
         ],
         [
           "span",
@@ -1255,13 +1278,13 @@
           [
             [
               "text",
-              "perchdir=new perchmode=squashfs"
+              "changes.sb"
             ]
           ]
         ],
         [
           "text",
-          " non crea uno snapshot nell'initrd."
+          "snapshot su richiesta o allo spegnimento."
         ]
       ]
     ],
@@ -1271,7 +1294,7 @@
       [
         [
           "text",
-          "Durante il ripristino, MiniOS controlla la versione registrata, l'edizione, il filesystem union e la modalità. Il comando letterale "
+          "Durante la ripresa, MiniOS controlla la versione registrata, l'edizione, il filesystem union e la modalità. Il comando letterale "
         ],
         [
           "span",
@@ -1285,7 +1308,7 @@
         ],
         [
           "text",
-          " può creare una nuova sessione invece di usare un valore predefinito assente o incompatibile. L'utilizzo semplice di "
+          "può creare una nuova sessione invece di usare un predefinito assente o incompatibile. L'uso di "
         ],
         [
           "span",
@@ -1299,7 +1322,7 @@
         ],
         [
           "text",
-          ", la selezione numerica diretta e altre richieste legacy di ripristino non creano automaticamente una sostituzione."
+          ", la selezione numerica diretta e altre richieste legacy di ripresa non creano automaticamente quel sostituto."
         ],
         [
           "text",
@@ -1307,7 +1330,7 @@
         ],
         [
           "text",
-          "La selezione interattiva mostra un avviso prima di consentire una sessione incompatibile. Se la selezione o l'attivazione fallisce comunque, l'avvio prosegue normalmente con un upper RAM e un avviso di persistenza."
+          "La selezione interattiva mostra un avviso prima di consentire una sessione incompatibile. Se la selezione o l'attivazione fallisce comunque, l'avvio prosegue normalmente con un layer superiore RAM e un avviso di persistenza."
         ]
       ]
     ],
@@ -1317,7 +1340,7 @@
       [
         [
           "text",
-          "Lo store delle sessioni ha questa struttura:"
+          "Lo store delle sessioni ha questa forma:"
         ]
       ]
     ],
@@ -1343,7 +1366,7 @@
         ],
         [
           "text",
-          " registra gli ID predefiniti e in uso, la modalità per sessione, versione, edizione, filesystem union, dimensione, stato e impostazioni specifiche della modalità."
+          "registra gli ID predefiniti e in esecuzione e, per ogni sessione, modalità, versione, edizione, filesystem union, dimensione, stato e impostazioni specifiche della modalità."
         ],
         [
           "text",
@@ -1351,7 +1374,7 @@
         ],
         [
           "text",
-          "Si tratta di metadati persistenti scritti dall'implementazione di avvio, non è di per sé prova dello stato runtime attuale. Non modificarlo né spostare dati di sessioni numerate mentre una sessione è montata; usa Gestore sessioni MiniOS o "
+          "Si tratta di metadati persistenti scritti dall'implementazione di avvio, non prova dello stato runtime attuale. Non modificarlo né spostare i dati delle sessioni numerate mentre una sessione è montata; usa il Gestore sessioni MiniOS o "
         ],
         [
           "span",
@@ -1688,7 +1711,7 @@
       [
         [
           "text",
-          "Elenca le sessioni e ispeziona l'archivio:"
+          "Elenca le sessioni e ispeziona lo store:"
         ]
       ]
     ],
@@ -1885,7 +1908,7 @@
     ],
     [
       "code_block",
-      "sudo minios-session create\nsudo minios-session create native\nsudo minios-session create dynfilefs\nsudo minios-session create raw 4GB\nsudo minios-session create luks 4GB\nsudo minios-session create squashfs --policy shutdown\nsudo minios-session create squashfs --policy manual --autosave 60",
+      "sudo minios-session create\nsudo minios-session create native\nsudo minios-session create dynfilefs\nsudo minios-session create raw 4GB\nsudo minios-session create raw 4GB --encryption luks\nsudo minios-session create squashfs --policy shutdown\nsudo minios-session create squashfs --policy manual --autosave 60",
       "bash",
       [
         [
@@ -2118,7 +2141,7 @@
         ],
         [
           "syntax",
-          "luks",
+          "raw",
           "#032F62",
           "#9ECBFF"
         ],
@@ -2131,6 +2154,30 @@
         [
           "syntax",
           "4GB",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--encryption",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "luks",
           "#032F62",
           "#9ECBFF"
         ],
@@ -2320,7 +2367,7 @@
         ],
         [
           "text",
-          " senza una modalità seleziona quella nativa. La creazione di SquashFS cattura le modifiche attive e non ha una dimensione fissa. La sua politica di spegnimento predefinita è "
+          "senza modalità seleziona nativa. La creazione SquashFS acquisisce le modifiche attive correnti e non ha dimensione fissa. La policy di salvataggio allo spegnimento predefinita è "
         ],
         [
           "span",
@@ -2334,7 +2381,7 @@
         ],
         [
           "text",
-          "; il salvataggio periodico è disattivato di default."
+          "; il salvataggio periodico è disattivato per impostazione predefinita."
         ]
       ]
     ],
@@ -2809,7 +2856,7 @@
         ],
         [
           "text",
-          " minuti; "
+          "minuti; "
         ],
         [
           "span",
@@ -2823,7 +2870,7 @@
         ],
         [
           "text",
-          " disattiva il salvataggio periodico. Le impostazioni di spegnimento e salvataggio periodico sono indipendenti."
+          "disattiva il salvataggio periodico. Le impostazioni di spegnimento e periodiche sono indipendenti."
         ]
       ]
     ],
@@ -2847,13 +2894,13 @@
         ],
         [
           "text",
-          " archivi:"
+          "archivi:"
         ]
       ]
     ],
     [
       "code_block",
-      "sudo minios-session export <id> /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nsudo minios-session import /path/to/session.tar.zst --force-mode dynfilefs\nsudo minios-session import /path/to/session.tar.zst --force-mode dynblk",
+      "sudo minios-session export <id> /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nsudo minios-session import /path/to/session.tar.zst --force-mode dynfilefs\nsudo minios-session import /path/to/session.tar.zst --force-mode dynblk\nsudo minios-session import /path/to/session.tar.zst --force-mode raw --force-encryption luks",
       "bash",
       [
         [
@@ -3179,6 +3226,102 @@
           "dynblk",
           "#032F62",
           "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-session",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "import",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/session.tar.zst",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--force-mode",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "raw",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--force-encryption",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "luks",
+          "#032F62",
+          "#9ECBFF"
         ]
       ]
     ],
@@ -3202,7 +3345,7 @@
         ],
         [
           "text",
-          " sono accettate importazioni. I percorsi e i membri degli archivi vengono verificati e l'estrazione è limitata."
+          "le importazioni sono accettate. I percorsi e i membri dell'archivio vengono validati e l'estrazione è limitata. "
         ],
         [
           "span",
@@ -3216,7 +3359,7 @@
         ],
         [
           "text",
-          " seleziona una modalità compatibile con il file system attuale."
+          "sceglie una modalità compatibile per il filesystem corrente. "
         ],
         [
           "span",
@@ -3230,7 +3373,7 @@
         ],
         [
           "text",
-          " seleziona esplicitamente una modalità disponibile. Esportazione, copia e conversione non sono supportate per le sessioni SquashFS; salva lo snapshot e copia invece l'intera directory della sessione inattiva."
+          "seleziona esplicitamente una modalità disponibile. Esportazione, copia e conversione non sono supportate per le sessioni SquashFS; salva lo snapshot e copia invece l'intera directory della sessione inattiva."
         ]
       ]
     ],
@@ -3246,7 +3389,7 @@
     ],
     [
       "code_block",
-      "sudo minios-session copy <id>\nsudo minios-session copy <id> --to-mode raw --size 4GB\nsudo minios-session copy <id> --to-mode dynblk --size 16GB\nsudo minios-session convert <id> dynfilefs --size 4GB\nsudo minios-session convert <id> dynblk --size 16GB --new-session\nsudo minios-session convert <id> luks --size 4GB --new-session",
+      "sudo minios-session copy <id>\nsudo minios-session copy <id> --to-mode raw --size 4GB\nsudo minios-session copy <id> --to-mode dynblk --size 16GB\nsudo minios-session clone <id>\nsudo minios-session convert <id> dynfilefs --size 4GB\nsudo minios-session convert <id> dynblk --size 16GB --new-session\nsudo minios-session convert <id> raw --to-encryption luks --size 4GB --new-session",
       "bash",
       [
         [
@@ -3569,6 +3712,72 @@
         ],
         [
           "syntax",
+          "clone",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "<",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "i",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "d",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          ">",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "minios-session",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
           "convert",
           "#032F62",
           "#9ECBFF"
@@ -3827,6 +4036,30 @@
         ],
         [
           "syntax",
+          "raw",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--to-encryption",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
           "luks",
           "#032F62",
           "#9ECBFF"
@@ -3885,7 +4118,21 @@
         ],
         [
           "text",
-          " assegna sempre un nuovo ID sessione."
+          "è una copia logica del filesystem e assegna sempre un nuovo ID sessione. Può cambiare backend, capacità o cifratura e crea nuove identità ext4 e LUKS."
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "clone"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "copia fisicamente un backend staccato e mantiene il suo header LUKS, le keyslot, UUID LUKS e UUID ext4."
         ],
         [
           "span",
@@ -3899,7 +4146,7 @@
         ],
         [
           "text",
-          " sostituisce la sorgente per impostazione predefinita; usa "
+          "sostituisce la sorgente per impostazione predefinita; usa "
         ],
         [
           "span",
@@ -3913,7 +4160,7 @@
         ],
         [
           "text",
-          " per mantenere la sorgente. La dimensione è rilevante solo per un target container."
+          "per mantenere la sorgente. Una dimensione è rilevante solo per un container di destinazione."
         ]
       ]
     ],
@@ -3923,7 +4170,7 @@
       [
         [
           "text",
-          "Espandi, elimina o pulisci sessioni:"
+          "Crescita, eliminazione o pulizia delle sessioni:"
         ]
       ]
     ],
@@ -4174,7 +4421,7 @@
       [
         [
           "text",
-          "La ridimensionamento è supportato per le sessioni DynFileFS, dynblk, raw e LUKS e richiede una dimensione superiore a quella attuale. Il ridimensionamento dynblk aumenta prima il dispositivo a blocchi virtuale e poi espande il filesystem ext4; non prealloca la nuova capacità virtuale. La pulizia riguarda di default le sessioni più vecchie di 30 giorni."
+          "Il ridimensionamento supporta sessioni DynFileFS, DynBlk e raw, incluse le forme cifrate, e richiede una dimensione superiore a quella attuale. Il ridimensionamento DynBlk espande prima il dispositivo a blocchi virtuale e poi il filesystem ext4; non prealloca la nuova capacità virtuale. La pulizia predefinita riguarda le sessioni più vecchie di 30 giorni."
         ]
       ]
     ],
@@ -4198,7 +4445,7 @@
         ],
         [
           "text",
-          ", e si può selezionare un archivio sessioni diverso con "
+          ", e si può selezionare uno store sessioni diverso con "
         ],
         [
           "span",
@@ -4574,11 +4821,11 @@
     [
       "heading",
       2,
-      "crittografia",
+      "cifratura",
       [
         [
           "text",
-          "Crittografia"
+          "Cifratura"
         ]
       ]
     ],
@@ -4588,7 +4835,7 @@
       [
         [
           "text",
-          "La modalità LUKS memorizza un filesystem ext4 direttamente in un file LUKS2 "
+          "LUKS2 è un livello opzionale sopra Raw "
         ],
         [
           "span",
@@ -4596,13 +4843,27 @@
           [
             [
               "text",
-              "changes.luks"
+              "changes.img"
             ]
           ]
         ],
         [
           "text",
-          "; non è presente alcuna tabella delle partizioni né un contenitore DynFileFS annidato. Le opzioni LUKS sono disponibili solo quando "
+          ", DynFileFS "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "virtual.dat"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", o il dispositivo diretto DynBlk. È disponibile solo quando "
         ],
         [
           "span",
@@ -4616,7 +4877,7 @@
         ],
         [
           "text",
-          ", "
+          "contiene "
         ],
         [
           "span",
@@ -4624,27 +4885,13 @@
           [
             [
               "text",
-              "cryptsetup"
+              "luks-layer-v1"
             ]
           ]
         ],
         [
           "text",
-          ", e "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "losetup"
-            ]
-          ]
-        ],
-        [
-          "text",
-          " sono presenti."
+          "e sono disponibili gli strumenti e le capacità del backend selezionato."
         ]
       ]
     ],
@@ -4654,7 +4901,7 @@
       [
         [
           "text",
-          "La creazione interattiva di LUKS richiede l'inserimento della passphrase due volte. Le operazioni che leggono o creano dati LUKS possono leggerli dallo standard input con "
+          "La creazione interattiva LUKS richiede l'inserimento della passphrase due volte. Le operazioni che leggono o creano dati LUKS possono leggerli dallo standard input con "
         ],
         [
           "span",
@@ -4676,7 +4923,7 @@
         ],
         [
           "text",
-          "Le passphrase non vengono inserite negli argomenti dei comandi né nei metadati di sessione. All'avvio, l'initrd richiede la passphrase sulla console e non passa alla persistenza non crittografata se l'attivazione fallisce."
+          "Le passphrase non vengono inserite negli argomenti dei comandi né nei metadati della sessione. All'avvio, l'initrd richiede la passphrase sulla console. Tre tentativi errati bloccano l'avvio in modo irreversibile; MiniOS non prosegue in chiaro, RAM, con un altro backend o con una sessione sostitutiva sotto la stessa richiesta."
         ]
       ]
     ],
@@ -4686,40 +4933,18 @@
       [
         [
           "text",
-          "Le esportazioni LUKS contengono file di sessione logica decriptati, non "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "changes.luks"
-            ]
-          ]
-        ],
-        [
-          "text",
-          "."
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "L'importazione o la conversione in LUKS crea un nuovo contenitore crittografato."
+          "Le esportazioni cifrate contengono i file logici della sessione decifrati, non il backend cifrato. Importare, copiare o convertire in LUKS crea un nuovo backend cifrato con nuove identità."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "backup-e-sessioni-non-riuscite",
+      "backup-e-sessioni-fallite",
       [
         [
           "text",
-          "Backup e sessioni non riuscite"
+          "Backup e sessioni fallite"
         ]
       ]
     ],
@@ -4729,7 +4954,7 @@
       [
         [
           "text",
-          "Per sessioni native, DynFileFS, dynblk, raw e LUKS, utilizza "
+          "Per sessioni native, DynFileFS, DynBlk e raw, comprese le forme cifrate, utilizzare "
         ],
         [
           "span",
@@ -4743,7 +4968,7 @@
         ],
         [
           "text",
-          " per i backup invece di copiare una directory di sessione montata. Conserva l’archivio risultante su un altro dispositivo e verifica che possa essere importato prima di farvi affidamento. L’importazione crea sempre una nuova sessione numerata; attivala esplicitamente quando è pronta all’uso."
+          "per backup logici invece di copiare una directory di sessione montata. Conservare l'archivio risultante su un altro dispositivo e verificare che possa essere importato prima di farvi affidamento. L'importazione crea sempre una nuova sessione numerata; attivarla esplicitamente quando è pronta all'uso."
         ],
         [
           "text",
@@ -4751,7 +4976,7 @@
         ],
         [
           "text",
-          "Per le procedure di backup di SquashFS e di intero dispositivo, consulta "
+          "Per procedure di backup SquashFS e dell'intero dispositivo, vedere "
         ],
         [
           "link",
@@ -4776,7 +5001,7 @@
       [
         [
           "text",
-          "Se una sessione fallisce dopo che lo spazio di archiviazione si è esaurito, una scrittura viene interrotta o vengono create ripetutamente sessioni vuote, interrompi le modifiche allo storage interessato. Esporta prima una sessione leggibile e non in esecuzione quando possibile, poi segui "
+          "Se una sessione fallisce dopo il riempimento dello storage, un'interruzione di scrittura o la creazione ripetuta di sessioni vuote, interrompere le modifiche allo storage interessato. Esportare prima una sessione non attiva leggibile quando possibile, poi seguire "
         ],
         [
           "link",
@@ -4801,7 +5026,7 @@
       [
         [
           "text",
-          "Inizia la diagnosi senza modificare i dati della sessione:"
+          "Iniziare la diagnosi senza modificare i dati della sessione:"
         ]
       ]
     ],
@@ -4992,7 +5217,7 @@
       [
         [
           "text",
-          "All’avvio, i filesystem dei contenitori vengono controllati prima dell’attivazione in scrittura. Errori gravi nel controllo del filesystem preservano il contenitore per il recupero invece di montarlo in scrittura. SquashFS rileva uno stato precedente non pulito e ripristina l’ultimo snapshot salvato con successo. Elimina le sessioni solo tramite Gestore sessioni MiniOS o "
+          "All'avvio, i filesystem dei container vengono controllati prima dell'attivazione in scrittura. Errori gravi nel controllo del filesystem preservano il container per il recupero invece di montarlo in scrittura. SquashFS rileva uno stato precedente non pulito e ripristina l'ultimo snapshot salvato con successo. Eliminare le sessioni solo tramite il Gestore sessioni MiniOS o "
         ],
         [
           "span",
@@ -5011,7 +5236,7 @@
       ]
     ]
   ],
-  "plain_text": "Sessioni e persistenza\nLe sessioni MiniOS mantengono le modifiche apportate al sistema live anche dopo il riavvio. Ogni sessione è una directory numerata all'interno di minios/changes/; i moduli MiniOS in sola lettura rimangono invariati e la sessione selezionata fornisce il livello scrivibile del filesystem union.\nUtilizza il Gestore sessioni MiniOS da un sistema MiniOS in esecuzione:\nminios-session-manager\nLo strumento equivalente da riga di comando è minios-session. I comandi che modificano richiedono privilegi amministrativi, quindi negli esempi seguenti viene utilizzato sudo.\nModalità sessione\nModalità | Archiviazione | Principali vincoli\nnative | Le modifiche vengono salvate direttamente nella directory della sessione | Richiede un filesystem POSIX scrivibile come ext2/3/4, Btrfs, XFS, F2FS o ReiserFS.\ndynfilefs | Contenitore ext4 espandibile suddiviso in file di supporto | Funziona su filesystem POSIX scrivibili, FAT32, NTFS ed exFAT. Richiede il backend DynFileFS.\ndynblk | Filesystem ext4 thin su un dispositivo a blocchi del kernel supportato da volumeNNN.db file | Richiede il CLI dynblk, il modulo kernel e la funzionalità initrd. La dimensione virtuale predefinita è 16 GiB e il limite massimo è 512 GiB.\nraw | File changes.img a dimensione fissa contenente ext4 | Funziona su filesystem POSIX scrivibili, FAT32, NTFS ed exFAT.\nluks | File LUKS2 cifrato changes.luks contenente ext4 | Richiede cryptsetup, supporto loop e il hook LUKS initrd MiniOS.\nsquashfs | Snapshot compresso in changes.sb | Il salvataggio richiede un filesystem di persistenza POSIX che possa preservare link, proprietà, permessi, xattrs, ACL, capacità e whiteout.\ndynfilefs, raw, e luks creati con minios-session hanno dimensione predefinita di 4000 MiB; dynblk predefinito a 16 GiB. Le dimensioni sono allocate in MiB; GB e TB i suffissi convertono in 1000 e 1.000.000 MiB. Il Gestore sessioni MiniOS limita i file raw e LUKS a 4000 MiB su FAT32. La capacità dynblk è virtuale e thin, non preallocata, ma le scritture effettive sono comunque limitate dallo spazio libero del filesystem sottostante e dalle risorse disponibili per dynblk. Le operazioni di ridimensionamento del contenitore possono solo aumentare la dimensione di una sessione; la riduzione non è supportata.\nLa modalità nativa è la scelta più semplice e veloce su un filesystem compatibile.\nUtilizza DynFileFS quando il filesystem di persistenza non può rappresentare i metadati Linux.\nUsa dynblk se desideri un vero dispositivo a blocchi del kernel con file thin di supporto; il driver può mantenere più volumi dynblk indipendenti collegati contemporaneamente e il Gestore sessioni utilizza il percorso del dispositivo restituito dal driver invece di assumere che /dev/dynblk0 sia libero.\nUsa raw quando è richiesta un'allocazione fissa, LUKS quando la sessione deve essere cifrata e SquashFS per uno snapshot compresso esatto.\nEsegui i seguenti comandi per ispezionare il filesystem di persistenza effettivo e le modalità disponibili su di esso:\nsudo minios-session info\nsudo minios-session status\nNessuna sessione può essere creata su supporti in sola lettura. L'initrd può leggere e attivare uno snapshot SquashFS esistente memorizzato su FAT, exFAT o NTFS scrivibili, poiché estrae lo snapshot in una ext4 upper temporanea. La creazione o il salvataggio esatto di uno snapshot è diverso: il suo spazio di lavoro privato deve trovarsi su un filesystem POSIX adatto che preservi i metadati Linux e i whiteout dell'union.\nSelezione avvio\nQualsiasi parametro di persistenza riconosciuto abilita la gestione della persistenza. I menu di avvio MiniOS normalmente offrono voci per ripristino, nuovo, selezione e modalità non persistente. La descrizione canonica di selettore, compatibilità, fallback e semantica di attivazione è Persistenza initrd.\nParametro | Significato\nperch | Utilizza il percorso legacy best-effort per il ripristino. Prova il valore predefinito dei metadati ma non crea una sostituzione se non è disponibile nulla di utilizzabile.\nperchdir=resume | Ripristina il valore predefinito dei metadati e, se assente o incompatibile, consente all'initrd di creare una nuova sostituzione compatibile. Questo è il comportamento attuale del ripristino dal menu di avvio.\nperchdir=new | Crea una nuova sessione numerata.\nperchdir=ask | Seleziona una sessione esistente o creane una durante l'avvio.\nperchdir=<id> | Seleziona direttamente quella sessione numerata.\nperchdir=<device/path> | Utilizza una posizione di persistenza su un dispositivo, incluse /dev/... e label:... le forme gestite dall'initrd.\nperchmode=<mode> | Imposta native, dynfilefs, dynblk, raw, luks, o squashfs.\nperchsize=<size> | Imposta una nuova dimensione del contenitore o una dimensione maggiore; i valori semplici sono allocati in MiB e MB, GB, e TB sono accettati i suffissi.\nSe non viene specificata alcuna modalità per una nuova sessione, l'avvio utilizza la modalità nativa. Su FAT32/NTFS/exFAT, la creazione nativa ricade su DynFileFS. Un nuovo contenitore di avvio raw o LUKS predefinisce 4000 MiB; una nuova sessione di avvio DynFileFS senza perchsize viene dimensionata in base allo spazio disponibile mantenendo una riserva di sicurezza. Una nuova sessione di avvio dynblk senza perchsize utilizza il valore predefinito del driver di 16 GiB; la crescita esplicita di dynblk è limitata a 512 GiB.\nLe sessioni SquashFS vengono acquisite dal sistema in esecuzione tramite Gestore sessioni MiniOS o minios-session create squashfs; perchdir=new perchmode=squashfs non crea uno snapshot nell'initrd.\nDurante il ripristino, MiniOS controlla la versione registrata, l'edizione, il filesystem union e la modalità. Il comando letterale perchdir=resume può creare una nuova sessione invece di usare un valore predefinito assente o incompatibile. L'utilizzo semplice di perch, la selezione numerica diretta e altre richieste legacy di ripristino non creano automaticamente una sostituzione.\nLa selezione interattiva mostra un avviso prima di consentire una sessione incompatibile. Se la selezione o l'attivazione fallisce comunque, l'avvio prosegue normalmente con un upper RAM e un avviso di persistenza.\nLo store delle sessioni ha questa struttura:\nminios/changes/\n|-- session.conf\n|-- 1/\n|-- 2/\n`-- N/\nsession.conf registra gli ID predefiniti e in uso, la modalità per sessione, versione, edizione, filesystem union, dimensione, stato e impostazioni specifiche della modalità.\nSi tratta di metadati persistenti scritti dall'implementazione di avvio, non è di per sé prova dello stato runtime attuale. Non modificarlo né spostare dati di sessioni numerate mentre una sessione è montata; usa Gestore sessioni MiniOS o minios-session.\nSessioni attive ed eseguite\nQuesti termini descrivono stati differenti:\nLa attiva è la sessione predefinita selezionata per il prossimo avvio.\nConcettualmente, la in esecuzione è la sessione il cui layer scrivibile fornisce effettivamente la persistenza all'avvio corrente.\nIl campo di persistenza running= registra questa relazione prevista. Un arresto anomalo, un errore nella costruzione dell'union, una copia dello store o uno spegnimento interrotto possono lasciarlo obsoleto anche se l'avvio corrente sta usando RAM o un'altra sessione. Operazioni come il salvataggio SquashFS richiedono quindi lo stato corrente protetto dell'avvio, legato al boot-ID, e l'upper montato verificato dall'initrd; non si affidano solo a running= da solo. Vedi Stato attivo, in esecuzione e di avvio corrente.\nAttivare una sessione modifica il prossimo avvio ma non cambia il filesystem union corrente:\nsudo minios-session active\nsudo minios-session running\nsudo minios-session activate <id>\nLa sessione attiva non può essere eliminata o convertita direttamente. Una sessione in esecuzione normalmente non può essere eliminata, esportata, copiata, ridimensionata o convertita. Anche la pulizia protegge entrambi gli ID.\nRiferimento comandi\nElenca le sessioni e ispeziona l'archivio:\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session info\nsudo minios-session status\nCrea sessioni:\nsudo minios-session create\nsudo minios-session create native\nsudo minios-session create dynfilefs\nsudo minios-session create raw 4GB\nsudo minios-session create luks 4GB\nsudo minios-session create squashfs --policy shutdown\nsudo minios-session create squashfs --policy manual --autosave 60\ncreate senza una modalità seleziona quella nativa. La creazione di SquashFS cattura le modifiche attive e non ha una dimensione fissa. La sua politica di spegnimento predefinita è shutdown; il salvataggio periodico è disattivato di default.\nSalva e configura una sessione SquashFS:\nsudo minios-session save <running-squashfs-id>\nsudo minios-session settings <squashfs-id> --shutdown on\nsudo minios-session settings <squashfs-id> --shutdown off --autosave 0\nsudo minios-session settings <squashfs-id> --shutdown on --autosave 60\nGli intervalli periodici validi sono 30, 60, 120, 240, e 480 minuti; 0 disattiva il salvataggio periodico. Le impostazioni di spegnimento e salvataggio periodico sono indipendenti.\nEsporta e importa .tar.zst archivi:\nsudo minios-session export <id> /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nsudo minios-session import /path/to/session.tar.zst --force-mode dynfilefs\nsudo minios-session import /path/to/session.tar.zst --force-mode dynblk\nSolo .tar.zst sono accettate importazioni. I percorsi e i membri degli archivi vengono verificati e l'estrazione è limitata.--auto-convert seleziona una modalità compatibile con il file system attuale.--force-mode <mode> seleziona esplicitamente una modalità disponibile. Esportazione, copia e conversione non sono supportate per le sessioni SquashFS; salva lo snapshot e copia invece l'intera directory della sessione inattiva.\nCopia o converti una sessione:\nsudo minios-session copy <id>\nsudo minios-session copy <id> --to-mode raw --size 4GB\nsudo minios-session copy <id> --to-mode dynblk --size 16GB\nsudo minios-session convert <id> dynfilefs --size 4GB\nsudo minios-session convert <id> dynblk --size 16GB --new-session\nsudo minios-session convert <id> luks --size 4GB --new-session\ncopy assegna sempre un nuovo ID sessione.convert sostituisce la sorgente per impostazione predefinita; usa --new-session per mantenere la sorgente. La dimensione è rilevante solo per un target container.\nEspandi, elimina o pulisci sessioni:\nsudo minios-session resize <id> 8GB\nsudo minios-session delete <id>\nsudo minios-session cleanup\nsudo minios-session cleanup --days 30\nLa ridimensionamento è supportato per le sessioni DynFileFS, dynblk, raw e LUKS e richiede una dimensione superiore a quella attuale. Il ridimensionamento dynblk aumenta prima il dispositivo a blocchi virtuale e poi espande il filesystem ext4; non prealloca la nuova capacità virtuale. La pulizia riguarda di default le sessioni più vecchie di 30 giorni.\nTutti i comandi accettano --json, e si può selezionare un archivio sessioni diverso con --sessions-dir PATH:\nsudo minios-session --json list\nsudo minios-session --sessions-dir /mnt/store/minios/changes list\nComportamento di salvataggio SquashFS\nUna sessione SquashFS viene estratta in RAM per il layer scrivibile in esecuzione. Il salvataggio ricostruisce e valida uno snapshot esatto, quindi sostituisce in modo atomico changes.sb.\nNon viene mantenuta alcuna generazione di rollback. \"Salva ora\" è disponibile dall'icona nella tray, dal Gestore sessioni MiniOS oppure minios-session save indipendentemente dalla politica automatica.\nIl salvataggio allo spegnimento è gestito dal trigger di spegnimento principale MiniOS e dal backend minios-squashfs-save, quindi non dipende dal Gestore sessioni MiniOS essere aperto o installato. Il salvataggio periodico viene controllato ogni 30 minuti da un timer systemd o da un worker SysV, entrambi richiamano lo stesso backend di salvataggio automatico. La ricostruzione dello snapshot utilizza la CPU e scrive l'intero snapshot; sono consigliati intervalli di almeno un'ora.\nDurante l'operazione di RAM-backed SquashFS, uno snapshot appena catturato e attivato SquashFS può prendere il controllo del target di salvataggio attivo. Dopo questo passaggio, il vecchio snapshot in esecuzione può essere rimosso senza riavvio:\nsudo minios-session activate <new-squashfs-id>\nsudo minios-session delete <old-running-squashfs-id> --handoff\nQuesta eccezione si applica solo a un passaggio valido di SquashFS dell'avvio corrente. Le altre modalità di persistenza attive restano protette dalla cancellazione.\nCrittografia\nLa modalità LUKS memorizza un filesystem ext4 direttamente in un file LUKS2 changes.luks; non è presente alcuna tabella delle partizioni né un contenitore DynFileFS annidato. Le opzioni LUKS sono disponibili solo quando /run/initramfs/etc/minios-initramfs-crypt, cryptsetup, e losetup sono presenti.\nLa creazione interattiva di LUKS richiede l'inserimento della passphrase due volte. Le operazioni che leggono o creano dati LUKS possono leggerli dallo standard input con --password-stdin.\nLe passphrase non vengono inserite negli argomenti dei comandi né nei metadati di sessione. All'avvio, l'initrd richiede la passphrase sulla console e non passa alla persistenza non crittografata se l'attivazione fallisce.\nLe esportazioni LUKS contengono file di sessione logica decriptati, non changes.luks.\nL'importazione o la conversione in LUKS crea un nuovo contenitore crittografato.\nBackup e sessioni non riuscite\nPer sessioni native, DynFileFS, dynblk, raw e LUKS, utilizza export per i backup invece di copiare una directory di sessione montata. Conserva l’archivio risultante su un altro dispositivo e verifica che possa essere importato prima di farvi affidamento. L’importazione crea sempre una nuova sessione numerata; attivala esplicitamente quando è pronta all’uso.\nPer le procedure di backup di SquashFS e di intero dispositivo, consulta Backup di MiniOS.\nSe una sessione fallisce dopo che lo spazio di archiviazione si è esaurito, una scrittura viene interrotta o vengono create ripetutamente sessioni vuote, interrompi le modifiche allo storage interessato. Esporta prima una sessione leggibile e non in esecuzione quando possibile, poi segui Risoluzione dei problemi.\nInizia la diagnosi senza modificare i dati della sessione:\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session status\nsudo minios-session info\nAll’avvio, i filesystem dei contenitori vengono controllati prima dell’attivazione in scrittura. Errori gravi nel controllo del filesystem preservano il contenitore per il recupero invece di montarlo in scrittura. SquashFS rileva uno stato precedente non pulito e ripristina l’ultimo snapshot salvato con successo. Elimina le sessioni solo tramite Gestore sessioni MiniOS o minios-session delete; non rimuovere manualmente le directory delle sessioni.",
+  "plain_text": "Sessioni e persistenza\nLe sessioni MiniOS mantengono le modifiche apportate al sistema live anche dopo il riavvio. Ogni sessione è una directory numerata all'interno di minios/changes/; i moduli MiniOS in sola lettura rimangono invariati e la sessione selezionata fornisce il livello scrivibile del filesystem union.\nUtilizza il Gestore sessioni MiniOS da un sistema MiniOS in esecuzione:\nminios-session-manager\nLo strumento equivalente da riga di comando è minios-session. I comandi che modificano richiedono privilegi amministrativi, quindi negli esempi seguenti viene utilizzato sudo.\nModalità sessione\nModalità | Archiviazione | Vincoli principali | MiniOS livello LUKS2\nnative | Modifiche salvate direttamente nella directory della sessione | Richiede un filesystem scrivibile che preservi i metadati Linux e le operazioni che MiniOS rileva. La capacità segue lo spazio libero di supporto; perchsize non applicabile. | No\ndynfilefs | ext4 espandibile virtual.dat supportato da file segmento format-400 | Funziona su filesystem POSIX scrivibili, FAT32, NTFS ed exFAT. Il payload è leggero, ma l'indice di mappatura cresce in base alla capacità logica dichiarata. | Sì\ndynblk | Filesystem ext4 thin su un dispositivo a blocchi kernel supportato da volumeNNN.db file | Richiede CLI DynBlk, modulo kernel e supporto initrd. La dimensione creata all'avvio è fino a 16 GiB per impostazione predefinita; il limite del formato è 512 GiB. La mappatura sparsa RAM viene gestita separatamente. | Sì\nraw | Singolo changes.img file contenente ext4 | Capacità logica fissa con crescita solo esplicita. Funziona su filesystem POSIX scrivibili, FAT32, NTFS ed exFAT; FAT32 è limitato a 4000 MiB. | Sì\nsquashfs | Snapshot compresso in changes.sb; la parte superiore scrivibile a runtime viene ricostruita in RAM | perchsize non applicabile. Gli snapshot esistenti possono essere ripristinati da supporti scrivibili compatibili, mentre il salvataggio esatto richiede un filesystem di staging compatibile POSIX. | No\nRaw, DynFileFS e DynBlk possono opzionalmente includere un livello di cifratura LUKS2. Il backend di archiviazione resta quello della modalità sessione e i metadati della sessione registrano la cifratura separatamente. DynFileFS e raw creati con minios-session hanno come valore predefinito 4000 MiB; DynBlk predefinito 16 GiB. I valori di dimensione sono allocati in MiB; GB e TB i suffissi convertono rispettivamente in 1000 e 1.000.000 MiB. Raw è limitato a 4000 MiB su FAT32, sia cifrato che non. I dati payload DynFileFS crescono su richiesta, ma il suo indice format-400 è dimensionato per la piena capacità logica e richiede circa 2 MiB di RAM più circa 2 MiB di spazio di archiviazione per GiB. La capacità DynBlk è thin e la sua mappatura a runtime è sparsa: le mappature dense costano circa 8 MiB/GiB, mentre la capacità virtuale inutilizzata non consuma chunk di mappatura. Il driver DynBlk seleziona automaticamente il proprio budget di mappatura a circa il 25% dello spazio RAM utilizzabile, con un massimo di 4096 MiB; MiniOS non modifica questa politica. Le scritture effettive restano comunque limitate dallo spazio libero del filesystem sottostante e dalle risorse del backend. Le operazioni di ridimensionamento del container possono solo aumentare una sessione; la riduzione non è supportata.\nLa modalità nativa è la scelta più semplice e veloce su un filesystem compatibile.\nUsa DynFileFS quando il filesystem di persistenza non può rappresentare i metadati Linux.\nUsa DynBlk se desideri un vero dispositivo a blocchi kernel con file di supporto thin; il driver può mantenere diversi volumi DynBlk indipendenti collegati contemporaneamente e Session Manager utilizza il percorso del dispositivo restituito dal driver invece di assumere che /dev/dynblk0 sia libero.\nUsa raw quando è richiesta un'allocazione fissa, aggiungi LUKS2 se la sessione deve essere cifrata e usa SquashFS per uno snapshot compresso esatto.\nEsegui i seguenti comandi per ispezionare il filesystem di persistenza effettivo e le modalità disponibili:\nsudo minios-session info\nsudo minios-session status\nNessuna sessione può essere creata su supporti di sola lettura. L'initrd può leggere e attivare uno snapshot SquashFS esistente archiviato su FAT, exFAT o NTFS scrivibili perché estrae lo snapshot in una ext4 temporanea superiore. La creazione o il salvataggio esatto di uno snapshot è diverso: il suo workspace di staging privato deve trovarsi su un filesystem POSIX adatto che preservi i metadati Linux e i whiteout dell'unione.\nSelezione di avvio\nQualsiasi parametro di persistenza riconosciuto abilita la gestione della persistenza. I menu di avvio MiniOS normalmente offrono voci di ripresa, nuova, selezione e non persistente. La descrizione canonica di selettore, compatibilità, fallback e semantica di attivazione è in Persistenza initrd.\nParametro | Significato\nperch | Usa il percorso legacy di ripresa best-effort. Prova il valore predefinito dei metadati ma non crea un sostituto se nessuno è utilizzabile.\nperchdir=resume | Riprende il valore predefinito dei metadati e, se assente o incompatibile, consente all'initrd di creare un nuovo sostituto compatibile. Questo è il comportamento attuale della voce di ripresa nel menu di avvio.\nperchdir=new | Alloca una nuova sessione numerata.\nperchdir=ask | Seleziona una sessione esistente o ne crea una durante l'avvio.\nperchdir=<id> | Seleziona direttamente quella sessione numerata.\nperchdir=<device/path> | Utilizza una posizione di persistenza su un dispositivo, incluse le forme /dev/... e label:...gestite dall'initrd.\nperchmode=<mode> | Imposta native, dynfilefs, dynblk, raw, o squashfs.\nperchencrypt=luks | Cifra una nuova sessione Raw, DynFileFS o DynBlk con LUKS2. Le sessioni esistenti derivano la cifratura solo dai metadati.\nperchcomp=<codec> | Seleziona la compressione backend DynBlk per una nuova sessione DynBlk. La compressione è forzata a nonequando DynBlk è avvolto in LUKS2.\nperchsize=<size> | Imposta una nuova dimensione del container o una maggiore; i valori semplici sono allocati in MiB e MB, GB, e TBi suffissi sono accettati.\nSe non viene specificata alcuna modalità per una nuova sessione, l'avvio usa la modalità nativa. Su FAT32/NTFS/exFAT, la creazione nativa all'avvio ricade su DynFileFS. Un nuovo container raw predefinisce 4000 MiB. Le nuove sessioni di avvio DynFileFS e DynBlk senza perchsizeusano fino a 16 GiB; se dopo la riserva di sicurezza rimane meno spazio di supporto, la dimensione automatica viene ridotta. DynFileFS tiene conto anche del suo overhead di indice e del limite RAM. La crescita esplicita di DynBlk è limitata a 512 GiB.\nLe sessioni SquashFS possono essere acquisite dal sistema in esecuzione con il Gestore sessioni MiniOS o minios-session create squashfs. L'impostazione initrd crea solo i metadati di sessione di generazione zero e mantiene il layer superiore scrivibile in RAM. Il sistema in esecuzione crea il primo changes.sbsnapshot su richiesta o allo spegnimento.\nDurante la ripresa, MiniOS controlla la versione registrata, l'edizione, il filesystem union e la modalità. Il comando letterale perchdir=resumepuò creare una nuova sessione invece di usare un predefinito assente o incompatibile. L'uso di perch, la selezione numerica diretta e altre richieste legacy di ripresa non creano automaticamente quel sostituto.\nLa selezione interattiva mostra un avviso prima di consentire una sessione incompatibile. Se la selezione o l'attivazione fallisce comunque, l'avvio prosegue normalmente con un layer superiore RAM e un avviso di persistenza.\nLo store delle sessioni ha questa forma:\nminios/changes/\n|-- session.conf\n|-- 1/\n|-- 2/\n`-- N/\nsession.confregistra gli ID predefiniti e in esecuzione e, per ogni sessione, modalità, versione, edizione, filesystem union, dimensione, stato e impostazioni specifiche della modalità.\nSi tratta di metadati persistenti scritti dall'implementazione di avvio, non prova dello stato runtime attuale. Non modificarlo né spostare i dati delle sessioni numerate mentre una sessione è montata; usa il Gestore sessioni MiniOS o minios-session.\nSessioni attive ed eseguite\nQuesti termini descrivono stati differenti:\nLa attiva è la sessione predefinita selezionata per il prossimo avvio.\nConcettualmente, la in esecuzione è la sessione il cui layer scrivibile fornisce effettivamente la persistenza all'avvio corrente.\nIl campo di persistenza running= registra questa relazione prevista. Un arresto anomalo, un errore nella costruzione dell'union, una copia dello store o uno spegnimento interrotto possono lasciarlo obsoleto anche se l'avvio corrente sta usando RAM o un'altra sessione. Operazioni come il salvataggio SquashFS richiedono quindi lo stato corrente protetto dell'avvio, legato al boot-ID, e l'upper montato verificato dall'initrd; non si affidano solo a running= da solo. Vedi Stato attivo, in esecuzione e di avvio corrente.\nAttivare una sessione modifica il prossimo avvio ma non cambia il filesystem union corrente:\nsudo minios-session active\nsudo minios-session running\nsudo minios-session activate <id>\nLa sessione attiva non può essere eliminata o convertita direttamente. Una sessione in esecuzione normalmente non può essere eliminata, esportata, copiata, ridimensionata o convertita. Anche la pulizia protegge entrambi gli ID.\nRiferimento comandi\nElenca le sessioni e ispeziona lo store:\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session info\nsudo minios-session status\nCrea sessioni:\nsudo minios-session create\nsudo minios-session create native\nsudo minios-session create dynfilefs\nsudo minios-session create raw 4GB\nsudo minios-session create raw 4GB --encryption luks\nsudo minios-session create squashfs --policy shutdown\nsudo minios-session create squashfs --policy manual --autosave 60\ncreatesenza modalità seleziona nativa. La creazione SquashFS acquisisce le modifiche attive correnti e non ha dimensione fissa. La policy di salvataggio allo spegnimento predefinita è shutdown; il salvataggio periodico è disattivato per impostazione predefinita.\nSalva e configura una sessione SquashFS:\nsudo minios-session save <running-squashfs-id>\nsudo minios-session settings <squashfs-id> --shutdown on\nsudo minios-session settings <squashfs-id> --shutdown off --autosave 0\nsudo minios-session settings <squashfs-id> --shutdown on --autosave 60\nGli intervalli periodici validi sono 30, 60, 120, 240, e 480minuti; 0disattiva il salvataggio periodico. Le impostazioni di spegnimento e periodiche sono indipendenti.\nEsporta e importa .tar.zstarchivi:\nsudo minios-session export <id> /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nsudo minios-session import /path/to/session.tar.zst --force-mode dynfilefs\nsudo minios-session import /path/to/session.tar.zst --force-mode dynblk\nsudo minios-session import /path/to/session.tar.zst --force-mode raw --force-encryption luks\nSolo .tar.zstle importazioni sono accettate. I percorsi e i membri dell'archivio vengono validati e l'estrazione è limitata. --auto-convertsceglie una modalità compatibile per il filesystem corrente. --force-mode <mode>seleziona esplicitamente una modalità disponibile. Esportazione, copia e conversione non sono supportate per le sessioni SquashFS; salva lo snapshot e copia invece l'intera directory della sessione inattiva.\nCopia o converti una sessione:\nsudo minios-session copy <id>\nsudo minios-session copy <id> --to-mode raw --size 4GB\nsudo minios-session copy <id> --to-mode dynblk --size 16GB\nsudo minios-session clone <id>\nsudo minios-session convert <id> dynfilefs --size 4GB\nsudo minios-session convert <id> dynblk --size 16GB --new-session\nsudo minios-session convert <id> raw --to-encryption luks --size 4GB --new-session\ncopyè una copia logica del filesystem e assegna sempre un nuovo ID sessione. Può cambiare backend, capacità o cifratura e crea nuove identità ext4 e LUKS.clonecopia fisicamente un backend staccato e mantiene il suo header LUKS, le keyslot, UUID LUKS e UUID ext4.convertsostituisce la sorgente per impostazione predefinita; usa --new-sessionper mantenere la sorgente. Una dimensione è rilevante solo per un container di destinazione.\nCrescita, eliminazione o pulizia delle sessioni:\nsudo minios-session resize <id> 8GB\nsudo minios-session delete <id>\nsudo minios-session cleanup\nsudo minios-session cleanup --days 30\nIl ridimensionamento supporta sessioni DynFileFS, DynBlk e raw, incluse le forme cifrate, e richiede una dimensione superiore a quella attuale. Il ridimensionamento DynBlk espande prima il dispositivo a blocchi virtuale e poi il filesystem ext4; non prealloca la nuova capacità virtuale. La pulizia predefinita riguarda le sessioni più vecchie di 30 giorni.\nTutti i comandi accettano --json, e si può selezionare uno store sessioni diverso con --sessions-dir PATH:\nsudo minios-session --json list\nsudo minios-session --sessions-dir /mnt/store/minios/changes list\nComportamento di salvataggio SquashFS\nUna sessione SquashFS viene estratta in RAM per il layer scrivibile in esecuzione. Il salvataggio ricostruisce e valida uno snapshot esatto, quindi sostituisce in modo atomico changes.sb.\nNon viene mantenuta alcuna generazione di rollback. \"Salva ora\" è disponibile dall'icona nella tray, dal Gestore sessioni MiniOS oppure minios-session save indipendentemente dalla politica automatica.\nIl salvataggio allo spegnimento è gestito dal trigger di spegnimento principale MiniOS e dal backend minios-squashfs-save, quindi non dipende dal Gestore sessioni MiniOS essere aperto o installato. Il salvataggio periodico viene controllato ogni 30 minuti da un timer systemd o da un worker SysV, entrambi richiamano lo stesso backend di salvataggio automatico. La ricostruzione dello snapshot utilizza la CPU e scrive l'intero snapshot; sono consigliati intervalli di almeno un'ora.\nDurante l'operazione di RAM-backed SquashFS, uno snapshot appena catturato e attivato SquashFS può prendere il controllo del target di salvataggio attivo. Dopo questo passaggio, il vecchio snapshot in esecuzione può essere rimosso senza riavvio:\nsudo minios-session activate <new-squashfs-id>\nsudo minios-session delete <old-running-squashfs-id> --handoff\nQuesta eccezione si applica solo a un passaggio valido di SquashFS dell'avvio corrente. Le altre modalità di persistenza attive restano protette dalla cancellazione.\nCifratura\nLUKS2 è un livello opzionale sopra Raw changes.img, DynFileFS virtual.dat, o il dispositivo diretto DynBlk. È disponibile solo quando /run/initramfs/etc/minios-initramfs-cryptcontiene luks-layer-v1e sono disponibili gli strumenti e le capacità del backend selezionato.\nLa creazione interattiva LUKS richiede l'inserimento della passphrase due volte. Le operazioni che leggono o creano dati LUKS possono leggerli dallo standard input con --password-stdin.\nLe passphrase non vengono inserite negli argomenti dei comandi né nei metadati della sessione. All'avvio, l'initrd richiede la passphrase sulla console. Tre tentativi errati bloccano l'avvio in modo irreversibile; MiniOS non prosegue in chiaro, RAM, con un altro backend o con una sessione sostitutiva sotto la stessa richiesta.\nLe esportazioni cifrate contengono i file logici della sessione decifrati, non il backend cifrato. Importare, copiare o convertire in LUKS crea un nuovo backend cifrato con nuove identità.\nBackup e sessioni fallite\nPer sessioni native, DynFileFS, DynBlk e raw, comprese le forme cifrate, utilizzare exportper backup logici invece di copiare una directory di sessione montata. Conservare l'archivio risultante su un altro dispositivo e verificare che possa essere importato prima di farvi affidamento. L'importazione crea sempre una nuova sessione numerata; attivarla esplicitamente quando è pronta all'uso.\nPer procedure di backup SquashFS e dell'intero dispositivo, vedere Backup di MiniOS.\nSe una sessione fallisce dopo il riempimento dello storage, un'interruzione di scrittura o la creazione ripetuta di sessioni vuote, interrompere le modifiche allo storage interessato. Esportare prima una sessione non attiva leggibile quando possibile, poi seguire Risoluzione dei problemi.\nIniziare la diagnosi senza modificare i dati della sessione:\nsudo minios-session list\nsudo minios-session active\nsudo minios-session running\nsudo minios-session status\nsudo minios-session info\nAll'avvio, i filesystem dei container vengono controllati prima dell'attivazione in scrittura. Errori gravi nel controllo del filesystem preservano il container per il recupero invece di montarlo in scrittura. SquashFS rileva uno stato precedente non pulito e ripristina l'ultimo snapshot salvato con successo. Eliminare le sessioni solo tramite il Gestore sessioni MiniOS o minios-session delete; non rimuovere manualmente le directory delle sessioni.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

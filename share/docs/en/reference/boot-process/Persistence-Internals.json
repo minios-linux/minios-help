@@ -53,7 +53,7 @@
     {
       "anchor": "dynblk",
       "level": 3,
-      "title": "dynblk"
+      "title": "DynBlk"
     },
     {
       "anchor": "raw",
@@ -61,9 +61,9 @@
       "title": "Raw"
     },
     {
-      "anchor": "luks",
+      "anchor": "luks-encryption-layer",
       "level": 3,
-      "title": "LUKS"
+      "title": "LUKS encryption layer"
     },
     {
       "anchor": "squashfs",
@@ -549,21 +549,7 @@
                 ],
                 [
                   "text",
-                  ", "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "luks"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ", or an existing "
+                  ", or "
                 ],
                 [
                   "span",
@@ -577,7 +563,7 @@
                 ],
                 [
                   "text",
-                  " session."
+                  "."
                 ]
               ]
             ],
@@ -586,7 +572,46 @@
               [
                 [
                   "text",
-                  "Match the storage filesystem, block-container behavior, and encryption requirement."
+                  "Match the backing filesystem and desired persistence model."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchencrypt=luks"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Add a LUKS2 layer when creating a Raw, DynFileFS, or DynBlk session."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Encrypt a supported container backend."
                 ]
               ]
             ]
@@ -625,7 +650,154 @@
               [
                 [
                   "text",
-                  "DynFileFS, dynblk, raw, or LUKS storage."
+                  "DynFileFS, DynBlk, or raw; encryption does not change the backend size semantics."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchcomp=CODEC"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Select DynBlk backend compression for a newly created DynBlk session."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "none"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "lz4"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "lz4hc"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "lzo"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "lzo-rle"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "zstd"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "deflate"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", or "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "842"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "; availability still depends on the running kernel. Compression is disabled when LUKS wraps DynBlk."
                 ]
               ]
             ]
@@ -857,7 +1029,51 @@
                   [
                     [
                       "text",
+                      "perchencrypt=..."
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
                       "perchsize=..."
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchcomp=..."
                     ]
                   ]
                 ]
@@ -1632,7 +1848,7 @@
               [
                 [
                   "text",
-                  "The maximum logical request is 1,000,000 MiB, further limited by available space after the reserve."
+                  "Raw containers are capped at 1,000,000 MiB and by available space after the reserve. DynFileFS has a separate RAM-aware limit and a 2,000,000 MiB hard ceiling. DynBlk has its own 512 GiB format/ABI ceiling."
                 ]
               ]
             ]
@@ -1648,7 +1864,7 @@
               [
                 [
                   "text",
-                  "MiniOS Session Manager caps raw and LUKS files at 4000 MiB on FAT32. During initrd activation the cap is applied reliably to LUKS, while an oversized raw request can reach allocation and fail instead of being reduced."
+                  "Raw is a single backing file, so FAT32 limits it to 4000 MiB in MiniOS. The same limit applies when Raw is wrapped in LUKS2."
                 ]
               ]
             ]
@@ -1664,7 +1880,7 @@
               [
                 [
                   "text",
-                  "New raw and LUKS sessions default to 4000 MiB."
+                  "A new raw session defaults to 4000 MiB. Encryption does not create a separate LUKS size policy: an encrypted Raw, DynFileFS, or DynBlk session keeps the size rules of its underlying backend."
                 ]
               ]
             ]
@@ -1680,23 +1896,7 @@
               [
                 [
                   "text",
-                  "A new initrd-created DynFileFS session defaults to available capacity after the reserve, rounded down to a 1000 MiB boundary when possible."
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  "A new dynblk session defaults to a 16 GiB thin virtual block device when "
+                  "A new initrd-created DynFileFS session without "
                 ],
                 [
                   "span",
@@ -1710,7 +1910,65 @@
                 ],
                 [
                   "text",
-                  " is not specified. Explicit dynblk virtual size is capped at 512 GiB; physical backing files are created lazily and remain subject to host free space and dynblk memory admission."
+                  " uses up to 16 GiB of logical capacity. If the backing store cannot ultimately hold that much after "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchreserve"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " and DynFileFS index overhead, the default is reduced to the available capacity. Its format-400 index costs about 2 MiB of RAM and about 2 MiB of backing storage per GiB of declared logical capacity, even while the payload is empty. MiniOS therefore also limits DynFileFS capacity from physical RAM and by a tested 2,000,000 MiB hard ceiling."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "A new DynBlk session without "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchsize"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " follows the same 16 GiB automatic ceiling and is reduced when less backing space remains after "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchreserve"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ". Explicit DynBlk virtual size is still a thin-capacity request and is capped only by the 512 GiB format/ABI ceiling; physical backing files are created lazily. DynBlk owns its own sparse mapping-memory policy and does not require MiniOS to size that budget."
                 ]
               ]
             ]
@@ -1738,7 +1996,7 @@
         ],
         [
           "text",
-          " does not size native or SquashFS sessions. MiniOS Session Manager uses 4000 MiB by default for raw/DynFileFS/LUKS creation and 16 GiB for dynblk; see "
+          " does not size native or SquashFS sessions. MiniOS Session Manager defaults manually created raw and DynFileFS containers to 4000 MiB and DynBlk to 16 GiB; encrypted variants use the same backend defaults. See "
         ],
         [
           "link",
@@ -1774,7 +2032,456 @@
       [
         [
           "text",
-          "All successful modes must supply the writable upper expected by the selected union filesystem. Mounting a backend does not by itself prove that persistence is active. Native, DynFileFS, dynblk, raw, and LUKS can update persistent session metadata before union validation; SquashFS defers that metadata commit. The protected current-boot state is published only after the final root union is confirmed to use the expected upper."
+          "All successful backends must supply the writable upper expected by the selected union filesystem. Mounting a backend does not by itself prove that persistence is active. Native, DynFileFS, DynBlk, and raw can update persistent session metadata before union validation; SquashFS defers that metadata commit. Raw, DynFileFS, and DynBlk can additionally use LUKS2 encryption. The protected current-boot state is published only after the final root union is confirmed to use the expected upper."
+        ]
+      ]
+    ],
+    [
+      "table",
+      [
+        [
+          "table_row",
+          true,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Backend"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Persistent representation"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Capacity model"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Backing-storage requirements"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "MiniOS LUKS2 layer"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "native"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Files and directories directly in the numbered session directory"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Uses backing filesystem space directly; "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchsize"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " does not apply"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Writable filesystem that passes the POSIX behavior probe"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "No"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "dynfilefs"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Format-400 "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "changes.dat"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " plus segment files exposing an ext4 "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "virtual.dat"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Thin payload with a dense capacity-sized index"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Writable POSIX, FAT32, NTFS, or exFAT storage"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Yes"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "dynblk"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Format-1 "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volumeNNN.db"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " files exposing "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/dev/dynblkN"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", with ext4 on top"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Thin virtual block device with sparse runtime mappings"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Filesystem accepted by the DynBlk kernel backend and enough backend resources"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Yes"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "raw"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Single fixed-size "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "changes.img"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " file containing ext4"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "File is created at the requested logical size; growth only"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Writable filesystem able to hold the image; FAT32 is limited to 4000 MiB"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Yes"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "squashfs"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Compressed "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "changes.sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " snapshot; writable runtime upper is reconstructed in RAM"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Snapshot size follows captured changes; "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchsize"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " does not apply"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Existing snapshots can be read from supported writable media, but exact saving requires a POSIX-capable staging filesystem"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "No"
+                ]
+              ]
+            ]
+          ]
         ]
       ]
     ],
@@ -1795,7 +2502,21 @@
       [
         [
           "text",
-          "Native mode first excludes known non-POSIX filesystems such as FAT, exFAT, and NTFS. It then probes real filesystem behavior by creating a file and symlink and checking executable-mode changes. If the probe succeeds, the numbered session directory is bind-mounted directly as the writable area."
+          "Native mode stores the writable union contents directly in the numbered session directory. There is no inner image, loop device, FUSE container, or separate block filesystem, so capacity simply follows free space on the backing filesystem and "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchsize"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " does not apply. This has the least container overhead and preserves ordinary file visibility for recovery and backup."
         ]
       ]
     ],
@@ -1805,7 +2526,17 @@
       [
         [
           "text",
-          "If the filesystem is known to be unsuitable, or the POSIX probe fails, native mode falls back to DynFileFS. A failure after native activation is unwound; a new empty candidate is removed when it can be removed safely."
+          "MiniOS first excludes known non-POSIX filesystems such as FAT, exFAT, and NTFS. It then probes real filesystem behavior by creating a file and symlink and checking executable-mode changes. If the probe succeeds, the numbered session directory is bind-mounted directly as the writable area. If the filesystem is known to be unsuitable, or the POSIX probe fails, native mode falls back to DynFileFS. A failure after native activation is unwound; a new empty candidate is removed when it can be removed safely."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The MiniOS LUKS2 persistence layer does not wrap native mode because native has no container or block-device boundary to encrypt. Native persistence can still reside on storage that is encrypted outside this persistence layer."
         ]
       ]
     ],
@@ -1826,7 +2557,21 @@
       [
         [
           "text",
-          "DynFileFS is the FUSE-based container backend. It stores one logical block image in "
+          "DynFileFS is the FUSE-based format-400 container backend. It exposes one logical "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "virtual.dat"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " image while storing data in "
         ],
         [
           "span",
@@ -1840,7 +2585,7 @@
         ],
         [
           "text",
-          " plus its numbered segment files. The helper must mount successfully and expose "
+          " plus numbered segment files. The helper must mount successfully and expose "
         ],
         [
           "span",
@@ -1855,6 +2600,16 @@
         [
           "text",
           "; otherwise activation fails rather than accidentally creating a RAM-only file with a persistent-looking name."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Its mapping index is dense with respect to declared logical capacity: each 4 KiB logical block has one 8-byte offset. That is about 2 MiB of index RAM per GiB of virtual capacity, and approximately the same amount is stored in the backing segment indexes even before payload data is written. Payload allocation itself remains dynamic. Because the static initrd binary is i686, MiniOS also applies a RAM-aware logical-size limit and a 2,000,000 MiB hard ceiling below the tested address-space failure point."
         ]
       ]
     ],
@@ -1890,7 +2645,7 @@
       [
         [
           "text",
-          "dynblk"
+          "DynBlk"
         ]
       ]
     ],
@@ -2012,7 +2767,7 @@
         ],
         [
           "text",
-          " is free. Multiple dynblk volumes can be attached at the same time."
+          " is free. Multiple DynBlk volumes can be attached at the same time."
         ]
       ]
     ],
@@ -2022,7 +2777,7 @@
       [
         [
           "text",
-          "MiniOS creates ext4 directly on the dynblk whole-disk device, checks existing ext4 before writable use, and supports growth up to the format-1 limit of 512 GiB. Shrinking is not supported. The protected boot-state records the exact "
+          "MiniOS creates ext4 directly on the DynBlk whole-disk device, checks existing ext4 before writable use, and supports growth up to the format-1 limit of 512 GiB. Shrinking is not supported. The protected boot-state records the exact "
         ],
         [
           "span",
@@ -2036,7 +2791,7 @@
         ],
         [
           "text",
-          " used by the running persistent session so shutdown detaches that same device after its filesystem is unmounted. This remains correct even when Session Manager temporarily attaches another dynblk session in parallel."
+          " used by the running persistent session so shutdown detaches that same device after its filesystem is unmounted. This remains correct even when Session Manager temporarily attaches another DynBlk session in parallel."
         ]
       ]
     ],
@@ -2046,7 +2801,45 @@
       [
         [
           "text",
-          "The virtual capacity is thin: it is not preallocated host space. Actual writes can still fail because of lower-filesystem free space, the 64-part backing namespace, or dynblk memory admission. A failed or fenced device is detached only after its upper filesystem is no longer mounted; recovery validates the stored format on the next attach."
+          "The virtual capacity is thin: it is not preallocated host space or mapping RAM. DynBlk keeps 128 logical 4 KiB mappings in each 4 KiB runtime chunk, so dense mapping memory is about 8 MiB/GiB. Level-0 tree pointers live with those sparse chunks; the fixed internal-node index is 396,312 bytes per attached device, and physical-page reference counters are allocated lazily in 4 KiB chunks that each cover 8 MiB of backing space. When no explicit mapping budget is supplied, the DynBlk driver itself selects approximately 25% of kernel-reported usable RAM after 64-MiB normalization, capped at 4096 MiB. MiniOS leaves that policy to the driver."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "A new DynBlk volume may use backend compression selected with "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchcomp"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Compression is a property of the DynBlk storage format and is fixed for that volume after creation. If LUKS2 wraps DynBlk, MiniOS forces DynBlk compression to "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "none"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", because the encryption layer sits above the DynBlk device. Actual writes can still fail because of lower-filesystem free space, the 64-part backing namespace, or DynBlk mapping admission. A failed or fenced device is detached only after its upper filesystem is no longer mounted; recovery validates the stored format on the next attach."
         ]
       ]
     ],
@@ -2067,7 +2860,7 @@
       [
         [
           "text",
-          "Raw mode uses a fixed "
+          "Raw mode uses one "
         ],
         [
           "span",
@@ -2081,18 +2874,7 @@
         ],
         [
           "text",
-          " ext4 image. New images are allocated and formatted before use. Existing images are checked before mounting, may be grown to a larger requested size, and have ext4 expanded to use the image. A failed check or mount leaves the container available for recovery and continues the boot in RAM."
-        ]
-      ]
-    ],
-    [
-      "heading",
-      3,
-      "luks",
-      [
-        [
-          "text",
-          "LUKS"
+          " file containing ext4. The file length is set to the requested logical capacity at creation time, so unlike the dynamic backends the capacity itself is fixed until an explicit grow operation. The lower filesystem may represent unwritten extents sparsely, but MiniOS still treats Raw as fixed-capacity storage and checks available backing space before creating or growing it. Because everything lives in one host file, FAT32 is limited to 4000 MiB."
         ]
       ]
     ],
@@ -2102,7 +2884,7 @@
       [
         [
           "text",
-          "LUKS mode uses a LUKS2 "
+          "Existing Raw images are checked with "
         ],
         [
           "span",
@@ -2110,21 +2892,52 @@
           [
             [
               "text",
-              "changes.luks"
+              "e2fsck"
             ]
           ]
         ],
         [
           "text",
-          " container with ext4 directly inside it."
+          " before writable mounting. Growth extends "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.img"
+            ]
+          ]
         ],
         [
           "text",
-          "\n"
+          " and then expands ext4 with "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "resize2fs"
+            ]
+          ]
         ],
         [
           "text",
-          "It is available only when the initrd includes the crypt support marker and the required tools. Creation asks for matching confirmation input. An existing container allows three unlock attempts on the boot console."
+          "; shrinking is not supported. A failed check or mount preserves the image for recovery and continues the boot in RAM. Raw has no FUSE daemon or custom block-storage metadata, which makes its recovery model straightforward, but it lacks the thin-capacity behavior of DynFileFS and DynBlk."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "luks-encryption-layer",
+      [
+        [
+          "text",
+          "LUKS encryption layer"
         ]
       ]
     ],
@@ -2134,20 +2947,142 @@
       [
         [
           "text",
-          "The initrd authenticates before growing an existing encrypted file, then checks and expands ext4 before mounting it. If creation, unlock, checking, resizing, or mounting fails, MiniOS cleans up the mapping and continues in RAM. It never falls back to native, DynFileFS, raw, or any other unencrypted persistence."
+          "LUKS2 is an optional encryption layer selected with "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchencrypt=luks"
+            ]
+          ]
         ],
         [
           "text",
-          "\n"
+          " when creating a Raw, DynFileFS, or DynBlk session. Existing sessions take their encryption state from session metadata; specifying "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchencrypt"
+            ]
+          ]
         ],
         [
           "text",
-          "Passphrases are not stored in session metadata or passed as command arguments."
+          " later does not reinterpret or convert an existing plaintext session."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The encryption boundary depends on the backend: Raw attaches "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.img"
+            ]
+          ]
         ],
         [
           "text",
-          "\n"
+          " through a loop device and puts LUKS2 inside that file; DynFileFS attaches its exposed "
         ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "virtual.dat"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " through a loop device and encrypts that logical image; DynBlk uses the "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/dev/dynblkN"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " block device directly as the LUKS2 source. In all three cases MiniOS creates ext4 inside "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/dev/mapper/..."
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", so the filesystem contents and metadata inside the mapper are encrypted at rest. Backend metadata outside the LUKS boundary, boot files, session metadata, and other files on the persistence medium remain unencrypted."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Size defaults, growth limits, FAT32 restrictions, and thin/fixed allocation behavior still belong to the underlying backend. The initrd authenticates before growing an existing encrypted backend, closes the mapper before backend growth, then reopens it, checks ext4, and expands the filesystem before mounting it. For encrypted DynBlk, backend compression is forced to "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "none"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Creation asks for the passphrase twice. Existing encrypted sessions allow three unlock attempts on the boot console. Three rejected passphrases invoke a fatal boot path: MiniOS does not continue in RAM, reinterpret the same session as plaintext, select another backend, or create a replacement. Other creation, checking, resize, or mount failures retain their backend-specific recovery behavior without plaintext fallback. Passphrases are not stored in session metadata or passed as command arguments. Logical exports contain decrypted session files rather than an encrypted backend image."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
         [
           "text",
           "See "
@@ -2165,7 +3100,7 @@
         ],
         [
           "text",
-          "."
+          " for the protection boundary and backup considerations."
         ]
       ]
     ],
@@ -2186,7 +3121,7 @@
       [
         [
           "text",
-          "The initrd can activate only an existing SquashFS session; it cannot create a new "
+          "The initrd normally activates an existing SquashFS session. Interactive setup creates generation-zero metadata with shutdown saving enabled but does not create "
         ],
         [
           "span",
@@ -2200,7 +3135,21 @@
         ],
         [
           "text",
-          ". Activation validates strict, single-valued metadata for the snapshot, including its digest, compressed and uncompressed sizes, entry count, union type, and save policy. It also checks the file type and exact size, available RAM and swap, the SHA-256 digest before and after extraction, and the current union compatibility."
+          "; the writable upper layer exists only in RAM until the running system performs the first save on demand or at shutdown. A generation-zero session is valid only when snapshot artifact fields and "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " are absent. For later generations, activation validates strict, single-valued metadata for the snapshot, including its digest, compressed and uncompressed sizes, entry count, union type, and save policy. It also checks the file type and exact size, available RAM and swap, the SHA-256 digest before and after extraction, and the current union compatibility."
         ]
       ]
     ],
@@ -2294,7 +3243,45 @@
       [
         [
           "text",
-          "MiniOS Session Manager and the system save backend create and atomically replace SquashFS snapshots using exact capture. Boot activation may read an existing snapshot from writable FAT, exFAT, or NTFS storage because extraction occurs in the temporary ext4 upper. Creation and exact saving remain filesystem-gated: their private staging area must preserve links, ownership, modes, xattrs, ACLs, capabilities, and union whiteouts, so current saving requires a suitable POSIX filesystem. See "
+          "MiniOS Session Manager and the system save backend create and atomically replace SquashFS snapshots using exact capture. Boot activation may read an existing snapshot from writable FAT, exFAT, or NTFS storage because extraction occurs in the temporary ext4 upper. Creation and exact saving remain filesystem-gated: their private staging area must preserve links, ownership, modes, xattrs, ACLs, capabilities, and union whiteouts, so current saving requires a suitable POSIX filesystem."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "SquashFS has no "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchsize"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ": its stored size follows the compressed captured changes, while runtime memory is determined by the extracted writable upper. The MiniOS LUKS persistence layer does not wrap "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "; if snapshot confidentiality is required, the backing storage must be encrypted outside this layer. See "
         ],
         [
           "link",
@@ -2567,7 +3554,7 @@
         ],
         [
           "text",
-          " alone. They use the initrd's protected current-boot state, bound to the boot ID, numeric session, mode, actual store identity, writable status, durability, verified active generation, and, for dynblk, the exact attached "
+          " alone. They use the initrd's protected current-boot state, bound to the boot ID, numeric session, mode, actual store identity, writable status, durability, verified active generation, and, for DynBlk, the exact attached "
         ],
         [
           "span",
@@ -2710,7 +3697,7 @@
       ]
     ]
   ],
-  "plain_text": "Persistence internals\nThis page explains the perch, perchdir, perchmode, perchsize, and perchreserve boot parameters. These parameters control where changes from a live session are stored. For normal use, select a persistent entry in the boot menu or use MiniOS Session Manager instead of editing them manually.\nMiniOS builds the live root from read-only modules and one writable upper layer.\nThe initrd decides whether that upper layer is a numbered persistent session or a temporary directory in RAM. This page describes that boot-time decision and activation path. For the user-facing controls, see Boot modes and Boot parameters.\nIn plain language\nWithout a persistence parameter, MiniOS puts changes in RAM and discards them at shutdown. A persistence parameter asks MiniOS to locate writable storage, select or create a numbered session, check compatibility, and use that session as the writable layer.\nRequesting persistence does not guarantee that it became active. If the target is read-only, full, damaged, or incompatible, MiniOS can continue with a temporary RAM layer. Read the startup warning before relying on saved changes.\nParameters explained\nParameter | What it tells MiniOS | Typical choice\nperchdir=resume | Open the default compatible session and, under supported conditions, create a replacement when it cannot be used. | Normal daily work.\nperchdir=new | Create a new numbered session. | Keep an existing workspace unchanged.\nperchdir=ask | Display saved sessions after a resumable store has been found and let you choose one. It cannot create the first session on empty storage. | Several existing workspaces on one device; use perchdir=new for the first session.\nperchdir=NUMBER | Request a particular numbered session. | Stable custom boot entry after checking the session ID.\nperchmode=MODE | Select native, dynfilefs, dynblk, raw, luks, or an existing squashfs session. | Match the storage filesystem, block-container behavior, and encryption requirement.\nperchsize=SIZE | Request the size of a new or growing container session. | DynFileFS, dynblk, raw, or LUKS storage.\nperchreserve=MB | Subtract a margin when sizing a new or growing container and set the low-space warning threshold. | Leave working space when allocating a container; it is not a runtime quota.\nperch | Use the older resume behavior without automatic replacement creation. | Compatibility with an existing custom entry; prefer perchdir=resume for current menus.\nDo not combine persistence with toram when you expect changes to be written back to the original device. MiniOS activates the copied session in RAM, and changes to that copy are lost at shutdown.\nPersistence is explicit\nThe initrd enables persistence handling only when the kernel command line contains one of these recognized tokens:\nperch\nperchdir=...\nperchmode=...\nperchsize=...\nperchreserve=...\nWith none of those tokens, including when only an unrecognized perch... name is present, MiniOS makes a fresh writable upper in RAM. Changes made during that boot are discarded at shutdown.\nThe selectors are not all equivalent:\nSelector | Initrd behavior\nperch | Tries to resume the metadata default. It does not automatically create a session when none is usable or when compatibility checks fail.\nperchdir=resume | Tries the metadata default and may automatically create a new compatible replacement. This is the current boot-menu resume behavior.\nperchdir=new | Allocates a directory whose numeric ID is one greater than the highest existing numeric ID. It never reuses an existing directory.\nperchdir=ask | Offers existing sessions after a resumable store and default have been found. An incompatible existing session requires confirmation. On empty storage, use perchdir=new to create the first session.\nperchdir=NUMBER | Uses that directory when it exists. If it does not exist, selection can fall back to the default recorded in metadata; it does not reserve the requested number.\nOther recognized persistence parameters without a selector enter the same legacy resume path as bare perch: they request persistence, but do not enable automatic creation. If selection or activation cannot produce a usable upper, boot normally continues with the RAM upper and publishes a failure warning.\nSession store and location\nThe normal store is the changes directory beside the MiniOS data, with numbered session directories and session.conf or session.json metadata:\nminios/changes/\n|-- session.conf\n|-- session.json\n|-- 1/\n`-- 2/\nThe store may instead be selected as a device plus an optional path. Accepted forms include a direct /dev/... path, /dev/disk/by-label/LABEL/..., /dev/mapper/..., label:LABEL/..., askdisk, and askdisk:custom:path. The colon-delimited suffix becomes a path below the selected device; slash syntax after askdisk silently loses that custom path. A selected subdirectory is bind-mounted as the session store. MiniOS can also discover a same-drive persistence partition and supported Ventoy persistence storage.\nBefore session selection, the initrd must mount the location writable and prove that it can create and remove a marker in the store. A block device that cannot be opened for writing, a read-only mount, an unavailable path, or a failed write test rejects persistence for that boot. Existing sessions are not trusted merely because their files can be read.\nSelection and compatibility\nSession metadata records the storage mode and may record the MiniOS version, edition, union filesystem, and container size. Resume compares the recorded mode, version, edition, and union with the requested mode and current system.\nMissing legacy compatibility fields are not treated as mismatches.\nLiteral perchdir=resume creates a new numbered session when its default is absent or when a recorded mode, version, edition, or union mismatch makes that default unsuitable. Bare perch, a direct numeric selection, and other legacy resume requests refuse automatic replacement and continue in RAM after a selection failure. perchdir=ask shows compatibility information and permits an explicit override. A new session defaults to native unless another mode was requested.\nThe storage mode is part of compatibility. If selection reaches backend dispatch, an unknown requested mode falls back to native, whose probe may then select DynFileFS on unsuitable storage. An existing session with a different recorded mode can fail the earlier compatibility check instead; a legacy resume request then continues in RAM rather than reaching that fallback.\nSpace reserve and sizes\nMiniOS uses 256 MiB as the default allocation margin and low-space warning threshold. The calculation uses 1024-byte filesystem blocks. perchreserve accepts an unsigned whole number without a unit, is capped at 4096, and falls back to 256 when it is missing or invalid. The margin reduces the space offered to a new or growing container. It is not a quota: a native session or later writes can still consume the remaining filesystem space. Boot warns when current free space is at or below the threshold.\nContainer sizes use whole counts that are allocated in MiB:\nA bare number, M, or MB means MiB.\nG or GB multiplies the number by 1000 MiB.\nT or TB multiplies the number by 1,000,000 MiB.\nThe maximum logical request is 1,000,000 MiB, further limited by available space after the reserve.\nMiniOS Session Manager caps raw and LUKS files at 4000 MiB on FAT32. During initrd activation the cap is applied reliably to LUKS, while an oversized raw request can reach allocation and fail instead of being reduced.\nNew raw and LUKS sessions default to 4000 MiB.\nA new initrd-created DynFileFS session defaults to available capacity after the reserve, rounded down to a 1000 MiB boundary when possible.\nA new dynblk session defaults to a 16 GiB thin virtual block device when perchsize is not specified. Explicit dynblk virtual size is capped at 512 GiB; physical backing files are created lazily and remain subject to host free space and dynblk memory admission.\nContainer growth is best-effort and shrinking is not supported. perchsize does not size native or SquashFS sessions. MiniOS Session Manager uses 4000 MiB by default for raw/DynFileFS/LUKS creation and 16 GiB for dynblk; see Session management.\nStorage activation\nAll successful modes must supply the writable upper expected by the selected union filesystem. Mounting a backend does not by itself prove that persistence is active. Native, DynFileFS, dynblk, raw, and LUKS can update persistent session metadata before union validation; SquashFS defers that metadata commit. The protected current-boot state is published only after the final root union is confirmed to use the expected upper.\nNative\nNative mode first excludes known non-POSIX filesystems such as FAT, exFAT, and NTFS. It then probes real filesystem behavior by creating a file and symlink and checking executable-mode changes. If the probe succeeds, the numbered session directory is bind-mounted directly as the writable area.\nIf the filesystem is known to be unsuitable, or the POSIX probe fails, native mode falls back to DynFileFS. A failure after native activation is unwound; a new empty candidate is removed when it can be removed safely.\nDynFileFS\nDynFileFS is the FUSE-based container backend. It stores one logical block image in changes.dat plus its numbered segment files. The helper must mount successfully and expose virtual.dat; otherwise activation fails rather than accidentally creating a RAM-only file with a persistent-looking name.\nThe logical image contains ext4. Existing images are checked before writable mounting; filesystem-check results above the corrected-errors status reject the session instead of mounting it writable. Resize is growth-only, and the inner ext4 filesystem is expanded when possible. For user-facing diagnosis, see Troubleshooting.\ndynblk\nThe dynblk mode is a kernel block-device backend, separate from DynFileFS. Each numbered session owns a volume000.db namespace with lazily created volume001.db through volume063.db siblings. Attaching a volume through /dev/dynblk-control returns a dynamically allocated whole-disk device such as /dev/dynblk0 or /dev/dynblk3; MiniOS must use the returned device and must not assume that dynblk0 is free. Multiple dynblk volumes can be attached at the same time.\nMiniOS creates ext4 directly on the dynblk whole-disk device, checks existing ext4 before writable use, and supports growth up to the format-1 limit of 512 GiB. Shrinking is not supported. The protected boot-state records the exact /dev/dynblkN used by the running persistent session so shutdown detaches that same device after its filesystem is unmounted. This remains correct even when Session Manager temporarily attaches another dynblk session in parallel.\nThe virtual capacity is thin: it is not preallocated host space. Actual writes can still fail because of lower-filesystem free space, the 64-part backing namespace, or dynblk memory admission. A failed or fenced device is detached only after its upper filesystem is no longer mounted; recovery validates the stored format on the next attach.\nRaw\nRaw mode uses a fixed changes.img ext4 image. New images are allocated and formatted before use. Existing images are checked before mounting, may be grown to a larger requested size, and have ext4 expanded to use the image. A failed check or mount leaves the container available for recovery and continues the boot in RAM.\nLUKS\nLUKS mode uses a LUKS2 changes.luks container with ext4 directly inside it.\nIt is available only when the initrd includes the crypt support marker and the required tools. Creation asks for matching confirmation input. An existing container allows three unlock attempts on the boot console.\nThe initrd authenticates before growing an existing encrypted file, then checks and expands ext4 before mounting it. If creation, unlock, checking, resizing, or mounting fails, MiniOS cleans up the mapping and continues in RAM. It never falls back to native, DynFileFS, raw, or any other unencrypted persistence.\nPassphrases are not stored in session metadata or passed as command arguments.\nSee Security.\nSquashFS\nThe initrd can activate only an existing SquashFS session; it cannot create a new changes.sb. Activation validates strict, single-valued metadata for the snapshot, including its digest, compressed and uncompressed sizes, entry count, union type, and save policy. It also checks the file type and exact size, available RAM and swap, the SHA-256 digest before and after extraction, and the current union compatibility.\nThe snapshot is extracted with strict error and xattr handling into a bounded, temporary ext4 image in RAM. For OverlayFS, that image contains separate changes and workdir directories; for AUFS, its root is the writable branch.\nMalformed metadata, insufficient memory, digest changes, extraction errors, or an invalid policy fail activation and leave the boot on its ordinary RAM upper.\nA session marked dirty means the previous boot did not complete the clean shutdown transition. SquashFS then warns and restores the last successfully saved changes.sb; unsaved changes from the interrupted boot are not a second rollback generation.\nMiniOS Session Manager and the system save backend create and atomically replace SquashFS snapshots using exact capture. Boot activation may read an existing snapshot from writable FAT, exFAT, or NTFS storage because extraction occurs in the temporary ext4 upper. Creation and exact saving remain filesystem-gated: their private staging area must preserve links, ownership, modes, xattrs, ACLs, capabilities, and union whiteouts, so current saving requires a suitable POSIX filesystem. See Session management.\nUnion activation and recovery boundary\nFor AUFS, the activated changes root becomes writable branch zero. For OverlayFS, the initrd constructs upperdir and workdir beneath the activated changes root and mounts the read-only modules as lower directories. The initrd then verifies the live AUFS branch or OverlayFS upperdir before publishing persistence as active.\nIf a persistence backend, metadata update, or this verification fails, its mounts are unwound where possible, no successful persistence state is published, and the writable boot continues in RAM. Failure to construct the root union enters the fatal initramfs shell. Exiting that shell can let setup continue with an invalid root; it is not a repair or a safe fallback. AUFS retains best-effort module branch appends, but an incomplete union crosses the recovery boundary: MiniOS does not mark persistence as active.\nContainer check failures deliberately avoid mounting a suspect session writable.\nDo not replace or reconstruct session files during boot. Preserve the affected storage first; see Backing up MiniOS and Troubleshooting.\nActive, running, and current-boot state\nIn durable session metadata, default= is the active session selected for the next resume, while running= is the session recorded as supplying the current boot. Activation writes both fields and marks that session dirty.\nAfter persistence mounts have disappeared during a clean shutdown, MiniOS removes running= and marks the session clean.\nThose metadata fields can be stale after a crash, failed metadata write, failed union construction, copied store, or interrupted shutdown. Runtime components that allow saving do not trust running= alone. They use the initrd's protected current-boot state, bound to the boot ID, numeric session, mode, actual store identity, writable status, durability, verified active generation, and, for dynblk, the exact attached /dev/dynblkN device. A failed or missing current-boot record means persistence must not be treated as an approved save target.\nWith toram and a recognized persistence request, the session store is copied into RAM before activation. The copied session can be writable and can supply the running upper, but its current-boot state is marked non-durable. Changes to that RAM copy do not return to the original device and are lost at shutdown.\nFor related operational guidance, see Boot modes, Boot parameters, Sessions and persistence, Backing up MiniOS, Security, and Troubleshooting.",
+  "plain_text": "Persistence internals\nThis page explains the perch, perchdir, perchmode, perchsize, and perchreserve boot parameters. These parameters control where changes from a live session are stored. For normal use, select a persistent entry in the boot menu or use MiniOS Session Manager instead of editing them manually.\nMiniOS builds the live root from read-only modules and one writable upper layer.\nThe initrd decides whether that upper layer is a numbered persistent session or a temporary directory in RAM. This page describes that boot-time decision and activation path. For the user-facing controls, see Boot modes and Boot parameters.\nIn plain language\nWithout a persistence parameter, MiniOS puts changes in RAM and discards them at shutdown. A persistence parameter asks MiniOS to locate writable storage, select or create a numbered session, check compatibility, and use that session as the writable layer.\nRequesting persistence does not guarantee that it became active. If the target is read-only, full, damaged, or incompatible, MiniOS can continue with a temporary RAM layer. Read the startup warning before relying on saved changes.\nParameters explained\nParameter | What it tells MiniOS | Typical choice\nperchdir=resume | Open the default compatible session and, under supported conditions, create a replacement when it cannot be used. | Normal daily work.\nperchdir=new | Create a new numbered session. | Keep an existing workspace unchanged.\nperchdir=ask | Display saved sessions after a resumable store has been found and let you choose one. It cannot create the first session on empty storage. | Several existing workspaces on one device; use perchdir=new for the first session.\nperchdir=NUMBER | Request a particular numbered session. | Stable custom boot entry after checking the session ID.\nperchmode=MODE | Select native, dynfilefs, dynblk, raw, or squashfs. | Match the backing filesystem and desired persistence model.\nperchencrypt=luks | Add a LUKS2 layer when creating a Raw, DynFileFS, or DynBlk session. | Encrypt a supported container backend.\nperchsize=SIZE | Request the size of a new or growing container session. | DynFileFS, DynBlk, or raw; encryption does not change the backend size semantics.\nperchcomp=CODEC | Select DynBlk backend compression for a newly created DynBlk session. | none, lz4, lz4hc, lzo, lzo-rle, zstd, deflate, or 842; availability still depends on the running kernel. Compression is disabled when LUKS wraps DynBlk.\nperchreserve=MB | Subtract a margin when sizing a new or growing container and set the low-space warning threshold. | Leave working space when allocating a container; it is not a runtime quota.\nperch | Use the older resume behavior without automatic replacement creation. | Compatibility with an existing custom entry; prefer perchdir=resume for current menus.\nDo not combine persistence with toram when you expect changes to be written back to the original device. MiniOS activates the copied session in RAM, and changes to that copy are lost at shutdown.\nPersistence is explicit\nThe initrd enables persistence handling only when the kernel command line contains one of these recognized tokens:\nperch\nperchdir=...\nperchmode=...\nperchencrypt=...\nperchsize=...\nperchcomp=...\nperchreserve=...\nWith none of those tokens, including when only an unrecognized perch... name is present, MiniOS makes a fresh writable upper in RAM. Changes made during that boot are discarded at shutdown.\nThe selectors are not all equivalent:\nSelector | Initrd behavior\nperch | Tries to resume the metadata default. It does not automatically create a session when none is usable or when compatibility checks fail.\nperchdir=resume | Tries the metadata default and may automatically create a new compatible replacement. This is the current boot-menu resume behavior.\nperchdir=new | Allocates a directory whose numeric ID is one greater than the highest existing numeric ID. It never reuses an existing directory.\nperchdir=ask | Offers existing sessions after a resumable store and default have been found. An incompatible existing session requires confirmation. On empty storage, use perchdir=new to create the first session.\nperchdir=NUMBER | Uses that directory when it exists. If it does not exist, selection can fall back to the default recorded in metadata; it does not reserve the requested number.\nOther recognized persistence parameters without a selector enter the same legacy resume path as bare perch: they request persistence, but do not enable automatic creation. If selection or activation cannot produce a usable upper, boot normally continues with the RAM upper and publishes a failure warning.\nSession store and location\nThe normal store is the changes directory beside the MiniOS data, with numbered session directories and session.conf or session.json metadata:\nminios/changes/\n|-- session.conf\n|-- session.json\n|-- 1/\n`-- 2/\nThe store may instead be selected as a device plus an optional path. Accepted forms include a direct /dev/... path, /dev/disk/by-label/LABEL/..., /dev/mapper/..., label:LABEL/..., askdisk, and askdisk:custom:path. The colon-delimited suffix becomes a path below the selected device; slash syntax after askdisk silently loses that custom path. A selected subdirectory is bind-mounted as the session store. MiniOS can also discover a same-drive persistence partition and supported Ventoy persistence storage.\nBefore session selection, the initrd must mount the location writable and prove that it can create and remove a marker in the store. A block device that cannot be opened for writing, a read-only mount, an unavailable path, or a failed write test rejects persistence for that boot. Existing sessions are not trusted merely because their files can be read.\nSelection and compatibility\nSession metadata records the storage mode and may record the MiniOS version, edition, union filesystem, and container size. Resume compares the recorded mode, version, edition, and union with the requested mode and current system.\nMissing legacy compatibility fields are not treated as mismatches.\nLiteral perchdir=resume creates a new numbered session when its default is absent or when a recorded mode, version, edition, or union mismatch makes that default unsuitable. Bare perch, a direct numeric selection, and other legacy resume requests refuse automatic replacement and continue in RAM after a selection failure. perchdir=ask shows compatibility information and permits an explicit override. A new session defaults to native unless another mode was requested.\nThe storage mode is part of compatibility. If selection reaches backend dispatch, an unknown requested mode falls back to native, whose probe may then select DynFileFS on unsuitable storage. An existing session with a different recorded mode can fail the earlier compatibility check instead; a legacy resume request then continues in RAM rather than reaching that fallback.\nSpace reserve and sizes\nMiniOS uses 256 MiB as the default allocation margin and low-space warning threshold. The calculation uses 1024-byte filesystem blocks. perchreserve accepts an unsigned whole number without a unit, is capped at 4096, and falls back to 256 when it is missing or invalid. The margin reduces the space offered to a new or growing container. It is not a quota: a native session or later writes can still consume the remaining filesystem space. Boot warns when current free space is at or below the threshold.\nContainer sizes use whole counts that are allocated in MiB:\nA bare number, M, or MB means MiB.\nG or GB multiplies the number by 1000 MiB.\nT or TB multiplies the number by 1,000,000 MiB.\nRaw containers are capped at 1,000,000 MiB and by available space after the reserve. DynFileFS has a separate RAM-aware limit and a 2,000,000 MiB hard ceiling. DynBlk has its own 512 GiB format/ABI ceiling.\nRaw is a single backing file, so FAT32 limits it to 4000 MiB in MiniOS. The same limit applies when Raw is wrapped in LUKS2.\nA new raw session defaults to 4000 MiB. Encryption does not create a separate LUKS size policy: an encrypted Raw, DynFileFS, or DynBlk session keeps the size rules of its underlying backend.\nA new initrd-created DynFileFS session without perchsize uses up to 16 GiB of logical capacity. If the backing store cannot ultimately hold that much after perchreserve and DynFileFS index overhead, the default is reduced to the available capacity. Its format-400 index costs about 2 MiB of RAM and about 2 MiB of backing storage per GiB of declared logical capacity, even while the payload is empty. MiniOS therefore also limits DynFileFS capacity from physical RAM and by a tested 2,000,000 MiB hard ceiling.\nA new DynBlk session without perchsize follows the same 16 GiB automatic ceiling and is reduced when less backing space remains after perchreserve. Explicit DynBlk virtual size is still a thin-capacity request and is capped only by the 512 GiB format/ABI ceiling; physical backing files are created lazily. DynBlk owns its own sparse mapping-memory policy and does not require MiniOS to size that budget.\nContainer growth is best-effort and shrinking is not supported. perchsize does not size native or SquashFS sessions. MiniOS Session Manager defaults manually created raw and DynFileFS containers to 4000 MiB and DynBlk to 16 GiB; encrypted variants use the same backend defaults. See Session management.\nStorage activation\nAll successful backends must supply the writable upper expected by the selected union filesystem. Mounting a backend does not by itself prove that persistence is active. Native, DynFileFS, DynBlk, and raw can update persistent session metadata before union validation; SquashFS defers that metadata commit. Raw, DynFileFS, and DynBlk can additionally use LUKS2 encryption. The protected current-boot state is published only after the final root union is confirmed to use the expected upper.\nBackend | Persistent representation | Capacity model | Backing-storage requirements | MiniOS LUKS2 layer\nnative | Files and directories directly in the numbered session directory | Uses backing filesystem space directly; perchsize does not apply | Writable filesystem that passes the POSIX behavior probe | No\ndynfilefs | Format-400 changes.dat plus segment files exposing an ext4 virtual.dat | Thin payload with a dense capacity-sized index | Writable POSIX, FAT32, NTFS, or exFAT storage | Yes\ndynblk | Format-1 volumeNNN.db files exposing /dev/dynblkN, with ext4 on top | Thin virtual block device with sparse runtime mappings | Filesystem accepted by the DynBlk kernel backend and enough backend resources | Yes\nraw | Single fixed-size changes.img file containing ext4 | File is created at the requested logical size; growth only | Writable filesystem able to hold the image; FAT32 is limited to 4000 MiB | Yes\nsquashfs | Compressed changes.sb snapshot; writable runtime upper is reconstructed in RAM | Snapshot size follows captured changes; perchsize does not apply | Existing snapshots can be read from supported writable media, but exact saving requires a POSIX-capable staging filesystem | No\nNative\nNative mode stores the writable union contents directly in the numbered session directory. There is no inner image, loop device, FUSE container, or separate block filesystem, so capacity simply follows free space on the backing filesystem and perchsize does not apply. This has the least container overhead and preserves ordinary file visibility for recovery and backup.\nMiniOS first excludes known non-POSIX filesystems such as FAT, exFAT, and NTFS. It then probes real filesystem behavior by creating a file and symlink and checking executable-mode changes. If the probe succeeds, the numbered session directory is bind-mounted directly as the writable area. If the filesystem is known to be unsuitable, or the POSIX probe fails, native mode falls back to DynFileFS. A failure after native activation is unwound; a new empty candidate is removed when it can be removed safely.\nThe MiniOS LUKS2 persistence layer does not wrap native mode because native has no container or block-device boundary to encrypt. Native persistence can still reside on storage that is encrypted outside this persistence layer.\nDynFileFS\nDynFileFS is the FUSE-based format-400 container backend. It exposes one logical virtual.dat image while storing data in changes.dat plus numbered segment files. The helper must mount successfully and expose virtual.dat; otherwise activation fails rather than accidentally creating a RAM-only file with a persistent-looking name.\nIts mapping index is dense with respect to declared logical capacity: each 4 KiB logical block has one 8-byte offset. That is about 2 MiB of index RAM per GiB of virtual capacity, and approximately the same amount is stored in the backing segment indexes even before payload data is written. Payload allocation itself remains dynamic. Because the static initrd binary is i686, MiniOS also applies a RAM-aware logical-size limit and a 2,000,000 MiB hard ceiling below the tested address-space failure point.\nThe logical image contains ext4. Existing images are checked before writable mounting; filesystem-check results above the corrected-errors status reject the session instead of mounting it writable. Resize is growth-only, and the inner ext4 filesystem is expanded when possible. For user-facing diagnosis, see Troubleshooting.\nDynBlk\nThe dynblk mode is a kernel block-device backend, separate from DynFileFS. Each numbered session owns a volume000.db namespace with lazily created volume001.db through volume063.db siblings. Attaching a volume through /dev/dynblk-control returns a dynamically allocated whole-disk device such as /dev/dynblk0 or /dev/dynblk3; MiniOS must use the returned device and must not assume that dynblk0 is free. Multiple DynBlk volumes can be attached at the same time.\nMiniOS creates ext4 directly on the DynBlk whole-disk device, checks existing ext4 before writable use, and supports growth up to the format-1 limit of 512 GiB. Shrinking is not supported. The protected boot-state records the exact /dev/dynblkN used by the running persistent session so shutdown detaches that same device after its filesystem is unmounted. This remains correct even when Session Manager temporarily attaches another DynBlk session in parallel.\nThe virtual capacity is thin: it is not preallocated host space or mapping RAM. DynBlk keeps 128 logical 4 KiB mappings in each 4 KiB runtime chunk, so dense mapping memory is about 8 MiB/GiB. Level-0 tree pointers live with those sparse chunks; the fixed internal-node index is 396,312 bytes per attached device, and physical-page reference counters are allocated lazily in 4 KiB chunks that each cover 8 MiB of backing space. When no explicit mapping budget is supplied, the DynBlk driver itself selects approximately 25% of kernel-reported usable RAM after 64-MiB normalization, capped at 4096 MiB. MiniOS leaves that policy to the driver.\nA new DynBlk volume may use backend compression selected with perchcomp. Compression is a property of the DynBlk storage format and is fixed for that volume after creation. If LUKS2 wraps DynBlk, MiniOS forces DynBlk compression to none, because the encryption layer sits above the DynBlk device. Actual writes can still fail because of lower-filesystem free space, the 64-part backing namespace, or DynBlk mapping admission. A failed or fenced device is detached only after its upper filesystem is no longer mounted; recovery validates the stored format on the next attach.\nRaw\nRaw mode uses one changes.img file containing ext4. The file length is set to the requested logical capacity at creation time, so unlike the dynamic backends the capacity itself is fixed until an explicit grow operation. The lower filesystem may represent unwritten extents sparsely, but MiniOS still treats Raw as fixed-capacity storage and checks available backing space before creating or growing it. Because everything lives in one host file, FAT32 is limited to 4000 MiB.\nExisting Raw images are checked with e2fsck before writable mounting. Growth extends changes.img and then expands ext4 with resize2fs; shrinking is not supported. A failed check or mount preserves the image for recovery and continues the boot in RAM. Raw has no FUSE daemon or custom block-storage metadata, which makes its recovery model straightforward, but it lacks the thin-capacity behavior of DynFileFS and DynBlk.\nLUKS encryption layer\nLUKS2 is an optional encryption layer selected with perchencrypt=luks when creating a Raw, DynFileFS, or DynBlk session. Existing sessions take their encryption state from session metadata; specifying perchencrypt later does not reinterpret or convert an existing plaintext session.\nThe encryption boundary depends on the backend: Raw attaches changes.img through a loop device and puts LUKS2 inside that file; DynFileFS attaches its exposed virtual.dat through a loop device and encrypts that logical image; DynBlk uses the /dev/dynblkN block device directly as the LUKS2 source. In all three cases MiniOS creates ext4 inside /dev/mapper/..., so the filesystem contents and metadata inside the mapper are encrypted at rest. Backend metadata outside the LUKS boundary, boot files, session metadata, and other files on the persistence medium remain unencrypted.\nSize defaults, growth limits, FAT32 restrictions, and thin/fixed allocation behavior still belong to the underlying backend. The initrd authenticates before growing an existing encrypted backend, closes the mapper before backend growth, then reopens it, checks ext4, and expands the filesystem before mounting it. For encrypted DynBlk, backend compression is forced to none.\nCreation asks for the passphrase twice. Existing encrypted sessions allow three unlock attempts on the boot console. Three rejected passphrases invoke a fatal boot path: MiniOS does not continue in RAM, reinterpret the same session as plaintext, select another backend, or create a replacement. Other creation, checking, resize, or mount failures retain their backend-specific recovery behavior without plaintext fallback. Passphrases are not stored in session metadata or passed as command arguments. Logical exports contain decrypted session files rather than an encrypted backend image.\nSee Security for the protection boundary and backup considerations.\nSquashFS\nThe initrd normally activates an existing SquashFS session. Interactive setup creates generation-zero metadata with shutdown saving enabled but does not create changes.sb; the writable upper layer exists only in RAM until the running system performs the first save on demand or at shutdown. A generation-zero session is valid only when snapshot artifact fields and changes.sb are absent. For later generations, activation validates strict, single-valued metadata for the snapshot, including its digest, compressed and uncompressed sizes, entry count, union type, and save policy. It also checks the file type and exact size, available RAM and swap, the SHA-256 digest before and after extraction, and the current union compatibility.\nThe snapshot is extracted with strict error and xattr handling into a bounded, temporary ext4 image in RAM. For OverlayFS, that image contains separate changes and workdir directories; for AUFS, its root is the writable branch.\nMalformed metadata, insufficient memory, digest changes, extraction errors, or an invalid policy fail activation and leave the boot on its ordinary RAM upper.\nA session marked dirty means the previous boot did not complete the clean shutdown transition. SquashFS then warns and restores the last successfully saved changes.sb; unsaved changes from the interrupted boot are not a second rollback generation.\nMiniOS Session Manager and the system save backend create and atomically replace SquashFS snapshots using exact capture. Boot activation may read an existing snapshot from writable FAT, exFAT, or NTFS storage because extraction occurs in the temporary ext4 upper. Creation and exact saving remain filesystem-gated: their private staging area must preserve links, ownership, modes, xattrs, ACLs, capabilities, and union whiteouts, so current saving requires a suitable POSIX filesystem.\nSquashFS has no perchsize: its stored size follows the compressed captured changes, while runtime memory is determined by the extracted writable upper. The MiniOS LUKS persistence layer does not wrap changes.sb; if snapshot confidentiality is required, the backing storage must be encrypted outside this layer. See Session management.\nUnion activation and recovery boundary\nFor AUFS, the activated changes root becomes writable branch zero. For OverlayFS, the initrd constructs upperdir and workdir beneath the activated changes root and mounts the read-only modules as lower directories. The initrd then verifies the live AUFS branch or OverlayFS upperdir before publishing persistence as active.\nIf a persistence backend, metadata update, or this verification fails, its mounts are unwound where possible, no successful persistence state is published, and the writable boot continues in RAM. Failure to construct the root union enters the fatal initramfs shell. Exiting that shell can let setup continue with an invalid root; it is not a repair or a safe fallback. AUFS retains best-effort module branch appends, but an incomplete union crosses the recovery boundary: MiniOS does not mark persistence as active.\nContainer check failures deliberately avoid mounting a suspect session writable.\nDo not replace or reconstruct session files during boot. Preserve the affected storage first; see Backing up MiniOS and Troubleshooting.\nActive, running, and current-boot state\nIn durable session metadata, default= is the active session selected for the next resume, while running= is the session recorded as supplying the current boot. Activation writes both fields and marks that session dirty.\nAfter persistence mounts have disappeared during a clean shutdown, MiniOS removes running= and marks the session clean.\nThose metadata fields can be stale after a crash, failed metadata write, failed union construction, copied store, or interrupted shutdown. Runtime components that allow saving do not trust running= alone. They use the initrd's protected current-boot state, bound to the boot ID, numeric session, mode, actual store identity, writable status, durability, verified active generation, and, for DynBlk, the exact attached /dev/dynblkN device. A failed or missing current-boot record means persistence must not be treated as an approved save target.\nWith toram and a recognized persistence request, the session store is copied into RAM before activation. The copied session can be writable and can supply the running upper, but its current-boot state is marked non-durable. Changes to that RAM copy do not return to the original device and are lost at shutdown.\nFor related operational guidance, see Boot modes, Boot parameters, Sessions and persistence, Backing up MiniOS, Security, and Troubleshooting.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

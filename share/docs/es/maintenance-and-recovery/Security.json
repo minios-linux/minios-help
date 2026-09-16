@@ -912,7 +912,7 @@
       [
         [
           "text",
-          "La persistencia sin cifrar de native, DynFileFS, dynblk, raw y SquashFS puede ser leída por quien obtenga el dispositivo. Dynblk es un backend de bloques del kernel, no una capa de cifrado; sus "
+          "La persistencia nativa sin cifrar, DynFileFS, DynBlk, raw y SquashFS puede ser leída por quien obtenga el dispositivo. MiniOS permite superponer LUKS2 sobre Raw, DynFileFS o DynBlk. Para crearla al inicio, selecciónala con "
         ],
         [
           "span",
@@ -920,27 +920,13 @@
           [
             [
               "text",
-              "volumeNNN.db"
+              "perchencrypt=luks"
             ]
           ]
         ],
         [
           "text",
-          " archivos de respaldo contienen datos de sesión sin cifrar, a menos que el almacenamiento subyacente esté protegido por separado. El Instalador de MiniOS puede configurar un contenedor LUKS cifrado para una sesión en vivo cuando el initrd de origen anuncia soporte para LUKS. El initrd crea "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "changes.luks"
-            ]
-          ]
-        ],
-        [
-          "text",
-          " en el primer arranque y solicita la frase de contraseña; el instalador no recibe ni almacena esa frase de contraseña."
+          "; las sesiones existentes obtienen su estado de cifrado desde los metadatos de la sesión y no desde una anulación posterior por línea de comandos."
         ]
       ]
     ],
@@ -950,7 +936,69 @@
       [
         [
           "text",
-          "La persistencia LUKS protege el contenido mientras el contenedor está cerrado. No protege los datos después de desbloquear, los archivos de arranque sin cifrar, los archivos copiados fuera del contenedor ni un sistema de archivos raíz nativo. La persistencia de sesión LUKS no es cifrado nativo de raíz. Utiliza una frase de contraseña segura y mantén una copia de seguridad probada."
+          "El límite del cifrado varía según el backend. Raw cifra la imagen de bloques lógicos dentro de "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.img"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "; DynFileFS cifra el "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "virtual.dat"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "; DynBlk cifra el "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/dev/dynblkN"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dispositivo de bloques directamente. Los metadatos de la sesión, archivos de arranque, metadatos del backend DynFileFS/DynBlk fuera de la imagen cifrada y archivos no relacionados en el medio permanecen visibles. La compresión del backend DynBlk se desactiva cuando se selecciona LUKS2."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El initrd crea el sistema de archivos cifrado en el primer uso y solicita su frase de acceso; el instalador no recibe ni almacena esa frase. Al arrancar, tres intentos fallidos de desbloqueo detienen el proceso de arranque en vez de volver a texto plano, otro backend o un reemplazo en memoria bajo la misma solicitud de persistencia."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La persistencia LUKS protege el contenido del sistema de archivos mientras el mapper está cerrado. No protege los datos después de desbloquear, los archivos de arranque sin cifrar, los archivos copiados fuera del backend cifrado ni un sistema de archivos raíz nativo. La persistencia de sesión LUKS no es cifrado nativo de raíz. Las exportaciones lógicas contienen archivos de sesión descifrados, por lo que debes proteger los archivos de respaldo por separado. Usa una frase de acceso robusta y mantén una copia de seguridad probada."
         ]
       ]
     ],
@@ -1213,7 +1261,7 @@
       ]
     ]
   ],
-  "plain_text": "Seguridad\nLos controles de seguridad de MiniOS están diseñados para el sistema en vivo: sesiones temporales, sesiones persistentes, medios portátiles y configuración al inicio. El Instalador de MiniOS también puede realizar una conversión nativa. El sistema resultante mantiene el entorno de escritorio seleccionado y la identidad visual de MiniOS, pero se elimina el software específico de MiniOS en vivo, por lo que puedes asegurar y mantener el sistema con las herramientas normales de Debian en lugar de tratarlo como otro modo en vivo.\nProtege la sesión en ejecución, los datos persistentes, los medios de arranque y cualquier configuración que se aplique al iniciar.\nComienza con medios de confianza\nDescarga MiniOS desde una fuente oficial y verifica el ISO antes de grabarlo.\nSigue Verificación de descargas y compara el resultado antes de arrancar o instalar. La verificación detecta una descarga dañada o sustituida; no garantiza que un dispositivo USB ya modificado sea seguro.\nMantén el dispositivo USB bajo control físico. Las contraseñas de firmware y el orden de arranque restringido pueden reducir el arranque no autorizado ocasional, pero no cifran los archivos del dispositivo. Secure Boot puede ofrecer protección adicional de la cadena de arranque en imágenes y hardware compatibles; comprueba el comportamiento real de la versión y el firmware en vez de asumir compatibilidad.\nReemplazar credenciales predeterminadas\nUna imagen en vivo MiniOS sin personalizar utiliza las credenciales publicadas live / evil y root / toor, con inicio de sesión automático y acceso administrativo sin contraseña en su configuración orientada a la comodidad. Cualquier persona que pueda acceder al sistema podría usar esas credenciales, especialmente si SSH está activo.\nAntes de conectarse a una red no confiable:\nEstablezca contraseñas únicas para usuario y root en el Configurador de MiniOS.\nSeleccione un perfil de seguridad adecuado y revise cada control configurado.\nDesactive SSH y XRDP a menos que se requiera acceso remoto.\nReinicie en una nueva sesión al cambiar configuraciones de cuenta de un solo uso o de seguridad, y luego verifique el comportamiento de inicio de sesión y privilegios resultante.\nEl Configurador almacena los hashes de contraseña cifrados en lugar de contraseñas en texto plano. Si modifica una cuenta persistente ya creada, utilice passwd para el usuario actual y sudo passwd root para root. Después de la conversión nativa, utilice las herramientas normales de gestión de cuentas de Debian.\nUsar controles de seguridad del Configurador\nConfigurador de MiniOS proporciona tres perfiles. Un perfil completa configuraciones concretas; el nombre del perfil en sí no se guarda como clave de configuración en tiempo de ejecución, y cada ajuste sigue siendo editable de forma independiente.\nPerfil | Comportamiento principal\nconvenient | Compatible con inicio de sesión automático, sudo y PolicyKit sin contraseña, SSH root y con contraseña permitidos, XRDP/X11/pantalla de bloqueo relajados, se muestran pistas de contraseña.\nbalanced | Sin inicio de sesión automático, sudo y PolicyKit requieren contraseña, acceso root por SSH denegado pero SSH con contraseña permitido, XRDP/X11/pantalla de bloqueo reforzados.\nstrict | Sin inicio de sesión automático, sudo y PolicyKit requieren contraseña, acceso root y por contraseña por SSH denegados, XRDP deshabilitado, X11/pantalla de bloqueo reforzados, pistas de contraseña ocultas.\nLos valores predeterminados del instalador varían según el modo de despliegue: las instalaciones en vivo favorecen convenient, mientras que la conversión nativa parte de balanced. El ajuste nativo se aplica durante la conversión; tras la instalación, utilice la configuración de seguridad estándar de Debian. Estos son valores predeterminados, no recomendaciones para todos los modelos de amenaza.\nLas mismas configuraciones están disponibles como claves de configuración documentadas, incluyendo LIVE_SUDO_MODE, LIVE_POLKIT_MODE, LIVE_SSH_PERMIT_ROOT_LOGIN, LIVE_SSH_PASSWORD_AUTHENTICATION, LIVE_XRDP_MODE, LIVE_X11_MODE, LIVE_ISSUE_PASSWORD_HINTS, y LIVE_LOCKSCREEN_MODE. Es preferible usar estas claves o el Configurador en lugar de editar archivos generados de sudoers, PolicyKit, display-manager o SSH. Consulte Archivo de configuración.\nPara el comportamiento de guardado y la aplicabilidad de los ajustes, consulte Configurador de MiniOS.\nCreación de cuentas, contraseñas, LIVE_CONFIG_NOROOT, y la postura de seguridad son configuraciones de una sola vez que se utilizan al crear una nueva sesión. El Configurador muestra la aplicabilidad de cada control. Los ajustes reconfigurables, como los servicios, se aplican tras reiniciar.\nAcceso remoto seguro\nSSH puede habilitarse en una imagen MiniOS para tareas de recuperación. En una red donde no se confía en otros usuarios, asuma que las credenciales predeterminadas publicadas están expuestas hasta que confirme lo contrario.\nSi SSH no es necesario, agregue ssh a DISABLE_SERVICES en Configurator y elimínelo de ENABLE_SERVICES si está presente.\nSi SSH es necesario, deniegue el acceso root con LIVE_SSH_PERMIT_ROOT_LOGIN=false.\nPrefiera la autenticación por clave. Confirme el inicio de sesión con clave en una conexión separada antes de establecer LIVE_SSH_PASSWORD_AUTHENTICATION=false.\nRestringa el acceso entrante con el firewall de red o el router, y no exponga un sistema de recuperación portátil directamente a Internet.\nRevise XRDP por separado. El perfil estricto lo desactiva; el perfil equilibrado lo refuerza pero no necesariamente desactiva su servicio.\nLos parámetros de arranque pueden sobrescribir los valores del archivo de configuración. Verifique comportamientos inesperados del servicio en Parámetros de arranque.\nCifrar datos persistentes\nLa persistencia sin cifrar de native, DynFileFS, dynblk, raw y SquashFS puede ser leída por quien obtenga el dispositivo. Dynblk es un backend de bloques del kernel, no una capa de cifrado; sus volumeNNN.db archivos de respaldo contienen datos de sesión sin cifrar, a menos que el almacenamiento subyacente esté protegido por separado. El Instalador de MiniOS puede configurar un contenedor LUKS cifrado para una sesión en vivo cuando el initrd de origen anuncia soporte para LUKS. El initrd crea changes.luks en el primer arranque y solicita la frase de contraseña; el instalador no recibe ni almacena esa frase de contraseña.\nLa persistencia LUKS protege el contenido mientras el contenedor está cerrado. No protege los datos después de desbloquear, los archivos de arranque sin cifrar, los archivos copiados fuera del contenedor ni un sistema de archivos raíz nativo. La persistencia de sesión LUKS no es cifrado nativo de raíz. Utiliza una frase de contraseña segura y mantén una copia de seguridad probada.\nConsulta Instalador de MiniOS y Gestión de sesiones.\nAplicar actualizaciones de forma deliberada\nActualiza los metadatos de los paquetes e instala las actualizaciones de seguridad de Debian en sesiones live persistentes usando el flujo de trabajo habitual de APT cuando sea apropiado. Los cambios realizados con APT en una sesión live nueva se pierden al reiniciar. Los módulos base SquashFS son de solo lectura, por lo que reemplazar la ISO o los módulos por una versión más reciente y confiable de MiniOS suele ser la forma más sencilla de actualizar el sistema live base. Tras la conversión nativa, el mantenimiento de seguridad de paquetes se gestiona simplemente con el flujo de trabajo estándar de APT de Debian para ese sistema instalado.\nConsulta Actualizaciones de software para los flujos de trabajo independientes de APT, módulos, imágenes y kernel.\nAntes de una actualización importante:\nHaz una copia de seguridad de los archivos importantes y de las sesiones persistentes.\nConfirma que haya suficiente espacio libre disponible.\nEvita interrumpir escrituras o apagar el dispositivo.\nReinicia y verifica el sistema actualizado antes de descartar el medio o la sesión anterior en buen estado.\nTratar hooks y preseeds como ejecución de código\nLa opción de arranque hooks y los hooks de live-config pueden ejecutar archivos desde el sistema de archivos raíz, el medio de arranque o una URL. Los hooks remotos, hooks en medios modificados y preseeds no revisados pueden ejecutarse con privilegios de sistema. Utiliza solo archivos revisados de una fuente confiable, prefiere la distribución autenticada y evita hooks remotos en redes no confiables. Consulta live-config para ver el orden de ejecución y las ubicaciones compatibles.\nRealiza copias de seguridad y retira los medios de forma segura\nLa persistencia no es una copia de seguridad. Mantén una copia separada de los archivos de usuario y exporta o copia las sesiones mientras estén en buen estado. Verifica la restauración en diferentes medios.\nApaga el sistema correctamente antes de retirar el almacenamiento con permisos de escritura y asegúrate de dejar espacio libre para los metadatos de sesión y el funcionamiento del sistema de archivos.\nAntes de desechar un dispositivo, bórralo de forma segura según la tecnología de almacenamiento y la sensibilidad de los datos. Eliminar archivos o simplemente formatear puede no impedir que los datos antiguos sean recuperables.",
+  "plain_text": "Seguridad\nLos controles de seguridad de MiniOS están diseñados para el sistema en vivo: sesiones temporales, sesiones persistentes, medios portátiles y configuración al inicio. El Instalador de MiniOS también puede realizar una conversión nativa. El sistema resultante mantiene el entorno de escritorio seleccionado y la identidad visual de MiniOS, pero se elimina el software específico de MiniOS en vivo, por lo que puedes asegurar y mantener el sistema con las herramientas normales de Debian en lugar de tratarlo como otro modo en vivo.\nProtege la sesión en ejecución, los datos persistentes, los medios de arranque y cualquier configuración que se aplique al iniciar.\nComienza con medios de confianza\nDescarga MiniOS desde una fuente oficial y verifica el ISO antes de grabarlo.\nSigue Verificación de descargas y compara el resultado antes de arrancar o instalar. La verificación detecta una descarga dañada o sustituida; no garantiza que un dispositivo USB ya modificado sea seguro.\nMantén el dispositivo USB bajo control físico. Las contraseñas de firmware y el orden de arranque restringido pueden reducir el arranque no autorizado ocasional, pero no cifran los archivos del dispositivo. Secure Boot puede ofrecer protección adicional de la cadena de arranque en imágenes y hardware compatibles; comprueba el comportamiento real de la versión y el firmware en vez de asumir compatibilidad.\nReemplazar credenciales predeterminadas\nUna imagen en vivo MiniOS sin personalizar utiliza las credenciales publicadas live / evil y root / toor, con inicio de sesión automático y acceso administrativo sin contraseña en su configuración orientada a la comodidad. Cualquier persona que pueda acceder al sistema podría usar esas credenciales, especialmente si SSH está activo.\nAntes de conectarse a una red no confiable:\nEstablezca contraseñas únicas para usuario y root en el Configurador de MiniOS.\nSeleccione un perfil de seguridad adecuado y revise cada control configurado.\nDesactive SSH y XRDP a menos que se requiera acceso remoto.\nReinicie en una nueva sesión al cambiar configuraciones de cuenta de un solo uso o de seguridad, y luego verifique el comportamiento de inicio de sesión y privilegios resultante.\nEl Configurador almacena los hashes de contraseña cifrados en lugar de contraseñas en texto plano. Si modifica una cuenta persistente ya creada, utilice passwd para el usuario actual y sudo passwd root para root. Después de la conversión nativa, utilice las herramientas normales de gestión de cuentas de Debian.\nUsar controles de seguridad del Configurador\nConfigurador de MiniOS proporciona tres perfiles. Un perfil completa configuraciones concretas; el nombre del perfil en sí no se guarda como clave de configuración en tiempo de ejecución, y cada ajuste sigue siendo editable de forma independiente.\nPerfil | Comportamiento principal\nconvenient | Compatible con inicio de sesión automático, sudo y PolicyKit sin contraseña, SSH root y con contraseña permitidos, XRDP/X11/pantalla de bloqueo relajados, se muestran pistas de contraseña.\nbalanced | Sin inicio de sesión automático, sudo y PolicyKit requieren contraseña, acceso root por SSH denegado pero SSH con contraseña permitido, XRDP/X11/pantalla de bloqueo reforzados.\nstrict | Sin inicio de sesión automático, sudo y PolicyKit requieren contraseña, acceso root y por contraseña por SSH denegados, XRDP deshabilitado, X11/pantalla de bloqueo reforzados, pistas de contraseña ocultas.\nLos valores predeterminados del instalador varían según el modo de despliegue: las instalaciones en vivo favorecen convenient, mientras que la conversión nativa parte de balanced. El ajuste nativo se aplica durante la conversión; tras la instalación, utilice la configuración de seguridad estándar de Debian. Estos son valores predeterminados, no recomendaciones para todos los modelos de amenaza.\nLas mismas configuraciones están disponibles como claves de configuración documentadas, incluyendo LIVE_SUDO_MODE, LIVE_POLKIT_MODE, LIVE_SSH_PERMIT_ROOT_LOGIN, LIVE_SSH_PASSWORD_AUTHENTICATION, LIVE_XRDP_MODE, LIVE_X11_MODE, LIVE_ISSUE_PASSWORD_HINTS, y LIVE_LOCKSCREEN_MODE. Es preferible usar estas claves o el Configurador en lugar de editar archivos generados de sudoers, PolicyKit, display-manager o SSH. Consulte Archivo de configuración.\nPara el comportamiento de guardado y la aplicabilidad de los ajustes, consulte Configurador de MiniOS.\nCreación de cuentas, contraseñas, LIVE_CONFIG_NOROOT, y la postura de seguridad son configuraciones de una sola vez que se utilizan al crear una nueva sesión. El Configurador muestra la aplicabilidad de cada control. Los ajustes reconfigurables, como los servicios, se aplican tras reiniciar.\nAcceso remoto seguro\nSSH puede habilitarse en una imagen MiniOS para tareas de recuperación. En una red donde no se confía en otros usuarios, asuma que las credenciales predeterminadas publicadas están expuestas hasta que confirme lo contrario.\nSi SSH no es necesario, agregue ssh a DISABLE_SERVICES en Configurator y elimínelo de ENABLE_SERVICES si está presente.\nSi SSH es necesario, deniegue el acceso root con LIVE_SSH_PERMIT_ROOT_LOGIN=false.\nPrefiera la autenticación por clave. Confirme el inicio de sesión con clave en una conexión separada antes de establecer LIVE_SSH_PASSWORD_AUTHENTICATION=false.\nRestringa el acceso entrante con el firewall de red o el router, y no exponga un sistema de recuperación portátil directamente a Internet.\nRevise XRDP por separado. El perfil estricto lo desactiva; el perfil equilibrado lo refuerza pero no necesariamente desactiva su servicio.\nLos parámetros de arranque pueden sobrescribir los valores del archivo de configuración. Verifique comportamientos inesperados del servicio en Parámetros de arranque.\nCifrar datos persistentes\nLa persistencia nativa sin cifrar, DynFileFS, DynBlk, raw y SquashFS puede ser leída por quien obtenga el dispositivo. MiniOS permite superponer LUKS2 sobre Raw, DynFileFS o DynBlk. Para crearla al inicio, selecciónala con perchencrypt=luks; las sesiones existentes obtienen su estado de cifrado desde los metadatos de la sesión y no desde una anulación posterior por línea de comandos.\nEl límite del cifrado varía según el backend. Raw cifra la imagen de bloques lógicos dentro de changes.img; DynFileFS cifra el virtual.dat; DynBlk cifra el /dev/dynblkN dispositivo de bloques directamente. Los metadatos de la sesión, archivos de arranque, metadatos del backend DynFileFS/DynBlk fuera de la imagen cifrada y archivos no relacionados en el medio permanecen visibles. La compresión del backend DynBlk se desactiva cuando se selecciona LUKS2.\nEl initrd crea el sistema de archivos cifrado en el primer uso y solicita su frase de acceso; el instalador no recibe ni almacena esa frase. Al arrancar, tres intentos fallidos de desbloqueo detienen el proceso de arranque en vez de volver a texto plano, otro backend o un reemplazo en memoria bajo la misma solicitud de persistencia.\nLa persistencia LUKS protege el contenido del sistema de archivos mientras el mapper está cerrado. No protege los datos después de desbloquear, los archivos de arranque sin cifrar, los archivos copiados fuera del backend cifrado ni un sistema de archivos raíz nativo. La persistencia de sesión LUKS no es cifrado nativo de raíz. Las exportaciones lógicas contienen archivos de sesión descifrados, por lo que debes proteger los archivos de respaldo por separado. Usa una frase de acceso robusta y mantén una copia de seguridad probada.\nConsulta Instalador de MiniOS y Gestión de sesiones.\nAplicar actualizaciones de forma deliberada\nActualiza los metadatos de los paquetes e instala las actualizaciones de seguridad de Debian en sesiones live persistentes usando el flujo de trabajo habitual de APT cuando sea apropiado. Los cambios realizados con APT en una sesión live nueva se pierden al reiniciar. Los módulos base SquashFS son de solo lectura, por lo que reemplazar la ISO o los módulos por una versión más reciente y confiable de MiniOS suele ser la forma más sencilla de actualizar el sistema live base. Tras la conversión nativa, el mantenimiento de seguridad de paquetes se gestiona simplemente con el flujo de trabajo estándar de APT de Debian para ese sistema instalado.\nConsulta Actualizaciones de software para los flujos de trabajo independientes de APT, módulos, imágenes y kernel.\nAntes de una actualización importante:\nHaz una copia de seguridad de los archivos importantes y de las sesiones persistentes.\nConfirma que haya suficiente espacio libre disponible.\nEvita interrumpir escrituras o apagar el dispositivo.\nReinicia y verifica el sistema actualizado antes de descartar el medio o la sesión anterior en buen estado.\nTratar hooks y preseeds como ejecución de código\nLa opción de arranque hooks y los hooks de live-config pueden ejecutar archivos desde el sistema de archivos raíz, el medio de arranque o una URL. Los hooks remotos, hooks en medios modificados y preseeds no revisados pueden ejecutarse con privilegios de sistema. Utiliza solo archivos revisados de una fuente confiable, prefiere la distribución autenticada y evita hooks remotos en redes no confiables. Consulta live-config para ver el orden de ejecución y las ubicaciones compatibles.\nRealiza copias de seguridad y retira los medios de forma segura\nLa persistencia no es una copia de seguridad. Mantén una copia separada de los archivos de usuario y exporta o copia las sesiones mientras estén en buen estado. Verifica la restauración en diferentes medios.\nApaga el sistema correctamente antes de retirar el almacenamiento con permisos de escritura y asegúrate de dejar espacio libre para los metadatos de sesión y el funcionamiento del sistema de archivos.\nAntes de desechar un dispositivo, bórralo de forma segura según la tecnología de almacenamiento y la sensibilidad de los datos. Eliminar archivos o simplemente formatear puede no impedir que los datos antiguos sean recuperables.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
