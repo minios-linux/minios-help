@@ -16,9 +16,9 @@
       "title": "Exportar sessões persistentes"
     },
     {
-      "anchor": "squashfs-sessões",
+      "anchor": "sessões-squashfs",
       "level": 3,
-      "title": "SquashFS sessões"
+      "title": "Sessões SquashFS"
     },
     {
       "anchor": "faça-backup-de-configurações-e-módulos",
@@ -510,11 +510,11 @@
     [
       "heading",
       3,
-      "squashfs-sessões",
+      "sessões-squashfs",
       [
         [
           "text",
-          "SquashFS sessões"
+          "Sessões SquashFS"
         ]
       ]
     ],
@@ -538,7 +538,7 @@
         ],
         [
           "text",
-          " antes de desligar para garantir que o snapshot atual esteja completo e proteja os arquivos importantes separadamente. Se precisar de uma cópia completa e restaurável de todo o dispositivo MiniOS, crie uma imagem offline do dispositivo."
+          " antes de desligar para garantir que o snapshot atual esteja completo e, em seguida, proteja os arquivos importantes separadamente. Se precisar de uma cópia completa e restaurável de todo o dispositivo MiniOS, crie uma imagem offline do dispositivo."
         ]
       ]
     ],
@@ -548,7 +548,7 @@
       [
         [
           "text",
-          "Não confie em copiar manualmente um diretório de sessão montado ou em reconstruir "
+          "Não confie em copiar manualmente o diretório de sessão montado ou em reconstruir "
         ],
         [
           "span",
@@ -562,7 +562,7 @@
         ],
         [
           "text",
-          ", segmentos DynFileFS, arquivos de apoio DynBlk ou outros metadados de contêiner como método de backup. Um backup manual byte a byte do DynBlk só é seguro enquanto o volume estiver desconectado e deve preservar completamente o "
+          ", segmentos DynFileFS, arquivos de backing DynBlk ou outros metadados do container como método de backup. Um backup manual, byte a byte, de DynBlk só é seguro enquanto o volume estiver desmontado e deve preservar todas as "
         ],
         [
           "span",
@@ -570,27 +570,13 @@
           [
             [
               "text",
-              "volume000.db"
+              "volume*.db"
             ]
           ]
         ],
         [
           "text",
-          " até o "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "volume063.db"
-            ]
-          ]
-        ],
-        [
-          "text",
-          " namespace exatamente como está; o backup lógico de "
+          " partes, incluindo números com quatro ou mais dígitos, exatamente como estão; o backup lógico "
         ],
         [
           "span",
@@ -604,7 +590,7 @@
         ],
         [
           "text",
-          " é o recomendado."
+          " é preferível."
         ]
       ]
     ],
@@ -920,7 +906,7 @@
       ]
     ]
   ],
-  "plain_text": "Fazendo backup de MiniOS\nUm backup é o caminho confiável para recuperar MiniOS. A documentação não garante um procedimento genérico para reparar bootloader, sistema de arquivos ou container de persistência danificados. Mantenha cópias recuperáveis antes de alterar a versão, kernel, layout de armazenamento ou sessões importantes.\nO que fazer backup\nGuarde as partes que não podem ser facilmente recriadas a partir de uma imagem MiniOS:\narquivos pessoais, incluindo dados ocultos de aplicativos que são importantes para você;\nconfig.conf, revisados config.conf.d arquivos e alterações intencionais no menu de boot ou parâmetros de inicialização;\nmódulos criados pelo usuário .sb e uma anotação da versão MiniOS para a qual foram compilados;\nsessões persistentes que contenham estados do sistema ou de aplicativos necessários;\nchaves de criptografia, credenciais de recuperação e outros segredos armazenados separadamente do backup que protegem.\nArquivos armazenados fora da camada de sessão, por exemplo em um local separado de dados do usuário, devem ser salvos separadamente. Não presuma que um arquivo de sessão contém dados montados de outro sistema de arquivos.\nExportar sessões persistentes\nO Gerenciador de sessões MiniOS pode exportar uma sessãoinativa native, dynfilefs, dynblk, raw, ou luks para um arquivo de backup verificado.tar.zst. Primeiro, identifique a sessão:\nminios-session list\nminios-session running\nDepois, inicialize outra sessão ou Iniciar sem salvar e exporte a sessão inativa:\nsudo minios-session export <id> /path/to/session.tar.zst\nA exportação é uma cópia lógica do conteúdo da sessão, não uma cópia bit a bit do seu contêiner de armazenamento. Armazene-a em outro dispositivo.\nPara uma sessão LUKS, o arquivo de backup contém os arquivos lógicos descriptografados. Proteja esse arquivo separadamente caso os dados precisem permanecer criptografados.\nSquashFS sessões\nO Gerenciador de Sessões atual não exporta nem copia sessões SquashFS. Use Salvar agora antes de desligar para garantir que o snapshot atual esteja completo e proteja os arquivos importantes separadamente. Se precisar de uma cópia completa e restaurável de todo o dispositivo MiniOS, crie uma imagem offline do dispositivo.\nNão confie em copiar manualmente um diretório de sessão montado ou em reconstruir session.conf, segmentos DynFileFS, arquivos de apoio DynBlk ou outros metadados de contêiner como método de backup. Um backup manual byte a byte do DynBlk só é seguro enquanto o volume estiver desconectado e deve preservar completamente o volume000.db até o volume063.db namespace exatamente como está; o backup lógico de minios-session export é o recomendado.\nFaça backup de configurações e módulos\nEm mídias MiniOS graváveis, preserve minios/config.conf, minios/config.conf.d/, e módulos criados pelo usuário armazenados em minios/modules/.\nRegistre também parâmetros de boot personalizados ou alterações no menu de inicialização que não estejam evidentes nesses arquivos.\nUm módulo compilado para uma versão MiniOS não é automaticamente compatível com outra.\nGuarde o código-fonte ou receita necessária para recompilar módulos personalizados importantes.\nCriar uma imagem do dispositivo inteiro\nUma imagem do dispositivo inteiro é útil quando você deseja preservar a tabela de partições, arquivos de inicialização, módulos, configurações, sessões e outros dados juntos. Crie a imagem offline: desligue o MiniOS e faça a imagem do dispositivo a partir de outro sistema em execução.\nUtilitário de disco oferece as operações Criar imagem e Gravar imagem. Salve a imagem em outro dispositivo físico. Restaurar uma imagem do dispositivo inteiro sobrescreve o destino selecionado, então verifique o modelo e a capacidade do destino antes de gravar.\nUma imagem de dispositivo é um complemento, não um substituto, para um backup separado dos arquivos pessoais importantes.\nRestaurar um arquivo de sessão\nImportar um arquivo do Gerenciador de Sessões cria uma nova sessão numerada; não sobrescreve a existente:\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nVerificações de compatibilidade são feitas durante a importação. Analise a sessão importada antes de ativá-la e mantenha a sessão funcional conhecida até testar a cópia restaurada.\nAo migrar para outra versão MiniOS, prefira migrar apenas os dados pessoais e configurações selecionados. Não presuma que uma sessão completa antiga ou módulo personalizado seja compatível com a nova versão apenas porque pode ser copiado para lá.\nVeja Sessões e persistência para gerenciamento de sessões e Atualizando MiniOS para migração entre versões MiniOS.",
+  "plain_text": "Fazendo backup de MiniOS\nUm backup é o caminho confiável para recuperar MiniOS. A documentação não garante um procedimento genérico para reparar bootloader, sistema de arquivos ou container de persistência danificados. Mantenha cópias recuperáveis antes de alterar a versão, kernel, layout de armazenamento ou sessões importantes.\nO que fazer backup\nGuarde as partes que não podem ser facilmente recriadas a partir de uma imagem MiniOS:\narquivos pessoais, incluindo dados ocultos de aplicativos que são importantes para você;\nconfig.conf, revisados config.conf.d arquivos e alterações intencionais no menu de boot ou parâmetros de inicialização;\nmódulos criados pelo usuário .sb e uma anotação da versão MiniOS para a qual foram compilados;\nsessões persistentes que contenham estados do sistema ou de aplicativos necessários;\nchaves de criptografia, credenciais de recuperação e outros segredos armazenados separadamente do backup que protegem.\nArquivos armazenados fora da camada de sessão, por exemplo em um local separado de dados do usuário, devem ser salvos separadamente. Não presuma que um arquivo de sessão contém dados montados de outro sistema de arquivos.\nExportar sessões persistentes\nO Gerenciador de sessões MiniOS pode exportar uma sessãoinativa native, dynfilefs, dynblk, raw, ou luks para um arquivo de backup verificado.tar.zst. Primeiro, identifique a sessão:\nminios-session list\nminios-session running\nDepois, inicialize outra sessão ou Iniciar sem salvar e exporte a sessão inativa:\nsudo minios-session export <id> /path/to/session.tar.zst\nA exportação é uma cópia lógica do conteúdo da sessão, não uma cópia bit a bit do seu contêiner de armazenamento. Armazene-a em outro dispositivo.\nPara uma sessão LUKS, o arquivo de backup contém os arquivos lógicos descriptografados. Proteja esse arquivo separadamente caso os dados precisem permanecer criptografados.\nSessões SquashFS\nO Gerenciador de Sessões atual não exporta nem copia sessões SquashFS. Use Salvar agora antes de desligar para garantir que o snapshot atual esteja completo e, em seguida, proteja os arquivos importantes separadamente. Se precisar de uma cópia completa e restaurável de todo o dispositivo MiniOS, crie uma imagem offline do dispositivo.\nNão confie em copiar manualmente o diretório de sessão montado ou em reconstruir session.conf, segmentos DynFileFS, arquivos de backing DynBlk ou outros metadados do container como método de backup. Um backup manual, byte a byte, de DynBlk só é seguro enquanto o volume estiver desmontado e deve preservar todas as volume*.db partes, incluindo números com quatro ou mais dígitos, exatamente como estão; o backup lógico minios-session export é preferível.\nFaça backup de configurações e módulos\nEm mídias MiniOS graváveis, preserve minios/config.conf, minios/config.conf.d/, e módulos criados pelo usuário armazenados em minios/modules/.\nRegistre também parâmetros de boot personalizados ou alterações no menu de inicialização que não estejam evidentes nesses arquivos.\nUm módulo compilado para uma versão MiniOS não é automaticamente compatível com outra.\nGuarde o código-fonte ou receita necessária para recompilar módulos personalizados importantes.\nCriar uma imagem do dispositivo inteiro\nUma imagem do dispositivo inteiro é útil quando você deseja preservar a tabela de partições, arquivos de inicialização, módulos, configurações, sessões e outros dados juntos. Crie a imagem offline: desligue o MiniOS e faça a imagem do dispositivo a partir de outro sistema em execução.\nUtilitário de disco oferece as operações Criar imagem e Gravar imagem. Salve a imagem em outro dispositivo físico. Restaurar uma imagem do dispositivo inteiro sobrescreve o destino selecionado, então verifique o modelo e a capacidade do destino antes de gravar.\nUma imagem de dispositivo é um complemento, não um substituto, para um backup separado dos arquivos pessoais importantes.\nRestaurar um arquivo de sessão\nImportar um arquivo do Gerenciador de Sessões cria uma nova sessão numerada; não sobrescreve a existente:\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nVerificações de compatibilidade são feitas durante a importação. Analise a sessão importada antes de ativá-la e mantenha a sessão funcional conhecida até testar a cópia restaurada.\nAo migrar para outra versão MiniOS, prefira migrar apenas os dados pessoais e configurações selecionados. Não presuma que uma sessão completa antiga ou módulo personalizado seja compatível com a nova versão apenas porque pode ser copiado para lá.\nVeja Sessões e persistência para gerenciamento de sessões e Atualizando MiniOS para migração entre versões MiniOS.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

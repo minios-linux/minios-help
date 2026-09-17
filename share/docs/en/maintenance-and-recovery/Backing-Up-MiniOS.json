@@ -562,7 +562,7 @@
         ],
         [
           "text",
-          ", DynFileFS segments, DynBlk backing files, or other container metadata as a backup method. A manual byte-for-byte DynBlk backup is safe only while the volume is detached and must preserve its complete "
+          ", DynFileFS segments, DynBlk backing files, or other container metadata as a backup method. A manual byte-for-byte DynBlk backup is safe only while the volume is detached and must preserve all existing "
         ],
         [
           "span",
@@ -570,27 +570,13 @@
           [
             [
               "text",
-              "volume000.db"
+              "volume*.db"
             ]
           ]
         ],
         [
           "text",
-          " through "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "volume063.db"
-            ]
-          ]
-        ],
-        [
-          "text",
-          " namespace exactly as it exists; logical "
+          " parts, including numbers with four or more digits, exactly as they exist; logical "
         ],
         [
           "span",
@@ -920,7 +906,7 @@
       ]
     ]
   ],
-  "plain_text": "Backing up MiniOS\nA backup is the reliable recovery path for MiniOS. The documentation does not promise a generic repair procedure for a damaged bootloader, filesystem, or persistence container. Keep recoverable copies before changing a release, kernel, storage layout, or important session.\nWhat to back up\nKeep the parts that cannot simply be recreated from a MiniOS image:\npersonal files, including hidden application data that matters to you;\nconfig.conf, reviewed config.conf.d files, and intentional boot-menu or boot-parameter changes;\nuser-created .sb modules and a note of the MiniOS release they were built for;\npersistent sessions that contain system or application state you need;\nencryption keys, recovery credentials, and other secrets stored separately from the backup they protect.\nFiles stored outside the session layer, for example in a separate user-data location, must be backed up separately. Do not assume that a session archive contains data mounted from another filesystem.\nExport persistent sessions\nMiniOS Session Manager can export a non-running native, dynfilefs, dynblk, raw, or luks session to a verified .tar.zst archive. First identify the session:\nminios-session list\nminios-session running\nThen boot another session or Start without saving and export the inactive session:\nsudo minios-session export <id> /path/to/session.tar.zst\nThe export is a logical copy of the session contents, not a byte-for-byte copy of its storage container. Store it on another device.\nFor a LUKS session, the archive contains the decrypted logical files. Protect the archive separately if the data must remain encrypted.\nSquashFS sessions\nCurrent Session Manager does not export or copy SquashFS sessions. Use Save Now before shutdown so the current snapshot is complete, then protect the important files separately. If you need a complete restorable copy of the whole MiniOS device, create an offline device image instead.\nDo not rely on manually copying a mounted session directory or on reconstructing session.conf, DynFileFS segments, DynBlk backing files, or other container metadata as a backup method. A manual byte-for-byte DynBlk backup is safe only while the volume is detached and must preserve its complete volume000.db through volume063.db namespace exactly as it exists; logical minios-session export is preferred.\nBack up configuration and modules\nOn writable MiniOS media, preserve minios/config.conf, minios/config.conf.d/, and user-created modules stored under minios/modules/.\nAlso record custom boot parameters or boot-menu changes that are not obvious from those files.\nA module built for one MiniOS release is not automatically suitable for another.\nKeep the source or recipe needed to rebuild important custom modules.\nCreate a whole-device image\nA whole-device image is useful when you want to preserve the partition table, boot files, modules, configuration, sessions, and other data together. Create it offline: shut MiniOS down and image the device from another running system.\nDrive Utility provides Create Image and Write Image operations. Save the image to a different physical device. Restoring a whole-device image overwrites the selected target, so verify the target model and capacity before writing it.\nA device image is a supplement to, not a replacement for, a separate backup of important personal files.\nRestore a session archive\nImporting a Session Manager archive creates a new numbered session; it does not overwrite the existing one:\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nCompatibility checks run during import. Inspect the imported session before activating it and keep the known-working session until the restored copy has been tested.\nWhen moving to another MiniOS release, prefer migrating selected personal data and configuration. Do not assume that an old complete session or custom module is compatible with the new release merely because it can be copied there.\nSee Sessions and persistence for session management and Updating MiniOS for moving between MiniOS releases.",
+  "plain_text": "Backing up MiniOS\nA backup is the reliable recovery path for MiniOS. The documentation does not promise a generic repair procedure for a damaged bootloader, filesystem, or persistence container. Keep recoverable copies before changing a release, kernel, storage layout, or important session.\nWhat to back up\nKeep the parts that cannot simply be recreated from a MiniOS image:\npersonal files, including hidden application data that matters to you;\nconfig.conf, reviewed config.conf.d files, and intentional boot-menu or boot-parameter changes;\nuser-created .sb modules and a note of the MiniOS release they were built for;\npersistent sessions that contain system or application state you need;\nencryption keys, recovery credentials, and other secrets stored separately from the backup they protect.\nFiles stored outside the session layer, for example in a separate user-data location, must be backed up separately. Do not assume that a session archive contains data mounted from another filesystem.\nExport persistent sessions\nMiniOS Session Manager can export a non-running native, dynfilefs, dynblk, raw, or luks session to a verified .tar.zst archive. First identify the session:\nminios-session list\nminios-session running\nThen boot another session or Start without saving and export the inactive session:\nsudo minios-session export <id> /path/to/session.tar.zst\nThe export is a logical copy of the session contents, not a byte-for-byte copy of its storage container. Store it on another device.\nFor a LUKS session, the archive contains the decrypted logical files. Protect the archive separately if the data must remain encrypted.\nSquashFS sessions\nCurrent Session Manager does not export or copy SquashFS sessions. Use Save Now before shutdown so the current snapshot is complete, then protect the important files separately. If you need a complete restorable copy of the whole MiniOS device, create an offline device image instead.\nDo not rely on manually copying a mounted session directory or on reconstructing session.conf, DynFileFS segments, DynBlk backing files, or other container metadata as a backup method. A manual byte-for-byte DynBlk backup is safe only while the volume is detached and must preserve all existing volume*.db parts, including numbers with four or more digits, exactly as they exist; logical minios-session export is preferred.\nBack up configuration and modules\nOn writable MiniOS media, preserve minios/config.conf, minios/config.conf.d/, and user-created modules stored under minios/modules/.\nAlso record custom boot parameters or boot-menu changes that are not obvious from those files.\nA module built for one MiniOS release is not automatically suitable for another.\nKeep the source or recipe needed to rebuild important custom modules.\nCreate a whole-device image\nA whole-device image is useful when you want to preserve the partition table, boot files, modules, configuration, sessions, and other data together. Create it offline: shut MiniOS down and image the device from another running system.\nDrive Utility provides Create Image and Write Image operations. Save the image to a different physical device. Restoring a whole-device image overwrites the selected target, so verify the target model and capacity before writing it.\nA device image is a supplement to, not a replacement for, a separate backup of important personal files.\nRestore a session archive\nImporting a Session Manager archive creates a new numbered session; it does not overwrite the existing one:\nsudo minios-session import /path/to/session.tar.zst --auto-convert\nCompatibility checks run during import. Inspect the imported session before activating it and keep the known-working session until the restored copy has been tested.\nWhen moving to another MiniOS release, prefer migrating selected personal data and configuration. Do not assume that an old complete session or custom module is compatible with the new release merely because it can be copied there.\nSee Sessions and persistence for session management and Updating MiniOS for moving between MiniOS releases.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
