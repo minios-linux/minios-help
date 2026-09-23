@@ -1247,7 +1247,7 @@
               [
                 [
                   "text",
-                  "Hash criptográfico para la contraseña del usuario live."
+                  "Hash encriptado para la contraseña del usuario live."
                 ]
               ]
             ]
@@ -1286,7 +1286,7 @@
               [
                 [
                   "text",
-                  "Hash criptográfico para la contraseña de root."
+                  "Hash encriptado para la contraseña de root."
                 ]
               ]
             ]
@@ -1325,7 +1325,7 @@
               [
                 [
                   "text",
-                  "Al estar habilitado, omite la configuración de privilegios de root-password, sudo y PolicyKit de MiniOS."
+                  "Si está habilitado, omite la configuración de privilegios de MiniOS, sudo y PolicyKit."
                 ]
               ]
             ]
@@ -1587,7 +1587,7 @@
               [
                 [
                   "text",
-                  "Variantes separadas por comas que se corresponden con las distribuciones configuradas."
+                  "Variantes separadas por comas asociadas a las distribuciones configuradas."
                 ]
               ]
             ]
@@ -1679,7 +1679,21 @@
               [
                 [
                   "text",
-                  "Enlaza los directorios de usuario gestionados a la ubicación configurada en medios MiniOS grabables."
+                  "Enlaza los directorios de usuario gestionados a la ubicación configurada en el medio grabable MiniOS. No disponible en modo bind, en cualquier modo "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "toram"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " o con una sesión de persistencia activa cifrada con LUKS."
                 ]
               ]
             ]
@@ -1718,7 +1732,21 @@
               [
                 [
                   "text",
-                  "Realiza bind-mount de los directorios de usuario gestionados desde la ubicación configurada en medios MiniOS grabables."
+                  "Monta con bind los directorios de usuario gestionados desde la ubicación configurada en el medio grabable MiniOS. No disponible en modo link, en cualquier modo "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "toram"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " o con una sesión de persistencia activa cifrada con LUKS."
                 ]
               ]
             ]
@@ -1757,7 +1785,7 @@
               [
                 [
                   "text",
-                  "Ubicación utilizada por el modo de usuario link/bind-directory."
+                  "Ubicación utilizada por el modo de directorio de usuario link/bind."
                 ]
               ]
             ]
@@ -1796,7 +1824,7 @@
               [
                 [
                   "text",
-                  "Selecciona la integración del módulo live-config "
+                  "Selecciona "
                 ],
                 [
                   "span",
@@ -1824,7 +1852,7 @@
                 ],
                 [
                   "text",
-                  "."
+                  " la integración del módulo live-config."
                 ]
               ]
             ]
@@ -1863,7 +1891,7 @@
               [
                 [
                   "text",
-                  "Objetivo de arranque: "
+                  "Destino de arranque: "
                 ],
                 [
                   "span",
@@ -1891,7 +1919,7 @@
                 ],
                 [
                   "text",
-                  " o "
+                  ", o "
                 ],
                 [
                   "span",
@@ -2064,7 +2092,7 @@
                 ],
                 [
                   "text",
-                  ", exporta los registros de MiniOS y de inicio de live-config a medios MiniOS grabables."
+                  ", exporta MiniOS y los registros de inicio de live-config al medio grabable MiniOS."
                 ]
               ]
             ]
@@ -2092,7 +2120,7 @@
         ],
         [
           "text",
-          ". Se pueden agregar manualmente variables adicionales para la preconfiguración de red cableada, postura de seguridad, hooks, preseeding, Xorg y otros componentes. Consulte "
+          ". Se pueden añadir manualmente variables adicionales para la preconfiguración de red cableada, configuración de seguridad, hooks, preseeding, Xorg y otros componentes. Consulte "
         ],
         [
           "link",
@@ -2108,6 +2136,44 @@
         [
           "text",
           " para la referencia completa."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El componente "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "user-media"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " rechaza tanto la activación como la copia de seguridad mientras la sesión de persistencia activa esté cifrada con LUKS. Utiliza el estado de cifrado en tiempo real: el parámetro "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchencrypt=luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " del kernel solo solicita cifrado al crear una nueva sesión y no describe una sesión existente."
         ]
       ]
     ],
@@ -3393,7 +3459,7 @@
       ]
     ]
   ],
-  "plain_text": "config.conf\nconfig.conf es el archivo principal de preconfiguración de MiniOS. En un medio MiniOS normal se almacena como minios/config.conf. Durante el arranque, el initramfs lo sincroniza con /etc/live/config.conf en el sistema ensamblado.\nUtilice este archivo para preparar cómo se inicia MiniOS y cómo se inicializa una nueva sesión persistente. Es principalmente un mecanismo de preconfiguración orientado a administradores, no un reemplazo para las herramientas de configuración habituales del escritorio en ejecución.\nReconfiguración\nLa columna Reconfigurable a continuación utiliza estos significados:\nSí — el ajuste puede modificarse y aplicarse nuevamente en un arranque posterior.\nSolo en el primer arranque — el ajuste se utiliza cuando se crea por primera vez el estado persistente correspondiente y normalmente no se vuelve a aplicar en arranques posteriores.\nEsta distinción forma parte del comportamiento que los usuarios deben conocer. Los archivos de estado internos de live-config son detalles de implementación y no lo reemplazan.\nConfiguración generada\nUna imagen actual de MiniOS genera un config.conf con esta estructura general:\n# live-config settings\nLIVE_CONFIG_CMDLINE=\"components nottyautologin\"\nLIVE_HOSTNAME=\"minios\"\nLIVE_USERNAME=\"live\"\nLIVE_USER_FULLNAME=\"MiniOS Live User\"\nLIVE_USER_DEFAULT_GROUPS=\"dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark\"\nLIVE_USER_PASSWORD_CRYPTED='$y$...'\nLIVE_ROOT_PASSWORD_CRYPTED='$y$...'\nLIVE_CONFIG_NOROOT=\"\"\nLIVE_LOCALES=\"en_US.UTF-8\"\nLIVE_TIMEZONE=\"Etc/UTC\"\nLIVE_KEYBOARD_MODEL=\"pc105\"\nLIVE_KEYBOARD_LAYOUTS=\"us,us\"\nLIVE_KEYBOARD_OPTIONS=\"grp:alt_shift_toggle,grp_led:scroll\"\nLIVE_KEYBOARD_VARIANTS=\",\"\nLIVE_CONFIG_DEBUG=\"true\"\nLIVE_LINK_USER_DIRS=\"false\"\nLIVE_BIND_USER_DIRS=\"false\"\nLIVE_USER_DIRS_PATH=\"/minios/userdata\"\nLIVE_MODULE_MODE=\"merged\"\n\n# MiniOS LiveKit settings.\nDEFAULT_TARGET=\"graphical.target\"\nENABLE_SERVICES=\"ssh\"\nDISABLE_SERVICES=\"\"\nEXPORT_LOGS=\"false\"\nLos valores exactos dependen de la imagen y la configuración de compilación.\nLIVE_CONFIG_CMDLINE no es la línea de comandos del initramfs\nLIVE_CONFIG_CMDLINE proporciona opciones a live-config después de que se haya ensamblado el root de MiniOS. Parámetros como from=, load=, toram y perchdir= deben ser parámetros reales de arranque del kernel; ponerlos solo en LIVE_CONFIG_CMDLINE es demasiado tarde para afectar al initramfs.\nParámetros estándar\nParámetro | Reconfigurable | Significado\nLIVE_CONFIG_CMDLINE | Sí | Opciones adicionales de live-config. La línea de comandos real del kernel se añade después y tiene prioridad en caso de opciones repetidas.\nLIVE_HOSTNAME | Sí | Nombre de host del sistema.\nLIVE_USERNAME | Solo en el primer arranque | Nombre del usuario live creado durante la configuración inicial.\nLIVE_USER_FULLNAME | Solo en el primer arranque | Nombre completo del usuario live.\nLIVE_USER_DEFAULT_GROUPS | Solo en el primer arranque | Grupos suplementarios asignados al crear el usuario live.\nLIVE_USER_PASSWORD_CRYPTED | Solo en el primer arranque | Hash criptográfico para la contraseña del usuario live.\nLIVE_ROOT_PASSWORD_CRYPTED | Solo en el primer arranque | Hash criptográfico para la contraseña de root.\nLIVE_CONFIG_NOROOT | Solo en el primer arranque | Al estar habilitado, omite la configuración de privilegios de root-password, sudo y PolicyKit de MiniOS.\nLIVE_LOCALES | Sí | Uno o más locales del sistema.\nLIVE_TIMEZONE | Sí | Zona horaria del sistema, por ejemplo Europe/Berlin o Etc/UTC.\nLIVE_KEYBOARD_MODEL | Sí | Modelo de teclado XKB.\nLIVE_KEYBOARD_LAYOUTS | Sí | Distribuciones de teclado separadas por comas.\nLIVE_KEYBOARD_OPTIONS | Sí | Opciones de teclado XKB.\nLIVE_KEYBOARD_VARIANTS | Sí | Variantes separadas por comas que se corresponden con las distribuciones configuradas.\nLIVE_CONFIG_DEBUG | Sí | Activa la salida de depuración de live-config cuando se establece en true.\nLIVE_LINK_USER_DIRS | Sí | Enlaza los directorios de usuario gestionados a la ubicación configurada en medios MiniOS grabables.\nLIVE_BIND_USER_DIRS | Sí | Realiza bind-mount de los directorios de usuario gestionados desde la ubicación configurada en medios MiniOS grabables.\nLIVE_USER_DIRS_PATH | Sí | Ubicación utilizada por el modo de usuario link/bind-directory.\nLIVE_MODULE_MODE | Sí | Selecciona la integración del módulo live-config simple o merged.\nDEFAULT_TARGET | Sí | Objetivo de arranque: graphical.target, multi-user.target o rescue.target.\nENABLE_SERVICES | Sí | Servicios separados por comas habilitados al arrancar mediante minios-svc.\nDISABLE_SERVICES | Sí | Servicios separados por comas deshabilitados al arrancar mediante minios-svc.\nEXPORT_LOGS | Sí | Cuando true, exporta los registros de MiniOS y de inicio de live-config a medios MiniOS grabables.\nEl archivo generado no es una lista exhaustiva de todo lo que admite minios-live-config. Se pueden agregar manualmente variables adicionales para la preconfiguración de red cableada, postura de seguridad, hooks, preseeding, Xorg y otros componentes. Consulte live-config para la referencia completa.\nPreconfiguración de red cableada\nMiniOS puede preconfigurar una política IPv4 cableada mediante el componente network de live-config. Esto está pensado para la preconfiguración administrativa de un sistema antes de que se inicie en el hardware de destino.\nPor ejemplo:\nLIVE_NETWORK_METHOD=\"static\"\nLIVE_NETWORK_INTERFACE=\"enp1s0\"\nLIVE_NETWORK_ADDRESS=\"192.0.2.10\"\nLIVE_NETWORK_PREFIX=\"24\"\nLIVE_NETWORK_GATEWAY=\"192.0.2.1\"\nLIVE_NETWORK_DNS=\"1.1.1.1,9.9.9.9\"\nLIVE_NETWORK_BACKEND=\"auto\"\nEstos ajustes son Solo en el primer arranque para la política de red persistente. Tras aplicarse correctamente, el componente registra /var/lib/live/config/network.\nCambiar los valores no sobrescribe una sesión persistente ya configurada a menos que ese estado se restablezca deliberadamente.\nLIVE_NETWORK_METHOD=static escribe una política estática. off desactiva IPv4 automática para la interfaz seleccionada. Un valor sin definir o dhcp deja sin cambios la configuración de red existente de la imagen. LIVE_NETWORK_BACKEND=auto prefiere NetworkManager y recurre a ifupdown si es necesario.\nEsta función no configura Wi-Fi. Tras el arranque, la gestión normal de redes cableadas e inalámbricas la realiza NetworkManager. Consulte Redes para el uso de red en tiempo de ejecución y live-config para todas las variables de red.\nConfiguración de early-userspace de MiniOS\nDEFAULT_TARGET, ENABLE_SERVICES, DISABLE_SERVICES y EXPORT_LOGS son configuraciones de MiniOS y no variables de live-config. Son leídas por minios-boot antes de que el sistema init normal tome el control y todas son Reconfigurables: Sí.\nLos parámetros de arranque correspondientes default-target=, enable-services= y disable-services= tienen prioridad para el arranque actual. El parámetro text fuerza multi-user.target.\nLas compilaciones actuales de Toolbox y Ultra añaden ssh a ENABLE_SERVICES. Para desactivar SSH explícitamente, inclúyalo en DISABLE_SERVICES; simplemente eliminarlo de ENABLE_SERVICES no solicita una operación de desactivación.\nCon EXPORT_LOGS=\"true\", los medios MiniOS grabables reciben los registros de inicio a continuación:\nminios/log/YYYYMMDD_HHMMSS/\n├── minios/\n└── live/\nLos registros de ejecución correspondientes son /var/log/minios/minios-boot.log y /var/log/live/config.log.\nOrigen, copia en tiempo de ejecución y precedencia\nEl directorio de datos seleccionado de MiniOS normalmente contiene estos archivos fuente:\nDirectorio de datos seleccionado | Sistema en ejecución\nconfig.conf | /etc/live/config.conf\nconfig.conf.d/*.conf | /etc/live/config.conf.d/*.conf\nEn medios montados normalmente, son visibles como minios/config.conf y minios/config.conf.d/*.conf, a menudo bajo /run/initramfs/memory/data/ mientras el sistema está en ejecución.\nLa sincronización ocurre al arrancar; no es un monitor de archivos:\nLa copia más reciente de config.conf prevalece por fecha de modificación. Una copia más nueva en el medio se copia en la raíz live. Una copia de tiempo de ejecución más nueva se copia de vuelta solo cuando el directorio de datos seleccionado de MiniOS es grabable.\nCada archivo config.conf.d/*.conf se sincroniza de forma independiente por nombre base usando las mismas reglas de marca de tiempo y escritura. Los archivos no se eliminan en ninguno de los lados.\nSi el reloj es anterior al último tiempo de sincronización registrado, se omite la comparación de marcas de tiempo y solo se rellenan los archivos de destino que faltan.\ntoram=trim copia config.conf pero omite config.conf.d/. El toram completo copia el árbol de datos, pero la sincronización entonces apunta a la copia de RAM en vez del medio fuente desconectado.\nTras la sincronización, live-config lee primero /etc/live/config.conf y luego /etc/live/config.conf.d/*.conf en orden de glob de shell. Por lo tanto, un fragmento posterior puede reemplazar un valor del archivo principal o de un fragmento anterior.\nLa línea de comandos real del kernel se añade a LIVE_CONFIG_CMDLINE. Para una opción que aparece más de una vez, la última ocurrencia en la línea de comandos del kernel prevalece. minios-boot da de manera similar prioridad a los parámetros del kernel que reconoce sobre los ajustes correspondientes de /etc/live/config.conf.\nPuede añadir variables de shell específicas del proyecto a config.conf o a sus fragmentos y leerlas desde las copias en tiempo de ejecución. Entrecomille los valores como cadenas de shell y no ponga espacios alrededor de =.\nReferencia relacionada\nParámetros de arranque — parámetros que deben colocarse en la línea de comandos real del kernel y las anulaciones de live-config.\nlive-config — referencia completa de parámetros, variables, componentes y estados de late-userspace.\nModos de arranque — cómo la persistencia y toram afectan al almacenamiento de la configuración.",
+  "plain_text": "config.conf\nconfig.conf es el archivo principal de preconfiguración de MiniOS. En un medio MiniOS normal se almacena como minios/config.conf. Durante el arranque, el initramfs lo sincroniza con /etc/live/config.conf en el sistema ensamblado.\nUtilice este archivo para preparar cómo se inicia MiniOS y cómo se inicializa una nueva sesión persistente. Es principalmente un mecanismo de preconfiguración orientado a administradores, no un reemplazo para las herramientas de configuración habituales del escritorio en ejecución.\nReconfiguración\nLa columna Reconfigurable a continuación utiliza estos significados:\nSí — el ajuste puede modificarse y aplicarse nuevamente en un arranque posterior.\nSolo en el primer arranque — el ajuste se utiliza cuando se crea por primera vez el estado persistente correspondiente y normalmente no se vuelve a aplicar en arranques posteriores.\nEsta distinción forma parte del comportamiento que los usuarios deben conocer. Los archivos de estado internos de live-config son detalles de implementación y no lo reemplazan.\nConfiguración generada\nUna imagen actual de MiniOS genera un config.conf con esta estructura general:\n# live-config settings\nLIVE_CONFIG_CMDLINE=\"components nottyautologin\"\nLIVE_HOSTNAME=\"minios\"\nLIVE_USERNAME=\"live\"\nLIVE_USER_FULLNAME=\"MiniOS Live User\"\nLIVE_USER_DEFAULT_GROUPS=\"dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark\"\nLIVE_USER_PASSWORD_CRYPTED='$y$...'\nLIVE_ROOT_PASSWORD_CRYPTED='$y$...'\nLIVE_CONFIG_NOROOT=\"\"\nLIVE_LOCALES=\"en_US.UTF-8\"\nLIVE_TIMEZONE=\"Etc/UTC\"\nLIVE_KEYBOARD_MODEL=\"pc105\"\nLIVE_KEYBOARD_LAYOUTS=\"us,us\"\nLIVE_KEYBOARD_OPTIONS=\"grp:alt_shift_toggle,grp_led:scroll\"\nLIVE_KEYBOARD_VARIANTS=\",\"\nLIVE_CONFIG_DEBUG=\"true\"\nLIVE_LINK_USER_DIRS=\"false\"\nLIVE_BIND_USER_DIRS=\"false\"\nLIVE_USER_DIRS_PATH=\"/minios/userdata\"\nLIVE_MODULE_MODE=\"merged\"\n\n# MiniOS LiveKit settings.\nDEFAULT_TARGET=\"graphical.target\"\nENABLE_SERVICES=\"ssh\"\nDISABLE_SERVICES=\"\"\nEXPORT_LOGS=\"false\"\nLos valores exactos dependen de la imagen y la configuración de compilación.\nLIVE_CONFIG_CMDLINE no es la línea de comandos del initramfs\nLIVE_CONFIG_CMDLINE proporciona opciones a live-config después de que se haya ensamblado el root de MiniOS. Parámetros como from=, load=, toram y perchdir= deben ser parámetros reales de arranque del kernel; ponerlos solo en LIVE_CONFIG_CMDLINE es demasiado tarde para afectar al initramfs.\nParámetros estándar\nParámetro | Reconfigurable | Significado\nLIVE_CONFIG_CMDLINE | Sí | Opciones adicionales de live-config. La línea de comandos real del kernel se añade después y tiene prioridad en caso de opciones repetidas.\nLIVE_HOSTNAME | Sí | Nombre de host del sistema.\nLIVE_USERNAME | Solo en el primer arranque | Nombre del usuario live creado durante la configuración inicial.\nLIVE_USER_FULLNAME | Solo en el primer arranque | Nombre completo del usuario live.\nLIVE_USER_DEFAULT_GROUPS | Solo en el primer arranque | Grupos suplementarios asignados al crear el usuario live.\nLIVE_USER_PASSWORD_CRYPTED | Solo en el primer arranque | Hash encriptado para la contraseña del usuario live.\nLIVE_ROOT_PASSWORD_CRYPTED | Solo en el primer arranque | Hash encriptado para la contraseña de root.\nLIVE_CONFIG_NOROOT | Solo en el primer arranque | Si está habilitado, omite la configuración de privilegios de MiniOS, sudo y PolicyKit.\nLIVE_LOCALES | Sí | Uno o más locales del sistema.\nLIVE_TIMEZONE | Sí | Zona horaria del sistema, por ejemplo Europe/Berlin o Etc/UTC.\nLIVE_KEYBOARD_MODEL | Sí | Modelo de teclado XKB.\nLIVE_KEYBOARD_LAYOUTS | Sí | Distribuciones de teclado separadas por comas.\nLIVE_KEYBOARD_OPTIONS | Sí | Opciones de teclado XKB.\nLIVE_KEYBOARD_VARIANTS | Sí | Variantes separadas por comas asociadas a las distribuciones configuradas.\nLIVE_CONFIG_DEBUG | Sí | Activa la salida de depuración de live-config cuando se establece en true.\nLIVE_LINK_USER_DIRS | Sí | Enlaza los directorios de usuario gestionados a la ubicación configurada en el medio grabable MiniOS. No disponible en modo bind, en cualquier modo toram o con una sesión de persistencia activa cifrada con LUKS.\nLIVE_BIND_USER_DIRS | Sí | Monta con bind los directorios de usuario gestionados desde la ubicación configurada en el medio grabable MiniOS. No disponible en modo link, en cualquier modo toram o con una sesión de persistencia activa cifrada con LUKS.\nLIVE_USER_DIRS_PATH | Sí | Ubicación utilizada por el modo de directorio de usuario link/bind.\nLIVE_MODULE_MODE | Sí | Selecciona simple o merged la integración del módulo live-config.\nDEFAULT_TARGET | Sí | Destino de arranque: graphical.target, multi-user.target, o rescue.target.\nENABLE_SERVICES | Sí | Servicios separados por comas habilitados al arrancar mediante minios-svc.\nDISABLE_SERVICES | Sí | Servicios separados por comas deshabilitados al arrancar mediante minios-svc.\nEXPORT_LOGS | Sí | Cuando true, exporta MiniOS y los registros de inicio de live-config al medio grabable MiniOS.\nEl archivo generado no es una lista exhaustiva de todo lo que admite minios-live-config. Se pueden añadir manualmente variables adicionales para la preconfiguración de red cableada, configuración de seguridad, hooks, preseeding, Xorg y otros componentes. Consulte live-config para la referencia completa.\nEl componente user-media rechaza tanto la activación como la copia de seguridad mientras la sesión de persistencia activa esté cifrada con LUKS. Utiliza el estado de cifrado en tiempo real: el parámetro perchencrypt=luks del kernel solo solicita cifrado al crear una nueva sesión y no describe una sesión existente.\nPreconfiguración de red cableada\nMiniOS puede preconfigurar una política IPv4 cableada mediante el componente network de live-config. Esto está pensado para la preconfiguración administrativa de un sistema antes de que se inicie en el hardware de destino.\nPor ejemplo:\nLIVE_NETWORK_METHOD=\"static\"\nLIVE_NETWORK_INTERFACE=\"enp1s0\"\nLIVE_NETWORK_ADDRESS=\"192.0.2.10\"\nLIVE_NETWORK_PREFIX=\"24\"\nLIVE_NETWORK_GATEWAY=\"192.0.2.1\"\nLIVE_NETWORK_DNS=\"1.1.1.1,9.9.9.9\"\nLIVE_NETWORK_BACKEND=\"auto\"\nEstos ajustes son Solo en el primer arranque para la política de red persistente. Tras aplicarse correctamente, el componente registra /var/lib/live/config/network.\nCambiar los valores no sobrescribe una sesión persistente ya configurada a menos que ese estado se restablezca deliberadamente.\nLIVE_NETWORK_METHOD=static escribe una política estática. off desactiva IPv4 automática para la interfaz seleccionada. Un valor sin definir o dhcp deja sin cambios la configuración de red existente de la imagen. LIVE_NETWORK_BACKEND=auto prefiere NetworkManager y recurre a ifupdown si es necesario.\nEsta función no configura Wi-Fi. Tras el arranque, la gestión normal de redes cableadas e inalámbricas la realiza NetworkManager. Consulte Redes para el uso de red en tiempo de ejecución y live-config para todas las variables de red.\nConfiguración de early-userspace de MiniOS\nDEFAULT_TARGET, ENABLE_SERVICES, DISABLE_SERVICES y EXPORT_LOGS son configuraciones de MiniOS y no variables de live-config. Son leídas por minios-boot antes de que el sistema init normal tome el control y todas son Reconfigurables: Sí.\nLos parámetros de arranque correspondientes default-target=, enable-services= y disable-services= tienen prioridad para el arranque actual. El parámetro text fuerza multi-user.target.\nLas compilaciones actuales de Toolbox y Ultra añaden ssh a ENABLE_SERVICES. Para desactivar SSH explícitamente, inclúyalo en DISABLE_SERVICES; simplemente eliminarlo de ENABLE_SERVICES no solicita una operación de desactivación.\nCon EXPORT_LOGS=\"true\", los medios MiniOS grabables reciben los registros de inicio a continuación:\nminios/log/YYYYMMDD_HHMMSS/\n├── minios/\n└── live/\nLos registros de ejecución correspondientes son /var/log/minios/minios-boot.log y /var/log/live/config.log.\nOrigen, copia en tiempo de ejecución y precedencia\nEl directorio de datos seleccionado de MiniOS normalmente contiene estos archivos fuente:\nDirectorio de datos seleccionado | Sistema en ejecución\nconfig.conf | /etc/live/config.conf\nconfig.conf.d/*.conf | /etc/live/config.conf.d/*.conf\nEn medios montados normalmente, son visibles como minios/config.conf y minios/config.conf.d/*.conf, a menudo bajo /run/initramfs/memory/data/ mientras el sistema está en ejecución.\nLa sincronización ocurre al arrancar; no es un monitor de archivos:\nLa copia más reciente de config.conf prevalece por fecha de modificación. Una copia más nueva en el medio se copia en la raíz live. Una copia de tiempo de ejecución más nueva se copia de vuelta solo cuando el directorio de datos seleccionado de MiniOS es grabable.\nCada archivo config.conf.d/*.conf se sincroniza de forma independiente por nombre base usando las mismas reglas de marca de tiempo y escritura. Los archivos no se eliminan en ninguno de los lados.\nSi el reloj es anterior al último tiempo de sincronización registrado, se omite la comparación de marcas de tiempo y solo se rellenan los archivos de destino que faltan.\ntoram=trim copia config.conf pero omite config.conf.d/. El toram completo copia el árbol de datos, pero la sincronización entonces apunta a la copia de RAM en vez del medio fuente desconectado.\nTras la sincronización, live-config lee primero /etc/live/config.conf y luego /etc/live/config.conf.d/*.conf en orden de glob de shell. Por lo tanto, un fragmento posterior puede reemplazar un valor del archivo principal o de un fragmento anterior.\nLa línea de comandos real del kernel se añade a LIVE_CONFIG_CMDLINE. Para una opción que aparece más de una vez, la última ocurrencia en la línea de comandos del kernel prevalece. minios-boot da de manera similar prioridad a los parámetros del kernel que reconoce sobre los ajustes correspondientes de /etc/live/config.conf.\nPuede añadir variables de shell específicas del proyecto a config.conf o a sus fragmentos y leerlas desde las copias en tiempo de ejecución. Entrecomille los valores como cadenas de shell y no ponga espacios alrededor de =.\nReferencia relacionada\nParámetros de arranque — parámetros que deben colocarse en la línea de comandos real del kernel y las anulaciones de live-config.\nlive-config — referencia completa de parámetros, variables, componentes y estados de late-userspace.\nModos de arranque — cómo la persistencia y toram afectan al almacenamiento de la configuración.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

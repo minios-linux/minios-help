@@ -11,9 +11,9 @@
       "title": "Parâmetros de Boot (componentes)"
     },
     {
-      "anchor": "parâmetros-de-boot-opções",
+      "anchor": "parâmetros-de-inicialização-opções",
       "level": 2,
-      "title": "Parâmetros de Boot (opções)"
+      "title": "Parâmetros de Inicialização (opções)"
     },
     {
       "anchor": "parâmetros-de-boot-atalhos",
@@ -530,11 +530,11 @@
     [
       "heading",
       2,
-      "parâmetros-de-boot-opções",
+      "parâmetros-de-inicialização-opções",
       [
         [
           "text",
-          "Parâmetros de Boot (opções)"
+          "Parâmetros de Inicialização (opções)"
         ]
       ]
     ],
@@ -544,7 +544,7 @@
       [
         [
           "text",
-          "Alguns componentes individuais podem alterar seu comportamento conforme um parâmetro de boot."
+          "Alguns componentes individuais podem alterar seu comportamento conforme um parâmetro de inicialização."
         ]
       ]
     ],
@@ -579,7 +579,7 @@
                 ],
                 [
                   "text",
-                  ": Busca e aplica um ou mais arquivos de preseed do debconf. URLs são manipuladas por "
+                  ": Busca e aplica um ou mais arquivos de preseed do debconf. URLs são processadas por "
                 ],
                 [
                   "span",
@@ -593,7 +593,7 @@
                 ],
                 [
                   "text",
-                  " e podem usar HTTP, FTP ou "
+                  " e podem utilizar HTTP, FTP ou "
                 ],
                 [
                   "span",
@@ -691,7 +691,7 @@
                 ],
                 [
                   "text",
-                  " na raiz do live. Entradas separadas por pipe são processadas na ordem especificada; arquivos expandidos por palavra-chave usam a ordem glob do shell."
+                  " na raiz do live. As entradas separadas por pipe são processadas na ordem especificada; arquivos expandidos por palavra-chave seguem a ordem do glob do shell."
                 ]
               ]
             ]
@@ -721,7 +721,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir o hostname do sistema. O padrão é "
+                  ": Permite definir o nome do host do sistema. O padrão é "
                 ],
                 [
                   "span",
@@ -779,7 +779,7 @@
                 ],
                 [
                   "text",
-                  " deixam o padrão da imagem inalterado. "
+                  " mantêm o padrão da imagem inalterado. "
                 ],
                 [
                   "span",
@@ -865,7 +865,7 @@
                 ],
                 [
                   "text",
-                  ", a única interface cabeada não-loopback é selecionada automaticamente; zero ou múltiplos candidatos exigem valor explícito."
+                  ", a única interface cabeada que não seja loopback é selecionada automaticamente; se houver zero ou múltiplas candidatas, é necessário informar explicitamente."
                 ]
               ]
             ]
@@ -1043,7 +1043,7 @@
                 ],
                 [
                   "text",
-                  " prefere NetworkManager e recorre ao ifupdown. "
+                  " prefere o NetworkManager e utiliza o ifupdown como alternativa. Forçar "
                 ],
                 [
                   "span",
@@ -1057,7 +1057,7 @@
                 ],
                 [
                   "text",
-                  " forçado marca a interface como não gerenciada pelo NetworkManager quando ambos os stacks estão instalados."
+                  " marca a interface como não gerenciada pelo NetworkManager quando ambos os stacks estão instalados."
                 ]
               ]
             ]
@@ -1087,7 +1087,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir o nome de usuário criado para autologin. O padrão é "
+                  ": Permite definir o nome de usuário criado para login automático. O padrão é "
                 ],
                 [
                   "span",
@@ -1131,7 +1131,7 @@
                 ],
                 [
                   "text",
-                  ": Define os grupos suplementares para o usuário criado para autologin. Os nomes dos grupos podem ser separados por vírgula ou espaço. O padrão do MiniOS é "
+                  ": Define os grupos suplementares para o usuário criado para login automático. Os nomes dos grupos podem ser separados por vírgulas ou espaços. O padrão MiniOS é "
                 ],
                 [
                   "span",
@@ -1175,7 +1175,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir o nome completo do usuário criado para autologin. O padrão do MiniOS é "
+                  ": Permite definir o nome completo do usuário criado para login automático. O padrão MiniOS é "
                 ],
                 [
                   "span",
@@ -1249,7 +1249,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir a senha do root em formato criptografado."
+                  ": Permite definir a senha do root de forma criptografada."
                 ]
               ]
             ]
@@ -1309,7 +1309,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir a senha do usuário em formato criptografado."
+                  ": Permite definir a senha do usuário de forma criptografada."
                 ]
               ]
             ]
@@ -1339,7 +1339,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir o locale do sistema, por exemplo, "
+                  ": Permite definir o locale do sistema, por exemplo "
                 ],
                 [
                   "span",
@@ -1367,7 +1367,7 @@
                 ],
                 [
                   "text",
-                  ". Caso o locale selecionado não esteja disponível no sistema, ele é gerado automaticamente."
+                  ". Caso o locale selecionado ainda não esteja disponível no sistema, ele será gerado automaticamente."
                 ]
               ]
             ]
@@ -1397,7 +1397,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir o fuso horário do sistema, por exemplo, "
+                  ": Permite definir o fuso horário do sistema, por exemplo "
                 ],
                 [
                   "span",
@@ -1485,7 +1485,7 @@
                 ],
                 [
                   "text",
-                  ": Permite alterar os layouts de teclado. Se mais de um for especificado, as ferramentas do ambiente gráfico permitirão alternar sob X11. Não há valor padrão definido."
+                  ": Permite alterar os layouts de teclado. Se mais de um for especificado, as ferramentas do ambiente de desktop permitirão alternar entre eles no X11. Não há valor padrão definido."
                 ]
               ]
             ]
@@ -1515,7 +1515,7 @@
                 ],
                 [
                   "text",
-                  ": Permite alterar as variantes de teclado. Se mais de uma for especificada, deve-se informar o mesmo número de valores que os layouts, pois serão pareados na ordem especificada. Valores em branco são permitidos. As ferramentas do ambiente gráfico permitirão alternar entre cada par de layout e variante sob X11. Não há valor padrão definido."
+                  ": Permite alterar as variantes do teclado. Se mais de uma for especificada, deve-se informar o mesmo número de valores que os layouts de teclado, pois serão pareados na ordem especificada. Valores em branco são permitidos. As ferramentas do ambiente de desktop permitirão alternar entre cada par de layout e variante no X11. Não há valor padrão definido."
                 ]
               ]
             ]
@@ -1575,7 +1575,7 @@
                 ],
                 [
                   "text",
-                  ": Permite desabilitar serviços sysv via update-rc.d."
+                  ": Permite desabilitar serviços sysv através do update-rc.d."
                 ]
               ]
             ]
@@ -1605,7 +1605,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir se o sistema assume que o relógio de hardware está em UTC ou não. O padrão é "
+                  ": Permite definir se o sistema deve assumir que o relógio de hardware está ajustado para UTC ou não. O padrão é "
                 ],
                 [
                   "span",
@@ -1679,7 +1679,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir o driver xorg ao invés de autodetectar. Se um ID PCI for especificado em "
+                  ": Permite definir o driver xorg em vez de autodetectar. Se um ID PCI for especificado em "
                 ],
                 [
                   "span",
@@ -1693,7 +1693,7 @@
                 ],
                 [
                   "text",
-                  " dentro do sistema live, o "
+                  " no sistema live, o "
                 ],
                 [
                   "span",
@@ -1707,7 +1707,7 @@
                 ],
                 [
                   "text",
-                  " é forçado para esses dispositivos. Se houver tanto um parâmetro de boot quanto uma sobrescrição, o parâmetro de boot tem precedência."
+                  " será aplicado para esses dispositivos. Se houver tanto um parâmetro de inicialização quanto uma sobrescrita, o parâmetro de inicialização tem prioridade."
                 ]
               ]
             ]
@@ -1737,7 +1737,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir a resolução do xorg ao invés de autodetectar, por exemplo, 1024x768."
+                  ": Permite definir a resolução do xorg em vez de autodetectar, por exemplo, 1024x768."
                 ]
               ]
             ]
@@ -1767,7 +1767,7 @@
                 ],
                 [
                   "text",
-                  ": Permite definir o driver WLAN ao invés de autodetectar. Se um ID PCI for especificado em "
+                  ": Permite definir o driver WLAN em vez de autodetectar. Se um ID PCI for especificado em "
                 ],
                 [
                   "span",
@@ -1781,7 +1781,7 @@
                 ],
                 [
                   "text",
-                  " dentro do sistema live, o "
+                  " no sistema live, o "
                 ],
                 [
                   "span",
@@ -1795,7 +1795,7 @@
                 ],
                 [
                   "text",
-                  " é forçado para esses dispositivos. Se houver tanto um parâmetro de boot quanto uma sobrescrição, o parâmetro de boot tem precedência."
+                  " será aplicado para esses dispositivos. Se houver tanto um parâmetro de inicialização quanto uma sobrescrita, o parâmetro de inicialização tem prioridade."
                 ]
               ]
             ]
@@ -1825,7 +1825,7 @@
                 ],
                 [
                   "text",
-                  ": Permite especificar o modo de módulo para configuração live. Quando definido como "
+                  ": Permite especificar o modo do módulo para a configuração live. Quando definido como "
                 ],
                 [
                   "span",
@@ -1839,7 +1839,7 @@
                 ],
                 [
                   "text",
-                  ", o sistema atualizará contas de usuário, reconstruirá caches e atualizará configurações de pacotes para que as alterações de configuração sejam integradas dinamicamente ao sistema em execução."
+                  ", o sistema atualizará as contas de usuário, reconstruirá caches e atualizará configurações de pacotes para que as alterações de configuração sejam integradas dinamicamente ao sistema em execução."
                 ]
               ]
             ]
@@ -1869,7 +1869,21 @@
                 ],
                 [
                   "text",
-                  ": Cria links dos diretórios gerenciados do usuário para o caminho configurado no meio de dados do MiniOS."
+                  ": Cria links dos diretórios de usuário gerenciados para o caminho configurado no meio de dados MiniOS. É mutuamente exclusivo com o modo bind e indisponível com qualquer modo "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "toram"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " ou enquanto a sessão de persistência ativa estiver criptografada com LUKS."
                 ]
               ]
             ]
@@ -1899,7 +1913,7 @@
                 ],
                 [
                   "text",
-                  ": Faz bind-mount dos diretórios gerenciados do usuário a partir do caminho configurado no meio de dados do MiniOS. Esta opção é mutuamente exclusiva com "
+                  ": Realiza bind-mount dos diretórios de usuário gerenciados a partir do caminho configurado no meio de dados MiniOS. É mutuamente exclusivo com o modo link e possui as mesmas restrições de "
                 ],
                 [
                   "span",
@@ -1907,13 +1921,13 @@
                   [
                     [
                       "text",
-                      "link-user-dirs"
+                      "toram"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  "."
+                  " e criptografia de sessão ativa."
                 ]
               ]
             ]
@@ -1943,7 +1957,7 @@
                 ],
                 [
                   "text",
-                  ": Define o caminho relativo à mídia usado por "
+                  ": Define o caminho relativo à mídia utilizado por "
                 ],
                 [
                   "span",
@@ -2015,7 +2029,7 @@
                 ],
                 [
                   "text",
-                  ": Busca e executa arquivos arbitrários a partir de um arquivo temporário no sistema live em execução. URLs são manipuladas por "
+                  ": Busca e executa arquivos arbitrários a partir de um arquivo temporário no sistema live em execução. URLs são processadas por "
                 ],
                 [
                   "span",
@@ -2029,7 +2043,7 @@
                 ],
                 [
                   "text",
-                  " e podem usar HTTP, FTP ou "
+                  " e podem utilizar HTTP, FTP ou "
                 ],
                 [
                   "span",
@@ -2043,7 +2057,7 @@
                 ],
                 [
                   "text",
-                  "; os interpretadores necessários e outras dependências devem já estar instalados. A palavra-chave "
+                  "; os interpretadores necessários e outras dependências já devem estar instalados. A palavra-chave "
                 ],
                 [
                   "span",
@@ -2099,7 +2113,7 @@
                 ],
                 [
                   "text",
-                  " no meio live detectado (com fallback para caminho ISO no componente de hook). Arquivos locais explícitos podem usar "
+                  " no meio live detectado (com fallback para caminho ISO no componente hook). Arquivos locais explícitos podem usar "
                 ],
                 [
                   "span",
@@ -2127,7 +2141,7 @@
                 ],
                 [
                   "text",
-                  " na raiz do live. Entradas separadas por pipe são executadas na ordem especificada; arquivos expandidos por palavra-chave usam a ordem glob do shell. Exemplos são instalados em "
+                  " na raiz do live. Entradas separadas por pipe são executadas na ordem especificada; arquivos expandidos por palavra-chave seguem a ordem do glob do shell. Exemplos são instalados em "
                 ],
                 [
                   "span",
@@ -2187,7 +2201,7 @@
             ],
             [
               "text",
-              " é executado como root. Hooks são tornados executáveis e executados como root, e preseeds alteram o banco de dados debconf do sistema com privilégios de root. HTTP e FTP simples não autenticam o conteúdo baixado e não fornecem proteção de integridade. Prefira arquivos locais revisados ou transporte autenticado confiável com verificação de integridade independente; não use hooks ou preseeds remotos de redes não confiáveis."
+              " é executado como root. Hooks são tornados executáveis e rodados como root, e preseeds alteram o banco de dados debconf do sistema com privilégios de root. HTTP e FTP simples não autenticam o conteúdo baixado nem oferecem proteção de integridade. Prefira arquivos locais revisados ou transporte autenticado confiável com verificação de integridade independente; não utilize hooks remotos ou preseeds de redes não confiáveis."
             ]
           ]
         ]
@@ -2982,7 +2996,7 @@
       [
         [
           "text",
-          "O "
+          ""
         ],
         [
           "span",
@@ -2996,7 +3010,7 @@
         ],
         [
           "text",
-          " pode ser configurado (mas não ativado) por meio de arquivos de configuração. Qualquer parâmetro de boot suportado pode ser colocado em "
+          " pode ser configurado (mas não ativado) por meio de arquivos de configuração. Qualquer parâmetro de boot suportado pode ser inserido em "
         ],
         [
           "span",
@@ -3010,7 +3024,7 @@
         ],
         [
           "text",
-          ", e a maioria das opções pode, alternativamente, ser definida por variáveis individuais. O parâmetro "
+          ", e a maioria das opções também pode ser definida por variáveis individuais. O parâmetro "
         ],
         [
           "span",
@@ -3056,13 +3070,13 @@
           [
             [
               "text",
-              "Nota:"
+              "Observação:"
             ]
           ]
         ],
         [
           "text",
-          " Se arquivos de configuração forem utilizados, todos os parâmetros de boot devem ser inseridos (preferencialmente) na variável "
+          " Se arquivos de configuração forem utilizados, todos os parâmetros de boot devem ser colocados (preferencialmente) na variável "
         ],
         [
           "span",
@@ -3076,7 +3090,7 @@
         ],
         [
           "text",
-          ", ou as variáveis individuais podem ser definidas. Se variáveis individuais forem usadas, o usuário deve garantir que todas as variáveis necessárias estejam configuradas para criar uma configuração válida."
+          ", ou então podem ser definidas variáveis individuais. Se variáveis individuais forem usadas, o usuário deve garantir que todas as variáveis necessárias estejam definidas para criar uma configuração válida."
         ]
       ]
     ],
@@ -3084,10 +3098,6 @@
       "block",
       "paragraph",
       [
-        [
-          "text",
-          "O próprio "
-        ],
         [
           "span",
           "code",
@@ -3100,7 +3110,7 @@
         ],
         [
           "text",
-          " faz o source de "
+          " por si só faz o source de "
         ],
         [
           "span",
@@ -3128,7 +3138,7 @@
         ],
         [
           "text",
-          " na ordem do glob do shell. Assim, fragmentos posteriores podem substituir valores do arquivo principal ou de fragmentos anteriores. Não há uma segunda camada de configuração de mídia sendo carregada separadamente."
+          " na ordem do glob do shell. Assim, fragmentos posteriores podem sobrescrever valores do arquivo principal ou de fragmentos anteriores. Não faz o source separadamente de uma segunda camada de configuração de mídia."
         ]
       ]
     ],
@@ -3166,7 +3176,7 @@
         ],
         [
           "text",
-          ". Antes do início do "
+          ". Antes de "
         ],
         [
           "span",
@@ -3180,7 +3190,7 @@
         ],
         [
           "text",
-          ", o initramfs MiniOS sincroniza esses arquivos com os arquivos de runtime "
+          " iniciar, o initramfs MiniOS sincroniza esses arquivos com os arquivos runtime do "
         ],
         [
           "span",
@@ -3194,7 +3204,7 @@
         ],
         [
           "text",
-          " de acordo com o horário de modificação. Um arquivo de origem mais recente substitui seu equivalente de runtime; um arquivo de runtime mais recente só é copiado de volta se o diretório de dados MiniOS selecionado for gravável. Timestamps iguais não causam cópia, arquivos ausentes são preenchidos e arquivos não são excluídos. Esta é uma sincronização feita na inicialização, não um monitoramento contínuo. Consulte "
+          " pelo horário de modificação. Um arquivo de origem mais recente substitui o correspondente runtime; um arquivo runtime mais recente só é copiado de volta se o diretório de dados MiniOS selecionado for gravável. Timestamps iguais não causam cópia, arquivos ausentes são preenchidos e arquivos não são excluídos. Essa sincronização ocorre apenas na inicialização, não é monitoramento contínuo. Veja "
         ],
         [
           "link",
@@ -3219,7 +3229,7 @@
       [
         [
           "text",
-          "Como fallback para implementações de initramfs que não prepararam o arquivo de runtime, os wrappers de inicialização systemd e SysV copiam "
+          "Como fallback para implementações de initramfs que não prepararam o arquivo runtime, os wrappers de inicialização do systemd e SysV copiam "
         ],
         [
           "span",
@@ -3233,7 +3243,7 @@
         ],
         [
           "text",
-          " da mídia detectada apenas quando "
+          " a partir da mídia detectada somente quando "
         ],
         [
           "span",
@@ -3247,7 +3257,7 @@
         ],
         [
           "text",
-          " está ausente. Esse fallback não copia fragmentos "
+          " está ausente. Esse fallback não copia fragmentos de "
         ],
         [
           "span",
@@ -3261,7 +3271,7 @@
         ],
         [
           "text",
-          ". O initramfs padrão atual MiniOS do LiveKit executa a sincronização anterior."
+          ". O initramfs padrão atual MiniOS LiveKit realiza a sincronização anterior."
         ]
       ]
     ],
@@ -3271,7 +3281,7 @@
       [
         [
           "text",
-          "Os arquivos de fragmento devem corresponder a "
+          "Os arquivos de fragmentos devem corresponder a "
         ],
         [
           "span",
@@ -3313,7 +3323,7 @@
         ],
         [
           "text",
-          " são recomendados; escolha nomes lexicais deliberadamente, pois fragmentos posteriores sobrescrevem anteriores."
+          " são recomendados; escolha nomes lexicais com cuidado, pois fragmentos posteriores sobrescrevem os anteriores."
         ]
       ]
     ],
@@ -3323,7 +3333,7 @@
       [
         [
           "text",
-          "O conteúdo real dos arquivos de configuração consiste em uma ou mais das seguintes variáveis:"
+          "O conteúdo dos arquivos de configuração consiste em uma ou mais das seguintes variáveis."
         ]
       ]
     ],
@@ -3592,7 +3602,7 @@
                 ],
                 [
                   "text",
-                  " e um valor não definido não fazem nada e não removem um perfil estático MiniOS previamente criado."
+                  " e um valor não definido não alteram nada e não removem um perfil estático MiniOS já criado."
                 ]
               ]
             ]
@@ -3828,7 +3838,7 @@
       [
         [
           "text",
-          "O componente de rede grava "
+          "O componente de rede registra "
         ],
         [
           "span",
@@ -3842,7 +3852,7 @@
         ],
         [
           "text",
-          " após escrever a política com sucesso. Remova esse carimbo para aplicar uma política alterada em um sistema persistente. Para remover um perfil estático anterior, use "
+          " após gravar a política com sucesso. Remova esse registro para aplicar uma política alterada em um sistema persistente. Para remover um perfil estático anterior, use "
         ],
         [
           "span",
@@ -3856,7 +3866,7 @@
         ],
         [
           "text",
-          " ou remova manualmente o perfil e o carimbo gerenciados por MiniOS."
+          " ou remova manualmente o perfil e o registro gerenciados por MiniOS."
         ]
       ]
     ],
@@ -4051,7 +4061,7 @@
                 ],
                 [
                   "text",
-                  ". Especifica a senha root em texto simples."
+                  ". Ela define a senha do root em texto simples."
                 ]
               ]
             ]
@@ -4095,7 +4105,7 @@
                 ],
                 [
                   "text",
-                  ". Especifica a senha root em formato criptografado."
+                  ". Ela define a senha do root de forma criptografada."
                 ]
               ]
             ]
@@ -4139,7 +4149,7 @@
                 ],
                 [
                   "text",
-                  ". Especifica a senha do usuário em texto simples."
+                  ". Ela define a senha do usuário em texto simples."
                 ]
               ]
             ]
@@ -4183,7 +4193,7 @@
                 ],
                 [
                   "text",
-                  ". Especifica a senha do usuário em formato criptografado."
+                  ". Ela define a senha do usuário de forma criptografada."
                 ]
               ]
             ]
@@ -5223,7 +5233,7 @@
                 ],
                 [
                   "text",
-                  ": Habilita ou desabilita links dos diretórios padrão de dados do usuário para o drive MiniOS gravável. O parâmetro correspondente de boot é o flag "
+                  ": Ativa ou desativa links dos diretórios de dados padrão do usuário para o drive MiniOS gravável. O parâmetro de boot correspondente é apenas o sinalizador "
                 ],
                 [
                   "span",
@@ -5237,7 +5247,7 @@
                 ],
                 [
                   "text",
-                  ". O modo link não pode ser combinado com o modo bind ou qualquer modo "
+                  " . O modo de link não pode ser combinado com o modo bind nem com nenhum modo "
                 ],
                 [
                   "span",
@@ -5281,7 +5291,7 @@
                 ],
                 [
                   "text",
-                  ": Habilita ou desabilita montagens bind dos diretórios padrão de dados do usuário a partir do drive MiniOS gravável. O parâmetro correspondente de boot é o flag "
+                  ": Ativa ou desativa os bind mounts dos diretórios de dados padrão do usuário a partir do drive MiniOS gravável. O parâmetro de boot correspondente é apenas o sinalizador "
                 ],
                 [
                   "span",
@@ -5295,7 +5305,7 @@
                 ],
                 [
                   "text",
-                  ". O modo bind não pode ser combinado com o modo link ou qualquer modo "
+                  " . O modo bind não pode ser combinado com o modo link nem com nenhum modo "
                 ],
                 [
                   "span",
@@ -5353,7 +5363,7 @@
                 ],
                 [
                   "text",
-                  ". Especifica um caminho seguro dentro do drive MiniOS FAT32, exFAT ou NTFS. O padrão é "
+                  ". Ela define um caminho seguro dentro do drive MiniOS FAT32, exFAT ou NTFS. O padrão é "
                 ],
                 [
                   "span",
@@ -5381,7 +5391,21 @@
       [
         [
           "text",
-          "A configuração de mídia do usuário nunca mescla automaticamente dois diretórios não vazios. Um diretório local não vazio só é migrado quando o destino na mídia está vazio. Quando o recurso é desabilitado, os dados gerenciados na mídia são copiados de volta antes que os links sejam removidos. Uma validação ou cópia com falha mantém os diretórios de usuário existentes e registra o motivo em "
+          "A configuração de mídia do usuário nunca mescla automaticamente dois diretórios não vazios. Um diretório local não vazio só é migrado quando o destino na mídia está vazio. Quando o recurso é desativado, os dados gerenciados na mídia são copiados de volta antes que os links sejam removidos. A ativação e cópia de volta de mídia do usuário são bloqueadas enquanto a sessão de persistência ativa estiver criptografada com LUKS, impedindo que dados da sessão sejam movidos para uma mídia MiniOS não criptografada. Essa decisão usa o estado real de criptografia ativa: "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchencrypt=luks"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " apenas solicita criptografia ao criar uma nova sessão e não descreve uma sessão existente. Uma validação ou cópia com falha mantém os diretórios de usuário existentes e registra o motivo em "
         ],
         [
           "span",
@@ -5472,7 +5496,7 @@
                 ],
                 [
                   "text",
-                  ", o sistema live aplica atualizações (via minios-update-users, minios-update-cache e minios-update-dpkg) para mesclar configurações personalizadas com o ambiente base."
+                  ", o sistema live aplica atualizações (via minios-update-users, minios-update-cache e minios-update-dpkg) para mesclar configurações personalizadas ao ambiente base."
                 ]
               ]
             ]
@@ -7971,7 +7995,7 @@
       ]
     ]
   ],
-  "plain_text": "live-config\nlive-config - Componentes de Configuração do Sistema\nO live-config contém os componentes que configuram um sistema live durante o processo de boot (espaço de usuário tardio).\nO boot pela rede no initramfs (ip=, PXE, from=http://…) é uma camada separada do LiveKit e não é gerenciada pelo live-config. Veja Boot pela rede.\nO live-config pode ser configurado por parâmetros de boot ou pelos arquivos de configuração em tempo de execução preparados pelo initramfs. A linha de comando real do kernel é anexada após os valores fornecidos pelo arquivo LIVE_CONFIG_CMDLINE, então os parâmetros de boot correspondentes mais recentes têm precedência. Componentes que gravam estado em /var/lib/live/config normalmente são executados apenas uma vez; componentes de sincronização e stateless podem rodar a cada invocação.\nSe o live-build(7) for utilizado para construir o sistema live, os parâmetros padrão do live-config podem ser definidos pela opção --bootappend-live, veja a página de manual lb_config(1).\nParâmetros de Boot (componentes)\nO live-config só é ativado se boot=live for utilizado como parâmetro de boot. Por padrão, todos os componentes são executados. O parâmetro live-config.components pode restringir quais componentes serão executados, e live-config.nocomponents pode excluir componentes. Se ambos os parâmetros forem usados, ou se algum deles for especificado várias vezes, a última ocorrência terá precedência.\nlive-config.components | components: Todos os componentes são executados. Este é o padrão utilizado pelas imagens live.\nlive-config.components=COMPONENT1,COMPONENT2,...COMPONENTn | components=COMPONENT1,COMPONENT2,...COMPONENTn: Apenas os componentes especificados são executados. Os componentes são executados na ordem codificada em seus nomes de arquivo sob /usr/lib/live/config, independentemente da ordem nesta lista.\nlive-config.nocomponents | nocomponents: Nenhum componente é executado.\nlive-config.nocomponents=COMPONENT1,COMPONENT2,...COMPONENTn | nocomponents=COMPONENT1,COMPONENT2,...COMPONENTn: Todos os componentes são executados, exceto os especificados.\nParâmetros de Boot (opções)\nAlguns componentes individuais podem alterar seu comportamento conforme um parâmetro de boot.\nlive-config.debconf-preseed=filesystem|medium|URL1|URL2|...|URLn | debconf-preseed=medium|filesystem|URL1|URL2|...|URLn: Busca e aplica um ou mais arquivos de preseed do debconf. URLs são manipuladas por wget e podem usar HTTP, FTP ou file://. A palavra-chave filesystem expande arquivos em /usr/lib/live/config-preseed/; medium expande arquivos em minios/config-preseed/ no meio live detectado. Arquivos locais explícitos podem usar caminhos como file:///run/initramfs/memory/data/minios/config-preseed/FILE ou file:///PATH na raiz do live. Entradas separadas por pipe são processadas na ordem especificada; arquivos expandidos por palavra-chave usam a ordem glob do shell.\nlive-config.hostname=HOSTNAME | hostname=HOSTNAME: Permite definir o hostname do sistema. O padrão é minios.\nlive-config.network-method=dhcp|static|off | network-method=dhcp|static|off: Seleciona a política de rede cabeada. Não definido e dhcp deixam o padrão da imagem inalterado. static grava a configuração para o backend selecionado; off desativa a configuração automática de IPv4 para a interface selecionada.\nlive-config.network-interface=INTERFACE | network-interface=INTERFACE: Seleciona a interface cabeada. Se omitido para static ou off, a única interface cabeada não-loopback é selecionada automaticamente; zero ou múltiplos candidatos exigem valor explícito.\nlive-config.network-address=IPV4 | network-address=IPV4: Define o endereço IPv4 estático.\nlive-config.network-prefix=PREFIX | network-prefix=PREFIX: Define o comprimento do prefixo IPv4 de 0 a 32. O padrão estático é 24.\nlive-config.network-gateway=IPV4 | network-gateway=IPV4: Define o gateway IPv4 opcional.\nlive-config.network-dns=ADDRESS1,ADDRESS2 | network-dns=ADDRESS1,ADDRESS2: Define endereços de servidores DNS opcionais, separados por vírgula.\nlive-config.network-backend=auto|nm|ifupdown | network-backend=auto|nm|ifupdown: Seleciona o backend de rede. auto prefere NetworkManager e recorre ao ifupdown. ifupdown forçado marca a interface como não gerenciada pelo NetworkManager quando ambos os stacks estão instalados.\nlive-config.username=USERNAME | username=USERNAME: Permite definir o nome de usuário criado para autologin. O padrão é live.\nlive-config.user-default-groups=GROUP1,GROUP2,...GROUPn | user-default-groups=GROUP1,GROUP2,...GROUPn: Define os grupos suplementares para o usuário criado para autologin. Os nomes dos grupos podem ser separados por vírgula ou espaço. O padrão do MiniOS é dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark.\nlive-config.user-fullname=\"USER FULLNAME\" | user-fullname=\"USER FULLNAME\": Permite definir o nome completo do usuário criado para autologin. O padrão do MiniOS é MiniOS Live User.\nlive-config.root-password=PASSWORD | root-password=PASSWORD: Permite definir a senha do root em texto simples.\nlive-config.root-password-crypted=PASSWORD | root-password-crypted=PASSWORD: Permite definir a senha do root em formato criptografado.\nlive-config.user-password=PASSWORD | user-password=PASSWORD: Permite definir a senha do usuário em texto simples.\nlive-config.user-password-crypted=PASSWORD | user-password-crypted=PASSWORD: Permite definir a senha do usuário em formato criptografado.\nlive-config.locales=LOCALE1,LOCALE2,...LOCALEn | locales=LOCALE1,LOCALE2,...LOCALEn: Permite definir o locale do sistema, por exemplo, de_CH.UTF-8. O padrão é en_US.UTF-8. Caso o locale selecionado não esteja disponível no sistema, ele é gerado automaticamente.\nlive-config.timezone=TIMEZONE | timezone=TIMEZONE: Permite definir o fuso horário do sistema, por exemplo, Europe/Zurich. O padrão é UTC.\nlive-config.keyboard-model=KEYBOARD_MODEL | keyboard-model=KEYBOARD_MODEL: Permite alterar o modelo do teclado. Não há valor padrão definido.\nlive-config.keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn | keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Permite alterar os layouts de teclado. Se mais de um for especificado, as ferramentas do ambiente gráfico permitirão alternar sob X11. Não há valor padrão definido.\nlive-config.keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn | keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Permite alterar as variantes de teclado. Se mais de uma for especificada, deve-se informar o mesmo número de valores que os layouts, pois serão pareados na ordem especificada. Valores em branco são permitidos. As ferramentas do ambiente gráfico permitirão alternar entre cada par de layout e variante sob X11. Não há valor padrão definido.\nlive-config.keyboard-options=KEYBOARD_OPTIONS | keyboard-options=KEYBOARD_OPTIONS: Permite alterar as opções do teclado. Não há valor padrão definido.\nlive-config.sysv-rc=SERVICE1,SERVICE2,...SERVICEn | sysv-rc=SERVICE1,SERVICE2,...SERVICEn: Permite desabilitar serviços sysv via update-rc.d.\nlive-config.utc=yes|no | utc=yes|no: Permite definir se o sistema assume que o relógio de hardware está em UTC ou não. O padrão é yes.\nlive-config.xorg-xsession-manager=X_SESSION_MANAGER | x-session-manager=X_SESSION_MANAGER: Permite definir o x-session-manager via update-alternatives.\nlive-config.xorg-driver=XORG_DRIVER | xorg-driver=XORG_DRIVER: Permite definir o driver xorg ao invés de autodetectar. Se um ID PCI for especificado em /usr/share/live/config/xserver-xorg/*DRIVER*.ids dentro do sistema live, o DRIVER é forçado para esses dispositivos. Se houver tanto um parâmetro de boot quanto uma sobrescrição, o parâmetro de boot tem precedência.\nlive-config.xorg-resolution=XORG_RESOLUTION | xorg-resolution=XORG_RESOLUTION: Permite definir a resolução do xorg ao invés de autodetectar, por exemplo, 1024x768.\nlive-config.wlan-driver=WLAN_DRIVER | wlan-driver=WLAN_DRIVER: Permite definir o driver WLAN ao invés de autodetectar. Se um ID PCI for especificado em /usr/share/live/config/broadcom-sta/*DRIVER*.ids dentro do sistema live, o DRIVER é forçado para esses dispositivos. Se houver tanto um parâmetro de boot quanto uma sobrescrição, o parâmetro de boot tem precedência.\nlive-config.module-mode=simple|merged | module-mode=simple|merged: Permite especificar o modo de módulo para configuração live. Quando definido como merged, o sistema atualizará contas de usuário, reconstruirá caches e atualizará configurações de pacotes para que as alterações de configuração sejam integradas dinamicamente ao sistema em execução.\nlive-config.link-user-dirs | link-user-dirs: Cria links dos diretórios gerenciados do usuário para o caminho configurado no meio de dados do MiniOS.\nlive-config.bind-user-dirs | bind-user-dirs: Faz bind-mount dos diretórios gerenciados do usuário a partir do caminho configurado no meio de dados do MiniOS. Esta opção é mutuamente exclusiva com link-user-dirs.\nlive-config.user-dirs-path=PATH | user-dirs-path=PATH: Define o caminho relativo à mídia usado por link-user-dirs ou bind-user-dirs. O padrão é /minios/userdata.\nlive-config.hooks=filesystem|medium|URL1|URL2|...|URLn | hooks=medium|filesystem|URL1|URL2|...|URLn: Busca e executa arquivos arbitrários a partir de um arquivo temporário no sistema live em execução. URLs são manipuladas por wget e podem usar HTTP, FTP ou file://; os interpretadores necessários e outras dependências devem já estar instalados. A palavra-chave filesystem expande arquivos em /usr/lib/live/config-hooks/; medium expande arquivos em minios/config-hooks/ no meio live detectado (com fallback para caminho ISO no componente de hook). Arquivos locais explícitos podem usar file:///run/initramfs/memory/data/minios/config-hooks/FILE ou file:///PATH na raiz do live. Entradas separadas por pipe são executadas na ordem especificada; arquivos expandidos por palavra-chave usam a ordem glob do shell. Exemplos são instalados em /usr/share/doc/live-config/examples/hooks/.\nAviso de segurança: live-config é executado como root. Hooks são tornados executáveis e executados como root, e preseeds alteram o banco de dados debconf do sistema com privilégios de root. HTTP e FTP simples não autenticam o conteúdo baixado e não fornecem proteção de integridade. Prefira arquivos locais revisados ou transporte autenticado confiável com verificação de integridade independente; não use hooks ou preseeds remotos de redes não confiáveis.\nParâmetros de Boot (atalhos)\nPara alguns casos de uso comuns onde seria necessário combinar vários parâmetros individuais, o live-config oferece atalhos. Isso permite tanto granularidade total sobre todas as opções quanto manter as coisas simples.\nlive-config.noroot | noroot: Desativa a configuração de senha do root e as concessões de privilégios sudo e PolicyKit do MiniOS.\nlive-config.sudo-mode=passwordless|password|disabled | sudo-mode=passwordless|password|disabled: Controla a configuração do sudo para o usuário live. O padrão, e o comportamento histórico do MiniOS quando não definido, é passwordless. O modo password mantém o acesso sudo, mas exige a senha do usuário live. O modo disabled remove a concessão sudo do MiniOS e mantém o usuário live fora do grupo sudo ao criar o usuário. O atalho antigo noroot sobrescreve isso e desativa a configuração de privilégios de root de forma mais ampla.\nlive-config.polkit-mode=passwordless|password|disabled | polkit-mode=passwordless|password|disabled: Controla as regras de conveniência do PolicyKit do MiniOS. O padrão, e o comportamento histórico do MiniOS quando não definido, é passwordless. Os modos password e disabled removem essa regra, então a autenticação padrão do PolicyKit da distribuição se aplica. disabled não é uma política de negação total; use noroot quando o usuário live não deve obter privilégios administrativos.\nlive-config.ssh-permit-root-login=true|false | ssh-permit-root-login=true|false: Escreve uma política PermitRootLogin do OpenSSH quando explicitamente definido e o openssh-server está instalado.\nlive-config.ssh-password-authentication=true|false | ssh-password-authentication=true|false: Escreve uma política PasswordAuthentication do OpenSSH quando explicitamente definido e o openssh-server está instalado.\nlive-config.xrdp-mode=relaxed|hardened|disabled | xrdp-mode=relaxed|hardened|disabled: Controla a postura do XRDP quando o xrdp está instalado. relaxed preserva os padrões históricos do MiniOS. hardened vincula o XRDP ao localhost, restaura configurações negociadas/de alta segurança e desativa o login root no XRDP. disabled desativa e para o XRDP via minios-svc quando disponível.\nlive-config.x11-mode=relaxed|hardened | x11-mode=relaxed|hardened: Controla a postura de conveniência do X11 do MiniOS. relaxed preserva a compatibilidade histórica. hardened remove a opção permissiva -ac do X server e reforça Xwrapper.config quando presente.\nlive-config.issue-password-hints=true|false | issue-password-hints=true|false: Controla se /etc/issue mostra as dicas de senha padrão do root/live do MiniOS.\nlive-config.lockscreen-mode=relaxed|hardened | lockscreen-mode=relaxed|hardened: Controla se o live-config relaxa o bloqueio de tela. relaxed preserva a conveniência histórica da sessão live. hardened evita desabilitar o bloqueio do GNOME e ativa o bloqueio do xscreensaver onde esse arquivo está presente.\nlive-config.noautologin | noautologin: Impede que o live-config configure autologin no console e no modo gráfico. Não remove autologin já configurado em uma sessão persistente.\nlive-config.nottyautologin | nottyautologin: Impede que o live-config configure autologin no console, sem afetar a configuração gráfica. Configuração persistente existente não é removida.\nlive-config.nox11autologin | nox11autologin: Impede que o live-config configure autologin no display-manager, sem afetar a configuração TTY. Configuração persistente existente não é removida.\nParâmetros de Boot (opções especiais)\nPara casos de uso especiais, existem alguns parâmetros de boot específicos.\nlive-config.debug | debug: Habilita a saída de debug no live-config.\nArquivos de Configuração\nO live-config pode ser configurado (mas não ativado) por meio de arquivos de configuração. Qualquer parâmetro de boot suportado pode ser colocado em LIVE_CONFIG_CMDLINE, e a maioria das opções pode, alternativamente, ser definida por variáveis individuais. O parâmetro boot=live ainda é necessário para ativar o live-config.\nNota: Se arquivos de configuração forem utilizados, todos os parâmetros de boot devem ser inseridos (preferencialmente) na variável LIVE_CONFIG_CMDLINE, ou as variáveis individuais podem ser definidas. Se variáveis individuais forem usadas, o usuário deve garantir que todas as variáveis necessárias estejam configuradas para criar uma configuração válida.\nO próprio live-config faz o source de /etc/live/config.conf e depois /etc/live/config.conf.d/*.conf na ordem do glob do shell. Assim, fragmentos posteriores podem substituir valores do arquivo principal ou de fragmentos anteriores. Não há uma segunda camada de configuração de mídia sendo carregada separadamente.\nEm mídias MiniOS, os arquivos de origem são minios/config.conf e minios/config.conf.d/*.conf. Antes do início do live-config, o initramfs MiniOS sincroniza esses arquivos com os arquivos de runtime /etc/live/ de acordo com o horário de modificação. Um arquivo de origem mais recente substitui seu equivalente de runtime; um arquivo de runtime mais recente só é copiado de volta se o diretório de dados MiniOS selecionado for gravável. Timestamps iguais não causam cópia, arquivos ausentes são preenchidos e arquivos não são excluídos. Esta é uma sincronização feita na inicialização, não um monitoramento contínuo. Consulte Arquivo de configuração para as regras completas de sincronização e precedência da linha de comando.\nComo fallback para implementações de initramfs que não prepararam o arquivo de runtime, os wrappers de inicialização systemd e SysV copiam minios/config.conf da mídia detectada apenas quando /etc/live/config.conf está ausente. Esse fallback não copia fragmentos config.conf.d. O initramfs padrão atual MiniOS do LiveKit executa a sincronização anterior.\nOs arquivos de fragmento devem corresponder a *.conf. Nomes como vendor.conf ou project.conf são recomendados; escolha nomes lexicais deliberadamente, pois fragmentos posteriores sobrescrevem anteriores.\nO conteúdo real dos arquivos de configuração consiste em uma ou mais das seguintes variáveis:\nLIVE_CONFIG_CMDLINE=PARAMETER1 PARAMETER2...PARAMETERn: Esta variável corresponde à linha de comando do bootloader.\nLIVE_CONFIG_COMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Esta variável corresponde ao parâmetro **live-config.components**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*.\nLIVE_CONFIG_NOCOMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Esta variável corresponde ao parâmetro **live-config.nocomponents**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*.\nLIVE_DEBCONF_PRESEED=filesystem|medium|URL1|URL2|...|URLn: Esta variável corresponde ao parâmetro **live-config.debconf-preseed**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn*.\nLIVE_HOSTNAME=HOSTNAME: Esta variável corresponde ao parâmetro **live-config.hostname**=*HOSTNAME*. O padrão é minios.\nLIVE_NETWORK_METHOD=dhcp|static|off: Seleciona a política de rede cabeada. dhcp e um valor não definido não fazem nada e não removem um perfil estático MiniOS previamente criado.\nLIVE_NETWORK_INTERFACE=INTERFACE: Seleciona a interface cabeada para a política static ou off.\nLIVE_NETWORK_ADDRESS=IPV4: Define o endereço IPv4 estático.\nLIVE_NETWORK_PREFIX=PREFIX: Define o comprimento do prefixo estático; o padrão é 24.\nLIVE_NETWORK_GATEWAY=IPV4: Define o gateway estático opcional.\nLIVE_NETWORK_DNS=ADDRESS1,ADDRESS2: Define servidores DNS opcionais, separados por vírgula.\nLIVE_NETWORK_BACKEND=auto|nm|ifupdown: Seleciona o backend implementado.\nO componente de rede grava /var/lib/live/config/network após escrever a política com sucesso. Remova esse carimbo para aplicar uma política alterada em um sistema persistente. Para remover um perfil estático anterior, use network-method=off ou remova manualmente o perfil e o carimbo gerenciados por MiniOS.\nLIVE_USERNAME=USERNAME: Esta variável corresponde ao parâmetro **live-config.username**=*USERNAME*. O padrão é live.\nLIVE_USER_DEFAULT_GROUPS=GROUP1,GROUP2,...GROUPn: Esta variável corresponde ao parâmetro **live-config.user-default-groups**=\"*GROUP1*,*GROUP2*...*GROUPn*\".\nLIVE_USER_FULLNAME=\"USER FULLNAME\": Esta variável corresponde ao parâmetro **live-config.user-fullname**=\"*USER FULLNAME*\".\nLIVE_ROOT_PASSWORD=PASSWORD: Esta variável corresponde ao parâmetro **live-config.root-password**=*PASSWORD*. Especifica a senha root em texto simples.\nLIVE_ROOT_PASSWORD_CRYPTED=PASSWORD: Esta variável corresponde ao parâmetro **live-config.root-password-crypted**=*PASSWORD*. Especifica a senha root em formato criptografado.\nLIVE_USER_PASSWORD=PASSWORD: Esta variável corresponde ao parâmetro **live-config.user-password**=*PASSWORD*. Especifica a senha do usuário em texto simples.\nLIVE_USER_PASSWORD_CRYPTED=PASSWORD: Esta variável corresponde ao parâmetro **live-config.user-password-crypted**=*PASSWORD*. Especifica a senha do usuário em formato criptografado.\nLIVE_CONFIG_NOROOT=true|false: Esta variável corresponde ao parâmetro **live-config.noroot** e desativa a configuração de privilégios de root, sudo e PolicyKit quando definida como true.\nLIVE_SUDO_MODE=passwordless|password|disabled: Esta variável corresponde ao parâmetro **live-config.sudo-mode**=.... Se não definida, MiniOS mantém o comportamento histórico de sudo sem senha.\nLIVE_POLKIT_MODE=passwordless|password|disabled: Esta variável corresponde ao parâmetro **live-config.polkit-mode**=.... password e disabled removem a regra de PolicyKit sem senha MiniOS e restauram a autenticação padrão da distribuição.\nLIVE_SSH_PERMIT_ROOT_LOGIN=true|false: Esta variável corresponde ao parâmetro **live-config.ssh-permit-root-login**=....\nLIVE_SSH_PASSWORD_AUTHENTICATION=true|false: Esta variável corresponde ao parâmetro **live-config.ssh-password-authentication**=....\nLIVE_XRDP_MODE=relaxed|hardened|disabled: Esta variável corresponde ao parâmetro **live-config.xrdp-mode**=....\nLIVE_X11_MODE=relaxed|hardened: Esta variável corresponde ao parâmetro **live-config.x11-mode**=....\nLIVE_ISSUE_PASSWORD_HINTS=true|false: Esta variável corresponde ao parâmetro **live-config.issue-password-hints**=....\nLIVE_LOCKSCREEN_MODE=relaxed|hardened: Esta variável corresponde ao parâmetro **live-config.lockscreen-mode**=....\nLIVE_LOCALES=LOCALE1,LOCALE2,...LOCALEn: Esta variável corresponde ao parâmetro **live-config.locales**=*LOCALE1*,*LOCALE2*...*LOCALEn*.\nLIVE_TIMEZONE=TIMEZONE: Esta variável corresponde ao parâmetro **live-config.timezone**=*TIMEZONE*.\nLIVE_KEYBOARD_MODEL=KEYBOARD_MODEL: Esta variável corresponde ao parâmetro **live-config.keyboard-model**=*KEYBOARD_MODEL*.\nLIVE_KEYBOARD_LAYOUTS=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Esta variável corresponde ao parâmetro **live-config.keyboard-layouts**=*KEYBOARD_LAYOUT1*,*KEYBOARD_LAYOUT2*...*KEYBOARD_LAYOUTn*.\nLIVE_KEYBOARD_VARIANTS=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Esta variável corresponde ao parâmetro **live-config.keyboard-variants**=*KEYBOARD_VARIANT1*,*KEYBOARD_VARIANT2*...*KEYBOARD_VARIANTn*.\nLIVE_KEYBOARD_OPTIONS=KEYBOARD_OPTIONS: Esta variável corresponde ao parâmetro **live-config.keyboard-options**=*KEYBOARD_OPTIONS*.\nLIVE_SYSV_RC=SERVICE1,SERVICE2,...SERVICEn: Esta variável corresponde ao parâmetro **live-config.sysv-rc**=*SERVICE1*,*SERVICE2*...*SERVICEn*.\nLIVE_UTC=yes|no: Esta variável corresponde ao parâmetro **live-config.utc**=**yes**|no.\nLIVE_X_SESSION_MANAGER=X_SESSION_MANAGER: Esta variável corresponde ao parâmetro **live-config.xorg-xsession-manager**=*X_SESSION_MANAGER*.\nLIVE_XORG_DRIVER=XORG_DRIVER: Esta variável corresponde ao parâmetro **live-config.xorg-driver**=*XORG_DRIVER*.\nLIVE_XORG_RESOLUTION=XORG_RESOLUTION: Esta variável corresponde ao parâmetro **live-config.xorg-resolution**=*XORG_RESOLUTION*.\nLIVE_WLAN_DRIVER=WLAN_DRIVER: Esta variável corresponde ao parâmetro **live-config.wlan-driver**=*WLAN_DRIVER*.\nLIVE_HOOKS=filesystem|medium|URL1|URL2|...|URLn: Esta variável corresponde ao parâmetro **live-config.hooks**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn*.\nLIVE_LINK_USER_DIRS=true|false: Habilita ou desabilita links dos diretórios padrão de dados do usuário para o drive MiniOS gravável. O parâmetro correspondente de boot é o flag live-config.link-user-dirs. O modo link não pode ser combinado com o modo bind ou qualquer modo toram.\nLIVE_BIND_USER_DIRS=true|false: Habilita ou desabilita montagens bind dos diretórios padrão de dados do usuário a partir do drive MiniOS gravável. O parâmetro correspondente de boot é o flag live-config.bind-user-dirs. O modo bind não pode ser combinado com o modo link ou qualquer modo toram.\nLIVE_USER_DIRS_PATH=PATH: Esta variável corresponde ao parâmetro **live-config.user-dirs-path**=*PATH*. Especifica um caminho seguro dentro do drive MiniOS FAT32, exFAT ou NTFS. O padrão é /minios/userdata; segmentos de ponto e diretório-pai são rejeitados.\nA configuração de mídia do usuário nunca mescla automaticamente dois diretórios não vazios. Um diretório local não vazio só é migrado quando o destino na mídia está vazio. Quando o recurso é desabilitado, os dados gerenciados na mídia são copiados de volta antes que os links sejam removidos. Uma validação ou cópia com falha mantém os diretórios de usuário existentes e registra o motivo em /var/lib/live/config/user-media.status.\nLIVE_MODULE_MODE=simple|merged: Esta variável armazena o estado especificado pelo parâmetro live-config.module-mode (ou module-mode). Quando definida como merged, o sistema live aplica atualizações (via minios-update-users, minios-update-cache e minios-update-dpkg) para mesclar configurações personalizadas com o ambiente base.\nLIVE_CONFIG_DEBUG=true|false: Esta variável corresponde ao parâmetro **live-config.debug**.\nPERSONALIZAÇÃO\nO live-config pode ser facilmente customizado para projetos derivados ou uso local.\nAdicionando novos componentes de configuração\nProjetos derivados podem colocar seus componentes em /usr/lib/live/config e não precisam fazer mais nada, pois os componentes serão chamados automaticamente durante o boot.\nO ideal é que os componentes sejam empacotados em um pacote debian próprio. Um pacote de exemplo contendo um componente pode ser encontrado em /usr/share/doc/live-config/examples.\nRemovendo componentes de configuração existentes\nAinda não é realmente possível remover componentes de forma adequada sem exigir o envio de um pacote live-config modificado localmente ou o uso de dpkg-divert. No entanto, o mesmo pode ser alcançado desabilitando os componentes respectivos através do mecanismo live-config.nocomponents, veja acima. Para evitar precisar sempre especificar componentes desabilitados pelo parâmetro de boot, deve-se usar um arquivo de configuração, conforme explicado acima.\nOs arquivos de configuração para o próprio sistema live devem ser preferencialmente colocados em um pacote debian próprio. Um pacote de exemplo contendo uma configuração pode ser encontrado em /usr/share/doc/live-config/examples.\nCOMPONENTES\nO live-config atualmente possui os seguintes componentes em /usr/lib/live/config.\nnss-systemd: remove ou restaura o módulo NSS do systemd em /etc/nsswitch.conf para contornar um problema conhecido do systemd.\ndebconf: permite aplicar arquivos de preseed arbitrários colocados na mídia live ou em um servidor http/ftp.\nhostname: configura /etc/hostname e /etc/hosts.\nissue-setup: configura o arquivo /etc/issue com uma mensagem de boas-vindas e informações da distribuição.\nlive-debconfig_passwd: configura senhas de usuário e root via live-debconfig.\nuser-setup: adiciona uma conta de usuário live.\nuser-groups: adiciona o usuário live a grupos suplementares declarados por módulos instalados. Grupos existentes listados em /usr/share/live/config/user-default-groups.d/*.groups são aplicados após a criação do usuário e em execuções posteriores do live-config.\nroot-setup: define ou atualiza a senha do root e configura o ambiente do usuário root.\nsudo: concede privilégios sudo ao usuário live.\nuser-ssh-keys: sincroniza arquivos authorized_keys.<username> específicos do usuário entre a mídia live e os diretórios home individuais dos usuários. Suporta múltiplos usuários simultaneamente (por exemplo, authorized_keys.root, authorized_keys.live, authorized_keys.admin).\nuser-media: cria links ou faz bind-mount de diretórios validados do usuário na mídia de dados MiniOS gravável existente, com migração segura e cópia de volta ao desativar.\nlocales: configura locales.\ntzdata: configura /etc/timezone.\nxorg-service: configura o nome de usuário em xorg.service e aplica postura X11 quando suportado.\ngdm3: configura autologin no gdm3.\nsddm: configura autologin no sddm.\nkdm: configura autologin no kdm.\nlightdm: configura autologin no lightdm.\nlxdm: configura autologin no lxdm.\nnodm: configura autologin no nodm.\nslim: configura autologin no slim.\nxinit: configura autologin com xinit.\nkeyboard-configuration: configura o teclado.\nsysvinit: configura autologin no console via /etc/inittab quando o sysvinit está instalado. Os atalhos noautologin e nottyautologin suprimem essa configuração.\nsysv-rc: configura sysv-rc desabilitando os serviços listados.\napport: desativa o apport.\ngnome-panel-data: desativa o botão de bloqueio de tela.\ngnome-power-manager: desativa a hibernação.\ngnome-screensaver: controla o bloqueio de tela do GNOME conforme LIVE_LOCKSCREEN_MODE.\nkaboom: desativa o assistente de migração do KDE (squeeze e mais recentes).\nkde-services: desativa alguns serviços indesejados do KDE (squeeze e mais recentes).\npolicykit: concede privilégios ao usuário via PolicyKit.\nssl-cert: regenera certificados snake-oil SSL.\nxrdp: configura postura XRDP relaxada, reforçada ou desabilitada quando o XRDP está instalado.\nanacron: desativa o anacron.\nutil-linux: desativa o serviço hwclock do util-linux.\nlogin: desativa o lastlog.\nxserver-xorg: configura o xserver-xorg.\nnetwork: configura política IPv4 cabeada durável via arquivo seguro do NetworkManager ou stanza ifupdown. Executa antes dos serviços de rede, valida todos os valores e só grava o carimbo após sucesso.\nopenssh-server: recria chaves host do OpenSSH e grava política de login root ou autenticação por senha explicitamente solicitada.\nxfce4-panel: configura o xfce4-panel para as configurações padrão.\nxscreensaver: controla o bloqueio do xscreensaver conforme LIVE_LOCKSCREEN_MODE.\nbroadcom-sta: configura drivers WLAN broadcom-sta.\nhyperv: configura ajustes do X11 para melhorar a compatibilidade em plataformas Microsoft Hyper-V.\nntfs3: gerencia regras udev para suporte ao NTFS3.\nconfig-module-mode: configura o modo de módulo do sistema e atualiza caches, configurações de usuário e dpkg.\nhooks: permite executar comandos arbitrários a partir de um arquivo colocado na mídia live ou em um servidor http/ftp.\nARQUIVOS\nminios/config.conf na mídia de dados MiniOS selecionada (cópia de origem)\nminios/config.conf.d/*.conf na mídia de dados MiniOS selecionada (fragmentos de origem)\n/etc/live/config.conf\n/etc/live/config.conf.d/*.conf\n/usr/lib/live/init-config.sh\n/usr/lib/live/config.sh\n/usr/lib/live/config/\n/usr/share/live/config/user-default-groups.d/*.groups\n/usr/share/minios/capabilities/minios-live-config.json\n/var/lib/live/config/\n/var/log/live/config.log\n/var/log/minios/minios-boot.log\nminios/log/YYYYMMDD_HHMMSS/ em mídia de dados selecionada gravável quando a exportação de logs está habilitada\n/usr/lib/live/config-hooks/* (hooks filesystem)\nminios/config-hooks/* na mídia live detectada (hooks medium)\n/usr/lib/live/config-preseed/* (preseeds filesystem)\nminios/config-preseed/* na mídia live detectada (preseeds medium)\nVEJA TAMBÉM\nlive-boot(7)\nlive-build(7)\nlive-tools(7)\nHOMEPAGE\nMais informações sobre o minios-live-config podem ser encontradas em seu repositório no GitHub. Informações gerais sobre o MiniOS estão disponíveis em minios.dev.\nBUGS\nBugs podem ser reportados no issue tracker do minios-live-config.\nAUTOR\nO live-config foi originalmente escrito por Daniel Baumann (mail@daniel-baumann.ch). Desde 2016, o desenvolvimento foi continuado pela equipe Debian Live. Desde 2025, o desenvolvimento da versão modificada minios-live-config tem sido continuado pela equipe MiniOS Live.",
+  "plain_text": "live-config\nlive-config - Componentes de Configuração do Sistema\nO live-config contém os componentes que configuram um sistema live durante o processo de boot (espaço de usuário tardio).\nO boot pela rede no initramfs (ip=, PXE, from=http://…) é uma camada separada do LiveKit e não é gerenciada pelo live-config. Veja Boot pela rede.\nO live-config pode ser configurado por parâmetros de boot ou pelos arquivos de configuração em tempo de execução preparados pelo initramfs. A linha de comando real do kernel é anexada após os valores fornecidos pelo arquivo LIVE_CONFIG_CMDLINE, então os parâmetros de boot correspondentes mais recentes têm precedência. Componentes que gravam estado em /var/lib/live/config normalmente são executados apenas uma vez; componentes de sincronização e stateless podem rodar a cada invocação.\nSe o live-build(7) for utilizado para construir o sistema live, os parâmetros padrão do live-config podem ser definidos pela opção --bootappend-live, veja a página de manual lb_config(1).\nParâmetros de Boot (componentes)\nO live-config só é ativado se boot=live for utilizado como parâmetro de boot. Por padrão, todos os componentes são executados. O parâmetro live-config.components pode restringir quais componentes serão executados, e live-config.nocomponents pode excluir componentes. Se ambos os parâmetros forem usados, ou se algum deles for especificado várias vezes, a última ocorrência terá precedência.\nlive-config.components | components: Todos os componentes são executados. Este é o padrão utilizado pelas imagens live.\nlive-config.components=COMPONENT1,COMPONENT2,...COMPONENTn | components=COMPONENT1,COMPONENT2,...COMPONENTn: Apenas os componentes especificados são executados. Os componentes são executados na ordem codificada em seus nomes de arquivo sob /usr/lib/live/config, independentemente da ordem nesta lista.\nlive-config.nocomponents | nocomponents: Nenhum componente é executado.\nlive-config.nocomponents=COMPONENT1,COMPONENT2,...COMPONENTn | nocomponents=COMPONENT1,COMPONENT2,...COMPONENTn: Todos os componentes são executados, exceto os especificados.\nParâmetros de Inicialização (opções)\nAlguns componentes individuais podem alterar seu comportamento conforme um parâmetro de inicialização.\nlive-config.debconf-preseed=filesystem|medium|URL1|URL2|...|URLn | debconf-preseed=medium|filesystem|URL1|URL2|...|URLn: Busca e aplica um ou mais arquivos de preseed do debconf. URLs são processadas por wget e podem utilizar HTTP, FTP ou file://. A palavra-chave filesystem expande arquivos em /usr/lib/live/config-preseed/; medium expande arquivos em minios/config-preseed/ no meio live detectado. Arquivos locais explícitos podem usar caminhos como file:///run/initramfs/memory/data/minios/config-preseed/FILE ou file:///PATH na raiz do live. As entradas separadas por pipe são processadas na ordem especificada; arquivos expandidos por palavra-chave seguem a ordem do glob do shell.\nlive-config.hostname=HOSTNAME | hostname=HOSTNAME: Permite definir o nome do host do sistema. O padrão é minios.\nlive-config.network-method=dhcp|static|off | network-method=dhcp|static|off: Seleciona a política de rede cabeada. Não definido e dhcp mantêm o padrão da imagem inalterado. static grava a configuração para o backend selecionado; off desativa a configuração automática de IPv4 para a interface selecionada.\nlive-config.network-interface=INTERFACE | network-interface=INTERFACE: Seleciona a interface cabeada. Se omitido para static ou off, a única interface cabeada que não seja loopback é selecionada automaticamente; se houver zero ou múltiplas candidatas, é necessário informar explicitamente.\nlive-config.network-address=IPV4 | network-address=IPV4: Define o endereço IPv4 estático.\nlive-config.network-prefix=PREFIX | network-prefix=PREFIX: Define o comprimento do prefixo IPv4 de 0 a 32. O padrão estático é 24.\nlive-config.network-gateway=IPV4 | network-gateway=IPV4: Define o gateway IPv4 opcional.\nlive-config.network-dns=ADDRESS1,ADDRESS2 | network-dns=ADDRESS1,ADDRESS2: Define endereços de servidores DNS opcionais, separados por vírgula.\nlive-config.network-backend=auto|nm|ifupdown | network-backend=auto|nm|ifupdown: Seleciona o backend de rede. auto prefere o NetworkManager e utiliza o ifupdown como alternativa. Forçar ifupdown marca a interface como não gerenciada pelo NetworkManager quando ambos os stacks estão instalados.\nlive-config.username=USERNAME | username=USERNAME: Permite definir o nome de usuário criado para login automático. O padrão é live.\nlive-config.user-default-groups=GROUP1,GROUP2,...GROUPn | user-default-groups=GROUP1,GROUP2,...GROUPn: Define os grupos suplementares para o usuário criado para login automático. Os nomes dos grupos podem ser separados por vírgulas ou espaços. O padrão MiniOS é dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark.\nlive-config.user-fullname=\"USER FULLNAME\" | user-fullname=\"USER FULLNAME\": Permite definir o nome completo do usuário criado para login automático. O padrão MiniOS é MiniOS Live User.\nlive-config.root-password=PASSWORD | root-password=PASSWORD: Permite definir a senha do root em texto simples.\nlive-config.root-password-crypted=PASSWORD | root-password-crypted=PASSWORD: Permite definir a senha do root de forma criptografada.\nlive-config.user-password=PASSWORD | user-password=PASSWORD: Permite definir a senha do usuário em texto simples.\nlive-config.user-password-crypted=PASSWORD | user-password-crypted=PASSWORD: Permite definir a senha do usuário de forma criptografada.\nlive-config.locales=LOCALE1,LOCALE2,...LOCALEn | locales=LOCALE1,LOCALE2,...LOCALEn: Permite definir o locale do sistema, por exemplo de_CH.UTF-8. O padrão é en_US.UTF-8. Caso o locale selecionado ainda não esteja disponível no sistema, ele será gerado automaticamente.\nlive-config.timezone=TIMEZONE | timezone=TIMEZONE: Permite definir o fuso horário do sistema, por exemplo Europe/Zurich. O padrão é UTC.\nlive-config.keyboard-model=KEYBOARD_MODEL | keyboard-model=KEYBOARD_MODEL: Permite alterar o modelo do teclado. Não há valor padrão definido.\nlive-config.keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn | keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Permite alterar os layouts de teclado. Se mais de um for especificado, as ferramentas do ambiente de desktop permitirão alternar entre eles no X11. Não há valor padrão definido.\nlive-config.keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn | keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Permite alterar as variantes do teclado. Se mais de uma for especificada, deve-se informar o mesmo número de valores que os layouts de teclado, pois serão pareados na ordem especificada. Valores em branco são permitidos. As ferramentas do ambiente de desktop permitirão alternar entre cada par de layout e variante no X11. Não há valor padrão definido.\nlive-config.keyboard-options=KEYBOARD_OPTIONS | keyboard-options=KEYBOARD_OPTIONS: Permite alterar as opções do teclado. Não há valor padrão definido.\nlive-config.sysv-rc=SERVICE1,SERVICE2,...SERVICEn | sysv-rc=SERVICE1,SERVICE2,...SERVICEn: Permite desabilitar serviços sysv através do update-rc.d.\nlive-config.utc=yes|no | utc=yes|no: Permite definir se o sistema deve assumir que o relógio de hardware está ajustado para UTC ou não. O padrão é yes.\nlive-config.xorg-xsession-manager=X_SESSION_MANAGER | x-session-manager=X_SESSION_MANAGER: Permite definir o x-session-manager via update-alternatives.\nlive-config.xorg-driver=XORG_DRIVER | xorg-driver=XORG_DRIVER: Permite definir o driver xorg em vez de autodetectar. Se um ID PCI for especificado em /usr/share/live/config/xserver-xorg/*DRIVER*.ids no sistema live, o DRIVER será aplicado para esses dispositivos. Se houver tanto um parâmetro de inicialização quanto uma sobrescrita, o parâmetro de inicialização tem prioridade.\nlive-config.xorg-resolution=XORG_RESOLUTION | xorg-resolution=XORG_RESOLUTION: Permite definir a resolução do xorg em vez de autodetectar, por exemplo, 1024x768.\nlive-config.wlan-driver=WLAN_DRIVER | wlan-driver=WLAN_DRIVER: Permite definir o driver WLAN em vez de autodetectar. Se um ID PCI for especificado em /usr/share/live/config/broadcom-sta/*DRIVER*.ids no sistema live, o DRIVER será aplicado para esses dispositivos. Se houver tanto um parâmetro de inicialização quanto uma sobrescrita, o parâmetro de inicialização tem prioridade.\nlive-config.module-mode=simple|merged | module-mode=simple|merged: Permite especificar o modo do módulo para a configuração live. Quando definido como merged, o sistema atualizará as contas de usuário, reconstruirá caches e atualizará configurações de pacotes para que as alterações de configuração sejam integradas dinamicamente ao sistema em execução.\nlive-config.link-user-dirs | link-user-dirs: Cria links dos diretórios de usuário gerenciados para o caminho configurado no meio de dados MiniOS. É mutuamente exclusivo com o modo bind e indisponível com qualquer modo toram ou enquanto a sessão de persistência ativa estiver criptografada com LUKS.\nlive-config.bind-user-dirs | bind-user-dirs: Realiza bind-mount dos diretórios de usuário gerenciados a partir do caminho configurado no meio de dados MiniOS. É mutuamente exclusivo com o modo link e possui as mesmas restrições de toram e criptografia de sessão ativa.\nlive-config.user-dirs-path=PATH | user-dirs-path=PATH: Define o caminho relativo à mídia utilizado por link-user-dirs ou bind-user-dirs. O padrão é /minios/userdata.\nlive-config.hooks=filesystem|medium|URL1|URL2|...|URLn | hooks=medium|filesystem|URL1|URL2|...|URLn: Busca e executa arquivos arbitrários a partir de um arquivo temporário no sistema live em execução. URLs são processadas por wget e podem utilizar HTTP, FTP ou file://; os interpretadores necessários e outras dependências já devem estar instalados. A palavra-chave filesystem expande arquivos em /usr/lib/live/config-hooks/; medium expande arquivos em minios/config-hooks/ no meio live detectado (com fallback para caminho ISO no componente hook). Arquivos locais explícitos podem usar file:///run/initramfs/memory/data/minios/config-hooks/FILE ou file:///PATH na raiz do live. Entradas separadas por pipe são executadas na ordem especificada; arquivos expandidos por palavra-chave seguem a ordem do glob do shell. Exemplos são instalados em /usr/share/doc/live-config/examples/hooks/.\nAviso de segurança: live-config é executado como root. Hooks são tornados executáveis e rodados como root, e preseeds alteram o banco de dados debconf do sistema com privilégios de root. HTTP e FTP simples não autenticam o conteúdo baixado nem oferecem proteção de integridade. Prefira arquivos locais revisados ou transporte autenticado confiável com verificação de integridade independente; não utilize hooks remotos ou preseeds de redes não confiáveis.\nParâmetros de Boot (atalhos)\nPara alguns casos de uso comuns onde seria necessário combinar vários parâmetros individuais, o live-config oferece atalhos. Isso permite tanto granularidade total sobre todas as opções quanto manter as coisas simples.\nlive-config.noroot | noroot: Desativa a configuração de senha do root e as concessões de privilégios sudo e PolicyKit do MiniOS.\nlive-config.sudo-mode=passwordless|password|disabled | sudo-mode=passwordless|password|disabled: Controla a configuração do sudo para o usuário live. O padrão, e o comportamento histórico do MiniOS quando não definido, é passwordless. O modo password mantém o acesso sudo, mas exige a senha do usuário live. O modo disabled remove a concessão sudo do MiniOS e mantém o usuário live fora do grupo sudo ao criar o usuário. O atalho antigo noroot sobrescreve isso e desativa a configuração de privilégios de root de forma mais ampla.\nlive-config.polkit-mode=passwordless|password|disabled | polkit-mode=passwordless|password|disabled: Controla as regras de conveniência do PolicyKit do MiniOS. O padrão, e o comportamento histórico do MiniOS quando não definido, é passwordless. Os modos password e disabled removem essa regra, então a autenticação padrão do PolicyKit da distribuição se aplica. disabled não é uma política de negação total; use noroot quando o usuário live não deve obter privilégios administrativos.\nlive-config.ssh-permit-root-login=true|false | ssh-permit-root-login=true|false: Escreve uma política PermitRootLogin do OpenSSH quando explicitamente definido e o openssh-server está instalado.\nlive-config.ssh-password-authentication=true|false | ssh-password-authentication=true|false: Escreve uma política PasswordAuthentication do OpenSSH quando explicitamente definido e o openssh-server está instalado.\nlive-config.xrdp-mode=relaxed|hardened|disabled | xrdp-mode=relaxed|hardened|disabled: Controla a postura do XRDP quando o xrdp está instalado. relaxed preserva os padrões históricos do MiniOS. hardened vincula o XRDP ao localhost, restaura configurações negociadas/de alta segurança e desativa o login root no XRDP. disabled desativa e para o XRDP via minios-svc quando disponível.\nlive-config.x11-mode=relaxed|hardened | x11-mode=relaxed|hardened: Controla a postura de conveniência do X11 do MiniOS. relaxed preserva a compatibilidade histórica. hardened remove a opção permissiva -ac do X server e reforça Xwrapper.config quando presente.\nlive-config.issue-password-hints=true|false | issue-password-hints=true|false: Controla se /etc/issue mostra as dicas de senha padrão do root/live do MiniOS.\nlive-config.lockscreen-mode=relaxed|hardened | lockscreen-mode=relaxed|hardened: Controla se o live-config relaxa o bloqueio de tela. relaxed preserva a conveniência histórica da sessão live. hardened evita desabilitar o bloqueio do GNOME e ativa o bloqueio do xscreensaver onde esse arquivo está presente.\nlive-config.noautologin | noautologin: Impede que o live-config configure autologin no console e no modo gráfico. Não remove autologin já configurado em uma sessão persistente.\nlive-config.nottyautologin | nottyautologin: Impede que o live-config configure autologin no console, sem afetar a configuração gráfica. Configuração persistente existente não é removida.\nlive-config.nox11autologin | nox11autologin: Impede que o live-config configure autologin no display-manager, sem afetar a configuração TTY. Configuração persistente existente não é removida.\nParâmetros de Boot (opções especiais)\nPara casos de uso especiais, existem alguns parâmetros de boot específicos.\nlive-config.debug | debug: Habilita a saída de debug no live-config.\nArquivos de Configuração\nlive-config pode ser configurado (mas não ativado) por meio de arquivos de configuração. Qualquer parâmetro de boot suportado pode ser inserido em LIVE_CONFIG_CMDLINE, e a maioria das opções também pode ser definida por variáveis individuais. O parâmetro boot=live ainda é necessário para ativar o live-config.\nObservação: Se arquivos de configuração forem utilizados, todos os parâmetros de boot devem ser colocados (preferencialmente) na variável LIVE_CONFIG_CMDLINE, ou então podem ser definidas variáveis individuais. Se variáveis individuais forem usadas, o usuário deve garantir que todas as variáveis necessárias estejam definidas para criar uma configuração válida.\nlive-config por si só faz o source de /etc/live/config.conf e depois /etc/live/config.conf.d/*.conf na ordem do glob do shell. Assim, fragmentos posteriores podem sobrescrever valores do arquivo principal ou de fragmentos anteriores. Não faz o source separadamente de uma segunda camada de configuração de mídia.\nEm mídias MiniOS, os arquivos de origem são minios/config.conf e minios/config.conf.d/*.conf. Antes de live-config iniciar, o initramfs MiniOS sincroniza esses arquivos com os arquivos runtime do /etc/live/ pelo horário de modificação. Um arquivo de origem mais recente substitui o correspondente runtime; um arquivo runtime mais recente só é copiado de volta se o diretório de dados MiniOS selecionado for gravável. Timestamps iguais não causam cópia, arquivos ausentes são preenchidos e arquivos não são excluídos. Essa sincronização ocorre apenas na inicialização, não é monitoramento contínuo. Veja Arquivo de configuração para as regras completas de sincronização e precedência da linha de comando.\nComo fallback para implementações de initramfs que não prepararam o arquivo runtime, os wrappers de inicialização do systemd e SysV copiam minios/config.conf a partir da mídia detectada somente quando /etc/live/config.conf está ausente. Esse fallback não copia fragmentos de config.conf.d. O initramfs padrão atual MiniOS LiveKit realiza a sincronização anterior.\nOs arquivos de fragmentos devem corresponder a *.conf. Nomes como vendor.conf ou project.conf são recomendados; escolha nomes lexicais com cuidado, pois fragmentos posteriores sobrescrevem os anteriores.\nO conteúdo dos arquivos de configuração consiste em uma ou mais das seguintes variáveis.\nLIVE_CONFIG_CMDLINE=PARAMETER1 PARAMETER2...PARAMETERn: Esta variável corresponde à linha de comando do bootloader.\nLIVE_CONFIG_COMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Esta variável corresponde ao parâmetro **live-config.components**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*.\nLIVE_CONFIG_NOCOMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Esta variável corresponde ao parâmetro **live-config.nocomponents**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*.\nLIVE_DEBCONF_PRESEED=filesystem|medium|URL1|URL2|...|URLn: Esta variável corresponde ao parâmetro **live-config.debconf-preseed**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn*.\nLIVE_HOSTNAME=HOSTNAME: Esta variável corresponde ao parâmetro **live-config.hostname**=*HOSTNAME*. O padrão é minios.\nLIVE_NETWORK_METHOD=dhcp|static|off: Seleciona a política de rede cabeada. dhcp e um valor não definido não alteram nada e não removem um perfil estático MiniOS já criado.\nLIVE_NETWORK_INTERFACE=INTERFACE: Seleciona a interface cabeada para a política static ou off.\nLIVE_NETWORK_ADDRESS=IPV4: Define o endereço IPv4 estático.\nLIVE_NETWORK_PREFIX=PREFIX: Define o comprimento do prefixo estático; o padrão é 24.\nLIVE_NETWORK_GATEWAY=IPV4: Define o gateway estático opcional.\nLIVE_NETWORK_DNS=ADDRESS1,ADDRESS2: Define servidores DNS opcionais, separados por vírgula.\nLIVE_NETWORK_BACKEND=auto|nm|ifupdown: Seleciona o backend implementado.\nO componente de rede registra /var/lib/live/config/network após gravar a política com sucesso. Remova esse registro para aplicar uma política alterada em um sistema persistente. Para remover um perfil estático anterior, use network-method=off ou remova manualmente o perfil e o registro gerenciados por MiniOS.\nLIVE_USERNAME=USERNAME: Esta variável corresponde ao parâmetro **live-config.username**=*USERNAME*. O padrão é live.\nLIVE_USER_DEFAULT_GROUPS=GROUP1,GROUP2,...GROUPn: Esta variável corresponde ao parâmetro **live-config.user-default-groups**=\"*GROUP1*,*GROUP2*...*GROUPn*\".\nLIVE_USER_FULLNAME=\"USER FULLNAME\": Esta variável corresponde ao parâmetro **live-config.user-fullname**=\"*USER FULLNAME*\".\nLIVE_ROOT_PASSWORD=PASSWORD: Esta variável corresponde ao parâmetro **live-config.root-password**=*PASSWORD*. Ela define a senha do root em texto simples.\nLIVE_ROOT_PASSWORD_CRYPTED=PASSWORD: Esta variável corresponde ao parâmetro **live-config.root-password-crypted**=*PASSWORD*. Ela define a senha do root de forma criptografada.\nLIVE_USER_PASSWORD=PASSWORD: Esta variável corresponde ao parâmetro **live-config.user-password**=*PASSWORD*. Ela define a senha do usuário em texto simples.\nLIVE_USER_PASSWORD_CRYPTED=PASSWORD: Esta variável corresponde ao parâmetro **live-config.user-password-crypted**=*PASSWORD*. Ela define a senha do usuário de forma criptografada.\nLIVE_CONFIG_NOROOT=true|false: Esta variável corresponde ao parâmetro **live-config.noroot** e desativa a configuração de privilégios de root, sudo e PolicyKit quando definida como true.\nLIVE_SUDO_MODE=passwordless|password|disabled: Esta variável corresponde ao parâmetro **live-config.sudo-mode**=.... Se não definida, MiniOS mantém o comportamento histórico de sudo sem senha.\nLIVE_POLKIT_MODE=passwordless|password|disabled: Esta variável corresponde ao parâmetro **live-config.polkit-mode**=.... password e disabled removem a regra de PolicyKit sem senha MiniOS e restauram a autenticação padrão da distribuição.\nLIVE_SSH_PERMIT_ROOT_LOGIN=true|false: Esta variável corresponde ao parâmetro **live-config.ssh-permit-root-login**=....\nLIVE_SSH_PASSWORD_AUTHENTICATION=true|false: Esta variável corresponde ao parâmetro **live-config.ssh-password-authentication**=....\nLIVE_XRDP_MODE=relaxed|hardened|disabled: Esta variável corresponde ao parâmetro **live-config.xrdp-mode**=....\nLIVE_X11_MODE=relaxed|hardened: Esta variável corresponde ao parâmetro **live-config.x11-mode**=....\nLIVE_ISSUE_PASSWORD_HINTS=true|false: Esta variável corresponde ao parâmetro **live-config.issue-password-hints**=....\nLIVE_LOCKSCREEN_MODE=relaxed|hardened: Esta variável corresponde ao parâmetro **live-config.lockscreen-mode**=....\nLIVE_LOCALES=LOCALE1,LOCALE2,...LOCALEn: Esta variável corresponde ao parâmetro **live-config.locales**=*LOCALE1*,*LOCALE2*...*LOCALEn*.\nLIVE_TIMEZONE=TIMEZONE: Esta variável corresponde ao parâmetro **live-config.timezone**=*TIMEZONE*.\nLIVE_KEYBOARD_MODEL=KEYBOARD_MODEL: Esta variável corresponde ao parâmetro **live-config.keyboard-model**=*KEYBOARD_MODEL*.\nLIVE_KEYBOARD_LAYOUTS=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Esta variável corresponde ao parâmetro **live-config.keyboard-layouts**=*KEYBOARD_LAYOUT1*,*KEYBOARD_LAYOUT2*...*KEYBOARD_LAYOUTn*.\nLIVE_KEYBOARD_VARIANTS=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Esta variável corresponde ao parâmetro **live-config.keyboard-variants**=*KEYBOARD_VARIANT1*,*KEYBOARD_VARIANT2*...*KEYBOARD_VARIANTn*.\nLIVE_KEYBOARD_OPTIONS=KEYBOARD_OPTIONS: Esta variável corresponde ao parâmetro **live-config.keyboard-options**=*KEYBOARD_OPTIONS*.\nLIVE_SYSV_RC=SERVICE1,SERVICE2,...SERVICEn: Esta variável corresponde ao parâmetro **live-config.sysv-rc**=*SERVICE1*,*SERVICE2*...*SERVICEn*.\nLIVE_UTC=yes|no: Esta variável corresponde ao parâmetro **live-config.utc**=**yes**|no.\nLIVE_X_SESSION_MANAGER=X_SESSION_MANAGER: Esta variável corresponde ao parâmetro **live-config.xorg-xsession-manager**=*X_SESSION_MANAGER*.\nLIVE_XORG_DRIVER=XORG_DRIVER: Esta variável corresponde ao parâmetro **live-config.xorg-driver**=*XORG_DRIVER*.\nLIVE_XORG_RESOLUTION=XORG_RESOLUTION: Esta variável corresponde ao parâmetro **live-config.xorg-resolution**=*XORG_RESOLUTION*.\nLIVE_WLAN_DRIVER=WLAN_DRIVER: Esta variável corresponde ao parâmetro **live-config.wlan-driver**=*WLAN_DRIVER*.\nLIVE_HOOKS=filesystem|medium|URL1|URL2|...|URLn: Esta variável corresponde ao parâmetro **live-config.hooks**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn*.\nLIVE_LINK_USER_DIRS=true|false: Ativa ou desativa links dos diretórios de dados padrão do usuário para o drive MiniOS gravável. O parâmetro de boot correspondente é apenas o sinalizador live-config.link-user-dirs . O modo de link não pode ser combinado com o modo bind nem com nenhum modo toram.\nLIVE_BIND_USER_DIRS=true|false: Ativa ou desativa os bind mounts dos diretórios de dados padrão do usuário a partir do drive MiniOS gravável. O parâmetro de boot correspondente é apenas o sinalizador live-config.bind-user-dirs . O modo bind não pode ser combinado com o modo link nem com nenhum modo toram.\nLIVE_USER_DIRS_PATH=PATH: Esta variável corresponde ao parâmetro **live-config.user-dirs-path**=*PATH*. Ela define um caminho seguro dentro do drive MiniOS FAT32, exFAT ou NTFS. O padrão é /minios/userdata; segmentos de ponto e diretório-pai são rejeitados.\nA configuração de mídia do usuário nunca mescla automaticamente dois diretórios não vazios. Um diretório local não vazio só é migrado quando o destino na mídia está vazio. Quando o recurso é desativado, os dados gerenciados na mídia são copiados de volta antes que os links sejam removidos. A ativação e cópia de volta de mídia do usuário são bloqueadas enquanto a sessão de persistência ativa estiver criptografada com LUKS, impedindo que dados da sessão sejam movidos para uma mídia MiniOS não criptografada. Essa decisão usa o estado real de criptografia ativa: perchencrypt=luks apenas solicita criptografia ao criar uma nova sessão e não descreve uma sessão existente. Uma validação ou cópia com falha mantém os diretórios de usuário existentes e registra o motivo em /var/lib/live/config/user-media.status.\nLIVE_MODULE_MODE=simple|merged: Esta variável armazena o estado especificado pelo parâmetro live-config.module-mode (ou module-mode). Quando definida como merged, o sistema live aplica atualizações (via minios-update-users, minios-update-cache e minios-update-dpkg) para mesclar configurações personalizadas ao ambiente base.\nLIVE_CONFIG_DEBUG=true|false: Esta variável corresponde ao parâmetro **live-config.debug**.\nPERSONALIZAÇÃO\nO live-config pode ser facilmente customizado para projetos derivados ou uso local.\nAdicionando novos componentes de configuração\nProjetos derivados podem colocar seus componentes em /usr/lib/live/config e não precisam fazer mais nada, pois os componentes serão chamados automaticamente durante o boot.\nO ideal é que os componentes sejam empacotados em um pacote debian próprio. Um pacote de exemplo contendo um componente pode ser encontrado em /usr/share/doc/live-config/examples.\nRemovendo componentes de configuração existentes\nAinda não é realmente possível remover componentes de forma adequada sem exigir o envio de um pacote live-config modificado localmente ou o uso de dpkg-divert. No entanto, o mesmo pode ser alcançado desabilitando os componentes respectivos através do mecanismo live-config.nocomponents, veja acima. Para evitar precisar sempre especificar componentes desabilitados pelo parâmetro de boot, deve-se usar um arquivo de configuração, conforme explicado acima.\nOs arquivos de configuração para o próprio sistema live devem ser preferencialmente colocados em um pacote debian próprio. Um pacote de exemplo contendo uma configuração pode ser encontrado em /usr/share/doc/live-config/examples.\nCOMPONENTES\nO live-config atualmente possui os seguintes componentes em /usr/lib/live/config.\nnss-systemd: remove ou restaura o módulo NSS do systemd em /etc/nsswitch.conf para contornar um problema conhecido do systemd.\ndebconf: permite aplicar arquivos de preseed arbitrários colocados na mídia live ou em um servidor http/ftp.\nhostname: configura /etc/hostname e /etc/hosts.\nissue-setup: configura o arquivo /etc/issue com uma mensagem de boas-vindas e informações da distribuição.\nlive-debconfig_passwd: configura senhas de usuário e root via live-debconfig.\nuser-setup: adiciona uma conta de usuário live.\nuser-groups: adiciona o usuário live a grupos suplementares declarados por módulos instalados. Grupos existentes listados em /usr/share/live/config/user-default-groups.d/*.groups são aplicados após a criação do usuário e em execuções posteriores do live-config.\nroot-setup: define ou atualiza a senha do root e configura o ambiente do usuário root.\nsudo: concede privilégios sudo ao usuário live.\nuser-ssh-keys: sincroniza arquivos authorized_keys.<username> específicos do usuário entre a mídia live e os diretórios home individuais dos usuários. Suporta múltiplos usuários simultaneamente (por exemplo, authorized_keys.root, authorized_keys.live, authorized_keys.admin).\nuser-media: cria links ou faz bind-mount de diretórios validados do usuário na mídia de dados MiniOS gravável existente, com migração segura e cópia de volta ao desativar.\nlocales: configura locales.\ntzdata: configura /etc/timezone.\nxorg-service: configura o nome de usuário em xorg.service e aplica postura X11 quando suportado.\ngdm3: configura autologin no gdm3.\nsddm: configura autologin no sddm.\nkdm: configura autologin no kdm.\nlightdm: configura autologin no lightdm.\nlxdm: configura autologin no lxdm.\nnodm: configura autologin no nodm.\nslim: configura autologin no slim.\nxinit: configura autologin com xinit.\nkeyboard-configuration: configura o teclado.\nsysvinit: configura autologin no console via /etc/inittab quando o sysvinit está instalado. Os atalhos noautologin e nottyautologin suprimem essa configuração.\nsysv-rc: configura sysv-rc desabilitando os serviços listados.\napport: desativa o apport.\ngnome-panel-data: desativa o botão de bloqueio de tela.\ngnome-power-manager: desativa a hibernação.\ngnome-screensaver: controla o bloqueio de tela do GNOME conforme LIVE_LOCKSCREEN_MODE.\nkaboom: desativa o assistente de migração do KDE (squeeze e mais recentes).\nkde-services: desativa alguns serviços indesejados do KDE (squeeze e mais recentes).\npolicykit: concede privilégios ao usuário via PolicyKit.\nssl-cert: regenera certificados snake-oil SSL.\nxrdp: configura postura XRDP relaxada, reforçada ou desabilitada quando o XRDP está instalado.\nanacron: desativa o anacron.\nutil-linux: desativa o serviço hwclock do util-linux.\nlogin: desativa o lastlog.\nxserver-xorg: configura o xserver-xorg.\nnetwork: configura política IPv4 cabeada durável via arquivo seguro do NetworkManager ou stanza ifupdown. Executa antes dos serviços de rede, valida todos os valores e só grava o carimbo após sucesso.\nopenssh-server: recria chaves host do OpenSSH e grava política de login root ou autenticação por senha explicitamente solicitada.\nxfce4-panel: configura o xfce4-panel para as configurações padrão.\nxscreensaver: controla o bloqueio do xscreensaver conforme LIVE_LOCKSCREEN_MODE.\nbroadcom-sta: configura drivers WLAN broadcom-sta.\nhyperv: configura ajustes do X11 para melhorar a compatibilidade em plataformas Microsoft Hyper-V.\nntfs3: gerencia regras udev para suporte ao NTFS3.\nconfig-module-mode: configura o modo de módulo do sistema e atualiza caches, configurações de usuário e dpkg.\nhooks: permite executar comandos arbitrários a partir de um arquivo colocado na mídia live ou em um servidor http/ftp.\nARQUIVOS\nminios/config.conf na mídia de dados MiniOS selecionada (cópia de origem)\nminios/config.conf.d/*.conf na mídia de dados MiniOS selecionada (fragmentos de origem)\n/etc/live/config.conf\n/etc/live/config.conf.d/*.conf\n/usr/lib/live/init-config.sh\n/usr/lib/live/config.sh\n/usr/lib/live/config/\n/usr/share/live/config/user-default-groups.d/*.groups\n/usr/share/minios/capabilities/minios-live-config.json\n/var/lib/live/config/\n/var/log/live/config.log\n/var/log/minios/minios-boot.log\nminios/log/YYYYMMDD_HHMMSS/ em mídia de dados selecionada gravável quando a exportação de logs está habilitada\n/usr/lib/live/config-hooks/* (hooks filesystem)\nminios/config-hooks/* na mídia live detectada (hooks medium)\n/usr/lib/live/config-preseed/* (preseeds filesystem)\nminios/config-preseed/* na mídia live detectada (preseeds medium)\nVEJA TAMBÉM\nlive-boot(7)\nlive-build(7)\nlive-tools(7)\nHOMEPAGE\nMais informações sobre o minios-live-config podem ser encontradas em seu repositório no GitHub. Informações gerais sobre o MiniOS estão disponíveis em minios.dev.\nBUGS\nBugs podem ser reportados no issue tracker do minios-live-config.\nAUTOR\nO live-config foi originalmente escrito por Daniel Baumann (mail@daniel-baumann.ch). Desde 2016, o desenvolvimento foi continuado pela equipe Debian Live. Desde 2025, o desenvolvimento da versão modificada minios-live-config tem sido continuado pela equipe MiniOS Live.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
