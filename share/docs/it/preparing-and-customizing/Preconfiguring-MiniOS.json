@@ -11,9 +11,9 @@
       "title": "Avvia il configuratore"
     },
     {
-      "anchor": "configurazione-di-supporti-e-runtime",
+      "anchor": "configurazione-dei-supporti-e-del-runtime",
       "level": 2,
-      "title": "Configurazione di supporti e runtime"
+      "title": "Configurazione dei supporti e del runtime"
     },
     {
       "anchor": "quando-si-applicano-le-impostazioni",
@@ -21,9 +21,9 @@
       "title": "Quando si applicano le impostazioni"
     },
     {
-      "anchor": "applicate-dopo-il-riavvio",
+      "anchor": "applicato-dopo-il-riavvio",
       "level": 3,
-      "title": "Applicate dopo il riavvio"
+      "title": "Applicato dopo il riavvio"
     },
     {
       "anchor": "utilizzate-solo-per-una-nuova-sessione",
@@ -59,7 +59,7 @@
       [
         [
           "text",
-          "Il Configuratore MiniOS è un editor grafico per le impostazioni di MiniOS "
+          "Il Configuratore MiniOS è un editor grafico per la configurazione live di MiniOS. Valida le modifiche e scrive la configurazione per un avvio successivo. Le scelte iniziali di cache/log vengono applicate da "
         ],
         [
           "span",
@@ -67,13 +67,13 @@
           [
             [
               "text",
-              "live-config"
+              "minios-boot"
             ]
           ]
         ],
         [
           "text",
-          ". Valida le modifiche e scrive la configurazione per un avvio successivo. Non modifica direttamente il sistema in esecuzione."
+          "; i restanti componenti live-config vengono eseguiti più tardi. Il salvataggio non modifica direttamente il sistema in esecuzione."
         ]
       ]
     ],
@@ -173,11 +173,11 @@
     [
       "heading",
       2,
-      "configurazione-di-supporti-e-runtime",
+      "configurazione-dei-supporti-e-del-runtime",
       [
         [
           "text",
-          "Configurazione di supporti e runtime"
+          "Configurazione dei supporti e del runtime"
         ]
       ]
     ],
@@ -286,7 +286,7 @@
       [
         [
           "text",
-          "Il Configuratore MiniOS modifica solo il file selezionato. Senza argomento di percorso, modifica il file runtime "
+          "Il Configuratore MiniOS modifica solo il file selezionato. Se non viene specificato alcun percorso, modifica il file runtime "
         ],
         [
           "span",
@@ -300,7 +300,7 @@
         ],
         [
           "text",
-          "; non apre direttamente il file sul supporto. MiniOS sincronizza la configurazione più recente tra il filesystem runtime e i supporti MiniOS scrivibili durante l'avvio. I supporti in sola lettura non possono ricevere modifiche runtime e la configurazione runtime persistente può rimanere indipendente dalla copia sul supporto."
+          "; non apre direttamente il file sul supporto. MiniOS sincronizza la configurazione più recente tra il filesystem runtime e i supporti MiniOS scrivibili durante l'avvio. I supporti in sola lettura non possono ricevere modifiche runtime e la configurazione runtime persistente può restare indipendente dalla copia sul supporto."
         ]
       ]
     ],
@@ -310,7 +310,35 @@
       [
         [
           "text",
-          "Per una determinata opzione, i parametri del kernel hanno precedenza sui file di configurazione, e la configurazione sul supporto ha precedenza su quella del filesystem root."
+          "All'avvio, MiniOS sincronizza i file del supporto e del runtime in base all'orario di modifica. Per le nuove policy di storage, i frammenti "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "config.conf.d"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " successivi sovrascrivono il file principale, "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_CONFIG_CMDLINE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " viene dopo, e la riga di comando reale del kernel prevale su tutto."
         ],
         [
           "text",
@@ -318,7 +346,7 @@
         ],
         [
           "text",
-          "Utilizza "
+          "Usa "
         ],
         [
           "span",
@@ -379,7 +407,7 @@
       [
         [
           "text",
-          "Il file selezionato rimane il target di salvataggio. I parametri kernel sconosciuti vengono ignorati."
+          "Il file selezionato rimane la destinazione del salvataggio. I parametri kernel sconosciuti vengono ignorati."
         ]
       ]
     ],
@@ -407,11 +435,11 @@
     [
       "heading",
       3,
-      "applicate-dopo-il-riavvio",
+      "applicato-dopo-il-riavvio",
       [
         [
           "text",
-          "Applicate dopo il riavvio"
+          "Applicato dopo il riavvio"
         ]
       ]
     ],
@@ -421,7 +449,186 @@
       [
         [
           "text",
-          "Hostname, lingua, fuso orario, tastiera, target di avvio, selezione dei servizi, modalità dei moduli, gestione dei supporti delle directory utente, impostazioni di debug ed esportazione dei log vengono letti a un avvio successivo. Riavvia dopo il salvataggio per applicarli."
+          "Hostname, lingua, fuso orario, tastiera, destinazione di avvio, selezione dei servizi, modalità modulo, gestione dei supporti delle directory utente, impostazioni di debug, esportazione dei log e le tre impostazioni avanzate di storage vengono lette a un avvio successivo. Riavvia dopo il salvataggio per applicarle."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "In "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Avanzate"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Storage log di sistema"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Cache download APT"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", e "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Cache browser"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " offrono ciascuno "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "persistent"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " (predefinito) oppure "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "volatile"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Le loro "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "volatile"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " scelte si applicano solo a una sessione "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " integra e durevole. I log di "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " e "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " restano persistenti anche quando i log ordinari sono temporanei. Lo stato dei pacchetti APT e i profili del browser rimangono persistenti; solo i log e le cache selezionati vengono spostati su RAM a capacità limitata. La configurazione del browser viene eseguita dopo la creazione dell'utente live. Il Configuratore avvisa se l'initrd in esecuzione non contiene il marcatore "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch-storage-v1"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " necessario per queste impostazioni. Consulta "
+        ],
+        [
+          "link",
+          "/maintenance-and-recovery/Performance.md#riduci-scritture-su-cache-e-log-con-perch",
+          null,
+          [
+            [
+              "text",
+              "Prestazioni"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " prima di scegliere le dimensioni di RAM su una macchina con poca memoria."
         ]
       ]
     ],
@@ -515,7 +722,7 @@
       [
         [
           "text",
-          "Il collegamento e il mount bind delle directory utente sono mutuamente esclusivi. Entrambi utilizzano un supporto dati locale MiniOS scrivibile già esistente e un percorso sicuro relativo al supporto. Non sono disponibili con "
+          "Il collegamento e il mount bind delle directory utente sono operazioni alternative. Entrambe utilizzano un supporto dati MiniOS locale scrivibile già esistente e un percorso sicuro relativo al supporto. Non sono disponibili con "
         ],
         [
           "span",
@@ -543,7 +750,7 @@
         ],
         [
           "text",
-          " o "
+          ", o "
         ],
         [
           "span",
@@ -591,7 +798,21 @@
         ],
         [
           "text",
-          " sono parametri di avvio initramfs, non impostazioni del Configuratore MiniOS. Il Configuratore MiniOS non crea, sblocca, ridimensiona o ripara un contenitore di persistenza. Per la persistenza cifrata si limita solo a segnalare se è presente il marker di cifratura initramfs."
+          " sono parametri di avvio initramfs, non impostazioni del Configuratore MiniOS. I nuovi controlli di storage cache/log non selezionano né creano una "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " sessione. Il Configuratore MiniOS non crea, sblocca, ridimensiona o ripara un contenitore di persistenza. Per la persistenza cifrata, segnala se il marcatore di cifratura initramfs è presente."
         ]
       ]
     ],
@@ -672,7 +893,7 @@
       ]
     ]
   ],
-  "plain_text": "Preconfigurazione di MiniOS\nIl Configuratore MiniOS è un editor grafico per le impostazioni di MiniOS live-config. Valida le modifiche e scrive la configurazione per un avvio successivo. Non modifica direttamente il sistema in esecuzione.\nAvvia il configuratore\nApri il Configuratore MiniOS dal menu delle applicazioni oppure esegui:\nminios-configurator\nIl target predefinito è /etc/live/config.conf. Per modificare un altro file regolare, indica il suo percorso:\nminios-configurator /path/to/config.conf\nIl salvataggio richiede l'autenticazione PolicyKit. I collegamenti simbolici e i file di destinazione non regolari vengono rifiutati.\nConfigurazione di supporti e runtime\nMiniOS può leggere la configurazione da due posizioni:\nminios/config.conf e minios/config.conf.d/*.conf sul supporto live\n/etc/live/config.conf e /etc/live/config.conf.d/*.conf nel filesystem root in esecuzione\nIl Configuratore MiniOS modifica solo il file selezionato. Senza argomento di percorso, modifica il file runtime /etc/live/config.conf; non apre direttamente il file sul supporto. MiniOS sincronizza la configurazione più recente tra il filesystem runtime e i supporti MiniOS scrivibili durante l'avvio. I supporti in sola lettura non possono ricevere modifiche runtime e la configurazione runtime persistente può rimanere indipendente dalla copia sul supporto.\nPer una determinata opzione, i parametri del kernel hanno precedenza sui file di configurazione, e la configurazione sul supporto ha precedenza su quella del filesystem root.\nUtilizza -i per sovrapporre le impostazioni riconosciute dalla riga di comando del kernel corrente nell'editor:\nminios-configurator --inherit-cmdline /etc/live/config.conf\nIl file selezionato rimane il target di salvataggio. I parametri kernel sconosciuti vengono ignorati.\nQuando si applicano le impostazioni\nOgni controllo indica quando viene utilizzato. Il salvataggio non applica mai un'impostazione alla sessione corrente.\nApplicate dopo il riavvio\nHostname, lingua, fuso orario, tastiera, target di avvio, selezione dei servizi, modalità dei moduli, gestione dei supporti delle directory utente, impostazioni di debug ed esportazione dei log vengono letti a un avvio successivo. Riavvia dopo il salvataggio per applicarli.\nUtilizzate solo per una nuova sessione\nCreazione account, password utente e root, noroot, policy sudo e PolicyKit, policy SSH e XRDP, accesso X11, suggerimenti password e blocco schermo sono impostazioni \"one-shot\". Una sessione persistente normalmente registra i componenti live-config completati sotto /var/lib/live/config/, quindi modificare questi valori e riavviare la stessa sessione non ricrea l'account o lo stato di sicurezza. Avvia una nuova sessione per applicarli come impostazioni iniziali.\nI profili di sicurezza sono preset dell'editor. Il nome del profilo non viene salvato; le singole impostazioni di sicurezza vengono salvate e restano modificabili.\nDirectory utente e persistenza\nIl collegamento e il mount bind delle directory utente sono mutuamente esclusivi. Entrambi utilizzano un supporto dati locale MiniOS scrivibile già esistente e un percorso sicuro relativo al supporto. Non sono disponibili con toram, toram=full o toram=trim, e MiniOS non unisce automaticamente due alberi di directory già popolati.\nperchmode e perchsize sono parametri di avvio initramfs, non impostazioni del Configuratore MiniOS. Il Configuratore MiniOS non crea, sblocca, ridimensiona o ripara un contenitore di persistenza. Per la persistenza cifrata si limita solo a segnalare se è presente il marker di cifratura initramfs.\nComportamento del salvataggio\nLa revisione elenca solo i valori modificati e oscura le password. Il salvataggio aggiorna solo le chiavi modificate preservando commenti, ordine, chiavi sconosciute, proprietà, permessi e attributi estesi. La scrittura è atomica.\nPer la documentazione completa su variabili e parametri di avvio, consulta File di configurazione, Parametri di avvio e live-config.",
+  "plain_text": "Preconfigurazione di MiniOS\nIl Configuratore MiniOS è un editor grafico per la configurazione live di MiniOS. Valida le modifiche e scrive la configurazione per un avvio successivo. Le scelte iniziali di cache/log vengono applicate da minios-boot; i restanti componenti live-config vengono eseguiti più tardi. Il salvataggio non modifica direttamente il sistema in esecuzione.\nAvvia il configuratore\nApri il Configuratore MiniOS dal menu delle applicazioni oppure esegui:\nminios-configurator\nIl target predefinito è /etc/live/config.conf. Per modificare un altro file regolare, indica il suo percorso:\nminios-configurator /path/to/config.conf\nIl salvataggio richiede l'autenticazione PolicyKit. I collegamenti simbolici e i file di destinazione non regolari vengono rifiutati.\nConfigurazione dei supporti e del runtime\nMiniOS può leggere la configurazione da due posizioni:\nminios/config.conf e minios/config.conf.d/*.conf sul supporto live\n/etc/live/config.conf e /etc/live/config.conf.d/*.conf nel filesystem root in esecuzione\nIl Configuratore MiniOS modifica solo il file selezionato. Se non viene specificato alcun percorso, modifica il file runtime /etc/live/config.conf; non apre direttamente il file sul supporto. MiniOS sincronizza la configurazione più recente tra il filesystem runtime e i supporti MiniOS scrivibili durante l'avvio. I supporti in sola lettura non possono ricevere modifiche runtime e la configurazione runtime persistente può restare indipendente dalla copia sul supporto.\nAll'avvio, MiniOS sincronizza i file del supporto e del runtime in base all'orario di modifica. Per le nuove policy di storage, i frammenti config.conf.d successivi sovrascrivono il file principale, LIVE_CONFIG_CMDLINE viene dopo, e la riga di comando reale del kernel prevale su tutto.\nUsa -i per sovrapporre le impostazioni riconosciute dalla riga di comando del kernel corrente nell'editor:\nminios-configurator --inherit-cmdline /etc/live/config.conf\nIl file selezionato rimane la destinazione del salvataggio. I parametri kernel sconosciuti vengono ignorati.\nQuando si applicano le impostazioni\nOgni controllo indica quando viene utilizzato. Il salvataggio non applica mai un'impostazione alla sessione corrente.\nApplicato dopo il riavvio\nHostname, lingua, fuso orario, tastiera, destinazione di avvio, selezione dei servizi, modalità modulo, gestione dei supporti delle directory utente, impostazioni di debug, esportazione dei log e le tre impostazioni avanzate di storage vengono lette a un avvio successivo. Riavvia dopo il salvataggio per applicarle.\nIn Avanzate, Storage log di sistema, Cache download APT, e Cache browser offrono ciascuno persistent (predefinito) oppure volatile. Le loro volatile scelte si applicano solo a una sessione perch integra e durevole. I log di minios-boot e live-config restano persistenti anche quando i log ordinari sono temporanei. Lo stato dei pacchetti APT e i profili del browser rimangono persistenti; solo i log e le cache selezionati vengono spostati su RAM a capacità limitata. La configurazione del browser viene eseguita dopo la creazione dell'utente live. Il Configuratore avvisa se l'initrd in esecuzione non contiene il marcatore perch-storage-v1 necessario per queste impostazioni. Consulta Prestazioni prima di scegliere le dimensioni di RAM su una macchina con poca memoria.\nUtilizzate solo per una nuova sessione\nCreazione account, password utente e root, noroot, policy sudo e PolicyKit, policy SSH e XRDP, accesso X11, suggerimenti password e blocco schermo sono impostazioni \"one-shot\". Una sessione persistente normalmente registra i componenti live-config completati sotto /var/lib/live/config/, quindi modificare questi valori e riavviare la stessa sessione non ricrea l'account o lo stato di sicurezza. Avvia una nuova sessione per applicarli come impostazioni iniziali.\nI profili di sicurezza sono preset dell'editor. Il nome del profilo non viene salvato; le singole impostazioni di sicurezza vengono salvate e restano modificabili.\nDirectory utente e persistenza\nIl collegamento e il mount bind delle directory utente sono operazioni alternative. Entrambe utilizzano un supporto dati MiniOS locale scrivibile già esistente e un percorso sicuro relativo al supporto. Non sono disponibili con toram, toram=full, o toram=trim, e MiniOS non unisce automaticamente due alberi di directory già popolati.\nperchmode e perchsize sono parametri di avvio initramfs, non impostazioni del Configuratore MiniOS. I nuovi controlli di storage cache/log non selezionano né creano una perch sessione. Il Configuratore MiniOS non crea, sblocca, ridimensiona o ripara un contenitore di persistenza. Per la persistenza cifrata, segnala se il marcatore di cifratura initramfs è presente.\nComportamento del salvataggio\nLa revisione elenca solo i valori modificati e oscura le password. Il salvataggio aggiorna solo le chiavi modificate preservando commenti, ordine, chiavi sconosciute, proprietà, permessi e attributi estesi. La scrittura è atomica.\nPer la documentazione completa su variabili e parametri di avvio, consulta File di configurazione, Parametri di avvio e live-config.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

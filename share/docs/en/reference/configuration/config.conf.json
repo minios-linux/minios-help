@@ -31,6 +31,11 @@
       "title": "MiniOS early-userspace settings"
     },
     {
+      "anchor": "cache-and-log-policy-for-a-persistent-session",
+      "level": 2,
+      "title": "Cache and log policy for a persistent session"
+    },
+    {
       "anchor": "source-runtime-copy-and-precedence",
       "level": 2,
       "title": "Source, runtime copy, and precedence"
@@ -882,21 +887,7 @@
             ],
             [
               "text",
-              " supplies options to "
-            ],
-            [
-              "span",
-              "strong",
-              [
-                [
-                  "text",
-                  "live-config"
-                ]
-              ]
-            ],
-            [
-              "text",
-              " after the MiniOS root has been assembled. Parameters such as "
+              " supplies options after the MiniOS root has been assembled. Parameters such as "
             ],
             [
               "span",
@@ -966,7 +957,77 @@
             ],
             [
               "text",
-              " is too late to affect the initramfs."
+              " is too late to affect the initramfs. The storage-policy options "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "log-storage="
+                ]
+              ]
+            ],
+            [
+              "text",
+              ", "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "apt-cache="
+                ]
+              ]
+            ],
+            [
+              "text",
+              ", and "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "browser-cache="
+                ]
+              ]
+            ],
+            [
+              "text",
+              " are a specific exception: "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "minios-boot"
+                ]
+              ]
+            ],
+            [
+              "text",
+              " reads them from "
+            ],
+            [
+              "span",
+              "code",
+              [
+                [
+                  "text",
+                  "LIVE_CONFIG_CMDLINE"
+                ]
+              ]
+            ],
+            [
+              "text",
+              " before normal services start."
             ]
           ]
         ]
@@ -1871,6 +1932,210 @@
                   [
                     [
                       "text",
+                      "LIVE_LOG_STORAGE"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Yes"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "persistent"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " (default) or "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " for ordinary system logs. Boot diagnostics remain persistent; see "
+                ],
+                [
+                  "link",
+                  "/maintenance-and-recovery/Performance.md#reduce-cache-and-log-writes-with-perch",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Performance"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_APT_CACHE"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Yes"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "persistent"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " (default) or "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " for downloaded APT archives; package state and repository lists stay persistent."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_BROWSER_CACHE"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Yes"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "persistent"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " (default) or "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " for standard native-browser cache paths. Browser profiles remain persistent."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
                       "DEFAULT_TARGET"
                     ]
                   ]
@@ -2606,7 +2871,7 @@
         ],
         [
           "text",
-          ", and "
+          ", "
         ],
         [
           "span",
@@ -2620,7 +2885,21 @@
         ],
         [
           "text",
-          " are MiniOS settings rather than live-config variables. They are read by "
+          ", and the three "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_*"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " storage policies above are MiniOS boot settings rather than late live-config component variables. MiniOS applies them before the normal init system takes over; "
         ],
         [
           "span",
@@ -2634,7 +2913,7 @@
         ],
         [
           "text",
-          " before the normal init system takes over and are all "
+          " owns the three storage policies. They are all "
         ],
         [
           "span",
@@ -2863,6 +3142,317 @@
         [
           "text",
           "."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "cache-and-log-policy-for-a-persistent-session",
+      [
+        [
+          "text",
+          "Cache and log policy for a persistent session"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "To reduce writes during a "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " session, add the settings independently:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "LIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"",
+      "bash",
+      [
+        [
+          "syntax",
+          "LIVE_LOG_STORAGE",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "=",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\"volatile\"",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "LIVE_APT_CACHE",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "=",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\"volatile\"",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "LIVE_BROWSER_CACHE",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "=",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\"volatile\"",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "They also accept "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "persistent"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", the default. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " accepts the same settings from "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/etc/live/config.conf.d/*.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_CONFIG_CMDLINE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ("
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "log-storage=volatile"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "apt-cache=volatile"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "browser-cache=volatile"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "), or kernel parameters. Later fragments replace earlier ones, the parameter blob wins over file keys, and actual kernel parameters win last. The three options are independent and do not themselves request persistence. A compatible initrd advertises "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch-storage-v1"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " at "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/run/initramfs/etc/minios-initramfs-storage"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "; MiniOS Configurator warns when the current initrd does not advertise it."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "The policies apply on a later boot only if persistence actually activated on durable writable storage. With "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", failed persistence, or "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Start without saving"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", the requested volatile policy is not treated as evidence that anything will be saved. The browser-cache component runs later than "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", after the live user has been created. See "
+        ],
+        [
+          "link",
+          "/maintenance-and-recovery/Performance.md#reduce-cache-and-log-writes-with-perch",
+          null,
+          [
+            [
+              "text",
+              "Performance"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " for the exact RAM limits, supported browser paths, fallback conditions, and logs that remain on the medium."
         ]
       ]
     ],
@@ -3273,7 +3863,7 @@
         ],
         [
           "text",
-          ". For an option that occurs more than once, the later kernel-command-line occurrence wins. "
+          ". For an option that occurs more than once, the later kernel-command-line occurrence wins. For the three storage policies, "
         ],
         [
           "span",
@@ -3287,21 +3877,7 @@
         ],
         [
           "text",
-          " similarly gives its recognized kernel parameters precedence over the corresponding settings from "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "/etc/live/config.conf"
-            ]
-          ]
-        ],
-        [
-          "text",
-          "."
+          " reads the synchronized main file, then its fragments, then the option blob, and finally the actual kernel command line; the last setting wins."
         ]
       ]
     ],
@@ -3459,7 +4035,7 @@
       ]
     ]
   ],
-  "plain_text": "config.conf\nconfig.conf is the main MiniOS preconfiguration file. On a normal MiniOS medium it is stored as minios/config.conf. During boot, the initramfs synchronizes it with /etc/live/config.conf in the assembled system.\nUse this file to prepare how MiniOS starts and how a new persistent session is initialized. It is primarily an administrator-facing preconfiguration mechanism, not a replacement for the normal configuration tools of the running desktop.\nReconfiguration\nThe Reconfigurable column below uses these meanings:\nYes — the setting can be changed and applied again on a later boot.\nFirst boot only — the setting is used when the corresponding persistent state is first created and is not normally reapplied on subsequent boots.\nThis distinction is part of the behavior users need to know. Internal live-config state files are implementation details and do not replace it.\nGenerated configuration\nA current MiniOS image generates a config.conf with this general structure:\n# live-config settings\nLIVE_CONFIG_CMDLINE=\"components nottyautologin\"\nLIVE_HOSTNAME=\"minios\"\nLIVE_USERNAME=\"live\"\nLIVE_USER_FULLNAME=\"MiniOS Live User\"\nLIVE_USER_DEFAULT_GROUPS=\"dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark\"\nLIVE_USER_PASSWORD_CRYPTED='$y$...'\nLIVE_ROOT_PASSWORD_CRYPTED='$y$...'\nLIVE_CONFIG_NOROOT=\"\"\nLIVE_LOCALES=\"en_US.UTF-8\"\nLIVE_TIMEZONE=\"Etc/UTC\"\nLIVE_KEYBOARD_MODEL=\"pc105\"\nLIVE_KEYBOARD_LAYOUTS=\"us,us\"\nLIVE_KEYBOARD_OPTIONS=\"grp:alt_shift_toggle,grp_led:scroll\"\nLIVE_KEYBOARD_VARIANTS=\",\"\nLIVE_CONFIG_DEBUG=\"true\"\nLIVE_LINK_USER_DIRS=\"false\"\nLIVE_BIND_USER_DIRS=\"false\"\nLIVE_USER_DIRS_PATH=\"/minios/userdata\"\nLIVE_MODULE_MODE=\"merged\"\n\n# MiniOS LiveKit settings.\nDEFAULT_TARGET=\"graphical.target\"\nENABLE_SERVICES=\"ssh\"\nDISABLE_SERVICES=\"\"\nEXPORT_LOGS=\"false\"\nThe exact values depend on the image and build configuration.\nLIVE_CONFIG_CMDLINE is not the initramfs command line\nLIVE_CONFIG_CMDLINE supplies options to live-config after the MiniOS root has been assembled. Parameters such as from=, load=, toram, and perchdir= must be real kernel boot parameters; putting them only in LIVE_CONFIG_CMDLINE is too late to affect the initramfs.\nStandard parameters\nParameter | Reconfigurable | Meaning\nLIVE_CONFIG_CMDLINE | Yes | Additional live-config options. The actual kernel command line is appended later and wins for repeated options.\nLIVE_HOSTNAME | Yes | System hostname.\nLIVE_USERNAME | First boot only | Name of the live user created during initial setup.\nLIVE_USER_FULLNAME | First boot only | Full name of the live user.\nLIVE_USER_DEFAULT_GROUPS | First boot only | Supplementary groups assigned when the live user is created.\nLIVE_USER_PASSWORD_CRYPTED | First boot only | Crypt hash for the live-user password.\nLIVE_ROOT_PASSWORD_CRYPTED | First boot only | Crypt hash for the root password.\nLIVE_CONFIG_NOROOT | First boot only | When enabled, suppresses the MiniOS root-password, sudo, and PolicyKit privilege setup.\nLIVE_LOCALES | Yes | One or more system locales.\nLIVE_TIMEZONE | Yes | System time zone, for example Europe/Berlin or Etc/UTC.\nLIVE_KEYBOARD_MODEL | Yes | XKB keyboard model.\nLIVE_KEYBOARD_LAYOUTS | Yes | Comma-separated keyboard layouts.\nLIVE_KEYBOARD_OPTIONS | Yes | XKB keyboard options.\nLIVE_KEYBOARD_VARIANTS | Yes | Comma-separated variants matched to the configured layouts.\nLIVE_CONFIG_DEBUG | Yes | Enables live-config debug output when set to true.\nLIVE_LINK_USER_DIRS | Yes | Links managed user directories to the configured location on writable MiniOS media. Unavailable with bind mode, any toram mode, or an active LUKS-encrypted persistence session.\nLIVE_BIND_USER_DIRS | Yes | Bind-mounts managed user directories from the configured location on writable MiniOS media. Unavailable with link mode, any toram mode, or an active LUKS-encrypted persistence session.\nLIVE_USER_DIRS_PATH | Yes | Location used by link/bind user-directory mode.\nLIVE_MODULE_MODE | Yes | Selects simple or merged live-config module integration.\nDEFAULT_TARGET | Yes | Boot target: graphical.target, multi-user.target, or rescue.target.\nENABLE_SERVICES | Yes | Comma-separated services enabled at boot through minios-svc.\nDISABLE_SERVICES | Yes | Comma-separated services disabled at boot through minios-svc.\nEXPORT_LOGS | Yes | When true, exports MiniOS and live-config startup logs to writable MiniOS media.\nThe generated file is not an exhaustive list of everything supported by minios-live-config. Additional variables for wired network preconfiguration, security posture, hooks, preseeding, Xorg, and other components can be added manually. See live-config for the complete reference.\nThe user-media component refuses both activation and copy-back while the active persistence session is LUKS-encrypted. It uses the actual runtime encryption state: the perchencrypt=luks kernel parameter only requests encryption when creating a new session and does not describe an existing session.\nWired network preconfiguration\nMiniOS can preconfigure a wired IPv4 policy through the live-config network component. This is intended for administrative preconfiguration of a system before it starts on the target hardware.\nFor example:\nLIVE_NETWORK_METHOD=\"static\"\nLIVE_NETWORK_INTERFACE=\"enp1s0\"\nLIVE_NETWORK_ADDRESS=\"192.0.2.10\"\nLIVE_NETWORK_PREFIX=\"24\"\nLIVE_NETWORK_GATEWAY=\"192.0.2.1\"\nLIVE_NETWORK_DNS=\"1.1.1.1,9.9.9.9\"\nLIVE_NETWORK_BACKEND=\"auto\"\nThese settings are First boot only for the persistent network policy. After successful application, the component records /var/lib/live/config/network.\nChanging the values does not overwrite an already configured persistent session unless that state is deliberately reset.\nLIVE_NETWORK_METHOD=static writes a static policy. off disables automatic IPv4 for the selected interface. An unset value or dhcp leaves the image's existing network setup unchanged. LIVE_NETWORK_BACKEND=auto prefers NetworkManager and falls back to ifupdown.\nThis facility does not configure Wi-Fi. After boot, ordinary wired and wireless networking is managed by NetworkManager. See Networking for runtime network use and live-config for all network variables.\nMiniOS early-userspace settings\nDEFAULT_TARGET, ENABLE_SERVICES, DISABLE_SERVICES, and EXPORT_LOGS are MiniOS settings rather than live-config variables. They are read by minios-boot before the normal init system takes over and are all Reconfigurable: Yes.\nThe corresponding boot parameters default-target=, enable-services=, and disable-services= take precedence for the current boot. The text parameter forces multi-user.target.\nCurrent Toolbox and Ultra builds add ssh to ENABLE_SERVICES. To explicitly turn SSH off, put it in DISABLE_SERVICES; merely removing it from ENABLE_SERVICES does not request a disable operation.\nWith EXPORT_LOGS=\"true\", writable MiniOS media receives startup logs below:\nminios/log/YYYYMMDD_HHMMSS/\n├── minios/\n└── live/\nThe corresponding runtime logs are /var/log/minios/minios-boot.log and /var/log/live/config.log.\nSource, runtime copy, and precedence\nThe selected MiniOS data directory normally contains these source files:\nSelected data directory | Running system\nconfig.conf | /etc/live/config.conf\nconfig.conf.d/*.conf | /etc/live/config.conf.d/*.conf\nOn normally mounted media they are visible as minios/config.conf and minios/config.conf.d/*.conf, often below /run/initramfs/memory/data/ while the system is running.\nSynchronization happens at boot; it is not a file monitor:\nThe newer copy of config.conf wins by modification time. A newer media copy is copied into the live root. A newer runtime copy is copied back only when the selected MiniOS data directory is writable.\nEach config.conf.d/*.conf file is synchronized independently by basename using the same timestamp and writability rules. Files are not deleted from either side.\nIf the clock is earlier than the recorded last synchronization time, timestamp comparison is skipped and only missing destination files are filled.\ntoram=trim copies config.conf but omits config.conf.d/. Full toram copies the data tree, but synchronization then targets the RAM copy rather than the detached source medium.\nAfter synchronization, live-config reads /etc/live/config.conf first and then /etc/live/config.conf.d/*.conf in shell glob order. A later fragment can therefore replace a value from the main file or an earlier fragment.\nThe actual kernel command line is appended to LIVE_CONFIG_CMDLINE. For an option that occurs more than once, the later kernel-command-line occurrence wins. minios-boot similarly gives its recognized kernel parameters precedence over the corresponding settings from /etc/live/config.conf.\nYou can add project-specific shell variables to config.conf or its fragments and read them from the runtime copies. Quote values as shell strings and do not put spaces around =.\nRelated reference\nBoot parameters — parameters that must be placed on the actual kernel command line and live-config overrides.\nlive-config — complete late-userspace parameter, variable, component, and state reference.\nBoot modes — how persistence and toram affect configuration storage.",
+  "plain_text": "config.conf\nconfig.conf is the main MiniOS preconfiguration file. On a normal MiniOS medium it is stored as minios/config.conf. During boot, the initramfs synchronizes it with /etc/live/config.conf in the assembled system.\nUse this file to prepare how MiniOS starts and how a new persistent session is initialized. It is primarily an administrator-facing preconfiguration mechanism, not a replacement for the normal configuration tools of the running desktop.\nReconfiguration\nThe Reconfigurable column below uses these meanings:\nYes — the setting can be changed and applied again on a later boot.\nFirst boot only — the setting is used when the corresponding persistent state is first created and is not normally reapplied on subsequent boots.\nThis distinction is part of the behavior users need to know. Internal live-config state files are implementation details and do not replace it.\nGenerated configuration\nA current MiniOS image generates a config.conf with this general structure:\n# live-config settings\nLIVE_CONFIG_CMDLINE=\"components nottyautologin\"\nLIVE_HOSTNAME=\"minios\"\nLIVE_USERNAME=\"live\"\nLIVE_USER_FULLNAME=\"MiniOS Live User\"\nLIVE_USER_DEFAULT_GROUPS=\"dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark\"\nLIVE_USER_PASSWORD_CRYPTED='$y$...'\nLIVE_ROOT_PASSWORD_CRYPTED='$y$...'\nLIVE_CONFIG_NOROOT=\"\"\nLIVE_LOCALES=\"en_US.UTF-8\"\nLIVE_TIMEZONE=\"Etc/UTC\"\nLIVE_KEYBOARD_MODEL=\"pc105\"\nLIVE_KEYBOARD_LAYOUTS=\"us,us\"\nLIVE_KEYBOARD_OPTIONS=\"grp:alt_shift_toggle,grp_led:scroll\"\nLIVE_KEYBOARD_VARIANTS=\",\"\nLIVE_CONFIG_DEBUG=\"true\"\nLIVE_LINK_USER_DIRS=\"false\"\nLIVE_BIND_USER_DIRS=\"false\"\nLIVE_USER_DIRS_PATH=\"/minios/userdata\"\nLIVE_MODULE_MODE=\"merged\"\n\n# MiniOS LiveKit settings.\nDEFAULT_TARGET=\"graphical.target\"\nENABLE_SERVICES=\"ssh\"\nDISABLE_SERVICES=\"\"\nEXPORT_LOGS=\"false\"\nThe exact values depend on the image and build configuration.\nLIVE_CONFIG_CMDLINE is not the initramfs command line\nLIVE_CONFIG_CMDLINE supplies options after the MiniOS root has been assembled. Parameters such as from=, load=, toram, and perchdir= must be real kernel boot parameters; putting them only in LIVE_CONFIG_CMDLINE is too late to affect the initramfs. The storage-policy options log-storage=, apt-cache=, and browser-cache= are a specific exception: minios-boot reads them from LIVE_CONFIG_CMDLINE before normal services start.\nStandard parameters\nParameter | Reconfigurable | Meaning\nLIVE_CONFIG_CMDLINE | Yes | Additional live-config options. The actual kernel command line is appended later and wins for repeated options.\nLIVE_HOSTNAME | Yes | System hostname.\nLIVE_USERNAME | First boot only | Name of the live user created during initial setup.\nLIVE_USER_FULLNAME | First boot only | Full name of the live user.\nLIVE_USER_DEFAULT_GROUPS | First boot only | Supplementary groups assigned when the live user is created.\nLIVE_USER_PASSWORD_CRYPTED | First boot only | Crypt hash for the live-user password.\nLIVE_ROOT_PASSWORD_CRYPTED | First boot only | Crypt hash for the root password.\nLIVE_CONFIG_NOROOT | First boot only | When enabled, suppresses the MiniOS root-password, sudo, and PolicyKit privilege setup.\nLIVE_LOCALES | Yes | One or more system locales.\nLIVE_TIMEZONE | Yes | System time zone, for example Europe/Berlin or Etc/UTC.\nLIVE_KEYBOARD_MODEL | Yes | XKB keyboard model.\nLIVE_KEYBOARD_LAYOUTS | Yes | Comma-separated keyboard layouts.\nLIVE_KEYBOARD_OPTIONS | Yes | XKB keyboard options.\nLIVE_KEYBOARD_VARIANTS | Yes | Comma-separated variants matched to the configured layouts.\nLIVE_CONFIG_DEBUG | Yes | Enables live-config debug output when set to true.\nLIVE_LINK_USER_DIRS | Yes | Links managed user directories to the configured location on writable MiniOS media. Unavailable with bind mode, any toram mode, or an active LUKS-encrypted persistence session.\nLIVE_BIND_USER_DIRS | Yes | Bind-mounts managed user directories from the configured location on writable MiniOS media. Unavailable with link mode, any toram mode, or an active LUKS-encrypted persistence session.\nLIVE_USER_DIRS_PATH | Yes | Location used by link/bind user-directory mode.\nLIVE_MODULE_MODE | Yes | Selects simple or merged live-config module integration.\nLIVE_LOG_STORAGE | Yes | persistent (default) or volatile for ordinary system logs. Boot diagnostics remain persistent; see Performance.\nLIVE_APT_CACHE | Yes | persistent (default) or volatile for downloaded APT archives; package state and repository lists stay persistent.\nLIVE_BROWSER_CACHE | Yes | persistent (default) or volatile for standard native-browser cache paths. Browser profiles remain persistent.\nDEFAULT_TARGET | Yes | Boot target: graphical.target, multi-user.target, or rescue.target.\nENABLE_SERVICES | Yes | Comma-separated services enabled at boot through minios-svc.\nDISABLE_SERVICES | Yes | Comma-separated services disabled at boot through minios-svc.\nEXPORT_LOGS | Yes | When true, exports MiniOS and live-config startup logs to writable MiniOS media.\nThe generated file is not an exhaustive list of everything supported by minios-live-config. Additional variables for wired network preconfiguration, security posture, hooks, preseeding, Xorg, and other components can be added manually. See live-config for the complete reference.\nThe user-media component refuses both activation and copy-back while the active persistence session is LUKS-encrypted. It uses the actual runtime encryption state: the perchencrypt=luks kernel parameter only requests encryption when creating a new session and does not describe an existing session.\nWired network preconfiguration\nMiniOS can preconfigure a wired IPv4 policy through the live-config network component. This is intended for administrative preconfiguration of a system before it starts on the target hardware.\nFor example:\nLIVE_NETWORK_METHOD=\"static\"\nLIVE_NETWORK_INTERFACE=\"enp1s0\"\nLIVE_NETWORK_ADDRESS=\"192.0.2.10\"\nLIVE_NETWORK_PREFIX=\"24\"\nLIVE_NETWORK_GATEWAY=\"192.0.2.1\"\nLIVE_NETWORK_DNS=\"1.1.1.1,9.9.9.9\"\nLIVE_NETWORK_BACKEND=\"auto\"\nThese settings are First boot only for the persistent network policy. After successful application, the component records /var/lib/live/config/network.\nChanging the values does not overwrite an already configured persistent session unless that state is deliberately reset.\nLIVE_NETWORK_METHOD=static writes a static policy. off disables automatic IPv4 for the selected interface. An unset value or dhcp leaves the image's existing network setup unchanged. LIVE_NETWORK_BACKEND=auto prefers NetworkManager and falls back to ifupdown.\nThis facility does not configure Wi-Fi. After boot, ordinary wired and wireless networking is managed by NetworkManager. See Networking for runtime network use and live-config for all network variables.\nMiniOS early-userspace settings\nDEFAULT_TARGET, ENABLE_SERVICES, DISABLE_SERVICES, EXPORT_LOGS, and the three LIVE_* storage policies above are MiniOS boot settings rather than late live-config component variables. MiniOS applies them before the normal init system takes over; minios-boot owns the three storage policies. They are all Reconfigurable: Yes.\nThe corresponding boot parameters default-target=, enable-services=, and disable-services= take precedence for the current boot. The text parameter forces multi-user.target.\nCurrent Toolbox and Ultra builds add ssh to ENABLE_SERVICES. To explicitly turn SSH off, put it in DISABLE_SERVICES; merely removing it from ENABLE_SERVICES does not request a disable operation.\nWith EXPORT_LOGS=\"true\", writable MiniOS media receives startup logs below:\nminios/log/YYYYMMDD_HHMMSS/\n├── minios/\n└── live/\nThe corresponding runtime logs are /var/log/minios/minios-boot.log and /var/log/live/config.log.\nCache and log policy for a persistent session\nTo reduce writes during a perch session, add the settings independently:\nLIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"\nThey also accept persistent, the default. minios-boot accepts the same settings from /etc/live/config.conf.d/*.conf, LIVE_CONFIG_CMDLINE (log-storage=volatile, apt-cache=volatile, browser-cache=volatile), or kernel parameters. Later fragments replace earlier ones, the parameter blob wins over file keys, and actual kernel parameters win last. The three options are independent and do not themselves request persistence. A compatible initrd advertises perch-storage-v1 at /run/initramfs/etc/minios-initramfs-storage; MiniOS Configurator warns when the current initrd does not advertise it.\nThe policies apply on a later boot only if persistence actually activated on durable writable storage. With toram, failed persistence, or Start without saving, the requested volatile policy is not treated as evidence that anything will be saved. The browser-cache component runs later than minios-boot, after the live user has been created. See Performance for the exact RAM limits, supported browser paths, fallback conditions, and logs that remain on the medium.\nSource, runtime copy, and precedence\nThe selected MiniOS data directory normally contains these source files:\nSelected data directory | Running system\nconfig.conf | /etc/live/config.conf\nconfig.conf.d/*.conf | /etc/live/config.conf.d/*.conf\nOn normally mounted media they are visible as minios/config.conf and minios/config.conf.d/*.conf, often below /run/initramfs/memory/data/ while the system is running.\nSynchronization happens at boot; it is not a file monitor:\nThe newer copy of config.conf wins by modification time. A newer media copy is copied into the live root. A newer runtime copy is copied back only when the selected MiniOS data directory is writable.\nEach config.conf.d/*.conf file is synchronized independently by basename using the same timestamp and writability rules. Files are not deleted from either side.\nIf the clock is earlier than the recorded last synchronization time, timestamp comparison is skipped and only missing destination files are filled.\ntoram=trim copies config.conf but omits config.conf.d/. Full toram copies the data tree, but synchronization then targets the RAM copy rather than the detached source medium.\nAfter synchronization, live-config reads /etc/live/config.conf first and then /etc/live/config.conf.d/*.conf in shell glob order. A later fragment can therefore replace a value from the main file or an earlier fragment.\nThe actual kernel command line is appended to LIVE_CONFIG_CMDLINE. For an option that occurs more than once, the later kernel-command-line occurrence wins. For the three storage policies, minios-boot reads the synchronized main file, then its fragments, then the option blob, and finally the actual kernel command line; the last setting wins.\nYou can add project-specific shell variables to config.conf or its fragments and read them from the runtime copies. Quote values as shell strings and do not put spaces around =.\nRelated reference\nBoot parameters — parameters that must be placed on the actual kernel command line and live-config overrides.\nlive-config — complete late-userspace parameter, variable, component, and state reference.\nBoot modes — how persistence and toram affect configuration storage.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

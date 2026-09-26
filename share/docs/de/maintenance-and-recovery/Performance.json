@@ -31,14 +31,9 @@
       "title": "Persistenzmodi (perchmode)"
     },
     {
-      "anchor": "zram-konfiguration",
-      "level": 2,
-      "title": "ZRAM-Konfiguration"
-    },
-    {
-      "anchor": "dateisystem-und-speicherhardware",
-      "level": 2,
-      "title": "Dateisystem und Speicherhardware"
+      "anchor": "cache-und-protokollschreibvorgänge-reduzieren-mit-perch",
+      "level": 3,
+      "title": "Cache- und Protokollschreibvorgänge reduzieren mit perch"
     }
   ],
   "nodes": [
@@ -407,7 +402,7 @@
                 ],
                 [
                   "text",
-                  " Speichert die beschreibbare Ebene direkt als normale Dateien. Dies verursacht den geringsten Container-Overhead und hat keine feste Containergröße, erfordert jedoch ein zugrunde liegendes Dateisystem, das die von MiniOS benötigten Linux-Metadaten und -Operationen erhält."
+                  " Speichert die beschreibbare Ebene direkt als normale Dateien. Dies verursacht den geringsten Container-Overhead und hat keine feste Containergröße, benötigt jedoch ein unterstützendes Dateisystem, das die Linux-Metadaten und Operationen, die MiniOS benötigt, erhält."
                 ]
               ]
             ]
@@ -447,7 +442,7 @@
                 ],
                 [
                   "text",
-                  " Verwendet ein ext4-Image mit fester Kapazität. Die Dateigröße entspricht der gewünschten Kapazität und eine Erweiterung erfolgt explizit, wodurch das Verhalten einfach und vorhersehbar ist. Die dynamischen Backends mit Thin-Provisioning werden jedoch nicht unterstützt. Bei FAT32 ist ein einzelnes Image auf 4000 MiB begrenzt."
+                  " Nutzt ein ext4-Abbild mit fester Kapazität. Die Dateigröße entspricht der gewünschten Kapazität und Wachstum erfolgt explizit, daher ist dieses Verfahren einfach und vorhersehbar, bietet aber nicht das Thin-Capacity-Verhalten der dynamischen Backends. FAT32 begrenzt ein einzelnes Abbild auf 4000 MiB."
                 ]
               ]
             ]
@@ -487,7 +482,7 @@
                 ],
                 [
                   "text",
-                  " Das FUSE/format-400-Backend erweitert den Nutzdatenspeicher bei Bedarf und unterstützt auch sonst ungeeignete Medien. Der Index ist nicht dünn belegt: Jeder deklarierte 4-KiB-Block benötigt einen 8-Byte-Offset, sodass die logische Kapazität etwa 2 MiB RAM und etwa 2 MiB Index-Speicher pro GiB kostet, selbst wenn die Nutzdaten leer sind. Dadurch sind mittlere Kapazitäten effizient, große Thin-Kapazitäten jedoch von Anfang an speicherintensiv."
+                  " Das FUSE/format-400-Backend erweitert den Speicherplatz für Nutzdaten nach Bedarf und unterstützt auch sonst ungeeignete Medien. Der Index ist nicht dünn: Jeder deklarierte 4-KiB-Block benötigt einen 8-Byte-Offset, sodass pro GiB logischer Kapazität etwa 2 MiB RAM und etwa 2 MiB Indexspeicher im Backend anfallen, selbst wenn die Nutzdaten leer sind. Dadurch sind mittlere Kapazitäten effizient, aber große Thin-Kapazitäten von Anfang an teuer."
                 ]
               ]
             ]
@@ -527,7 +522,7 @@
                 ],
                 [
                   "text",
-                  " Das format-1-"
+                  " Das format-1 "
                 ],
                 [
                   "span",
@@ -541,7 +536,7 @@
                 ],
                 [
                   "text",
-                  " Kernel-Backend speichert die Zuordnungstabellen auf der Festplatte und hält einen begrenzten Metadaten-Cache im RAM (standardmäßig 1 MiB). Beim Befüllen eines vorhandenen Geräts wird keine vollständige Resident-Map angelegt. Bereichsbeschreibungen und Verzeichnisse skalieren mit den deklarierten Teilen; Dateicache und Codec-Speicher kommen hinzu. "
+                  " Kernel-Backend speichert Zuordnungstabellen auf der Festplatte und hält einen begrenzten Metadaten-Cache im RAM (Standard: 1 MiB). Das Füllen eines bestehenden Geräts allokiert keine vollständige residente Map. Bereichsbeschreibungen und Verzeichnisse skalieren mit den deklarierten Teilen; Dateicache und Codec-Speicher kommen hinzu. "
                 ],
                 [
                   "span",
@@ -569,7 +564,7 @@
                 ],
                 [
                   "text",
-                  " gibt gepufferte Speicherbereiche und Cache-Statistiken aus. Gewöhnliche Rohüberschreibungen bleiben erhalten; teilweise komprimierte Aktualisierungen werden derzeit in 64-KiB-Blöcken neu komprimiert. Wählen Sie die Attachment-Cache-Richtlinie bewusst: "
+                  " gibt belegte Puffer und Cache-Statistiken aus. Normale Rohüberschreibungen bleiben erhalten; teilweise komprimierte Updates werden derzeit in 64-KiB-Blöcken neu komprimiert. Wählen Sie die Attachment-Cache-Policy bewusst: "
                 ],
                 [
                   "span",
@@ -623,7 +618,21 @@
                 ],
                 [
                   "text",
-                  " Speichert einen komprimierten Snapshot und stellt die beschreibbare obere Ebene bei jedem Start in RAM wieder her. Dies minimiert den dauerhaften Speicherbedarf für weitgehend stabile Sitzungen, verursacht jedoch CPU- und RAM-Aufwand beim Wiederherstellen und überschreibt den Snapshot beim Speichern."
+                  " Speichert einen komprimierten Snapshot und stellt die beschreibbare obere Ebene bei jedem Booten in RAM wieder her. Dies minimiert den dauerhaften Speicherbedarf für überwiegend stabile Sitzungen, verursacht aber CPU- und RAM-Last beim Wiederherstellen und überschreibt den Snapshot beim Speichern. Wenn genügend Arbeitsspeicher vorhanden ist, wird beim Speichern eine stabile Kopie der Änderungen in RAM zwischengespeichert und direkt in eine private Kandidatendatei im Sitzungsverzeichnis komprimiert. Nach Überprüfung und Synchronisierung ersetzt MiniOS atomar "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "changes.sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "; es wird keine zweite komprimierte Kopie geschrieben. Falls RAM den Zwischenspeicherbaum nicht aufnehmen kann, wird das vorhandene Festplatten-Workspace für diesen Baum genutzt."
                 ]
               ]
             ]
@@ -637,7 +646,7 @@
       [
         [
           "text",
-          "LUKS2 kann Raw, DynFileFS oder DynBlk kapseln. Die Verschlüsselung erhöht den Aufwand für Entsperren und Kryptografie, während Kapazität und Speicherverhalten des zugrunde liegenden Backends erhalten bleiben."
+          "LUKS2 kann Raw, DynFileFS oder DynBlk umschließen. Die Verschlüsselung bringt zusätzlichen Aufwand beim Entsperren und bei der Kryptografie, während Kapazität und Speicherverhalten des zugrundeliegenden Backends erhalten bleiben."
         ]
       ]
     ],
@@ -647,36 +656,18 @@
       [
         [
           "text",
-          "Testen Sie typische Workloads direkt auf dem jeweiligen Gerät. Unterschiede bei Flash-Controller, Dateisystem, USB-Bridge, Verschlüsselung, Komprimierung und Workload sind aussagekräftiger als ein allgemeines Ranking der Persistenzmodi."
+          "Testen Sie repräsentative Workloads direkt auf dem tatsächlichen Gerät. Unterschiede bei Flash-Controller, Dateisystem, USB-Bridge, Verschlüsselung, Kompression und Arbeitslast sind aussagekräftiger als ein allgemeines Ranking der Persistenzmodi."
         ]
       ]
     ],
     [
       "heading",
-      2,
-      "zram-konfiguration",
+      3,
+      "cache-und-protokollschreibvorgänge-reduzieren-mit-perch",
       [
         [
           "text",
-          "ZRAM-Konfiguration"
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          "Zram tauscht CPU-Zeit gegen komprimierten Speicherplatz und kann deutlich langsameren, speicherbasierten Swap vermeiden. Ein größeres zram-Gerät kann mehr inaktive Seiten aufnehmen, schafft aber keinen physischen RAM; nicht komprimierbare Workloads belegen weiterhin Speicher."
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "Kompressionsalgorithmen balancieren Durchsatz und CPU-Bedarf gegen die Kompressionsrate, und ihre Verfügbarkeit hängt vom Kernel ab. Beginnen Sie mit dem Standardwert und ändern Sie "
+          "Cache- und Protokollschreibvorgänge reduzieren mit "
         ],
         [
           "span",
@@ -684,7 +675,208 @@
           [
             [
               "text",
-              "zramsize"
+              "perch"
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "dem MiniOS-Konfigurator"
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Erweitert"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "-Reiter bietet unabhängige Speichereinstellungen für Systemprotokolle, APT-Downloads und Standard-Caches nativer Browser. Diese funktionieren ebenfalls im "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " oder dessen "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "config.conf.d/*.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " Fragmenten:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "LIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"",
+      "bash",
+      [
+        [
+          "syntax",
+          "LIVE_LOG_STORAGE",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "=",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\"volatile\"",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "LIVE_APT_CACHE",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "=",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\"volatile\"",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "LIVE_BROWSER_CACHE",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "=",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\"volatile\"",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Jede Einstellung akzeptiert "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "persistent"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " (Standard) oder "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "volatile"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Starten Sie nach einer Änderung neu. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " gilt nur, wenn die laufende "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " Sitzung als beschreibbar und dauerhaft bestätigt ist; das Anfordern von Persistenz allein reicht nicht aus. Für einen einmaligen Start verwenden Sie "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "log-storage=volatile"
             ]
           ]
         ],
@@ -698,13 +890,13 @@
           [
             [
               "text",
-              "zramcomp"
+              "apt-cache=volatile"
             ]
           ]
         ],
         [
           "text",
-          ", oder "
+          " oder "
         ],
         [
           "span",
@@ -712,13 +904,70 @@
           [
             [
               "text",
-              "nozram"
+              "browser-cache=volatile"
             ]
           ]
         ],
         [
           "text",
-          " nur für eine gemessene Arbeitslast; akzeptierte Werte finden Sie unter "
+          " auf der Kernel-Befehlszeile. Die "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "live-config."
+            ]
+          ]
+        ],
+        [
+          "text",
+          "-Präfix-Varianten funktionieren ebenfalls und haben Vorrang vor Konfigurationsdateien. Diese Einstellungen "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "aktivieren"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " nicht "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " von selbst. Siehe "
+        ],
+        [
+          "link",
+          "/reference/configuration/config.conf.md",
+          null,
+          [
+            [
+              "text",
+              "Konfigurationsdatei"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " zur Reihenfolge der Quelldateien und "
         ],
         [
           "link",
@@ -727,106 +976,476 @@
           [
             [
               "text",
-              "Startparameter"
+              "Boot-Parameter"
             ]
           ]
         ],
         [
           "text",
-          "."
+          " für die vollständige Syntax."
         ]
       ]
     ],
     [
-      "heading",
-      2,
-      "dateisystem-und-speicherhardware",
+      "table",
       [
         [
-          "text",
-          "Dateisystem und Speicherhardware"
-        ]
-      ]
-    ],
-    [
-      "list",
-      {
-        "ordered": false,
-        "start": 1
-      },
-      [
-        [
-          "item",
-          null,
+          "table_row",
+          true,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
               [
                 [
                   "text",
-                  ""
+                  "Einstellung"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Was bleibt in RAM bei "
                 ],
                 [
                   "span",
-                  "strong",
+                  "code",
                   [
                     [
                       "text",
-                      "Gerätewahl:"
+                      "volatile"
                     ]
                   ]
-                ],
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
                 [
                   "text",
-                  " Höherer sequentieller Durchsatz verkürzt große Modulkopien, während niedrige Latenz bei zufälligen I/O-Vorgängen für persistente Desktop-Workloads wichtiger ist."
-                ],
-                [
-                  "text",
-                  "\n"
-                ],
-                [
-                  "text",
-                  "Messen Sie Gerät und Gehäuse gemeinsam; die USB-Generation allein ist kein verlässlicher Indikator für Flash- oder SSD-Leistung."
+                  "Was bleibt auf persistentem Speicher"
                 ]
               ]
             ]
           ]
         ],
         [
-          "item",
-          null,
+          "table_row",
+          false,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
               [
                 [
-                  "text",
-                  ""
-                ],
-                [
                   "span",
-                  "strong",
+                  "code",
                   [
                     [
                       "text",
-                      "Dateisystemwahl:"
+                      "LIVE_LOG_STORAGE"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Das systemd-Journal (maximal 32 MiB) und normale "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/log"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " Ein natives Linux-Dateisystem kann native Persistenz ohne Container-Overhead nutzen. Plattformübergreifende Dateisysteme erhöhen die Portabilität, benötigen aber für Linux-Metadaten ein kompatibles Container-Backend und damit zusätzliche Mapping- und Dateisystemebenen. Die Auswahl sollte neben Benchmark-Ergebnissen auch auf Portabilitäts- und Wiederherstellungsanforderungen basieren."
+                  " Dateien (32 MiB tmpfs)."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Startprotokolle in "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/log/minios/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " und "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/log/live/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", einschließlich drei früherer Protokollversionen."
                 ]
               ]
             ]
           ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_APT_CACHE"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Heruntergeladene Pakete in "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/cache/apt/archives"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " (256 oder 512 MiB tmpfs, je nach verfügbarem Speicher)."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Paketstatus in "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/lib/dpkg"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", Repository-Listen in "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/lib/apt/lists"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", und installierte Dateien."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_BROWSER_CACHE"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Ein gemeinsames 512-MiB-tmpfs für Standard-Cacheverzeichnisse von Firefox/ESR, Chromium, Chrome, Edge, Brave, Vivaldi, Opera und Yandex Browser im Home-Verzeichnis des Live-Nutzers "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "~/.cache"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ". Eine Systemrichtlinie deaktiviert den Festplatten-Cache von Firefox."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Profile, Cookies, Passwörter, Seitendaten und Caches anderer Anwendungen."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "APT- und Browser-RAM-Caches werden übersprungen, wenn weniger als 1 GiB verfügbar ist oder nicht-zRAM-Swap aktiv ist. Das APT-Archiv-tmpfs läuft nicht auf das Gerät über: Ein Download, der größer als die verbleibende Kapazität ist, kann fehlschlagen. Ein vorhandener Firefox-"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "policies.json"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " wird nicht ersetzt; prüfen Sie die Festplatten-Cache-Einstellung separat. Standardpfade nativer Browser werden nach der Erstellung des Live-Nutzers vorbereitet, auch wenn ein Browser später installiert wird. Eigene Pfade, Flatpak/Snap-Installationen und Nutzer, die nach diesem Setup angelegt werden, werden nicht automatisch umgeleitet. Bereits gespeicherte Browser-Caches werden durch die RAM-Mounts für diesen Start ausgeblendet und erscheinen wieder, wenn auf "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "persistent"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " zurückgeschaltet wird."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Startprotokolle bleiben unabhängig von der Einstellung für normale Protokolle auf dem beschreibbaren Persistenzspeicher; eine SquashFS-Sitzung hält sie außerhalb von "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", sodass sie nicht vom Speichern des Snapshots beim Herunterfahren abhängen. Mit "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "volatile"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " verschwinden andere Dateien unter "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/var/log"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " (einschließlich APT/dpkg-Textverlauf) beim Neustart. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "EXPORT_LOGS=true"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ist ein separater, expliziter Export auf das MiniOS-Medium. Ein volles 32-MiB-Protokoll-tmpfs nimmt keine neuen Protokolle mehr an, statt auf Flash auszuweichen. Wird später ein weiteres swap-basiertes Laufwerk aktiviert, können speicherbasierte Dateien dennoch dorthin ausgelagert werden. Siehe "
+        ],
+        [
+          "link",
+          "/maintenance-and-recovery/Troubleshooting.md#protokolle-sammeln",
+          null,
+          [
+            [
+              "text",
+              "Fehlerbehebung"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " zum Auffinden der Startdiagnose."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS verwendet ebenfalls "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noatime"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " beim Einbinden eigener Daten- und Container-Dateisysteme, um Metadaten-Updates für Zugriffszeiten zu vermeiden; dies wirkt sich nicht auf andere Nutzerdatenträger aus. Standard-"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "relatime"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " begrenzt solche Updates ohnehin, daher messen Sie den Unterschied, bevor Sie dies als große Einsparung betrachten. Halten Sie das Dateisystem-Journal, Barrieren und "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "fsync"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " für ein entfernbares Persistenzmedium aktiviert."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Für einen kontrollierten 16-MiB-Protokollschreibvorgang gefolgt von "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "sync"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", zeichnete eine Testo-VM 33.304 geschriebene Sektoren auf ihrer unteren virtuellen Festplatte im Persistenzmodus und 8 im Volatilmodus auf. Dies zeigt den Unterschied im Schreibpfad für diese Arbeitslast. Es misst jedoch keine Schreibvorgänge im USB-Flash-Controller und sagt nichts über die NAND-Lebensdauer aus. Vergleichen Sie identische Anwendungs-Workloads auf dem tatsächlichen Gerät, bevor Sie Rückschlüsse auf die Lebensdauer ziehen."
         ]
       ]
     ]
   ],
-  "plain_text": "Leistung\nDas Tuning der Leistung in MiniOS ist im Wesentlichen ein Kompromiss zwischen Startzeit, RAM-Verbrauch, Lesezugriffen zur Laufzeit, Persistenz-Overhead und Datenträgerhaltbarkeit. Für genaue Bedeutungen der Optionen und Sicherheitsgrenzen siehe Startmodi, Initrd-Modulladen, und Initrd-Persistenz.\nStartparameter für die Leistung\nStartparameter können die Arbeit beim Systemstart und Lesezugriffe im Live-Betrieb zwischen RAM und dem Quellgerät verschieben. Siehe Startparameter für die vollständige Referenz.\nSystem in RAM laden (toram)\ntoram kann die Laufzeitlatenz von einem langsamen USB-Gerät oder ISO über Netzwerk reduzieren, führt jedoch zu einer längeren Startzeit und belegt deutlich mehr RAM. Bare toram verwendet den vollständigen Kopierpfad. toram=trim benötigt in der Regel weniger RAM, aber die eingeschränkte Kopie kann später benötigte Daten oder Module auslassen.\nLassen Sie ausreichend Platz für die beschreibbare Ebene, Anwendungen, Caches und zram, anstatt nur für Moduldaten zu planen. Mehr RAM für die Live-Kopie bedeutet weniger für die eigentliche Arbeitslast. Hinweise zu Kopierhaltbarkeit und Einschränkungen beim Entfernen von Medien finden Sie unter Startmodi.\nModule filtern (load und noload)\nDurch Filtern können kopierte Daten und eingehängte Ebenen reduziert werden, insbesondere mit toram=trim. Der Nachteil ist ein weniger funktionsfähiges System und ein erhöhtes Risiko für Start- oder Laufzeitfehler, falls eine Abhängigkeit fehlt. Überprüfen Sie die resultierende Modulliste; Syntax und Einschränkungen für geschützte Module sind definiert unter Initrd-Modulladen.\nOptimierung der Persistenz\nPersistenz verschiebt Schreibzugriffe der beschreibbaren Ebene von temporärem RAM auf einen Speicher oder in einen Container. Die Wahl des Backends beeinflusst Latenz, Kompatibilität, Kapazitätsmanagement und Wiederherstellungskomplexität.\nPersistenzmodi (perchmode)\nnative: Speichert die beschreibbare Ebene direkt als normale Dateien. Dies verursacht den geringsten Container-Overhead und hat keine feste Containergröße, erfordert jedoch ein zugrunde liegendes Dateisystem, das die von MiniOS benötigten Linux-Metadaten und -Operationen erhält.\nraw: Verwendet ein ext4-Image mit fester Kapazität. Die Dateigröße entspricht der gewünschten Kapazität und eine Erweiterung erfolgt explizit, wodurch das Verhalten einfach und vorhersehbar ist. Die dynamischen Backends mit Thin-Provisioning werden jedoch nicht unterstützt. Bei FAT32 ist ein einzelnes Image auf 4000 MiB begrenzt.\ndynfilefs: Das FUSE/format-400-Backend erweitert den Nutzdatenspeicher bei Bedarf und unterstützt auch sonst ungeeignete Medien. Der Index ist nicht dünn belegt: Jeder deklarierte 4-KiB-Block benötigt einen 8-Byte-Offset, sodass die logische Kapazität etwa 2 MiB RAM und etwa 2 MiB Index-Speicher pro GiB kostet, selbst wenn die Nutzdaten leer sind. Dadurch sind mittlere Kapazitäten effizient, große Thin-Kapazitäten jedoch von Anfang an speicherintensiv.\ndynblk: Das format-1-DBSPRS01 Kernel-Backend speichert die Zuordnungstabellen auf der Festplatte und hält einen begrenzten Metadaten-Cache im RAM (standardmäßig 1 MiB). Beim Befüllen eines vorhandenen Geräts wird keine vollständige Resident-Map angelegt. Bereichsbeschreibungen und Verzeichnisse skalieren mit den deklarierten Teilen; Dateicache und Codec-Speicher kommen hinzu. dynblk limits --format dynblk meldet die Geometrie-Obergrenze; dynblk status /dev/dynblkN --json gibt gepufferte Speicherbereiche und Cache-Statistiken aus. Gewöhnliche Rohüberschreibungen bleiben erhalten; teilweise komprimierte Aktualisierungen werden derzeit in 64-KiB-Blöcken neu komprimiert. Wählen Sie die Attachment-Cache-Richtlinie bewusst: unsafe verzichtet auf Haltbarkeitsgarantien.\nsquashfs: Speichert einen komprimierten Snapshot und stellt die beschreibbare obere Ebene bei jedem Start in RAM wieder her. Dies minimiert den dauerhaften Speicherbedarf für weitgehend stabile Sitzungen, verursacht jedoch CPU- und RAM-Aufwand beim Wiederherstellen und überschreibt den Snapshot beim Speichern.\nLUKS2 kann Raw, DynFileFS oder DynBlk kapseln. Die Verschlüsselung erhöht den Aufwand für Entsperren und Kryptografie, während Kapazität und Speicherverhalten des zugrunde liegenden Backends erhalten bleiben.\nTesten Sie typische Workloads direkt auf dem jeweiligen Gerät. Unterschiede bei Flash-Controller, Dateisystem, USB-Bridge, Verschlüsselung, Komprimierung und Workload sind aussagekräftiger als ein allgemeines Ranking der Persistenzmodi.\nZRAM-Konfiguration\nZram tauscht CPU-Zeit gegen komprimierten Speicherplatz und kann deutlich langsameren, speicherbasierten Swap vermeiden. Ein größeres zram-Gerät kann mehr inaktive Seiten aufnehmen, schafft aber keinen physischen RAM; nicht komprimierbare Workloads belegen weiterhin Speicher.\nKompressionsalgorithmen balancieren Durchsatz und CPU-Bedarf gegen die Kompressionsrate, und ihre Verfügbarkeit hängt vom Kernel ab. Beginnen Sie mit dem Standardwert und ändern Sie zramsize, zramcomp, oder nozram nur für eine gemessene Arbeitslast; akzeptierte Werte finden Sie unter Startparameter.\nDateisystem und Speicherhardware\nGerätewahl: Höherer sequentieller Durchsatz verkürzt große Modulkopien, während niedrige Latenz bei zufälligen I/O-Vorgängen für persistente Desktop-Workloads wichtiger ist.\nMessen Sie Gerät und Gehäuse gemeinsam; die USB-Generation allein ist kein verlässlicher Indikator für Flash- oder SSD-Leistung.\nDateisystemwahl: Ein natives Linux-Dateisystem kann native Persistenz ohne Container-Overhead nutzen. Plattformübergreifende Dateisysteme erhöhen die Portabilität, benötigen aber für Linux-Metadaten ein kompatibles Container-Backend und damit zusätzliche Mapping- und Dateisystemebenen. Die Auswahl sollte neben Benchmark-Ergebnissen auch auf Portabilitäts- und Wiederherstellungsanforderungen basieren.",
+  "plain_text": "Leistung\nDas Tuning der Leistung in MiniOS ist im Wesentlichen ein Kompromiss zwischen Startzeit, RAM-Verbrauch, Lesezugriffen zur Laufzeit, Persistenz-Overhead und Datenträgerhaltbarkeit. Für genaue Bedeutungen der Optionen und Sicherheitsgrenzen siehe Startmodi, Initrd-Modulladen, und Initrd-Persistenz.\nStartparameter für die Leistung\nStartparameter können die Arbeit beim Systemstart und Lesezugriffe im Live-Betrieb zwischen RAM und dem Quellgerät verschieben. Siehe Startparameter für die vollständige Referenz.\nSystem in RAM laden (toram)\ntoram kann die Laufzeitlatenz von einem langsamen USB-Gerät oder ISO über Netzwerk reduzieren, führt jedoch zu einer längeren Startzeit und belegt deutlich mehr RAM. Bare toram verwendet den vollständigen Kopierpfad. toram=trim benötigt in der Regel weniger RAM, aber die eingeschränkte Kopie kann später benötigte Daten oder Module auslassen.\nLassen Sie ausreichend Platz für die beschreibbare Ebene, Anwendungen, Caches und zram, anstatt nur für Moduldaten zu planen. Mehr RAM für die Live-Kopie bedeutet weniger für die eigentliche Arbeitslast. Hinweise zu Kopierhaltbarkeit und Einschränkungen beim Entfernen von Medien finden Sie unter Startmodi.\nModule filtern (load und noload)\nDurch Filtern können kopierte Daten und eingehängte Ebenen reduziert werden, insbesondere mit toram=trim. Der Nachteil ist ein weniger funktionsfähiges System und ein erhöhtes Risiko für Start- oder Laufzeitfehler, falls eine Abhängigkeit fehlt. Überprüfen Sie die resultierende Modulliste; Syntax und Einschränkungen für geschützte Module sind definiert unter Initrd-Modulladen.\nOptimierung der Persistenz\nPersistenz verschiebt Schreibzugriffe der beschreibbaren Ebene von temporärem RAM auf einen Speicher oder in einen Container. Die Wahl des Backends beeinflusst Latenz, Kompatibilität, Kapazitätsmanagement und Wiederherstellungskomplexität.\nPersistenzmodi (perchmode)\nnative: Speichert die beschreibbare Ebene direkt als normale Dateien. Dies verursacht den geringsten Container-Overhead und hat keine feste Containergröße, benötigt jedoch ein unterstützendes Dateisystem, das die Linux-Metadaten und Operationen, die MiniOS benötigt, erhält.\nraw: Nutzt ein ext4-Abbild mit fester Kapazität. Die Dateigröße entspricht der gewünschten Kapazität und Wachstum erfolgt explizit, daher ist dieses Verfahren einfach und vorhersehbar, bietet aber nicht das Thin-Capacity-Verhalten der dynamischen Backends. FAT32 begrenzt ein einzelnes Abbild auf 4000 MiB.\ndynfilefs: Das FUSE/format-400-Backend erweitert den Speicherplatz für Nutzdaten nach Bedarf und unterstützt auch sonst ungeeignete Medien. Der Index ist nicht dünn: Jeder deklarierte 4-KiB-Block benötigt einen 8-Byte-Offset, sodass pro GiB logischer Kapazität etwa 2 MiB RAM und etwa 2 MiB Indexspeicher im Backend anfallen, selbst wenn die Nutzdaten leer sind. Dadurch sind mittlere Kapazitäten effizient, aber große Thin-Kapazitäten von Anfang an teuer.\ndynblk: Das format-1 DBSPRS01 Kernel-Backend speichert Zuordnungstabellen auf der Festplatte und hält einen begrenzten Metadaten-Cache im RAM (Standard: 1 MiB). Das Füllen eines bestehenden Geräts allokiert keine vollständige residente Map. Bereichsbeschreibungen und Verzeichnisse skalieren mit den deklarierten Teilen; Dateicache und Codec-Speicher kommen hinzu. dynblk limits --format dynblk meldet die Geometrie-Obergrenze; dynblk status /dev/dynblkN --json gibt belegte Puffer und Cache-Statistiken aus. Normale Rohüberschreibungen bleiben erhalten; teilweise komprimierte Updates werden derzeit in 64-KiB-Blöcken neu komprimiert. Wählen Sie die Attachment-Cache-Policy bewusst: unsafe verzichtet auf Haltbarkeitsgarantien.\nsquashfs: Speichert einen komprimierten Snapshot und stellt die beschreibbare obere Ebene bei jedem Booten in RAM wieder her. Dies minimiert den dauerhaften Speicherbedarf für überwiegend stabile Sitzungen, verursacht aber CPU- und RAM-Last beim Wiederherstellen und überschreibt den Snapshot beim Speichern. Wenn genügend Arbeitsspeicher vorhanden ist, wird beim Speichern eine stabile Kopie der Änderungen in RAM zwischengespeichert und direkt in eine private Kandidatendatei im Sitzungsverzeichnis komprimiert. Nach Überprüfung und Synchronisierung ersetzt MiniOS atomar changes.sb; es wird keine zweite komprimierte Kopie geschrieben. Falls RAM den Zwischenspeicherbaum nicht aufnehmen kann, wird das vorhandene Festplatten-Workspace für diesen Baum genutzt.\nLUKS2 kann Raw, DynFileFS oder DynBlk umschließen. Die Verschlüsselung bringt zusätzlichen Aufwand beim Entsperren und bei der Kryptografie, während Kapazität und Speicherverhalten des zugrundeliegenden Backends erhalten bleiben.\nTesten Sie repräsentative Workloads direkt auf dem tatsächlichen Gerät. Unterschiede bei Flash-Controller, Dateisystem, USB-Bridge, Verschlüsselung, Kompression und Arbeitslast sind aussagekräftiger als ein allgemeines Ranking der Persistenzmodi.\nCache- und Protokollschreibvorgänge reduzieren mit perch\ndem MiniOS-KonfiguratorErweitert-Reiter bietet unabhängige Speichereinstellungen für Systemprotokolle, APT-Downloads und Standard-Caches nativer Browser. Diese funktionieren ebenfalls im minios/config.conf oder dessen config.conf.d/*.conf Fragmenten:\nLIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"\nJede Einstellung akzeptiert persistent (Standard) oder volatile. Starten Sie nach einer Änderung neu. minios-boot gilt nur, wenn die laufende perch Sitzung als beschreibbar und dauerhaft bestätigt ist; das Anfordern von Persistenz allein reicht nicht aus. Für einen einmaligen Start verwenden Sie log-storage=volatile, apt-cache=volatile oder browser-cache=volatile auf der Kernel-Befehlszeile. Die live-config.-Präfix-Varianten funktionieren ebenfalls und haben Vorrang vor Konfigurationsdateien. Diese Einstellungen aktivieren nicht perch von selbst. Siehe Konfigurationsdatei zur Reihenfolge der Quelldateien und Boot-Parameter für die vollständige Syntax.\nEinstellung | Was bleibt in RAM bei volatile | Was bleibt auf persistentem Speicher\nLIVE_LOG_STORAGE | Das systemd-Journal (maximal 32 MiB) und normale /var/log Dateien (32 MiB tmpfs). | Startprotokolle in /var/log/minios/ und /var/log/live/, einschließlich drei früherer Protokollversionen.\nLIVE_APT_CACHE | Heruntergeladene Pakete in /var/cache/apt/archives (256 oder 512 MiB tmpfs, je nach verfügbarem Speicher). | Paketstatus in /var/lib/dpkg, Repository-Listen in /var/lib/apt/lists, und installierte Dateien.\nLIVE_BROWSER_CACHE | Ein gemeinsames 512-MiB-tmpfs für Standard-Cacheverzeichnisse von Firefox/ESR, Chromium, Chrome, Edge, Brave, Vivaldi, Opera und Yandex Browser im Home-Verzeichnis des Live-Nutzers ~/.cache. Eine Systemrichtlinie deaktiviert den Festplatten-Cache von Firefox. | Profile, Cookies, Passwörter, Seitendaten und Caches anderer Anwendungen.\nAPT- und Browser-RAM-Caches werden übersprungen, wenn weniger als 1 GiB verfügbar ist oder nicht-zRAM-Swap aktiv ist. Das APT-Archiv-tmpfs läuft nicht auf das Gerät über: Ein Download, der größer als die verbleibende Kapazität ist, kann fehlschlagen. Ein vorhandener Firefox-policies.json wird nicht ersetzt; prüfen Sie die Festplatten-Cache-Einstellung separat. Standardpfade nativer Browser werden nach der Erstellung des Live-Nutzers vorbereitet, auch wenn ein Browser später installiert wird. Eigene Pfade, Flatpak/Snap-Installationen und Nutzer, die nach diesem Setup angelegt werden, werden nicht automatisch umgeleitet. Bereits gespeicherte Browser-Caches werden durch die RAM-Mounts für diesen Start ausgeblendet und erscheinen wieder, wenn auf persistent zurückgeschaltet wird.\nStartprotokolle bleiben unabhängig von der Einstellung für normale Protokolle auf dem beschreibbaren Persistenzspeicher; eine SquashFS-Sitzung hält sie außerhalb von changes.sb, sodass sie nicht vom Speichern des Snapshots beim Herunterfahren abhängen. Mit volatile verschwinden andere Dateien unter /var/log (einschließlich APT/dpkg-Textverlauf) beim Neustart. EXPORT_LOGS=true ist ein separater, expliziter Export auf das MiniOS-Medium. Ein volles 32-MiB-Protokoll-tmpfs nimmt keine neuen Protokolle mehr an, statt auf Flash auszuweichen. Wird später ein weiteres swap-basiertes Laufwerk aktiviert, können speicherbasierte Dateien dennoch dorthin ausgelagert werden. Siehe Fehlerbehebung zum Auffinden der Startdiagnose.\nMiniOS verwendet ebenfalls noatime beim Einbinden eigener Daten- und Container-Dateisysteme, um Metadaten-Updates für Zugriffszeiten zu vermeiden; dies wirkt sich nicht auf andere Nutzerdatenträger aus. Standard-relatime begrenzt solche Updates ohnehin, daher messen Sie den Unterschied, bevor Sie dies als große Einsparung betrachten. Halten Sie das Dateisystem-Journal, Barrieren und fsync für ein entfernbares Persistenzmedium aktiviert.\nFür einen kontrollierten 16-MiB-Protokollschreibvorgang gefolgt von sync, zeichnete eine Testo-VM 33.304 geschriebene Sektoren auf ihrer unteren virtuellen Festplatte im Persistenzmodus und 8 im Volatilmodus auf. Dies zeigt den Unterschied im Schreibpfad für diese Arbeitslast. Es misst jedoch keine Schreibvorgänge im USB-Flash-Controller und sagt nichts über die NAND-Lebensdauer aus. Vergleichen Sie identische Anwendungs-Workloads auf dem tatsächlichen Gerät, bevor Sie Rückschlüsse auf die Lebensdauer ziehen.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

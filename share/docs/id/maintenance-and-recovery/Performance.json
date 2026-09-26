@@ -31,14 +31,9 @@
       "title": "Mode Persistensi (perchmode)"
     },
     {
-      "anchor": "konfigurasi-zram",
-      "level": 2,
-      "title": "Konfigurasi ZRAM"
-    },
-    {
-      "anchor": "filesystem-dan-perangkat-penyimpanan",
-      "level": 2,
-      "title": "Filesystem dan Perangkat Penyimpanan"
+      "anchor": "kurangi-penulisan-cache-dan-log-dengan-perch",
+      "level": 3,
+      "title": "Kurangi penulisan cache dan log dengan perch"
     }
   ],
   "nodes": [
@@ -407,7 +402,7 @@
                 ],
                 [
                   "text",
-                  " Menyimpan layer yang dapat ditulis langsung sebagai file biasa. Memiliki overhead container paling rendah dan tidak ada ukuran container tetap, namun membutuhkan filesystem pendukung yang dapat mempertahankan metadata dan operasi Linux yang dibutuhkan MiniOS."
+                  " Menyimpan layer yang dapat ditulis langsung sebagai file biasa. Overhead kontainer paling rendah dan tidak ada ukuran kontainer tetap, namun membutuhkan filesystem pendukung yang dapat menjaga metadata dan operasi Linux yang diperlukan oleh MiniOS."
                 ]
               ]
             ]
@@ -447,7 +442,7 @@
                 ],
                 [
                   "text",
-                  " Menggunakan satu image ext4 dengan kapasitas tetap. Panjang file disesuaikan dengan kapasitas yang diminta dan pertumbuhan dilakukan secara eksplisit, sehingga sederhana dan dapat diprediksi namun tidak memiliki perilaku kapasitas dinamis seperti backend dinamis. FAT32 membatasi ukuran image tunggal hingga 4000 MiB."
+                  " Menggunakan satu image ext4 berkapasitas tetap. Panjang file ditetapkan sesuai kapasitas yang diminta dan pertumbuhan harus dilakukan secara eksplisit, sehingga sederhana dan dapat diprediksi namun tidak memiliki perilaku kapasitas tipis seperti backend dinamis. FAT32 membatasi satu image hingga 4000 MiB."
                 ]
               ]
             ]
@@ -487,7 +482,7 @@
                 ],
                 [
                   "text",
-                  " Backend FUSE/format-400 memperluas penyimpanan payload sesuai kebutuhan dan mendukung media yang biasanya tidak cocok. Indeksnya tidak sparse: setiap blok logis 4 KiB yang dideklarasikan membutuhkan satu offset 8-byte, sehingga kapasitas logis memerlukan sekitar 2 MiB RAM dan sekitar 2 MiB penyimpanan indeks pendukung per GiB meskipun payload kosong. Hal ini membuat kapasitas sedang menjadi efisien, namun kapasitas tipis yang besar menjadi mahal di awal."
+                  " Backend FUSE/format-400 memperluas penyimpanan payload sesuai kebutuhan dan mendukung media yang biasanya tidak cocok. Indeksnya tidak sparse: setiap blok logis 4 KiB membutuhkan satu offset 8-byte, sehingga kapasitas logis memerlukan sekitar 2 MiB RAM dan sekitar 2 MiB penyimpanan indeks per GiB, bahkan jika payload kosong. Ini membuat kapasitas sedang efisien, tetapi kapasitas tipis besar menjadi mahal di awal."
                 ]
               ]
             ]
@@ -527,7 +522,7 @@
                 ],
                 [
                   "text",
-                  " Backend format-1 "
+                  " Format-1 "
                 ],
                 [
                   "span",
@@ -541,7 +536,7 @@
                 ],
                 [
                   "text",
-                  " kernel menyimpan tabel pemetaan di disk dan cache metadata terbatas di RAM (default 1 MiB). Mengisi perangkat yang sudah ada tidak akan mengalokasikan peta residu penuh. Deskripsi extent dan direktori diskalakan sesuai bagian yang dideklarasikan; cache file dan memori codec merupakan tambahan."
+                  " backend kernel menyimpan tabel pemetaan di disk dan cache metadata terbatas di RAM (default 1 MiB). Mengisi perangkat yang sudah ada tidak mengalokasikan peta resident penuh. Deskripsi extent dan direktori diskalakan sesuai bagian yang dideklarasikan; cache file dan memori codec adalah tambahan. "
                 ],
                 [
                   "span",
@@ -569,7 +564,7 @@
                 ],
                 [
                   "text",
-                  " melaporkan buffer yang dihitung dan statistik cache. Overwrite mentah biasa tetap di tempatnya; pembaruan terkompresi parsial saat ini akan mengompresi ulang satu grain 64-KiB. Pilih kebijakan cache attachment dengan cermat: "
+                  " melaporkan buffer dan statistik cache yang dihitung. Penulisan ulang raw biasa tetap di tempat; pembaruan terkompresi parsial saat ini akan mengompresi ulang satu grain 64-KiB. Pilih kebijakan cache attachment dengan cermat: "
                 ],
                 [
                   "span",
@@ -623,7 +618,21 @@
                 ],
                 [
                   "text",
-                  " Menyimpan snapshot terkompresi dan membangun ulang layer atas yang dapat ditulis di RAM setiap kali boot. Ini meminimalkan penyimpanan persisten untuk sesi yang sebagian besar stabil, namun membutuhkan biaya CPU dan RAM saat pemulihan serta menulis ulang snapshot saat menyimpan."
+                  " Menyimpan snapshot terkompresi dan merekonstruksi upper yang dapat ditulis di RAM setiap kali boot. Ini meminimalkan penyimpanan persisten untuk sesi yang sebagian besar stabil, tetapi membutuhkan biaya CPU dan RAM saat restore dan menulis ulang snapshot ketika menyimpan. Jika memori memungkinkan, proses penyimpanan akan menyiapkan salinan perubahan yang stabil di RAM dan mengompresi langsung ke satu kandidat privat di direktori sesi. Setelah verifikasi dan sinkronisasi, MiniOS secara atomik menggantikan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "changes.sb"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "; tidak menulis salinan terkompresi kedua. Jika RAM tidak cukup untuk staging tree, maka menggunakan workspace disk yang ada untuk tree tersebut."
                 ]
               ]
             ]
@@ -637,7 +646,7 @@
       [
         [
           "text",
-          "LUKS2 dapat membungkus Raw, DynFileFS, atau DynBlk. Enkripsi menambah overhead saat membuka dan kriptografi, namun tetap mempertahankan kapasitas dan perilaku penyimpanan backend yang digunakan."
+          "LUKS2 dapat membungkus Raw, DynFileFS, atau DynBlk. Enkripsi menambah overhead unlock dan kriptografi, namun tetap mempertahankan kapasitas dan perilaku penyimpanan backend yang mendasarinya."
         ]
       ]
     ],
@@ -647,36 +656,18 @@
       [
         [
           "text",
-          "Lakukan benchmark pada beban kerja yang representatif langsung di perangkat yang digunakan. Perbedaan pada controller flash, filesystem, USB bridge, enkripsi, kompresi, dan jenis beban kerja lebih berpengaruh daripada urutan peringkat mode persistensi secara umum."
+          "Lakukan benchmark pada beban kerja representatif di perangkat sebenarnya. Perbedaan pengontrol flash, filesystem, USB bridge, enkripsi, kompresi, dan beban kerja lebih berpengaruh daripada peringkat mode persistensi secara umum."
         ]
       ]
     ],
     [
       "heading",
-      2,
-      "konfigurasi-zram",
+      3,
+      "kurangi-penulisan-cache-dan-log-dengan-perch",
       [
         [
           "text",
-          "Konfigurasi ZRAM"
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          "Zram menukar waktu CPU dengan kapasitas memori terkompresi dan dapat menghindari swap berbasis penyimpanan yang jauh lebih lambat. Perangkat zram yang lebih besar dapat menyerap lebih banyak halaman tidak aktif namun tidak menciptakan RAM fisik; workload yang tidak dapat dikompresi tetap mengonsumsi memori."
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "Algoritma kompresi menukar throughput dan penggunaan CPU dengan rasio kompresi, dan ketersediaannya tergantung pada kernel. Mulai dengan pengaturan default dan ubah "
+          "Kurangi penulisan cache dan log dengan "
         ],
         [
           "span",
@@ -684,7 +675,208 @@
           [
             [
               "text",
-              "zramsize"
+              "perch"
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Konfigurator MiniOS "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Lanjutan"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " menyediakan pengaturan penyimpanan terpisah untuk log sistem biasa, unduhan APT, dan cache browser-native standar. Fitur ini juga berlaku di "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios/config.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " atau fragmen "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "config.conf.d/*.conf"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " berikut:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "LIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"",
+      "bash",
+      [
+        [
+          "syntax",
+          "LIVE_LOG_STORAGE",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "=",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\"volatile\"",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "LIVE_APT_CACHE",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "=",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\"volatile\"",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "LIVE_BROWSER_CACHE",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "=",
+          "#D73A49",
+          "#F97583"
+        ],
+        [
+          "syntax",
+          "\"volatile\"",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Setiap pengaturan menerima "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "persistent"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " (default) atau "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "volatile"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Reboot setelah mengubah salah satu pengaturan. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " hanya menerapkan kebijakan jika sesi "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " yang berjalan sudah dipastikan dapat ditulis dan tahan lama; permintaan persistensi saja tidak cukup. Untuk boot satu kali, gunakan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "log-storage=volatile"
             ]
           ]
         ],
@@ -698,7 +890,7 @@
           [
             [
               "text",
-              "zramcomp"
+              "apt-cache=volatile"
             ]
           ]
         ],
@@ -712,13 +904,70 @@
           [
             [
               "text",
-              "nozram"
+              "browser-cache=volatile"
             ]
           ]
         ],
         [
           "text",
-          " hanya untuk workload yang sudah diukur; lihat "
+          " di baris perintah kernel. Bentuk yang diawali dengan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "live-config."
+            ]
+          ]
+        ],
+        [
+          "text",
+          "- juga berfungsi dan akan mengesampingkan file konfigurasi. Pengaturan ini "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "tidak"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " mengaktifkan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " secara otomatis. Lihat "
+        ],
+        [
+          "link",
+          "/reference/configuration/config.conf.md",
+          null,
+          [
+            [
+              "text",
+              "File konfigurasi"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk urutan file sumber dan "
         ],
         [
           "link",
@@ -727,106 +976,476 @@
           [
             [
               "text",
-              "Parameter Boot"
+              "Parameter boot"
             ]
           ]
         ],
         [
           "text",
-          " untuk nilai yang diterima."
+          " untuk sintaks lengkapnya."
         ]
       ]
     ],
     [
-      "heading",
-      2,
-      "filesystem-dan-perangkat-penyimpanan",
+      "table",
       [
         [
-          "text",
-          "Filesystem dan Perangkat Penyimpanan"
-        ]
-      ]
-    ],
-    [
-      "list",
-      {
-        "ordered": false,
-        "start": 1
-      },
-      [
-        [
-          "item",
-          null,
+          "table_row",
+          true,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
               [
                 [
                   "text",
-                  ""
+                  "Pengaturan"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Apa yang tetap di RAM dengan "
                 ],
                 [
                   "span",
-                  "strong",
+                  "code",
                   [
                     [
                       "text",
-                      "Pilihan perangkat:"
+                      "volatile"
                     ]
                   ]
-                ],
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
                 [
                   "text",
-                  " Throughput sekuensial yang tinggi mempercepat penyalinan modul besar, sedangkan latensi I/O acak yang rendah lebih penting untuk workload desktop yang persisten."
-                ],
-                [
-                  "text",
-                  "\n"
-                ],
-                [
-                  "text",
-                  "Ukur perangkat dan enclosure secara bersamaan; generasi USB saja tidak menjamin performa flash atau SSD."
+                  "Apa yang tetap di penyimpanan persisten"
                 ]
               ]
             ]
           ]
         ],
         [
-          "item",
-          null,
+          "table_row",
+          false,
           [
             [
-              "block",
-              "paragraph",
+              "table_cell",
               [
                 [
-                  "text",
-                  ""
-                ],
-                [
                   "span",
-                  "strong",
+                  "code",
                   [
                     [
                       "text",
-                      "Pilihan filesystem:"
+                      "LIVE_LOG_STORAGE"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Jurnal systemd (maksimal 32 MiB) dan file "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/log"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " Filesystem Linux native dapat menggunakan persistensi native tanpa beban kontainer. Filesystem lintas platform meningkatkan portabilitas namun membutuhkan backend kontainer yang kompatibel untuk metadata Linux, sehingga menambah lapisan pemetaan dan filesystem. Pilih berdasarkan kebutuhan portabilitas dan pemulihan serta hasil benchmark."
+                  " biasa (tmpfs 32 MiB)."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Log boot di "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/log/minios/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " dan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/log/live/"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", termasuk tiga versi log sebelumnya."
                 ]
               ]
             ]
           ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_APT_CACHE"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Paket yang diunduh di "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/cache/apt/archives"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " (tmpfs 256 atau 512 MiB, tergantung memori yang tersedia)."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Status paket di "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/lib/dpkg"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", daftar repository di "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/lib/apt/lists"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", dan file yang terpasang."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_BROWSER_CACHE"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Satu tmpfs 512 MiB bersama untuk direktori cache standar Firefox/ESR, Chromium, Chrome, Edge, Brave, Vivaldi, Opera, dan Yandex Browser di bawah direktori "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "~/.cache"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " pengguna live. Kebijakan sistem menonaktifkan cache disk Firefox."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Profil, cookie, kata sandi, data situs, dan cache aplikasi lain yang tidak terkait."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Cache APT dan browser RAM dilewati jika tersedia kurang dari 1 GiB atau swap non-zRAM aktif. Tmpfs arsip APT tidak akan overflow ke perangkat: unduhan yang lebih besar dari kapasitas tersisa bisa gagal. File "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "policies.json"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " Firefox yang sudah ada tidak akan diganti; periksa pengaturan cache disk secara terpisah. Path browser-native standar disiapkan setelah user live dibuat, termasuk jika browser diinstal belakangan. Path kustom, instalasi Flatpak/Snap, dan user yang dibuat setelah setup tidak otomatis diarahkan ulang. Cache browser yang sudah tersimpan sebelumnya akan disembunyikan oleh mount RAM untuk boot ini dan akan muncul kembali saat kembali ke "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "persistent"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Log boot tetap berada di media persistensi yang dapat ditulis terlepas dari pengaturan log biasa; sesi SquashFS menyimpannya di luar "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "changes.sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", sehingga tidak tergantung pada penyimpanan snapshot saat shutdown. Dengan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "volatile"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pengaturan ini, file lain di bawah "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "/var/log"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " (termasuk riwayat teks APT/dpkg) akan hilang saat reboot. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "EXPORT_LOGS=true"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " adalah ekspor eksplisit terpisah ke media MiniOS. Jika tmpfs log 32 MiB penuh, penulisan log baru akan ditolak, tidak dialihkan ke flash. Jika swap berbasis disk diaktifkan kemudian, file berbasis memori tetap dapat dipindahkan ke swap tersebut. Lihat "
+        ],
+        [
+          "link",
+          "/maintenance-and-recovery/Troubleshooting.md#mengumpulkan-log",
+          null,
+          [
+            [
+              "text",
+              "Pemecahan masalah"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk menemukan log boot."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "MiniOS juga menggunakan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "noatime"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " saat me-mount data dan filesystem kontainernya sendiri, sehingga menghindari update metadata access-time; ini tidak me-remount disk user lain. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "relatime"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " standar sudah membatasi update semacam itu, jadi ukur dulu perbedaannya sebelum menganggapnya sebagai penghematan besar. Pastikan journal filesystem, barrier, dan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "fsync"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " tetap aktif untuk media persistensi yang dapat dilepas."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Untuk penulisan file log 16 MiB secara terkontrol yang diikuti dengan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "sync"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", sebuah VM Testo mencatat 33.304 sektor ditulis ke disk virtual bawahnya dalam mode persisten dan 8 di mode volatile. Ini menunjukkan perubahan jalur penulisan untuk beban kerja tersebut. Namun tidak mengukur penulisan di dalam pengontrol USB flash atau memprediksi umur NAND. Bandingkan beban kerja aplikasi yang identik di perangkat sebenarnya sebelum menarik kesimpulan tentang masa pakai perangkat."
         ]
       ]
     ]
   ],
-  "plain_text": "Performa\nPenyetelan performa di MiniOS umumnya merupakan kompromi antara waktu boot, penggunaan RAM, pembacaan saat runtime, beban persistensi, dan daya tahan penyimpanan. Untuk detail opsi dan batasan keamanannya, gunakan Mode Boot, Pemrosesan Modul Initrd, dan Persistensi Initrd.\nParameter Boot untuk Performa\nParameter boot dapat memindahkan proses startup dan pembacaan sistem berjalan antara RAM dan perangkat sumber. Lihat Parameter Boot untuk referensi lengkap.\nMemuat Sistem ke dalam RAM (toram)\ntoram dapat mengurangi latensi saat runtime dari perangkat USB lambat atau ISO berbasis jaringan, dengan konsekuensi waktu boot lebih lama dan penggunaan RAM yang jauh lebih besar. Bare toram menggunakan metode salin penuh. toram=trim biasanya lebih hemat RAM, namun penyalinan yang lebih sempit bisa melewatkan data atau modul yang dibutuhkan kemudian.\nSisakan ruang untuk layer yang bisa ditulis, aplikasi, cache, dan zram, bukan hanya memperhitungkan file modul saja. Semakin banyak RAM yang dialokasikan untuk salinan live, semakin sedikit yang tersedia untuk workload. Ikuti Mode Boot untuk ketahanan salinan dan batasan pelepasan media.\nPenyaringan Modul (load dan noload)\nPenyaringan dapat mengurangi data yang disalin dan layer yang di-mount, terutama dengan toram=trim. Konsekuensinya adalah sistem menjadi kurang kapabel dan risiko kegagalan boot atau runtime meningkat jika ada dependensi yang terlewat. Pastikan set modul hasil filter; sintaks filter dan batasan modul yang dilindungi dijelaskan di Pemrosesan Modul Initrd.\nOptimasi Persistensi\nPersistensi memindahkan I/O layer yang bisa ditulis dari RAM sementara ke penyimpanan atau kontainer. Pilihan backend memengaruhi latensi, kompatibilitas, manajemen kapasitas, dan kompleksitas pemulihan.\nMode Persistensi (perchmode)\nnative: Menyimpan layer yang dapat ditulis langsung sebagai file biasa. Memiliki overhead container paling rendah dan tidak ada ukuran container tetap, namun membutuhkan filesystem pendukung yang dapat mempertahankan metadata dan operasi Linux yang dibutuhkan MiniOS.\nraw: Menggunakan satu image ext4 dengan kapasitas tetap. Panjang file disesuaikan dengan kapasitas yang diminta dan pertumbuhan dilakukan secara eksplisit, sehingga sederhana dan dapat diprediksi namun tidak memiliki perilaku kapasitas dinamis seperti backend dinamis. FAT32 membatasi ukuran image tunggal hingga 4000 MiB.\ndynfilefs: Backend FUSE/format-400 memperluas penyimpanan payload sesuai kebutuhan dan mendukung media yang biasanya tidak cocok. Indeksnya tidak sparse: setiap blok logis 4 KiB yang dideklarasikan membutuhkan satu offset 8-byte, sehingga kapasitas logis memerlukan sekitar 2 MiB RAM dan sekitar 2 MiB penyimpanan indeks pendukung per GiB meskipun payload kosong. Hal ini membuat kapasitas sedang menjadi efisien, namun kapasitas tipis yang besar menjadi mahal di awal.\ndynblk: Backend format-1 DBSPRS01 kernel menyimpan tabel pemetaan di disk dan cache metadata terbatas di RAM (default 1 MiB). Mengisi perangkat yang sudah ada tidak akan mengalokasikan peta residu penuh. Deskripsi extent dan direktori diskalakan sesuai bagian yang dideklarasikan; cache file dan memori codec merupakan tambahan.dynblk limits --format dynblk melaporkan batas geometri; dynblk status /dev/dynblkN --json melaporkan buffer yang dihitung dan statistik cache. Overwrite mentah biasa tetap di tempatnya; pembaruan terkompresi parsial saat ini akan mengompresi ulang satu grain 64-KiB. Pilih kebijakan cache attachment dengan cermat: unsafe mengorbankan jaminan durabilitas.\nsquashfs: Menyimpan snapshot terkompresi dan membangun ulang layer atas yang dapat ditulis di RAM setiap kali boot. Ini meminimalkan penyimpanan persisten untuk sesi yang sebagian besar stabil, namun membutuhkan biaya CPU dan RAM saat pemulihan serta menulis ulang snapshot saat menyimpan.\nLUKS2 dapat membungkus Raw, DynFileFS, atau DynBlk. Enkripsi menambah overhead saat membuka dan kriptografi, namun tetap mempertahankan kapasitas dan perilaku penyimpanan backend yang digunakan.\nLakukan benchmark pada beban kerja yang representatif langsung di perangkat yang digunakan. Perbedaan pada controller flash, filesystem, USB bridge, enkripsi, kompresi, dan jenis beban kerja lebih berpengaruh daripada urutan peringkat mode persistensi secara umum.\nKonfigurasi ZRAM\nZram menukar waktu CPU dengan kapasitas memori terkompresi dan dapat menghindari swap berbasis penyimpanan yang jauh lebih lambat. Perangkat zram yang lebih besar dapat menyerap lebih banyak halaman tidak aktif namun tidak menciptakan RAM fisik; workload yang tidak dapat dikompresi tetap mengonsumsi memori.\nAlgoritma kompresi menukar throughput dan penggunaan CPU dengan rasio kompresi, dan ketersediaannya tergantung pada kernel. Mulai dengan pengaturan default dan ubah zramsize, zramcomp, atau nozram hanya untuk workload yang sudah diukur; lihat Parameter Boot untuk nilai yang diterima.\nFilesystem dan Perangkat Penyimpanan\nPilihan perangkat: Throughput sekuensial yang tinggi mempercepat penyalinan modul besar, sedangkan latensi I/O acak yang rendah lebih penting untuk workload desktop yang persisten.\nUkur perangkat dan enclosure secara bersamaan; generasi USB saja tidak menjamin performa flash atau SSD.\nPilihan filesystem: Filesystem Linux native dapat menggunakan persistensi native tanpa beban kontainer. Filesystem lintas platform meningkatkan portabilitas namun membutuhkan backend kontainer yang kompatibel untuk metadata Linux, sehingga menambah lapisan pemetaan dan filesystem. Pilih berdasarkan kebutuhan portabilitas dan pemulihan serta hasil benchmark.",
+  "plain_text": "Performa\nPenyetelan performa di MiniOS umumnya merupakan kompromi antara waktu boot, penggunaan RAM, pembacaan saat runtime, beban persistensi, dan daya tahan penyimpanan. Untuk detail opsi dan batasan keamanannya, gunakan Mode Boot, Pemrosesan Modul Initrd, dan Persistensi Initrd.\nParameter Boot untuk Performa\nParameter boot dapat memindahkan proses startup dan pembacaan sistem berjalan antara RAM dan perangkat sumber. Lihat Parameter Boot untuk referensi lengkap.\nMemuat Sistem ke dalam RAM (toram)\ntoram dapat mengurangi latensi saat runtime dari perangkat USB lambat atau ISO berbasis jaringan, dengan konsekuensi waktu boot lebih lama dan penggunaan RAM yang jauh lebih besar. Bare toram menggunakan metode salin penuh. toram=trim biasanya lebih hemat RAM, namun penyalinan yang lebih sempit bisa melewatkan data atau modul yang dibutuhkan kemudian.\nSisakan ruang untuk layer yang bisa ditulis, aplikasi, cache, dan zram, bukan hanya memperhitungkan file modul saja. Semakin banyak RAM yang dialokasikan untuk salinan live, semakin sedikit yang tersedia untuk workload. Ikuti Mode Boot untuk ketahanan salinan dan batasan pelepasan media.\nPenyaringan Modul (load dan noload)\nPenyaringan dapat mengurangi data yang disalin dan layer yang di-mount, terutama dengan toram=trim. Konsekuensinya adalah sistem menjadi kurang kapabel dan risiko kegagalan boot atau runtime meningkat jika ada dependensi yang terlewat. Pastikan set modul hasil filter; sintaks filter dan batasan modul yang dilindungi dijelaskan di Pemrosesan Modul Initrd.\nOptimasi Persistensi\nPersistensi memindahkan I/O layer yang bisa ditulis dari RAM sementara ke penyimpanan atau kontainer. Pilihan backend memengaruhi latensi, kompatibilitas, manajemen kapasitas, dan kompleksitas pemulihan.\nMode Persistensi (perchmode)\nnative: Menyimpan layer yang dapat ditulis langsung sebagai file biasa. Overhead kontainer paling rendah dan tidak ada ukuran kontainer tetap, namun membutuhkan filesystem pendukung yang dapat menjaga metadata dan operasi Linux yang diperlukan oleh MiniOS.\nraw: Menggunakan satu image ext4 berkapasitas tetap. Panjang file ditetapkan sesuai kapasitas yang diminta dan pertumbuhan harus dilakukan secara eksplisit, sehingga sederhana dan dapat diprediksi namun tidak memiliki perilaku kapasitas tipis seperti backend dinamis. FAT32 membatasi satu image hingga 4000 MiB.\ndynfilefs: Backend FUSE/format-400 memperluas penyimpanan payload sesuai kebutuhan dan mendukung media yang biasanya tidak cocok. Indeksnya tidak sparse: setiap blok logis 4 KiB membutuhkan satu offset 8-byte, sehingga kapasitas logis memerlukan sekitar 2 MiB RAM dan sekitar 2 MiB penyimpanan indeks per GiB, bahkan jika payload kosong. Ini membuat kapasitas sedang efisien, tetapi kapasitas tipis besar menjadi mahal di awal.\ndynblk: Format-1 DBSPRS01 backend kernel menyimpan tabel pemetaan di disk dan cache metadata terbatas di RAM (default 1 MiB). Mengisi perangkat yang sudah ada tidak mengalokasikan peta resident penuh. Deskripsi extent dan direktori diskalakan sesuai bagian yang dideklarasikan; cache file dan memori codec adalah tambahan. dynblk limits --format dynblk melaporkan batas geometri; dynblk status /dev/dynblkN --json melaporkan buffer dan statistik cache yang dihitung. Penulisan ulang raw biasa tetap di tempat; pembaruan terkompresi parsial saat ini akan mengompresi ulang satu grain 64-KiB. Pilih kebijakan cache attachment dengan cermat: unsafe mengorbankan jaminan durabilitas.\nsquashfs: Menyimpan snapshot terkompresi dan merekonstruksi upper yang dapat ditulis di RAM setiap kali boot. Ini meminimalkan penyimpanan persisten untuk sesi yang sebagian besar stabil, tetapi membutuhkan biaya CPU dan RAM saat restore dan menulis ulang snapshot ketika menyimpan. Jika memori memungkinkan, proses penyimpanan akan menyiapkan salinan perubahan yang stabil di RAM dan mengompresi langsung ke satu kandidat privat di direktori sesi. Setelah verifikasi dan sinkronisasi, MiniOS secara atomik menggantikan changes.sb; tidak menulis salinan terkompresi kedua. Jika RAM tidak cukup untuk staging tree, maka menggunakan workspace disk yang ada untuk tree tersebut.\nLUKS2 dapat membungkus Raw, DynFileFS, atau DynBlk. Enkripsi menambah overhead unlock dan kriptografi, namun tetap mempertahankan kapasitas dan perilaku penyimpanan backend yang mendasarinya.\nLakukan benchmark pada beban kerja representatif di perangkat sebenarnya. Perbedaan pengontrol flash, filesystem, USB bridge, enkripsi, kompresi, dan beban kerja lebih berpengaruh daripada peringkat mode persistensi secara umum.\nKurangi penulisan cache dan log dengan perch\nKonfigurator MiniOS Lanjutan menyediakan pengaturan penyimpanan terpisah untuk log sistem biasa, unduhan APT, dan cache browser-native standar. Fitur ini juga berlaku di minios/config.conf atau fragmen config.conf.d/*.conf berikut:\nLIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"\nSetiap pengaturan menerima persistent (default) atau volatile. Reboot setelah mengubah salah satu pengaturan. minios-boot hanya menerapkan kebijakan jika sesi perch yang berjalan sudah dipastikan dapat ditulis dan tahan lama; permintaan persistensi saja tidak cukup. Untuk boot satu kali, gunakan log-storage=volatile, apt-cache=volatile, atau browser-cache=volatile di baris perintah kernel. Bentuk yang diawali dengan live-config.- juga berfungsi dan akan mengesampingkan file konfigurasi. Pengaturan ini tidak mengaktifkan perch secara otomatis. Lihat File konfigurasi untuk urutan file sumber dan Parameter boot untuk sintaks lengkapnya.\nPengaturan | Apa yang tetap di RAM dengan volatile | Apa yang tetap di penyimpanan persisten\nLIVE_LOG_STORAGE | Jurnal systemd (maksimal 32 MiB) dan file /var/log biasa (tmpfs 32 MiB). | Log boot di /var/log/minios/ dan /var/log/live/, termasuk tiga versi log sebelumnya.\nLIVE_APT_CACHE | Paket yang diunduh di /var/cache/apt/archives (tmpfs 256 atau 512 MiB, tergantung memori yang tersedia). | Status paket di /var/lib/dpkg, daftar repository di /var/lib/apt/lists, dan file yang terpasang.\nLIVE_BROWSER_CACHE | Satu tmpfs 512 MiB bersama untuk direktori cache standar Firefox/ESR, Chromium, Chrome, Edge, Brave, Vivaldi, Opera, dan Yandex Browser di bawah direktori ~/.cache pengguna live. Kebijakan sistem menonaktifkan cache disk Firefox. | Profil, cookie, kata sandi, data situs, dan cache aplikasi lain yang tidak terkait.\nCache APT dan browser RAM dilewati jika tersedia kurang dari 1 GiB atau swap non-zRAM aktif. Tmpfs arsip APT tidak akan overflow ke perangkat: unduhan yang lebih besar dari kapasitas tersisa bisa gagal. File policies.json Firefox yang sudah ada tidak akan diganti; periksa pengaturan cache disk secara terpisah. Path browser-native standar disiapkan setelah user live dibuat, termasuk jika browser diinstal belakangan. Path kustom, instalasi Flatpak/Snap, dan user yang dibuat setelah setup tidak otomatis diarahkan ulang. Cache browser yang sudah tersimpan sebelumnya akan disembunyikan oleh mount RAM untuk boot ini dan akan muncul kembali saat kembali ke persistent.\nLog boot tetap berada di media persistensi yang dapat ditulis terlepas dari pengaturan log biasa; sesi SquashFS menyimpannya di luar changes.sb, sehingga tidak tergantung pada penyimpanan snapshot saat shutdown. Dengan volatile pengaturan ini, file lain di bawah /var/log (termasuk riwayat teks APT/dpkg) akan hilang saat reboot. EXPORT_LOGS=true adalah ekspor eksplisit terpisah ke media MiniOS. Jika tmpfs log 32 MiB penuh, penulisan log baru akan ditolak, tidak dialihkan ke flash. Jika swap berbasis disk diaktifkan kemudian, file berbasis memori tetap dapat dipindahkan ke swap tersebut. Lihat Pemecahan masalah untuk menemukan log boot.\nMiniOS juga menggunakan noatime saat me-mount data dan filesystem kontainernya sendiri, sehingga menghindari update metadata access-time; ini tidak me-remount disk user lain. relatime standar sudah membatasi update semacam itu, jadi ukur dulu perbedaannya sebelum menganggapnya sebagai penghematan besar. Pastikan journal filesystem, barrier, dan fsync tetap aktif untuk media persistensi yang dapat dilepas.\nUntuk penulisan file log 16 MiB secara terkontrol yang diikuti dengan sync, sebuah VM Testo mencatat 33.304 sektor ditulis ke disk virtual bawahnya dalam mode persisten dan 8 di mode volatile. Ini menunjukkan perubahan jalur penulisan untuk beban kerja tersebut. Namun tidak mengukur penulisan di dalam pengontrol USB flash atau memprediksi umur NAND. Bandingkan beban kerja aplikasi yang identik di perangkat sebenarnya sebelum menarik kesimpulan tentang masa pakai perangkat.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
