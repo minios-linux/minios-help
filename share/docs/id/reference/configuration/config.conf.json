@@ -26,9 +26,9 @@
       "title": "Pra-konfigurasi jaringan kabel"
     },
     {
-      "anchor": "pengaturan-minios-early-userspace",
+      "anchor": "minios-pengaturan-early-userspace",
       "level": 2,
-      "title": "Pengaturan MiniOS early-userspace"
+      "title": "MiniOS pengaturan early-userspace"
     },
     {
       "anchor": "kebijakan-cache-dan-log-untuk-sesi-persisten",
@@ -39,6 +39,11 @@
       "anchor": "sumber-salinan-runtime-dan-prioritas",
       "level": 2,
       "title": "Sumber, salinan runtime, dan prioritas"
+    },
+    {
+      "anchor": "referensi-terkait",
+      "level": 2,
+      "title": "Referensi terkait"
     }
   ],
   "nodes": [
@@ -270,7 +275,7 @@
         ],
         [
           "text",
-          " dengan struktur umum seperti berikut:"
+          " dengan struktur umum seperti ini:"
         ]
       ]
     ],
@@ -882,7 +887,7 @@
             ],
             [
               "text",
-              " menyediakan opsi setelah root MiniOS selesai dibuat. Parameter seperti "
+              " menyediakan opsi setelah root MiniOS selesai dirakit. Parameter seperti "
             ],
             [
               "span",
@@ -952,7 +957,7 @@
             ],
             [
               "text",
-              " maka sudah terlambat untuk mempengaruhi initramfs. Opsi storage-policy seperti "
+              " maka sudah terlambat untuk memengaruhi initramfs. Opsi storage-policy seperti "
             ],
             [
               "span",
@@ -994,7 +999,7 @@
             ],
             [
               "text",
-              " merupakan pengecualian khusus: "
+              " adalah pengecualian khusus: "
             ],
             [
               "span",
@@ -1008,7 +1013,7 @@
             ],
             [
               "text",
-              " akan membacanya dari "
+              " membaca opsi tersebut dari "
             ],
             [
               "span",
@@ -1108,7 +1113,7 @@
               [
                 [
                   "text",
-                  "Opsi live-config tambahan. Command line kernel yang sebenarnya akan ditambahkan belakangan dan akan menang jika ada opsi yang sama."
+                  "Opsi live-config tambahan. Kernel command line yang sebenarnya akan ditambahkan kemudian dan akan mengungguli opsi yang sama jika ada pengulangan."
                 ]
               ]
             ]
@@ -1186,7 +1191,7 @@
               [
                 [
                   "text",
-                  "Nama pengguna live yang dibuat saat setup awal."
+                  "Nama live user yang dibuat saat penyiapan awal."
                 ]
               ]
             ]
@@ -1225,7 +1230,7 @@
               [
                 [
                   "text",
-                  "Nama lengkap pengguna live."
+                  "Nama lengkap live user."
                 ]
               ]
             ]
@@ -1264,7 +1269,7 @@
               [
                 [
                   "text",
-                  "Grup tambahan yang diberikan saat pengguna live dibuat."
+                  "Grup tambahan yang diberikan saat live user dibuat."
                 ]
               ]
             ]
@@ -1303,7 +1308,7 @@
               [
                 [
                   "text",
-                  "Hash sandi untuk pengguna live-user."
+                  "Crypt hash untuk password live-user."
                 ]
               ]
             ]
@@ -1342,7 +1347,7 @@
               [
                 [
                   "text",
-                  "Hash sandi untuk root."
+                  "Crypt hash untuk password root."
                 ]
               ]
             ]
@@ -1381,7 +1386,7 @@
               [
                 [
                   "text",
-                  "Jika diaktifkan, menonaktifkan setup sandi root MiniOS, sudo, dan hak akses PolicyKit."
+                  "Jika diaktifkan, menonaktifkan pengaturan hak istimewa MiniOS, sudo, dan PolicyKit."
                 ]
               ]
             ]
@@ -1565,7 +1570,7 @@
               [
                 [
                   "text",
-                  "Layout keyboard dipisahkan koma."
+                  "Layout keyboard yang dipisahkan dengan koma."
                 ]
               ]
             ]
@@ -1643,7 +1648,7 @@
               [
                 [
                   "text",
-                  "Varian dipisahkan koma yang dipasangkan dengan layout yang dikonfigurasi."
+                  "Varian yang dipisahkan koma dan disesuaikan dengan layout yang dikonfigurasi."
                 ]
               ]
             ]
@@ -1735,7 +1740,7 @@
               [
                 [
                   "text",
-                  "Menautkan direktori pengguna yang dikelola ke lokasi yang dikonfigurasi pada media MiniOS yang dapat ditulis. Tidak tersedia pada mode bind, mode "
+                  "Menghubungkan direktori pengguna yang dikelola ke lokasi yang dikonfigurasi pada media MiniOS yang dapat ditulis. Tidak tersedia pada mode bind, mode "
                 ],
                 [
                   "span",
@@ -1749,7 +1754,7 @@
                 ],
                 [
                   "text",
-                  " mana pun, atau sesi persistence LUKS yang aktif."
+                  " apa pun, atau saat sesi persistence terenkripsi LUKS sedang aktif."
                 ]
               ]
             ]
@@ -1788,7 +1793,7 @@
               [
                 [
                   "text",
-                  "Bind-mount direktori pengguna yang dikelola dari lokasi yang dikonfigurasi pada media MiniOS yang dapat ditulis. Tidak tersedia pada mode link, mode "
+                  "Bind-mount mengelola direktori pengguna dari lokasi yang dikonfigurasi pada media MiniOS yang dapat ditulis. Tidak tersedia pada mode link, mode "
                 ],
                 [
                   "span",
@@ -1802,7 +1807,7 @@
                 ],
                 [
                   "text",
-                  " mana pun, atau sesi persistence LUKS yang aktif."
+                  " apa pun, atau sesi persistensi terenkripsi LUKS yang aktif."
                 ]
               ]
             ]
@@ -1841,7 +1846,7 @@
               [
                 [
                   "text",
-                  "Lokasi yang digunakan oleh mode direktori pengguna link/bind."
+                  "Lokasi yang digunakan oleh mode user-directory link/bind."
                 ]
               ]
             ]
@@ -1971,7 +1976,7 @@
                 ],
                 [
                   "text",
-                  " untuk log sistem biasa. Diagnostik boot tetap persisten; lihat "
+                  " untuk log sistem biasa. Log diagnostik boot tetap persisten; lihat "
                 ],
                 [
                   "link",
@@ -1980,7 +1985,7 @@
                   [
                     [
                       "text",
-                      "Performa"
+                      "Kinerja"
                     ]
                   ]
                 ],
@@ -2049,7 +2054,7 @@
                 ],
                 [
                   "text",
-                  " untuk arsip APT yang diunduh; status paket dan daftar repository tetap persisten."
+                  " untuk arsip APT yang diunduh; status paket dan daftar repositori tetap persisten."
                 ]
               ]
             ]
@@ -2112,7 +2117,7 @@
                 ],
                 [
                   "text",
-                  " untuk path cache browser native standar. Profil browser tetap persisten."
+                  " untuk path cache browser-native standar. Profil browser tetap persisten."
                 ]
               ]
             ]
@@ -2232,7 +2237,7 @@
               [
                 [
                   "text",
-                  "Layanan yang diaktifkan saat boot (dipisahkan koma) melalui "
+                  "Layanan yang diaktifkan saat boot dipisahkan dengan koma melalui "
                 ],
                 [
                   "span",
@@ -2285,7 +2290,7 @@
               [
                 [
                   "text",
-                  "Layanan yang dinonaktifkan saat boot (dipisahkan koma) melalui "
+                  "Layanan yang dinonaktifkan saat boot dipisahkan dengan koma melalui "
                 ],
                 [
                   "span",
@@ -2338,7 +2343,7 @@
               [
                 [
                   "text",
-                  "Jika "
+                  "Saat "
                 ],
                 [
                   "span",
@@ -2352,7 +2357,7 @@
                 ],
                 [
                   "text",
-                  ", mengekspor log MiniOS dan startup live-config ke media MiniOS yang dapat ditulis."
+                  ", mengekspor MiniOS dan log startup live-config ke media MiniOS yang dapat ditulis."
                 ]
               ]
             ]
@@ -2366,7 +2371,7 @@
       [
         [
           "text",
-          "File yang dihasilkan bukan daftar lengkap dari semua yang didukung oleh "
+          "File yang dihasilkan bukanlah daftar lengkap dari semua yang didukung oleh "
         ],
         [
           "span",
@@ -2380,7 +2385,7 @@
         ],
         [
           "text",
-          ". Variabel tambahan untuk pra-konfigurasi jaringan kabel, keamanan, hook, preseeding, Xorg, dan komponen lain dapat ditambahkan secara manual. Lihat "
+          ". Variabel tambahan untuk pra-konfigurasi jaringan kabel, postur keamanan, hook, preseeding, Xorg, dan komponen lain dapat ditambahkan secara manual. Lihat "
         ],
         [
           "link",
@@ -2419,7 +2424,7 @@
         ],
         [
           "text",
-          " menolak aktivasi dan copy-back jika sesi persistence aktif dienkripsi dengan LUKS. Komponen ini menggunakan status enkripsi runtime yang sebenarnya: parameter kernel "
+          " menolak aktivasi dan copy-back jika sesi persistensi aktif terenkripsi LUKS. Komponen ini menggunakan status enkripsi runtime yang sebenarnya: parameter kernel "
         ],
         [
           "span",
@@ -2814,11 +2819,11 @@
     [
       "heading",
       2,
-      "pengaturan-minios-early-userspace",
+      "minios-pengaturan-early-userspace",
       [
         [
           "text",
-          "Pengaturan MiniOS early-userspace"
+          "MiniOS pengaturan early-userspace"
         ]
       ]
     ],
@@ -2880,7 +2885,7 @@
         ],
         [
           "text",
-          ", dan ketiga "
+          ", dan tiga "
         ],
         [
           "span",
@@ -2894,7 +2899,7 @@
         ],
         [
           "text",
-          " kebijakan storage di atas adalah pengaturan boot MiniOS bukan variabel komponen live-config yang terlambat. MiniOS menerapkannya sebelum sistem init normal berjalan; "
+          " kebijakan storage di atas adalah pengaturan boot MiniOS daripada variabel komponen live-config tahap akhir. MiniOS menerapkan pengaturan ini sebelum sistem init normal berjalan; "
         ],
         [
           "span",
@@ -2908,7 +2913,7 @@
         ],
         [
           "text",
-          " yang memiliki ketiga kebijakan storage tersebut. Semuanya "
+          " memiliki tiga kebijakan storage tersebut. Semuanya merupakan "
         ],
         [
           "span",
@@ -2974,7 +2979,7 @@
         ],
         [
           "text",
-          " akan menjadi prioritas untuk boot saat ini. Parameter "
+          " memiliki prioritas untuk boot saat ini. Parameter "
         ],
         [
           "span",
@@ -3040,7 +3045,7 @@
         ],
         [
           "text",
-          ". Untuk menonaktifkan SSH secara eksplisit, tambahkan ke "
+          ". Untuk mematikan SSH secara eksplisit, masukkan ke dalam "
         ],
         [
           "span",
@@ -3068,7 +3073,7 @@
         ],
         [
           "text",
-          " tidak akan menonaktifkan."
+          " tidak akan menonaktifkan operasi."
         ]
       ]
     ],
@@ -3157,7 +3162,7 @@
       [
         [
           "text",
-          "Untuk mengurangi penulisan selama sesi "
+          "Untuk mengurangi penulisan selama "
         ],
         [
           "span",
@@ -3171,7 +3176,7 @@
         ],
         [
           "text",
-          ", tambahkan pengaturan berikut secara terpisah:"
+          " sesi, tambahkan pengaturan secara terpisah:"
         ]
       ]
     ],
@@ -3254,7 +3259,7 @@
       [
         [
           "text",
-          "Mereka juga menerima "
+          "Pengaturan ini juga menerima "
         ],
         [
           "span",
@@ -3268,7 +3273,7 @@
         ],
         [
           "text",
-          ", yang merupakan default. "
+          ", yang menjadi default. "
         ],
         [
           "span",
@@ -3352,7 +3357,7 @@
         ],
         [
           "text",
-          "), atau parameter kernel. Fragmen yang lebih baru akan menggantikan yang lama, blob parameter menang atas file key, dan parameter kernel yang sebenarnya menang terakhir. Ketiga opsi ini berdiri sendiri dan tidak otomatis mengaktifkan persistence. Initrd yang kompatibel akan mengiklankan "
+          "), atau parameter kernel. Fragmen yang ditambahkan belakangan akan menggantikan yang sebelumnya, parameter blob akan mengungguli kunci file, dan parameter kernel aktual akan menjadi prioritas terakhir. Ketiga opsi ini berdiri sendiri dan tidak secara otomatis meminta persistensi. Initrd yang kompatibel akan mengiklankan "
         ],
         [
           "span",
@@ -3380,7 +3385,7 @@
         ],
         [
           "text",
-          "; Konfigurator MiniOS akan memperingatkan jika initrd saat ini tidak mengiklankannya."
+          "; Konfigurator MiniOS akan memberi peringatan jika initrd saat ini tidak mengiklankannya."
         ]
       ]
     ],
@@ -3390,7 +3395,7 @@
       [
         [
           "text",
-          "Kebijakan ini hanya berlaku pada boot berikutnya jika persistence benar-benar aktif pada media yang dapat ditulis dan tahan lama. Dengan "
+          "Kebijakan ini hanya berlaku pada boot berikutnya jika persistensi benar-benar aktif di media penyimpanan yang dapat ditulis secara permanen. Dengan "
         ],
         [
           "span",
@@ -3404,7 +3409,7 @@
         ],
         [
           "text",
-          ", persistence gagal, atau "
+          ", persistensi gagal, atau "
         ],
         [
           "span",
@@ -3418,7 +3423,7 @@
         ],
         [
           "text",
-          ", kebijakan volatile yang diminta tidak dianggap sebagai bukti bahwa data akan disimpan. Komponen browser-cache berjalan setelah "
+          ", kebijakan volatil yang diminta tidak dianggap sebagai bukti bahwa apa pun akan disimpan. Komponen browser-cache berjalan setelah "
         ],
         [
           "span",
@@ -3447,7 +3452,7 @@
         ],
         [
           "text",
-          " untuk detail batas RAM, path browser yang didukung, kondisi fallback, dan log yang tetap berada di media."
+          " untuk batas pasti RAM, path browser yang didukung, kondisi fallback, dan log yang tetap ada di media."
         ]
       ]
     ],
@@ -3493,7 +3498,7 @@
               [
                 [
                   "text",
-                  "Sistem yang berjalan"
+                  "Sistem yang sedang berjalan"
                 ]
               ]
             ]
@@ -3579,7 +3584,7 @@
       [
         [
           "text",
-          "Pada media yang ter-mount normal, file tersebut terlihat sebagai "
+          "Pada media yang biasanya terpasang, file ini terlihat sebagai "
         ],
         [
           "span",
@@ -3621,7 +3626,7 @@
         ],
         [
           "text",
-          " saat sistem berjalan."
+          " saat sistem sedang berjalan."
         ]
       ]
     ],
@@ -3631,7 +3636,7 @@
       [
         [
           "text",
-          "Sinkronisasi dilakukan saat boot; ini bukan pemantau file:"
+          "Sinkronisasi terjadi saat boot; ini bukan pemantau file:"
         ]
       ]
     ],
@@ -3666,7 +3671,7 @@
                 ],
                 [
                   "text",
-                  " menang berdasarkan waktu modifikasi. Salinan yang lebih baru di media akan disalin ke live root. Salinan runtime yang lebih baru hanya akan disalin kembali jika direktori data MiniOS yang dipilih dapat ditulis."
+                  " menang berdasarkan waktu modifikasi. Salinan media yang lebih baru akan disalin ke root aktif. Salinan runtime yang lebih baru hanya akan disalin kembali jika direktori data MiniOS yang dipilih dapat ditulis."
                 ]
               ]
             ]
@@ -3712,7 +3717,7 @@
               [
                 [
                   "text",
-                  "Jika jam sistem lebih awal dari waktu sinkronisasi terakhir yang tercatat, perbandingan timestamp dilewati dan hanya file tujuan yang hilang yang akan diisi."
+                  "Jika waktu pada sistem lebih awal dari waktu sinkronisasi terakhir yang tercatat, perbandingan timestamp dilewati dan hanya file tujuan yang hilang yang akan diisi."
                 ]
               ]
             ]
@@ -3752,7 +3757,7 @@
                 ],
                 [
                   "text",
-                  " tetapi tidak menyertakan "
+                  " tetapi mengabaikan "
                 ],
                 [
                   "span",
@@ -3766,7 +3771,7 @@
                 ],
                 [
                   "text",
-                  ". Full "
+                  ". Salinan penuh "
                 ],
                 [
                   "span",
@@ -3780,7 +3785,7 @@
                 ],
                 [
                   "text",
-                  " menyalin seluruh pohon data, namun sinkronisasi kemudian menargetkan salinan RAM daripada sumber media yang terlepas."
+                  " menyalin pohon data, tetapi sinkronisasi selanjutnya menargetkan salinan RAM daripada sumber media yang terlepas."
                 ],
                 [
                   "text",
@@ -3802,7 +3807,7 @@
                 ],
                 [
                   "text",
-                  " akan membaca "
+                  " membaca "
                 ],
                 [
                   "span",
@@ -3830,7 +3835,7 @@
                 ],
                 [
                   "text",
-                  " sesuai urutan glob shell. Fragmen yang lebih baru dapat menggantikan nilai dari file utama atau fragmen sebelumnya."
+                  " sesuai urutan glob shell. Dengan demikian, fragmen yang lebih akhir dapat menggantikan nilai dari file utama atau fragmen sebelumnya."
                 ]
               ]
             ]
@@ -3844,7 +3849,7 @@
       [
         [
           "text",
-          "Command line kernel yang sebenarnya akan ditambahkan ke "
+          "Baris perintah kernel yang sebenarnya akan ditambahkan ke "
         ],
         [
           "span",
@@ -3858,7 +3863,7 @@
         ],
         [
           "text",
-          ". Untuk opsi yang muncul lebih dari sekali, parameter kernel yang muncul terakhir yang akan digunakan. Untuk ketiga kebijakan storage, "
+          ". Untuk opsi yang muncul lebih dari sekali, entri kernel-command-line yang lebih akhir akan digunakan. Untuk tiga kebijakan penyimpanan, "
         ],
         [
           "span",
@@ -3872,7 +3877,7 @@
         ],
         [
           "text",
-          " akan membaca file utama yang sudah disinkronkan, lalu fragmennya, kemudian blob opsi, dan terakhir command line kernel yang sebenarnya; pengaturan terakhir yang digunakan."
+          " membaca file utama yang telah disinkronkan, lalu fragmennya, kemudian opsi blob, dan terakhir baris perintah kernel yang sebenarnya; pengaturan terakhir yang berlaku."
         ]
       ]
     ],
@@ -3896,7 +3901,7 @@
         ],
         [
           "text",
-          " atau fragmennya dan membacanya dari salinan runtime. Nilai harus diapit tanda kutip seperti string shell dan jangan beri spasi di sekitar "
+          " atau fragmennya dan membacanya dari salinan runtime. Kutip nilai sebagai string shell dan jangan beri spasi di sekitar "
         ],
         [
           "span",
@@ -3913,9 +3918,124 @@
           "."
         ]
       ]
+    ],
+    [
+      "heading",
+      2,
+      "referensi-terkait",
+      [
+        [
+          "text",
+          "Referensi terkait"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/reference/Boot-Parameters.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Parameter boot"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — parameter yang harus ditempatkan pada command line kernel dan override live-config."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/reference/configuration/live-config.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "live-config"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — referensi lengkap parameter, variabel, komponen, dan status late-userspace."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "link",
+                  "/using-minios/Boot-Modes.md",
+                  null,
+                  [
+                    [
+                      "text",
+                      "Mode boot"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — bagaimana persistensi dan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "toram"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " memengaruhi penyimpanan konfigurasi."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
     ]
   ],
-  "plain_text": "config.conf\nconfig.conf adalah file pra-konfigurasi utama MiniOS. Pada media MiniOS normal, file ini disimpan sebagai minios/config.conf. Saat boot, initramfs menyinkronkan file ini dengan /etc/live/config.conf di sistem yang telah dirakit.\nGunakan file ini untuk menyiapkan bagaimana MiniOS dimulai dan bagaimana sesi persisten baru diinisialisasi. File ini terutama ditujukan sebagai mekanisme pra-konfigurasi untuk administrator, bukan pengganti alat konfigurasi normal di desktop yang sedang berjalan.\nRekonfigurasi\nKolom Reconfigurable di bawah ini menggunakan arti berikut:\nYa — pengaturan dapat diubah dan diterapkan kembali saat boot berikutnya.\nHanya boot pertama — pengaturan digunakan ketika status persisten terkait pertama kali dibuat dan biasanya tidak diterapkan ulang pada boot berikutnya.\nPerbedaan ini adalah bagian dari perilaku yang perlu diketahui pengguna. File status internal live-config merupakan detail implementasi dan tidak menggantikan penjelasan ini.\nKonfigurasi yang dihasilkan\nImage MiniOS saat ini menghasilkan config.conf dengan struktur umum seperti berikut:\n# live-config settings\nLIVE_CONFIG_CMDLINE=\"components nottyautologin\"\nLIVE_HOSTNAME=\"minios\"\nLIVE_USERNAME=\"live\"\nLIVE_USER_FULLNAME=\"MiniOS Live User\"\nLIVE_USER_DEFAULT_GROUPS=\"dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark\"\nLIVE_USER_PASSWORD_CRYPTED='$y$...'\nLIVE_ROOT_PASSWORD_CRYPTED='$y$...'\nLIVE_CONFIG_NOROOT=\"\"\nLIVE_LOCALES=\"en_US.UTF-8\"\nLIVE_TIMEZONE=\"Etc/UTC\"\nLIVE_KEYBOARD_MODEL=\"pc105\"\nLIVE_KEYBOARD_LAYOUTS=\"us,us\"\nLIVE_KEYBOARD_OPTIONS=\"grp:alt_shift_toggle,grp_led:scroll\"\nLIVE_KEYBOARD_VARIANTS=\",\"\nLIVE_CONFIG_DEBUG=\"true\"\nLIVE_LINK_USER_DIRS=\"false\"\nLIVE_BIND_USER_DIRS=\"false\"\nLIVE_USER_DIRS_PATH=\"/minios/userdata\"\nLIVE_MODULE_MODE=\"merged\"\n\n# MiniOS LiveKit settings.\nDEFAULT_TARGET=\"graphical.target\"\nENABLE_SERVICES=\"ssh\"\nDISABLE_SERVICES=\"\"\nEXPORT_LOGS=\"false\"\nNilai pastinya tergantung pada image dan konfigurasi build.\nLIVE_CONFIG_CMDLINE ini bukanlah command line initramfs\nLIVE_CONFIG_CMDLINE menyediakan opsi setelah root MiniOS selesai dibuat. Parameter seperti from=, load=, toram, dan perchdir= harus berupa parameter boot kernel yang valid; jika hanya diletakkan di LIVE_CONFIG_CMDLINE maka sudah terlambat untuk mempengaruhi initramfs. Opsi storage-policy seperti log-storage=, apt-cache=, dan browser-cache= merupakan pengecualian khusus: minios-boot akan membacanya dari LIVE_CONFIG_CMDLINE sebelum layanan normal dijalankan.\nParameter standar\nParameter | Dapat dikonfigurasi ulang | Makna\nLIVE_CONFIG_CMDLINE | Ya | Opsi live-config tambahan. Command line kernel yang sebenarnya akan ditambahkan belakangan dan akan menang jika ada opsi yang sama.\nLIVE_HOSTNAME | Ya | Hostname sistem.\nLIVE_USERNAME | Hanya saat boot pertama | Nama pengguna live yang dibuat saat setup awal.\nLIVE_USER_FULLNAME | Hanya saat boot pertama | Nama lengkap pengguna live.\nLIVE_USER_DEFAULT_GROUPS | Hanya saat boot pertama | Grup tambahan yang diberikan saat pengguna live dibuat.\nLIVE_USER_PASSWORD_CRYPTED | Hanya saat boot pertama | Hash sandi untuk pengguna live-user.\nLIVE_ROOT_PASSWORD_CRYPTED | Hanya saat boot pertama | Hash sandi untuk root.\nLIVE_CONFIG_NOROOT | Hanya saat boot pertama | Jika diaktifkan, menonaktifkan setup sandi root MiniOS, sudo, dan hak akses PolicyKit.\nLIVE_LOCALES | Ya | Satu atau lebih locale sistem.\nLIVE_TIMEZONE | Ya | Zona waktu sistem, misalnya Europe/Berlin atau Etc/UTC.\nLIVE_KEYBOARD_MODEL | Ya | Model keyboard XKB.\nLIVE_KEYBOARD_LAYOUTS | Ya | Layout keyboard dipisahkan koma.\nLIVE_KEYBOARD_OPTIONS | Ya | Opsi keyboard XKB.\nLIVE_KEYBOARD_VARIANTS | Ya | Varian dipisahkan koma yang dipasangkan dengan layout yang dikonfigurasi.\nLIVE_CONFIG_DEBUG | Ya | Mengaktifkan output debug live-config jika disetel ke true.\nLIVE_LINK_USER_DIRS | Ya | Menautkan direktori pengguna yang dikelola ke lokasi yang dikonfigurasi pada media MiniOS yang dapat ditulis. Tidak tersedia pada mode bind, mode toram mana pun, atau sesi persistence LUKS yang aktif.\nLIVE_BIND_USER_DIRS | Ya | Bind-mount direktori pengguna yang dikelola dari lokasi yang dikonfigurasi pada media MiniOS yang dapat ditulis. Tidak tersedia pada mode link, mode toram mana pun, atau sesi persistence LUKS yang aktif.\nLIVE_USER_DIRS_PATH | Ya | Lokasi yang digunakan oleh mode direktori pengguna link/bind.\nLIVE_MODULE_MODE | Ya | Memilih simple atau merged integrasi modul live-config.\nLIVE_LOG_STORAGE | Ya | persistent (default) atau volatile untuk log sistem biasa. Diagnostik boot tetap persisten; lihat Performa.\nLIVE_APT_CACHE | Ya | persistent (default) atau volatile untuk arsip APT yang diunduh; status paket dan daftar repository tetap persisten.\nLIVE_BROWSER_CACHE | Ya | persistent (default) atau volatile untuk path cache browser native standar. Profil browser tetap persisten.\nDEFAULT_TARGET | Ya | Target boot: graphical.target, multi-user.target, atau rescue.target.\nENABLE_SERVICES | Ya | Layanan yang diaktifkan saat boot (dipisahkan koma) melalui minios-svc.\nDISABLE_SERVICES | Ya | Layanan yang dinonaktifkan saat boot (dipisahkan koma) melalui minios-svc.\nEXPORT_LOGS | Ya | Jika true, mengekspor log MiniOS dan startup live-config ke media MiniOS yang dapat ditulis.\nFile yang dihasilkan bukan daftar lengkap dari semua yang didukung oleh minios-live-config. Variabel tambahan untuk pra-konfigurasi jaringan kabel, keamanan, hook, preseeding, Xorg, dan komponen lain dapat ditambahkan secara manual. Lihat live-config untuk referensi lengkap.\nKomponen user-media menolak aktivasi dan copy-back jika sesi persistence aktif dienkripsi dengan LUKS. Komponen ini menggunakan status enkripsi runtime yang sebenarnya: parameter kernel perchencrypt=luks hanya meminta enkripsi saat membuat sesi baru dan tidak menggambarkan sesi yang sudah ada.\nPra-konfigurasi jaringan kabel\nMiniOS dapat melakukan pra-konfigurasi kebijakan IPv4 kabel melalui komponen live-config network. Fitur ini ditujukan untuk pra-konfigurasi administratif sistem sebelum dijalankan pada perangkat keras target.\nSebagai contoh:\nLIVE_NETWORK_METHOD=\"static\"\nLIVE_NETWORK_INTERFACE=\"enp1s0\"\nLIVE_NETWORK_ADDRESS=\"192.0.2.10\"\nLIVE_NETWORK_PREFIX=\"24\"\nLIVE_NETWORK_GATEWAY=\"192.0.2.1\"\nLIVE_NETWORK_DNS=\"1.1.1.1,9.9.9.9\"\nLIVE_NETWORK_BACKEND=\"auto\"\nPengaturan ini berlaku Hanya boot pertama untuk kebijakan jaringan persisten. Setelah berhasil diterapkan, komponen akan mencatat /var/lib/live/config/network.\nMengubah nilai tidak akan menimpa sesi persisten yang sudah dikonfigurasi kecuali status tersebut direset secara sengaja.\nLIVE_NETWORK_METHOD=static menulis kebijakan statis. off menonaktifkan IPv4 otomatis untuk interface yang dipilih. Nilai yang tidak diatur atau dhcp akan membiarkan pengaturan jaringan image yang ada tetap seperti semula. LIVE_NETWORK_BACKEND=auto memprioritaskan NetworkManager dan akan menggunakan ifupdown jika gagal.\nFasilitas ini tidak mengkonfigurasi Wi-Fi. Setelah boot, jaringan kabel dan nirkabel biasa dikelola oleh NetworkManager. Lihat Networking untuk penggunaan jaringan saat runtime dan live-config untuk semua variabel jaringan.\nPengaturan MiniOS early-userspace\nDEFAULT_TARGET, ENABLE_SERVICES, DISABLE_SERVICES, EXPORT_LOGS, dan ketiga LIVE_* kebijakan storage di atas adalah pengaturan boot MiniOS bukan variabel komponen live-config yang terlambat. MiniOS menerapkannya sebelum sistem init normal berjalan; minios-boot yang memiliki ketiga kebijakan storage tersebut. Semuanya Dapat dikonfigurasi ulang: Ya.\nParameter boot terkait default-target=, enable-services=, dan disable-services= akan menjadi prioritas untuk boot saat ini. Parameter text memaksa multi-user.target.\nBuild Toolbox dan Ultra saat ini menambahkan ssh ke ENABLE_SERVICES. Untuk menonaktifkan SSH secara eksplisit, tambahkan ke DISABLE_SERVICES; hanya menghapusnya dari ENABLE_SERVICES tidak akan menonaktifkan.\nDengan EXPORT_LOGS=\"true\", media MiniOS yang dapat ditulis akan menerima log startup berikut:\nminios/log/YYYYMMDD_HHMMSS/\n├── minios/\n└── live/\nLog runtime terkait adalah /var/log/minios/minios-boot.log dan /var/log/live/config.log.\nKebijakan cache dan log untuk sesi persisten\nUntuk mengurangi penulisan selama sesi perch, tambahkan pengaturan berikut secara terpisah:\nLIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"\nMereka juga menerima persistent, yang merupakan default. minios-boot menerima pengaturan yang sama dari /etc/live/config.conf.d/*.conf, LIVE_CONFIG_CMDLINE (log-storage=volatile, apt-cache=volatile, browser-cache=volatile), atau parameter kernel. Fragmen yang lebih baru akan menggantikan yang lama, blob parameter menang atas file key, dan parameter kernel yang sebenarnya menang terakhir. Ketiga opsi ini berdiri sendiri dan tidak otomatis mengaktifkan persistence. Initrd yang kompatibel akan mengiklankan perch-storage-v1 di /run/initramfs/etc/minios-initramfs-storage; Konfigurator MiniOS akan memperingatkan jika initrd saat ini tidak mengiklankannya.\nKebijakan ini hanya berlaku pada boot berikutnya jika persistence benar-benar aktif pada media yang dapat ditulis dan tahan lama. Dengan toram, persistence gagal, atau Mulai tanpa menyimpan, kebijakan volatile yang diminta tidak dianggap sebagai bukti bahwa data akan disimpan. Komponen browser-cache berjalan setelah minios-boot, setelah pengguna live dibuat. Lihat Performa untuk detail batas RAM, path browser yang didukung, kondisi fallback, dan log yang tetap berada di media.\nSumber, salinan runtime, dan prioritas\nDirektori data MiniOS yang dipilih biasanya berisi file sumber berikut:\nDirektori data yang dipilih | Sistem yang berjalan\nconfig.conf | /etc/live/config.conf\nconfig.conf.d/*.conf | /etc/live/config.conf.d/*.conf\nPada media yang ter-mount normal, file tersebut terlihat sebagai minios/config.conf dan minios/config.conf.d/*.conf, sering kali di bawah /run/initramfs/memory/data/ saat sistem berjalan.\nSinkronisasi dilakukan saat boot; ini bukan pemantau file:\nSalinan terbaru dari config.conf menang berdasarkan waktu modifikasi. Salinan yang lebih baru di media akan disalin ke live root. Salinan runtime yang lebih baru hanya akan disalin kembali jika direktori data MiniOS yang dipilih dapat ditulis.\nSetiap file config.conf.d/*.conf disinkronkan secara independen berdasarkan nama file menggunakan aturan timestamp dan hak tulis yang sama. File tidak akan dihapus dari kedua sisi.\nJika jam sistem lebih awal dari waktu sinkronisasi terakhir yang tercatat, perbandingan timestamp dilewati dan hanya file tujuan yang hilang yang akan diisi.\ntoram=trim menyalin config.conf tetapi tidak menyertakan config.conf.d/. Full toram menyalin seluruh pohon data, namun sinkronisasi kemudian menargetkan salinan RAM daripada sumber media yang terlepas.\nSetelah sinkronisasi, live-config akan membaca /etc/live/config.conf terlebih dahulu lalu /etc/live/config.conf.d/*.conf sesuai urutan glob shell. Fragmen yang lebih baru dapat menggantikan nilai dari file utama atau fragmen sebelumnya.\nCommand line kernel yang sebenarnya akan ditambahkan ke LIVE_CONFIG_CMDLINE. Untuk opsi yang muncul lebih dari sekali, parameter kernel yang muncul terakhir yang akan digunakan. Untuk ketiga kebijakan storage, minios-boot akan membaca file utama yang sudah disinkronkan, lalu fragmennya, kemudian blob opsi, dan terakhir command line kernel yang sebenarnya; pengaturan terakhir yang digunakan.\nAnda dapat menambahkan variabel shell khusus proyek ke config.conf atau fragmennya dan membacanya dari salinan runtime. Nilai harus diapit tanda kutip seperti string shell dan jangan beri spasi di sekitar =.",
+  "plain_text": "config.conf\nconfig.conf adalah file pra-konfigurasi utama MiniOS. Pada media MiniOS normal, file ini disimpan sebagai minios/config.conf. Saat boot, initramfs menyinkronkan file ini dengan /etc/live/config.conf di sistem yang telah dirakit.\nGunakan file ini untuk menyiapkan bagaimana MiniOS dimulai dan bagaimana sesi persisten baru diinisialisasi. File ini terutama ditujukan sebagai mekanisme pra-konfigurasi untuk administrator, bukan pengganti alat konfigurasi normal di desktop yang sedang berjalan.\nRekonfigurasi\nKolom Reconfigurable di bawah ini menggunakan arti berikut:\nYa — pengaturan dapat diubah dan diterapkan kembali saat boot berikutnya.\nHanya boot pertama — pengaturan digunakan ketika status persisten terkait pertama kali dibuat dan biasanya tidak diterapkan ulang pada boot berikutnya.\nPerbedaan ini adalah bagian dari perilaku yang perlu diketahui pengguna. File status internal live-config merupakan detail implementasi dan tidak menggantikan penjelasan ini.\nKonfigurasi yang dihasilkan\nImage MiniOS saat ini menghasilkan config.conf dengan struktur umum seperti ini:\n# live-config settings\nLIVE_CONFIG_CMDLINE=\"components nottyautologin\"\nLIVE_HOSTNAME=\"minios\"\nLIVE_USERNAME=\"live\"\nLIVE_USER_FULLNAME=\"MiniOS Live User\"\nLIVE_USER_DEFAULT_GROUPS=\"dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark\"\nLIVE_USER_PASSWORD_CRYPTED='$y$...'\nLIVE_ROOT_PASSWORD_CRYPTED='$y$...'\nLIVE_CONFIG_NOROOT=\"\"\nLIVE_LOCALES=\"en_US.UTF-8\"\nLIVE_TIMEZONE=\"Etc/UTC\"\nLIVE_KEYBOARD_MODEL=\"pc105\"\nLIVE_KEYBOARD_LAYOUTS=\"us,us\"\nLIVE_KEYBOARD_OPTIONS=\"grp:alt_shift_toggle,grp_led:scroll\"\nLIVE_KEYBOARD_VARIANTS=\",\"\nLIVE_CONFIG_DEBUG=\"true\"\nLIVE_LINK_USER_DIRS=\"false\"\nLIVE_BIND_USER_DIRS=\"false\"\nLIVE_USER_DIRS_PATH=\"/minios/userdata\"\nLIVE_MODULE_MODE=\"merged\"\n\n# MiniOS LiveKit settings.\nDEFAULT_TARGET=\"graphical.target\"\nENABLE_SERVICES=\"ssh\"\nDISABLE_SERVICES=\"\"\nEXPORT_LOGS=\"false\"\nNilai pastinya tergantung pada image dan konfigurasi build.\nLIVE_CONFIG_CMDLINE ini bukanlah command line initramfs\nLIVE_CONFIG_CMDLINE menyediakan opsi setelah root MiniOS selesai dirakit. Parameter seperti from=, load=, toram, dan perchdir= harus berupa parameter boot kernel yang valid; jika hanya diletakkan di LIVE_CONFIG_CMDLINE maka sudah terlambat untuk memengaruhi initramfs. Opsi storage-policy seperti log-storage=, apt-cache=, dan browser-cache= adalah pengecualian khusus: minios-boot membaca opsi tersebut dari LIVE_CONFIG_CMDLINE sebelum layanan normal dijalankan.\nParameter standar\nParameter | Dapat dikonfigurasi ulang | Makna\nLIVE_CONFIG_CMDLINE | Ya | Opsi live-config tambahan. Kernel command line yang sebenarnya akan ditambahkan kemudian dan akan mengungguli opsi yang sama jika ada pengulangan.\nLIVE_HOSTNAME | Ya | Hostname sistem.\nLIVE_USERNAME | Hanya saat boot pertama | Nama live user yang dibuat saat penyiapan awal.\nLIVE_USER_FULLNAME | Hanya saat boot pertama | Nama lengkap live user.\nLIVE_USER_DEFAULT_GROUPS | Hanya saat boot pertama | Grup tambahan yang diberikan saat live user dibuat.\nLIVE_USER_PASSWORD_CRYPTED | Hanya saat boot pertama | Crypt hash untuk password live-user.\nLIVE_ROOT_PASSWORD_CRYPTED | Hanya saat boot pertama | Crypt hash untuk password root.\nLIVE_CONFIG_NOROOT | Hanya saat boot pertama | Jika diaktifkan, menonaktifkan pengaturan hak istimewa MiniOS, sudo, dan PolicyKit.\nLIVE_LOCALES | Ya | Satu atau lebih locale sistem.\nLIVE_TIMEZONE | Ya | Zona waktu sistem, misalnya Europe/Berlin atau Etc/UTC.\nLIVE_KEYBOARD_MODEL | Ya | Model keyboard XKB.\nLIVE_KEYBOARD_LAYOUTS | Ya | Layout keyboard yang dipisahkan dengan koma.\nLIVE_KEYBOARD_OPTIONS | Ya | Opsi keyboard XKB.\nLIVE_KEYBOARD_VARIANTS | Ya | Varian yang dipisahkan koma dan disesuaikan dengan layout yang dikonfigurasi.\nLIVE_CONFIG_DEBUG | Ya | Mengaktifkan output debug live-config jika disetel ke true.\nLIVE_LINK_USER_DIRS | Ya | Menghubungkan direktori pengguna yang dikelola ke lokasi yang dikonfigurasi pada media MiniOS yang dapat ditulis. Tidak tersedia pada mode bind, mode toram apa pun, atau saat sesi persistence terenkripsi LUKS sedang aktif.\nLIVE_BIND_USER_DIRS | Ya | Bind-mount mengelola direktori pengguna dari lokasi yang dikonfigurasi pada media MiniOS yang dapat ditulis. Tidak tersedia pada mode link, mode toram apa pun, atau sesi persistensi terenkripsi LUKS yang aktif.\nLIVE_USER_DIRS_PATH | Ya | Lokasi yang digunakan oleh mode user-directory link/bind.\nLIVE_MODULE_MODE | Ya | Memilih simple atau merged integrasi modul live-config.\nLIVE_LOG_STORAGE | Ya | persistent (default) atau volatile untuk log sistem biasa. Log diagnostik boot tetap persisten; lihat Kinerja.\nLIVE_APT_CACHE | Ya | persistent (default) atau volatile untuk arsip APT yang diunduh; status paket dan daftar repositori tetap persisten.\nLIVE_BROWSER_CACHE | Ya | persistent (default) atau volatile untuk path cache browser-native standar. Profil browser tetap persisten.\nDEFAULT_TARGET | Ya | Target boot: graphical.target, multi-user.target, atau rescue.target.\nENABLE_SERVICES | Ya | Layanan yang diaktifkan saat boot dipisahkan dengan koma melalui minios-svc.\nDISABLE_SERVICES | Ya | Layanan yang dinonaktifkan saat boot dipisahkan dengan koma melalui minios-svc.\nEXPORT_LOGS | Ya | Saat true, mengekspor MiniOS dan log startup live-config ke media MiniOS yang dapat ditulis.\nFile yang dihasilkan bukanlah daftar lengkap dari semua yang didukung oleh minios-live-config. Variabel tambahan untuk pra-konfigurasi jaringan kabel, postur keamanan, hook, preseeding, Xorg, dan komponen lain dapat ditambahkan secara manual. Lihat live-config untuk referensi lengkap.\nKomponen user-media menolak aktivasi dan copy-back jika sesi persistensi aktif terenkripsi LUKS. Komponen ini menggunakan status enkripsi runtime yang sebenarnya: parameter kernel perchencrypt=luks hanya meminta enkripsi saat membuat sesi baru dan tidak menggambarkan sesi yang sudah ada.\nPra-konfigurasi jaringan kabel\nMiniOS dapat melakukan pra-konfigurasi kebijakan IPv4 kabel melalui komponen live-config network. Fitur ini ditujukan untuk pra-konfigurasi administratif sistem sebelum dijalankan pada perangkat keras target.\nSebagai contoh:\nLIVE_NETWORK_METHOD=\"static\"\nLIVE_NETWORK_INTERFACE=\"enp1s0\"\nLIVE_NETWORK_ADDRESS=\"192.0.2.10\"\nLIVE_NETWORK_PREFIX=\"24\"\nLIVE_NETWORK_GATEWAY=\"192.0.2.1\"\nLIVE_NETWORK_DNS=\"1.1.1.1,9.9.9.9\"\nLIVE_NETWORK_BACKEND=\"auto\"\nPengaturan ini berlaku Hanya boot pertama untuk kebijakan jaringan persisten. Setelah berhasil diterapkan, komponen akan mencatat /var/lib/live/config/network.\nMengubah nilai tidak akan menimpa sesi persisten yang sudah dikonfigurasi kecuali status tersebut direset secara sengaja.\nLIVE_NETWORK_METHOD=static menulis kebijakan statis. off menonaktifkan IPv4 otomatis untuk interface yang dipilih. Nilai yang tidak diatur atau dhcp akan membiarkan pengaturan jaringan image yang ada tetap seperti semula. LIVE_NETWORK_BACKEND=auto memprioritaskan NetworkManager dan akan menggunakan ifupdown jika gagal.\nFasilitas ini tidak mengkonfigurasi Wi-Fi. Setelah boot, jaringan kabel dan nirkabel biasa dikelola oleh NetworkManager. Lihat Networking untuk penggunaan jaringan saat runtime dan live-config untuk semua variabel jaringan.\nMiniOS pengaturan early-userspace\nDEFAULT_TARGET, ENABLE_SERVICES, DISABLE_SERVICES, EXPORT_LOGS, dan tiga LIVE_* kebijakan storage di atas adalah pengaturan boot MiniOS daripada variabel komponen live-config tahap akhir. MiniOS menerapkan pengaturan ini sebelum sistem init normal berjalan; minios-boot memiliki tiga kebijakan storage tersebut. Semuanya merupakan Dapat dikonfigurasi ulang: Ya.\nParameter boot terkait default-target=, enable-services=, dan disable-services= memiliki prioritas untuk boot saat ini. Parameter text memaksa multi-user.target.\nBuild Toolbox dan Ultra saat ini menambahkan ssh ke ENABLE_SERVICES. Untuk mematikan SSH secara eksplisit, masukkan ke dalam DISABLE_SERVICES; hanya menghapusnya dari ENABLE_SERVICES tidak akan menonaktifkan operasi.\nDengan EXPORT_LOGS=\"true\", media MiniOS yang dapat ditulis akan menerima log startup berikut:\nminios/log/YYYYMMDD_HHMMSS/\n├── minios/\n└── live/\nLog runtime terkait adalah /var/log/minios/minios-boot.log dan /var/log/live/config.log.\nKebijakan cache dan log untuk sesi persisten\nUntuk mengurangi penulisan selama perch sesi, tambahkan pengaturan secara terpisah:\nLIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"\nPengaturan ini juga menerima persistent, yang menjadi default. minios-boot menerima pengaturan yang sama dari /etc/live/config.conf.d/*.conf, LIVE_CONFIG_CMDLINE (log-storage=volatile, apt-cache=volatile, browser-cache=volatile), atau parameter kernel. Fragmen yang ditambahkan belakangan akan menggantikan yang sebelumnya, parameter blob akan mengungguli kunci file, dan parameter kernel aktual akan menjadi prioritas terakhir. Ketiga opsi ini berdiri sendiri dan tidak secara otomatis meminta persistensi. Initrd yang kompatibel akan mengiklankan perch-storage-v1 di /run/initramfs/etc/minios-initramfs-storage; Konfigurator MiniOS akan memberi peringatan jika initrd saat ini tidak mengiklankannya.\nKebijakan ini hanya berlaku pada boot berikutnya jika persistensi benar-benar aktif di media penyimpanan yang dapat ditulis secara permanen. Dengan toram, persistensi gagal, atau Mulai tanpa menyimpan, kebijakan volatil yang diminta tidak dianggap sebagai bukti bahwa apa pun akan disimpan. Komponen browser-cache berjalan setelah minios-boot, setelah pengguna live dibuat. Lihat Performa untuk batas pasti RAM, path browser yang didukung, kondisi fallback, dan log yang tetap ada di media.\nSumber, salinan runtime, dan prioritas\nDirektori data MiniOS yang dipilih biasanya berisi file sumber berikut:\nDirektori data yang dipilih | Sistem yang sedang berjalan\nconfig.conf | /etc/live/config.conf\nconfig.conf.d/*.conf | /etc/live/config.conf.d/*.conf\nPada media yang biasanya terpasang, file ini terlihat sebagai minios/config.conf dan minios/config.conf.d/*.conf, sering kali di bawah /run/initramfs/memory/data/ saat sistem sedang berjalan.\nSinkronisasi terjadi saat boot; ini bukan pemantau file:\nSalinan terbaru dari config.conf menang berdasarkan waktu modifikasi. Salinan media yang lebih baru akan disalin ke root aktif. Salinan runtime yang lebih baru hanya akan disalin kembali jika direktori data MiniOS yang dipilih dapat ditulis.\nSetiap file config.conf.d/*.conf disinkronkan secara independen berdasarkan nama file menggunakan aturan timestamp dan hak tulis yang sama. File tidak akan dihapus dari kedua sisi.\nJika waktu pada sistem lebih awal dari waktu sinkronisasi terakhir yang tercatat, perbandingan timestamp dilewati dan hanya file tujuan yang hilang yang akan diisi.\ntoram=trim menyalin config.conf tetapi mengabaikan config.conf.d/. Salinan penuh toram menyalin pohon data, tetapi sinkronisasi selanjutnya menargetkan salinan RAM daripada sumber media yang terlepas.\nSetelah sinkronisasi, live-config membaca /etc/live/config.conf terlebih dahulu lalu /etc/live/config.conf.d/*.conf sesuai urutan glob shell. Dengan demikian, fragmen yang lebih akhir dapat menggantikan nilai dari file utama atau fragmen sebelumnya.\nBaris perintah kernel yang sebenarnya akan ditambahkan ke LIVE_CONFIG_CMDLINE. Untuk opsi yang muncul lebih dari sekali, entri kernel-command-line yang lebih akhir akan digunakan. Untuk tiga kebijakan penyimpanan, minios-boot membaca file utama yang telah disinkronkan, lalu fragmennya, kemudian opsi blob, dan terakhir baris perintah kernel yang sebenarnya; pengaturan terakhir yang berlaku.\nAnda dapat menambahkan variabel shell khusus proyek ke config.conf atau fragmennya dan membacanya dari salinan runtime. Kutip nilai sebagai string shell dan jangan beri spasi di sekitar =.\nReferensi terkait\nParameter boot — parameter yang harus ditempatkan pada command line kernel dan override live-config.\nlive-config — referensi lengkap parameter, variabel, komponen, dan status late-userspace.\nMode boot — bagaimana persistensi dan toram memengaruhi penyimpanan konfigurasi.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

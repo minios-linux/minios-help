@@ -16,6 +16,11 @@
       "title": "Boot-Parameter (Optionen)"
     },
     {
+      "anchor": "minios-frühe-speicheroptionen",
+      "level": 3,
+      "title": "MiniOS frühe Speicheroptionen"
+    },
+    {
       "anchor": "boot-parameter-kurzbefehle",
       "level": 2,
       "title": "Boot-Parameter (Kurzbefehle)"
@@ -31,6 +36,11 @@
       "title": "Konfigurationsdateien"
     },
     {
+      "anchor": "minios-cache-und-log-variablen",
+      "level": 2,
+      "title": "MiniOS Cache- und Log-Variablen"
+    },
+    {
       "anchor": "anpassung",
       "level": 1,
       "title": "ANPASSUNG"
@@ -44,6 +54,11 @@
       "anchor": "entfernen-bestehender-konfigurationskomponenten",
       "level": 2,
       "title": "Entfernen bestehender Konfigurationskomponenten"
+    },
+    {
+      "anchor": "komponenten",
+      "level": 1,
+      "title": "KOMPONENTEN"
     },
     {
       "anchor": "dateien",
@@ -127,7 +142,7 @@
         ],
         [
           "text",
-          " enthält die Komponenten, die ein Live-System während des Bootvorgangs (spätes Userspace) konfigurieren."
+          " enthält die Komponenten, die ein Live-System während des Bootvorgangs (später Userspace) konfigurieren."
         ]
       ]
     ],
@@ -137,7 +152,7 @@
       [
         [
           "text",
-          "Die Richtlinie für persistenten Sitzungs-Cache und Protokollierung wird bereits zuvor durch "
+          "Die Richtlinie für persistenten Sitzungs-Cache und Protokollierung wird bereits früher durch "
         ],
         [
           "span",
@@ -193,11 +208,11 @@
         ],
         [
           "text",
-          " bekannt macht; siehe "
+          " bereitstellt; siehe "
         ],
         [
           "link",
-          "/maintenance-and-recovery/Performance.md#cache-und-protokollschreibvorg%C3%A4nge-reduzieren-mit-perch",
+          "/maintenance-and-recovery/Performance.md#reduzieren-sie-cache-und-protokollschreibvorg%C3%A4nge-mit-perch",
           null,
           [
             [
@@ -299,7 +314,7 @@
         ],
         [
           "text",
-          " kann über Boot-Parameter oder die zur Laufzeit vom initramfs bereitgestellten Konfigurationsdateien angepasst werden. Die tatsächliche Kernel-Befehlszeile wird nach den dateibasierten "
+          " kann über Boot-Parameter oder die vom initramfs vorbereiteten Laufzeit-Konfigurationsdateien angepasst werden. Die tatsächliche Kernel-Befehlszeile wird nach den dateibasierten "
         ],
         [
           "span",
@@ -313,7 +328,7 @@
         ],
         [
           "text",
-          " Werten angehängt, sodass spätere übereinstimmende Boot-Parameter Vorrang haben. Komponenten, die ihren Status unter "
+          " Werten angehängt, sodass später angegebene Boot-Parameter Vorrang haben. Komponenten, die ihren Status unter "
         ],
         [
           "span",
@@ -327,7 +342,7 @@
         ],
         [
           "text",
-          " speichern, werden normalerweise nur einmal ausgeführt; Synchronisations- und zustandslose Komponenten können bei jedem Aufruf ausgeführt werden."
+          " speichern, werden normalerweise nur einmal ausgeführt; Synchronisations- und zustandslose Komponenten können bei jedem Aufruf laufen."
         ]
       ]
     ],
@@ -337,7 +352,7 @@
       [
         [
           "text",
-          "Falls "
+          "Wenn "
         ],
         [
           "span",
@@ -767,7 +782,7 @@
                 ],
                 [
                   "text",
-                  " im Live-Root verwenden. Durch Pipe getrennte Einträge werden in der angegebenen Reihenfolge verarbeitet; Dateien, die durch ein Schlüsselwort entpackt werden, folgen der Shell-Glob-Reihenfolge."
+                  " im Live-Root verwenden. Durch Pipe getrennte Einträge werden in der angegebenen Reihenfolge verarbeitet; durch ein Schlüsselwort entpackte Dateien folgen der Shell-Glob-Reihenfolge."
                 ]
               ]
             ]
@@ -797,7 +812,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Setzen des Hostnamens des Systems. Standardmäßig ist "
+                  ": Ermöglicht das Setzen des System-Hostnamens. Standardmäßig ist "
                 ],
                 [
                   "span",
@@ -811,7 +826,7 @@
                 ],
                 [
                   "text",
-                  "."
+                  " voreingestellt."
                 ]
               ]
             ]
@@ -841,7 +856,7 @@
                 ],
                 [
                   "text",
-                  ": Legt die Richtlinie für das kabelgebundene Netzwerk fest. Nicht gesetzt und "
+                  ": Legt die Richtlinie für kabelgebundene Netzwerke fest. Nicht gesetzt und "
                 ],
                 [
                   "span",
@@ -855,7 +870,7 @@
                 ],
                 [
                   "text",
-                  " belassen das Image-Standardverhalten unverändert. "
+                  " belassen das Standard-Image unverändert. "
                 ],
                 [
                   "span",
@@ -913,7 +928,7 @@
                 ],
                 [
                   "text",
-                  ": Wählt das kabelgebundene Interface aus. Wird es bei "
+                  ": Wählt das kabelgebundene Interface aus. Wenn für "
                 ],
                 [
                   "span",
@@ -941,7 +956,7 @@
                 ],
                 [
                   "text",
-                  " weggelassen, wird das einzige kabelgebundene Nicht-Loopback-Interface automatisch ausgewählt; bei null oder mehreren Kandidaten ist ein expliziter Wert erforderlich."
+                  " nicht angegeben, wird automatisch das einzige kabelgebundene Nicht-Loopback-Interface gewählt; bei keiner oder mehreren Optionen ist ein expliziter Wert erforderlich."
                 ]
               ]
             ]
@@ -971,7 +986,7 @@
                 ],
                 [
                   "text",
-                  ": Legt die statische IPv4-Adresse fest."
+                  ": Setzt die statische IPv4-Adresse."
                 ]
               ]
             ]
@@ -1045,7 +1060,7 @@
                 ],
                 [
                   "text",
-                  ": Legt das optionale IPv4-Gateway fest."
+                  ": Setzt das optionale IPv4-Gateway."
                 ]
               ]
             ]
@@ -1075,7 +1090,7 @@
                 ],
                 [
                   "text",
-                  ": Legt optionale, durch Kommas getrennte DNS-Server-Adressen fest."
+                  ": Setzt optionale, komma-getrennte DNS-Server-Adressen."
                 ]
               ]
             ]
@@ -1119,7 +1134,7 @@
                 ],
                 [
                   "text",
-                  " bevorzugt NetworkManager und verwendet bei Bedarf ifupdown als Fallback. Erzwungenes "
+                  " bevorzugt NetworkManager und greift andernfalls auf ifupdown zurück. Erzwungenes "
                 ],
                 [
                   "span",
@@ -1133,7 +1148,7 @@
                 ],
                 [
                   "text",
-                  " markiert das Interface als unmanaged für NetworkManager, wenn beide Stacks installiert sind."
+                  " markiert das Interface als nicht verwaltet durch NetworkManager, wenn beide Stacks installiert sind."
                 ]
               ]
             ]
@@ -1163,7 +1178,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Setzen des Benutzernamens, der für den Autologin erstellt wird. Standardmäßig ist "
+                  ": Ermöglicht das Setzen des Benutzernamens, der für die automatische Anmeldung erstellt wird. Standardmäßig ist "
                 ],
                 [
                   "span",
@@ -1177,7 +1192,7 @@
                 ],
                 [
                   "text",
-                  "."
+                  " voreingestellt."
                 ]
               ]
             ]
@@ -1207,7 +1222,7 @@
                 ],
                 [
                   "text",
-                  ": Legt die zusätzlichen Gruppen für den Benutzer fest, der für den Autologin erstellt wird. Gruppennamen können durch Kommas oder Leerzeichen getrennt werden. Der MiniOS Standard ist "
+                  ": Legt die zusätzlichen Gruppen für den Benutzer fest, der für den Autologin erstellt wird. Gruppennamen können durch Kommas oder Leerzeichen getrennt werden. Der Standardwert ist MiniOS"
                 ],
                 [
                   "span",
@@ -1251,7 +1266,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Festlegen des vollständigen Namens des Benutzers, der für den Autologin erstellt wird. Der MiniOS Standard ist "
+                  ": Ermöglicht das Festlegen des vollständigen Namens des Benutzers, der für den Autologin erstellt wird. Der Standardwert ist MiniOS"
                 ],
                 [
                   "span",
@@ -1415,7 +1430,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Festlegen der Systemsprache, z. B. "
+                  ": Ermöglicht das Festlegen der System-Locale, z. B. "
                 ],
                 [
                   "span",
@@ -1429,7 +1444,7 @@
                 ],
                 [
                   "text",
-                  ". Der Standard ist "
+                  ". Der Standardwert ist "
                 ],
                 [
                   "span",
@@ -1473,7 +1488,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Festlegen der Systemzeitzone, z. B. "
+                  ": Ermöglicht das Festlegen der System-Zeitzone, z. B. "
                 ],
                 [
                   "span",
@@ -1487,7 +1502,7 @@
                 ],
                 [
                   "text",
-                  ". Der Standard ist "
+                  ". Der Standardwert ist "
                 ],
                 [
                   "span",
@@ -1591,7 +1606,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Ändern der Tastaturvarianten. Wenn mehrere Varianten angegeben werden, sollte die gleiche Anzahl wie bei den Tastaturbelegungen angegeben werden, da sie eins zu eins in der angegebenen Reihenfolge zugeordnet werden. Leere Werte sind erlaubt. Die Tools der Desktop-Umgebung ermöglichen das Umschalten zwischen den jeweiligen Layout- und Variantenpaaren unter X11. Es ist kein Standardwert gesetzt."
+                  ": Ermöglicht das Ändern der Tastaturvarianten. Wenn mehrere Varianten angegeben werden, sollte die Anzahl der Werte der Anzahl der Tastaturbelegungen entsprechen, da sie jeweils eins zu eins zugeordnet werden. Leere Werte sind erlaubt. In der Desktop-Umgebung kann unter X11 zwischen den jeweiligen Layout- und Variantenpaaren gewechselt werden. Es ist kein Standardwert gesetzt."
                 ]
               ]
             ]
@@ -1681,7 +1696,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Festlegen, ob das System davon ausgeht, dass die Hardware-Uhr auf UTC eingestellt ist oder nicht. Der Standard ist "
+                  ": Ermöglicht die Einstellung, ob das System davon ausgeht, dass die Hardware-Uhr auf UTC gestellt ist oder nicht. Der Standardwert ist "
                 ],
                 [
                   "span",
@@ -1725,7 +1740,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Festlegen des x-session-manager über update-alternatives."
+                  ": Ermöglicht das Festlegen des x-session-managers über update-alternatives."
                 ]
               ]
             ]
@@ -1755,7 +1770,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Festlegen des xorg-Treibers anstelle der automatischen Erkennung. Wenn eine PCI-ID in "
+                  ": Ermöglicht das Festlegen des Xorg-Treibers anstelle der automatischen Erkennung. Wird eine PCI-ID in "
                 ],
                 [
                   "span",
@@ -1769,7 +1784,7 @@
                 ],
                 [
                   "text",
-                  " im Live-System angegeben ist, wird der "
+                  " im Live-System angegeben, wird "
                 ],
                 [
                   "span",
@@ -1777,13 +1792,13 @@
                   [
                     [
                       "text",
-                      "TREIBER"
+                      "DRIVER"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " für diese Geräte erzwungen. Wenn sowohl ein Boot-Parameter als auch ein Override gefunden werden, hat der Boot-Parameter Vorrang."
+                  " für diese Geräte erzwungen. Wenn sowohl ein Boot-Parameter als auch ein Override vorhanden sind, hat der Boot-Parameter Vorrang."
                 ]
               ]
             ]
@@ -1813,7 +1828,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Setzen der Xorg-Auflösung anstelle der automatischen Erkennung, z. B. 1024x768."
+                  ": Ermöglicht das Festlegen der Xorg-Auflösung anstelle der automatischen Erkennung, z. B. 1024x768."
                 ]
               ]
             ]
@@ -1843,7 +1858,7 @@
                 ],
                 [
                   "text",
-                  ": Ermöglicht das Festlegen des WLAN-Treibers anstelle der automatischen Erkennung. Wenn eine PCI-ID angegeben ist in "
+                  ": Ermöglicht das Festlegen des WLAN-Treibers anstelle der automatischen Erkennung. Wenn eine PCI-ID im "
                 ],
                 [
                   "span",
@@ -1857,7 +1872,7 @@
                 ],
                 [
                   "text",
-                  " im Live-System, wird der "
+                  " im Live-System angegeben ist, wird der "
                 ],
                 [
                   "span",
@@ -1871,7 +1886,7 @@
                 ],
                 [
                   "text",
-                  " für diese Geräte erzwungen. Wenn sowohl ein Boot-Parameter als auch ein Override gefunden werden, hat der Boot-Parameter Vorrang."
+                  " für diese Geräte erzwungen. Wenn sowohl ein Boot-Parameter als auch ein Override vorhanden sind, hat der Boot-Parameter Vorrang."
                 ]
               ]
             ]
@@ -1901,7 +1916,7 @@
                 ],
                 [
                   "text",
-                  ": Damit kann der Modus für die Live-Konfiguration festgelegt werden. Ist "
+                  ": Ermöglicht die Angabe des Modus für die Live-Konfiguration. Bei Einstellung auf "
                 ],
                 [
                   "span",
@@ -1915,195 +1930,7 @@
                 ],
                 [
                   "text",
-                  " ausgewählt, werden Benutzerkonten aktualisiert, Caches neu aufgebaut und Paket-Einstellungen aktualisiert, sodass Konfigurationsänderungen dynamisch ins laufende System integriert werden."
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "live-config.log-storage=persistent|volatile | log-storage=persistent|volatile"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ": Frühe "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "minios-boot"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "-Richtlinie für das Journal und normale "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "/var/log"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "-Dateien. Boot-Diagnosen verbleiben auf dauerhaftem Speicher. Standard ist "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "persistent"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "."
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "live-config.apt-cache=persistent|volatile | apt-cache=persistent|volatile"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ": Frühe Richtlinie für heruntergeladene APT-Archive. Ein begrenztes tmpfs wird nur verwendet, wenn RAM und Swap-Bedingungen dies erlauben; Paketdatenbanken und Repository-Listen werden nicht verschoben. Standard ist "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "persistent"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "."
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "live-config.browser-cache=persistent|volatile | browser-cache=persistent|volatile"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ": Frühe Richtlinie für native Browser-Caches. Mit "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "volatile"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ", mountet die "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "browser-cache"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "-Komponente ausgewählte Live-User-Cache-Verzeichnisse in RAM, nachdem das Benutzerkonto angelegt wurde. Standard ist "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "persistent"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "."
+                  ", werden Benutzerkonten aktualisiert, Caches neu aufgebaut und Paketkonfigurationen aktualisiert, sodass Änderungen dynamisch ins laufende System integriert werden."
                 ]
               ]
             ]
@@ -2133,7 +1960,7 @@
                 ],
                 [
                   "text",
-                  ": Verlinkt die verwalteten Benutzerverzeichnisse mit dem konfigurierten Pfad auf dem MiniOS-Datenträger. Ist nicht mit Bind-Modus kombinierbar und nicht verfügbar bei jedem "
+                  ": Verlinkt die verwalteten Benutzerverzeichnisse mit dem konfigurierten Pfad auf dem MiniOS-Datenträger. Ist nicht mit Bind-Modus kombinierbar und nicht verfügbar bei "
                 ],
                 [
                   "span",
@@ -2147,7 +1974,7 @@
                 ],
                 [
                   "text",
-                  "-Modus oder wenn die aktive Persistenz-Sitzung LUKS-verschlüsselt ist."
+                  "-Modus oder wenn die aktive Persistenzsitzung LUKS-verschlüsselt ist."
                 ]
               ]
             ]
@@ -2177,7 +2004,7 @@
                 ],
                 [
                   "text",
-                  ": Bindet die verwalteten Benutzerverzeichnisse vom konfigurierten Pfad auf dem MiniOS-Datenträger ein. Ist nicht mit Link-Modus kombinierbar und hat dieselben "
+                  ": Bindet die verwalteten Benutzerverzeichnisse vom konfigurierten Pfad auf dem MiniOS-Datenträger ein. Ist nicht mit Link-Modus kombinierbar und unterliegt denselben "
                 ],
                 [
                   "span",
@@ -2249,7 +2076,7 @@
                 ],
                 [
                   "text",
-                  " verwendet wird. Standard ist "
+                  "verwendet wird. Standard ist "
                 ],
                 [
                   "span",
@@ -2293,7 +2120,7 @@
                 ],
                 [
                   "text",
-                  ": Lädt und führt beliebige Dateien aus einer temporären Datei im laufenden Live-System aus. URLs werden von "
+                  ": Ruft beliebige Dateien ab und führt sie aus einer temporären Datei im laufenden Live-System aus. URLs werden von "
                 ],
                 [
                   "span",
@@ -2321,7 +2148,7 @@
                 ],
                 [
                   "text",
-                  " verwenden; benötigte Interpreter und weitere Abhängigkeiten müssen bereits installiert sein. Das Schlüsselwort "
+                  " verwenden; erforderliche Interpreter und weitere Abhängigkeiten müssen bereits installiert sein. Das Schlüsselwort "
                 ],
                 [
                   "span",
@@ -2335,7 +2162,7 @@
                 ],
                 [
                   "text",
-                  " entpackt Dateien im "
+                  " entpackt Dateien in "
                 ],
                 [
                   "span",
@@ -2363,7 +2190,7 @@
                 ],
                 [
                   "text",
-                  " entpackt Dateien im "
+                  " entpackt Dateien in "
                 ],
                 [
                   "span",
@@ -2405,7 +2232,7 @@
                 ],
                 [
                   "text",
-                  " im Live-Root verwenden. Durch Pipe getrennte Einträge werden in der angegebenen Reihenfolge ausgeführt; Dateien, die durch ein Schlüsselwort entpackt werden, folgen der Shell-Glob-Reihenfolge. Beispiele sind unter "
+                  " im Live-Root nutzen. Durch Pipes getrennte Einträge werden in der angegebenen Reihenfolge ausgeführt; durch Schlüsselwörter entpackte Dateien folgen der Shell-Glob-Reihenfolge. Beispiele sind installiert unter "
                 ],
                 [
                   "span",
@@ -2419,7 +2246,7 @@
                 ],
                 [
                   "text",
-                  " installiert."
+                  "."
                 ]
               ]
             ]
@@ -2445,7 +2272,7 @@
               [
                 [
                   "text",
-                  "Sicherheitswarnung:"
+                  "Sicherheitshinweis:"
                 ]
               ]
             ],
@@ -2465,7 +2292,267 @@
             ],
             [
               "text",
-              " wird als root ausgeführt. Hooks werden ausführbar gemacht und als root gestartet; Preseeds verändern die debconf-Datenbank des Systems mit Root-Rechten. Plain HTTP und FTP authentifizieren die heruntergeladenen Inhalte nicht und bieten keinen Integritätsschutz. Verwenden Sie bevorzugt geprüfte lokale Dateien oder vertrauenswürdige, authentifizierte Übertragungen mit unabhängiger Integritätsprüfung. Nutzen Sie keine Remote-Hooks oder Preseeds aus nicht vertrauenswürdigen Netzwerken."
+              " läuft als root. Hooks werden ausführbar gemacht und als root ausgeführt, und Preseeds verändern die debconf-Datenbank des Systems mit Root-Rechten. Einfaches HTTP und FTP authentifizieren die heruntergeladenen Inhalte nicht und bieten keinen Integritätsschutz. Verwenden Sie bevorzugt geprüfte lokale Dateien oder vertrauenswürdigen, authentifizierten Transport mit unabhängiger Integritätsprüfung; verwenden Sie keine Remote-Hooks oder Preseeds aus unsicheren Netzwerken."
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "minios-frühe-speicheroptionen",
+      [
+        [
+          "text",
+          "MiniOS frühe Speicheroptionen"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Diese Optionen werden von "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " vor dem Start der regulären Dienste gelesen. Sie erfordern ein funktionsfähiges, dauerhaftes "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "-System und aktivieren dieses nicht eigenständig."
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "live-config.log-storage=persistent|volatile | log-storage=persistent|volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " legt das systemd-Journal und reguläre "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/log"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "-Dateien in begrenztem RAM ab; Boot-Diagnosen verbleiben auf dauerhaftem Speicher. Standard: "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "persistent"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "live-config.apt-cache=persistent|volatile | apt-cache=persistent|volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " speichert heruntergeladene APT-Archive in einem begrenzten tmpfs, wenn RAM und Swap-Bedingungen dies erlauben. Paketdatenbanken und Repository-Listen bleiben persistent. Standard: "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "persistent"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "live-config.browser-cache=persistent|volatile | browser-cache=persistent|volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " fordert native Browser-Caches in RAM an. Die "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "browser-cache"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "-Komponente bindet die vom Live-Benutzer gewählten Cache-Verzeichnisse ein, nachdem das Konto existiert. Standard: "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "persistent"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
             ]
           ]
         ]
@@ -3288,7 +3375,7 @@
         ],
         [
           "text",
-          " eingetragen werden, und die meisten Optionen können alternativ über einzelne Variablen gesetzt werden. Das "
+          " abgelegt werden; die meisten Optionen lassen sich alternativ auch über einzelne Variablen setzen. Der "
         ],
         [
           "span",
@@ -3302,7 +3389,7 @@
         ],
         [
           "text",
-          "-Parameter ist weiterhin erforderlich, um "
+          " Parameter ist weiterhin erforderlich, um "
         ],
         [
           "span",
@@ -3354,7 +3441,7 @@
         ],
         [
           "text",
-          "-Variable geschrieben werden, alternativ können einzelne Variablen gesetzt werden. Werden einzelne Variablen verwendet, muss der Nutzer sicherstellen, dass alle notwendigen Variablen gesetzt sind, um eine gültige Konfiguration zu erstellen."
+          " Variable geschrieben werden. Alternativ können einzelne Variablen gesetzt werden. In diesem Fall muss der Benutzer sicherstellen, dass alle erforderlichen Variablen gesetzt sind, um eine gültige Konfiguration zu erstellen."
         ]
       ]
     ],
@@ -3374,7 +3461,7 @@
         ],
         [
           "text",
-          " selbst lädt "
+          " wertet selbstständig "
         ],
         [
           "span",
@@ -3388,7 +3475,7 @@
         ],
         [
           "text",
-          " und dann "
+          " und danach "
         ],
         [
           "span",
@@ -3402,7 +3489,7 @@
         ],
         [
           "text",
-          " in der Shell-Glob-Reihenfolge. Spätere Fragmente können daher Werte aus der Hauptdatei oder früheren Fragmenten überschreiben. Es wird keine zweite Medien-Konfigurationsschicht separat geladen."
+          " in Shell-Glob-Reihenfolge aus. Spätere Fragmente können daher Werte aus der Hauptdatei oder früheren Fragmenten überschreiben. Eine zweite Konfigurationsschicht auf einem weiteren Medium wird nicht separat geladen."
         ]
       ]
     ],
@@ -3454,7 +3541,7 @@
         ],
         [
           "text",
-          " startet, synchronisiert das MiniOS initramfs diese mit den "
+          " startet, synchronisiert das MiniOS-initramfs diese Dateien mit den "
         ],
         [
           "span",
@@ -3468,7 +3555,7 @@
         ],
         [
           "text",
-          " Laufzeitdateien anhand des Änderungsdatums. Eine neuere Quelldatei ersetzt ihr Laufzeit-Pendant; eine neuere Laufzeitdatei wird nur zurückkopiert, wenn das gewählte MiniOS-Datenverzeichnis beschreibbar ist. Gleiche Zeitstempel führen zu keiner Kopie, fehlende Dateien werden ergänzt, und Dateien werden nicht gelöscht. Dies ist eine Synchronisation beim Booten, keine kontinuierliche Überwachung. Siehe "
+          " Laufzeitdateien anhand des Änderungsdatums. Eine neuere Quelldatei ersetzt das Laufzeitpendant; eine neuere Laufzeitdatei wird nur zurückkopiert, wenn das gewählte MiniOS-Datenverzeichnis beschreibbar ist. Bei gleichen Zeitstempeln findet keine Kopie statt, fehlende Dateien werden ergänzt, und es werden keine Dateien gelöscht. Dies ist eine Synchronisation beim Booten, kein kontinuierliches Monitoring. Siehe "
         ],
         [
           "link",
@@ -3483,7 +3570,7 @@
         ],
         [
           "text",
-          " für die vollständigen Regeln zur Synchronisation und Vorrang der Kommandozeile."
+          " für die vollständigen Regeln zur Synchronisation und Priorität der Befehlszeile."
         ]
       ]
     ],
@@ -3507,7 +3594,7 @@
         ],
         [
           "text",
-          " nur vom erkannten Medium, wenn "
+          " nur dann vom erkannten Medium, wenn "
         ],
         [
           "span",
@@ -3535,7 +3622,7 @@
         ],
         [
           "text",
-          "-Fragmente. Das aktuelle Standard-MiniOS LiveKit-initramfs führt stattdessen die oben beschriebene Synchronisation durch."
+          " Fragmente. Das aktuelle Standard-MiniOS LiveKit-initramfs führt stattdessen die oben beschriebene Synchronisation durch."
         ]
       ]
     ],
@@ -3632,7 +3719,7 @@
                 ],
                 [
                   "text",
-                  ": Diese Variable entspricht der Bootloader-Kommandozeile."
+                  ": Diese Variable entspricht der Bootloader-Befehlszeile."
                 ]
               ]
             ]
@@ -3676,7 +3763,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter."
+                  " Parameter."
                 ]
               ]
             ]
@@ -3720,7 +3807,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter."
+                  " Parameter."
                 ]
               ]
             ]
@@ -3764,7 +3851,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter."
+                  " Parameter."
                 ]
               ]
             ]
@@ -3808,7 +3895,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter. Standardwert ist "
+                  " Parameter. Standard ist "
                 ],
                 [
                   "span",
@@ -3866,7 +3953,7 @@
                 ],
                 [
                   "text",
-                  " und ein nicht gesetzter Wert haben keine Auswirkung und entfernen kein zuvor erstelltes MiniOS-Profil."
+                  " und ein nicht gesetzter Wert bewirken nichts und entfernen kein zuvor erstelltes MiniOS-statisches Profil."
                 ]
               ]
             ]
@@ -3910,7 +3997,7 @@
                 ],
                 [
                   "text",
-                  "- oder "
+                  " oder "
                 ],
                 [
                   "span",
@@ -3924,7 +4011,7 @@
                 ],
                 [
                   "text",
-                  "-Richtlinie aus."
+                  " Richtlinie aus."
                 ]
               ]
             ]
@@ -4058,7 +4145,7 @@
                 ],
                 [
                   "text",
-                  ": Setzt optionale, durch Kommas getrennte DNS-Server."
+                  ": Setzt optionale, komma-separierte DNS-Server."
                 ]
               ]
             ]
@@ -4102,7 +4189,7 @@
       [
         [
           "text",
-          "Die Netzwerkkomponente zeichnet "
+          "Die Netzwerkkomponente schreibt nach erfolgreichem Setzen der Richtlinie einen "
         ],
         [
           "span",
@@ -4116,7 +4203,7 @@
         ],
         [
           "text",
-          " nach erfolgreichem Schreiben der Richtlinie auf. Entfernen Sie diesen Stempel, um eine geänderte Richtlinie auf einem persistenten System anzuwenden. Um ein vorheriges statisches Profil zu entfernen, verwenden Sie "
+          " Stempel. Entfernen Sie diesen Stempel, um eine geänderte Richtlinie auf einem persistenten System anzuwenden. Zum Entfernen eines vorherigen statischen Profils nutzen Sie "
         ],
         [
           "span",
@@ -4130,7 +4217,7 @@
         ],
         [
           "text",
-          " oder entfernen Sie das von MiniOS verwaltete Profil und den Stempel manuell."
+          " oder löschen Sie das von MiniOS verwaltete Profil und den Stempel manuell."
         ]
       ]
     ],
@@ -4179,7 +4266,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter. Standardwert ist "
+                  " Parameter. Standard ist "
                 ],
                 [
                   "span",
@@ -4237,7 +4324,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter."
+                  " Parameter."
                 ]
               ]
             ]
@@ -4281,7 +4368,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter."
+                  " Parameter."
                 ]
               ]
             ]
@@ -4325,7 +4412,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter. Sie legt das Root-Passwort im Klartext fest."
+                  " Parameter. Sie gibt das Root-Passwort im Klartext an."
                 ]
               ]
             ]
@@ -4369,7 +4456,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter. Sie legt das Root-Passwort in verschlüsselter Form fest."
+                  " Parameter. Sie gibt das Root-Passwort in verschlüsselter Form an."
                 ]
               ]
             ]
@@ -4413,7 +4500,7 @@
                 ],
                 [
                   "text",
-                  " Parameter und legt das Benutzerpasswort im Klartext fest."
+                  " Parameter. Sie gibt das Benutzerpasswort im Klartext an."
                 ]
               ]
             ]
@@ -4457,7 +4544,7 @@
                 ],
                 [
                   "text",
-                  " Parameter und legt das Benutzerpasswort in verschlüsselter Form fest."
+                  " Parameter. Sie gibt das Benutzerpasswort in verschlüsselter Form an."
                 ]
               ]
             ]
@@ -4501,7 +4588,7 @@
                 ],
                 [
                   "text",
-                  " Parameter und deaktiviert Root-, sudo- und PolicyKit-Berechtigungen, wenn auf "
+                  " Parameter und deaktiviert Root-, Sudo- und PolicyKit-Rechte, wenn sie auf "
                 ],
                 [
                   "span",
@@ -4515,7 +4602,7 @@
                 ],
                 [
                   "text",
-                  " gesetzt."
+                  " gesetzt ist."
                 ]
               ]
             ]
@@ -4559,7 +4646,7 @@
                 ],
                 [
                   "text",
-                  " Parameter. Wenn nicht gesetzt, behält MiniOS das bisherige sudo-Verhalten ohne Passwort bei."
+                  " Parameter. Ist sie nicht gesetzt, behält MiniOS das bisherige Sudo-Verhalten ohne Passwort bei."
                 ]
               ]
             ]
@@ -5497,7 +5584,7 @@
                 ],
                 [
                   "text",
-                  ": Aktiviert oder deaktiviert Links von den Standarddatenverzeichnissen des Benutzers auf das beschreibbare MiniOS Laufwerk. Der entsprechende Boot-Parameter ist das einfache "
+                  ": Aktiviert oder deaktiviert Links von den Standarddatenverzeichnissen des Benutzers auf das beschreibbare MiniOS-Laufwerk. Der zugehörige Boot-Parameter ist das einfache "
                 ],
                 [
                   "span",
@@ -5511,7 +5598,7 @@
                 ],
                 [
                   "text",
-                  " Flag. Der Link-Modus kann nicht mit dem Bind-Modus oder einem anderen "
+                  " Flag. Link-Modus kann nicht mit Bind-Modus oder einem anderen "
                 ],
                 [
                   "span",
@@ -5555,7 +5642,7 @@
                 ],
                 [
                   "text",
-                  ": Aktiviert oder deaktiviert Bind-Mounts der Standarddatenverzeichnisse des Benutzers vom beschreibbaren MiniOS Laufwerk. Der entsprechende Boot-Parameter ist das einfache "
+                  ": Aktiviert oder deaktiviert Bind-Mounts der Standarddatenverzeichnisse des Benutzers vom beschreibbaren MiniOS-Laufwerk. Der zugehörige Boot-Parameter ist das einfache "
                 ],
                 [
                   "span",
@@ -5569,7 +5656,7 @@
                 ],
                 [
                   "text",
-                  " Flag. Der Bind-Modus kann nicht mit dem Link-Modus oder einem anderen "
+                  " Flag. Bind-Modus kann nicht mit Link-Modus oder einem anderen "
                 ],
                 [
                   "span",
@@ -5607,7 +5694,7 @@
                   [
                     [
                       "text",
-                      "LIVE_USER_DIRS_PATH=PFAD"
+                      "LIVE_USER_DIRS_PATH=PATH"
                     ]
                   ]
                 ],
@@ -5627,7 +5714,7 @@
                 ],
                 [
                   "text",
-                  "-Parameter. Sie legt einen sicheren Pfad innerhalb des FAT32-, exFAT- oder NTFS-MiniOS-Laufwerks fest. Standardmäßig ist der Wert "
+                  " Parameter. Sie gibt einen sicheren Pfad innerhalb des FAT32-, exFAT- oder NTFS-MiniOS-Laufwerks an. Standard ist "
                 ],
                 [
                   "span",
@@ -5641,7 +5728,7 @@
                 ],
                 [
                   "text",
-                  "; Punkt- und Überordner-Segmente werden abgelehnt."
+                  "; Punkt- und Elternverzeichnis-Segmente werden abgelehnt."
                 ]
               ]
             ]
@@ -5655,7 +5742,7 @@
       [
         [
           "text",
-          "Die Benutzer-Medien-Einrichtung führt niemals automatisch zwei nicht-leere Verzeichnisse zusammen. Ein lokales, nicht-leeres Verzeichnis wird nur migriert, wenn das Medienziel leer ist. Ist die Funktion deaktiviert, werden verwaltete Mediendaten vor dem Entfernen von Links zurückkopiert. Die Aktivierung und Rückkopierung von Benutzer-Medien sind blockiert, solange die aktive Persistenzsitzung LUKS-verschlüsselt ist, um zu verhindern, dass Sitzungsdaten auf unverschlüsselte MiniOS-Medien verschoben werden. Diese Entscheidung basiert auf dem tatsächlich aktiven Verschlüsselungsstatus: "
+          "Beim Einrichten von Benutzermedien werden niemals zwei nicht-leere Verzeichnisse automatisch zusammengeführt. Ein lokales, nicht-leeres Verzeichnis wird nur migriert, wenn das Zielverzeichnis auf dem Medium leer ist. Ist die Funktion deaktiviert, werden verwaltete Mediendaten vor dem Entfernen der Links zurückkopiert. Die Aktivierung und Rückkopierung von Benutzermedien ist blockiert, solange die aktive Persistenz-Sitzung LUKS-verschlüsselt ist, um zu verhindern, dass Sitzungsdaten auf unverschlüsselte MiniOS-Medien verschoben werden. Die Entscheidung basiert auf dem tatsächlichen aktiven Verschlüsselungsstatus: "
         ],
         [
           "span",
@@ -5669,7 +5756,7 @@
         ],
         [
           "text",
-          " fordert die Verschlüsselung nur beim Erstellen einer neuen Sitzung an und beschreibt keine bestehende Sitzung. Ein fehlgeschlagener Validierungs- oder Kopiervorgang belässt die bestehenden Benutzerverzeichnisse unverändert und protokolliert den Grund in "
+          " fordert Verschlüsselung nur bei Erstellung einer neuen Sitzung an und beschreibt keine bestehende Sitzung. Ein fehlgeschlagener Abgleich oder Kopiervorgang belässt die bestehenden Benutzerverzeichnisse und protokolliert den Grund in "
         ],
         [
           "span",
@@ -5718,7 +5805,7 @@
                 ],
                 [
                   "text",
-                  ": Diese Variable enthält den Zustand, der durch den "
+                  ": Diese Variable hält den Zustand, der durch den "
                 ],
                 [
                   "span",
@@ -5732,7 +5819,7 @@
                 ],
                 [
                   "text",
-                  "- (oder "
+                  " (oder "
                 ],
                 [
                   "span",
@@ -5746,7 +5833,7 @@
                 ],
                 [
                   "text",
-                  ") Parameter festgelegt wird. Ist sie auf "
+                  ") Parameter festgelegt wurde. Ist sie auf "
                 ],
                 [
                   "span",
@@ -5760,12 +5847,76 @@
                 ],
                 [
                   "text",
-                  " gesetzt, übernimmt das Live-System Updates (über minios-update-users, minios-update-cache und minios-update-dpkg), um benutzerdefinierte Konfigurationen mit der Basisumgebung zu verschmelzen."
+                  " gesetzt, übernimmt das Live-System Aktualisierungen (über minios-update-users, minios-update-cache und minios-update-dpkg), um benutzerdefinierte Konfigurationen mit der Basisumgebung zusammenzuführen."
                 ]
               ]
             ]
           ]
         ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "LIVE_CONFIG_DEBUG=true|false"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": Diese Variable entspricht dem "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "**live-config.debug**"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Parameter."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "minios-cache-und-log-variablen",
+      [
+        [
+          "text",
+          "MiniOS Cache- und Log-Variablen"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
         [
           "item",
           null,
@@ -5818,7 +5969,7 @@
                 ],
                 [
                   "text",
-                  ": Unabhängige MiniOS-Bootzeit-Richtlinien. Sie funktionieren auch im "
+                  ": Unabhängige MiniOS Bootzeit-Richtlinien. Sie funktionieren auch in "
                 ],
                 [
                   "span",
@@ -5846,7 +5997,7 @@
                 ],
                 [
                   "text",
-                  ". Sie aktivieren die Persistenz nicht eigenständig. Siehe "
+                  ". Sie aktivieren die Persistenz nicht automatisch. Siehe "
                 ],
                 [
                   "link",
@@ -5866,50 +6017,96 @@
               ]
             ]
           ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Die "
         ],
         [
-          "item",
-          null,
+          "span",
+          "code",
           [
             [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "LIVE_CONFIG_DEBUG=true|false"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ": Diese Variable entspricht dem "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "**live-config.debug**"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "-Parameter. Helferbefehle im Merged-Modus protokollieren normale Fehler, erstellen aber nur dann detaillierte Befehlsabläufe und Debug-Kopien, wenn Debug aktiviert ist."
-                ]
-              ]
+              "text",
+              "browser-cache"
             ]
           ]
+        ],
+        [
+          "text",
+          " Komponente liest die dauerhafte "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " Richtlinie, nachdem der Live-Nutzer existiert, und bindet Standardverzeichnisse des nativen Browser-Caches in ein gemeinsames, begrenztes RAM Dateisystem ein. Eine separat erstellte Firefox-Richtlinie deaktiviert dessen Festplatten-Cache, ohne die Browser-Profile zu verschieben. Ist diese Komponente durch "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "components="
+            ]
+          ]
+        ],
+        [
+          "text",
+          " oder "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "nocomponents="
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ausgeschlossen, richtet allein die frühe Browser-Cache-Anforderung keine benutzerspezifischen Mounts ein."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Im Merged-Modus bleiben normale Fehler erhalten, aber detaillierte Befehlsprotokolle und Debug-Kopien werden nur erstellt, wenn "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_CONFIG_DEBUG=true"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
         ]
       ]
     ],
@@ -6021,6 +6218,1600 @@
         [
           "text",
           "Die Konfigurationsdateien für das Live-System selbst werden am besten in ein eigenes Debian-Paket gepackt. Ein Beispielpaket mit einer Beispielkonfiguration befindet sich in /usr/share/doc/live-config/examples."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      1,
+      "komponenten",
+      [
+        [
+          "text",
+          "KOMPONENTEN"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " bietet derzeit die folgenden Komponenten unter /usr/lib/live/config an."
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "nss-systemd"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": entfernt oder stellt das systemd-NSS-Modul in /etc/nsswitch.conf wieder her, um ein bekanntes Problem mit systemd zu umgehen."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "debconf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": ermöglicht das Anwenden beliebiger Preseed-Dateien, die auf dem Live-Medium oder einem http/ftp-Server abgelegt sind."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "hostname"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert /etc/hostname und /etc/hosts."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "issue-setup"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": richtet die Datei /etc/issue mit einem Willkommensbanner und Distributionsinformationen ein."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "live-debconfig_passwd"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert Benutzer- und Root-Passwörter über live-debconfig."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "user-setup"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": legt ein Live-Benutzerkonto an."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "user-groups"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": fügt den Live-Benutzer zu zusätzlichen Gruppen hinzu, die von installierten Modulen deklariert wurden. Bereits vorhandene Gruppen, die in "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/usr/share/live/config/user-default-groups.d/*.groups"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " aufgeführt sind, werden nach der Benutzererstellung und bei späteren live-config Ausführungen angewendet."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "root-setup"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": setzt oder aktualisiert das Root-Passwort und konfiguriert die Root-Umgebung."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "sudo"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": gewährt dem Live-Benutzer sudo-Rechte."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "user-ssh-keys"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": synchronisiert benutzerspezifische "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "authorized_keys.<username>"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Dateien zwischen dem Live-Medium und den jeweiligen Home-Verzeichnissen der Benutzer. Unterstützt mehrere Benutzer gleichzeitig (z. B. "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "authorized_keys.root"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "authorized_keys.live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "authorized_keys.admin"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "user-media"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": verlinkt oder bindet validierte Benutzerverzeichnisse auf dem vorhandenen beschreibbaren MiniOS Datenträger ein, mit sicherer Migration und Rückkopieren beim Deaktivieren."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "locales"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert die Sprachumgebungen (Locales)."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "tzdata"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert /etc/timezone."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xorg-service"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert den Benutzernamen in xorg.service und setzt die X11-Konfiguration, sofern unterstützt."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "gdm3"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert den Autologin in gdm3."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "sddm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert den Autologin in sddm."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "kdm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": richtet Autologin in kdm ein."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "lightdm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": richtet Autologin in lightdm ein."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "lxdm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": richtet Autologin in lxdm ein."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "nodm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": richtet Autologin in nodm ein."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "slim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": richtet Autologin in slim ein."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xinit"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": richtet Autologin mit xinit ein."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "keyboard-configuration"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert die Tastatur."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "sysvinit"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": richtet Console-Autologin über "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/inittab"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " ein, wenn sysvinit installiert ist. Die "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "noautologin"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " und "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "nottyautologin"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Shortcuts unterdrücken diese Einrichtung."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "sysv-rc"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert sysv-rc durch Deaktivieren der aufgelisteten Dienste."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "apport"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": deaktiviert apport."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "gnome-panel-data"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": deaktiviert die Sperrtaste für den Bildschirm."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "gnome-power-manager"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": deaktiviert den Ruhezustand."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "gnome-screensaver"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": steuert die GNOME-Bildschirmsperre gemäß "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_LOCKSCREEN_MODE"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "kaboom"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": deaktiviert den KDE-Migrationsassistenten (squeeze und neuer)."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "kde-services"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": deaktiviert einige unerwünschte KDE-Dienste (squeeze und neuer)."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "policykit"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": gewährt Benutzerrechte über PolicyKit."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "ssl-cert"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": erstellt SSL Snake-Oil-Zertifikate neu."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xrdp"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert den XRDP-Modus (entspannt, gehärtet oder deaktiviert), wenn XRDP installiert ist."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "anacron"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": deaktiviert anacron."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "util-linux"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": deaktiviert den util-linux hwclock-Dienst."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "login"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": deaktiviert lastlog."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xserver-xorg"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert xserver-xorg."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "network"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert eine dauerhafte kabelgebundene IPv4-Richtlinie über eine sichere NetworkManager-Keyfile oder ifupdown-Stanza. Läuft vor den Netzwerkdiensten, prüft alle Werte und schreibt erst nach erfolgreicher Validierung."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "openssh-server"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": erstellt OpenSSH-Hostschlüssel neu und schreibt explizit angeforderte Richtlinien für Root-Login oder Passwort-Authentifizierung."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xfce4-panel"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": setzt xfce4-panel auf die Standardeinstellungen zurück."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xscreensaver"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": steuert die Sperrfunktion von xscreensaver gemäß "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_LOCKSCREEN_MODE"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "broadcom-sta"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert broadcom-sta WLAN-Treiber."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "hyperv"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert X11-Einstellungen zur Verbesserung der Kompatibilität auf Microsoft Hyper-V Plattformen."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "ntfs3"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": verwaltet udev-Regeln für NTFS3-Unterstützung."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "config-module-mode"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": konfiguriert den Systemmodulmodus und aktualisiert Caches, Benutzereinstellungen und dpkg."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "hooks"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": ermöglicht das Ausführen beliebiger Befehle aus einer Datei, die auf dem Live-Medium oder einem http/ftp-Server abgelegt ist."
+                ]
+              ]
+            ]
+          ]
         ]
       ]
     ],
@@ -6766,7 +8557,7 @@
       ]
     ]
   ],
-  "plain_text": "live-config\nlive-config - Systemkonfigurations-Komponenten\nlive-config enthält die Komponenten, die ein Live-System während des Bootvorgangs (spätes Userspace) konfigurieren.\nDie Richtlinie für persistenten Sitzungs-Cache und Protokollierung wird bereits zuvor durch minios-boot festgelegt, nachdem das Live-Root und dessen Konfiguration vorbereitet wurden, aber bevor die regulären Dienste starten. Die browser-cache live-config-Komponente bindet die benutzerspezifischen Mounts nach der Benutzererstellung ein. Diese Richtlinien setzen eine funktionierende, dauerhafte perch Sitzung und ein aktuelles initrd voraus, das perch-storage-v1 bekannt macht; siehe Leistung für Auswirkungen und Grenzen.\nNetzwerk-Boot im initramfs (ip=, PXE, from=http://…) ist eine separate LiveKit-Schicht und wird nicht von live-config verwaltet. Siehe Netzwerk-Boot.\nlive-config kann über Boot-Parameter oder die zur Laufzeit vom initramfs bereitgestellten Konfigurationsdateien angepasst werden. Die tatsächliche Kernel-Befehlszeile wird nach den dateibasierten LIVE_CONFIG_CMDLINE Werten angehängt, sodass spätere übereinstimmende Boot-Parameter Vorrang haben. Komponenten, die ihren Status unter /var/lib/live/config speichern, werden normalerweise nur einmal ausgeführt; Synchronisations- und zustandslose Komponenten können bei jedem Aufruf ausgeführt werden.\nFalls live-build(7) zum Erstellen des Live-Systems verwendet wird, können die standardmäßig genutzten live-config-Parameter über die --bootappend-live Option gesetzt werden, siehe lb_config(1) Handbuchseite.\nBoot-Parameter (Komponenten)\nlive-config wird nur aktiviert, wenn boot=live als Boot-Parameter verwendet wird. Standardmäßig werden alle Komponenten ausgeführt. Mit dem Parameter live-config.components kann eingeschränkt werden, welche Komponenten ausgeführt werden, und live-config.nocomponents kann Komponenten ausschließen. Werden beide Parameter verwendet oder einer mehrfach angegeben, hat das letzte Vorkommen Vorrang.\nlive-config.components | components: Alle Komponenten werden ausgeführt. Dies ist die Standardeinstellung für Live-Abbilder.\nlive-config.components=KOMPONENTE1,KOMPONENTE2,...KOMPONENTEn | components=KOMPONENTE1,KOMPONENTE2,...KOMPONENTEn: Es werden nur die angegebenen Komponenten ausgeführt. Die Ausführung erfolgt in der Reihenfolge, wie sie durch die Dateinamen unter /usr/lib/live/config vorgegeben ist, unabhängig von der Reihenfolge in dieser Liste.\nlive-config.nocomponents | nocomponents: Es wird keine Komponente ausgeführt.\nlive-config.nocomponents=KOMPONENTE1,KOMPONENTE2,...KOMPONENTEn | nocomponents=KOMPONENTE1,KOMPONENTE2,...KOMPONENTEn: Alle Komponenten werden ausgeführt, außer den angegebenen.\nBoot-Parameter (Optionen)\nEinige einzelne Komponenten können ihr Verhalten durch einen Boot-Parameter ändern.\nlive-config.debconf-preseed=filesystem|medium|URL1|URL2|...|URLn | debconf-preseed=medium|filesystem|URL1|URL2|...|URLn: Ruft eine oder mehrere debconf-Preseed-Dateien ab und wendet sie an. URLs werden verarbeitet von wget und können HTTP, FTP oder file:// verwenden. Das Schlüsselwort filesystem entpackt Dateien in /usr/lib/live/config-preseed/; medium entpackt Dateien in minios/config-preseed/ auf dem erkannten Live-Medium. Explizite lokale Dateien können Pfade wie file:///run/initramfs/memory/data/minios/config-preseed/FILE oder file:///PATH im Live-Root verwenden. Durch Pipe getrennte Einträge werden in der angegebenen Reihenfolge verarbeitet; Dateien, die durch ein Schlüsselwort entpackt werden, folgen der Shell-Glob-Reihenfolge.\nlive-config.hostname=HOSTNAME | hostname=HOSTNAME: Ermöglicht das Setzen des Hostnamens des Systems. Standardmäßig ist minios.\nlive-config.network-method=dhcp|static|off | network-method=dhcp|static|off: Legt die Richtlinie für das kabelgebundene Netzwerk fest. Nicht gesetzt und dhcp belassen das Image-Standardverhalten unverändert. static schreibt die Konfiguration für das gewählte Backend; off deaktiviert die automatische IPv4-Konfiguration für das gewählte Interface.\nlive-config.network-interface=INTERFACE | network-interface=INTERFACE: Wählt das kabelgebundene Interface aus. Wird es bei static oder off weggelassen, wird das einzige kabelgebundene Nicht-Loopback-Interface automatisch ausgewählt; bei null oder mehreren Kandidaten ist ein expliziter Wert erforderlich.\nlive-config.network-address=IPV4 | network-address=IPV4: Legt die statische IPv4-Adresse fest.\nlive-config.network-prefix=PREFIX | network-prefix=PREFIX: Legt die IPv4-Präfixlänge von 0 bis 32 fest. Der statische Standardwert ist 24.\nlive-config.network-gateway=IPV4 | network-gateway=IPV4: Legt das optionale IPv4-Gateway fest.\nlive-config.network-dns=ADDRESS1,ADDRESS2 | network-dns=ADDRESS1,ADDRESS2: Legt optionale, durch Kommas getrennte DNS-Server-Adressen fest.\nlive-config.network-backend=auto|nm|ifupdown | network-backend=auto|nm|ifupdown: Wählt das Netzwerk-Backend aus. auto bevorzugt NetworkManager und verwendet bei Bedarf ifupdown als Fallback. Erzwungenes ifupdown markiert das Interface als unmanaged für NetworkManager, wenn beide Stacks installiert sind.\nlive-config.username=USERNAME | username=USERNAME: Ermöglicht das Setzen des Benutzernamens, der für den Autologin erstellt wird. Standardmäßig ist live.\nlive-config.user-default-groups=GROUP1,GROUP2,...GROUPn | user-default-groups=GROUP1,GROUP2,...GROUPn: Legt die zusätzlichen Gruppen für den Benutzer fest, der für den Autologin erstellt wird. Gruppennamen können durch Kommas oder Leerzeichen getrennt werden. Der MiniOS Standard ist dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark.\nlive-config.user-fullname=\"USER FULLNAME\" | user-fullname=\"USER FULLNAME\": Ermöglicht das Festlegen des vollständigen Namens des Benutzers, der für den Autologin erstellt wird. Der MiniOS Standard ist MiniOS Live User.\nlive-config.root-password=PASSWORD | root-password=PASSWORD: Ermöglicht das Festlegen des Root-Passworts im Klartext.\nlive-config.root-password-crypted=PASSWORD | root-password-crypted=PASSWORD: Ermöglicht das Festlegen des Root-Passworts in verschlüsselter Form.\nlive-config.user-password=PASSWORD | user-password=PASSWORD: Ermöglicht das Festlegen des Benutzerpassworts im Klartext.\nlive-config.user-password-crypted=PASSWORD | user-password-crypted=PASSWORD: Ermöglicht das Festlegen des Benutzerpassworts in verschlüsselter Form.\nlive-config.locales=LOCALE1,LOCALE2,...LOCALEn | locales=LOCALE1,LOCALE2,...LOCALEn: Ermöglicht das Festlegen der Systemsprache, z. B. de_CH.UTF-8. Der Standard ist en_US.UTF-8. Falls die gewählte Locale noch nicht auf dem System verfügbar ist, wird sie automatisch erstellt.\nlive-config.timezone=TIMEZONE | timezone=TIMEZONE: Ermöglicht das Festlegen der Systemzeitzone, z. B. Europe/Zurich. Der Standard ist UTC.\nlive-config.keyboard-model=KEYBOARD_MODEL | keyboard-model=KEYBOARD_MODEL: Ermöglicht das Ändern des Tastaturmodells. Es ist kein Standardwert gesetzt.\nlive-config.keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn | keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Ermöglicht das Ändern der Tastaturbelegungen. Wenn mehr als eine angegeben ist, kann in der Desktop-Umgebung unter X11 zwischen ihnen gewechselt werden. Es ist kein Standardwert gesetzt.\nlive-config.keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn | keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Ermöglicht das Ändern der Tastaturvarianten. Wenn mehrere Varianten angegeben werden, sollte die gleiche Anzahl wie bei den Tastaturbelegungen angegeben werden, da sie eins zu eins in der angegebenen Reihenfolge zugeordnet werden. Leere Werte sind erlaubt. Die Tools der Desktop-Umgebung ermöglichen das Umschalten zwischen den jeweiligen Layout- und Variantenpaaren unter X11. Es ist kein Standardwert gesetzt.\nlive-config.keyboard-options=KEYBOARD_OPTIONS | keyboard-options=KEYBOARD_OPTIONS: Ermöglicht das Ändern der Tastaturoptionen. Es ist kein Standardwert gesetzt.\nlive-config.sysv-rc=SERVICE1,SERVICE2,...SERVICEn | sysv-rc=SERVICE1,SERVICE2,...SERVICEn: Ermöglicht das Deaktivieren von sysv-Diensten über update-rc.d.\nlive-config.utc=yes|no | utc=yes|no: Ermöglicht das Festlegen, ob das System davon ausgeht, dass die Hardware-Uhr auf UTC eingestellt ist oder nicht. Der Standard ist yes.\nlive-config.xorg-xsession-manager=X_SESSION_MANAGER | x-session-manager=X_SESSION_MANAGER: Ermöglicht das Festlegen des x-session-manager über update-alternatives.\nlive-config.xorg-driver=XORG_DRIVER | xorg-driver=XORG_DRIVER: Ermöglicht das Festlegen des xorg-Treibers anstelle der automatischen Erkennung. Wenn eine PCI-ID in /usr/share/live/config/xserver-xorg/*DRIVER*.ids im Live-System angegeben ist, wird der TREIBER für diese Geräte erzwungen. Wenn sowohl ein Boot-Parameter als auch ein Override gefunden werden, hat der Boot-Parameter Vorrang.\nlive-config.xorg-resolution=XORG_RESOLUTION | xorg-resolution=XORG_RESOLUTION: Ermöglicht das Setzen der Xorg-Auflösung anstelle der automatischen Erkennung, z. B. 1024x768.\nlive-config.wlan-driver=WLAN_DRIVER | wlan-driver=WLAN_DRIVER: Ermöglicht das Festlegen des WLAN-Treibers anstelle der automatischen Erkennung. Wenn eine PCI-ID angegeben ist in /usr/share/live/config/broadcom-sta/*DRIVER*.ids im Live-System, wird der DRIVER für diese Geräte erzwungen. Wenn sowohl ein Boot-Parameter als auch ein Override gefunden werden, hat der Boot-Parameter Vorrang.\nlive-config.module-mode=simple|merged | module-mode=simple|merged: Damit kann der Modus für die Live-Konfiguration festgelegt werden. Ist merged ausgewählt, werden Benutzerkonten aktualisiert, Caches neu aufgebaut und Paket-Einstellungen aktualisiert, sodass Konfigurationsänderungen dynamisch ins laufende System integriert werden.\nlive-config.log-storage=persistent|volatile | log-storage=persistent|volatile: Frühe minios-boot-Richtlinie für das Journal und normale /var/log-Dateien. Boot-Diagnosen verbleiben auf dauerhaftem Speicher. Standard ist persistent.\nlive-config.apt-cache=persistent|volatile | apt-cache=persistent|volatile: Frühe Richtlinie für heruntergeladene APT-Archive. Ein begrenztes tmpfs wird nur verwendet, wenn RAM und Swap-Bedingungen dies erlauben; Paketdatenbanken und Repository-Listen werden nicht verschoben. Standard ist persistent.\nlive-config.browser-cache=persistent|volatile | browser-cache=persistent|volatile: Frühe Richtlinie für native Browser-Caches. Mit volatile, mountet die browser-cache-Komponente ausgewählte Live-User-Cache-Verzeichnisse in RAM, nachdem das Benutzerkonto angelegt wurde. Standard ist persistent.\nlive-config.link-user-dirs | link-user-dirs: Verlinkt die verwalteten Benutzerverzeichnisse mit dem konfigurierten Pfad auf dem MiniOS-Datenträger. Ist nicht mit Bind-Modus kombinierbar und nicht verfügbar bei jedem toram-Modus oder wenn die aktive Persistenz-Sitzung LUKS-verschlüsselt ist.\nlive-config.bind-user-dirs | bind-user-dirs: Bindet die verwalteten Benutzerverzeichnisse vom konfigurierten Pfad auf dem MiniOS-Datenträger ein. Ist nicht mit Link-Modus kombinierbar und hat dieselben toram und Einschränkungen bei aktiver Sitzungsverschlüsselung.\nlive-config.user-dirs-path=PATH | user-dirs-path=PATH: Legt den medienrelativen Pfad fest, der von link-user-dirs oder bind-user-dirs verwendet wird. Standard ist /minios/userdata.\nlive-config.hooks=filesystem|medium|URL1|URL2|...|URLn | hooks=medium|filesystem|URL1|URL2|...|URLn: Lädt und führt beliebige Dateien aus einer temporären Datei im laufenden Live-System aus. URLs werden von wget verarbeitet und können HTTP, FTP oder file:// verwenden; benötigte Interpreter und weitere Abhängigkeiten müssen bereits installiert sein. Das Schlüsselwort filesystem entpackt Dateien im /usr/lib/live/config-hooks/; medium entpackt Dateien im minios/config-hooks/ auf dem erkannten Live-Medium (mit ISO-Pfad-Fallback in der Hook-Komponente). Lokale Dateien können explizit file:///run/initramfs/memory/data/minios/config-hooks/FILE oder file:///PATH im Live-Root verwenden. Durch Pipe getrennte Einträge werden in der angegebenen Reihenfolge ausgeführt; Dateien, die durch ein Schlüsselwort entpackt werden, folgen der Shell-Glob-Reihenfolge. Beispiele sind unter /usr/share/doc/live-config/examples/hooks/ installiert.\nSicherheitswarnung: live-config wird als root ausgeführt. Hooks werden ausführbar gemacht und als root gestartet; Preseeds verändern die debconf-Datenbank des Systems mit Root-Rechten. Plain HTTP und FTP authentifizieren die heruntergeladenen Inhalte nicht und bieten keinen Integritätsschutz. Verwenden Sie bevorzugt geprüfte lokale Dateien oder vertrauenswürdige, authentifizierte Übertragungen mit unabhängiger Integritätsprüfung. Nutzen Sie keine Remote-Hooks oder Preseeds aus nicht vertrauenswürdigen Netzwerken.\nBoot-Parameter (Kurzbefehle)\nFür einige häufige Anwendungsfälle, bei denen mehrere Einzelparameter kombiniert werden müssten, stellt live-config Kurzbefehle bereit. So bleibt die volle Kontrolle über alle Optionen erhalten und es wird dennoch einfach gehalten.\nlive-config.noroot | noroot: Deaktiviert die Root-Passwort-Einrichtung sowie die MiniOS Sudo- und PolicyKit-Berechtigungen.\nlive-config.sudo-mode=passwordless|password|disabled | sudo-mode=passwordless|password|disabled: Steuert die Sudo-Konfiguration für den Live-Benutzer. Die Standardeinstellung und das historische MiniOS-Verhalten bei Nicht-Setzung ist passwordless. Der Modus password behält Sudo-Zugriff bei, verlangt jedoch das Passwort des Live-Benutzers. Der Modus disabled entfernt die MiniOS-Sudo-Berechtigung und schließt den Live-Benutzer bei Erstellung aus der Sudo-Gruppe aus. Die ältere Abkürzung noroot überschreibt dies und deaktiviert die Root-Berechtigungseinrichtung umfassender.\nlive-config.polkit-mode=passwordless|password|disabled | polkit-mode=passwordless|password|disabled: Steuert die MiniOS PolicyKit-Komfortregeln. Die Standardeinstellung und das historische MiniOS-Verhalten bei Nicht-Setzung ist passwordless. Die Modi password und disabled entfernen diese Regel, sodass die normale PolicyKit-Authentifizierung der Distribution gilt. disabled ist keine strikte Alles-verweigern-Politik; verwenden Sie noroot, wenn der Live-Benutzer keine administrativen Rechte erhalten soll.\nlive-config.ssh-permit-root-login=true|false | ssh-permit-root-login=true|false: Schreibt eine OpenSSH-PermitRootLogin-Richtlinie, wenn explizit gesetzt und openssh-server installiert ist.\nlive-config.ssh-password-authentication=true|false | ssh-password-authentication=true|false: Schreibt eine OpenSSH-PasswordAuthentication-Richtlinie, wenn explizit gesetzt und openssh-server installiert ist.\nlive-config.xrdp-mode=relaxed|hardened|disabled | xrdp-mode=relaxed|hardened|disabled: Steuert die XRDP-Konfiguration, wenn xrdp installiert ist. relaxed bewahrt die historischen MiniOS-Standards. hardened bindet XRDP an localhost, stellt ausgehandelte/hohe Sicherheitseinstellungen wieder her und deaktiviert XRDP-Root-Login. disabled deaktiviert und stoppt XRDP über minios-svc, sofern verfügbar.\nlive-config.x11-mode=relaxed|hardened | x11-mode=relaxed|hardened: Steuert die MiniOS X11-Komforteinstellungen. relaxed bewahrt die historische Kompatibilität. hardened entfernt die großzügige -ac X-Server-Option und verschärft Xwrapper.config, wenn vorhanden.\nlive-config.issue-password-hints=true|false | issue-password-hints=true|false: Steuert, ob /etc/issue die Standard-MiniOS-Passworthinweise für root/live anzeigt.\nlive-config.lockscreen-mode=relaxed|hardened | lockscreen-mode=relaxed|hardened: Steuert, ob live-config die Bildschirmsperre lockert. relaxed bewahrt die historische Live-Session-Komforteinstellung. hardened verhindert das Deaktivieren der GNOME-Sperre und aktiviert die xscreensaver-Sperre, sofern vorhanden.\nlive-config.noautologin | noautologin: Verhindert, dass live-config Konsole- und grafischen Autologin einrichtet. Bereits in einer persistenten Sitzung konfigurierter Autologin wird nicht entfernt.\nlive-config.nottyautologin | nottyautologin: Verhindert, dass live-config Konsolen-Autologin einrichtet, ohne die grafische Einrichtung zu beeinflussen. Bestehende persistente Konfiguration bleibt erhalten.\nlive-config.nox11autologin | nox11autologin: Verhindert, dass live-config Display-Manager-Autologin einrichtet, ohne die TTY-Einrichtung zu beeinflussen. Bestehende persistente Konfiguration bleibt erhalten.\nBoot-Parameter (Sonderoptionen)\nFür spezielle Anwendungsfälle gibt es einige besondere Boot-Parameter.\nlive-config.debug | debug: Aktiviert die Debug-Ausgabe in live-config.\nKonfigurationsdateien\nlive-config kann über Konfigurationsdateien konfiguriert (aber nicht aktiviert) werden. Jeder unterstützte Boot-Parameter kann in LIVE_CONFIG_CMDLINE eingetragen werden, und die meisten Optionen können alternativ über einzelne Variablen gesetzt werden. Das boot=live-Parameter ist weiterhin erforderlich, um live-config zu aktivieren.\nHinweis: Wenn Konfigurationsdateien verwendet werden, sollten idealerweise alle Boot-Parameter in die LIVE_CONFIG_CMDLINE-Variable geschrieben werden, alternativ können einzelne Variablen gesetzt werden. Werden einzelne Variablen verwendet, muss der Nutzer sicherstellen, dass alle notwendigen Variablen gesetzt sind, um eine gültige Konfiguration zu erstellen.\nlive-config selbst lädt /etc/live/config.conf und dann /etc/live/config.conf.d/*.conf in der Shell-Glob-Reihenfolge. Spätere Fragmente können daher Werte aus der Hauptdatei oder früheren Fragmenten überschreiben. Es wird keine zweite Medien-Konfigurationsschicht separat geladen.\nAuf MiniOS-Medien sind die Quelldateien minios/config.conf und minios/config.conf.d/*.conf vorhanden. Bevor live-config startet, synchronisiert das MiniOS initramfs diese mit den /etc/live/ Laufzeitdateien anhand des Änderungsdatums. Eine neuere Quelldatei ersetzt ihr Laufzeit-Pendant; eine neuere Laufzeitdatei wird nur zurückkopiert, wenn das gewählte MiniOS-Datenverzeichnis beschreibbar ist. Gleiche Zeitstempel führen zu keiner Kopie, fehlende Dateien werden ergänzt, und Dateien werden nicht gelöscht. Dies ist eine Synchronisation beim Booten, keine kontinuierliche Überwachung. Siehe Konfigurationsdatei für die vollständigen Regeln zur Synchronisation und Vorrang der Kommandozeile.\nAls Fallback für initramfs-Implementierungen, die die Laufzeitdatei nicht vorbereitet haben, kopieren die systemd- und SysV-Startskripte minios/config.conf nur vom erkannten Medium, wenn /etc/live/config.conf fehlt. Dieser Fallback kopiert keine config.conf.d-Fragmente. Das aktuelle Standard-MiniOS LiveKit-initramfs führt stattdessen die oben beschriebene Synchronisation durch.\nFragmentdateien müssen mit *.conf übereinstimmen. Namen wie vendor.conf oder project.conf werden empfohlen; wählen Sie die Namen bewusst, da spätere Fragmente frühere überschreiben.\nDer eigentliche Inhalt der Konfigurationsdateien besteht aus einer oder mehreren der folgenden Variablen.\nLIVE_CONFIG_CMDLINE=PARAMETER1 PARAMETER2...PARAMETERn: Diese Variable entspricht der Bootloader-Kommandozeile.\nLIVE_CONFIG_COMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Diese Variable entspricht dem **live-config.components**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*-Parameter.\nLIVE_CONFIG_NOCOMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Diese Variable entspricht dem **live-config.nocomponents**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*-Parameter.\nLIVE_DEBCONF_PRESEED=filesystem|medium|URL1|URL2|...|URLn: Diese Variable entspricht dem **live-config.debconf-preseed**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn*-Parameter.\nLIVE_HOSTNAME=HOSTNAME: Diese Variable entspricht dem **live-config.hostname**=*HOSTNAME*-Parameter. Standardwert ist minios.\nLIVE_NETWORK_METHOD=dhcp|static|off: Legt die Richtlinie für das kabelgebundene Netzwerk fest. dhcp und ein nicht gesetzter Wert haben keine Auswirkung und entfernen kein zuvor erstelltes MiniOS-Profil.\nLIVE_NETWORK_INTERFACE=INTERFACE: Wählt das kabelgebundene Interface für die static- oder off-Richtlinie aus.\nLIVE_NETWORK_ADDRESS=IPV4: Setzt die statische IPv4-Adresse.\nLIVE_NETWORK_PREFIX=PREFIX: Legt die statische Präfixlänge fest; Standard ist 24.\nLIVE_NETWORK_GATEWAY=IPV4: Setzt das optionale statische Gateway.\nLIVE_NETWORK_DNS=ADDRESS1,ADDRESS2: Setzt optionale, durch Kommas getrennte DNS-Server.\nLIVE_NETWORK_BACKEND=auto|nm|ifupdown: Wählt das verwendete Backend aus.\nDie Netzwerkkomponente zeichnet /var/lib/live/config/network nach erfolgreichem Schreiben der Richtlinie auf. Entfernen Sie diesen Stempel, um eine geänderte Richtlinie auf einem persistenten System anzuwenden. Um ein vorheriges statisches Profil zu entfernen, verwenden Sie network-method=off oder entfernen Sie das von MiniOS verwaltete Profil und den Stempel manuell.\nLIVE_USERNAME=USERNAME: Diese Variable entspricht dem **live-config.username**=*USERNAME*-Parameter. Standardwert ist live.\nLIVE_USER_DEFAULT_GROUPS=GROUP1,GROUP2,...GROUPn: Diese Variable entspricht dem **live-config.user-default-groups**=\"*GROUP1*,*GROUP2*...*GROUPn*\"-Parameter.\nLIVE_USER_FULLNAME=\"USER FULLNAME\": Diese Variable entspricht dem **live-config.user-fullname**=\"*USER FULLNAME*\"-Parameter.\nLIVE_ROOT_PASSWORD=PASSWORD: Diese Variable entspricht dem **live-config.root-password**=*PASSWORD*-Parameter. Sie legt das Root-Passwort im Klartext fest.\nLIVE_ROOT_PASSWORD_CRYPTED=PASSWORD: Diese Variable entspricht dem **live-config.root-password-crypted**=*PASSWORD*-Parameter. Sie legt das Root-Passwort in verschlüsselter Form fest.\nLIVE_USER_PASSWORD=PASSWORD: Diese Variable entspricht dem **live-config.user-password**=*PASSWORD* Parameter und legt das Benutzerpasswort im Klartext fest.\nLIVE_USER_PASSWORD_CRYPTED=PASSWORD: Diese Variable entspricht dem **live-config.user-password-crypted**=*PASSWORD* Parameter und legt das Benutzerpasswort in verschlüsselter Form fest.\nLIVE_CONFIG_NOROOT=true|false: Diese Variable entspricht dem **live-config.noroot** Parameter und deaktiviert Root-, sudo- und PolicyKit-Berechtigungen, wenn auf true gesetzt.\nLIVE_SUDO_MODE=passwordless|password|disabled: Diese Variable entspricht dem **live-config.sudo-mode**=... Parameter. Wenn nicht gesetzt, behält MiniOS das bisherige sudo-Verhalten ohne Passwort bei.\nLIVE_POLKIT_MODE=passwordless|password|disabled: Diese Variable entspricht dem **live-config.polkit-mode**=... Parameter. password und disabled entfernen die MiniOS-Regel für passwortlos und stellen die normale PolicyKit-Authentifizierung der Distribution wieder her.\nLIVE_SSH_PERMIT_ROOT_LOGIN=true|false: Diese Variable entspricht dem **live-config.ssh-permit-root-login**=... Parameter.\nLIVE_SSH_PASSWORD_AUTHENTICATION=true|false: Diese Variable entspricht dem **live-config.ssh-password-authentication**=... Parameter.\nLIVE_XRDP_MODE=relaxed|hardened|disabled: Diese Variable entspricht dem **live-config.xrdp-mode**=... Parameter.\nLIVE_X11_MODE=relaxed|hardened: Diese Variable entspricht dem **live-config.x11-mode**=... Parameter.\nLIVE_ISSUE_PASSWORD_HINTS=true|false: Diese Variable entspricht dem **live-config.issue-password-hints**=... Parameter.\nLIVE_LOCKSCREEN_MODE=relaxed|hardened: Diese Variable entspricht dem **live-config.lockscreen-mode**=... Parameter.\nLIVE_LOCALES=LOCALE1,LOCALE2,...LOCALEn: Diese Variable entspricht dem **live-config.locales**=*LOCALE1*,*LOCALE2*...*LOCALEn* Parameter.\nLIVE_TIMEZONE=TIMEZONE: Diese Variable entspricht dem **live-config.timezone**=*TIMEZONE* Parameter.\nLIVE_KEYBOARD_MODEL=KEYBOARD_MODEL: Diese Variable entspricht dem **live-config.keyboard-model**=*KEYBOARD_MODEL* Parameter.\nLIVE_KEYBOARD_LAYOUTS=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Diese Variable entspricht dem **live-config.keyboard-layouts**=*KEYBOARD_LAYOUT1*,*KEYBOARD_LAYOUT2*...*KEYBOARD_LAYOUTn* Parameter.\nLIVE_KEYBOARD_VARIANTS=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Diese Variable entspricht dem **live-config.keyboard-variants**=*KEYBOARD_VARIANT1*,*KEYBOARD_VARIANT2*...*KEYBOARD_VARIANTn* Parameter.\nLIVE_KEYBOARD_OPTIONS=KEYBOARD_OPTIONS: Diese Variable entspricht dem **live-config.keyboard-options**=*KEYBOARD_OPTIONS* Parameter.\nLIVE_SYSV_RC=SERVICE1,SERVICE2,...SERVICEn: Diese Variable entspricht dem **live-config.sysv-rc**=*SERVICE1*,*SERVICE2*...*SERVICEn* Parameter.\nLIVE_UTC=yes|no: Diese Variable entspricht dem **live-config.utc**=**yes**|no Parameter.\nLIVE_X_SESSION_MANAGER=X_SESSION_MANAGER: Diese Variable entspricht dem **live-config.xorg-xsession-manager**=*X_SESSION_MANAGER* Parameter.\nLIVE_XORG_DRIVER=XORG_DRIVER: Diese Variable entspricht dem **live-config.xorg-driver**=*XORG_DRIVER* Parameter.\nLIVE_XORG_RESOLUTION=XORG_RESOLUTION: Diese Variable entspricht dem **live-config.xorg-resolution**=*XORG_RESOLUTION* Parameter.\nLIVE_WLAN_DRIVER=WLAN_DRIVER: Diese Variable entspricht dem **live-config.wlan-driver**=*WLAN_DRIVER* Parameter.\nLIVE_HOOKS=filesystem|medium|URL1|URL2|...|URLn: Diese Variable entspricht dem **live-config.hooks**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn* Parameter.\nLIVE_LINK_USER_DIRS=true|false: Aktiviert oder deaktiviert Links von den Standarddatenverzeichnissen des Benutzers auf das beschreibbare MiniOS Laufwerk. Der entsprechende Boot-Parameter ist das einfache live-config.link-user-dirs Flag. Der Link-Modus kann nicht mit dem Bind-Modus oder einem anderen toram Modus kombiniert werden.\nLIVE_BIND_USER_DIRS=true|false: Aktiviert oder deaktiviert Bind-Mounts der Standarddatenverzeichnisse des Benutzers vom beschreibbaren MiniOS Laufwerk. Der entsprechende Boot-Parameter ist das einfache live-config.bind-user-dirs Flag. Der Bind-Modus kann nicht mit dem Link-Modus oder einem anderen toram Modus kombiniert werden.\nLIVE_USER_DIRS_PATH=PFAD: Diese Variable entspricht dem **live-config.user-dirs-path**=*PATH*-Parameter. Sie legt einen sicheren Pfad innerhalb des FAT32-, exFAT- oder NTFS-MiniOS-Laufwerks fest. Standardmäßig ist der Wert /minios/userdata; Punkt- und Überordner-Segmente werden abgelehnt.\nDie Benutzer-Medien-Einrichtung führt niemals automatisch zwei nicht-leere Verzeichnisse zusammen. Ein lokales, nicht-leeres Verzeichnis wird nur migriert, wenn das Medienziel leer ist. Ist die Funktion deaktiviert, werden verwaltete Mediendaten vor dem Entfernen von Links zurückkopiert. Die Aktivierung und Rückkopierung von Benutzer-Medien sind blockiert, solange die aktive Persistenzsitzung LUKS-verschlüsselt ist, um zu verhindern, dass Sitzungsdaten auf unverschlüsselte MiniOS-Medien verschoben werden. Diese Entscheidung basiert auf dem tatsächlich aktiven Verschlüsselungsstatus: perchencrypt=luks fordert die Verschlüsselung nur beim Erstellen einer neuen Sitzung an und beschreibt keine bestehende Sitzung. Ein fehlgeschlagener Validierungs- oder Kopiervorgang belässt die bestehenden Benutzerverzeichnisse unverändert und protokolliert den Grund in /var/lib/live/config/user-media.status.\nLIVE_MODULE_MODE=simple|merged: Diese Variable enthält den Zustand, der durch den live-config.module-mode- (oder module-mode) Parameter festgelegt wird. Ist sie auf merged gesetzt, übernimmt das Live-System Updates (über minios-update-users, minios-update-cache und minios-update-dpkg), um benutzerdefinierte Konfigurationen mit der Basisumgebung zu verschmelzen.\nLIVE_LOG_STORAGE=persistent|volatile, LIVE_APT_CACHE=persistent|volatile, und LIVE_BROWSER_CACHE=persistent|volatile: Unabhängige MiniOS-Bootzeit-Richtlinien. Sie funktionieren auch im config.conf.d und LIVE_CONFIG_CMDLINE. Sie aktivieren die Persistenz nicht eigenständig. Siehe Konfigurationsdatei.\nLIVE_CONFIG_DEBUG=true|false: Diese Variable entspricht dem **live-config.debug**-Parameter. Helferbefehle im Merged-Modus protokollieren normale Fehler, erstellen aber nur dann detaillierte Befehlsabläufe und Debug-Kopien, wenn Debug aktiviert ist.\nANPASSUNG\nlive-config lässt sich einfach für nachgelagerte Projekte oder lokale Nutzung anpassen.\nHinzufügen neuer Konfigurationskomponenten\nNachgelagerte Projekte können ihre Komponenten in /usr/lib/live/config ablegen und müssen nichts weiter tun; die Komponenten werden beim Booten automatisch ausgeführt.\nDie Komponenten werden am besten in ein eigenes Debian-Paket gepackt. Ein Beispielpaket mit einer Beispielkomponente befindet sich in /usr/share/doc/live-config/examples.\nEntfernen bestehender Konfigurationskomponenten\nEs ist derzeit nicht wirklich möglich, Komponenten auf sinnvolle Weise zu entfernen, ohne entweder ein lokal angepasstes live-config-Paket zu liefern oder dpkg-divert zu verwenden. Das gleiche Ziel lässt sich jedoch erreichen, indem die jeweiligen Komponenten über den Mechanismus live-config.nocomponents deaktiviert werden, siehe oben. Um nicht immer die zu deaktivierenden Komponenten als Boot-Parameter angeben zu müssen, sollte eine Konfigurationsdatei verwendet werden, siehe oben.\nDie Konfigurationsdateien für das Live-System selbst werden am besten in ein eigenes Debian-Paket gepackt. Ein Beispielpaket mit einer Beispielkonfiguration befindet sich in /usr/share/doc/live-config/examples.\nDATEIEN\nminios/config.conf auf dem ausgewählten MiniOS-Datenträger (Quellkopie)\nminios/config.conf.d/*.conf auf dem ausgewählten MiniOS-Datenträger (Quellfragmente)\n/etc/live/config.conf\n/etc/live/config.conf.d/*.conf\n/usr/lib/live/init-config.sh\n/usr/lib/live/config.sh\n/usr/lib/live/config/\n/usr/share/live/config/user-default-groups.d/*.groups\n/usr/share/minios/capabilities/minios-live-config.json\n/var/lib/live/config/\n/var/log/live/config.log\n/var/log/minios/minios-boot.log\nminios/log/YYYYMMDD_HHMMSS/ auf beschreibbarem ausgewähltem Datenträger, wenn Log-Export aktiviert ist\n/usr/lib/live/config-hooks/* (filesystem Hooks)\nminios/config-hooks/* auf dem erkannten Live-Medium (medium Hooks)\n/usr/lib/live/config-preseed/* (filesystem Preseeds)\nminios/config-preseed/* auf dem erkannten Live-Medium (medium Preseeds)\nSIEHE AUCH\nlive-boot(7)\nlive-build(7)\nlive-tools(7)\nHOMEPAGE\nWeitere Informationen zu minios-live-config finden Sie im GitHub-Repository. Allgemeine Informationen zu MiniOS gibt es unter minios.dev.\nFEHLER\nFehler können im minios-live-config Issue Tracker gemeldet werden.\nAUTOR\nlive-config wurde ursprünglich von Daniel Baumann (mail@daniel-baumann.ch) geschrieben. Seit 2016 wird die Entwicklung vom Debian Live Team fortgeführt. Seit 2025 wird die Entwicklung der modifizierten minios-live-config-Version vom MiniOS Live Team weitergeführt.",
+  "plain_text": "live-config\nlive-config - Systemkonfigurations-Komponenten\nlive-config enthält die Komponenten, die ein Live-System während des Bootvorgangs (später Userspace) konfigurieren.\nDie Richtlinie für persistenten Sitzungs-Cache und Protokollierung wird bereits früher durch minios-boot festgelegt, nachdem das Live-Root und dessen Konfiguration vorbereitet wurden, aber bevor die regulären Dienste starten. Die browser-cache live-config-Komponente bindet die benutzerspezifischen Mounts nach der Benutzererstellung ein. Diese Richtlinien setzen eine funktionierende, dauerhafte perch Sitzung und ein aktuelles initrd voraus, das perch-storage-v1 bereitstellt; siehe Leistung für Auswirkungen und Grenzen.\nNetzwerk-Boot im initramfs (ip=, PXE, from=http://…) ist eine separate LiveKit-Schicht und wird nicht von live-config verwaltet. Siehe Netzwerk-Boot.\nlive-config kann über Boot-Parameter oder die vom initramfs vorbereiteten Laufzeit-Konfigurationsdateien angepasst werden. Die tatsächliche Kernel-Befehlszeile wird nach den dateibasierten LIVE_CONFIG_CMDLINE Werten angehängt, sodass später angegebene Boot-Parameter Vorrang haben. Komponenten, die ihren Status unter /var/lib/live/config speichern, werden normalerweise nur einmal ausgeführt; Synchronisations- und zustandslose Komponenten können bei jedem Aufruf laufen.\nWenn live-build(7) zum Erstellen des Live-Systems verwendet wird, können die standardmäßig genutzten live-config-Parameter über die --bootappend-live Option gesetzt werden, siehe lb_config(1) Handbuchseite.\nBoot-Parameter (Komponenten)\nlive-config wird nur aktiviert, wenn boot=live als Boot-Parameter verwendet wird. Standardmäßig werden alle Komponenten ausgeführt. Mit dem Parameter live-config.components kann eingeschränkt werden, welche Komponenten ausgeführt werden, und live-config.nocomponents kann Komponenten ausschließen. Werden beide Parameter verwendet oder einer mehrfach angegeben, hat das letzte Vorkommen Vorrang.\nlive-config.components | components: Alle Komponenten werden ausgeführt. Dies ist die Standardeinstellung für Live-Abbilder.\nlive-config.components=KOMPONENTE1,KOMPONENTE2,...KOMPONENTEn | components=KOMPONENTE1,KOMPONENTE2,...KOMPONENTEn: Es werden nur die angegebenen Komponenten ausgeführt. Die Ausführung erfolgt in der Reihenfolge, wie sie durch die Dateinamen unter /usr/lib/live/config vorgegeben ist, unabhängig von der Reihenfolge in dieser Liste.\nlive-config.nocomponents | nocomponents: Es wird keine Komponente ausgeführt.\nlive-config.nocomponents=KOMPONENTE1,KOMPONENTE2,...KOMPONENTEn | nocomponents=KOMPONENTE1,KOMPONENTE2,...KOMPONENTEn: Alle Komponenten werden ausgeführt, außer den angegebenen.\nBoot-Parameter (Optionen)\nEinige einzelne Komponenten können ihr Verhalten durch einen Boot-Parameter ändern.\nlive-config.debconf-preseed=filesystem|medium|URL1|URL2|...|URLn | debconf-preseed=medium|filesystem|URL1|URL2|...|URLn: Ruft eine oder mehrere debconf-Preseed-Dateien ab und wendet sie an. URLs werden verarbeitet von wget und können HTTP, FTP oder file:// verwenden. Das Schlüsselwort filesystem entpackt Dateien in /usr/lib/live/config-preseed/; medium entpackt Dateien in minios/config-preseed/ auf dem erkannten Live-Medium. Explizite lokale Dateien können Pfade wie file:///run/initramfs/memory/data/minios/config-preseed/FILE oder file:///PATH im Live-Root verwenden. Durch Pipe getrennte Einträge werden in der angegebenen Reihenfolge verarbeitet; durch ein Schlüsselwort entpackte Dateien folgen der Shell-Glob-Reihenfolge.\nlive-config.hostname=HOSTNAME | hostname=HOSTNAME: Ermöglicht das Setzen des System-Hostnamens. Standardmäßig ist minios voreingestellt.\nlive-config.network-method=dhcp|static|off | network-method=dhcp|static|off: Legt die Richtlinie für kabelgebundene Netzwerke fest. Nicht gesetzt und dhcp belassen das Standard-Image unverändert. static schreibt die Konfiguration für das gewählte Backend; off deaktiviert die automatische IPv4-Konfiguration für das gewählte Interface.\nlive-config.network-interface=INTERFACE | network-interface=INTERFACE: Wählt das kabelgebundene Interface aus. Wenn für static oder off nicht angegeben, wird automatisch das einzige kabelgebundene Nicht-Loopback-Interface gewählt; bei keiner oder mehreren Optionen ist ein expliziter Wert erforderlich.\nlive-config.network-address=IPV4 | network-address=IPV4: Setzt die statische IPv4-Adresse.\nlive-config.network-prefix=PREFIX | network-prefix=PREFIX: Legt die IPv4-Präfixlänge von 0 bis 32 fest. Der statische Standardwert ist 24.\nlive-config.network-gateway=IPV4 | network-gateway=IPV4: Setzt das optionale IPv4-Gateway.\nlive-config.network-dns=ADDRESS1,ADDRESS2 | network-dns=ADDRESS1,ADDRESS2: Setzt optionale, komma-getrennte DNS-Server-Adressen.\nlive-config.network-backend=auto|nm|ifupdown | network-backend=auto|nm|ifupdown: Wählt das Netzwerk-Backend aus. auto bevorzugt NetworkManager und greift andernfalls auf ifupdown zurück. Erzwungenes ifupdown markiert das Interface als nicht verwaltet durch NetworkManager, wenn beide Stacks installiert sind.\nlive-config.username=USERNAME | username=USERNAME: Ermöglicht das Setzen des Benutzernamens, der für die automatische Anmeldung erstellt wird. Standardmäßig ist live voreingestellt.\nlive-config.user-default-groups=GROUP1,GROUP2,...GROUPn | user-default-groups=GROUP1,GROUP2,...GROUPn: Legt die zusätzlichen Gruppen für den Benutzer fest, der für den Autologin erstellt wird. Gruppennamen können durch Kommas oder Leerzeichen getrennt werden. Der Standardwert ist MiniOSdialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark.\nlive-config.user-fullname=\"USER FULLNAME\" | user-fullname=\"USER FULLNAME\": Ermöglicht das Festlegen des vollständigen Namens des Benutzers, der für den Autologin erstellt wird. Der Standardwert ist MiniOSMiniOS Live User.\nlive-config.root-password=PASSWORD | root-password=PASSWORD: Ermöglicht das Festlegen des Root-Passworts im Klartext.\nlive-config.root-password-crypted=PASSWORD | root-password-crypted=PASSWORD: Ermöglicht das Festlegen des Root-Passworts in verschlüsselter Form.\nlive-config.user-password=PASSWORD | user-password=PASSWORD: Ermöglicht das Festlegen des Benutzerpassworts im Klartext.\nlive-config.user-password-crypted=PASSWORD | user-password-crypted=PASSWORD: Ermöglicht das Festlegen des Benutzerpassworts in verschlüsselter Form.\nlive-config.locales=LOCALE1,LOCALE2,...LOCALEn | locales=LOCALE1,LOCALE2,...LOCALEn: Ermöglicht das Festlegen der System-Locale, z. B. de_CH.UTF-8. Der Standardwert ist en_US.UTF-8. Falls die gewählte Locale noch nicht auf dem System verfügbar ist, wird sie automatisch erstellt.\nlive-config.timezone=TIMEZONE | timezone=TIMEZONE: Ermöglicht das Festlegen der System-Zeitzone, z. B. Europe/Zurich. Der Standardwert ist UTC.\nlive-config.keyboard-model=KEYBOARD_MODEL | keyboard-model=KEYBOARD_MODEL: Ermöglicht das Ändern des Tastaturmodells. Es ist kein Standardwert gesetzt.\nlive-config.keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn | keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Ermöglicht das Ändern der Tastaturbelegungen. Wenn mehr als eine angegeben ist, kann in der Desktop-Umgebung unter X11 zwischen ihnen gewechselt werden. Es ist kein Standardwert gesetzt.\nlive-config.keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn | keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Ermöglicht das Ändern der Tastaturvarianten. Wenn mehrere Varianten angegeben werden, sollte die Anzahl der Werte der Anzahl der Tastaturbelegungen entsprechen, da sie jeweils eins zu eins zugeordnet werden. Leere Werte sind erlaubt. In der Desktop-Umgebung kann unter X11 zwischen den jeweiligen Layout- und Variantenpaaren gewechselt werden. Es ist kein Standardwert gesetzt.\nlive-config.keyboard-options=KEYBOARD_OPTIONS | keyboard-options=KEYBOARD_OPTIONS: Ermöglicht das Ändern der Tastaturoptionen. Es ist kein Standardwert gesetzt.\nlive-config.sysv-rc=SERVICE1,SERVICE2,...SERVICEn | sysv-rc=SERVICE1,SERVICE2,...SERVICEn: Ermöglicht das Deaktivieren von sysv-Diensten über update-rc.d.\nlive-config.utc=yes|no | utc=yes|no: Ermöglicht die Einstellung, ob das System davon ausgeht, dass die Hardware-Uhr auf UTC gestellt ist oder nicht. Der Standardwert ist yes.\nlive-config.xorg-xsession-manager=X_SESSION_MANAGER | x-session-manager=X_SESSION_MANAGER: Ermöglicht das Festlegen des x-session-managers über update-alternatives.\nlive-config.xorg-driver=XORG_DRIVER | xorg-driver=XORG_DRIVER: Ermöglicht das Festlegen des Xorg-Treibers anstelle der automatischen Erkennung. Wird eine PCI-ID in /usr/share/live/config/xserver-xorg/*DRIVER*.ids im Live-System angegeben, wird DRIVER für diese Geräte erzwungen. Wenn sowohl ein Boot-Parameter als auch ein Override vorhanden sind, hat der Boot-Parameter Vorrang.\nlive-config.xorg-resolution=XORG_RESOLUTION | xorg-resolution=XORG_RESOLUTION: Ermöglicht das Festlegen der Xorg-Auflösung anstelle der automatischen Erkennung, z. B. 1024x768.\nlive-config.wlan-driver=WLAN_DRIVER | wlan-driver=WLAN_DRIVER: Ermöglicht das Festlegen des WLAN-Treibers anstelle der automatischen Erkennung. Wenn eine PCI-ID im /usr/share/live/config/broadcom-sta/*DRIVER*.ids im Live-System angegeben ist, wird der DRIVER für diese Geräte erzwungen. Wenn sowohl ein Boot-Parameter als auch ein Override vorhanden sind, hat der Boot-Parameter Vorrang.\nlive-config.module-mode=simple|merged | module-mode=simple|merged: Ermöglicht die Angabe des Modus für die Live-Konfiguration. Bei Einstellung auf merged, werden Benutzerkonten aktualisiert, Caches neu aufgebaut und Paketkonfigurationen aktualisiert, sodass Änderungen dynamisch ins laufende System integriert werden.\nlive-config.link-user-dirs | link-user-dirs: Verlinkt die verwalteten Benutzerverzeichnisse mit dem konfigurierten Pfad auf dem MiniOS-Datenträger. Ist nicht mit Bind-Modus kombinierbar und nicht verfügbar bei toram-Modus oder wenn die aktive Persistenzsitzung LUKS-verschlüsselt ist.\nlive-config.bind-user-dirs | bind-user-dirs: Bindet die verwalteten Benutzerverzeichnisse vom konfigurierten Pfad auf dem MiniOS-Datenträger ein. Ist nicht mit Link-Modus kombinierbar und unterliegt denselben toram und Einschränkungen bei aktiver Sitzungsverschlüsselung.\nlive-config.user-dirs-path=PATH | user-dirs-path=PATH: Legt den medienrelativen Pfad fest, der von link-user-dirs oder bind-user-dirsverwendet wird. Standard ist /minios/userdata.\nlive-config.hooks=filesystem|medium|URL1|URL2|...|URLn | hooks=medium|filesystem|URL1|URL2|...|URLn: Ruft beliebige Dateien ab und führt sie aus einer temporären Datei im laufenden Live-System aus. URLs werden von wget verarbeitet und können HTTP, FTP oder file:// verwenden; erforderliche Interpreter und weitere Abhängigkeiten müssen bereits installiert sein. Das Schlüsselwort filesystem entpackt Dateien in /usr/lib/live/config-hooks/; medium entpackt Dateien in minios/config-hooks/ auf dem erkannten Live-Medium (mit ISO-Pfad-Fallback in der Hook-Komponente). Lokale Dateien können explizit file:///run/initramfs/memory/data/minios/config-hooks/FILE oder file:///PATH im Live-Root nutzen. Durch Pipes getrennte Einträge werden in der angegebenen Reihenfolge ausgeführt; durch Schlüsselwörter entpackte Dateien folgen der Shell-Glob-Reihenfolge. Beispiele sind installiert unter /usr/share/doc/live-config/examples/hooks/.\nSicherheitshinweis: live-config läuft als root. Hooks werden ausführbar gemacht und als root ausgeführt, und Preseeds verändern die debconf-Datenbank des Systems mit Root-Rechten. Einfaches HTTP und FTP authentifizieren die heruntergeladenen Inhalte nicht und bieten keinen Integritätsschutz. Verwenden Sie bevorzugt geprüfte lokale Dateien oder vertrauenswürdigen, authentifizierten Transport mit unabhängiger Integritätsprüfung; verwenden Sie keine Remote-Hooks oder Preseeds aus unsicheren Netzwerken.\nMiniOS frühe Speicheroptionen\nDiese Optionen werden von minios-boot vor dem Start der regulären Dienste gelesen. Sie erfordern ein funktionsfähiges, dauerhaftes perch-System und aktivieren dieses nicht eigenständig.\nlive-config.log-storage=persistent|volatile | log-storage=persistent|volatile: volatile legt das systemd-Journal und reguläre /var/log-Dateien in begrenztem RAM ab; Boot-Diagnosen verbleiben auf dauerhaftem Speicher. Standard: persistent.\nlive-config.apt-cache=persistent|volatile | apt-cache=persistent|volatile: volatile speichert heruntergeladene APT-Archive in einem begrenzten tmpfs, wenn RAM und Swap-Bedingungen dies erlauben. Paketdatenbanken und Repository-Listen bleiben persistent. Standard: persistent.\nlive-config.browser-cache=persistent|volatile | browser-cache=persistent|volatile: volatile fordert native Browser-Caches in RAM an. Die browser-cache-Komponente bindet die vom Live-Benutzer gewählten Cache-Verzeichnisse ein, nachdem das Konto existiert. Standard: persistent.\nBoot-Parameter (Kurzbefehle)\nFür einige häufige Anwendungsfälle, bei denen mehrere Einzelparameter kombiniert werden müssten, stellt live-config Kurzbefehle bereit. So bleibt die volle Kontrolle über alle Optionen erhalten und es wird dennoch einfach gehalten.\nlive-config.noroot | noroot: Deaktiviert die Root-Passwort-Einrichtung sowie die MiniOS Sudo- und PolicyKit-Berechtigungen.\nlive-config.sudo-mode=passwordless|password|disabled | sudo-mode=passwordless|password|disabled: Steuert die Sudo-Konfiguration für den Live-Benutzer. Die Standardeinstellung und das historische MiniOS-Verhalten bei Nicht-Setzung ist passwordless. Der Modus password behält Sudo-Zugriff bei, verlangt jedoch das Passwort des Live-Benutzers. Der Modus disabled entfernt die MiniOS-Sudo-Berechtigung und schließt den Live-Benutzer bei Erstellung aus der Sudo-Gruppe aus. Die ältere Abkürzung noroot überschreibt dies und deaktiviert die Root-Berechtigungseinrichtung umfassender.\nlive-config.polkit-mode=passwordless|password|disabled | polkit-mode=passwordless|password|disabled: Steuert die MiniOS PolicyKit-Komfortregeln. Die Standardeinstellung und das historische MiniOS-Verhalten bei Nicht-Setzung ist passwordless. Die Modi password und disabled entfernen diese Regel, sodass die normale PolicyKit-Authentifizierung der Distribution gilt. disabled ist keine strikte Alles-verweigern-Politik; verwenden Sie noroot, wenn der Live-Benutzer keine administrativen Rechte erhalten soll.\nlive-config.ssh-permit-root-login=true|false | ssh-permit-root-login=true|false: Schreibt eine OpenSSH-PermitRootLogin-Richtlinie, wenn explizit gesetzt und openssh-server installiert ist.\nlive-config.ssh-password-authentication=true|false | ssh-password-authentication=true|false: Schreibt eine OpenSSH-PasswordAuthentication-Richtlinie, wenn explizit gesetzt und openssh-server installiert ist.\nlive-config.xrdp-mode=relaxed|hardened|disabled | xrdp-mode=relaxed|hardened|disabled: Steuert die XRDP-Konfiguration, wenn xrdp installiert ist. relaxed bewahrt die historischen MiniOS-Standards. hardened bindet XRDP an localhost, stellt ausgehandelte/hohe Sicherheitseinstellungen wieder her und deaktiviert XRDP-Root-Login. disabled deaktiviert und stoppt XRDP über minios-svc, sofern verfügbar.\nlive-config.x11-mode=relaxed|hardened | x11-mode=relaxed|hardened: Steuert die MiniOS X11-Komforteinstellungen. relaxed bewahrt die historische Kompatibilität. hardened entfernt die großzügige -ac X-Server-Option und verschärft Xwrapper.config, wenn vorhanden.\nlive-config.issue-password-hints=true|false | issue-password-hints=true|false: Steuert, ob /etc/issue die Standard-MiniOS-Passworthinweise für root/live anzeigt.\nlive-config.lockscreen-mode=relaxed|hardened | lockscreen-mode=relaxed|hardened: Steuert, ob live-config die Bildschirmsperre lockert. relaxed bewahrt die historische Live-Session-Komforteinstellung. hardened verhindert das Deaktivieren der GNOME-Sperre und aktiviert die xscreensaver-Sperre, sofern vorhanden.\nlive-config.noautologin | noautologin: Verhindert, dass live-config Konsole- und grafischen Autologin einrichtet. Bereits in einer persistenten Sitzung konfigurierter Autologin wird nicht entfernt.\nlive-config.nottyautologin | nottyautologin: Verhindert, dass live-config Konsolen-Autologin einrichtet, ohne die grafische Einrichtung zu beeinflussen. Bestehende persistente Konfiguration bleibt erhalten.\nlive-config.nox11autologin | nox11autologin: Verhindert, dass live-config Display-Manager-Autologin einrichtet, ohne die TTY-Einrichtung zu beeinflussen. Bestehende persistente Konfiguration bleibt erhalten.\nBoot-Parameter (Sonderoptionen)\nFür spezielle Anwendungsfälle gibt es einige besondere Boot-Parameter.\nlive-config.debug | debug: Aktiviert die Debug-Ausgabe in live-config.\nKonfigurationsdateien\nlive-config kann über Konfigurationsdateien konfiguriert (aber nicht aktiviert) werden. Jeder unterstützte Boot-Parameter kann in LIVE_CONFIG_CMDLINE abgelegt werden; die meisten Optionen lassen sich alternativ auch über einzelne Variablen setzen. Der boot=live Parameter ist weiterhin erforderlich, um live-config zu aktivieren.\nHinweis: Wenn Konfigurationsdateien verwendet werden, sollten idealerweise alle Boot-Parameter in die LIVE_CONFIG_CMDLINE Variable geschrieben werden. Alternativ können einzelne Variablen gesetzt werden. In diesem Fall muss der Benutzer sicherstellen, dass alle erforderlichen Variablen gesetzt sind, um eine gültige Konfiguration zu erstellen.\nlive-config wertet selbstständig /etc/live/config.conf und danach /etc/live/config.conf.d/*.conf in Shell-Glob-Reihenfolge aus. Spätere Fragmente können daher Werte aus der Hauptdatei oder früheren Fragmenten überschreiben. Eine zweite Konfigurationsschicht auf einem weiteren Medium wird nicht separat geladen.\nAuf MiniOS-Medien sind die Quelldateien minios/config.conf und minios/config.conf.d/*.conf vorhanden. Bevor live-config startet, synchronisiert das MiniOS-initramfs diese Dateien mit den /etc/live/ Laufzeitdateien anhand des Änderungsdatums. Eine neuere Quelldatei ersetzt das Laufzeitpendant; eine neuere Laufzeitdatei wird nur zurückkopiert, wenn das gewählte MiniOS-Datenverzeichnis beschreibbar ist. Bei gleichen Zeitstempeln findet keine Kopie statt, fehlende Dateien werden ergänzt, und es werden keine Dateien gelöscht. Dies ist eine Synchronisation beim Booten, kein kontinuierliches Monitoring. Siehe Konfigurationsdatei für die vollständigen Regeln zur Synchronisation und Priorität der Befehlszeile.\nAls Fallback für initramfs-Implementierungen, die die Laufzeitdatei nicht vorbereitet haben, kopieren die systemd- und SysV-Startskripte minios/config.conf nur dann vom erkannten Medium, wenn /etc/live/config.conf fehlt. Dieser Fallback kopiert keine config.conf.d Fragmente. Das aktuelle Standard-MiniOS LiveKit-initramfs führt stattdessen die oben beschriebene Synchronisation durch.\nFragmentdateien müssen mit *.conf übereinstimmen. Namen wie vendor.conf oder project.conf werden empfohlen; wählen Sie die Namen bewusst, da spätere Fragmente frühere überschreiben.\nDer eigentliche Inhalt der Konfigurationsdateien besteht aus einer oder mehreren der folgenden Variablen.\nLIVE_CONFIG_CMDLINE=PARAMETER1 PARAMETER2...PARAMETERn: Diese Variable entspricht der Bootloader-Befehlszeile.\nLIVE_CONFIG_COMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Diese Variable entspricht dem **live-config.components**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn* Parameter.\nLIVE_CONFIG_NOCOMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Diese Variable entspricht dem **live-config.nocomponents**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn* Parameter.\nLIVE_DEBCONF_PRESEED=filesystem|medium|URL1|URL2|...|URLn: Diese Variable entspricht dem **live-config.debconf-preseed**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn* Parameter.\nLIVE_HOSTNAME=HOSTNAME: Diese Variable entspricht dem **live-config.hostname**=*HOSTNAME* Parameter. Standard ist minios.\nLIVE_NETWORK_METHOD=dhcp|static|off: Legt die Richtlinie für das kabelgebundene Netzwerk fest. dhcp und ein nicht gesetzter Wert bewirken nichts und entfernen kein zuvor erstelltes MiniOS-statisches Profil.\nLIVE_NETWORK_INTERFACE=INTERFACE: Wählt das kabelgebundene Interface für die static oder off Richtlinie aus.\nLIVE_NETWORK_ADDRESS=IPV4: Setzt die statische IPv4-Adresse.\nLIVE_NETWORK_PREFIX=PREFIX: Legt die statische Präfixlänge fest; Standard ist 24.\nLIVE_NETWORK_GATEWAY=IPV4: Setzt das optionale statische Gateway.\nLIVE_NETWORK_DNS=ADDRESS1,ADDRESS2: Setzt optionale, komma-separierte DNS-Server.\nLIVE_NETWORK_BACKEND=auto|nm|ifupdown: Wählt das verwendete Backend aus.\nDie Netzwerkkomponente schreibt nach erfolgreichem Setzen der Richtlinie einen /var/lib/live/config/network Stempel. Entfernen Sie diesen Stempel, um eine geänderte Richtlinie auf einem persistenten System anzuwenden. Zum Entfernen eines vorherigen statischen Profils nutzen Sie network-method=off oder löschen Sie das von MiniOS verwaltete Profil und den Stempel manuell.\nLIVE_USERNAME=USERNAME: Diese Variable entspricht dem **live-config.username**=*USERNAME* Parameter. Standard ist live.\nLIVE_USER_DEFAULT_GROUPS=GROUP1,GROUP2,...GROUPn: Diese Variable entspricht dem **live-config.user-default-groups**=\"*GROUP1*,*GROUP2*...*GROUPn*\" Parameter.\nLIVE_USER_FULLNAME=\"USER FULLNAME\": Diese Variable entspricht dem **live-config.user-fullname**=\"*USER FULLNAME*\" Parameter.\nLIVE_ROOT_PASSWORD=PASSWORD: Diese Variable entspricht dem **live-config.root-password**=*PASSWORD* Parameter. Sie gibt das Root-Passwort im Klartext an.\nLIVE_ROOT_PASSWORD_CRYPTED=PASSWORD: Diese Variable entspricht dem **live-config.root-password-crypted**=*PASSWORD* Parameter. Sie gibt das Root-Passwort in verschlüsselter Form an.\nLIVE_USER_PASSWORD=PASSWORD: Diese Variable entspricht dem **live-config.user-password**=*PASSWORD* Parameter. Sie gibt das Benutzerpasswort im Klartext an.\nLIVE_USER_PASSWORD_CRYPTED=PASSWORD: Diese Variable entspricht dem **live-config.user-password-crypted**=*PASSWORD* Parameter. Sie gibt das Benutzerpasswort in verschlüsselter Form an.\nLIVE_CONFIG_NOROOT=true|false: Diese Variable entspricht dem **live-config.noroot** Parameter und deaktiviert Root-, Sudo- und PolicyKit-Rechte, wenn sie auf true gesetzt ist.\nLIVE_SUDO_MODE=passwordless|password|disabled: Diese Variable entspricht dem **live-config.sudo-mode**=... Parameter. Ist sie nicht gesetzt, behält MiniOS das bisherige Sudo-Verhalten ohne Passwort bei.\nLIVE_POLKIT_MODE=passwordless|password|disabled: Diese Variable entspricht dem **live-config.polkit-mode**=... Parameter. password und disabled entfernen die MiniOS-Regel für passwortlos und stellen die normale PolicyKit-Authentifizierung der Distribution wieder her.\nLIVE_SSH_PERMIT_ROOT_LOGIN=true|false: Diese Variable entspricht dem **live-config.ssh-permit-root-login**=... Parameter.\nLIVE_SSH_PASSWORD_AUTHENTICATION=true|false: Diese Variable entspricht dem **live-config.ssh-password-authentication**=... Parameter.\nLIVE_XRDP_MODE=relaxed|hardened|disabled: Diese Variable entspricht dem **live-config.xrdp-mode**=... Parameter.\nLIVE_X11_MODE=relaxed|hardened: Diese Variable entspricht dem **live-config.x11-mode**=... Parameter.\nLIVE_ISSUE_PASSWORD_HINTS=true|false: Diese Variable entspricht dem **live-config.issue-password-hints**=... Parameter.\nLIVE_LOCKSCREEN_MODE=relaxed|hardened: Diese Variable entspricht dem **live-config.lockscreen-mode**=... Parameter.\nLIVE_LOCALES=LOCALE1,LOCALE2,...LOCALEn: Diese Variable entspricht dem **live-config.locales**=*LOCALE1*,*LOCALE2*...*LOCALEn* Parameter.\nLIVE_TIMEZONE=TIMEZONE: Diese Variable entspricht dem **live-config.timezone**=*TIMEZONE* Parameter.\nLIVE_KEYBOARD_MODEL=KEYBOARD_MODEL: Diese Variable entspricht dem **live-config.keyboard-model**=*KEYBOARD_MODEL* Parameter.\nLIVE_KEYBOARD_LAYOUTS=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Diese Variable entspricht dem **live-config.keyboard-layouts**=*KEYBOARD_LAYOUT1*,*KEYBOARD_LAYOUT2*...*KEYBOARD_LAYOUTn* Parameter.\nLIVE_KEYBOARD_VARIANTS=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Diese Variable entspricht dem **live-config.keyboard-variants**=*KEYBOARD_VARIANT1*,*KEYBOARD_VARIANT2*...*KEYBOARD_VARIANTn* Parameter.\nLIVE_KEYBOARD_OPTIONS=KEYBOARD_OPTIONS: Diese Variable entspricht dem **live-config.keyboard-options**=*KEYBOARD_OPTIONS* Parameter.\nLIVE_SYSV_RC=SERVICE1,SERVICE2,...SERVICEn: Diese Variable entspricht dem **live-config.sysv-rc**=*SERVICE1*,*SERVICE2*...*SERVICEn* Parameter.\nLIVE_UTC=yes|no: Diese Variable entspricht dem **live-config.utc**=**yes**|no Parameter.\nLIVE_X_SESSION_MANAGER=X_SESSION_MANAGER: Diese Variable entspricht dem **live-config.xorg-xsession-manager**=*X_SESSION_MANAGER* Parameter.\nLIVE_XORG_DRIVER=XORG_DRIVER: Diese Variable entspricht dem **live-config.xorg-driver**=*XORG_DRIVER* Parameter.\nLIVE_XORG_RESOLUTION=XORG_RESOLUTION: Diese Variable entspricht dem **live-config.xorg-resolution**=*XORG_RESOLUTION* Parameter.\nLIVE_WLAN_DRIVER=WLAN_DRIVER: Diese Variable entspricht dem **live-config.wlan-driver**=*WLAN_DRIVER* Parameter.\nLIVE_HOOKS=filesystem|medium|URL1|URL2|...|URLn: Diese Variable entspricht dem **live-config.hooks**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn* Parameter.\nLIVE_LINK_USER_DIRS=true|false: Aktiviert oder deaktiviert Links von den Standarddatenverzeichnissen des Benutzers auf das beschreibbare MiniOS-Laufwerk. Der zugehörige Boot-Parameter ist das einfache live-config.link-user-dirs Flag. Link-Modus kann nicht mit Bind-Modus oder einem anderen toram Modus kombiniert werden.\nLIVE_BIND_USER_DIRS=true|false: Aktiviert oder deaktiviert Bind-Mounts der Standarddatenverzeichnisse des Benutzers vom beschreibbaren MiniOS-Laufwerk. Der zugehörige Boot-Parameter ist das einfache live-config.bind-user-dirs Flag. Bind-Modus kann nicht mit Link-Modus oder einem anderen toram Modus kombiniert werden.\nLIVE_USER_DIRS_PATH=PATH: Diese Variable entspricht dem **live-config.user-dirs-path**=*PATH* Parameter. Sie gibt einen sicheren Pfad innerhalb des FAT32-, exFAT- oder NTFS-MiniOS-Laufwerks an. Standard ist /minios/userdata; Punkt- und Elternverzeichnis-Segmente werden abgelehnt.\nBeim Einrichten von Benutzermedien werden niemals zwei nicht-leere Verzeichnisse automatisch zusammengeführt. Ein lokales, nicht-leeres Verzeichnis wird nur migriert, wenn das Zielverzeichnis auf dem Medium leer ist. Ist die Funktion deaktiviert, werden verwaltete Mediendaten vor dem Entfernen der Links zurückkopiert. Die Aktivierung und Rückkopierung von Benutzermedien ist blockiert, solange die aktive Persistenz-Sitzung LUKS-verschlüsselt ist, um zu verhindern, dass Sitzungsdaten auf unverschlüsselte MiniOS-Medien verschoben werden. Die Entscheidung basiert auf dem tatsächlichen aktiven Verschlüsselungsstatus: perchencrypt=luks fordert Verschlüsselung nur bei Erstellung einer neuen Sitzung an und beschreibt keine bestehende Sitzung. Ein fehlgeschlagener Abgleich oder Kopiervorgang belässt die bestehenden Benutzerverzeichnisse und protokolliert den Grund in /var/lib/live/config/user-media.status.\nLIVE_MODULE_MODE=simple|merged: Diese Variable hält den Zustand, der durch den live-config.module-mode (oder module-mode) Parameter festgelegt wurde. Ist sie auf merged gesetzt, übernimmt das Live-System Aktualisierungen (über minios-update-users, minios-update-cache und minios-update-dpkg), um benutzerdefinierte Konfigurationen mit der Basisumgebung zusammenzuführen.\nLIVE_CONFIG_DEBUG=true|false: Diese Variable entspricht dem **live-config.debug** Parameter.\nMiniOS Cache- und Log-Variablen\nLIVE_LOG_STORAGE=persistent|volatile, LIVE_APT_CACHE=persistent|volatile, und LIVE_BROWSER_CACHE=persistent|volatile: Unabhängige MiniOS Bootzeit-Richtlinien. Sie funktionieren auch in config.conf.d und LIVE_CONFIG_CMDLINE. Sie aktivieren die Persistenz nicht automatisch. Siehe Konfigurationsdatei.\nDie browser-cache Komponente liest die dauerhafte minios-boot Richtlinie, nachdem der Live-Nutzer existiert, und bindet Standardverzeichnisse des nativen Browser-Caches in ein gemeinsames, begrenztes RAM Dateisystem ein. Eine separat erstellte Firefox-Richtlinie deaktiviert dessen Festplatten-Cache, ohne die Browser-Profile zu verschieben. Ist diese Komponente durch components= oder nocomponents= ausgeschlossen, richtet allein die frühe Browser-Cache-Anforderung keine benutzerspezifischen Mounts ein.\nIm Merged-Modus bleiben normale Fehler erhalten, aber detaillierte Befehlsprotokolle und Debug-Kopien werden nur erstellt, wenn LIVE_CONFIG_DEBUG=true.\nANPASSUNG\nlive-config lässt sich einfach für nachgelagerte Projekte oder lokale Nutzung anpassen.\nHinzufügen neuer Konfigurationskomponenten\nNachgelagerte Projekte können ihre Komponenten in /usr/lib/live/config ablegen und müssen nichts weiter tun; die Komponenten werden beim Booten automatisch ausgeführt.\nDie Komponenten werden am besten in ein eigenes Debian-Paket gepackt. Ein Beispielpaket mit einer Beispielkomponente befindet sich in /usr/share/doc/live-config/examples.\nEntfernen bestehender Konfigurationskomponenten\nEs ist derzeit nicht wirklich möglich, Komponenten auf sinnvolle Weise zu entfernen, ohne entweder ein lokal angepasstes live-config-Paket zu liefern oder dpkg-divert zu verwenden. Das gleiche Ziel lässt sich jedoch erreichen, indem die jeweiligen Komponenten über den Mechanismus live-config.nocomponents deaktiviert werden, siehe oben. Um nicht immer die zu deaktivierenden Komponenten als Boot-Parameter angeben zu müssen, sollte eine Konfigurationsdatei verwendet werden, siehe oben.\nDie Konfigurationsdateien für das Live-System selbst werden am besten in ein eigenes Debian-Paket gepackt. Ein Beispielpaket mit einer Beispielkonfiguration befindet sich in /usr/share/doc/live-config/examples.\nKOMPONENTEN\nlive-config bietet derzeit die folgenden Komponenten unter /usr/lib/live/config an.\nnss-systemd: entfernt oder stellt das systemd-NSS-Modul in /etc/nsswitch.conf wieder her, um ein bekanntes Problem mit systemd zu umgehen.\ndebconf: ermöglicht das Anwenden beliebiger Preseed-Dateien, die auf dem Live-Medium oder einem http/ftp-Server abgelegt sind.\nhostname: konfiguriert /etc/hostname und /etc/hosts.\nissue-setup: richtet die Datei /etc/issue mit einem Willkommensbanner und Distributionsinformationen ein.\nlive-debconfig_passwd: konfiguriert Benutzer- und Root-Passwörter über live-debconfig.\nuser-setup: legt ein Live-Benutzerkonto an.\nuser-groups: fügt den Live-Benutzer zu zusätzlichen Gruppen hinzu, die von installierten Modulen deklariert wurden. Bereits vorhandene Gruppen, die in /usr/share/live/config/user-default-groups.d/*.groups aufgeführt sind, werden nach der Benutzererstellung und bei späteren live-config Ausführungen angewendet.\nroot-setup: setzt oder aktualisiert das Root-Passwort und konfiguriert die Root-Umgebung.\nsudo: gewährt dem Live-Benutzer sudo-Rechte.\nuser-ssh-keys: synchronisiert benutzerspezifische authorized_keys.<username> Dateien zwischen dem Live-Medium und den jeweiligen Home-Verzeichnissen der Benutzer. Unterstützt mehrere Benutzer gleichzeitig (z. B. authorized_keys.root, authorized_keys.live, authorized_keys.admin).\nuser-media: verlinkt oder bindet validierte Benutzerverzeichnisse auf dem vorhandenen beschreibbaren MiniOS Datenträger ein, mit sicherer Migration und Rückkopieren beim Deaktivieren.\nlocales: konfiguriert die Sprachumgebungen (Locales).\ntzdata: konfiguriert /etc/timezone.\nxorg-service: konfiguriert den Benutzernamen in xorg.service und setzt die X11-Konfiguration, sofern unterstützt.\ngdm3: konfiguriert den Autologin in gdm3.\nsddm: konfiguriert den Autologin in sddm.\nkdm: richtet Autologin in kdm ein.\nlightdm: richtet Autologin in lightdm ein.\nlxdm: richtet Autologin in lxdm ein.\nnodm: richtet Autologin in nodm ein.\nslim: richtet Autologin in slim ein.\nxinit: richtet Autologin mit xinit ein.\nkeyboard-configuration: konfiguriert die Tastatur.\nsysvinit: richtet Console-Autologin über /etc/inittab ein, wenn sysvinit installiert ist. Die noautologin und nottyautologin Shortcuts unterdrücken diese Einrichtung.\nsysv-rc: konfiguriert sysv-rc durch Deaktivieren der aufgelisteten Dienste.\napport: deaktiviert apport.\ngnome-panel-data: deaktiviert die Sperrtaste für den Bildschirm.\ngnome-power-manager: deaktiviert den Ruhezustand.\ngnome-screensaver: steuert die GNOME-Bildschirmsperre gemäß LIVE_LOCKSCREEN_MODE.\nkaboom: deaktiviert den KDE-Migrationsassistenten (squeeze und neuer).\nkde-services: deaktiviert einige unerwünschte KDE-Dienste (squeeze und neuer).\npolicykit: gewährt Benutzerrechte über PolicyKit.\nssl-cert: erstellt SSL Snake-Oil-Zertifikate neu.\nxrdp: konfiguriert den XRDP-Modus (entspannt, gehärtet oder deaktiviert), wenn XRDP installiert ist.\nanacron: deaktiviert anacron.\nutil-linux: deaktiviert den util-linux hwclock-Dienst.\nlogin: deaktiviert lastlog.\nxserver-xorg: konfiguriert xserver-xorg.\nnetwork: konfiguriert eine dauerhafte kabelgebundene IPv4-Richtlinie über eine sichere NetworkManager-Keyfile oder ifupdown-Stanza. Läuft vor den Netzwerkdiensten, prüft alle Werte und schreibt erst nach erfolgreicher Validierung.\nopenssh-server: erstellt OpenSSH-Hostschlüssel neu und schreibt explizit angeforderte Richtlinien für Root-Login oder Passwort-Authentifizierung.\nxfce4-panel: setzt xfce4-panel auf die Standardeinstellungen zurück.\nxscreensaver: steuert die Sperrfunktion von xscreensaver gemäß LIVE_LOCKSCREEN_MODE.\nbroadcom-sta: konfiguriert broadcom-sta WLAN-Treiber.\nhyperv: konfiguriert X11-Einstellungen zur Verbesserung der Kompatibilität auf Microsoft Hyper-V Plattformen.\nntfs3: verwaltet udev-Regeln für NTFS3-Unterstützung.\nconfig-module-mode: konfiguriert den Systemmodulmodus und aktualisiert Caches, Benutzereinstellungen und dpkg.\nhooks: ermöglicht das Ausführen beliebiger Befehle aus einer Datei, die auf dem Live-Medium oder einem http/ftp-Server abgelegt ist.\nDATEIEN\nminios/config.conf auf dem ausgewählten MiniOS-Datenträger (Quellkopie)\nminios/config.conf.d/*.conf auf dem ausgewählten MiniOS-Datenträger (Quellfragmente)\n/etc/live/config.conf\n/etc/live/config.conf.d/*.conf\n/usr/lib/live/init-config.sh\n/usr/lib/live/config.sh\n/usr/lib/live/config/\n/usr/share/live/config/user-default-groups.d/*.groups\n/usr/share/minios/capabilities/minios-live-config.json\n/var/lib/live/config/\n/var/log/live/config.log\n/var/log/minios/minios-boot.log\nminios/log/YYYYMMDD_HHMMSS/ auf beschreibbarem ausgewähltem Datenträger, wenn Log-Export aktiviert ist\n/usr/lib/live/config-hooks/* (filesystem Hooks)\nminios/config-hooks/* auf dem erkannten Live-Medium (medium Hooks)\n/usr/lib/live/config-preseed/* (filesystem Preseeds)\nminios/config-preseed/* auf dem erkannten Live-Medium (medium Preseeds)\nSIEHE AUCH\nlive-boot(7)\nlive-build(7)\nlive-tools(7)\nHOMEPAGE\nWeitere Informationen zu minios-live-config finden Sie im GitHub-Repository. Allgemeine Informationen zu MiniOS gibt es unter minios.dev.\nFEHLER\nFehler können im minios-live-config Issue Tracker gemeldet werden.\nAUTOR\nlive-config wurde ursprünglich von Daniel Baumann (mail@daniel-baumann.ch) geschrieben. Seit 2016 wird die Entwicklung vom Debian Live Team fortgeführt. Seit 2025 wird die Entwicklung der modifizierten minios-live-config-Version vom MiniOS Live Team weitergeführt.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

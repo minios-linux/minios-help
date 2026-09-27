@@ -34,6 +34,16 @@
       "anchor": "réduisez-les-écritures-de-cache-et-de-journaux-avec-perch",
       "level": 3,
       "title": "Réduisez les écritures de cache et de journaux avec perch"
+    },
+    {
+      "anchor": "configuration-zram",
+      "level": 2,
+      "title": "Configuration ZRAM"
+    },
+    {
+      "anchor": "système-de-fichiers-et-matériel-de-stockage",
+      "level": 2,
+      "title": "Système de fichiers et matériel de stockage"
     }
   ],
   "nodes": [
@@ -402,7 +412,7 @@
                 ],
                 [
                   "text",
-                  " Stocke la couche modifiable directement sous forme de fichiers ordinaires. C’est la solution la plus légère en termes de surcharge de conteneur et sans taille fixe, mais elle nécessite un système de fichiers sous-jacent capable de préserver les métadonnées Linux et les opérations dont MiniOS a besoin."
+                  " Stocke la couche modifiable directement sous forme de fichiers ordinaires. Il offre la surcharge la plus faible et aucune taille de conteneur fixe, mais nécessite un système de fichiers sous-jacent qui préserve les métadonnées Linux et les opérations dont MiniOS a besoin."
                 ]
               ]
             ]
@@ -442,7 +452,7 @@
                 ],
                 [
                   "text",
-                  " Utilise une image ext4 à capacité fixe. Sa taille est définie selon la capacité demandée et l’extension est explicite, ce qui rend le fonctionnement simple et prévisible, mais sans la gestion dynamique de capacité des backends dynamiques. FAT32 limite l’image unique à 4000 Mio."
+                  " Utilise une image ext4 à capacité fixe. Sa taille est définie selon la capacité demandée et la croissance est explicite, ce qui le rend simple et prévisible, mais sans le comportement de capacité dynamique des backends dynamiques. FAT32 limite l’image unique à 4000 Mio."
                 ]
               ]
             ]
@@ -482,7 +492,7 @@
                 ],
                 [
                   "text",
-                  " Le backend FUSE/format-400 étend le stockage à la demande et prend en charge des supports autrement incompatibles. Son index n’est pas creux : chaque bloc logique de 4 Kio déclaré nécessite un décalage de 8 octets, donc la capacité logique coûte environ 2 Mio de RAM et 2 Mio d’index de stockage par Gio, même si la charge utile est vide. Cela rend les capacités modérées efficaces, mais les grandes capacités fines coûteuses dès le départ."
+                  " Le backend FUSE/format-400 étend le stockage à la demande et prend en charge des supports autrement incompatibles. Son index n’est pas creux : chaque bloc logique de 4 Kio déclaré nécessite un décalage de 8 octets, donc la capacité logique coûte environ 2 Mio de RAM et 2 Mio de stockage d’index par Gio, même si la charge utile est vide. Cela rend les capacités modérées efficaces mais les grandes capacités fines coûteuses dès le départ."
                 ]
               ]
             ]
@@ -536,7 +546,7 @@
                 ],
                 [
                   "text",
-                  " du noyau conserve les tables de correspondance sur le disque et un cache de métadonnées limité en RAM (par défaut 1 Mio). Remplir un périphérique existant n’alloue pas une carte résidente complète. Les descriptions d’étendues et les répertoires évoluent selon les parties déclarées ; le cache de fichiers et la mémoire du codec sont supplémentaires. "
+                  " du noyau conserve les tables de correspondance sur le disque et un cache de métadonnées limité en RAM (par défaut 1 Mio). Remplir un périphérique existant n’alloue pas une carte résidente complète. Les descriptions d’étendues et les répertoires évoluent selon les parties déclarées ; le cache de fichiers et la mémoire du codec sont additionnels. "
                 ],
                 [
                   "span",
@@ -550,7 +560,7 @@
                 ],
                 [
                   "text",
-                  " signale la limite géométrique ; "
+                  " signale la limite de géométrie ; "
                 ],
                 [
                   "span",
@@ -564,7 +574,7 @@
                 ],
                 [
                   "text",
-                  " affiche les tampons et statistiques de cache pris en compte. Les réécritures brutes ordinaires restent en place ; les mises à jour compressées partielles recompressent actuellement un bloc de 64 Kio. Choisissez la politique de cache d’attachement avec soin : "
+                  " affiche les tampons comptabilisés et les statistiques de cache. Les réécritures brutes ordinaires restent en place ; les mises à jour compressées partielles recompressent actuellement un bloc de 64 Kio. Choisissez la politique de cache des pièces jointes avec soin : "
                 ],
                 [
                   "span",
@@ -578,7 +588,7 @@
                 ],
                 [
                   "text",
-                  " sacrifie les garanties de durabilité."
+                  " supprime les garanties de durabilité."
                 ]
               ]
             ]
@@ -618,7 +628,7 @@
                 ],
                 [
                   "text",
-                  " Stocke un instantané compressé et reconstruit la couche supérieure modifiable en RAM à chaque démarrage. Cela minimise l’espace persistant pour des sessions globalement stables, mais consomme du CPU et des ressources RAM lors de la restauration et réécrit l’instantané à la sauvegarde. Si la mémoire le permet, la sauvegarde prépare une copie stable des modifications en RAM et compresse directement dans un candidat privé du dossier de session. Après vérification et synchronisation, MiniOS remplace atomiquement "
+                  " Stocke un instantané compressé et reconstruit la couche supérieure modifiable en RAM à chaque démarrage. Il minimise le stockage persistant pour des sessions majoritairement stables, mais consomme du CPU et des ressources RAM lors de la restauration et réécrit l’instantané lors de la sauvegarde. Si la mémoire le permet, la sauvegarde prépare une copie stable des modifications en RAM et compresse directement dans un candidat privé du dossier de session. Après vérification et synchronisation, MiniOS remplace atomiquement "
                 ],
                 [
                   "span",
@@ -632,7 +642,7 @@
                 ],
                 [
                   "text",
-                  "; il n’écrit pas de seconde copie compressée. Si RAM ne peut pas contenir l’arborescence de préparation, l’espace de travail disque existant est utilisé pour cet arbre."
+                  "; il n’écrit pas de seconde copie compressée. Si RAM ne peut pas contenir l’arborescence de préparation, l’espace de travail disque existant est utilisé pour celle-ci."
                 ]
               ]
             ]
@@ -646,7 +656,7 @@
       [
         [
           "text",
-          "LUKS2 peut encapsuler Raw, DynFileFS ou DynBlk. Le chiffrement ajoute une étape de déverrouillage et une surcharge cryptographique tout en conservant la capacité et le comportement de stockage du backend sous-jacent."
+          "LUKS2 peut encapsuler Raw, DynFileFS ou DynBlk. Le chiffrement ajoute un déverrouillage et une surcharge cryptographique tout en conservant la capacité et le comportement de stockage du backend sous-jacent."
         ]
       ]
     ],
@@ -656,7 +666,7 @@
       [
         [
           "text",
-          "Testez les charges de travail représentatives sur le périphérique réel. Les différences de contrôleur flash, de système de fichiers, de pont USB, de chiffrement, de compression et de charge de travail sont plus déterminantes qu’un classement universel des modes de persistance."
+          "Testez les charges de travail représentatives sur le périphérique réel. Les différences de contrôleur flash, de système de fichiers, de pont USB, de chiffrement, de compression et de charge de travail sont plus fiables qu’un classement universel des modes de persistance."
         ]
       ]
     ],
@@ -687,7 +697,7 @@
       [
         [
           "text",
-          "le Configurateur MiniOS "
+          "Configurateur MiniOS "
         ],
         [
           "span",
@@ -701,7 +711,7 @@
         ],
         [
           "text",
-          " propose des réglages de stockage indépendants pour les journaux système classiques, les téléchargements APT et les caches natifs standard des navigateurs. Ils fonctionnent également dans "
+          " propose des réglages de stockage indépendants pour les journaux système classiques, les téléchargements APT et les caches natifs des navigateurs. Ces réglages fonctionnent également dans "
         ],
         [
           "span",
@@ -812,7 +822,7 @@
       [
         [
           "text",
-          "Chaque réglage accepte "
+          "Chaque option accepte "
         ],
         [
           "span",
@@ -840,7 +850,7 @@
         ],
         [
           "text",
-          ". Redémarrez après toute modification. "
+          ". Redémarrez après modification. "
         ],
         [
           "span",
@@ -854,7 +864,7 @@
         ],
         [
           "text",
-          " applique la politique uniquement lorsque la session "
+          " applique la règle uniquement si la session "
         ],
         [
           "span",
@@ -868,7 +878,7 @@
         ],
         [
           "text",
-          " en cours est confirmée comme accessible en écriture et persistante ; demander la persistance ne suffit pas. Pour un démarrage unique, utilisez "
+          " en cours est confirmée comme étant inscriptible et durable ; demander la persistance ne suffit pas. Pour un démarrage ponctuel, utilisez "
         ],
         [
           "span",
@@ -967,7 +977,7 @@
         ],
         [
           "text",
-          " pour l'ordre des fichiers source et "
+          " pour l’ordre des fichiers sources et "
         ],
         [
           "link",
@@ -1232,7 +1242,7 @@
                 ],
                 [
                   "text",
-                  " de l'utilisateur live. Une politique système désactive le cache disque de Firefox."
+                  " de l’utilisateur live. Une règle système désactive le cache disque de Firefox."
                 ]
               ]
             ],
@@ -1241,7 +1251,7 @@
               [
                 [
                   "text",
-                  "Profils, cookies, mots de passe, données de sites et caches d'applications non concernées."
+                  "Profils, cookies, mots de passe, données de site et caches d’applications non liées."
                 ]
               ]
             ]
@@ -1255,7 +1265,7 @@
       [
         [
           "text",
-          "Les caches APT et navigateur RAM sont ignorés si moins de 1 Gio est disponible ou si un swap non-zRAM est actif. Le tmpfs d’archive APT ne déborde pas sur le périphérique : un téléchargement plus grand que la capacité restante peut échouer. Un cache disque Firefox existant "
+          "Les caches APT et navigateur RAM sont ignorés s’il y a moins de 1 Gio disponible ou si un swap non-zRAM est actif. Le tmpfs d’archive APT ne déborde pas sur le périphérique : un téléchargement plus volumineux que la capacité restante peut échouer. Un "
         ],
         [
           "span",
@@ -1269,7 +1279,7 @@
         ],
         [
           "text",
-          " n’est pas remplacé ; vérifiez son réglage séparément. Les chemins natifs standard des navigateurs sont préparés après la création de l’utilisateur live, y compris lors d’une installation ultérieure d’un navigateur. Les chemins personnalisés, installations Flatpak/Snap et utilisateurs créés après cette étape ne sont pas redirigés automatiquement. Les caches navigateur précédemment stockés sont masqués par les montages RAM pour cette session et réapparaissent lors du retour à "
+          " Firefox existant n’est pas remplacé ; vérifiez séparément son réglage de cache disque. Les chemins natifs standard des navigateurs sont préparés après la création de l’utilisateur live, y compris lors d’une installation ultérieure du navigateur. Les chemins personnalisés, installations Flatpak/Snap et utilisateurs créés après cette configuration ne sont pas redirigés automatiquement. Les caches navigateur déjà présents sont masqués par les montages RAM pour cette session et réapparaissent lors du retour à "
         ],
         [
           "span",
@@ -1293,7 +1303,7 @@
       [
         [
           "text",
-          "Les journaux de démarrage restent sur le support de persistance en écriture, quel que soit le paramètre de journalisation ordinaire ; une session SquashFS les conserve à l'extérieur "
+          "Les journaux de démarrage restent sur le support persistant en écriture, indépendamment du paramètre de journalisation habituel ; une session SquashFS les conserve à l’extérieur "
         ],
         [
           "span",
@@ -1307,7 +1317,7 @@
         ],
         [
           "text",
-          ", ils ne dépendent donc pas de la sauvegarde de l'instantané à l'arrêt. Avec "
+          ", ils ne dépendent donc pas de la sauvegarde de l’instantané à l’arrêt. Avec "
         ],
         [
           "span",
@@ -1335,7 +1345,7 @@
         ],
         [
           "text",
-          " (y compris l'historique texte APT/dpkg) disparaissent au redémarrage. "
+          " (y compris l’historique texte APT/dpkg) disparaissent au redémarrage. "
         ],
         [
           "span",
@@ -1349,7 +1359,7 @@
         ],
         [
           "text",
-          " est une exportation explicite séparée vers le support MiniOS. Un tmpfs de journal plein à 32 Mio n'accepte plus de nouvelles écritures de journaux au lieu de déborder sur la mémoire flash. Si un autre swap sur disque est activé plus tard, les fichiers en mémoire peuvent toujours être paginés vers ce swap. Voir "
+          " est une exportation distincte et explicite vers le support MiniOS. Un tmpfs de journaux plein à 32 Mio n’accepte plus de nouveaux journaux au lieu d’écrire sur la mémoire flash. Si un autre swap sur disque est activé plus tard, les fichiers en mémoire peuvent toujours être paginés sur ce swap. Voir "
         ],
         [
           "link",
@@ -1388,7 +1398,7 @@
         ],
         [
           "text",
-          " lors du montage de ses propres systèmes de fichiers de données et de conteneurs, évitant ainsi les mises à jour des métadonnées d'accès ; cela ne remonte pas les disques utilisateurs non liés. Le "
+          " lors du montage de ses propres systèmes de fichiers de données et de conteneurs, afin d’éviter les mises à jour des métadonnées d’accès ; cela ne remonte pas les disques utilisateurs non concernés. Le "
         ],
         [
           "span",
@@ -1440,12 +1450,186 @@
         ],
         [
           "text",
-          ", une VM Testo a enregistré 33 304 secteurs écrits sur son disque virtuel principal en mode persistant et 8 en mode volatile. Cela démontre le changement de chemin d'écriture pour cette charge de travail. Cela ne mesure pas les écritures internes au contrôleur USB ou ne prédit pas la durée de vie de la NAND. Comparez des charges applicatives identiques sur l'appareil réel avant de tirer une conclusion sur la durée de vie."
+          ", une VM Testo a enregistré 33 304 secteurs écrits sur son disque virtuel principal en mode persistant et 8 en mode volatile. Cela démontre le changement de chemin d’écriture pour cette charge de travail. Cela ne mesure pas les écritures internes au contrôleur USB ou ne prédit pas la durée de vie de la NAND. Comparez des charges de travail applicatives identiques sur l’appareil réel avant de tirer une conclusion sur la durée de vie."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "configuration-zram",
+      [
+        [
+          "text",
+          "Configuration ZRAM"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Zram échange du temps CPU contre une capacité mémoire compressée et peut éviter le swap sur stockage, bien plus lent. Un périphérique zram plus grand peut absorber plus de pages inactives mais ne crée pas de RAM physique ; les charges incompressibles consomment toujours de la mémoire."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Les algorithmes de compression équilibrent le débit et l’utilisation CPU face au taux de compression, et leur disponibilité dépend du noyau. Commencez avec la valeur par défaut et ne changez "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramsize"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "zramcomp"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " ou "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "nozram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " que pour une charge mesurée ; voir "
+        ],
+        [
+          "link",
+          "/reference/Boot-Parameters.md",
+          null,
+          [
+            [
+              "text",
+              "Paramètres de démarrage"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " pour les valeurs acceptées."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "système-de-fichiers-et-matériel-de-stockage",
+      [
+        [
+          "text",
+          "Système de fichiers et matériel de stockage"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Choix du périphérique :"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Un débit séquentiel élevé réduit la durée des copies de gros modules, tandis qu’une faible latence en I/O aléatoire est plus importante pour les charges persistantes sur le bureau."
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "text",
+                  "Testez le périphérique et son boîtier ensemble ; la génération USB seule ne prédit pas les performances de la mémoire flash ou du SSD."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Choix du système de fichiers :"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Un système de fichiers Linux natif permet la persistance native sans surcharge de conteneur. Les systèmes de fichiers multiplateformes améliorent la portabilité mais nécessitent un backend de conteneur compatible pour les métadonnées Linux, ajoutant des couches de correspondance et de système de fichiers. Choisissez selon vos besoins en portabilité et récupération, ainsi que les résultats de tests de performance."
+                ]
+              ]
+            ]
+          ]
         ]
       ]
     ]
   ],
-  "plain_text": "Performance\nL’optimisation des performances dans MiniOS consiste principalement à trouver un équilibre entre le temps de démarrage, l’utilisation de RAM, les accès en lecture pendant l’exécution, la surcharge de la persistance et la durabilité du stockage. Pour les détails précis sur les options et les limites de sécurité, consultez Modes de démarrage, Chargement des modules initrd, et Persistance initrd.\nParamètres de démarrage pour la performance\nLes paramètres de démarrage permettent de déplacer le travail d’initialisation et les lectures du système actif entre RAM et le périphérique source. Consultez Paramètres de démarrage pour la référence complète.\nChargement du système dans RAM (toram)\ntoram peut réduire la latence à l’exécution depuis un périphérique USB lent ou une image ISO sur le réseau, au prix d’un démarrage plus long et d’une occupation mémoire RAM nettement supérieure. Le mode « Bare toram » effectue une copie complète. toram=trim consomme généralement moins de RAM, mais sa copie plus restreinte peut omettre des données ou modules nécessaires par la suite.\nPrévoyez de l’espace pour la couche en écriture, les applications, les caches et zram, et non uniquement pour les fichiers de modules. Plus de RAM alloué à la copie live signifie moins de ressources disponibles pour la charge de travail. Consultez Modes de démarrage pour les contraintes de durabilité de la copie et de retrait du support.\nFiltrage des modules (load et noload)\nLe filtrage permet de réduire la quantité de données copiées et le nombre de couches montées, en particulier avec toram=trim. En contrepartie, le système est moins complet et le risque d’échec au démarrage ou à l’exécution augmente si une dépendance est omise. Vérifiez l’ensemble de modules obtenu ; la syntaxe de filtrage et les limitations des modules protégés sont définies dans Chargement des modules initrd.\nOptimisation de la persistance\nLa persistance déplace les E/S de la couche en écriture du RAM temporaire vers le stockage ou un conteneur. Le choix du backend influe sur la latence, la compatibilité, la gestion de la capacité et la complexité de la récupération.\nModes de persistance (perchmode)\nnative: Stocke la couche modifiable directement sous forme de fichiers ordinaires. C’est la solution la plus légère en termes de surcharge de conteneur et sans taille fixe, mais elle nécessite un système de fichiers sous-jacent capable de préserver les métadonnées Linux et les opérations dont MiniOS a besoin.\nraw: Utilise une image ext4 à capacité fixe. Sa taille est définie selon la capacité demandée et l’extension est explicite, ce qui rend le fonctionnement simple et prévisible, mais sans la gestion dynamique de capacité des backends dynamiques. FAT32 limite l’image unique à 4000 Mio.\ndynfilefs: Le backend FUSE/format-400 étend le stockage à la demande et prend en charge des supports autrement incompatibles. Son index n’est pas creux : chaque bloc logique de 4 Kio déclaré nécessite un décalage de 8 octets, donc la capacité logique coûte environ 2 Mio de RAM et 2 Mio d’index de stockage par Gio, même si la charge utile est vide. Cela rend les capacités modérées efficaces, mais les grandes capacités fines coûteuses dès le départ.\ndynblk: Le backend format-1 DBSPRS01 du noyau conserve les tables de correspondance sur le disque et un cache de métadonnées limité en RAM (par défaut 1 Mio). Remplir un périphérique existant n’alloue pas une carte résidente complète. Les descriptions d’étendues et les répertoires évoluent selon les parties déclarées ; le cache de fichiers et la mémoire du codec sont supplémentaires. dynblk limits --format dynblk signale la limite géométrique ; dynblk status /dev/dynblkN --json affiche les tampons et statistiques de cache pris en compte. Les réécritures brutes ordinaires restent en place ; les mises à jour compressées partielles recompressent actuellement un bloc de 64 Kio. Choisissez la politique de cache d’attachement avec soin : unsafe sacrifie les garanties de durabilité.\nsquashfs: Stocke un instantané compressé et reconstruit la couche supérieure modifiable en RAM à chaque démarrage. Cela minimise l’espace persistant pour des sessions globalement stables, mais consomme du CPU et des ressources RAM lors de la restauration et réécrit l’instantané à la sauvegarde. Si la mémoire le permet, la sauvegarde prépare une copie stable des modifications en RAM et compresse directement dans un candidat privé du dossier de session. Après vérification et synchronisation, MiniOS remplace atomiquement changes.sb; il n’écrit pas de seconde copie compressée. Si RAM ne peut pas contenir l’arborescence de préparation, l’espace de travail disque existant est utilisé pour cet arbre.\nLUKS2 peut encapsuler Raw, DynFileFS ou DynBlk. Le chiffrement ajoute une étape de déverrouillage et une surcharge cryptographique tout en conservant la capacité et le comportement de stockage du backend sous-jacent.\nTestez les charges de travail représentatives sur le périphérique réel. Les différences de contrôleur flash, de système de fichiers, de pont USB, de chiffrement, de compression et de charge de travail sont plus déterminantes qu’un classement universel des modes de persistance.\nRéduisez les écritures de cache et de journaux avec perch\nle Configurateur MiniOS Avancé propose des réglages de stockage indépendants pour les journaux système classiques, les téléchargements APT et les caches natifs standard des navigateurs. Ils fonctionnent également dans minios/config.conf ou ses config.conf.d/*.conf fragments :\nLIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"\nChaque réglage accepte persistent (par défaut) ou volatile. Redémarrez après toute modification. minios-boot applique la politique uniquement lorsque la session perch en cours est confirmée comme accessible en écriture et persistante ; demander la persistance ne suffit pas. Pour un démarrage unique, utilisez log-storage=volatile, apt-cache=volatile, ou browser-cache=volatile sur la ligne de commande du noyau. Les formes préfixées par live-config.- fonctionnent aussi et priment sur les fichiers de configuration. Ces réglages ne pas activent perch à eux seuls. Voir Fichier de configuration pour l'ordre des fichiers source et Paramètres de démarrage pour la syntaxe complète.\nRéglage | Ce qui reste dans RAM avec volatile | Ce qui reste sur le stockage persistant\nLIVE_LOG_STORAGE | Le journal systemd (maximum 32 Mio) et les fichiers /var/log classiques (tmpfs de 32 Mio). | Diagnostics de démarrage dans /var/log/minios/ et /var/log/live/, y compris les trois versions précédentes des journaux.\nLIVE_APT_CACHE | Paquets téléchargés dans /var/cache/apt/archives (tmpfs de 256 ou 512 Mio, selon la mémoire disponible). | État des paquets dans /var/lib/dpkg, listes de dépôts dans /var/lib/apt/lists, et fichiers installés.\nLIVE_BROWSER_CACHE | Un tmpfs partagé de 512 Mio pour les répertoires de cache standard de Firefox/ESR, Chromium, Chrome, Edge, Brave, Vivaldi, Opera et Yandex Browser sous le ~/.cache de l'utilisateur live. Une politique système désactive le cache disque de Firefox. | Profils, cookies, mots de passe, données de sites et caches d'applications non concernées.\nLes caches APT et navigateur RAM sont ignorés si moins de 1 Gio est disponible ou si un swap non-zRAM est actif. Le tmpfs d’archive APT ne déborde pas sur le périphérique : un téléchargement plus grand que la capacité restante peut échouer. Un cache disque Firefox existant policies.json n’est pas remplacé ; vérifiez son réglage séparément. Les chemins natifs standard des navigateurs sont préparés après la création de l’utilisateur live, y compris lors d’une installation ultérieure d’un navigateur. Les chemins personnalisés, installations Flatpak/Snap et utilisateurs créés après cette étape ne sont pas redirigés automatiquement. Les caches navigateur précédemment stockés sont masqués par les montages RAM pour cette session et réapparaissent lors du retour à persistent.\nLes journaux de démarrage restent sur le support de persistance en écriture, quel que soit le paramètre de journalisation ordinaire ; une session SquashFS les conserve à l'extérieur changes.sb, ils ne dépendent donc pas de la sauvegarde de l'instantané à l'arrêt. Avec volatile, les autres fichiers sous /var/log (y compris l'historique texte APT/dpkg) disparaissent au redémarrage. EXPORT_LOGS=true est une exportation explicite séparée vers le support MiniOS. Un tmpfs de journal plein à 32 Mio n'accepte plus de nouvelles écritures de journaux au lieu de déborder sur la mémoire flash. Si un autre swap sur disque est activé plus tard, les fichiers en mémoire peuvent toujours être paginés vers ce swap. Voir Dépannage pour trouver les diagnostics de démarrage.\nMiniOS utilise également noatime lors du montage de ses propres systèmes de fichiers de données et de conteneurs, évitant ainsi les mises à jour des métadonnées d'accès ; cela ne remonte pas les disques utilisateurs non liés. Le relatime standard limite déjà ce type de mises à jour, il est donc conseillé de mesurer la différence avant de la considérer comme une économie majeure. Conservez le journal du système de fichiers, les barrières et fsync activés pour un support persistant amovible.\nPour une écriture contrôlée de fichier journal de 16 Mio suivie de sync, une VM Testo a enregistré 33 304 secteurs écrits sur son disque virtuel principal en mode persistant et 8 en mode volatile. Cela démontre le changement de chemin d'écriture pour cette charge de travail. Cela ne mesure pas les écritures internes au contrôleur USB ou ne prédit pas la durée de vie de la NAND. Comparez des charges applicatives identiques sur l'appareil réel avant de tirer une conclusion sur la durée de vie.",
+  "plain_text": "Performance\nL’optimisation des performances dans MiniOS consiste principalement à trouver un équilibre entre le temps de démarrage, l’utilisation de RAM, les accès en lecture pendant l’exécution, la surcharge de la persistance et la durabilité du stockage. Pour les détails précis sur les options et les limites de sécurité, consultez Modes de démarrage, Chargement des modules initrd, et Persistance initrd.\nParamètres de démarrage pour la performance\nLes paramètres de démarrage permettent de déplacer le travail d’initialisation et les lectures du système actif entre RAM et le périphérique source. Consultez Paramètres de démarrage pour la référence complète.\nChargement du système dans RAM (toram)\ntoram peut réduire la latence à l’exécution depuis un périphérique USB lent ou une image ISO sur le réseau, au prix d’un démarrage plus long et d’une occupation mémoire RAM nettement supérieure. Le mode « Bare toram » effectue une copie complète. toram=trim consomme généralement moins de RAM, mais sa copie plus restreinte peut omettre des données ou modules nécessaires par la suite.\nPrévoyez de l’espace pour la couche en écriture, les applications, les caches et zram, et non uniquement pour les fichiers de modules. Plus de RAM alloué à la copie live signifie moins de ressources disponibles pour la charge de travail. Consultez Modes de démarrage pour les contraintes de durabilité de la copie et de retrait du support.\nFiltrage des modules (load et noload)\nLe filtrage permet de réduire la quantité de données copiées et le nombre de couches montées, en particulier avec toram=trim. En contrepartie, le système est moins complet et le risque d’échec au démarrage ou à l’exécution augmente si une dépendance est omise. Vérifiez l’ensemble de modules obtenu ; la syntaxe de filtrage et les limitations des modules protégés sont définies dans Chargement des modules initrd.\nOptimisation de la persistance\nLa persistance déplace les E/S de la couche en écriture du RAM temporaire vers le stockage ou un conteneur. Le choix du backend influe sur la latence, la compatibilité, la gestion de la capacité et la complexité de la récupération.\nModes de persistance (perchmode)\nnative: Stocke la couche modifiable directement sous forme de fichiers ordinaires. Il offre la surcharge la plus faible et aucune taille de conteneur fixe, mais nécessite un système de fichiers sous-jacent qui préserve les métadonnées Linux et les opérations dont MiniOS a besoin.\nraw: Utilise une image ext4 à capacité fixe. Sa taille est définie selon la capacité demandée et la croissance est explicite, ce qui le rend simple et prévisible, mais sans le comportement de capacité dynamique des backends dynamiques. FAT32 limite l’image unique à 4000 Mio.\ndynfilefs: Le backend FUSE/format-400 étend le stockage à la demande et prend en charge des supports autrement incompatibles. Son index n’est pas creux : chaque bloc logique de 4 Kio déclaré nécessite un décalage de 8 octets, donc la capacité logique coûte environ 2 Mio de RAM et 2 Mio de stockage d’index par Gio, même si la charge utile est vide. Cela rend les capacités modérées efficaces mais les grandes capacités fines coûteuses dès le départ.\ndynblk: Le backend format-1 DBSPRS01 du noyau conserve les tables de correspondance sur le disque et un cache de métadonnées limité en RAM (par défaut 1 Mio). Remplir un périphérique existant n’alloue pas une carte résidente complète. Les descriptions d’étendues et les répertoires évoluent selon les parties déclarées ; le cache de fichiers et la mémoire du codec sont additionnels. dynblk limits --format dynblk signale la limite de géométrie ; dynblk status /dev/dynblkN --json affiche les tampons comptabilisés et les statistiques de cache. Les réécritures brutes ordinaires restent en place ; les mises à jour compressées partielles recompressent actuellement un bloc de 64 Kio. Choisissez la politique de cache des pièces jointes avec soin : unsafe supprime les garanties de durabilité.\nsquashfs: Stocke un instantané compressé et reconstruit la couche supérieure modifiable en RAM à chaque démarrage. Il minimise le stockage persistant pour des sessions majoritairement stables, mais consomme du CPU et des ressources RAM lors de la restauration et réécrit l’instantané lors de la sauvegarde. Si la mémoire le permet, la sauvegarde prépare une copie stable des modifications en RAM et compresse directement dans un candidat privé du dossier de session. Après vérification et synchronisation, MiniOS remplace atomiquement changes.sb; il n’écrit pas de seconde copie compressée. Si RAM ne peut pas contenir l’arborescence de préparation, l’espace de travail disque existant est utilisé pour celle-ci.\nLUKS2 peut encapsuler Raw, DynFileFS ou DynBlk. Le chiffrement ajoute un déverrouillage et une surcharge cryptographique tout en conservant la capacité et le comportement de stockage du backend sous-jacent.\nTestez les charges de travail représentatives sur le périphérique réel. Les différences de contrôleur flash, de système de fichiers, de pont USB, de chiffrement, de compression et de charge de travail sont plus fiables qu’un classement universel des modes de persistance.\nRéduisez les écritures de cache et de journaux avec perch\nConfigurateur MiniOS Avancé propose des réglages de stockage indépendants pour les journaux système classiques, les téléchargements APT et les caches natifs des navigateurs. Ces réglages fonctionnent également dans minios/config.conf ou ses config.conf.d/*.conf fragments :\nLIVE_LOG_STORAGE=\"volatile\"\nLIVE_APT_CACHE=\"volatile\"\nLIVE_BROWSER_CACHE=\"volatile\"\nChaque option accepte persistent (par défaut) ou volatile. Redémarrez après modification. minios-boot applique la règle uniquement si la session perch en cours est confirmée comme étant inscriptible et durable ; demander la persistance ne suffit pas. Pour un démarrage ponctuel, utilisez log-storage=volatile, apt-cache=volatile, ou browser-cache=volatile sur la ligne de commande du noyau. Les formes préfixées par live-config.- fonctionnent aussi et priment sur les fichiers de configuration. Ces réglages ne pas activent perch à eux seuls. Voir Fichier de configuration pour l’ordre des fichiers sources et Paramètres de démarrage pour la syntaxe complète.\nRéglage | Ce qui reste dans RAM avec volatile | Ce qui reste sur le stockage persistant\nLIVE_LOG_STORAGE | Le journal systemd (maximum 32 Mio) et les fichiers /var/log classiques (tmpfs de 32 Mio). | Diagnostics de démarrage dans /var/log/minios/ et /var/log/live/, y compris les trois versions précédentes des journaux.\nLIVE_APT_CACHE | Paquets téléchargés dans /var/cache/apt/archives (tmpfs de 256 ou 512 Mio, selon la mémoire disponible). | État des paquets dans /var/lib/dpkg, listes de dépôts dans /var/lib/apt/lists, et fichiers installés.\nLIVE_BROWSER_CACHE | Un tmpfs partagé de 512 Mio pour les répertoires de cache standard de Firefox/ESR, Chromium, Chrome, Edge, Brave, Vivaldi, Opera et Yandex Browser sous le ~/.cache de l’utilisateur live. Une règle système désactive le cache disque de Firefox. | Profils, cookies, mots de passe, données de site et caches d’applications non liées.\nLes caches APT et navigateur RAM sont ignorés s’il y a moins de 1 Gio disponible ou si un swap non-zRAM est actif. Le tmpfs d’archive APT ne déborde pas sur le périphérique : un téléchargement plus volumineux que la capacité restante peut échouer. Un policies.json Firefox existant n’est pas remplacé ; vérifiez séparément son réglage de cache disque. Les chemins natifs standard des navigateurs sont préparés après la création de l’utilisateur live, y compris lors d’une installation ultérieure du navigateur. Les chemins personnalisés, installations Flatpak/Snap et utilisateurs créés après cette configuration ne sont pas redirigés automatiquement. Les caches navigateur déjà présents sont masqués par les montages RAM pour cette session et réapparaissent lors du retour à persistent.\nLes journaux de démarrage restent sur le support persistant en écriture, indépendamment du paramètre de journalisation habituel ; une session SquashFS les conserve à l’extérieur changes.sb, ils ne dépendent donc pas de la sauvegarde de l’instantané à l’arrêt. Avec volatile, les autres fichiers sous /var/log (y compris l’historique texte APT/dpkg) disparaissent au redémarrage. EXPORT_LOGS=true est une exportation distincte et explicite vers le support MiniOS. Un tmpfs de journaux plein à 32 Mio n’accepte plus de nouveaux journaux au lieu d’écrire sur la mémoire flash. Si un autre swap sur disque est activé plus tard, les fichiers en mémoire peuvent toujours être paginés sur ce swap. Voir Dépannage pour trouver les diagnostics de démarrage.\nMiniOS utilise également noatime lors du montage de ses propres systèmes de fichiers de données et de conteneurs, afin d’éviter les mises à jour des métadonnées d’accès ; cela ne remonte pas les disques utilisateurs non concernés. Le relatime standard limite déjà ce type de mises à jour, il est donc conseillé de mesurer la différence avant de la considérer comme une économie majeure. Conservez le journal du système de fichiers, les barrières et fsync activés pour un support persistant amovible.\nPour une écriture contrôlée de fichier journal de 16 Mio suivie de sync, une VM Testo a enregistré 33 304 secteurs écrits sur son disque virtuel principal en mode persistant et 8 en mode volatile. Cela démontre le changement de chemin d’écriture pour cette charge de travail. Cela ne mesure pas les écritures internes au contrôleur USB ou ne prédit pas la durée de vie de la NAND. Comparez des charges de travail applicatives identiques sur l’appareil réel avant de tirer une conclusion sur la durée de vie.\nConfiguration ZRAM\nZram échange du temps CPU contre une capacité mémoire compressée et peut éviter le swap sur stockage, bien plus lent. Un périphérique zram plus grand peut absorber plus de pages inactives mais ne crée pas de RAM physique ; les charges incompressibles consomment toujours de la mémoire.\nLes algorithmes de compression équilibrent le débit et l’utilisation CPU face au taux de compression, et leur disponibilité dépend du noyau. Commencez avec la valeur par défaut et ne changez zramsize, zramcomp ou nozram que pour une charge mesurée ; voir Paramètres de démarrage pour les valeurs acceptées.\nSystème de fichiers et matériel de stockage\nChoix du périphérique : Un débit séquentiel élevé réduit la durée des copies de gros modules, tandis qu’une faible latence en I/O aléatoire est plus importante pour les charges persistantes sur le bureau.\nTestez le périphérique et son boîtier ensemble ; la génération USB seule ne prédit pas les performances de la mémoire flash ou du SSD.\nChoix du système de fichiers : Un système de fichiers Linux natif permet la persistance native sans surcharge de conteneur. Les systèmes de fichiers multiplateformes améliorent la portabilité mais nécessitent un backend de conteneur compatible pour les métadonnées Linux, ajoutant des couches de correspondance et de système de fichiers. Choisissez selon vos besoins en portabilité et récupération, ainsi que les résultats de tests de performance.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

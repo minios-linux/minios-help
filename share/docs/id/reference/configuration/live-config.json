@@ -16,6 +16,11 @@
       "title": "Parameter Boot (opsi)"
     },
     {
+      "anchor": "minios-opsi-penyimpanan-awal",
+      "level": 3,
+      "title": "MiniOS opsi penyimpanan awal"
+    },
+    {
       "anchor": "parameter-boot-shortcut",
       "level": 2,
       "title": "Parameter Boot (shortcut)"
@@ -31,6 +36,11 @@
       "title": "Berkas Konfigurasi"
     },
     {
+      "anchor": "variabel-cache-dan-log-minios",
+      "level": 2,
+      "title": "Variabel cache dan log MiniOS"
+    },
+    {
       "anchor": "kustomisasi",
       "level": 1,
       "title": "KUSTOMISASI"
@@ -44,6 +54,11 @@
       "anchor": "menghapus-komponen-konfigurasi-yang-ada",
       "level": 2,
       "title": "Menghapus komponen konfigurasi yang ada"
+    },
+    {
+      "anchor": "komponen",
+      "level": 1,
+      "title": "KOMPONEN"
     },
     {
       "anchor": "berkas",
@@ -97,7 +112,7 @@
           [
             [
               "text",
-              "Komponen Konfigurasi Sistem"
+              "live-config"
             ]
           ]
         ],
@@ -137,7 +152,7 @@
       [
         [
           "text",
-          "Kebijakan cache dan log sesi persisten ditentukan lebih awal oleh "
+          "Kebijakan cache dan log persistent-session ditentukan sebelumnya oleh "
         ],
         [
           "span",
@@ -151,7 +166,7 @@
         ],
         [
           "text",
-          ", setelah live root dan konfigurasinya disiapkan namun sebelum layanan utama berjalan. Komponen "
+          ", setelah live root dan konfigurasinya disiapkan namun sebelum layanan utama dijalankan. Komponen "
         ],
         [
           "span",
@@ -165,7 +180,7 @@
         ],
         [
           "text",
-          " live-config menerapkan mount per pengguna setelah pembuatan user. Kebijakan ini membutuhkan sesi yang stabil dan tahan lama "
+          " live-config menerapkan mount per pengguna setelah pembuatan user. Kebijakan ini membutuhkan session yang tahan lama dan sehat serta initrd terbaru yang mengumumkan "
         ],
         [
           "span",
@@ -179,7 +194,7 @@
         ],
         [
           "text",
-          " serta initrd terbaru yang mengumumkan "
+          " session dan initrd terkini yang mengiklankan "
         ],
         [
           "span",
@@ -218,7 +233,7 @@
       [
         [
           "text",
-          "Network boot di initramfs ("
+          "Network boot pada initramfs ("
         ],
         [
           "span",
@@ -246,7 +261,7 @@
         ],
         [
           "text",
-          ") adalah lapisan LiveKit terpisah dan "
+          ") adalah layer LiveKit terpisah dan "
         ],
         [
           "span",
@@ -299,7 +314,7 @@
         ],
         [
           "text",
-          " dapat dikonfigurasi melalui parameter boot atau file konfigurasi runtime yang disiapkan oleh initramfs. Kernel command line aktual akan ditambahkan setelah nilai dari file, sehingga parameter boot yang cocok dan muncul belakangan akan menjadi prioritas. Komponen yang merekam status di bawah "
+          " dapat dikonfigurasi melalui parameter boot atau file konfigurasi runtime yang disiapkan oleh initramfs. Kernel command line yang sebenarnya akan ditambahkan setelah nilai dari file, sehingga parameter boot yang lebih akhir akan diutamakan. Komponen yang mencatat status di bawah "
         ],
         [
           "span",
@@ -313,7 +328,7 @@
         ],
         [
           "text",
-          " biasanya hanya dijalankan satu kali; komponen sinkronisasi dan stateless dapat dijalankan setiap kali dipanggil."
+          " biasanya hanya berjalan sekali; komponen sinkronisasi dan stateless dapat berjalan setiap kali dipanggil."
         ],
         [
           "span",
@@ -347,7 +362,7 @@
         ],
         [
           "text",
-          "(7) digunakan untuk membangun sistem live, parameter live-config default dapat diatur melalui opsi "
+          "(7) digunakan untuk membangun sistem live, parameter live-config yang digunakan secara default dapat diatur melalui opsi "
         ],
         [
           "span",
@@ -361,7 +376,7 @@
         ],
         [
           "text",
-          " , lihat "
+          ", lihat "
         ],
         [
           "span",
@@ -651,7 +666,7 @@
                 ],
                 [
                   "text",
-                  ": Mengambil dan menerapkan satu atau lebih file preseed debconf. URL ditangani oleh "
+                  ": Mengambil dan menerapkan satu atau beberapa file preseed debconf. URL ditangani oleh "
                 ],
                 [
                   "span",
@@ -693,7 +708,7 @@
                 ],
                 [
                   "text",
-                  " mengekstrak file di "
+                  " mengekspansi file di "
                 ],
                 [
                   "span",
@@ -721,7 +736,7 @@
                 ],
                 [
                   "text",
-                  " mengekstrak file di "
+                  " mengekspansi file di "
                 ],
                 [
                   "span",
@@ -763,7 +778,7 @@
                 ],
                 [
                   "text",
-                  " di root live. Entri yang dipisahkan dengan tanda pipe diproses sesuai urutan yang ditentukan; file yang diekstrak dengan kata kunci menggunakan urutan glob shell."
+                  " di root live. Entri yang dipisahkan dengan tanda pipa akan diproses sesuai urutan yang ditentukan; file yang diekspansi dengan kata kunci menggunakan urutan glob shell."
                 ]
               ]
             ]
@@ -837,7 +852,7 @@
                 ],
                 [
                   "text",
-                  ": Memilih kebijakan jaringan kabel. Tidak diatur dan "
+                  ": Memilih kebijakan jaringan kabel. Jika tidak diatur dan "
                 ],
                 [
                   "span",
@@ -851,7 +866,7 @@
                 ],
                 [
                   "text",
-                  " membiarkan default image tidak berubah. "
+                  " membiarkan pengaturan default image tidak berubah. "
                 ],
                 [
                   "span",
@@ -937,7 +952,7 @@
                 ],
                 [
                   "text",
-                  ", satu-satunya interface kabel non-loopback akan dipilih secara otomatis; jika ada nol atau lebih dari satu kandidat, nilai harus diisi secara eksplisit."
+                  ", maka satu-satunya interface kabel non-loopback akan dipilih secara otomatis; jika ada nol atau lebih dari satu kandidat, nilai eksplisit diperlukan."
                 ]
               ]
             ]
@@ -997,7 +1012,7 @@
                 ],
                 [
                   "text",
-                  ": Mengatur panjang prefix IPv4 dari 0 sampai 32. Default statis adalah "
+                  ": Mengatur panjang prefix IPv4 dari 0 hingga 32. Default statis adalah "
                 ],
                 [
                   "span",
@@ -1071,7 +1086,7 @@
                 ],
                 [
                   "text",
-                  ": Mengatur alamat server DNS opsional, dipisahkan dengan koma."
+                  ": Mengatur alamat server DNS opsional yang dipisahkan dengan koma."
                 ]
               ]
             ]
@@ -1115,7 +1130,7 @@
                 ],
                 [
                   "text",
-                  " lebih memilih NetworkManager dan akan menggunakan ifupdown jika tidak tersedia. Jika dipaksa, "
+                  " lebih memilih NetworkManager dan akan menggunakan ifupdown jika gagal. Jika dipaksa, "
                 ],
                 [
                   "span",
@@ -1129,7 +1144,7 @@
                 ],
                 [
                   "text",
-                  " menandai interface sebagai tidak dikelola oleh NetworkManager ketika kedua stack terpasang."
+                  " menandai interface sebagai tidak dikelola oleh NetworkManager saat kedua stack terpasang."
                 ]
               ]
             ]
@@ -1159,7 +1174,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda mengatur username yang akan dibuat untuk autologin. Nilai default adalah "
+                  ": Memungkinkan Anda mengatur username yang akan dibuat untuk autologin. Default-nya adalah "
                 ],
                 [
                   "span",
@@ -1203,7 +1218,7 @@
                 ],
                 [
                   "text",
-                  ": Mengatur grup tambahan untuk pengguna yang dibuat untuk autologin. Nama grup dapat dipisahkan dengan koma atau spasi. Nilai MiniOS default adalah "
+                  ": Mengatur grup tambahan untuk pengguna yang dibuat untuk autologin. Nama grup dapat dipisahkan dengan koma atau spasi. Default MiniOS adalah "
                 ],
                 [
                   "span",
@@ -1247,7 +1262,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda mengatur nama lengkap pengguna yang dibuat untuk autologin. Nilai MiniOS default adalah "
+                  ": Memungkinkan Anda mengatur nama lengkap pengguna yang dibuat untuk autologin. Default MiniOS adalah "
                 ],
                 [
                   "span",
@@ -1425,7 +1440,7 @@
                 ],
                 [
                   "text",
-                  ". Nilai default adalah "
+                  ". Default-nya adalah "
                 ],
                 [
                   "span",
@@ -1439,7 +1454,7 @@
                 ],
                 [
                   "text",
-                  ". Jika locale yang dipilih belum tersedia di sistem, maka akan dibuat secara otomatis."
+                  ". Jika locale yang dipilih belum tersedia di sistem, akan dibuat secara otomatis saat itu juga."
                 ]
               ]
             ]
@@ -1483,7 +1498,7 @@
                 ],
                 [
                   "text",
-                  ". Nilai default adalah "
+                  ". Default-nya adalah "
                 ],
                 [
                   "span",
@@ -1527,7 +1542,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda mengubah model keyboard. Tidak ada nilai default yang ditetapkan."
+                  ": Memungkinkan Anda mengubah model keyboard. Tidak ada nilai default yang diatur."
                 ]
               ]
             ]
@@ -1557,7 +1572,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda mengubah layout keyboard. Jika lebih dari satu ditentukan, alat pada desktop environment akan memungkinkan Anda untuk beralih di bawah X11. Tidak ada nilai default yang ditetapkan."
+                  ": Memungkinkan Anda mengubah layout keyboard. Jika lebih dari satu ditentukan, alat pada desktop environment akan memungkinkan Anda beralih di bawah X11. Tidak ada nilai default yang diatur."
                 ]
               ]
             ]
@@ -1587,7 +1602,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda mengubah varian keyboard. Jika lebih dari satu ditentukan, jumlah nilai harus sama dengan jumlah layout keyboard karena akan dipasangkan satu per satu sesuai urutan. Nilai kosong diperbolehkan. Alat pada desktop environment akan memungkinkan Anda beralih antara setiap pasangan layout dan varian di bawah X11. Tidak ada nilai default yang ditetapkan."
+                  ": Memungkinkan Anda mengubah varian keyboard. Jika lebih dari satu ditentukan, jumlah nilainya harus sama dengan jumlah layout keyboard karena akan dipasangkan satu per satu sesuai urutan. Nilai kosong diperbolehkan. Alat pada desktop environment akan memungkinkan Anda berpindah antar pasangan layout dan varian di bawah X11. Tidak ada nilai default yang diatur."
                 ]
               ]
             ]
@@ -1617,7 +1632,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda mengubah opsi keyboard. Tidak ada nilai default yang ditetapkan."
+                  ": Memungkinkan Anda mengubah opsi keyboard. Tidak ada nilai default yang diatur."
                 ]
               ]
             ]
@@ -1677,7 +1692,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda mengatur apakah sistem menganggap jam hardware diatur ke UTC atau tidak. Nilai default adalah "
+                  ": Memungkinkan Anda mengubah apakah sistem mengasumsikan jam hardware diatur ke UTC atau tidak. Default-nya adalah "
                 ],
                 [
                   "span",
@@ -1751,7 +1766,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda mengatur xorg driver daripada mendeteksi otomatis. Jika PCI ID ditentukan di "
+                  ": Memungkinkan Anda mengatur driver xorg daripada mendeteksi secara otomatis. Jika PCI ID ditentukan di "
                 ],
                 [
                   "span",
@@ -1765,7 +1780,7 @@
                 ],
                 [
                   "text",
-                  " dalam sistem live, maka "
+                  " dalam sistem live, "
                 ],
                 [
                   "span",
@@ -1779,7 +1794,7 @@
                 ],
                 [
                   "text",
-                  " akan dipaksakan untuk perangkat tersebut. Jika ditemukan parameter boot dan override, parameter boot akan diprioritaskan."
+                  " akan dipaksakan untuk perangkat tersebut. Jika ditemukan parameter boot dan override, parameter boot akan diutamakan."
                 ]
               ]
             ]
@@ -1809,7 +1824,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda mengatur resolusi xorg secara manual, bukan mendeteksinya secara otomatis, misalnya 1024x768."
+                  ": Memungkinkan Anda mengatur resolusi xorg daripada mendeteksi otomatis, misal 1024x768."
                 ]
               ]
             ]
@@ -1839,7 +1854,7 @@
                 ],
                 [
                   "text",
-                  ": Memungkinkan Anda menentukan driver WLAN secara manual, bukan mendeteksinya secara otomatis. Jika PCI ID ditentukan di "
+                  ": Memungkinkan Anda mengatur driver WLAN daripada mendeteksi otomatis. Jika PCI ID ditentukan di "
                 ],
                 [
                   "span",
@@ -1853,7 +1868,7 @@
                 ],
                 [
                   "text",
-                  " dalam sistem live, maka "
+                  " dalam sistem live, "
                 ],
                 [
                   "span",
@@ -1867,7 +1882,7 @@
                 ],
                 [
                   "text",
-                  " akan dipaksakan untuk perangkat tersebut. Jika terdapat parameter boot dan override, parameter boot akan diutamakan."
+                  " akan dipaksakan untuk perangkat tersebut. Jika ditemukan parameter boot dan override, parameter boot akan diutamakan."
                 ]
               ]
             ]
@@ -1911,195 +1926,7 @@
                 ],
                 [
                   "text",
-                  ", sistem akan memperbarui akun pengguna, membangun ulang cache, dan menyegarkan pengaturan paket sehingga perubahan konfigurasi terintegrasi secara dinamis ke dalam sistem yang sedang berjalan."
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "live-config.log-storage=persistent|volatile | log-storage=persistent|volatile"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ": Kebijakan awal "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "minios-boot"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " untuk journal dan file "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "/var/log"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " biasa. Diagnostik boot tetap disimpan di media penyimpanan yang tahan lama. Nilai default adalah "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "persistent"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "."
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "live-config.apt-cache=persistent|volatile | apt-cache=persistent|volatile"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ": Kebijakan awal untuk arsip APT yang diunduh. tmpfs terbatas hanya digunakan jika RAM dan kondisi swap memungkinkan; database paket dan daftar repository tidak dipindahkan. Nilai default adalah "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "persistent"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "."
-                ]
-              ]
-            ]
-          ]
-        ],
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "live-config.browser-cache=persistent|volatile | browser-cache=persistent|volatile"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ": Permintaan kebijakan awal untuk cache browser native. Dengan "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "volatile"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ", komponen "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "browser-cache"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " akan me-mount direktori cache live-user terpilih di RAM setelah akun tersedia. Nilai default adalah "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "persistent"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  "."
+                  ", sistem akan memperbarui akun pengguna, membangun ulang cache, dan menyegarkan pengaturan paket sehingga perubahan konfigurasi terintegrasi secara dinamis ke sistem yang sedang berjalan."
                 ]
               ]
             ]
@@ -2129,7 +1956,7 @@
                 ],
                 [
                   "text",
-                  ": Menautkan direktori pengguna yang dikelola ke path yang dikonfigurasi pada media data MiniOS. Tidak dapat digunakan bersamaan dengan mode bind dan tidak tersedia jika menggunakan mode "
+                  ": Menautkan direktori pengguna yang dikelola ke path yang dikonfigurasi pada media data MiniOS. Opsi ini tidak dapat digunakan bersamaan dengan mode bind dan tidak tersedia jika "
                 ],
                 [
                   "span",
@@ -2143,7 +1970,7 @@
                 ],
                 [
                   "text",
-                  " apa pun atau saat sesi persistence aktif dienkripsi dengan LUKS."
+                  " mode atau saat sesi persistensi aktif dienkripsi dengan LUKS."
                 ]
               ]
             ]
@@ -2173,7 +2000,7 @@
                 ],
                 [
                   "text",
-                  ": Melakukan bind-mount direktori pengguna yang dikelola dari path yang dikonfigurasi pada media data MiniOS. Tidak dapat digunakan bersamaan dengan mode link dan memiliki batasan "
+                  ": Melakukan bind-mount direktori pengguna yang dikelola dari path yang dikonfigurasi pada media data MiniOS. Opsi ini tidak dapat digunakan bersamaan dengan mode link dan memiliki pembatasan "
                 ],
                 [
                   "span",
@@ -2187,7 +2014,7 @@
                 ],
                 [
                   "text",
-                  " serta enkripsi sesi aktif yang sama."
+                  " dan enkripsi sesi aktif yang sama."
                 ]
               ]
             ]
@@ -2245,7 +2072,7 @@
                 ],
                 [
                   "text",
-                  ". Nilai default adalah "
+                  ". Default-nya adalah "
                 ],
                 [
                   "span",
@@ -2317,7 +2144,7 @@
                 ],
                 [
                   "text",
-                  "; interpreter dan dependensi lain yang dibutuhkan harus sudah terpasang. Kata kunci "
+                  "; interpreter yang dibutuhkan dan dependensi lainnya harus sudah terpasang. Kata kunci "
                 ],
                 [
                   "span",
@@ -2331,7 +2158,7 @@
                 ],
                 [
                   "text",
-                  " mengekstrak file di "
+                  " mengekspansi file di "
                 ],
                 [
                   "span",
@@ -2359,7 +2186,7 @@
                 ],
                 [
                   "text",
-                  " mengekstrak file di "
+                  " mengekspansi file di "
                 ],
                 [
                   "span",
@@ -2373,7 +2200,7 @@
                 ],
                 [
                   "text",
-                  " pada media live yang terdeteksi (dengan fallback ISO-path pada komponen hook). File lokal eksplisit dapat menggunakan "
+                  " pada media live yang terdeteksi (dengan fallback path ISO pada komponen hook). File lokal eksplisit dapat menggunakan "
                 ],
                 [
                   "span",
@@ -2401,7 +2228,7 @@
                 ],
                 [
                   "text",
-                  " di root live. Entri yang dipisahkan dengan pipe akan dieksekusi sesuai urutan yang ditentukan; file yang diekstrak oleh kata kunci menggunakan urutan glob shell. Contoh tersedia di "
+                  " di root live. Entri yang dipisahkan pipa akan dieksekusi sesuai urutan yang ditentukan; file yang diekspansi dengan kata kunci menggunakan urutan glob shell. Contoh terpasang di bawah "
                 ],
                 [
                   "span",
@@ -2461,7 +2288,267 @@
             ],
             [
               "text",
-              " berjalan sebagai root. Hook dibuat dapat dieksekusi dan dijalankan sebagai root, dan preseed mengubah database debconf sistem dengan hak akses root. HTTP dan FTP biasa tidak mengautentikasi konten yang diunduh dan tidak memberikan perlindungan integritas. Sebaiknya gunakan file lokal yang sudah ditinjau atau transportasi tepercaya yang terautentikasi dengan verifikasi integritas independen; jangan gunakan hook atau preseed jarak jauh dari jaringan yang tidak tepercaya."
+              " dijalankan sebagai root. Hook akan dibuat dapat dieksekusi dan dijalankan sebagai root, dan preseed akan mengubah database debconf sistem dengan hak akses root. HTTP dan FTP biasa tidak melakukan autentikasi konten yang diunduh dan tidak memberikan perlindungan integritas. Sebaiknya gunakan file lokal yang telah ditinjau atau transportasi yang terautentikasi dan tepercaya dengan verifikasi integritas independen; jangan gunakan hook atau preseed jarak jauh dari jaringan yang tidak tepercaya."
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      3,
+      "minios-opsi-penyimpanan-awal",
+      [
+        [
+          "text",
+          "MiniOS opsi penyimpanan awal"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Opsi ini dibaca oleh "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " sebelum layanan utama berjalan. Opsi ini membutuhkan penyimpanan yang tahan lama dan sehat "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perch"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " sesi dan tidak mengaktifkan sesi secara otomatis."
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "live-config.log-storage=persistent|volatile | log-storage=persistent|volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " menempatkan jurnal systemd dan file log biasa "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/var/log"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " pada RAM yang terbatas; diagnostik boot tetap berada di penyimpanan tahan lama. Default: "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "persistent"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "live-config.apt-cache=persistent|volatile | apt-cache=persistent|volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " menempatkan arsip APT yang diunduh ke tmpfs terbatas jika kondisi RAM dan swap memungkinkan. Basis data paket dan daftar repositori tetap persisten. Default: "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "persistent"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "live-config.browser-cache=persistent|volatile | browser-cache=persistent|volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volatile"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " meminta cache browser-native di RAM."
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "browser-cache"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " Komponen ini me-mount direktori cache yang dipilih pengguna live setelah akun dibuat. Default: "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "persistent"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
             ]
           ]
         ]
@@ -3298,7 +3385,7 @@
         ],
         [
           "text",
-          " Parameter ini tetap diperlukan untuk mengaktifkan "
+          " Parameter masih diperlukan untuk mengaktifkan "
         ],
         [
           "span",
@@ -3336,7 +3423,7 @@
         ],
         [
           "text",
-          " Jika menggunakan berkas konfigurasi, sebaiknya semua parameter boot dimasukkan ke dalam variabel "
+          " Jika berkas konfigurasi digunakan, sebaiknya (lebih disarankan) semua parameter boot dimasukkan ke dalam variabel "
         ],
         [
           "span",
@@ -3350,7 +3437,7 @@
         ],
         [
           "text",
-          ", atau variabel individual dapat diatur secara terpisah. Jika menggunakan variabel individual, pengguna harus memastikan semua variabel yang diperlukan sudah diatur untuk menghasilkan konfigurasi yang valid."
+          ", atau bisa juga diatur melalui variabel individual. Jika menggunakan variabel individual, pengguna harus memastikan semua variabel yang diperlukan sudah diatur agar konfigurasi valid."
         ]
       ]
     ],
@@ -3370,7 +3457,7 @@
         ],
         [
           "text",
-          " sendiri melakukan source pada "
+          " sendiri mengambil sumber dari "
         ],
         [
           "span",
@@ -3398,7 +3485,7 @@
         ],
         [
           "text",
-          " sesuai urutan glob shell. Dengan demikian, fragmen yang lebih baru dapat menggantikan nilai dari berkas utama atau fragmen sebelumnya. Tidak melakukan source secara terpisah pada lapisan konfigurasi media kedua."
+          " sesuai urutan glob shell. Fragmen yang lebih akhir dapat menggantikan nilai dari berkas utama atau fragmen sebelumnya. Tidak mengambil sumber lapisan konfigurasi media kedua secara terpisah."
         ]
       ]
     ],
@@ -3436,7 +3523,7 @@
         ],
         [
           "text",
-          " . Sebelum "
+          ". Sebelum "
         ],
         [
           "span",
@@ -3450,7 +3537,7 @@
         ],
         [
           "text",
-          " dimulai, initramfs MiniOS akan menyinkronkan berkas-berkas ini dengan "
+          " berjalan, initramfs MiniOS akan menyinkronkan berkas-berkas ini dengan berkas runtime "
         ],
         [
           "span",
@@ -3464,7 +3551,7 @@
         ],
         [
           "text",
-          " berkas runtime berdasarkan waktu modifikasi. Berkas sumber yang lebih baru akan menggantikan berkas runtime; berkas runtime yang lebih baru hanya akan disalin kembali jika direktori data MiniOS yang dipilih dapat ditulis. Jika timestamp sama, tidak ada penyalinan, berkas yang hilang akan dibuat, dan berkas tidak akan dihapus. Ini adalah sinkronisasi saat boot, bukan pemantauan terus-menerus. Lihat "
+          " berdasarkan waktu modifikasi. Berkas sumber yang lebih baru akan menggantikan berkas runtime; berkas runtime yang lebih baru hanya akan disalin kembali jika direktori data MiniOS yang dipilih dapat ditulis. Jika stempel waktunya sama, tidak ada penyalinan; berkas yang hilang akan dilengkapi, dan berkas tidak dihapus. Ini adalah sinkronisasi saat boot, bukan pemantauan terus-menerus. Lihat "
         ],
         [
           "link",
@@ -3479,7 +3566,7 @@
         ],
         [
           "text",
-          " untuk aturan lengkap sinkronisasi dan prioritas command-line."
+          " untuk aturan lengkap sinkronisasi dan prioritas baris perintah."
         ]
       ]
     ],
@@ -3489,7 +3576,7 @@
       [
         [
           "text",
-          "Sebagai cadangan untuk implementasi initramfs yang tidak menyiapkan berkas runtime, pembungkus startup systemd dan SysV akan menyalin "
+          "Sebagai cadangan untuk implementasi initramfs yang tidak menyiapkan berkas runtime, wrapper startup systemd dan SysV akan menyalin "
         ],
         [
           "span",
@@ -3517,7 +3604,7 @@
         ],
         [
           "text",
-          " tidak ada. Cadangan ini tidak menyalin fragmen "
+          " tidak ada. Fallback ini tidak menyalin fragmen "
         ],
         [
           "span",
@@ -3531,7 +3618,7 @@
         ],
         [
           "text",
-          ". Standar initramfs LiveKit MiniOS saat ini melakukan sinkronisasi seperti dijelaskan sebelumnya."
+          ". Initramfs LiveKit MiniOS standar saat ini melakukan sinkronisasi seperti dijelaskan sebelumnya."
         ]
       ]
     ],
@@ -3583,7 +3670,7 @@
         ],
         [
           "text",
-          " direkomendasikan; pilih nama secara berurutan karena fragmen yang lebih baru akan menimpa yang sebelumnya."
+          " direkomendasikan; pilih nama secara berurutan karena fragmen yang lebih akhir akan menimpa yang lebih awal."
         ]
       ]
     ],
@@ -3593,7 +3680,7 @@
       [
         [
           "text",
-          "Isi sebenarnya dari berkas konfigurasi terdiri dari satu atau lebih variabel berikut."
+          "Isi berkas konfigurasi terdiri dari satu atau beberapa variabel berikut."
         ]
       ]
     ],
@@ -3628,7 +3715,7 @@
                 ],
                 [
                   "text",
-                  ": Variabel ini sesuai dengan command line bootloader."
+                  ": Variabel ini sesuai dengan baris perintah bootloader."
                 ]
               ]
             ]
@@ -3804,7 +3891,7 @@
                 ],
                 [
                   "text",
-                  " . Nilai default adalah "
+                  " Default-nya adalah "
                 ],
                 [
                   "span",
@@ -3848,7 +3935,7 @@
                 ],
                 [
                   "text",
-                  ": Pilih kebijakan jaringan kabel. "
+                  ": Memilih kebijakan jaringan kabel. "
                 ],
                 [
                   "span",
@@ -3862,7 +3949,7 @@
                 ],
                 [
                   "text",
-                  " dan nilai yang tidak diatur tidak akan melakukan apa-apa dan tidak menghapus profil statis MiniOS yang sudah dibuat sebelumnya."
+                  " dan nilai yang tidak diatur tidak melakukan apa-apa dan tidak menghapus profil statis MiniOS yang sudah dibuat sebelumnya."
                 ]
               ]
             ]
@@ -3892,7 +3979,7 @@
                 ],
                 [
                   "text",
-                  ": Pilih antarmuka kabel untuk "
+                  ": Memilih antarmuka kabel untuk kebijakan "
                 ],
                 [
                   "span",
@@ -3920,7 +4007,7 @@
                 ],
                 [
                   "text",
-                  " kebijakan."
+                  " ."
                 ]
               ]
             ]
@@ -3950,7 +4037,7 @@
                 ],
                 [
                   "text",
-                  ": Atur alamat IPv4 statis."
+                  ": Mengatur alamat IPv4 statis."
                 ]
               ]
             ]
@@ -3980,7 +4067,7 @@
                 ],
                 [
                   "text",
-                  ": Atur panjang prefix statis; default ke "
+                  ": Mengatur panjang prefix statis; default-nya "
                 ],
                 [
                   "span",
@@ -4024,7 +4111,7 @@
                 ],
                 [
                   "text",
-                  ": Atur gateway statis opsional."
+                  ": Mengatur gateway statis opsional."
                 ]
               ]
             ]
@@ -4054,7 +4141,7 @@
                 ],
                 [
                   "text",
-                  ": Atur server DNS opsional yang dipisahkan dengan koma."
+                  ": Mengatur server DNS opsional, dipisahkan koma."
                 ]
               ]
             ]
@@ -4084,7 +4171,7 @@
                 ],
                 [
                   "text",
-                  ": Pilih backend yang digunakan."
+                  ": Memilih backend yang digunakan."
                 ]
               ]
             ]
@@ -4098,7 +4185,7 @@
       [
         [
           "text",
-          "Komponen jaringan mencatat "
+          "Komponen jaringan akan mencatat "
         ],
         [
           "span",
@@ -4112,7 +4199,7 @@
         ],
         [
           "text",
-          " setelah berhasil menulis kebijakan. Hapus stamp tersebut untuk menerapkan perubahan kebijakan pada sistem yang persisten. Untuk menonaktifkan profil statis sebelumnya, gunakan "
+          " setelah kebijakan berhasil ditulis. Hapus stempel tersebut untuk menerapkan perubahan kebijakan pada sistem persisten. Untuk menghapus profil statis sebelumnya, gunakan "
         ],
         [
           "span",
@@ -4126,7 +4213,7 @@
         ],
         [
           "text",
-          " atau hapus profil dan stamp yang dikelola MiniOS secara manual."
+          " atau hapus profil dan stempel yang dikelola MiniOS secara manual."
         ]
       ]
     ],
@@ -4175,7 +4262,7 @@
                 ],
                 [
                   "text",
-                  " . Nilai default adalah "
+                  " Default-nya adalah "
                 ],
                 [
                   "span",
@@ -4233,7 +4320,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -4277,7 +4364,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -4321,7 +4408,7 @@
                 ],
                 [
                   "text",
-                  " . Password root akan ditetapkan dalam bentuk teks biasa."
+                  ". Digunakan untuk mengatur password root dalam bentuk teks biasa."
                 ]
               ]
             ]
@@ -4365,7 +4452,7 @@
                 ],
                 [
                   "text",
-                  " . Password root akan ditetapkan dalam bentuk terenkripsi."
+                  ". Digunakan untuk mengatur password root dalam bentuk terenkripsi."
                 ]
               ]
             ]
@@ -4409,7 +4496,7 @@
                 ],
                 [
                   "text",
-                  " dan menentukan kata sandi pengguna dalam bentuk teks biasa."
+                  ". Digunakan untuk mengatur password pengguna dalam bentuk teks biasa."
                 ]
               ]
             ]
@@ -4453,7 +4540,7 @@
                 ],
                 [
                   "text",
-                  " dan menentukan kata sandi pengguna dalam bentuk terenkripsi."
+                  ". Digunakan untuk mengatur password pengguna dalam bentuk terenkripsi."
                 ]
               ]
             ]
@@ -4497,7 +4584,7 @@
                 ],
                 [
                   "text",
-                  " dan menonaktifkan pengaturan hak istimewa root, sudo, dan PolicyKit jika diatur ke "
+                  " dan akan menonaktifkan root, sudo, serta pengaturan hak istimewa PolicyKit jika diatur ke "
                 ],
                 [
                   "span",
@@ -4555,7 +4642,7 @@
                 ],
                 [
                   "text",
-                  " dan jika tidak diatur, MiniOS akan mempertahankan perilaku sudo tanpa kata sandi seperti sebelumnya."
+                  ". Jika tidak diatur, MiniOS akan mempertahankan perilaku sudo tanpa password seperti sebelumnya."
                 ]
               ]
             ]
@@ -4599,7 +4686,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  ". "
                 ],
                 [
                   "span",
@@ -4627,7 +4714,7 @@
                 ],
                 [
                   "text",
-                  " akan menghapus aturan passwordless MiniOS dan mengembalikan autentikasi PolicyKit distribusi normal."
+                  " akan menghapus aturan passwordless MiniOS dan mengembalikan autentikasi PolicyKit distribusi seperti semula."
                 ]
               ]
             ]
@@ -4671,7 +4758,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -4715,7 +4802,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -4759,7 +4846,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -4803,7 +4890,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -4847,7 +4934,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -4891,7 +4978,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -4935,7 +5022,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -4979,7 +5066,7 @@
                 ],
                 [
                   "text",
-                  " ."
+                  "."
                 ]
               ]
             ]
@@ -5493,7 +5580,7 @@
                 ],
                 [
                   "text",
-                  ": Mengaktifkan atau menonaktifkan tautan dari direktori data standar pengguna ke drive MiniOS yang dapat ditulis. Parameter boot yang sesuai adalah parameter "
+                  ": Mengaktifkan atau menonaktifkan tautan dari direktori data standar pengguna ke drive MiniOS yang dapat ditulis. Parameter boot yang sesuai adalah flag "
                 ],
                 [
                   "span",
@@ -5507,7 +5594,7 @@
                 ],
                 [
                   "text",
-                  " saja. Mode tautan tidak dapat digabungkan dengan mode bind atau mode "
+                  " . Mode tautan tidak dapat digabungkan dengan mode bind atau mode "
                 ],
                 [
                   "span",
@@ -5521,7 +5608,7 @@
                 ],
                 [
                   "text",
-                  " lain."
+                  " manapun."
                 ]
               ]
             ]
@@ -5551,7 +5638,7 @@
                 ],
                 [
                   "text",
-                  ": Mengaktifkan atau menonaktifkan bind mount dari direktori data standar pengguna ke drive MiniOS yang dapat ditulis. Parameter boot yang sesuai adalah parameter "
+                  ": Mengaktifkan atau menonaktifkan bind mount untuk direktori data standar pengguna dari drive MiniOS yang dapat ditulis. Parameter boot yang sesuai adalah flag "
                 ],
                 [
                   "span",
@@ -5565,7 +5652,7 @@
                 ],
                 [
                   "text",
-                  " saja. Mode bind tidak dapat digabungkan dengan mode tautan atau mode "
+                  " . Mode bind tidak dapat digabungkan dengan mode tautan atau mode "
                 ],
                 [
                   "span",
@@ -5579,7 +5666,7 @@
                 ],
                 [
                   "text",
-                  " lain."
+                  " manapun."
                 ]
               ]
             ]
@@ -5623,7 +5710,7 @@
                 ],
                 [
                   "text",
-                  " . Variabel ini menentukan path yang aman di dalam drive FAT32, exFAT, atau NTFS MiniOS. Nilai default-nya adalah "
+                  ". Menentukan path yang aman di dalam drive MiniOS FAT32, exFAT, atau NTFS. Default-nya adalah "
                 ],
                 [
                   "span",
@@ -5637,7 +5724,7 @@
                 ],
                 [
                   "text",
-                  "; segmen titik dan direktori-induk tidak diperbolehkan."
+                  "; segmen titik dan direktori induk akan ditolak."
                 ]
               ]
             ]
@@ -5651,7 +5738,7 @@
       [
         [
           "text",
-          "Penyiapan media pengguna tidak pernah menggabungkan dua direktori yang tidak kosong secara otomatis. Direktori lokal yang tidak kosong hanya akan dipindahkan jika tujuan medianya kosong. Jika fitur ini dinonaktifkan, data media yang dikelola akan disalin kembali sebelum tautan dihapus. Aktivasi dan penyalinan ulang media pengguna akan diblokir selama sesi persistensi aktif dienkripsi dengan LUKS, sehingga data sesi tidak dapat dipindahkan ke media MiniOS yang tidak terenkripsi. Keputusan ini menggunakan status enkripsi aktif yang sebenarnya: "
+          "Pengaturan media pengguna tidak pernah menggabungkan dua direktori yang tidak kosong secara otomatis. Direktori lokal yang tidak kosong hanya akan dipindahkan jika tujuan di media kosong. Jika fitur ini dinonaktifkan, data media yang dikelola akan disalin kembali sebelum tautan dihapus. Aktivasi media pengguna dan penyalinan balik akan diblokir jika sesi persistensi aktif dienkripsi LUKS, sehingga data sesi tidak dipindahkan ke media MiniOS yang tidak terenkripsi. Keputusan ini menggunakan status enkripsi aktif sebenarnya: "
         ],
         [
           "span",
@@ -5665,7 +5752,7 @@
         ],
         [
           "text",
-          " hanya meminta enkripsi saat membuat sesi baru dan tidak berlaku untuk sesi yang sudah ada. Jika validasi atau penyalinan gagal, direktori pengguna yang ada tetap dipertahankan dan alasan kegagalan dicatat di "
+          " hanya meminta enkripsi saat membuat sesi baru dan tidak menggambarkan sesi yang sudah ada. Jika validasi atau penyalinan gagal, direktori pengguna yang ada tetap dipertahankan dan alasan kegagalan dicatat di "
         ],
         [
           "span",
@@ -5780,6 +5867,70 @@
                   [
                     [
                       "text",
+                      "LIVE_CONFIG_DEBUG=true|false"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": Variabel ini sesuai dengan parameter "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "**live-config.debug**"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "variabel-cache-dan-log-minios",
+      [
+        [
+          "text",
+          "Variabel cache dan log MiniOS"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
                       "LIVE_LOG_STORAGE=persistent|volatile"
                     ]
                   ]
@@ -5814,7 +5965,7 @@
                 ],
                 [
                   "text",
-                  ": Kebijakan boot-time MiniOS yang independen. Kebijakan ini juga berfungsi pada "
+                  ": Kebijakan boot-time MiniOS yang berdiri sendiri. Ini juga berfungsi di "
                 ],
                 [
                   "span",
@@ -5842,7 +5993,7 @@
                 ],
                 [
                   "text",
-                  ". Kebijakan ini tidak mengaktifkan persistensi secara otomatis. Lihat "
+                  ". Variabel ini tidak otomatis mengaktifkan persistensi. Lihat "
                 ],
                 [
                   "link",
@@ -5862,50 +6013,96 @@
               ]
             ]
           ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Komponen "
         ],
         [
-          "item",
-          null,
+          "span",
+          "code",
           [
             [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "LIVE_CONFIG_DEBUG=true|false"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ": Variabel ini sesuai dengan parameter "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "**live-config.debug**"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " . Perintah pembantu mode merged tetap menyimpan error normal, namun hanya membuat jejak perintah rinci dan salinan debug jika debug diaktifkan."
-                ]
-              ]
+              "text",
+              "browser-cache"
             ]
           ]
+        ],
+        [
+          "text",
+          " ini membaca kebijakan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "minios-boot"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " yang tahan lama setelah live user aktif dan melakukan bind-mount direktori cache browser native standar ke filesystem RAM bersama yang terbatas. Kebijakan Firefox yang dibuat terpisah akan menonaktifkan disk cache tanpa memindahkan profil browser. Jika komponen ini tidak disertakan oleh "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "components="
+            ]
+          ]
+        ],
+        [
+          "text",
+          " atau "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "nocomponents="
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", permintaan browser-cache awal saja tidak akan menyiapkan mount per pengguna."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Helper mode gabungan tetap menyimpan error normal, tetapi hanya membuat jejak perintah dan salinan debug secara rinci saat "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_CONFIG_DEBUG=true"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "."
         ]
       ]
     ],
@@ -6017,6 +6214,1600 @@
         [
           "text",
           "File konfigurasi untuk sistem live itu sendiri sebaiknya ditempatkan dalam paket debian tersendiri. Contoh paket yang berisi contoh konfigurasi dapat ditemukan di /usr/share/doc/live-config/examples."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      1,
+      "komponen",
+      [
+        [
+          "text",
+          "KOMPONEN"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "live-config"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " saat ini memiliki komponen berikut di /usr/lib/live/config."
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "nss-systemd"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menghapus atau mengembalikan modul NSS systemd di /etc/nsswitch.conf untuk mengatasi masalah systemd yang sudah diketahui."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "debconf"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": memungkinkan penggunaan file preseed apa pun yang ditempatkan di media live atau server http/ftp."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "hostname"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur /etc/hostname dan /etc/hosts."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "issue-setup"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menyiapkan file /etc/issue dengan banner sambutan dan informasi distribusi."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "live-debconfig_passwd"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur password user dan root melalui live-debconfig."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "user-setup"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menambahkan akun user live."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "user-groups"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menambahkan user live ke grup tambahan yang dideklarasikan oleh modul yang terpasang. Grup yang sudah ada dan tercantum di "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/usr/share/live/config/user-default-groups.d/*.groups"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " akan diterapkan setelah pembuatan user dan pada proses live-config berikutnya."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "root-setup"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur atau memperbarui password root dan mengonfigurasi lingkungan user root."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "sudo"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": memberikan hak sudo kepada user live."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "user-ssh-keys"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menyinkronkan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "authorized_keys.<username>"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " file khusus user antara media live dan direktori home user masing-masing. Mendukung beberapa user sekaligus (misal, "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "authorized_keys.root"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "authorized_keys.live"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "authorized_keys.admin"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "user-media"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": melakukan link atau bind-mount direktori user yang sudah divalidasi pada media data MiniOS yang writable, dengan migrasi aman dan copy-back saat dinonaktifkan."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "locales"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur locales."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "tzdata"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur /etc/timezone."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xorg-service"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur username di xorg.service dan menerapkan posture X11 jika didukung."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "gdm3"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur autologin di gdm3."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "sddm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur autologin di sddm."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "kdm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur autologin di kdm."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "lightdm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur autologin di lightdm."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "lxdm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur autologin di lxdm."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "nodm"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur autologin di nodm."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "slim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur autologin di slim."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xinit"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur autologin dengan xinit."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "keyboard-configuration"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur konfigurasi keyboard."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "sysvinit"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur autologin konsol melalui "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "/etc/inittab"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " saat sysvinit terpasang. "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "noautologin"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " dan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "nottyautologin"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " pintasan akan menonaktifkan pengaturan tersebut."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "sysv-rc"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur sysv-rc dengan menonaktifkan layanan yang terdaftar."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "apport"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menonaktifkan apport."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "gnome-panel-data"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menonaktifkan tombol kunci layar."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "gnome-power-manager"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menonaktifkan hibernasi."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "gnome-screensaver"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur penguncian layar GNOME sesuai dengan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_LOCKSCREEN_MODE"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "kaboom"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menonaktifkan wizard migrasi KDE (squeeze dan yang lebih baru)."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "kde-services"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menonaktifkan beberapa layanan KDE yang tidak diinginkan (squeeze dan yang lebih baru)."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "policykit"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": memberikan hak akses pengguna melalui PolicyKit."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "ssl-cert"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menghasilkan ulang sertifikat SSL snake-oil."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xrdp"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur mode XRDP menjadi relaxed, hardened, atau dinonaktifkan saat XRDP terpasang."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "anacron"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menonaktifkan anacron."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "util-linux"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menonaktifkan layanan hwclock util-linux."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "login"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": menonaktifkan lastlog."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xserver-xorg"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur konfigurasi xserver-xorg."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "network"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur kebijakan IPv4 kabel yang tahan lama melalui keyfile NetworkManager yang aman atau stanza ifupdown. Proses ini dijalankan sebelum layanan jaringan, memvalidasi semua nilai, dan hanya menandai setelah penulisan berhasil."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "openssh-server"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": membuat ulang kunci host OpenSSH dan menulis kebijakan root-login atau autentikasi sandi yang diminta secara eksplisit."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xfce4-panel"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur xfce4-panel ke pengaturan default."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "xscreensaver"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur penguncian xscreensaver sesuai dengan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "LIVE_LOCKSCREEN_MODE"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "broadcom-sta"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur driver WLAN broadcom-sta."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "hyperv"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur konfigurasi X11 untuk meningkatkan kompatibilitas pada platform Microsoft Hyper-V."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "ntfs3"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengelola aturan udev untuk dukungan NTFS3."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "config-module-mode"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": mengatur mode modul sistem dan memperbarui cache, pengaturan pengguna, serta dpkg."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "hooks"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ": memungkinkan menjalankan perintah apa pun dari file yang ditempatkan di media live atau server http/ftp."
+                ]
+              ]
+            ]
+          ]
         ]
       ]
     ],
@@ -6762,7 +8553,7 @@
       ]
     ]
   ],
-  "plain_text": "live-config\nKomponen Konfigurasi Sistem - Komponen Konfigurasi Sistem\nlive-config berisi komponen yang mengonfigurasi sistem live selama proses boot (late userspace).\nKebijakan cache dan log sesi persisten ditentukan lebih awal oleh minios-boot, setelah live root dan konfigurasinya disiapkan namun sebelum layanan utama berjalan. Komponen browser-cache live-config menerapkan mount per pengguna setelah pembuatan user. Kebijakan ini membutuhkan sesi yang stabil dan tahan lama perch serta initrd terbaru yang mengumumkan perch-storage-v1; lihat Performa untuk efek dan batasannya.\nNetwork boot di initramfs (ip=, PXE, from=http://…) adalah lapisan LiveKit terpisah dan tidak dikelola oleh live-config. Lihat Network boot.\nlive-config dapat dikonfigurasi melalui parameter boot atau file konfigurasi runtime yang disiapkan oleh initramfs. Kernel command line aktual akan ditambahkan setelah nilai dari file, sehingga parameter boot yang cocok dan muncul belakangan akan menjadi prioritas. Komponen yang merekam status di bawah LIVE_CONFIG_CMDLINE biasanya hanya dijalankan satu kali; komponen sinkronisasi dan stateless dapat dijalankan setiap kali dipanggil./var/lib/live/config\nJika live-build(7) digunakan untuk membangun sistem live, parameter live-config default dapat diatur melalui opsi --bootappend-live , lihat lb_config(1) halaman manual.\nParameter Boot (komponen)\nlive-config hanya akan diaktifkan jika boot=live digunakan sebagai parameter boot. Secara default, semua komponen dijalankan. Parameter live-config.components dapat membatasi komponen mana saja yang dijalankan, dan live-config.nocomponents dapat mengecualikan komponen tertentu. Jika kedua parameter digunakan, atau salah satunya disebutkan beberapa kali, kemunculan terakhir yang akan diutamakan.\nlive-config.components | components: Semua komponen dijalankan. Ini adalah pengaturan default pada live image.\nlive-config.components=COMPONENT1,COMPONENT2,...COMPONENTn | components=COMPONENT1,COMPONENT2,...COMPONENTn: Hanya komponen yang disebutkan yang dijalankan. Komponen akan dieksekusi sesuai urutan pada nama file mereka di bawah /usr/lib/live/config, terlepas dari urutan pada daftar ini.\nlive-config.nocomponents | nocomponents: Tidak ada komponen yang dijalankan.\nlive-config.nocomponents=COMPONENT1,COMPONENT2,...COMPONENTn | nocomponents=COMPONENT1,COMPONENT2,...COMPONENTn: Semua komponen dijalankan, kecuali yang disebutkan.\nParameter Boot (opsi)\nBeberapa komponen individual dapat mengubah perilakunya berdasarkan parameter boot.\nlive-config.debconf-preseed=filesystem|medium|URL1|URL2|...|URLn | debconf-preseed=medium|filesystem|URL1|URL2|...|URLn: Mengambil dan menerapkan satu atau lebih file preseed debconf. URL ditangani oleh wget dan dapat menggunakan HTTP, FTP, atau file://. Kata kunci filesystem mengekstrak file di /usr/lib/live/config-preseed/; medium mengekstrak file di minios/config-preseed/ pada media live yang terdeteksi. File lokal eksplisit dapat menggunakan path seperti file:///run/initramfs/memory/data/minios/config-preseed/FILE atau file:///PATH di root live. Entri yang dipisahkan dengan tanda pipe diproses sesuai urutan yang ditentukan; file yang diekstrak dengan kata kunci menggunakan urutan glob shell.\nlive-config.hostname=HOSTNAME | hostname=HOSTNAME: Memungkinkan Anda mengatur hostname sistem. Nilai default adalah minios.\nlive-config.network-method=dhcp|static|off | network-method=dhcp|static|off: Memilih kebijakan jaringan kabel. Tidak diatur dan dhcp membiarkan default image tidak berubah. static menulis konfigurasi untuk backend yang dipilih; off menonaktifkan konfigurasi IPv4 otomatis untuk interface yang dipilih.\nlive-config.network-interface=INTERFACE | network-interface=INTERFACE: Memilih interface kabel. Jika tidak diisi untuk static atau off, satu-satunya interface kabel non-loopback akan dipilih secara otomatis; jika ada nol atau lebih dari satu kandidat, nilai harus diisi secara eksplisit.\nlive-config.network-address=IPV4 | network-address=IPV4: Mengatur alamat IPv4 statis.\nlive-config.network-prefix=PREFIX | network-prefix=PREFIX: Mengatur panjang prefix IPv4 dari 0 sampai 32. Default statis adalah 24.\nlive-config.network-gateway=IPV4 | network-gateway=IPV4: Mengatur gateway IPv4 opsional.\nlive-config.network-dns=ADDRESS1,ADDRESS2 | network-dns=ADDRESS1,ADDRESS2: Mengatur alamat server DNS opsional, dipisahkan dengan koma.\nlive-config.network-backend=auto|nm|ifupdown | network-backend=auto|nm|ifupdown: Memilih backend jaringan. auto lebih memilih NetworkManager dan akan menggunakan ifupdown jika tidak tersedia. Jika dipaksa, ifupdown menandai interface sebagai tidak dikelola oleh NetworkManager ketika kedua stack terpasang.\nlive-config.username=USERNAME | username=USERNAME: Memungkinkan Anda mengatur username yang akan dibuat untuk autologin. Nilai default adalah live.\nlive-config.user-default-groups=GROUP1,GROUP2,...GROUPn | user-default-groups=GROUP1,GROUP2,...GROUPn: Mengatur grup tambahan untuk pengguna yang dibuat untuk autologin. Nama grup dapat dipisahkan dengan koma atau spasi. Nilai MiniOS default adalah dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark.\nlive-config.user-fullname=\"USER FULLNAME\" | user-fullname=\"USER FULLNAME\": Memungkinkan Anda mengatur nama lengkap pengguna yang dibuat untuk autologin. Nilai MiniOS default adalah MiniOS Live User.\nlive-config.root-password=PASSWORD | root-password=PASSWORD: Memungkinkan pengaturan password root dalam bentuk teks biasa.\nlive-config.root-password-crypted=PASSWORD | root-password-crypted=PASSWORD: Memungkinkan pengaturan password root dalam bentuk terenkripsi.\nlive-config.user-password=PASSWORD | user-password=PASSWORD: Memungkinkan pengaturan password pengguna dalam bentuk teks biasa.\nlive-config.user-password-crypted=PASSWORD | user-password-crypted=PASSWORD: Memungkinkan pengaturan password pengguna dalam bentuk terenkripsi.\nlive-config.locales=LOCALE1,LOCALE2,...LOCALEn | locales=LOCALE1,LOCALE2,...LOCALEn: Memungkinkan Anda mengatur locale sistem, misalnya de_CH.UTF-8. Nilai default adalah en_US.UTF-8. Jika locale yang dipilih belum tersedia di sistem, maka akan dibuat secara otomatis.\nlive-config.timezone=TIMEZONE | timezone=TIMEZONE: Memungkinkan Anda mengatur zona waktu sistem, misalnya Europe/Zurich. Nilai default adalah UTC.\nlive-config.keyboard-model=KEYBOARD_MODEL | keyboard-model=KEYBOARD_MODEL: Memungkinkan Anda mengubah model keyboard. Tidak ada nilai default yang ditetapkan.\nlive-config.keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn | keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Memungkinkan Anda mengubah layout keyboard. Jika lebih dari satu ditentukan, alat pada desktop environment akan memungkinkan Anda untuk beralih di bawah X11. Tidak ada nilai default yang ditetapkan.\nlive-config.keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn | keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Memungkinkan Anda mengubah varian keyboard. Jika lebih dari satu ditentukan, jumlah nilai harus sama dengan jumlah layout keyboard karena akan dipasangkan satu per satu sesuai urutan. Nilai kosong diperbolehkan. Alat pada desktop environment akan memungkinkan Anda beralih antara setiap pasangan layout dan varian di bawah X11. Tidak ada nilai default yang ditetapkan.\nlive-config.keyboard-options=KEYBOARD_OPTIONS | keyboard-options=KEYBOARD_OPTIONS: Memungkinkan Anda mengubah opsi keyboard. Tidak ada nilai default yang ditetapkan.\nlive-config.sysv-rc=SERVICE1,SERVICE2,...SERVICEn | sysv-rc=SERVICE1,SERVICE2,...SERVICEn: Memungkinkan Anda menonaktifkan layanan sysv melalui update-rc.d.\nlive-config.utc=yes|no | utc=yes|no: Memungkinkan Anda mengatur apakah sistem menganggap jam hardware diatur ke UTC atau tidak. Nilai default adalah yes.\nlive-config.xorg-xsession-manager=X_SESSION_MANAGER | x-session-manager=X_SESSION_MANAGER: Memungkinkan Anda mengatur x-session-manager melalui update-alternatives.\nlive-config.xorg-driver=XORG_DRIVER | xorg-driver=XORG_DRIVER: Memungkinkan Anda mengatur xorg driver daripada mendeteksi otomatis. Jika PCI ID ditentukan di /usr/share/live/config/xserver-xorg/*DRIVER*.ids dalam sistem live, maka DRIVER akan dipaksakan untuk perangkat tersebut. Jika ditemukan parameter boot dan override, parameter boot akan diprioritaskan.\nlive-config.xorg-resolution=XORG_RESOLUTION | xorg-resolution=XORG_RESOLUTION: Memungkinkan Anda mengatur resolusi xorg secara manual, bukan mendeteksinya secara otomatis, misalnya 1024x768.\nlive-config.wlan-driver=WLAN_DRIVER | wlan-driver=WLAN_DRIVER: Memungkinkan Anda menentukan driver WLAN secara manual, bukan mendeteksinya secara otomatis. Jika PCI ID ditentukan di /usr/share/live/config/broadcom-sta/*DRIVER*.ids dalam sistem live, maka DRIVER akan dipaksakan untuk perangkat tersebut. Jika terdapat parameter boot dan override, parameter boot akan diutamakan.\nlive-config.module-mode=simple|merged | module-mode=simple|merged: Memungkinkan Anda menentukan mode modul untuk konfigurasi live. Jika diatur ke merged, sistem akan memperbarui akun pengguna, membangun ulang cache, dan menyegarkan pengaturan paket sehingga perubahan konfigurasi terintegrasi secara dinamis ke dalam sistem yang sedang berjalan.\nlive-config.log-storage=persistent|volatile | log-storage=persistent|volatile: Kebijakan awal minios-boot untuk journal dan file /var/log biasa. Diagnostik boot tetap disimpan di media penyimpanan yang tahan lama. Nilai default adalah persistent.\nlive-config.apt-cache=persistent|volatile | apt-cache=persistent|volatile: Kebijakan awal untuk arsip APT yang diunduh. tmpfs terbatas hanya digunakan jika RAM dan kondisi swap memungkinkan; database paket dan daftar repository tidak dipindahkan. Nilai default adalah persistent.\nlive-config.browser-cache=persistent|volatile | browser-cache=persistent|volatile: Permintaan kebijakan awal untuk cache browser native. Dengan volatile, komponen browser-cache akan me-mount direktori cache live-user terpilih di RAM setelah akun tersedia. Nilai default adalah persistent.\nlive-config.link-user-dirs | link-user-dirs: Menautkan direktori pengguna yang dikelola ke path yang dikonfigurasi pada media data MiniOS. Tidak dapat digunakan bersamaan dengan mode bind dan tidak tersedia jika menggunakan mode toram apa pun atau saat sesi persistence aktif dienkripsi dengan LUKS.\nlive-config.bind-user-dirs | bind-user-dirs: Melakukan bind-mount direktori pengguna yang dikelola dari path yang dikonfigurasi pada media data MiniOS. Tidak dapat digunakan bersamaan dengan mode link dan memiliki batasan toram serta enkripsi sesi aktif yang sama.\nlive-config.user-dirs-path=PATH | user-dirs-path=PATH: Mengatur path relatif media yang digunakan oleh link-user-dirs atau bind-user-dirs. Nilai default adalah /minios/userdata.\nlive-config.hooks=filesystem|medium|URL1|URL2|...|URLn | hooks=medium|filesystem|URL1|URL2|...|URLn: Mengambil dan mengeksekusi file apa pun dari file sementara di sistem live yang sedang berjalan. URL ditangani oleh wget dan dapat menggunakan HTTP, FTP, atau file://; interpreter dan dependensi lain yang dibutuhkan harus sudah terpasang. Kata kunci filesystem mengekstrak file di /usr/lib/live/config-hooks/; medium mengekstrak file di minios/config-hooks/ pada media live yang terdeteksi (dengan fallback ISO-path pada komponen hook). File lokal eksplisit dapat menggunakan file:///run/initramfs/memory/data/minios/config-hooks/FILE atau file:///PATH di root live. Entri yang dipisahkan dengan pipe akan dieksekusi sesuai urutan yang ditentukan; file yang diekstrak oleh kata kunci menggunakan urutan glob shell. Contoh tersedia di /usr/share/doc/live-config/examples/hooks/.\nPeringatan keamanan: live-config berjalan sebagai root. Hook dibuat dapat dieksekusi dan dijalankan sebagai root, dan preseed mengubah database debconf sistem dengan hak akses root. HTTP dan FTP biasa tidak mengautentikasi konten yang diunduh dan tidak memberikan perlindungan integritas. Sebaiknya gunakan file lokal yang sudah ditinjau atau transportasi tepercaya yang terautentikasi dengan verifikasi integritas independen; jangan gunakan hook atau preseed jarak jauh dari jaringan yang tidak tepercaya.\nParameter Boot (shortcut)\nUntuk beberapa kasus penggunaan umum yang biasanya membutuhkan kombinasi beberapa parameter individual, live-config menyediakan shortcut. Ini memungkinkan Anda tetap memiliki kontrol penuh atas semua opsi, namun tetap sederhana.\nlive-config.noroot | noroot: Menonaktifkan pengaturan password root serta hak istimewa sudo dan PolicyKit MiniOS.\nlive-config.sudo-mode=passwordless|password|disabled | sudo-mode=passwordless|password|disabled: Mengatur konfigurasi sudo untuk pengguna live. Default-nya, dan perilaku MiniOS sebelumnya jika tidak diatur, adalah passwordless. Mode password tetap memberikan akses sudo tetapi membutuhkan password pengguna live. Mode disabled menghapus hak sudo MiniOS dan memastikan pengguna live tidak masuk ke grup sudo saat dibuat. Shortcut lama noroot akan menimpa ini dan menonaktifkan pengaturan hak root secara lebih luas.\nlive-config.polkit-mode=passwordless|password|disabled | polkit-mode=passwordless|password|disabled: Mengatur aturan PolicyKit MiniOS. Default-nya, dan perilaku MiniOS sebelumnya jika tidak diatur, adalah passwordless. Mode password dan disabled menghapus aturan tersebut, sehingga autentikasi PolicyKit distribusi normal berlaku. disabled bukan kebijakan deny-all secara total; gunakan noroot jika pengguna live tidak boleh mendapatkan hak administratif.\nlive-config.ssh-permit-root-login=true|false | ssh-permit-root-login=true|false: Menulis kebijakan PermitRootLogin OpenSSH jika diatur secara eksplisit dan openssh-server terpasang.\nlive-config.ssh-password-authentication=true|false | ssh-password-authentication=true|false: Menulis kebijakan PasswordAuthentication OpenSSH jika diatur secara eksplisit dan openssh-server terpasang.\nlive-config.xrdp-mode=relaxed|hardened|disabled | xrdp-mode=relaxed|hardened|disabled: Mengatur postur XRDP saat xrdp terpasang. relaxed mempertahankan default MiniOS sebelumnya. hardened mengikat XRDP ke localhost, mengembalikan pengaturan keamanan tinggi/negosiasi, dan menonaktifkan login root XRDP. disabled menonaktifkan dan menghentikan XRDP melalui minios-svc jika tersedia.\nlive-config.x11-mode=relaxed|hardened | x11-mode=relaxed|hardened: Mengatur postur X11 MiniOS. relaxed mempertahankan kompatibilitas historis. hardened menghapus opsi X server permisif -ac dan memperketat Xwrapper.config jika ada.\nlive-config.issue-password-hints=true|false | issue-password-hints=true|false: Mengatur apakah /etc/issue akan menampilkan hint password root/live MiniOS default.\nlive-config.lockscreen-mode=relaxed|hardened | lockscreen-mode=relaxed|hardened: Mengatur apakah live-config akan melonggarkan penguncian layar. relaxed mempertahankan kenyamanan sesi live secara historis. hardened menghindari menonaktifkan penguncian GNOME dan mengaktifkan penguncian xscreensaver jika file tersebut ada.\nlive-config.noautologin | noautologin: Mencegah live-config mengatur autologin konsol dan grafis. Tidak menghapus autologin yang sudah dikonfigurasi pada sesi persisten.\nlive-config.nottyautologin | nottyautologin: Mencegah live-config mengatur autologin konsol, tanpa memengaruhi pengaturan grafis. Konfigurasi persisten yang sudah ada tidak dihapus.\nlive-config.nox11autologin | nox11autologin: Mencegah live-config mengatur autologin display-manager, tanpa memengaruhi pengaturan TTY. Konfigurasi persisten yang sudah ada tidak dihapus.\nParameter Boot (opsi khusus)\nUntuk kebutuhan khusus, tersedia beberapa parameter boot khusus.\nlive-config.debug | debug: Mengaktifkan output debug pada live-config.\nBerkas Konfigurasi\nlive-config dapat dikonfigurasi (namun tidak diaktifkan) melalui berkas konfigurasi. Setiap parameter boot yang didukung dapat dimasukkan ke dalam LIVE_CONFIG_CMDLINE, dan sebagian besar opsi juga dapat diatur melalui variabel individual. boot=live Parameter ini tetap diperlukan untuk mengaktifkan live-config.\nCatatan: Jika menggunakan berkas konfigurasi, sebaiknya semua parameter boot dimasukkan ke dalam variabel LIVE_CONFIG_CMDLINE, atau variabel individual dapat diatur secara terpisah. Jika menggunakan variabel individual, pengguna harus memastikan semua variabel yang diperlukan sudah diatur untuk menghasilkan konfigurasi yang valid.\nlive-config sendiri melakukan source pada /etc/live/config.conf lalu /etc/live/config.conf.d/*.conf sesuai urutan glob shell. Dengan demikian, fragmen yang lebih baru dapat menggantikan nilai dari berkas utama atau fragmen sebelumnya. Tidak melakukan source secara terpisah pada lapisan konfigurasi media kedua.\nPada media MiniOS, berkas sumbernya adalah minios/config.conf dan minios/config.conf.d/*.conf . Sebelum live-config dimulai, initramfs MiniOS akan menyinkronkan berkas-berkas ini dengan /etc/live/ berkas runtime berdasarkan waktu modifikasi. Berkas sumber yang lebih baru akan menggantikan berkas runtime; berkas runtime yang lebih baru hanya akan disalin kembali jika direktori data MiniOS yang dipilih dapat ditulis. Jika timestamp sama, tidak ada penyalinan, berkas yang hilang akan dibuat, dan berkas tidak akan dihapus. Ini adalah sinkronisasi saat boot, bukan pemantauan terus-menerus. Lihat Berkas konfigurasi untuk aturan lengkap sinkronisasi dan prioritas command-line.\nSebagai cadangan untuk implementasi initramfs yang tidak menyiapkan berkas runtime, pembungkus startup systemd dan SysV akan menyalin minios/config.conf dari media yang terdeteksi hanya jika /etc/live/config.conf tidak ada. Cadangan ini tidak menyalin fragmen config.conf.d. Standar initramfs LiveKit MiniOS saat ini melakukan sinkronisasi seperti dijelaskan sebelumnya.\nBerkas fragmen harus sesuai dengan *.conf. Nama seperti vendor.conf atau project.conf direkomendasikan; pilih nama secara berurutan karena fragmen yang lebih baru akan menimpa yang sebelumnya.\nIsi sebenarnya dari berkas konfigurasi terdiri dari satu atau lebih variabel berikut.\nLIVE_CONFIG_CMDLINE=PARAMETER1 PARAMETER2...PARAMETERn: Variabel ini sesuai dengan command line bootloader.\nLIVE_CONFIG_COMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Variabel ini sesuai dengan parameter **live-config.components**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*.\nLIVE_CONFIG_NOCOMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Variabel ini sesuai dengan parameter **live-config.nocomponents**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*.\nLIVE_DEBCONF_PRESEED=filesystem|medium|URL1|URL2|...|URLn: Variabel ini sesuai dengan parameter **live-config.debconf-preseed**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn*.\nLIVE_HOSTNAME=HOSTNAME: Variabel ini sesuai dengan parameter **live-config.hostname**=*HOSTNAME* . Nilai default adalah minios.\nLIVE_NETWORK_METHOD=dhcp|static|off: Pilih kebijakan jaringan kabel. dhcp dan nilai yang tidak diatur tidak akan melakukan apa-apa dan tidak menghapus profil statis MiniOS yang sudah dibuat sebelumnya.\nLIVE_NETWORK_INTERFACE=INTERFACE: Pilih antarmuka kabel untuk static atau off kebijakan.\nLIVE_NETWORK_ADDRESS=IPV4: Atur alamat IPv4 statis.\nLIVE_NETWORK_PREFIX=PREFIX: Atur panjang prefix statis; default ke 24.\nLIVE_NETWORK_GATEWAY=IPV4: Atur gateway statis opsional.\nLIVE_NETWORK_DNS=ADDRESS1,ADDRESS2: Atur server DNS opsional yang dipisahkan dengan koma.\nLIVE_NETWORK_BACKEND=auto|nm|ifupdown: Pilih backend yang digunakan.\nKomponen jaringan mencatat /var/lib/live/config/network setelah berhasil menulis kebijakan. Hapus stamp tersebut untuk menerapkan perubahan kebijakan pada sistem yang persisten. Untuk menonaktifkan profil statis sebelumnya, gunakan network-method=off atau hapus profil dan stamp yang dikelola MiniOS secara manual.\nLIVE_USERNAME=USERNAME: Variabel ini sesuai dengan parameter **live-config.username**=*USERNAME* . Nilai default adalah live.\nLIVE_USER_DEFAULT_GROUPS=GROUP1,GROUP2,...GROUPn: Variabel ini sesuai dengan parameter **live-config.user-default-groups**=\"*GROUP1*,*GROUP2*...*GROUPn*\" .\nLIVE_USER_FULLNAME=\"USER FULLNAME\": Variabel ini sesuai dengan parameter **live-config.user-fullname**=\"*USER FULLNAME*\" .\nLIVE_ROOT_PASSWORD=PASSWORD: Variabel ini sesuai dengan parameter **live-config.root-password**=*PASSWORD* . Password root akan ditetapkan dalam bentuk teks biasa.\nLIVE_ROOT_PASSWORD_CRYPTED=PASSWORD: Variabel ini sesuai dengan parameter **live-config.root-password-crypted**=*PASSWORD* . Password root akan ditetapkan dalam bentuk terenkripsi.\nLIVE_USER_PASSWORD=PASSWORD: Variabel ini sesuai dengan parameter **live-config.user-password**=*PASSWORD* dan menentukan kata sandi pengguna dalam bentuk teks biasa.\nLIVE_USER_PASSWORD_CRYPTED=PASSWORD: Variabel ini sesuai dengan parameter **live-config.user-password-crypted**=*PASSWORD* dan menentukan kata sandi pengguna dalam bentuk terenkripsi.\nLIVE_CONFIG_NOROOT=true|false: Variabel ini sesuai dengan parameter **live-config.noroot** dan menonaktifkan pengaturan hak istimewa root, sudo, dan PolicyKit jika diatur ke true.\nLIVE_SUDO_MODE=passwordless|password|disabled: Variabel ini sesuai dengan parameter **live-config.sudo-mode**=... dan jika tidak diatur, MiniOS akan mempertahankan perilaku sudo tanpa kata sandi seperti sebelumnya.\nLIVE_POLKIT_MODE=passwordless|password|disabled: Variabel ini sesuai dengan parameter **live-config.polkit-mode**=... .password dan disabled akan menghapus aturan passwordless MiniOS dan mengembalikan autentikasi PolicyKit distribusi normal.\nLIVE_SSH_PERMIT_ROOT_LOGIN=true|false: Variabel ini sesuai dengan parameter **live-config.ssh-permit-root-login**=... .\nLIVE_SSH_PASSWORD_AUTHENTICATION=true|false: Variabel ini sesuai dengan parameter **live-config.ssh-password-authentication**=... .\nLIVE_XRDP_MODE=relaxed|hardened|disabled: Variabel ini sesuai dengan parameter **live-config.xrdp-mode**=... .\nLIVE_X11_MODE=relaxed|hardened: Variabel ini sesuai dengan parameter **live-config.x11-mode**=... .\nLIVE_ISSUE_PASSWORD_HINTS=true|false: Variabel ini sesuai dengan parameter **live-config.issue-password-hints**=... .\nLIVE_LOCKSCREEN_MODE=relaxed|hardened: Variabel ini sesuai dengan parameter **live-config.lockscreen-mode**=... .\nLIVE_LOCALES=LOCALE1,LOCALE2,...LOCALEn: Variabel ini sesuai dengan parameter **live-config.locales**=*LOCALE1*,*LOCALE2*...*LOCALEn* .\nLIVE_TIMEZONE=TIMEZONE: Variabel ini sesuai dengan parameter **live-config.timezone**=*TIMEZONE* .\nLIVE_KEYBOARD_MODEL=KEYBOARD_MODEL: Variabel ini sesuai dengan parameter **live-config.keyboard-model**=*KEYBOARD_MODEL*.\nLIVE_KEYBOARD_LAYOUTS=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Variabel ini sesuai dengan parameter **live-config.keyboard-layouts**=*KEYBOARD_LAYOUT1*,*KEYBOARD_LAYOUT2*...*KEYBOARD_LAYOUTn*.\nLIVE_KEYBOARD_VARIANTS=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Variabel ini sesuai dengan parameter **live-config.keyboard-variants**=*KEYBOARD_VARIANT1*,*KEYBOARD_VARIANT2*...*KEYBOARD_VARIANTn*.\nLIVE_KEYBOARD_OPTIONS=KEYBOARD_OPTIONS: Variabel ini sesuai dengan parameter **live-config.keyboard-options**=*KEYBOARD_OPTIONS*.\nLIVE_SYSV_RC=SERVICE1,SERVICE2,...SERVICEn: Variabel ini sesuai dengan parameter **live-config.sysv-rc**=*SERVICE1*,*SERVICE2*...*SERVICEn*.\nLIVE_UTC=yes|no: Variabel ini sesuai dengan parameter **live-config.utc**=**yes**|no.\nLIVE_X_SESSION_MANAGER=X_SESSION_MANAGER: Variabel ini sesuai dengan parameter **live-config.xorg-xsession-manager**=*X_SESSION_MANAGER*.\nLIVE_XORG_DRIVER=XORG_DRIVER: Variabel ini sesuai dengan parameter **live-config.xorg-driver**=*XORG_DRIVER*.\nLIVE_XORG_RESOLUTION=XORG_RESOLUTION: Variabel ini sesuai dengan parameter **live-config.xorg-resolution**=*XORG_RESOLUTION*.\nLIVE_WLAN_DRIVER=WLAN_DRIVER: Variabel ini sesuai dengan parameter **live-config.wlan-driver**=*WLAN_DRIVER*.\nLIVE_HOOKS=filesystem|medium|URL1|URL2|...|URLn: Variabel ini sesuai dengan parameter **live-config.hooks**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn*.\nLIVE_LINK_USER_DIRS=true|false: Mengaktifkan atau menonaktifkan tautan dari direktori data standar pengguna ke drive MiniOS yang dapat ditulis. Parameter boot yang sesuai adalah parameter live-config.link-user-dirs saja. Mode tautan tidak dapat digabungkan dengan mode bind atau mode toram lain.\nLIVE_BIND_USER_DIRS=true|false: Mengaktifkan atau menonaktifkan bind mount dari direktori data standar pengguna ke drive MiniOS yang dapat ditulis. Parameter boot yang sesuai adalah parameter live-config.bind-user-dirs saja. Mode bind tidak dapat digabungkan dengan mode tautan atau mode toram lain.\nLIVE_USER_DIRS_PATH=PATH: Variabel ini sesuai dengan parameter **live-config.user-dirs-path**=*PATH* . Variabel ini menentukan path yang aman di dalam drive FAT32, exFAT, atau NTFS MiniOS. Nilai default-nya adalah /minios/userdata; segmen titik dan direktori-induk tidak diperbolehkan.\nPenyiapan media pengguna tidak pernah menggabungkan dua direktori yang tidak kosong secara otomatis. Direktori lokal yang tidak kosong hanya akan dipindahkan jika tujuan medianya kosong. Jika fitur ini dinonaktifkan, data media yang dikelola akan disalin kembali sebelum tautan dihapus. Aktivasi dan penyalinan ulang media pengguna akan diblokir selama sesi persistensi aktif dienkripsi dengan LUKS, sehingga data sesi tidak dapat dipindahkan ke media MiniOS yang tidak terenkripsi. Keputusan ini menggunakan status enkripsi aktif yang sebenarnya: perchencrypt=luks hanya meminta enkripsi saat membuat sesi baru dan tidak berlaku untuk sesi yang sudah ada. Jika validasi atau penyalinan gagal, direktori pengguna yang ada tetap dipertahankan dan alasan kegagalan dicatat di /var/lib/live/config/user-media.status.\nLIVE_MODULE_MODE=simple|merged: Variabel ini menyimpan status yang ditentukan oleh parameter live-config.module-mode (atau module-mode). Jika diatur ke merged, sistem live akan menerapkan pembaruan (melalui minios-update-users, minios-update-cache, dan minios-update-dpkg) untuk menggabungkan konfigurasi kustom dengan lingkungan dasar.\nLIVE_LOG_STORAGE=persistent|volatile, LIVE_APT_CACHE=persistent|volatile, dan LIVE_BROWSER_CACHE=persistent|volatile: Kebijakan boot-time MiniOS yang independen. Kebijakan ini juga berfungsi pada config.conf.d dan LIVE_CONFIG_CMDLINE. Kebijakan ini tidak mengaktifkan persistensi secara otomatis. Lihat Berkas konfigurasi.\nLIVE_CONFIG_DEBUG=true|false: Variabel ini sesuai dengan parameter **live-config.debug** . Perintah pembantu mode merged tetap menyimpan error normal, namun hanya membuat jejak perintah rinci dan salinan debug jika debug diaktifkan.\nKUSTOMISASI\nlive-config dapat dengan mudah dikustomisasi untuk proyek turunan atau penggunaan lokal.\nMenambahkan komponen konfigurasi baru\nProyek turunan dapat menempatkan komponennya di /usr/lib/live/config dan tidak perlu melakukan apa pun lagi, komponen tersebut akan dijalankan secara otomatis saat boot.\nKomponen sebaiknya ditempatkan dalam paket debian tersendiri. Contoh paket yang berisi contoh komponen dapat ditemukan di /usr/share/doc/live-config/examples.\nMenghapus komponen konfigurasi yang ada\nSaat ini belum memungkinkan untuk menghapus komponen secara langsung dengan cara yang aman tanpa harus mengirimkan paket live-config yang telah dimodifikasi secara lokal atau menggunakan dpkg-divert. Namun, hal yang sama dapat dicapai dengan menonaktifkan komponen terkait melalui mekanisme live-config.nocomponents, lihat di atas. Untuk menghindari harus selalu menentukan komponen yang dinonaktifkan melalui parameter boot, sebaiknya gunakan file konfigurasi, lihat di atas.\nFile konfigurasi untuk sistem live itu sendiri sebaiknya ditempatkan dalam paket debian tersendiri. Contoh paket yang berisi contoh konfigurasi dapat ditemukan di /usr/share/doc/live-config/examples.\nBERKAS\nminios/config.conf pada media data MiniOS yang dipilih (salinan sumber)\nminios/config.conf.d/*.conf pada media data MiniOS yang dipilih (fragmen sumber)\n/etc/live/config.conf\n/etc/live/config.conf.d/*.conf\n/usr/lib/live/init-config.sh\n/usr/lib/live/config.sh\n/usr/lib/live/config/\n/usr/share/live/config/user-default-groups.d/*.groups\n/usr/share/minios/capabilities/minios-live-config.json\n/var/lib/live/config/\n/var/log/live/config.log\n/var/log/minios/minios-boot.log\nminios/log/YYYYMMDD_HHMMSS/ pada media data yang dapat ditulis yang dipilih saat ekspor log diaktifkan\n/usr/lib/live/config-hooks/* (filesystem hooks)\nminios/config-hooks/* pada media live yang terdeteksi (medium hooks)\n/usr/lib/live/config-preseed/* (filesystem preseeds)\nminios/config-preseed/* pada media live yang terdeteksi (medium preseeds)\nLIHAT JUGA\nlive-boot(7)\nlive-build(7)\nlive-tools(7)\nHOMEPAGE\nInformasi lebih lanjut tentang minios-live-config dapat ditemukan di repositori GitHub. Informasi umum MiniOS tersedia di minios.dev.\nBUG\nBug dapat dilaporkan melalui issue tracker minios-live-config.\nPENULIS\nlive-config awalnya ditulis oleh Daniel Baumann (mail@daniel-baumann.ch). Sejak 2016, pengembangan dilanjutkan oleh tim Debian Live. Sejak 2025, pengembangan versi minios-live-config yang dimodifikasi dilanjutkan oleh tim MiniOS Live.",
+  "plain_text": "live-config\nlive-config - Komponen Konfigurasi Sistem\nlive-config berisi komponen yang mengonfigurasi sistem live selama proses boot (late userspace).\nKebijakan cache dan log persistent-session ditentukan sebelumnya oleh minios-boot, setelah live root dan konfigurasinya disiapkan namun sebelum layanan utama dijalankan. Komponen browser-cache live-config menerapkan mount per pengguna setelah pembuatan user. Kebijakan ini membutuhkan session yang tahan lama dan sehat serta initrd terbaru yang mengumumkan perch session dan initrd terkini yang mengiklankan perch-storage-v1; lihat Performa untuk efek dan batasannya.\nNetwork boot pada initramfs (ip=, PXE, from=http://…) adalah layer LiveKit terpisah dan tidak dikelola oleh live-config. Lihat Network boot.\nlive-config dapat dikonfigurasi melalui parameter boot atau file konfigurasi runtime yang disiapkan oleh initramfs. Kernel command line yang sebenarnya akan ditambahkan setelah nilai dari file, sehingga parameter boot yang lebih akhir akan diutamakan. Komponen yang mencatat status di bawah LIVE_CONFIG_CMDLINE biasanya hanya berjalan sekali; komponen sinkronisasi dan stateless dapat berjalan setiap kali dipanggil./var/lib/live/config\nJika live-build(7) digunakan untuk membangun sistem live, parameter live-config yang digunakan secara default dapat diatur melalui opsi --bootappend-live, lihat lb_config(1) halaman manual.\nParameter Boot (komponen)\nlive-config hanya akan diaktifkan jika boot=live digunakan sebagai parameter boot. Secara default, semua komponen dijalankan. Parameter live-config.components dapat membatasi komponen mana saja yang dijalankan, dan live-config.nocomponents dapat mengecualikan komponen tertentu. Jika kedua parameter digunakan, atau salah satunya disebutkan beberapa kali, kemunculan terakhir yang akan diutamakan.\nlive-config.components | components: Semua komponen dijalankan. Ini adalah pengaturan default pada live image.\nlive-config.components=COMPONENT1,COMPONENT2,...COMPONENTn | components=COMPONENT1,COMPONENT2,...COMPONENTn: Hanya komponen yang disebutkan yang dijalankan. Komponen akan dieksekusi sesuai urutan pada nama file mereka di bawah /usr/lib/live/config, terlepas dari urutan pada daftar ini.\nlive-config.nocomponents | nocomponents: Tidak ada komponen yang dijalankan.\nlive-config.nocomponents=COMPONENT1,COMPONENT2,...COMPONENTn | nocomponents=COMPONENT1,COMPONENT2,...COMPONENTn: Semua komponen dijalankan, kecuali yang disebutkan.\nParameter Boot (opsi)\nBeberapa komponen individual dapat mengubah perilakunya berdasarkan parameter boot.\nlive-config.debconf-preseed=filesystem|medium|URL1|URL2|...|URLn | debconf-preseed=medium|filesystem|URL1|URL2|...|URLn: Mengambil dan menerapkan satu atau beberapa file preseed debconf. URL ditangani oleh wget dan dapat menggunakan HTTP, FTP, atau file://. Kata kunci filesystem mengekspansi file di /usr/lib/live/config-preseed/; medium mengekspansi file di minios/config-preseed/ pada media live yang terdeteksi. File lokal eksplisit dapat menggunakan path seperti file:///run/initramfs/memory/data/minios/config-preseed/FILE atau file:///PATH di root live. Entri yang dipisahkan dengan tanda pipa akan diproses sesuai urutan yang ditentukan; file yang diekspansi dengan kata kunci menggunakan urutan glob shell.\nlive-config.hostname=HOSTNAME | hostname=HOSTNAME: Memungkinkan Anda mengatur hostname sistem. Nilai default adalah minios.\nlive-config.network-method=dhcp|static|off | network-method=dhcp|static|off: Memilih kebijakan jaringan kabel. Jika tidak diatur dan dhcp membiarkan pengaturan default image tidak berubah. static menulis konfigurasi untuk backend yang dipilih; off menonaktifkan konfigurasi IPv4 otomatis untuk interface yang dipilih.\nlive-config.network-interface=INTERFACE | network-interface=INTERFACE: Memilih interface kabel. Jika tidak diisi untuk static atau off, maka satu-satunya interface kabel non-loopback akan dipilih secara otomatis; jika ada nol atau lebih dari satu kandidat, nilai eksplisit diperlukan.\nlive-config.network-address=IPV4 | network-address=IPV4: Mengatur alamat IPv4 statis.\nlive-config.network-prefix=PREFIX | network-prefix=PREFIX: Mengatur panjang prefix IPv4 dari 0 hingga 32. Default statis adalah 24.\nlive-config.network-gateway=IPV4 | network-gateway=IPV4: Mengatur gateway IPv4 opsional.\nlive-config.network-dns=ADDRESS1,ADDRESS2 | network-dns=ADDRESS1,ADDRESS2: Mengatur alamat server DNS opsional yang dipisahkan dengan koma.\nlive-config.network-backend=auto|nm|ifupdown | network-backend=auto|nm|ifupdown: Memilih backend jaringan. auto lebih memilih NetworkManager dan akan menggunakan ifupdown jika gagal. Jika dipaksa, ifupdown menandai interface sebagai tidak dikelola oleh NetworkManager saat kedua stack terpasang.\nlive-config.username=USERNAME | username=USERNAME: Memungkinkan Anda mengatur username yang akan dibuat untuk autologin. Default-nya adalah live.\nlive-config.user-default-groups=GROUP1,GROUP2,...GROUPn | user-default-groups=GROUP1,GROUP2,...GROUPn: Mengatur grup tambahan untuk pengguna yang dibuat untuk autologin. Nama grup dapat dipisahkan dengan koma atau spasi. Default MiniOS adalah dialout cdrom floppy audio video plugdev users fuse plugdev netdev powerdev scanner bluetooth weston-launch kvm libvirt libvirt-qemu vboxusers lpadmin dip sambashare docker wireshark.\nlive-config.user-fullname=\"USER FULLNAME\" | user-fullname=\"USER FULLNAME\": Memungkinkan Anda mengatur nama lengkap pengguna yang dibuat untuk autologin. Default MiniOS adalah MiniOS Live User.\nlive-config.root-password=PASSWORD | root-password=PASSWORD: Memungkinkan pengaturan password root dalam bentuk teks biasa.\nlive-config.root-password-crypted=PASSWORD | root-password-crypted=PASSWORD: Memungkinkan pengaturan password root dalam bentuk terenkripsi.\nlive-config.user-password=PASSWORD | user-password=PASSWORD: Memungkinkan pengaturan password pengguna dalam bentuk teks biasa.\nlive-config.user-password-crypted=PASSWORD | user-password-crypted=PASSWORD: Memungkinkan pengaturan password pengguna dalam bentuk terenkripsi.\nlive-config.locales=LOCALE1,LOCALE2,...LOCALEn | locales=LOCALE1,LOCALE2,...LOCALEn: Memungkinkan Anda mengatur locale sistem, misalnya de_CH.UTF-8. Default-nya adalah en_US.UTF-8. Jika locale yang dipilih belum tersedia di sistem, akan dibuat secara otomatis saat itu juga.\nlive-config.timezone=TIMEZONE | timezone=TIMEZONE: Memungkinkan Anda mengatur zona waktu sistem, misalnya Europe/Zurich. Default-nya adalah UTC.\nlive-config.keyboard-model=KEYBOARD_MODEL | keyboard-model=KEYBOARD_MODEL: Memungkinkan Anda mengubah model keyboard. Tidak ada nilai default yang diatur.\nlive-config.keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn | keyboard-layouts=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Memungkinkan Anda mengubah layout keyboard. Jika lebih dari satu ditentukan, alat pada desktop environment akan memungkinkan Anda beralih di bawah X11. Tidak ada nilai default yang diatur.\nlive-config.keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn | keyboard-variants=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Memungkinkan Anda mengubah varian keyboard. Jika lebih dari satu ditentukan, jumlah nilainya harus sama dengan jumlah layout keyboard karena akan dipasangkan satu per satu sesuai urutan. Nilai kosong diperbolehkan. Alat pada desktop environment akan memungkinkan Anda berpindah antar pasangan layout dan varian di bawah X11. Tidak ada nilai default yang diatur.\nlive-config.keyboard-options=KEYBOARD_OPTIONS | keyboard-options=KEYBOARD_OPTIONS: Memungkinkan Anda mengubah opsi keyboard. Tidak ada nilai default yang diatur.\nlive-config.sysv-rc=SERVICE1,SERVICE2,...SERVICEn | sysv-rc=SERVICE1,SERVICE2,...SERVICEn: Memungkinkan Anda menonaktifkan layanan sysv melalui update-rc.d.\nlive-config.utc=yes|no | utc=yes|no: Memungkinkan Anda mengubah apakah sistem mengasumsikan jam hardware diatur ke UTC atau tidak. Default-nya adalah yes.\nlive-config.xorg-xsession-manager=X_SESSION_MANAGER | x-session-manager=X_SESSION_MANAGER: Memungkinkan Anda mengatur x-session-manager melalui update-alternatives.\nlive-config.xorg-driver=XORG_DRIVER | xorg-driver=XORG_DRIVER: Memungkinkan Anda mengatur driver xorg daripada mendeteksi secara otomatis. Jika PCI ID ditentukan di /usr/share/live/config/xserver-xorg/*DRIVER*.ids dalam sistem live, DRIVER akan dipaksakan untuk perangkat tersebut. Jika ditemukan parameter boot dan override, parameter boot akan diutamakan.\nlive-config.xorg-resolution=XORG_RESOLUTION | xorg-resolution=XORG_RESOLUTION: Memungkinkan Anda mengatur resolusi xorg daripada mendeteksi otomatis, misal 1024x768.\nlive-config.wlan-driver=WLAN_DRIVER | wlan-driver=WLAN_DRIVER: Memungkinkan Anda mengatur driver WLAN daripada mendeteksi otomatis. Jika PCI ID ditentukan di /usr/share/live/config/broadcom-sta/*DRIVER*.ids dalam sistem live, DRIVER akan dipaksakan untuk perangkat tersebut. Jika ditemukan parameter boot dan override, parameter boot akan diutamakan.\nlive-config.module-mode=simple|merged | module-mode=simple|merged: Memungkinkan Anda menentukan mode modul untuk konfigurasi live. Jika diatur ke merged, sistem akan memperbarui akun pengguna, membangun ulang cache, dan menyegarkan pengaturan paket sehingga perubahan konfigurasi terintegrasi secara dinamis ke sistem yang sedang berjalan.\nlive-config.link-user-dirs | link-user-dirs: Menautkan direktori pengguna yang dikelola ke path yang dikonfigurasi pada media data MiniOS. Opsi ini tidak dapat digunakan bersamaan dengan mode bind dan tidak tersedia jika toram mode atau saat sesi persistensi aktif dienkripsi dengan LUKS.\nlive-config.bind-user-dirs | bind-user-dirs: Melakukan bind-mount direktori pengguna yang dikelola dari path yang dikonfigurasi pada media data MiniOS. Opsi ini tidak dapat digunakan bersamaan dengan mode link dan memiliki pembatasan toram dan enkripsi sesi aktif yang sama.\nlive-config.user-dirs-path=PATH | user-dirs-path=PATH: Mengatur path relatif media yang digunakan oleh link-user-dirs atau bind-user-dirs. Default-nya adalah /minios/userdata.\nlive-config.hooks=filesystem|medium|URL1|URL2|...|URLn | hooks=medium|filesystem|URL1|URL2|...|URLn: Mengambil dan mengeksekusi file apa pun dari file sementara di sistem live yang sedang berjalan. URL ditangani oleh wget dan dapat menggunakan HTTP, FTP, atau file://; interpreter yang dibutuhkan dan dependensi lainnya harus sudah terpasang. Kata kunci filesystem mengekspansi file di /usr/lib/live/config-hooks/; medium mengekspansi file di minios/config-hooks/ pada media live yang terdeteksi (dengan fallback path ISO pada komponen hook). File lokal eksplisit dapat menggunakan file:///run/initramfs/memory/data/minios/config-hooks/FILE atau file:///PATH di root live. Entri yang dipisahkan pipa akan dieksekusi sesuai urutan yang ditentukan; file yang diekspansi dengan kata kunci menggunakan urutan glob shell. Contoh terpasang di bawah /usr/share/doc/live-config/examples/hooks/.\nPeringatan keamanan: live-config dijalankan sebagai root. Hook akan dibuat dapat dieksekusi dan dijalankan sebagai root, dan preseed akan mengubah database debconf sistem dengan hak akses root. HTTP dan FTP biasa tidak melakukan autentikasi konten yang diunduh dan tidak memberikan perlindungan integritas. Sebaiknya gunakan file lokal yang telah ditinjau atau transportasi yang terautentikasi dan tepercaya dengan verifikasi integritas independen; jangan gunakan hook atau preseed jarak jauh dari jaringan yang tidak tepercaya.\nMiniOS opsi penyimpanan awal\nOpsi ini dibaca oleh minios-boot sebelum layanan utama berjalan. Opsi ini membutuhkan penyimpanan yang tahan lama dan sehat perch sesi dan tidak mengaktifkan sesi secara otomatis.\nlive-config.log-storage=persistent|volatile | log-storage=persistent|volatile: volatile menempatkan jurnal systemd dan file log biasa /var/log pada RAM yang terbatas; diagnostik boot tetap berada di penyimpanan tahan lama. Default: persistent.\nlive-config.apt-cache=persistent|volatile | apt-cache=persistent|volatile: volatile menempatkan arsip APT yang diunduh ke tmpfs terbatas jika kondisi RAM dan swap memungkinkan. Basis data paket dan daftar repositori tetap persisten. Default: persistent.\nlive-config.browser-cache=persistent|volatile | browser-cache=persistent|volatile: volatile meminta cache browser-native di RAM.browser-cache Komponen ini me-mount direktori cache yang dipilih pengguna live setelah akun dibuat. Default: persistent.\nParameter Boot (shortcut)\nUntuk beberapa kasus penggunaan umum yang biasanya membutuhkan kombinasi beberapa parameter individual, live-config menyediakan shortcut. Ini memungkinkan Anda tetap memiliki kontrol penuh atas semua opsi, namun tetap sederhana.\nlive-config.noroot | noroot: Menonaktifkan pengaturan password root serta hak istimewa sudo dan PolicyKit MiniOS.\nlive-config.sudo-mode=passwordless|password|disabled | sudo-mode=passwordless|password|disabled: Mengatur konfigurasi sudo untuk pengguna live. Default-nya, dan perilaku MiniOS sebelumnya jika tidak diatur, adalah passwordless. Mode password tetap memberikan akses sudo tetapi membutuhkan password pengguna live. Mode disabled menghapus hak sudo MiniOS dan memastikan pengguna live tidak masuk ke grup sudo saat dibuat. Shortcut lama noroot akan menimpa ini dan menonaktifkan pengaturan hak root secara lebih luas.\nlive-config.polkit-mode=passwordless|password|disabled | polkit-mode=passwordless|password|disabled: Mengatur aturan PolicyKit MiniOS. Default-nya, dan perilaku MiniOS sebelumnya jika tidak diatur, adalah passwordless. Mode password dan disabled menghapus aturan tersebut, sehingga autentikasi PolicyKit distribusi normal berlaku. disabled bukan kebijakan deny-all secara total; gunakan noroot jika pengguna live tidak boleh mendapatkan hak administratif.\nlive-config.ssh-permit-root-login=true|false | ssh-permit-root-login=true|false: Menulis kebijakan PermitRootLogin OpenSSH jika diatur secara eksplisit dan openssh-server terpasang.\nlive-config.ssh-password-authentication=true|false | ssh-password-authentication=true|false: Menulis kebijakan PasswordAuthentication OpenSSH jika diatur secara eksplisit dan openssh-server terpasang.\nlive-config.xrdp-mode=relaxed|hardened|disabled | xrdp-mode=relaxed|hardened|disabled: Mengatur postur XRDP saat xrdp terpasang. relaxed mempertahankan default MiniOS sebelumnya. hardened mengikat XRDP ke localhost, mengembalikan pengaturan keamanan tinggi/negosiasi, dan menonaktifkan login root XRDP. disabled menonaktifkan dan menghentikan XRDP melalui minios-svc jika tersedia.\nlive-config.x11-mode=relaxed|hardened | x11-mode=relaxed|hardened: Mengatur postur X11 MiniOS. relaxed mempertahankan kompatibilitas historis. hardened menghapus opsi X server permisif -ac dan memperketat Xwrapper.config jika ada.\nlive-config.issue-password-hints=true|false | issue-password-hints=true|false: Mengatur apakah /etc/issue akan menampilkan hint password root/live MiniOS default.\nlive-config.lockscreen-mode=relaxed|hardened | lockscreen-mode=relaxed|hardened: Mengatur apakah live-config akan melonggarkan penguncian layar. relaxed mempertahankan kenyamanan sesi live secara historis. hardened menghindari menonaktifkan penguncian GNOME dan mengaktifkan penguncian xscreensaver jika file tersebut ada.\nlive-config.noautologin | noautologin: Mencegah live-config mengatur autologin konsol dan grafis. Tidak menghapus autologin yang sudah dikonfigurasi pada sesi persisten.\nlive-config.nottyautologin | nottyautologin: Mencegah live-config mengatur autologin konsol, tanpa memengaruhi pengaturan grafis. Konfigurasi persisten yang sudah ada tidak dihapus.\nlive-config.nox11autologin | nox11autologin: Mencegah live-config mengatur autologin display-manager, tanpa memengaruhi pengaturan TTY. Konfigurasi persisten yang sudah ada tidak dihapus.\nParameter Boot (opsi khusus)\nUntuk kebutuhan khusus, tersedia beberapa parameter boot khusus.\nlive-config.debug | debug: Mengaktifkan output debug pada live-config.\nBerkas Konfigurasi\nlive-config dapat dikonfigurasi (namun tidak diaktifkan) melalui berkas konfigurasi. Setiap parameter boot yang didukung dapat dimasukkan ke dalam LIVE_CONFIG_CMDLINE, dan sebagian besar opsi juga dapat diatur melalui variabel individual. boot=live Parameter masih diperlukan untuk mengaktifkan live-config.\nCatatan: Jika berkas konfigurasi digunakan, sebaiknya (lebih disarankan) semua parameter boot dimasukkan ke dalam variabel LIVE_CONFIG_CMDLINE, atau bisa juga diatur melalui variabel individual. Jika menggunakan variabel individual, pengguna harus memastikan semua variabel yang diperlukan sudah diatur agar konfigurasi valid.\nlive-config sendiri mengambil sumber dari /etc/live/config.conf lalu /etc/live/config.conf.d/*.conf sesuai urutan glob shell. Fragmen yang lebih akhir dapat menggantikan nilai dari berkas utama atau fragmen sebelumnya. Tidak mengambil sumber lapisan konfigurasi media kedua secara terpisah.\nPada media MiniOS, berkas sumbernya adalah minios/config.conf dan minios/config.conf.d/*.conf. Sebelum live-config berjalan, initramfs MiniOS akan menyinkronkan berkas-berkas ini dengan berkas runtime /etc/live/ berdasarkan waktu modifikasi. Berkas sumber yang lebih baru akan menggantikan berkas runtime; berkas runtime yang lebih baru hanya akan disalin kembali jika direktori data MiniOS yang dipilih dapat ditulis. Jika stempel waktunya sama, tidak ada penyalinan; berkas yang hilang akan dilengkapi, dan berkas tidak dihapus. Ini adalah sinkronisasi saat boot, bukan pemantauan terus-menerus. Lihat Berkas konfigurasi untuk aturan lengkap sinkronisasi dan prioritas baris perintah.\nSebagai cadangan untuk implementasi initramfs yang tidak menyiapkan berkas runtime, wrapper startup systemd dan SysV akan menyalin minios/config.conf dari media yang terdeteksi hanya jika /etc/live/config.conf tidak ada. Fallback ini tidak menyalin fragmen config.conf.d. Initramfs LiveKit MiniOS standar saat ini melakukan sinkronisasi seperti dijelaskan sebelumnya.\nBerkas fragmen harus sesuai dengan *.conf. Nama seperti vendor.conf atau project.conf direkomendasikan; pilih nama secara berurutan karena fragmen yang lebih akhir akan menimpa yang lebih awal.\nIsi berkas konfigurasi terdiri dari satu atau beberapa variabel berikut.\nLIVE_CONFIG_CMDLINE=PARAMETER1 PARAMETER2...PARAMETERn: Variabel ini sesuai dengan baris perintah bootloader.\nLIVE_CONFIG_COMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Variabel ini sesuai dengan parameter **live-config.components**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*.\nLIVE_CONFIG_NOCOMPONENTS=COMPONENT1,COMPONENT2,...COMPONENTn: Variabel ini sesuai dengan parameter **live-config.nocomponents**=*COMPONENT1*,*COMPONENT2*,...*COMPONENTn*.\nLIVE_DEBCONF_PRESEED=filesystem|medium|URL1|URL2|...|URLn: Variabel ini sesuai dengan parameter **live-config.debconf-preseed**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn*.\nLIVE_HOSTNAME=HOSTNAME: Variabel ini sesuai dengan parameter **live-config.hostname**=*HOSTNAME* Default-nya adalah minios.\nLIVE_NETWORK_METHOD=dhcp|static|off: Memilih kebijakan jaringan kabel. dhcp dan nilai yang tidak diatur tidak melakukan apa-apa dan tidak menghapus profil statis MiniOS yang sudah dibuat sebelumnya.\nLIVE_NETWORK_INTERFACE=INTERFACE: Memilih antarmuka kabel untuk kebijakan static atau off .\nLIVE_NETWORK_ADDRESS=IPV4: Mengatur alamat IPv4 statis.\nLIVE_NETWORK_PREFIX=PREFIX: Mengatur panjang prefix statis; default-nya 24.\nLIVE_NETWORK_GATEWAY=IPV4: Mengatur gateway statis opsional.\nLIVE_NETWORK_DNS=ADDRESS1,ADDRESS2: Mengatur server DNS opsional, dipisahkan koma.\nLIVE_NETWORK_BACKEND=auto|nm|ifupdown: Memilih backend yang digunakan.\nKomponen jaringan akan mencatat /var/lib/live/config/network setelah kebijakan berhasil ditulis. Hapus stempel tersebut untuk menerapkan perubahan kebijakan pada sistem persisten. Untuk menghapus profil statis sebelumnya, gunakan network-method=off atau hapus profil dan stempel yang dikelola MiniOS secara manual.\nLIVE_USERNAME=USERNAME: Variabel ini sesuai dengan parameter **live-config.username**=*USERNAME* Default-nya adalah live.\nLIVE_USER_DEFAULT_GROUPS=GROUP1,GROUP2,...GROUPn: Variabel ini sesuai dengan parameter **live-config.user-default-groups**=\"*GROUP1*,*GROUP2*...*GROUPn*\".\nLIVE_USER_FULLNAME=\"USER FULLNAME\": Variabel ini sesuai dengan parameter **live-config.user-fullname**=\"*USER FULLNAME*\".\nLIVE_ROOT_PASSWORD=PASSWORD: Variabel ini sesuai dengan parameter **live-config.root-password**=*PASSWORD*. Digunakan untuk mengatur password root dalam bentuk teks biasa.\nLIVE_ROOT_PASSWORD_CRYPTED=PASSWORD: Variabel ini sesuai dengan parameter **live-config.root-password-crypted**=*PASSWORD*. Digunakan untuk mengatur password root dalam bentuk terenkripsi.\nLIVE_USER_PASSWORD=PASSWORD: Variabel ini sesuai dengan parameter **live-config.user-password**=*PASSWORD*. Digunakan untuk mengatur password pengguna dalam bentuk teks biasa.\nLIVE_USER_PASSWORD_CRYPTED=PASSWORD: Variabel ini sesuai dengan parameter **live-config.user-password-crypted**=*PASSWORD*. Digunakan untuk mengatur password pengguna dalam bentuk terenkripsi.\nLIVE_CONFIG_NOROOT=true|false: Variabel ini sesuai dengan parameter **live-config.noroot** dan akan menonaktifkan root, sudo, serta pengaturan hak istimewa PolicyKit jika diatur ke true.\nLIVE_SUDO_MODE=passwordless|password|disabled: Variabel ini sesuai dengan parameter **live-config.sudo-mode**=.... Jika tidak diatur, MiniOS akan mempertahankan perilaku sudo tanpa password seperti sebelumnya.\nLIVE_POLKIT_MODE=passwordless|password|disabled: Variabel ini sesuai dengan parameter **live-config.polkit-mode**=.... password dan disabled akan menghapus aturan passwordless MiniOS dan mengembalikan autentikasi PolicyKit distribusi seperti semula.\nLIVE_SSH_PERMIT_ROOT_LOGIN=true|false: Variabel ini sesuai dengan parameter **live-config.ssh-permit-root-login**=....\nLIVE_SSH_PASSWORD_AUTHENTICATION=true|false: Variabel ini sesuai dengan parameter **live-config.ssh-password-authentication**=....\nLIVE_XRDP_MODE=relaxed|hardened|disabled: Variabel ini sesuai dengan parameter **live-config.xrdp-mode**=....\nLIVE_X11_MODE=relaxed|hardened: Variabel ini sesuai dengan parameter **live-config.x11-mode**=....\nLIVE_ISSUE_PASSWORD_HINTS=true|false: Variabel ini sesuai dengan parameter **live-config.issue-password-hints**=....\nLIVE_LOCKSCREEN_MODE=relaxed|hardened: Variabel ini sesuai dengan parameter **live-config.lockscreen-mode**=....\nLIVE_LOCALES=LOCALE1,LOCALE2,...LOCALEn: Variabel ini sesuai dengan parameter **live-config.locales**=*LOCALE1*,*LOCALE2*...*LOCALEn*.\nLIVE_TIMEZONE=TIMEZONE: Variabel ini sesuai dengan parameter **live-config.timezone**=*TIMEZONE*.\nLIVE_KEYBOARD_MODEL=KEYBOARD_MODEL: Variabel ini sesuai dengan parameter **live-config.keyboard-model**=*KEYBOARD_MODEL*.\nLIVE_KEYBOARD_LAYOUTS=KEYBOARD_LAYOUT1,KEYBOARD_LAYOUT2,...KEYBOARD_LAYOUTn: Variabel ini sesuai dengan parameter **live-config.keyboard-layouts**=*KEYBOARD_LAYOUT1*,*KEYBOARD_LAYOUT2*...*KEYBOARD_LAYOUTn*.\nLIVE_KEYBOARD_VARIANTS=KEYBOARD_VARIANT1,KEYBOARD_VARIANT2,...KEYBOARD_VARIANTn: Variabel ini sesuai dengan parameter **live-config.keyboard-variants**=*KEYBOARD_VARIANT1*,*KEYBOARD_VARIANT2*...*KEYBOARD_VARIANTn*.\nLIVE_KEYBOARD_OPTIONS=KEYBOARD_OPTIONS: Variabel ini sesuai dengan parameter **live-config.keyboard-options**=*KEYBOARD_OPTIONS*.\nLIVE_SYSV_RC=SERVICE1,SERVICE2,...SERVICEn: Variabel ini sesuai dengan parameter **live-config.sysv-rc**=*SERVICE1*,*SERVICE2*...*SERVICEn*.\nLIVE_UTC=yes|no: Variabel ini sesuai dengan parameter **live-config.utc**=**yes**|no.\nLIVE_X_SESSION_MANAGER=X_SESSION_MANAGER: Variabel ini sesuai dengan parameter **live-config.xorg-xsession-manager**=*X_SESSION_MANAGER*.\nLIVE_XORG_DRIVER=XORG_DRIVER: Variabel ini sesuai dengan parameter **live-config.xorg-driver**=*XORG_DRIVER*.\nLIVE_XORG_RESOLUTION=XORG_RESOLUTION: Variabel ini sesuai dengan parameter **live-config.xorg-resolution**=*XORG_RESOLUTION*.\nLIVE_WLAN_DRIVER=WLAN_DRIVER: Variabel ini sesuai dengan parameter **live-config.wlan-driver**=*WLAN_DRIVER*.\nLIVE_HOOKS=filesystem|medium|URL1|URL2|...|URLn: Variabel ini sesuai dengan parameter **live-config.hooks**=filesystem|medium|*URL1*\\|*URL2*\\|...|*URLn*.\nLIVE_LINK_USER_DIRS=true|false: Mengaktifkan atau menonaktifkan tautan dari direktori data standar pengguna ke drive MiniOS yang dapat ditulis. Parameter boot yang sesuai adalah flag live-config.link-user-dirs . Mode tautan tidak dapat digabungkan dengan mode bind atau mode toram manapun.\nLIVE_BIND_USER_DIRS=true|false: Mengaktifkan atau menonaktifkan bind mount untuk direktori data standar pengguna dari drive MiniOS yang dapat ditulis. Parameter boot yang sesuai adalah flag live-config.bind-user-dirs . Mode bind tidak dapat digabungkan dengan mode tautan atau mode toram manapun.\nLIVE_USER_DIRS_PATH=PATH: Variabel ini sesuai dengan parameter **live-config.user-dirs-path**=*PATH*. Menentukan path yang aman di dalam drive MiniOS FAT32, exFAT, atau NTFS. Default-nya adalah /minios/userdata; segmen titik dan direktori induk akan ditolak.\nPengaturan media pengguna tidak pernah menggabungkan dua direktori yang tidak kosong secara otomatis. Direktori lokal yang tidak kosong hanya akan dipindahkan jika tujuan di media kosong. Jika fitur ini dinonaktifkan, data media yang dikelola akan disalin kembali sebelum tautan dihapus. Aktivasi media pengguna dan penyalinan balik akan diblokir jika sesi persistensi aktif dienkripsi LUKS, sehingga data sesi tidak dipindahkan ke media MiniOS yang tidak terenkripsi. Keputusan ini menggunakan status enkripsi aktif sebenarnya: perchencrypt=luks hanya meminta enkripsi saat membuat sesi baru dan tidak menggambarkan sesi yang sudah ada. Jika validasi atau penyalinan gagal, direktori pengguna yang ada tetap dipertahankan dan alasan kegagalan dicatat di /var/lib/live/config/user-media.status.\nLIVE_MODULE_MODE=simple|merged: Variabel ini menyimpan status yang ditentukan oleh parameter live-config.module-mode (atau module-mode). Jika diatur ke merged, sistem live akan menerapkan pembaruan (melalui minios-update-users, minios-update-cache, dan minios-update-dpkg) untuk menggabungkan konfigurasi kustom dengan lingkungan dasar.\nLIVE_CONFIG_DEBUG=true|false: Variabel ini sesuai dengan parameter **live-config.debug**.\nVariabel cache dan log MiniOS\nLIVE_LOG_STORAGE=persistent|volatile, LIVE_APT_CACHE=persistent|volatile, dan LIVE_BROWSER_CACHE=persistent|volatile: Kebijakan boot-time MiniOS yang berdiri sendiri. Ini juga berfungsi di config.conf.d dan LIVE_CONFIG_CMDLINE. Variabel ini tidak otomatis mengaktifkan persistensi. Lihat Berkas konfigurasi.\nKomponen browser-cache ini membaca kebijakan minios-boot yang tahan lama setelah live user aktif dan melakukan bind-mount direktori cache browser native standar ke filesystem RAM bersama yang terbatas. Kebijakan Firefox yang dibuat terpisah akan menonaktifkan disk cache tanpa memindahkan profil browser. Jika komponen ini tidak disertakan oleh components= atau nocomponents=, permintaan browser-cache awal saja tidak akan menyiapkan mount per pengguna.\nHelper mode gabungan tetap menyimpan error normal, tetapi hanya membuat jejak perintah dan salinan debug secara rinci saat LIVE_CONFIG_DEBUG=true.\nKUSTOMISASI\nlive-config dapat dengan mudah dikustomisasi untuk proyek turunan atau penggunaan lokal.\nMenambahkan komponen konfigurasi baru\nProyek turunan dapat menempatkan komponennya di /usr/lib/live/config dan tidak perlu melakukan apa pun lagi, komponen tersebut akan dijalankan secara otomatis saat boot.\nKomponen sebaiknya ditempatkan dalam paket debian tersendiri. Contoh paket yang berisi contoh komponen dapat ditemukan di /usr/share/doc/live-config/examples.\nMenghapus komponen konfigurasi yang ada\nSaat ini belum memungkinkan untuk menghapus komponen secara langsung dengan cara yang aman tanpa harus mengirimkan paket live-config yang telah dimodifikasi secara lokal atau menggunakan dpkg-divert. Namun, hal yang sama dapat dicapai dengan menonaktifkan komponen terkait melalui mekanisme live-config.nocomponents, lihat di atas. Untuk menghindari harus selalu menentukan komponen yang dinonaktifkan melalui parameter boot, sebaiknya gunakan file konfigurasi, lihat di atas.\nFile konfigurasi untuk sistem live itu sendiri sebaiknya ditempatkan dalam paket debian tersendiri. Contoh paket yang berisi contoh konfigurasi dapat ditemukan di /usr/share/doc/live-config/examples.\nKOMPONEN\nlive-config saat ini memiliki komponen berikut di /usr/lib/live/config.\nnss-systemd: menghapus atau mengembalikan modul NSS systemd di /etc/nsswitch.conf untuk mengatasi masalah systemd yang sudah diketahui.\ndebconf: memungkinkan penggunaan file preseed apa pun yang ditempatkan di media live atau server http/ftp.\nhostname: mengatur /etc/hostname dan /etc/hosts.\nissue-setup: menyiapkan file /etc/issue dengan banner sambutan dan informasi distribusi.\nlive-debconfig_passwd: mengatur password user dan root melalui live-debconfig.\nuser-setup: menambahkan akun user live.\nuser-groups: menambahkan user live ke grup tambahan yang dideklarasikan oleh modul yang terpasang. Grup yang sudah ada dan tercantum di /usr/share/live/config/user-default-groups.d/*.groups akan diterapkan setelah pembuatan user dan pada proses live-config berikutnya.\nroot-setup: mengatur atau memperbarui password root dan mengonfigurasi lingkungan user root.\nsudo: memberikan hak sudo kepada user live.\nuser-ssh-keys: menyinkronkan authorized_keys.<username> file khusus user antara media live dan direktori home user masing-masing. Mendukung beberapa user sekaligus (misal, authorized_keys.root, authorized_keys.live, authorized_keys.admin).\nuser-media: melakukan link atau bind-mount direktori user yang sudah divalidasi pada media data MiniOS yang writable, dengan migrasi aman dan copy-back saat dinonaktifkan.\nlocales: mengatur locales.\ntzdata: mengatur /etc/timezone.\nxorg-service: mengatur username di xorg.service dan menerapkan posture X11 jika didukung.\ngdm3: mengatur autologin di gdm3.\nsddm: mengatur autologin di sddm.\nkdm: mengatur autologin di kdm.\nlightdm: mengatur autologin di lightdm.\nlxdm: mengatur autologin di lxdm.\nnodm: mengatur autologin di nodm.\nslim: mengatur autologin di slim.\nxinit: mengatur autologin dengan xinit.\nkeyboard-configuration: mengatur konfigurasi keyboard.\nsysvinit: mengatur autologin konsol melalui /etc/inittab saat sysvinit terpasang. noautologin dan nottyautologin pintasan akan menonaktifkan pengaturan tersebut.\nsysv-rc: mengatur sysv-rc dengan menonaktifkan layanan yang terdaftar.\napport: menonaktifkan apport.\ngnome-panel-data: menonaktifkan tombol kunci layar.\ngnome-power-manager: menonaktifkan hibernasi.\ngnome-screensaver: mengatur penguncian layar GNOME sesuai dengan LIVE_LOCKSCREEN_MODE.\nkaboom: menonaktifkan wizard migrasi KDE (squeeze dan yang lebih baru).\nkde-services: menonaktifkan beberapa layanan KDE yang tidak diinginkan (squeeze dan yang lebih baru).\npolicykit: memberikan hak akses pengguna melalui PolicyKit.\nssl-cert: menghasilkan ulang sertifikat SSL snake-oil.\nxrdp: mengatur mode XRDP menjadi relaxed, hardened, atau dinonaktifkan saat XRDP terpasang.\nanacron: menonaktifkan anacron.\nutil-linux: menonaktifkan layanan hwclock util-linux.\nlogin: menonaktifkan lastlog.\nxserver-xorg: mengatur konfigurasi xserver-xorg.\nnetwork: mengatur kebijakan IPv4 kabel yang tahan lama melalui keyfile NetworkManager yang aman atau stanza ifupdown. Proses ini dijalankan sebelum layanan jaringan, memvalidasi semua nilai, dan hanya menandai setelah penulisan berhasil.\nopenssh-server: membuat ulang kunci host OpenSSH dan menulis kebijakan root-login atau autentikasi sandi yang diminta secara eksplisit.\nxfce4-panel: mengatur xfce4-panel ke pengaturan default.\nxscreensaver: mengatur penguncian xscreensaver sesuai dengan LIVE_LOCKSCREEN_MODE.\nbroadcom-sta: mengatur driver WLAN broadcom-sta.\nhyperv: mengatur konfigurasi X11 untuk meningkatkan kompatibilitas pada platform Microsoft Hyper-V.\nntfs3: mengelola aturan udev untuk dukungan NTFS3.\nconfig-module-mode: mengatur mode modul sistem dan memperbarui cache, pengaturan pengguna, serta dpkg.\nhooks: memungkinkan menjalankan perintah apa pun dari file yang ditempatkan di media live atau server http/ftp.\nBERKAS\nminios/config.conf pada media data MiniOS yang dipilih (salinan sumber)\nminios/config.conf.d/*.conf pada media data MiniOS yang dipilih (fragmen sumber)\n/etc/live/config.conf\n/etc/live/config.conf.d/*.conf\n/usr/lib/live/init-config.sh\n/usr/lib/live/config.sh\n/usr/lib/live/config/\n/usr/share/live/config/user-default-groups.d/*.groups\n/usr/share/minios/capabilities/minios-live-config.json\n/var/lib/live/config/\n/var/log/live/config.log\n/var/log/minios/minios-boot.log\nminios/log/YYYYMMDD_HHMMSS/ pada media data yang dapat ditulis yang dipilih saat ekspor log diaktifkan\n/usr/lib/live/config-hooks/* (filesystem hooks)\nminios/config-hooks/* pada media live yang terdeteksi (medium hooks)\n/usr/lib/live/config-preseed/* (filesystem preseeds)\nminios/config-preseed/* pada media live yang terdeteksi (medium preseeds)\nLIHAT JUGA\nlive-boot(7)\nlive-build(7)\nlive-tools(7)\nHOMEPAGE\nInformasi lebih lanjut tentang minios-live-config dapat ditemukan di repositori GitHub. Informasi umum MiniOS tersedia di minios.dev.\nBUG\nBug dapat dilaporkan melalui issue tracker minios-live-config.\nPENULIS\nlive-config awalnya ditulis oleh Daniel Baumann (mail@daniel-baumann.ch). Sejak 2016, pengembangan dilanjutkan oleh tim Debian Live. Sejak 2025, pengembangan versi minios-live-config yang dimodifikasi dilanjutkan oleh tim MiniOS Live.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
