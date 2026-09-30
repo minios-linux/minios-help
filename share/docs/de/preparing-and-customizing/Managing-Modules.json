@@ -11,9 +11,9 @@
       "title": "Aktuell laufend und beim nächsten Start"
     },
     {
-      "anchor": "modul-inspizieren",
+      "anchor": "modul-untersuchen",
       "level": 2,
-      "title": "Modul inspizieren"
+      "title": "Modul untersuchen"
     },
     {
       "anchor": "ein-modul-erstellen",
@@ -76,9 +76,9 @@
       "title": "Module inspizieren und extrahieren"
     },
     {
-      "anchor": "laufende-und-next-boot-module-verwalten",
+      "anchor": "laufende-und-nächste-boot-module-verwalten",
       "level": 3,
-      "title": "Laufende und Next-Boot-Module verwalten"
+      "title": "Laufende und nächste Boot-Module verwalten"
     },
     {
       "anchor": "verwandte-dokumentation",
@@ -443,11 +443,11 @@
     [
       "heading",
       2,
-      "modul-inspizieren",
+      "modul-untersuchen",
       [
         [
           "text",
-          "Modul inspizieren"
+          "Modul untersuchen"
         ]
       ]
     ],
@@ -457,7 +457,7 @@
       [
         [
           "text",
-          "Wählen Sie ein Modul aus, um dessen Quelle, komprimierte Größe und Dateisystem-Inhalt anzuzeigen. Ist die zugrunde liegende Datei verfügbar, erstellt "
+          "Wählen Sie ein Modul aus, um dessen Speicherort, komprimierte Größe und Dateisystem-Inhalte anzuzeigen. Ist die zugehörige Datei verfügbar, können Sie sie "
         ],
         [
           "span",
@@ -471,7 +471,7 @@
         ],
         [
           "text",
-          " ein neues Verzeichnis mit den Moduldaten."
+          " verwenden, um ein neues Verzeichnis mit den Moduldateien zu erstellen."
         ]
       ]
     ],
@@ -481,7 +481,21 @@
       [
         [
           "text",
-          "Für die Inspektion und das normale Extrahieren sind keine Administratorrechte erforderlich. Beim Extrahieren werden niemals vorhandene Ziele überschrieben."
+          "Für die Untersuchung sind keine Administratorrechte erforderlich. "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "In Ordner extrahieren"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " fordert jedoch eine Administrator-Authentifizierung an, um Eigentümer, Berechtigungen und spezielle Dateien beizubehalten. Beim Extrahieren werden niemals vorhandene Ziele überschrieben oder das Quellmodul verändert."
         ]
       ]
     ],
@@ -505,7 +519,7 @@
         ],
         [
           "text",
-          "-Datei aus dem Dateimanager öffnen. Das Öffnen einer Datei dient nur der Inspektion; sie wird dabei weder aktiviert noch zum nächsten Start hinzugefügt."
+          "-Datei aus dem Dateimanager öffnen. Das Öffnen einer Datei dient nur zur Untersuchung; sie wird dadurch weder aktiviert noch zum nächsten Start hinzugefügt."
         ]
       ]
     ],
@@ -3974,7 +3988,7 @@
       [
         [
           "text",
-          "Ein Modul inspizieren, ohne es einzuhängen oder zu extrahieren:"
+          "Ein Modul inspizieren, ohne es einzubinden oder zu extrahieren:"
         ]
       ]
     ],
@@ -4069,7 +4083,7 @@
       [
         [
           "text",
-          "Die Inspektion ist ohne Root-Rechte möglich und funktioniert auch außerhalb einer laufenden MiniOS-Sitzung."
+          "Die Inspektion erfolgt ohne Root-Rechte und funktioniert auch außerhalb einer laufenden MiniOS-Sitzung."
         ]
       ]
     ],
@@ -4126,7 +4140,7 @@
       [
         [
           "text",
-          "Die Standardextraktion benötigt keine Root-Rechte und verändert die Quelle nicht. Das Zielverzeichnis darf nicht existieren. Spezielle Dateien werden abgelehnt, außer wenn "
+          "Die normale Extraktion erfolgt ohne Root-Rechte und verändert die Quelle nicht. Das Zielverzeichnis darf nicht existieren. Spezielle Dateien werden abgelehnt, es sei denn,"
         ],
         [
           "span",
@@ -4140,7 +4154,7 @@
         ],
         [
           "text",
-          " mit ausreichenden Rechten angefordert wird."
+          " dies wird mit ausreichenden Rechten angefordert."
         ]
       ]
     ],
@@ -4150,7 +4164,128 @@
       [
         [
           "text",
-          "Von aktuellen "
+          "Um ein Verzeichnis originalgetreu wiederverpacken zu können, extrahieren Sie mit Administratorrechten und behalten Sie Besitzrechte sowie spezielle Dateien bei:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo sb2dir --keep-ownership --allow-special 06-example.sb example-root",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "sb2dir",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--keep-ownership",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "--allow-special",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "06-example.sb",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "example-root",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Bei der Extraktion wird die Herkunft des Moduls in"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              ".minios-module-origin.json"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " im neuen Verzeichnis dokumentiert. Bei einer Extraktion ohne Root-Rechte wird vermerkt, dass Besitzrechte nicht erhalten wurden; ein solches Verzeichnis kann nicht zurückgegeben werden an"
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "dir2sb"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Bewahren Sie den Herkunftsnachweis bei einer privilegierten Extraktion bis zum erneuten Verpacken auf."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Von aktuellen"
         ],
         [
           "span",
@@ -4164,7 +4299,7 @@
         ],
         [
           "text",
-          " erzeugte Verzeichnisse sind normale Verzeichnisse. "
+          " erzeugte Verzeichnisse sind normale Verzeichnisse."
         ],
         [
           "span",
@@ -4192,7 +4327,7 @@
         ],
         [
           "text",
-          " und "
+          ", und "
         ],
         [
           "span",
@@ -4206,18 +4341,18 @@
         ],
         [
           "text",
-          " sind veraltete Kompatibilitätsbefehle, die das Entfernen grundsätzlich verweigern; sie hängen nichts aus und löschen nichts rekursiv. Prüfen Sie einen extrahierten Pfad und dessen Inhalt, bevor Sie ihn mit Standard-Dateisystemwerkzeugen entfernen."
+          " sind veraltete Kompatibilitätsbefehle, die das Entfernen immer verweigern; sie lösen kein Aushängen oder rekursives Löschen aus. Prüfen Sie einen extrahierten Pfad und dessen Inhalte, bevor Sie ihn mit Standard-Dateisystemwerkzeugen entfernen."
         ]
       ]
     ],
     [
       "heading",
       3,
-      "laufende-und-next-boot-module-verwalten",
+      "laufende-und-nächste-boot-module-verwalten",
       [
         [
           "text",
-          "Laufende und Next-Boot-Module verwalten"
+          "Laufende und nächste Boot-Module verwalten"
         ]
       ]
     ],
@@ -4227,7 +4362,7 @@
       [
         [
           "text",
-          "„Jetzt laufend“ und „Next Boot“ sind unabhängige Zusammenstellungen. Siehe "
+          "Aktuelle Laufzeit und Nächster Boot sind unabhängige Zusammenstellungen. Siehe"
         ],
         [
           "link",
@@ -4236,13 +4371,13 @@
           [
             [
               "text",
-              "Union-Erstellung und Laufzeitaktivierung"
+              "Union-Erstellung und Aktivierung zur Laufzeit"
             ]
           ]
         ],
         [
           "text",
-          " für die Grenze zwischen Boot und Laufzeit und warum sich die beiden Listen unterscheiden können."
+          " für die Trennung zwischen Boot- und Laufzeit sowie die Gründe, warum sich beide Listen unterscheiden können."
         ]
       ]
     ],
@@ -4252,7 +4387,7 @@
       [
         [
           "text",
-          "Listen Sie die Module auf, die das aktuelle AUFS- oder OverlayFS-Root tatsächlich zusammensetzen, von der niedrigsten bis zur höchsten Priorität:"
+          "Zeigt die tatsächlich für das aktuelle AUFS- oder OverlayFS-Root verwendeten Module, von niedrigster bis höchster Priorität:"
         ]
       ]
     ],
@@ -4323,7 +4458,7 @@
       [
         [
           "text",
-          "Listen Sie die Module auf, die durch die aktuellen Boot-Regeln ausgewählt wurden:"
+          "Zeigt die Module, die nach den aktuellen Boot-Regeln ausgewählt wurden:"
         ]
       ]
     ],
@@ -4394,7 +4529,7 @@
       [
         [
           "text",
-          "Diese Abfragen funktionieren ohne Root-Rechte. Die kanonischen "
+          "Diese Abfragen benötigen keine Root-Rechte. Die offiziellen"
         ],
         [
           "link",
@@ -4409,7 +4544,7 @@
         ],
         [
           "text",
-          " bestimmen, welche Quelle für jeden Next-Boot-Basisnamen verwendet wird."
+          " bestimmen, welche Quelle für jeden Next Boot-Basename verwendet wird."
         ]
       ]
     ],
@@ -4490,7 +4625,7 @@
       [
         [
           "text",
-          "MiniOS verwendet geeigneten dauerhaften beschreibbaren Speicher, bereitet die Kopie vor, prüft sie und veröffentlicht sie atomar, ohne ein bestehendes Modul zu ersetzen. Der Dateiname muss die aktuellen Boot-Filter erfüllen. Entfernen Sie ein ausgewähltes Benutzermodul anhand seines exakten Basisnamens:"
+          "MiniOS verwendet geeigneten, dauerhaften, beschreibbaren Speicher, bereitet die Kopie vor, prüft sie und veröffentlicht sie atomar, ohne ein bestehendes Modul zu ersetzen. Der Dateiname muss den aktuellen Boot-Filtern entsprechen. Entfernen Sie ein ausgewähltes Benutzermodul anhand seines exakten Basenamens:"
         ]
       ]
     ],
@@ -4561,7 +4696,7 @@
       [
         [
           "text",
-          "Das Entfernen von Basismodulen sowie Modulen auf schreibgeschützten oder flüchtigen Quellen ist nicht möglich."
+          "Das Entfernen wird für Basismodule sowie für Module auf schreibgeschützten oder flüchtigen Quellen verweigert."
         ]
       ]
     ],
@@ -4678,7 +4813,7 @@
       [
         [
           "text",
-          "Aktivierung und Deaktivierung funktionieren nur, wenn "
+          "Aktivierung und Deaktivierung funktionieren nur, wenn"
         ],
         [
           "span",
@@ -4692,7 +4827,7 @@
         ],
         [
           "text",
-          " aktuell eine AUFS-Union ist. Sie stehen auf OverlayFS nicht zur Verfügung, und Kernel-AUFS-Unterstützung allein reicht nicht aus. Keine der beiden Befehle ändert Next Boot."
+          " aktuell eine AUFS-Union ist. Sie stehen auf OverlayFS nicht zur Verfügung, und allein Kernel-AUFS-Unterstützung reicht nicht aus. Keiner der Befehle ändert Next Boot."
         ]
       ]
     ],
@@ -4702,7 +4837,7 @@
       [
         [
           "text",
-          "Der Dispatcher für Kompatibilitätskonvertierungen benötigt beide Operanden:"
+          "Der Kompatibilitäts-Konverter-Dispatcher benötigt beide Operanden:"
         ]
       ]
     ],
@@ -4833,7 +4968,7 @@
       [
         [
           "text",
-          "Direkte "
+          "Direkte"
         ],
         [
           "span",
@@ -4861,7 +4996,7 @@
         ],
         [
           "text",
-          "-Verwendung ist vorzuziehen, da die normale Konvertierung ohne Root-Rechte ausgeführt werden kann."
+          "-Verwendung ist vorzuziehen, da die normale Konvertierung auch ohne Root-Rechte ausgeführt werden kann."
         ]
       ]
     ],
@@ -5024,7 +5159,7 @@
       ]
     ]
   ],
-  "plain_text": "Module verwalten\nDer MiniOS-Modulmanager ist die grafische Anwendung zum Anzeigen, Erstellen und Verwalten von MiniOS-Modulen im Format .sb. Es gibt zwei Arbeitsbereiche: Module zur Systemzusammenstellung und Erstellen zum Anlegen neuer Module.\nSie können ihn über das Anwendungsmenü starten oder mit:\nminios-module-manager\nDie Anwendung selbst läuft unter Ihrem Desktop-Benutzer. Administratorrechte werden nur abgefragt, wenn eine angeforderte Aktion diese benötigt.\nAktuell laufend und beim nächsten Start\nDer Arbeitsbereich Module bietet zwei getrennte Ansichten:\nAktuell laufend ist die geordnete Menge von Modulen, die derzeit das Live-System bilden.\nNächster Start ist die geordnete Menge, die von den aktuellen MiniOS-Startregeln ausgewählt wird.\nEine Änderung in einer Ansicht ändert die andere nicht stillschweigend. Zum Beispiel betrifft Für diese Sitzung aktivieren nur das laufende System, während Zum nächsten Start hinzufügen ein Modul in den dauerhaften Modulspeicher kopiert, ohne es jetzt zu aktivieren.\nDie maßgeblichen Startzeit-Regeln, einschließlich Kandidatenquellen-Tiers, exakter Basename-Ersetzung, numerischer Reihenfolge sowie Filterung durch load=, noload= und bext=, finden Sie unter Initrd-Modulladen. Dort wird auch erklärt, warum \"Aktuell laufend\" und \"Nächster Start\" voneinander abweichen können.\nLaufzeit-Aktivierung und -Deaktivierung sind nur verfügbar, wenn das Root-Dateisystem aktuell AUFS verwendet. Sie stehen auf einem OverlayFS-Root nicht zur Verfügung, selbst wenn der Kernel AUFS unterstützt. Basismodule können über die Anwendung nicht deaktiviert werden.\nÄnderungen für den nächsten Start sind nur möglich, wenn MiniOS geeigneten dauerhaften, beschreibbaren Modulspeicher findet. Basismodule sowie Module auf schreibgeschützten oder flüchtigen Speichern können nicht entfernt werden. Startfilter wie load, noload und bext bestimmen weiterhin, welche Module ausgewählt werden.\nModul inspizieren\nWählen Sie ein Modul aus, um dessen Quelle, komprimierte Größe und Dateisystem-Inhalt anzuzeigen. Ist die zugrunde liegende Datei verfügbar, erstellt In Ordner extrahieren ein neues Verzeichnis mit den Moduldaten.\nFür die Inspektion und das normale Extrahieren sind keine Administratorrechte erforderlich. Beim Extrahieren werden niemals vorhandene Ziele überschrieben.\nSie können auch eine lokale .sb-Datei aus dem Dateimanager öffnen. Das Öffnen einer Datei dient nur der Inspektion; sie wird dabei weder aktiviert noch zum nächsten Start hinzugefügt.\nEin Modul erstellen\nDer Arbeitsbereich „Erstellen“ verwendet einen Konfigurieren, Überprüfen, Ausführen, und Ergebnis-Ablauf. Ein erfolgreich erstelltes Modul bleibt als Datei am Ausgabepfad erhalten. Es wird nicht aktiviert und nicht automatisch zu Next Boot hinzugefügt.\nVerfügbare Methoden:\nPakete installiert Repository-Pakete und ausgewählte lokale .deb-Dateien einschließlich ihrer Abhängigkeiten in einer isolierten MiniOS-Build-Umgebung. Für die Paketinstallation ist eine Administrator-Authentifizierung erforderlich.\nInstallationsskript führt ein geprüftes Skript ohne interaktives Terminal aus. Ein optionaler Seed-Ordner kann Anfangsdateien bereitstellen. Das Skript läuft mit Administratorrechten, wird aber nicht im resultierenden Modul gespeichert.\nInteraktives Chroot öffnet eine temporäre Root-Shell im eingebetteten Terminal. Geben Sie exit ein, wenn Sie fertig sind. Anschließend können Sie das Modul erstellen, die Shell erneut öffnen oder die Änderungen verwerfen. Das Schließen oder Verwerfen der Sitzung verändert das laufende System nicht.\nOrdner verpackt den Inhalt eines bestehenden Verzeichnisses. Das Quellverzeichnis selbst wird nicht im Modul verschachtelt. Die normale Ordner-Konvertierung erfolgt ohne Root-Rechte, lässt die Quelle unverändert und setzt den Besitz im Modul auf root.\nAktuelle Sitzungsänderungen erfasst geeignete Dateien und Löschungen aus der aktuellen beschreibbaren Sitzungsschicht. Es verwendet die Standard-MiniOS savechanges-Richtlinie, die Protokolle, Caches, Bootdaten und temporäre Laufzeitpfade ausschließt. Das Auslesen der vollständigen beschreibbaren Schicht erfordert Administrator-Authentifizierung.\nWählen Sie für jeden Workflow einen neuen Ausgabepfad. Vorhandene Dateien werden nie überschrieben. Während einer laufenden Operation bleiben Fortschritt und Backend-Diagnosen sichtbar, und die Erfassung der aktuellen Sitzung kann abgebrochen werden.\nAktuelle Sitzungsänderungen sind für die bequeme Standarderfassung gedacht, nicht für die Überprüfung jedes enthaltenen Pfads. Eine aktive beschreibbare Schicht kann persönliche oder vertrauliche Daten enthalten. Für gezielte exact, clean, oder pfadbasierte Datenschutzrichtlinien verwenden Sie das Kommandozeilen-savechanges-Workflow, wie beschrieben in Aktuelle Sitzungsänderungen erfassen.\nDrag & Drop\nDrag & Drop dient nur zum Ausfüllen eines Eingabefelds oder zum Öffnen der Inspektion:\nEin Modul öffnet dessen Details.\n.deb-Dateien werden zu Pakete hinzugefügt.\nEin Verzeichnis wird für Ordner ausgewählt.\nEine andere reguläre Datei wird als Installationsskript ausgewählt.\nDas Ablegen eines Elements führt keinen Code aus und ändert weder Aktuell laufend noch Nächster Start.\nZugehörige Dokumentation\nModule erstellen\nInitrd-Modulladen\nBoot-Modi\nISO-Images über die Kommandozeile erstellen\nBoot-Parameter\nModule erstellen\nMiniOS-Module sind schreibgeschützte SquashFS-Dateisystem-Images, die üblicherweise mit der Endung .sb benannt werden. Beim Systemstart ordnet MiniOS die ausgewählten Module zu einem geschichteten Root-Dateisystem an. Dateien in einer höher priorisierten Ebene können Dateien aus niedrigeren Ebenen ergänzen oder überdecken. Diese modulare Live-Pipeline ist Teil der charakteristischen MiniOS-Architektur, wie in Über MiniOS und Boot-Modi beschrieben. Nach der nativen Umwandlung wird das geschichtete .sb-Root durch ein herkömmliches, beschreibbares Debian-Dateisystem ersetzt. Die MiniOS-Modulverwaltungssoftware wird entfernt, da die Modul-Workflows nicht mehr gelten, während die gewählte Desktop-Umgebung und normale Anwendungen als gewöhnliche Pakete installiert bleiben.\nDiese Anleitung dokumentiert die aktuellen MiniOS Tools-Kommandozeilen-Workflows. Für die grafische Anwendung siehe MiniOS-Modulmanager. Für den vollständigen Image-Bauprozess und die Systemarchitektur siehe Bau von MiniOS. Die beim Bau von MiniOS verwendeten Paketlisten sind in der CondinAPT-Dokumentation beschrieben.\nSicherheit und Privilegien\nNicht jede Moduloperation erfordert Root-Rechte:\nVorgang | Privileg\nAktuell laufend oder Nächster Start mit sb auflisten | Ohne Root\nModul mit sb inspect inspizieren | Ohne Root\nNormale dir2sb- und sb2dir-Konvertierung | Ohne Root\nEigentümer erhalten oder Spezialdateien bei der Konvertierung zulassen | Root\nBauen mit apt2sb, script2sb oder chroot2sb | Root\nSitzung mit savechanges erfassen | Root\nAktivieren, deaktivieren, zum nächsten Start hinzufügen oder daraus entfernen | Root\nDie Builder verwenden ein isoliertes Union-Dateisystem und installieren keine Pakete oder Skriptänderungen ins laufende Root. Auch die Erstellung aktiviert das Ergebnis nicht und wählt es nicht für den nächsten Start aus.\nAktuelle Konverter und Builder nutzen No-Replace-Publikation. Ein bereits existierendes Ziel, auch symbolische Links, wird nicht überschrieben. Wählen Sie einen neuen Ausgabepfad oder prüfen und entfernen Sie das alte Ziel explizit selbst.\nVerwenden Sie die --help-Ausgabe jedes Befehls als Referenz für die installierte Version. Die Standard-Komprimierungsoptionen des Builders sind zstd (Standard), gzip, lzo und xz; dir2sb unterstützt außerdem lz4.\nModulnamen und Filterebenen\nNamen beginnen häufig mit einer Zahl wie 06-browser.sb, da die Schichtreihenfolge die Konfliktlösung beeinflusst. Ein Modul sollte Pfade relativ zum System-Root enthalten, wie usr/bin/example, und nicht ein zusätzliches Verzeichnis, das diesen Baum enthält.\nFür die genauen Kandidatenquellen-Tiers, das Verhalten bei Basename-Kollisionen, die numerische Reihenfolge und die Semantik von bext=, load= und noload= siehe Initrd-Modulladen. Verwenden Sie insbesondere einen eindeutigen Basename, es sei denn, das Modul soll gezielt den gleichnamigen Slot aus einer früheren Quell-Tier ersetzen.\nDie Option --level LEVEL auf apt2sb, script2sb und chroot2sb begrenzt die Basisschichten, die zum Aufbau der Build-Union verwendet werden. Mit --level 3 werden nummerierte Schichten bis 03 verwendet und höher nummerierte Schichten herausgefiltert. Das kann ein Modul weniger abhängig von optionalen höheren Schichten machen, führt aber dazu, dass mehr Abhängigkeiten im Ergebnis enthalten sind.\nModul aus Paketen erstellen\napt2sb installiert Repository-Pakete oder lesbare lokale .deb-Dateien in ein privates Build-Union und erfasst das Ergebnis. Erfordert eine unterstützte MiniOS-Live-Sitzung und Root.\nsudo apt2sb install chromium chromium-sandbox\nsudo apt2sb install -y --level 3 -n 06-browser.sb chromium chromium-sandbox\nsudo apt2sb install -y --no-install-recommends ./example_amd64.deb -n 06-example.sb\nOhne --name wird der Ausgabename vom ersten Paket abgeleitet. Nützliche APT-Optionen sind --install-recommends, --no-install-recommends, --install-suggests, --no-install-suggests, --allow-downgrades und --target-release RELEASE. Die Target-Release-Option gilt nur für install.\nUm Upgrades bereits installierter Pakete zu erfassen:\nsudo apt2sb upgrade -y -n upgrades.sb\nEin Modul aus einem Skript erstellen\nscript2sb kopiert ein Installationsskript in ein privates Chroot, macht es ausführbar, führt es als root ohne interaktives Terminal aus, entfernt es anschließend und erfasst die resultierenden Änderungen am Dateisystem. Bei einem Fehler wird kein Modul erstellt.\nsudo script2sb --script ./install-example.sh -n 06-example.sb\nsudo script2sb --script ./install-example.sh --directory ./seed-root --level 3 -n 06-example.sb\nOptional --directory DIR kopiert vor dem Ausführen des Skripts alle Quellinhalte, einschließlich versteckter Dateien, in das Modul-Root. Strukturieren Sie das Seed-Verzeichnis als Dateisystembaum:\nseed-root/\n`-- usr/\n    `-- share/\n        `-- applications/\n            `-- example.desktop\nÜberprüfen Sie das Skript, bevor Sie es ausführen. Es läuft mit Administratorrechten und kann beliebige Befehle ausführen. Verwenden Sie chroot2sb stattdessen, wenn bei der Installation Eingaben oder manuelle Arbeit erforderlich sind.\nEin Modul interaktiv erstellen\nchroot2sb erstellt ein privates Build-Union und öffnet darin eine Root-Shell. Installieren Sie Pakete oder bearbeiten Sie Dateien; beenden Sie die Shell, um die Änderungen zu übernehmen:\nsudo chroot2sb --level 3 -n 06-custom.sb\nsudo chroot2sb --directory ./seed-root -c xz -n 06-custom.sb\nBefehle, die in der Shell eingegeben werden, werden beim Laden des Moduls nicht erneut ausgeführt; das Modul ist ein Schnappschuss des resultierenden Dateisystemzustands. Die Shell-Historie wird entfernt. Wird kein Name angegeben, wird ein Name mit aktuellem Datum und Uhrzeit generiert.\nDas aufgeteilte prepare, shell, finish und cancel Lebenszyklusmodell existiert für geschützte grafische Frontends. Für die normale Terminalnutzung verwenden Sie den oben gezeigten interaktiven Einzelbefehl.\nEin Modul aus einem Verzeichnis erstellen\ndir2sb verpackt den Inhalt eines vorbereiteten Verzeichnisses in ein neues Modul. Beide Operanden sind erforderlich:\ndir2sb my-app-root 06-my-app.sb\ndir2sb --comp xz my-app-root 06-my-app-xz.sb\nDie Standard-Konvertierung benötigt keine Root-Rechte. Die Quelle bleibt unverändert, Eigentümer im Modul werden auf root normalisiert, Gerätedateien, Sockets und FIFOs werden abgelehnt und das Ziel wird nie überschrieben. Verwenden Sie --keep-ownership oder --allow-special nur, wenn diese privilegierten Semantiken benötigt werden.\nÄnderungen der aktuellen Sitzung erfassen\nsavechanges liest die maßgebliche beschreibbare Schicht einer laufenden MiniOS-Sitzung aus. Root-Rechte sind erforderlich, da diese Schicht root-exklusive Dateien enthalten kann. Der Standardpfad für Änderungen wird automatisch erkannt:\nsudo savechanges session-changes.sb\nsudo savechanges --comp xz session-changes-xz.sb\nOhne --profile, lässt die historische MiniOS-Richtlinie leere Verzeichnisse, Caches, Protokolle, Bootdaten, Laufzeitpfade, Pseudodateisysteme sowie ausgewählte Sitzungs- und Systemdateien aus. Das ist praktisch für die herkömmliche Modulerstellung, stellt aber kein ausdrückliches Datenschutzversprechen dar.\nDie expliziten Profile sind:\nexact bewahrt alle darstellbaren Änderungen, einschließlich Benutzerdaten, Protokolle, Caches, Identitätsdateien, Zugangsdaten und unterstützte Löschmetadaten. Nicht unterstützte Dateisystemobjekte werden abgelehnt, statt sie stillschweigend zu verlieren.\nclean verwendet eine enge, softwareorientierte Pfad-Positivliste. Es schließt Home- und Root-Daten, Protokolle, Caches, Identitäten, Netzwerkkonfiguration, Zugangsdaten, beliebige Systemkonfigurationen und /usr/local aus. Das reduziert das Datenschutzrisiko, kann aber nicht garantieren, dass eine zugelassene Softwaredatei keine Geheimnisse enthält.\nselected enthält nur geprüfte relative Pfade aus einer Inventar- und Auswahldatei. Explizite Ausschlüsse haben Vorrang. Dieses Profil ist geeignet, wenn das Modul nur einen kontrollierten Teil der Sitzungsänderungen enthalten soll.\nBeispiele:\nsudo savechanges --profile exact exact-session.sb\nsudo savechanges --profile clean --comp xz software-session.sb\nsudo savechanges --inventory-json session-inventory.json\nsudo savechanges --profile selected --selection selection.json selected-session.sb\nEine Auswahldatei hat diese strikte JSON-Struktur:\n{\n  \"product_kind\": \"minios-session-selection\",\n  \"schema_version\": 1,\n  \"include_paths\": [\"etc/default\", \"opt/my-app\"],\n  \"exclude_paths\": [\"opt/my-app/private\"]\n}\nPfade sind normalisiert, nicht leer und relativ zum Änderungs-Root. Erstellen und prüfen Sie zuerst das Inventar; jede Aufnahme muss mit den Inventardaten übereinstimmen. Das Inventar enthält Metadaten wie Pfad, Typ, Kategorie, Sensitivität und Größe, liest oder speichert aber keine Dateiinhalte, Symlink-Ziele oder Geheimwerte. Ausgaben und Inventare im expliziten Profil sind Modus 0600; Module mit Legacy-Policy sind Modus 0644.\nDie Sitzungsaufnahme kann unterstützte Dateilöschungen und Verzeichnis-Opazität für das aktive AUFS- oder OverlayFS-Backend beibehalten. Laufzeit-Mounts, verschachtelte Dateisysteme, Union-Verwaltung und die Ausgabe selbst werden ausgeschlossen. Ein vorhandenes Ziel wird nie ersetzt.\nModule inspizieren und extrahieren\nEin Modul inspizieren, ohne es einzuhängen oder zu extrahieren:\nsb inspect 06-example.sb\nsb inspect 06-example.sb --json\nDie Inspektion ist ohne Root-Rechte möglich und funktioniert auch außerhalb einer laufenden MiniOS-Sitzung.\nEin Modul in ein neues Verzeichnis extrahieren:\nsb2dir 06-example.sb example-root\nDie Standardextraktion benötigt keine Root-Rechte und verändert die Quelle nicht. Das Zielverzeichnis darf nicht existieren. Spezielle Dateien werden abgelehnt, außer wenn --allow-special mit ausreichenden Rechten angefordert wird.\nVon aktuellen sb2dir erzeugte Verzeichnisse sind normale Verzeichnisse. rmsbdir, sb rm und sb rmdir sind veraltete Kompatibilitätsbefehle, die das Entfernen grundsätzlich verweigern; sie hängen nichts aus und löschen nichts rekursiv. Prüfen Sie einen extrahierten Pfad und dessen Inhalt, bevor Sie ihn mit Standard-Dateisystemwerkzeugen entfernen.\nLaufende und Next-Boot-Module verwalten\n„Jetzt laufend“ und „Next Boot“ sind unabhängige Zusammenstellungen. Siehe Union-Erstellung und Laufzeitaktivierung für die Grenze zwischen Boot und Laufzeit und warum sich die beiden Listen unterscheiden können.\nListen Sie die Module auf, die das aktuelle AUFS- oder OverlayFS-Root tatsächlich zusammensetzen, von der niedrigsten bis zur höchsten Priorität:\nsb list\nsb list --json\nListen Sie die Module auf, die durch die aktuellen Boot-Regeln ausgewählt wurden:\nsb next-boot\nsb next-boot --json\nDiese Abfragen funktionieren ohne Root-Rechte. Die kanonischen Kandidatentier- und Ersetzungsregeln bestimmen, welche Quelle für jeden Next-Boot-Basisnamen verwendet wird.\nSo machen Sie ein Benutzermodul beim nächsten Boot verfügbar:\nsudo sb next-boot add 50-extra.sb\nMiniOS verwendet geeigneten dauerhaften beschreibbaren Speicher, bereitet die Kopie vor, prüft sie und veröffentlicht sie atomar, ohne ein bestehendes Modul zu ersetzen. Der Dateiname muss die aktuellen Boot-Filter erfüllen. Entfernen Sie ein ausgewähltes Benutzermodul anhand seines exakten Basisnamens:\nsudo sb next-boot remove 50-extra.sb\nDas Entfernen von Basismodulen sowie Modulen auf schreibgeschützten oder flüchtigen Quellen ist nicht möglich.\nDie Aktivierung zur Laufzeit ist ein separater, nur für die Sitzung gültiger Vorgang:\nsudo sb activate 50-extra.sb\nsudo sb deactivate 50-extra.sb\nAktivierung und Deaktivierung funktionieren nur, wenn / aktuell eine AUFS-Union ist. Sie stehen auf OverlayFS nicht zur Verfügung, und Kernel-AUFS-Unterstützung allein reicht nicht aus. Keine der beiden Befehle ändert Next Boot.\nDer Dispatcher für Kompatibilitätskonvertierungen benötigt beide Operanden:\nsudo sb conv my-app-root 06-my-app.sb\nsudo sb conv 06-my-app.sb example-root\nDirekte dir2sb und sb2dir-Verwendung ist vorzuziehen, da die normale Konvertierung ohne Root-Rechte ausgeführt werden kann.\nVerwandte Dokumentation\nMiniOS-Modulmanager\nInitrd-Modulladen\nBoot-Modi\nISO-Images neu erstellen\nBau von MiniOS\nBoot-Parameter",
+  "plain_text": "Module verwalten\nDer MiniOS-Modulmanager ist die grafische Anwendung zum Anzeigen, Erstellen und Verwalten von MiniOS-Modulen im Format .sb. Es gibt zwei Arbeitsbereiche: Module zur Systemzusammenstellung und Erstellen zum Anlegen neuer Module.\nSie können ihn über das Anwendungsmenü starten oder mit:\nminios-module-manager\nDie Anwendung selbst läuft unter Ihrem Desktop-Benutzer. Administratorrechte werden nur abgefragt, wenn eine angeforderte Aktion diese benötigt.\nAktuell laufend und beim nächsten Start\nDer Arbeitsbereich Module bietet zwei getrennte Ansichten:\nAktuell laufend ist die geordnete Menge von Modulen, die derzeit das Live-System bilden.\nNächster Start ist die geordnete Menge, die von den aktuellen MiniOS-Startregeln ausgewählt wird.\nEine Änderung in einer Ansicht ändert die andere nicht stillschweigend. Zum Beispiel betrifft Für diese Sitzung aktivieren nur das laufende System, während Zum nächsten Start hinzufügen ein Modul in den dauerhaften Modulspeicher kopiert, ohne es jetzt zu aktivieren.\nDie maßgeblichen Startzeit-Regeln, einschließlich Kandidatenquellen-Tiers, exakter Basename-Ersetzung, numerischer Reihenfolge sowie Filterung durch load=, noload= und bext=, finden Sie unter Initrd-Modulladen. Dort wird auch erklärt, warum \"Aktuell laufend\" und \"Nächster Start\" voneinander abweichen können.\nLaufzeit-Aktivierung und -Deaktivierung sind nur verfügbar, wenn das Root-Dateisystem aktuell AUFS verwendet. Sie stehen auf einem OverlayFS-Root nicht zur Verfügung, selbst wenn der Kernel AUFS unterstützt. Basismodule können über die Anwendung nicht deaktiviert werden.\nÄnderungen für den nächsten Start sind nur möglich, wenn MiniOS geeigneten dauerhaften, beschreibbaren Modulspeicher findet. Basismodule sowie Module auf schreibgeschützten oder flüchtigen Speichern können nicht entfernt werden. Startfilter wie load, noload und bext bestimmen weiterhin, welche Module ausgewählt werden.\nModul untersuchen\nWählen Sie ein Modul aus, um dessen Speicherort, komprimierte Größe und Dateisystem-Inhalte anzuzeigen. Ist die zugehörige Datei verfügbar, können Sie sie In Ordner extrahieren verwenden, um ein neues Verzeichnis mit den Moduldateien zu erstellen.\nFür die Untersuchung sind keine Administratorrechte erforderlich. In Ordner extrahieren fordert jedoch eine Administrator-Authentifizierung an, um Eigentümer, Berechtigungen und spezielle Dateien beizubehalten. Beim Extrahieren werden niemals vorhandene Ziele überschrieben oder das Quellmodul verändert.\nSie können auch eine lokale .sb-Datei aus dem Dateimanager öffnen. Das Öffnen einer Datei dient nur zur Untersuchung; sie wird dadurch weder aktiviert noch zum nächsten Start hinzugefügt.\nEin Modul erstellen\nDer Arbeitsbereich „Erstellen“ verwendet einen Konfigurieren, Überprüfen, Ausführen, und Ergebnis-Ablauf. Ein erfolgreich erstelltes Modul bleibt als Datei am Ausgabepfad erhalten. Es wird nicht aktiviert und nicht automatisch zu Next Boot hinzugefügt.\nVerfügbare Methoden:\nPakete installiert Repository-Pakete und ausgewählte lokale .deb-Dateien einschließlich ihrer Abhängigkeiten in einer isolierten MiniOS-Build-Umgebung. Für die Paketinstallation ist eine Administrator-Authentifizierung erforderlich.\nInstallationsskript führt ein geprüftes Skript ohne interaktives Terminal aus. Ein optionaler Seed-Ordner kann Anfangsdateien bereitstellen. Das Skript läuft mit Administratorrechten, wird aber nicht im resultierenden Modul gespeichert.\nInteraktives Chroot öffnet eine temporäre Root-Shell im eingebetteten Terminal. Geben Sie exit ein, wenn Sie fertig sind. Anschließend können Sie das Modul erstellen, die Shell erneut öffnen oder die Änderungen verwerfen. Das Schließen oder Verwerfen der Sitzung verändert das laufende System nicht.\nOrdner verpackt den Inhalt eines bestehenden Verzeichnisses. Das Quellverzeichnis selbst wird nicht im Modul verschachtelt. Die normale Ordner-Konvertierung erfolgt ohne Root-Rechte, lässt die Quelle unverändert und setzt den Besitz im Modul auf root.\nAktuelle Sitzungsänderungen erfasst geeignete Dateien und Löschungen aus der aktuellen beschreibbaren Sitzungsschicht. Es verwendet die Standard-MiniOS savechanges-Richtlinie, die Protokolle, Caches, Bootdaten und temporäre Laufzeitpfade ausschließt. Das Auslesen der vollständigen beschreibbaren Schicht erfordert Administrator-Authentifizierung.\nWählen Sie für jeden Workflow einen neuen Ausgabepfad. Vorhandene Dateien werden nie überschrieben. Während einer laufenden Operation bleiben Fortschritt und Backend-Diagnosen sichtbar, und die Erfassung der aktuellen Sitzung kann abgebrochen werden.\nAktuelle Sitzungsänderungen sind für die bequeme Standarderfassung gedacht, nicht für die Überprüfung jedes enthaltenen Pfads. Eine aktive beschreibbare Schicht kann persönliche oder vertrauliche Daten enthalten. Für gezielte exact, clean, oder pfadbasierte Datenschutzrichtlinien verwenden Sie das Kommandozeilen-savechanges-Workflow, wie beschrieben in Aktuelle Sitzungsänderungen erfassen.\nDrag & Drop\nDrag & Drop dient nur zum Ausfüllen eines Eingabefelds oder zum Öffnen der Inspektion:\nEin Modul öffnet dessen Details.\n.deb-Dateien werden zu Pakete hinzugefügt.\nEin Verzeichnis wird für Ordner ausgewählt.\nEine andere reguläre Datei wird als Installationsskript ausgewählt.\nDas Ablegen eines Elements führt keinen Code aus und ändert weder Aktuell laufend noch Nächster Start.\nZugehörige Dokumentation\nModule erstellen\nInitrd-Modulladen\nBoot-Modi\nISO-Images über die Kommandozeile erstellen\nBoot-Parameter\nModule erstellen\nMiniOS-Module sind schreibgeschützte SquashFS-Dateisystem-Images, die üblicherweise mit der Endung .sb benannt werden. Beim Systemstart ordnet MiniOS die ausgewählten Module zu einem geschichteten Root-Dateisystem an. Dateien in einer höher priorisierten Ebene können Dateien aus niedrigeren Ebenen ergänzen oder überdecken. Diese modulare Live-Pipeline ist Teil der charakteristischen MiniOS-Architektur, wie in Über MiniOS und Boot-Modi beschrieben. Nach der nativen Umwandlung wird das geschichtete .sb-Root durch ein herkömmliches, beschreibbares Debian-Dateisystem ersetzt. Die MiniOS-Modulverwaltungssoftware wird entfernt, da die Modul-Workflows nicht mehr gelten, während die gewählte Desktop-Umgebung und normale Anwendungen als gewöhnliche Pakete installiert bleiben.\nDiese Anleitung dokumentiert die aktuellen MiniOS Tools-Kommandozeilen-Workflows. Für die grafische Anwendung siehe MiniOS-Modulmanager. Für den vollständigen Image-Bauprozess und die Systemarchitektur siehe Bau von MiniOS. Die beim Bau von MiniOS verwendeten Paketlisten sind in der CondinAPT-Dokumentation beschrieben.\nSicherheit und Privilegien\nNicht jede Moduloperation erfordert Root-Rechte:\nVorgang | Privileg\nAktuell laufend oder Nächster Start mit sb auflisten | Ohne Root\nModul mit sb inspect inspizieren | Ohne Root\nNormale dir2sb- und sb2dir-Konvertierung | Ohne Root\nEigentümer erhalten oder Spezialdateien bei der Konvertierung zulassen | Root\nBauen mit apt2sb, script2sb oder chroot2sb | Root\nSitzung mit savechanges erfassen | Root\nAktivieren, deaktivieren, zum nächsten Start hinzufügen oder daraus entfernen | Root\nDie Builder verwenden ein isoliertes Union-Dateisystem und installieren keine Pakete oder Skriptänderungen ins laufende Root. Auch die Erstellung aktiviert das Ergebnis nicht und wählt es nicht für den nächsten Start aus.\nAktuelle Konverter und Builder nutzen No-Replace-Publikation. Ein bereits existierendes Ziel, auch symbolische Links, wird nicht überschrieben. Wählen Sie einen neuen Ausgabepfad oder prüfen und entfernen Sie das alte Ziel explizit selbst.\nVerwenden Sie die --help-Ausgabe jedes Befehls als Referenz für die installierte Version. Die Standard-Komprimierungsoptionen des Builders sind zstd (Standard), gzip, lzo und xz; dir2sb unterstützt außerdem lz4.\nModulnamen und Filterebenen\nNamen beginnen häufig mit einer Zahl wie 06-browser.sb, da die Schichtreihenfolge die Konfliktlösung beeinflusst. Ein Modul sollte Pfade relativ zum System-Root enthalten, wie usr/bin/example, und nicht ein zusätzliches Verzeichnis, das diesen Baum enthält.\nFür die genauen Kandidatenquellen-Tiers, das Verhalten bei Basename-Kollisionen, die numerische Reihenfolge und die Semantik von bext=, load= und noload= siehe Initrd-Modulladen. Verwenden Sie insbesondere einen eindeutigen Basename, es sei denn, das Modul soll gezielt den gleichnamigen Slot aus einer früheren Quell-Tier ersetzen.\nDie Option --level LEVEL auf apt2sb, script2sb und chroot2sb begrenzt die Basisschichten, die zum Aufbau der Build-Union verwendet werden. Mit --level 3 werden nummerierte Schichten bis 03 verwendet und höher nummerierte Schichten herausgefiltert. Das kann ein Modul weniger abhängig von optionalen höheren Schichten machen, führt aber dazu, dass mehr Abhängigkeiten im Ergebnis enthalten sind.\nModul aus Paketen erstellen\napt2sb installiert Repository-Pakete oder lesbare lokale .deb-Dateien in ein privates Build-Union und erfasst das Ergebnis. Erfordert eine unterstützte MiniOS-Live-Sitzung und Root.\nsudo apt2sb install chromium chromium-sandbox\nsudo apt2sb install -y --level 3 -n 06-browser.sb chromium chromium-sandbox\nsudo apt2sb install -y --no-install-recommends ./example_amd64.deb -n 06-example.sb\nOhne --name wird der Ausgabename vom ersten Paket abgeleitet. Nützliche APT-Optionen sind --install-recommends, --no-install-recommends, --install-suggests, --no-install-suggests, --allow-downgrades und --target-release RELEASE. Die Target-Release-Option gilt nur für install.\nUm Upgrades bereits installierter Pakete zu erfassen:\nsudo apt2sb upgrade -y -n upgrades.sb\nEin Modul aus einem Skript erstellen\nscript2sb kopiert ein Installationsskript in ein privates Chroot, macht es ausführbar, führt es als root ohne interaktives Terminal aus, entfernt es anschließend und erfasst die resultierenden Änderungen am Dateisystem. Bei einem Fehler wird kein Modul erstellt.\nsudo script2sb --script ./install-example.sh -n 06-example.sb\nsudo script2sb --script ./install-example.sh --directory ./seed-root --level 3 -n 06-example.sb\nOptional --directory DIR kopiert vor dem Ausführen des Skripts alle Quellinhalte, einschließlich versteckter Dateien, in das Modul-Root. Strukturieren Sie das Seed-Verzeichnis als Dateisystembaum:\nseed-root/\n`-- usr/\n    `-- share/\n        `-- applications/\n            `-- example.desktop\nÜberprüfen Sie das Skript, bevor Sie es ausführen. Es läuft mit Administratorrechten und kann beliebige Befehle ausführen. Verwenden Sie chroot2sb stattdessen, wenn bei der Installation Eingaben oder manuelle Arbeit erforderlich sind.\nEin Modul interaktiv erstellen\nchroot2sb erstellt ein privates Build-Union und öffnet darin eine Root-Shell. Installieren Sie Pakete oder bearbeiten Sie Dateien; beenden Sie die Shell, um die Änderungen zu übernehmen:\nsudo chroot2sb --level 3 -n 06-custom.sb\nsudo chroot2sb --directory ./seed-root -c xz -n 06-custom.sb\nBefehle, die in der Shell eingegeben werden, werden beim Laden des Moduls nicht erneut ausgeführt; das Modul ist ein Schnappschuss des resultierenden Dateisystemzustands. Die Shell-Historie wird entfernt. Wird kein Name angegeben, wird ein Name mit aktuellem Datum und Uhrzeit generiert.\nDas aufgeteilte prepare, shell, finish und cancel Lebenszyklusmodell existiert für geschützte grafische Frontends. Für die normale Terminalnutzung verwenden Sie den oben gezeigten interaktiven Einzelbefehl.\nEin Modul aus einem Verzeichnis erstellen\ndir2sb verpackt den Inhalt eines vorbereiteten Verzeichnisses in ein neues Modul. Beide Operanden sind erforderlich:\ndir2sb my-app-root 06-my-app.sb\ndir2sb --comp xz my-app-root 06-my-app-xz.sb\nDie Standard-Konvertierung benötigt keine Root-Rechte. Die Quelle bleibt unverändert, Eigentümer im Modul werden auf root normalisiert, Gerätedateien, Sockets und FIFOs werden abgelehnt und das Ziel wird nie überschrieben. Verwenden Sie --keep-ownership oder --allow-special nur, wenn diese privilegierten Semantiken benötigt werden.\nÄnderungen der aktuellen Sitzung erfassen\nsavechanges liest die maßgebliche beschreibbare Schicht einer laufenden MiniOS-Sitzung aus. Root-Rechte sind erforderlich, da diese Schicht root-exklusive Dateien enthalten kann. Der Standardpfad für Änderungen wird automatisch erkannt:\nsudo savechanges session-changes.sb\nsudo savechanges --comp xz session-changes-xz.sb\nOhne --profile, lässt die historische MiniOS-Richtlinie leere Verzeichnisse, Caches, Protokolle, Bootdaten, Laufzeitpfade, Pseudodateisysteme sowie ausgewählte Sitzungs- und Systemdateien aus. Das ist praktisch für die herkömmliche Modulerstellung, stellt aber kein ausdrückliches Datenschutzversprechen dar.\nDie expliziten Profile sind:\nexact bewahrt alle darstellbaren Änderungen, einschließlich Benutzerdaten, Protokolle, Caches, Identitätsdateien, Zugangsdaten und unterstützte Löschmetadaten. Nicht unterstützte Dateisystemobjekte werden abgelehnt, statt sie stillschweigend zu verlieren.\nclean verwendet eine enge, softwareorientierte Pfad-Positivliste. Es schließt Home- und Root-Daten, Protokolle, Caches, Identitäten, Netzwerkkonfiguration, Zugangsdaten, beliebige Systemkonfigurationen und /usr/local aus. Das reduziert das Datenschutzrisiko, kann aber nicht garantieren, dass eine zugelassene Softwaredatei keine Geheimnisse enthält.\nselected enthält nur geprüfte relative Pfade aus einer Inventar- und Auswahldatei. Explizite Ausschlüsse haben Vorrang. Dieses Profil ist geeignet, wenn das Modul nur einen kontrollierten Teil der Sitzungsänderungen enthalten soll.\nBeispiele:\nsudo savechanges --profile exact exact-session.sb\nsudo savechanges --profile clean --comp xz software-session.sb\nsudo savechanges --inventory-json session-inventory.json\nsudo savechanges --profile selected --selection selection.json selected-session.sb\nEine Auswahldatei hat diese strikte JSON-Struktur:\n{\n  \"product_kind\": \"minios-session-selection\",\n  \"schema_version\": 1,\n  \"include_paths\": [\"etc/default\", \"opt/my-app\"],\n  \"exclude_paths\": [\"opt/my-app/private\"]\n}\nPfade sind normalisiert, nicht leer und relativ zum Änderungs-Root. Erstellen und prüfen Sie zuerst das Inventar; jede Aufnahme muss mit den Inventardaten übereinstimmen. Das Inventar enthält Metadaten wie Pfad, Typ, Kategorie, Sensitivität und Größe, liest oder speichert aber keine Dateiinhalte, Symlink-Ziele oder Geheimwerte. Ausgaben und Inventare im expliziten Profil sind Modus 0600; Module mit Legacy-Policy sind Modus 0644.\nDie Sitzungsaufnahme kann unterstützte Dateilöschungen und Verzeichnis-Opazität für das aktive AUFS- oder OverlayFS-Backend beibehalten. Laufzeit-Mounts, verschachtelte Dateisysteme, Union-Verwaltung und die Ausgabe selbst werden ausgeschlossen. Ein vorhandenes Ziel wird nie ersetzt.\nModule inspizieren und extrahieren\nEin Modul inspizieren, ohne es einzubinden oder zu extrahieren:\nsb inspect 06-example.sb\nsb inspect 06-example.sb --json\nDie Inspektion erfolgt ohne Root-Rechte und funktioniert auch außerhalb einer laufenden MiniOS-Sitzung.\nEin Modul in ein neues Verzeichnis extrahieren:\nsb2dir 06-example.sb example-root\nDie normale Extraktion erfolgt ohne Root-Rechte und verändert die Quelle nicht. Das Zielverzeichnis darf nicht existieren. Spezielle Dateien werden abgelehnt, es sei denn,--allow-special dies wird mit ausreichenden Rechten angefordert.\nUm ein Verzeichnis originalgetreu wiederverpacken zu können, extrahieren Sie mit Administratorrechten und behalten Sie Besitzrechte sowie spezielle Dateien bei:\nsudo sb2dir --keep-ownership --allow-special 06-example.sb example-root\nBei der Extraktion wird die Herkunft des Moduls in.minios-module-origin.json im neuen Verzeichnis dokumentiert. Bei einer Extraktion ohne Root-Rechte wird vermerkt, dass Besitzrechte nicht erhalten wurden; ein solches Verzeichnis kann nicht zurückgegeben werden andir2sb. Bewahren Sie den Herkunftsnachweis bei einer privilegierten Extraktion bis zum erneuten Verpacken auf.\nVon aktuellensb2dir erzeugte Verzeichnisse sind normale Verzeichnisse.rmsbdir, sb rm, und sb rmdir sind veraltete Kompatibilitätsbefehle, die das Entfernen immer verweigern; sie lösen kein Aushängen oder rekursives Löschen aus. Prüfen Sie einen extrahierten Pfad und dessen Inhalte, bevor Sie ihn mit Standard-Dateisystemwerkzeugen entfernen.\nLaufende und nächste Boot-Module verwalten\nAktuelle Laufzeit und Nächster Boot sind unabhängige Zusammenstellungen. SieheUnion-Erstellung und Aktivierung zur Laufzeit für die Trennung zwischen Boot- und Laufzeit sowie die Gründe, warum sich beide Listen unterscheiden können.\nZeigt die tatsächlich für das aktuelle AUFS- oder OverlayFS-Root verwendeten Module, von niedrigster bis höchster Priorität:\nsb list\nsb list --json\nZeigt die Module, die nach den aktuellen Boot-Regeln ausgewählt wurden:\nsb next-boot\nsb next-boot --json\nDiese Abfragen benötigen keine Root-Rechte. Die offiziellenKandidatentier- und Ersetzungsregeln bestimmen, welche Quelle für jeden Next Boot-Basename verwendet wird.\nSo machen Sie ein Benutzermodul beim nächsten Boot verfügbar:\nsudo sb next-boot add 50-extra.sb\nMiniOS verwendet geeigneten, dauerhaften, beschreibbaren Speicher, bereitet die Kopie vor, prüft sie und veröffentlicht sie atomar, ohne ein bestehendes Modul zu ersetzen. Der Dateiname muss den aktuellen Boot-Filtern entsprechen. Entfernen Sie ein ausgewähltes Benutzermodul anhand seines exakten Basenamens:\nsudo sb next-boot remove 50-extra.sb\nDas Entfernen wird für Basismodule sowie für Module auf schreibgeschützten oder flüchtigen Quellen verweigert.\nDie Aktivierung zur Laufzeit ist ein separater, nur für die Sitzung gültiger Vorgang:\nsudo sb activate 50-extra.sb\nsudo sb deactivate 50-extra.sb\nAktivierung und Deaktivierung funktionieren nur, wenn/ aktuell eine AUFS-Union ist. Sie stehen auf OverlayFS nicht zur Verfügung, und allein Kernel-AUFS-Unterstützung reicht nicht aus. Keiner der Befehle ändert Next Boot.\nDer Kompatibilitäts-Konverter-Dispatcher benötigt beide Operanden:\nsudo sb conv my-app-root 06-my-app.sb\nsudo sb conv 06-my-app.sb example-root\nDirektedir2sb und sb2dir-Verwendung ist vorzuziehen, da die normale Konvertierung auch ohne Root-Rechte ausgeführt werden kann.\nVerwandte Dokumentation\nMiniOS-Modulmanager\nInitrd-Modulladen\nBoot-Modi\nISO-Images neu erstellen\nBau von MiniOS\nBoot-Parameter",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
