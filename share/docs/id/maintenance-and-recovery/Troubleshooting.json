@@ -43,7 +43,7 @@
     {
       "anchor": "masalah-penyimpanan-dan-ruang-kosong",
       "level": 2,
-      "title": "Masalah Penyimpanan dan Ruang Kosong"
+      "title": "Masalah penyimpanan dan ruang kosong"
     },
     {
       "anchor": "perubahan-paket-dan-pembaruan-sistem",
@@ -53,7 +53,7 @@
     {
       "anchor": "mengumpulkan-log",
       "level": 2,
-      "title": "Mengumpulkan Log"
+      "title": "Mengumpulkan log"
     },
     {
       "anchor": "sesi-vmdk-tidak-tersedia",
@@ -61,9 +61,9 @@
       "title": "Sesi VMDK tidak tersedia"
     },
     {
-      "anchor": "mengosongkan-ruang-di-dynblk-atau-sesi-vmdk",
+      "anchor": "mengosongkan-ruang-di-dynfilefs-dynblk-atau-sesi-vmdk",
       "level": 3,
-      "title": "Mengosongkan ruang di DynBlk atau sesi VMDK"
+      "title": "Mengosongkan ruang di DynFileFS, DynBlk, atau sesi VMDK"
     }
   ],
   "nodes": [
@@ -84,7 +84,7 @@
       [
         [
           "text",
-          "Mulailah dengan observasi dan pengujian yang dapat dibatalkan. Jangan melakukan repartisi, format, perbaikan sistem file, menghapus sesi, atau mengganti file boot hanya untuk mencoba apakah itu membantu. Pastikan data penting sudah dicadangkan terlebih dahulu."
+          "Mulailah dengan observasi dan pengujian yang dapat dibatalkan. Jangan melakukan partisi ulang, format, perbaikan sistem file, menghapus sesi, atau mengganti file boot hanya untuk mencoba apakah itu membantu. Pastikan data penting sudah dicadangkan terlebih dahulu."
         ]
       ]
     ],
@@ -121,7 +121,7 @@
                   [
                     [
                       "text",
-                      "Verifikasi image yang diunduh"
+                      "Verifikasi citra yang diunduh"
                     ]
                   ]
                 ],
@@ -157,7 +157,7 @@
                 ],
                 [
                   "text",
-                  ". Jika masalah hilang, periksa sesi persisten atau konfigurasinya, bukan image dasarnya."
+                  ". Jika masalah hilang, periksa sesi persisten atau konfigurasinya, bukan citra dasarnya."
                 ]
               ]
             ]
@@ -173,7 +173,7 @@
               [
                 [
                   "text",
-                  "Hapus parameter boot dan filter modul kustom kecuali memang diperlukan untuk mereproduksi masalah."
+                  "Hapus parameter boot dan filter modul kustom kecuali diperlukan untuk mereproduksi masalah."
                 ]
               ]
             ]
@@ -189,7 +189,7 @@
               [
                 [
                   "text",
-                  "Coba port USB lain dan, jika memungkinkan, perangkat atau komputer lain yang sudah dipastikan berfungsi baik."
+                  "Coba port USB lain dan, jika memungkinkan, perangkat atau komputer lain yang sudah dipastikan berfungsi."
                 ]
               ]
             ]
@@ -205,7 +205,7 @@
               [
                 [
                   "text",
-                  "Catat kesalahan pertama dan entri menu boot yang digunakan secara tepat, bukan hanya pesan terakhir yang muncul di layar."
+                  "Catat kesalahan pertama dan entri menu boot yang dipilih, bukan hanya pesan terakhir yang muncul di layar."
                 ]
               ]
             ]
@@ -230,13 +230,13 @@
                   [
                     [
                       "text",
-                      "Kompatibilitas hardware"
+                      "Kompatibilitas perangkat keras"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " jika image yang sudah diverifikasi gagal di satu mesin tetapi berfungsi di mesin lain."
+                  " jika citra yang sudah diverifikasi gagal di satu mesin tetapi berjalan di mesin lain."
                 ]
               ]
             ]
@@ -261,7 +261,7 @@
       [
         [
           "text",
-          "Pertama, tentukan bagaimana perangkat MiniOS dibuat."
+          "Tentukan terlebih dahulu bagaimana perangkat MiniOS dibuat."
         ]
       ]
     ],
@@ -282,7 +282,7 @@
               [
                 [
                   "text",
-                  "Untuk image yang ditulis secara langsung ("
+                  "Untuk citra yang ditulis secara mentah ("
                 ],
                 [
                   "span",
@@ -296,7 +296,7 @@
                 ],
                 [
                   "text",
-                  ", Etcher, mode DD Rufus, atau penulisan image dengan Utilitas Disk), jangan perbaiki file boot satu per satu. Jika salinan rusak, tulis ulang seluruh perangkat dari image yang sudah diverifikasi."
+                  ", Etcher, Rufus mode DD, atau penulisan citra dengan Utilitas Disk), jangan perbaiki file boot satu per satu. Jika salinan rusak, tulis ulang seluruh perangkat dari citra yang sudah diverifikasi."
                 ]
               ]
             ]
@@ -328,7 +328,7 @@
               [
                 [
                   "text",
-                  "Ventoy memiliki bootloader dan tata letak sendiri. Jangan instal bootloader MiniOS di atas perangkat Ventoy; gunakan "
+                  "Ventoy memiliki bootloader dan tata letak sendiri. Jangan instal bootloader MiniOS di atas perangkat Ventoy; gunakan prosedur "
                 ],
                 [
                   "link",
@@ -337,7 +337,7 @@
                   [
                     [
                       "text",
-                      "prosedur Ventoy"
+                      "Ventoy"
                     ]
                   ]
                 ],
@@ -359,7 +359,7 @@
               [
                 [
                   "text",
-                  "Setelah konversi native, target akan menggunakan bootloader dan tata letak filesystem Debian konvensional. Tampilan desktop MiniOS masih dapat dipertahankan, namun infrastruktur live dan alat khusus live MiniOS tidak lagi tersedia. Cadangkan data yang masih bisa dipulihkan sebelum menggunakan prosedur perbaikan atau instalasi ulang bootloader Debian yang sesuai dengan BIOS/UEFI dan tata letak partisinya."
+                  "Setelah konversi native, target menggunakan bootloader Debian konvensional dan tata letak sistem file standar. Tampilan desktop MiniOS dapat dipertahankan, tetapi infrastruktur live dan alat khusus live MiniOS tidak lagi tersedia. Cadangkan data yang dapat dipulihkan sebelum melakukan perbaikan atau instalasi ulang bootloader Debian sesuai dengan BIOS/UEFI dan tata letak partisinya."
                 ]
               ]
             ]
@@ -437,7 +437,7 @@
         ],
         [
           "text",
-          " jika membutuhkan output early-boot yang lebih detail. "
+          " jika membutuhkan output awal boot lebih detail. "
         ],
         [
           "span",
@@ -451,7 +451,7 @@
         ],
         [
           "text",
-          " digunakan untuk inspeksi initramfs tingkat lanjut, bukan untuk perbaikan."
+          " digunakan untuk inspeksi lanjutan initramfs, bukan perbaikan."
         ]
       ]
     ],
@@ -470,13 +470,13 @@
           [
             [
               "text",
-              "Penemuan Sistem"
+              "Penemuan sistem"
             ]
           ]
         ],
         [
           "text",
-          ". Di shell initramfs, informasi read-only yang berguna meliputi:"
+          ". Pada shell initramfs, informasi read-only yang berguna meliputi:"
         ]
       ]
     ],
@@ -597,7 +597,7 @@
         ],
         [
           "text",
-          " sementara dapat membantu mengidentifikasi perangkat yang benar-benar berisi data MiniOS. Setelah itu, gunakan sintaks "
+          " sementara dapat membantu mengidentifikasi perangkat yang benar-benar berisi data MiniOS. Setelah itu, gunakan sintaks yang terdokumentasi "
         ],
         [
           "span",
@@ -611,7 +611,7 @@
         ],
         [
           "text",
-          " yang sudah didokumentasikan daripada menebak nama perangkat."
+          " daripada menebak nama perangkat."
         ]
       ]
     ],
@@ -621,7 +621,7 @@
       [
         [
           "text",
-          "Untuk startup PXE atau ISO HTTP, lihat "
+          "Untuk startup ISO PXE atau HTTP, lihat "
         ],
         [
           "link",
@@ -630,13 +630,13 @@
           [
             [
               "text",
-              "Network boot"
+              "Boot jaringan"
             ]
           ]
         ],
         [
           "text",
-          ". Jaringan early-boot terpisah dari NetworkManager pada sesi yang berjalan."
+          ". Jaringan pada awal boot terpisah dari NetworkManager di sesi berjalan."
         ]
       ]
     ],
@@ -666,13 +666,13 @@
           [
             [
               "text",
-              "Pemrosesan modul"
+              "Pemuatan modul"
             ]
           ]
         ],
         [
           "text",
-          " untuk aturan pemilihan dan urutan modul yang sebenarnya. Secara khusus:"
+          " untuk aturan pemilihan dan urutan modul yang sebenarnya. Khususnya:"
         ]
       ]
     ],
@@ -717,7 +717,7 @@
                 ],
                 [
                   "text",
-                  " dapat mengecualikan modul dasar atau kernel yang penting; "
+                  " dapat mengecualikan modul dasar atau kernel penting; "
                 ],
                 [
                   "span",
@@ -731,7 +731,7 @@
                 ],
                 [
                   "text",
-                  " akan menang jika keduanya cocok;"
+                  " menang jika keduanya cocok;"
                 ]
               ]
             ]
@@ -747,7 +747,7 @@
               [
                 [
                   "text",
-                  "kandidat dengan basename yang sama menempati slot pengganti yang sama;"
+                  "kandidat dengan nama dasar sama menempati slot pengganti yang sama;"
                 ]
               ]
             ]
@@ -777,7 +777,7 @@
                 ],
                 [
                   "text",
-                  " nama file tidak membuktikan bahwa file tersebut adalah image SquashFS yang valid;"
+                  " nama file tidak membuktikan bahwa file tersebut adalah citra SquashFS yang valid;"
                 ]
               ]
             ]
@@ -793,7 +793,7 @@
               [
                 [
                   "text",
-                  "kernel yang sedang berjalan harus sesuai dengan modul kernel dan file boot MiniOS yang terkoordinasi."
+                  "kernel yang berjalan harus sesuai dengan modul kernel MiniOS dan file boot yang terkoordinasi."
                 ]
               ]
             ]
@@ -807,7 +807,7 @@
       [
         [
           "text",
-          "Setelah boot berhasil, periksa status sebenarnya tanpa mengubahnya:"
+          "Setelah boot berhasil, periksa kondisi sebenarnya tanpa mengubahnya:"
         ]
       ]
     ],
@@ -1038,7 +1038,7 @@
                 ],
                 [
                   "text",
-                  ". Konsol yang berfungsi menandakan masalah grafis/desktop, bukan kegagalan boot lebih awal."
+                  ". Konsol yang berfungsi membedakan masalah grafis/desktop dari kegagalan boot sebelumnya."
                 ]
               ]
             ]
@@ -1082,7 +1082,7 @@
                 ],
                 [
                   "text",
-                  " yang ditentukan secara manual."
+                  " yang dimasukkan secara manual."
                 ]
               ]
             ]
@@ -1112,7 +1112,7 @@
                 ],
                 [
                   "text",
-                  " untuk mengabaikan konfigurasi tampilan yang persisten."
+                  " untuk menyingkirkan konfigurasi tampilan persisten."
                 ]
               ]
             ]
@@ -1261,7 +1261,7 @@
       [
         [
           "text",
-          "Pertama, pastikan apakah antarmuka jaringan tersedia:"
+          "Tentukan terlebih dahulu apakah antarmuka tersedia:"
         ]
       ]
     ],
@@ -1455,7 +1455,7 @@
                 ],
                 [
                   "text",
-                  " dan periksa apakah ada kesalahan firmware atau driver di "
+                  " dan cari kesalahan firmware atau driver di "
                 ],
                 [
                   "span",
@@ -1485,7 +1485,7 @@
               [
                 [
                   "text",
-                  "Jika antarmuka tersedia tetapi tidak memiliki alamat, bedakan masalah koneksi/DHCP dari dukungan perangkat keras yang tidak tersedia."
+                  "Jika antarmuka tersedia tetapi tidak memiliki alamat, bedakan masalah koneksi/DHCP dari dukungan perangkat keras yang hilang."
                 ]
               ]
             ]
@@ -1531,7 +1531,7 @@
                 ],
                 [
                   "text",
-                  " digunakan untuk proses boot jaringan awal dan tidak mengonfigurasi koneksi NetworkManager yang permanen. Lihat "
+                  " digunakan hanya untuk boot jaringan awal dan tidak mengonfigurasi koneksi NetworkManager yang persisten. Lihat "
                 ],
                 [
                   "link",
@@ -1585,7 +1585,7 @@
         ],
         [
           "text",
-          " sebelum mengubah penyimpanan persistensi yang dicurigai bermasalah. Jangan memperbaiki atau menghapus satu-satunya salinan sesi saat sesi tersebut masih aktif."
+          " sebelum mengubah media persistensi yang dicurigai. Jangan memperbaiki atau menghapus satu-satunya salinan sesi saat sesi tersebut masih aktif."
         ]
       ]
     ],
@@ -1595,7 +1595,7 @@
       [
         [
           "text",
-          "Periksa apa yang saat ini terlihat oleh MiniOS:"
+          "Periksa apa yang saat ini dilihat oleh MiniOS:"
         ]
       ]
     ],
@@ -1786,7 +1786,7 @@
       [
         [
           "text",
-          "Periksa mode boot yang dipilih, ruang tulis yang tersedia, kompatibilitas filesystem, dan kompatibilitas sesi. Aturan pemilihan detail ada di "
+          "Periksa mode boot yang dipilih, ruang tulis yang tersedia, kompatibilitas sistem file, dan kompatibilitas sesi. Aturan pemilihan detail ada di "
         ],
         [
           "link",
@@ -1826,7 +1826,7 @@
       [
         [
           "text",
-          "Jika sebuah sesi penting yang tidak sedang berjalan "
+          "Jika sesi penting yang tidak berjalan "
         ],
         [
           "span",
@@ -1876,7 +1876,7 @@
           [
             [
               "text",
-              "raw"
+              "vmdk"
             ]
           ]
         ],
@@ -1890,13 +1890,13 @@
           [
             [
               "text",
-              "luks"
+              "raw"
             ]
           ]
         ],
         [
           "text",
-          " masih dapat dibaca, ekspor sesi tersebut "
+          " masih dapat dibaca, termasuk dalam bentuk terenkripsi yang dapat dibuka, ekspor terlebih dahulu "
         ],
         [
           "span",
@@ -1910,7 +1910,7 @@
         ],
         [
           "text",
-          " mencoba-coba dengan penyimpanan:"
+          " mencoba-coba pada media penyimpanan:"
         ]
       ]
     ],
@@ -1999,7 +1999,7 @@
       [
         [
           "text",
-          "Jika Session Manager tidak dapat membaca atau mengekspor sesi, hentikan penulisan ke sumber dan simpan salinan offline dari penyimpanan yang terdampak sebelum melakukan tindakan lebih lanjut. Untuk sesi DynBlk yang terlepas, "
+          "Jika Session Manager tidak dapat membaca atau mengekspor sesi, hentikan penulisan ke sumber dan simpan salinan offline dari media yang terdampak sebelum melanjutkan. Untuk sesi DynBlk yang terlepas, "
         ],
         [
           "span",
@@ -2027,7 +2027,7 @@
         ],
         [
           "text",
-          " menyediakan diagnostik format hanya-baca; jangan jalankan pada volume yang masih terpasang. MiniOS tidak menyediakan prosedur manual universal untuk membangun ulang segmen DynFileFS, merekonstruksi bagian pendukung DynBlk, memperbaiki filesystem internal, atau merekonstruksi metadata sesi. Pemulihan seperti ini bersifat spesifik untuk filesystem/container dan sebaiknya hanya dilakukan pada salinan jika nilai data memang layak dipulihkan."
+          " menyediakan diagnostik format read-only; jangan jalankan pada volume yang masih terpasang. MiniOS tidak menyediakan prosedur manual universal untuk membangun ulang segmen DynFileFS, merekonstruksi bagian pendukung DynBlk, memperbaiki sistem file di dalamnya, atau merekonstruksi metadata sesi. Pemulihan seperti ini bersifat spesifik sistem file/kontainer dan sebaiknya hanya dilakukan pada salinan jika memang data tersebut sangat penting."
         ]
       ]
     ],
@@ -2052,7 +2052,7 @@
         ],
         [
           "text",
-          " untuk alur kerja pencadangan dan impor sesi yang didukung."
+          " untuk alur kerja backup dan impor sesi yang didukung."
         ]
       ]
     ],
@@ -2063,7 +2063,7 @@
       [
         [
           "text",
-          "Masalah Penyimpanan dan Ruang Kosong"
+          "Masalah penyimpanan dan ruang kosong"
         ]
       ]
     ],
@@ -2180,7 +2180,7 @@
       [
         [
           "text",
-          "Sistem berkas yang penuh dapat menyebabkan operasi paket gagal, penyimpanan sesi tidak lengkap, dan error sekunder lainnya. Kosongkan ruang dengan memindahkan atau menghapus data yang sudah diketahui hanya setelah memastikan sistem berkas yang benar. Gunakan Manajer Sesi MiniOS untuk menghapus sesi, bukan menghapus direktori sesi bernomor secara manual."
+          "Sistem file penuh dapat menyebabkan kegagalan operasi paket, penyimpanan sesi tidak lengkap, dan kesalahan sekunder lainnya. Kosongkan ruang dengan memindahkan atau menghapus data yang sudah diketahui hanya setelah memastikan sistem file yang benar. Gunakan Manajer Sesi MiniOS untuk menghapus sesi, bukan menghapus direktori sesi bernomor secara manual."
         ]
       ]
     ],
@@ -2232,7 +2232,7 @@
         ],
         [
           "text",
-          ": area arsip adalah sistem berkas RAM yang terbatas dan unduhan besar dapat memenuhi area ini meskipun perangkat USB masih memiliki ruang kosong. Dengan "
+          ": area arsip adalah sistem file RAM terbatas dan unduhan besar dapat memenuhi area ini meskipun perangkat USB masih memiliki ruang kosong. Dengan "
         ],
         [
           "span",
@@ -2260,7 +2260,7 @@
         ],
         [
           "text",
-          " biasa memiliki batas terpisah 32 MiB RAM. Jika salah satu area penuh, MiniOS tidak akan otomatis menulis file tersebut ke perangkat USB. Lihat "
+          " biasa memiliki batas terpisah 32 MiB RAM. Jika salah satu area penuh, MiniOS tidak akan secara diam-diam menulis file tersebut ke perangkat USB. Lihat "
         ],
         [
           "link",
@@ -2285,7 +2285,7 @@
       [
         [
           "text",
-          "Perbaikan sistem berkas bukan operasi MiniOS yang umum. Jika sistem berkas rusak, lepas mount, amankan data penting atau buat image terlebih dahulu, lalu gunakan prosedur perbaikan yang sesuai dengan sistem berkas dan perangkat penyimpanan tersebut."
+          "Perbaikan sistem file bukan operasi MiniOS yang umum. Jika sistem file rusak, lepas mount-nya, cadangkan data penting atau citra terlebih dahulu, dan gunakan prosedur perbaikan yang sesuai dengan sistem file dan perangkat penyimpanan tersebut."
         ]
       ]
     ],
@@ -2306,7 +2306,7 @@
       [
         [
           "text",
-          "Jika masalah muncul setelah ada perubahan paket APT, perlu diingat bahwa sesi live persistent dapat menimpa file dari modul MiniOS yang hanya-baca. Coba "
+          "Jika masalah muncul setelah perubahan paket APT, ingat bahwa sesi live persisten dapat menimpa file dari modul MiniOS yang hanya-baca. Uji "
         ],
         [
           "span",
@@ -2346,7 +2346,7 @@
       [
         [
           "text",
-          "Mengumpulkan Log"
+          "Mengumpulkan log"
         ]
       ]
     ],
@@ -2626,7 +2626,7 @@
       [
         [
           "text",
-          "Pada sesi "
+          "Pada sesi tahan lama yang sehat "
         ],
         [
           "span",
@@ -2640,7 +2640,7 @@
         ],
         [
           "text",
-          " yang tahan lama dan sehat, dua log startup wajib sudah disimpan terlepas dari "
+          ", dua log startup wajib sudah tersimpan terlepas dari "
         ],
         [
           "span",
@@ -2909,7 +2909,7 @@
         ],
         [
           "text",
-          ", dan "
+          " dan "
         ],
         [
           "span",
@@ -2951,7 +2951,7 @@
         ],
         [
           "text",
-          " saat "
+          " sementara "
         ],
         [
           "span",
@@ -2979,7 +2979,7 @@
         ],
         [
           "text",
-          " tetap ada di penyimpanan persistensi. Untuk SquashFS, log ini juga berada di bawah "
+          " tetap berada di media persistensi. Untuk SquashFS, log ini juga berada di bawah "
         ],
         [
           "span",
@@ -3057,7 +3057,7 @@
           [
             [
               "text",
-              "sekarang"
+              "saat ini"
             ]
           ]
         ],
@@ -3091,7 +3091,7 @@
         ],
         [
           "text",
-          " hanya jika diperlukan; error normal tetap akan dilaporkan tanpa fitur ini."
+          " hanya jika diperlukan; kesalahan normal tetap dilaporkan tanpa itu."
         ]
       ]
     ],
@@ -3101,7 +3101,7 @@
       [
         [
           "text",
-          "Hapus kredensial, private key, rahasia Wi-Fi, dan informasi pribadi lain sebelum membagikan log. Untuk bug yang dapat direproduksi, sertakan cuplikan yang relevan dan buka tiket di "
+          "Hapus kredensial, kunci privat, rahasia Wi-Fi, dan informasi pribadi lain sebelum membagikan log. Untuk bug yang dapat direproduksi, sertakan bagian log yang relevan dan buka isu di "
         ],
         [
           "link",
@@ -3167,7 +3167,7 @@
         ],
         [
           "text",
-          "memeriksa setiap sumber initrd yang akan disalin. Penanda DynBlk lama yang kosong hanya"
+          "memeriksa setiap initrd sumber yang akan disalin. Penanda kosong lama DynBlk hanya"
         ],
         [
           "text",
@@ -3183,7 +3183,7 @@
         ],
         [
           "text",
-          "Jangan mengubah mode sesi yang sudah ada secara manual: gunakan salinan eksplisit atau"
+          "Jangan mengubah mode sesi yang sudah ada secara manual: gunakan salin eksplisit atau"
         ],
         [
           "text",
@@ -3198,11 +3198,11 @@
     [
       "heading",
       3,
-      "mengosongkan-ruang-di-dynblk-atau-sesi-vmdk",
+      "mengosongkan-ruang-di-dynfilefs-dynblk-atau-sesi-vmdk",
       [
         [
           "text",
-          "Mengosongkan ruang di DynBlk atau sesi VMDK"
+          "Mengosongkan ruang di DynFileFS, DynBlk, atau sesi VMDK"
         ]
       ]
     ],
@@ -3252,7 +3252,7 @@
         ],
         [
           "text",
-          "ext4 internal lalu mereklamasi penyimpanan tanpa memindahkan data aktif. Pada exFAT,"
+          "ext4 bagian dalam yang sebenarnya lalu meminta backend pemilik untuk mereklamasi penyimpanan tanpa"
         ],
         [
           "text",
@@ -3260,7 +3260,23 @@
         ],
         [
           "text",
-          "celah di bagian dalam mungkin tetap teralokasi; "
+          "memindahkan data aktif. DynFileFS memerlukan versi 4.6.0 atau lebih baru untuk operasi ini."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Pada sistem file seperti exFAT, celah di dalamnya mungkin tetap dialokasikan ke file host"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "tetapi dapat digunakan ulang oleh kontainer; "
         ],
         [
           "span",
@@ -3274,7 +3290,7 @@
         ],
         [
           "text",
-          " adalah pilihan manual terpisah"
+          " adalah pilihan manual terpisah yang dapat"
         ],
         [
           "text",
@@ -3282,7 +3298,7 @@
         ],
         [
           "text",
-          "yang memindahkan data aktif dan menulis lebih banyak ke perangkat flash. Tidak ada yang mengaktifkan"
+          "memindahkan data aktif dan menulis lebih banyak ke perangkat flash. Tidak ada yang mengaktifkan"
         ],
         [
           "text",
@@ -3298,12 +3314,12 @@
         ],
         [
           "text",
-          "ruang yang sudah diketahui oleh driver dasar melalui perintah ini."
+          "ruang yang sudah diketahui backend terkait melalui perintah ini."
         ]
       ]
     ]
   ],
-  "plain_text": "Pemecahan Masalah\nMulailah dengan observasi dan pengujian yang dapat dibatalkan. Jangan melakukan repartisi, format, perbaikan sistem file, menghapus sesi, atau mengganti file boot hanya untuk mencoba apakah itu membantu. Pastikan data penting sudah dicadangkan terlebih dahulu.\nPemeriksaan awal\nVerifikasi image yang diunduh.\nBoot Mulai tanpa menyimpan. Jika masalah hilang, periksa sesi persisten atau konfigurasinya, bukan image dasarnya.\nHapus parameter boot dan filter modul kustom kecuali memang diperlukan untuk mereproduksi masalah.\nCoba port USB lain dan, jika memungkinkan, perangkat atau komputer lain yang sudah dipastikan berfungsi baik.\nCatat kesalahan pertama dan entri menu boot yang digunakan secara tepat, bukan hanya pesan terakhir yang muncul di layar.\nPeriksa Kompatibilitas hardware jika image yang sudah diverifikasi gagal di satu mesin tetapi berfungsi di mesin lain.\nPerangkat tidak mencapai menu boot MiniOS\nPertama, tentukan bagaimana perangkat MiniOS dibuat.\nUntuk image yang ditulis secara langsung (dd, Etcher, mode DD Rufus, atau penulisan image dengan Utilitas Disk), jangan perbaiki file boot satu per satu. Jika salinan rusak, tulis ulang seluruh perangkat dari image yang sudah diverifikasi.\nUntuk instalasi berbasis file MiniOS, buat ulang tata letak bootable menggunakan metode instalasi terdokumentasi yang sama, bukan dengan menyalin file GRUB, Syslinux, atau EFI dari rilis lain.\nVentoy memiliki bootloader dan tata letak sendiri. Jangan instal bootloader MiniOS di atas perangkat Ventoy; gunakan prosedur Ventoy sebagai gantinya.\nSetelah konversi native, target akan menggunakan bootloader dan tata letak filesystem Debian konvensional. Tampilan desktop MiniOS masih dapat dipertahankan, namun infrastruktur live dan alat khusus live MiniOS tidak lagi tersedia. Cadangkan data yang masih bisa dipulihkan sebelum menggunakan prosedur perbaikan atau instalasi ulang bootloader Debian yang sesuai dengan BIOS/UEFI dan tata letak partisinya.\nJika perangkat yang baru dibuat ulang tetap tidak muncul di menu boot firmware, periksa mode firmware, dukungan Secure Boot pada arsitektur yang dipilih, port/perangkat USB, dan kompatibilitas perangkat keras.\nMenu boot MiniOS muncul tetapi proses startup gagal\nHapus parameter opsional terlebih dahulu. Gunakan debug dan timing jika membutuhkan output early-boot yang lebih detail. rd.break digunakan untuk inspeksi initramfs tingkat lanjut, bukan untuk perbaikan.\nJika MiniOS tidak dapat menemukan sumbernya, lihat Penemuan Sistem. Di shell initramfs, informasi read-only yang berguna meliputi:\ncat /proc/cmdline\nblkid\ncat /proc/net/dev\nfindmnt\ncat /var/log/livedbg\nSebuah from=askdisk sementara dapat membantu mengidentifikasi perangkat yang benar-benar berisi data MiniOS. Setelah itu, gunakan sintaks from= yang sudah didokumentasikan daripada menebak nama perangkat.\nUntuk startup PXE atau ISO HTTP, lihat Network boot. Jaringan early-boot terpisah dari NetworkManager pada sesi yang berjalan.\nKegagalan modul atau root-union\nLihat Pemrosesan modul untuk aturan pemilihan dan urutan modul yang sebenarnya. Secara khusus:\nload= dan noload= dapat mengecualikan modul dasar atau kernel yang penting; noload= akan menang jika keduanya cocok;\nkandidat dengan basename yang sama menempati slot pengganti yang sama;\nsebuah .sb nama file tidak membuktikan bahwa file tersebut adalah image SquashFS yang valid;\nkernel yang sedang berjalan harus sesuai dengan modul kernel dan file boot MiniOS yang terkoordinasi.\nSetelah boot berhasil, periksa status sebenarnya tanpa mengubahnya:\ncat /proc/cmdline\nsb list\nsb next-boot\nfindmnt -no FSTYPE,OPTIONS /\nfindmnt -R /run/initramfs 2>/dev/null\nMasalah tampilan\nUntuk layar hitam, resolusi tidak dapat digunakan, atau loop display-manager:\nCoba parameter boot text. Konsol yang berfungsi menandakan masalah grafis/desktop, bukan kegagalan boot lebih awal.\nHapus parameter xorg-driver atau xorg-resolution yang ditentukan secara manual.\nUji Mulai tanpa menyimpan untuk mengabaikan konfigurasi tampilan yang persisten.\nCatat GPU dan driver dengan lspci -nnk.\nPeriksa journalctl -b -p warning dan dmesg --level=err,warn.\nUntuk mesin virtual, lihat Virtualisasi.\nMasalah jaringan\nKoneksi kabel dan Wi-Fi normal dikelola melalui NetworkManager; lihat Jaringan.\nPertama, pastikan apakah antarmuka jaringan tersedia:\nip link\nip address\nip route\nnmcli device status\nnmcli connection show\nJika tidak ada antarmuka, catat lspci -nnk atau lsusb dan periksa apakah ada kesalahan firmware atau driver di dmesg.\nJika antarmuka tersedia tetapi tidak memiliki alamat, bedakan masalah koneksi/DHCP dari dukungan perangkat keras yang tidak tersedia.\nJika alamat tersedia, uji gateway, lalu alamat IP, lalu nama DNS untuk memisahkan kegagalan link, routing, dan DNS.\nParameter boot ip= digunakan untuk proses boot jaringan awal dan tidak mengonfigurasi koneksi NetworkManager yang permanen. Lihat Boot jaringan.\nMasalah persistensi\nBoot Mulai tanpa menyimpan sebelum mengubah penyimpanan persistensi yang dicurigai bermasalah. Jangan memperbaiki atau menghapus satu-satunya salinan sesi saat sesi tersebut masih aktif.\nPeriksa apa yang saat ini terlihat oleh MiniOS:\nsudo minios-session list\nsudo minios-session running\nsudo minios-session active\nsudo minios-session status\nsudo minios-session info\nPeriksa mode boot yang dipilih, ruang tulis yang tersedia, kompatibilitas filesystem, dan kompatibilitas sesi. Aturan pemilihan detail ada di Sesi dan persistensi dan Internal persistensi.\nJika sebuah sesi penting yang tidak sedang berjalan native, dynfilefs, dynblk, raw, atau luks masih dapat dibaca, ekspor sesi tersebut sebelum mencoba-coba dengan penyimpanan:\nsudo minios-session export <id> /path/to/session.tar.zst\nJika Session Manager tidak dapat membaca atau mengekspor sesi, hentikan penulisan ke sumber dan simpan salinan offline dari penyimpanan yang terdampak sebelum melakukan tindakan lebih lanjut. Untuk sesi DynBlk yang terlepas, dynblk inspect /path/to/volume000.db --metadata-only dan dynblk check /path/to/volume000.db menyediakan diagnostik format hanya-baca; jangan jalankan pada volume yang masih terpasang. MiniOS tidak menyediakan prosedur manual universal untuk membangun ulang segmen DynFileFS, merekonstruksi bagian pendukung DynBlk, memperbaiki filesystem internal, atau merekonstruksi metadata sesi. Pemulihan seperti ini bersifat spesifik untuk filesystem/container dan sebaiknya hanya dilakukan pada salinan jika nilai data memang layak dipulihkan.\nLihat Mencadangkan MiniOS untuk alur kerja pencadangan dan impor sesi yang didukung.\nMasalah Penyimpanan dan Ruang Kosong\nPeriksa perangkat dan mount tanpa mengubahnya:\nlsblk -o NAME,SIZE,TYPE,FSTYPE,LABEL,UUID,MOUNTPOINTS,MODEL\nfindmnt\ndf -hT\ndf -ih\nSistem berkas yang penuh dapat menyebabkan operasi paket gagal, penyimpanan sesi tidak lengkap, dan error sekunder lainnya. Kosongkan ruang dengan memindahkan atau menghapus data yang sudah diketahui hanya setelah memastikan sistem berkas yang benar. Gunakan Manajer Sesi MiniOS untuk menghapus sesi, bukan menghapus direktori sesi bernomor secara manual.\nJika LIVE_APT_CACHE=volatile, periksa juga findmnt -T /var/cache/apt/archives dan df -h /var/cache/apt/archives: area arsip adalah sistem berkas RAM yang terbatas dan unduhan besar dapat memenuhi area ini meskipun perangkat USB masih memiliki ruang kosong. Dengan LIVE_LOG_STORAGE=volatile, /var/log biasa memiliki batas terpisah 32 MiB RAM. Jika salah satu area penuh, MiniOS tidak akan otomatis menulis file tersebut ke perangkat USB. Lihat Performa.\nPerbaikan sistem berkas bukan operasi MiniOS yang umum. Jika sistem berkas rusak, lepas mount, amankan data penting atau buat image terlebih dahulu, lalu gunakan prosedur perbaikan yang sesuai dengan sistem berkas dan perangkat penyimpanan tersebut.\nPerubahan paket dan pembaruan sistem\nJika masalah muncul setelah ada perubahan paket APT, perlu diingat bahwa sesi live persistent dapat menimpa file dari modul MiniOS yang hanya-baca. Coba Mulai tanpa menyimpan untuk membandingkan dengan set modul asli. Lihat Memperbarui MiniOS untuk perbedaan antara pemeliharaan APT dan perubahan rilis MiniOS.\nMengumpulkan Log\nInformasi yang berguna meliputi:\nuname -a\ncat /etc/os-release\njournalctl -b\njournalctl -b -p warning\ndmesg\nlsblk -f\nlspci -nnk\nlsusb\nUntuk kegagalan boot berulang pada media MiniOS yang dapat ditulis, EXPORT_LOGS=true di config.conf mengekspor log boot di bawah minios/log/. Lihat config.conf.\nPada sesi perch yang tahan lama dan sehat, dua log startup wajib sudah disimpan terlepas dari LIVE_LOG_STORAGE:\nsudo ls -l /var/log/minios/minios-boot.log*\nsudo ls -l /var/log/live/config.log*\nsudo cat /run/initramfs/minios-persistence/boot-state\nfindmnt -T /var/log\nfindmnt -T /var/log/minios\nVersi .1, .2, dan .3 adalah boot sebelumnya. Mount /var/log biasa dapat tmpfs saat /var/log/minios dan /var/log/live tetap ada di penyimpanan persistensi. Untuk SquashFS, log ini juga berada di bawah minios/changes/<session-id>/boot-logs/, di luar changes.sb; log ini tetap ada meskipun snapshot shutdown gagal. Aktivasi perch yang gagal atau tidak tahan lama tidak memiliki tujuan log persisten yang dijamin. Dengan LIVE_LOG_STORAGE=volatile, journalctl -b dan log biasa lainnya tersedia hanya untuk boot sekarang. Aktifkan jejak minios-update-* detail menggunakan LIVE_CONFIG_DEBUG=true hanya jika diperlukan; error normal tetap akan dilaporkan tanpa fitur ini.\nHapus kredensial, private key, rahasia Wi-Fi, dan informasi pribadi lain sebelum membagikan log. Untuk bug yang dapat direproduksi, sertakan cuplikan yang relevan dan buka tiket di pelacak isu MiniOS.\nSesi VMDK tidak tersedia\nPerbarui driver/CLI DynBlk dan alat sesi secara bersamaan, lalu bangun ulang\ninitrd boot. Initrd yang berjalan harus mengumumkan vmdk-session-v1; Installer juga\nmemeriksa setiap sumber initrd yang akan disalin. Penanda DynBlk lama yang kosong hanya\nmenandakan dukungan blok native dan tidak menjamin dukungan boot sesi VMDK.\nJangan mengubah mode sesi yang sudah ada secara manual: gunakan salinan eksplisit atau\nkonversi ke format lain.\nMengosongkan ruang di DynBlk atau sesi VMDK\nGunakan menu konteks Session Manager Bebaskan Ruang..., atau\nminios-session reclaim ID --json. Untuk sesi plaintext, ini akan memangkas\next4 internal lalu mereklamasi penyimpanan tanpa memindahkan data aktif. Pada exFAT,\ncelah di bagian dalam mungkin tetap teralokasi; --compact adalah pilihan manual terpisah\nyang memindahkan data aktif dan menulis lebih banyak ke perangkat flash. Tidak ada yang mengaktifkan\nkompaksi atau LUKS discard secara otomatis. Sesi terenkripsi hanya dapat mereklamasi\nruang yang sudah diketahui oleh driver dasar melalui perintah ini.",
+  "plain_text": "Pemecahan Masalah\nMulailah dengan observasi dan pengujian yang dapat dibatalkan. Jangan melakukan partisi ulang, format, perbaikan sistem file, menghapus sesi, atau mengganti file boot hanya untuk mencoba apakah itu membantu. Pastikan data penting sudah dicadangkan terlebih dahulu.\nPemeriksaan awal\nVerifikasi citra yang diunduh.\nBoot Mulai tanpa menyimpan. Jika masalah hilang, periksa sesi persisten atau konfigurasinya, bukan citra dasarnya.\nHapus parameter boot dan filter modul kustom kecuali diperlukan untuk mereproduksi masalah.\nCoba port USB lain dan, jika memungkinkan, perangkat atau komputer lain yang sudah dipastikan berfungsi.\nCatat kesalahan pertama dan entri menu boot yang dipilih, bukan hanya pesan terakhir yang muncul di layar.\nPeriksa Kompatibilitas perangkat keras jika citra yang sudah diverifikasi gagal di satu mesin tetapi berjalan di mesin lain.\nPerangkat tidak mencapai menu boot MiniOS\nTentukan terlebih dahulu bagaimana perangkat MiniOS dibuat.\nUntuk citra yang ditulis secara mentah (dd, Etcher, Rufus mode DD, atau penulisan citra dengan Utilitas Disk), jangan perbaiki file boot satu per satu. Jika salinan rusak, tulis ulang seluruh perangkat dari citra yang sudah diverifikasi.\nUntuk instalasi berbasis file MiniOS, buat ulang tata letak bootable menggunakan metode instalasi terdokumentasi yang sama, bukan dengan menyalin file GRUB, Syslinux, atau EFI dari rilis lain.\nVentoy memiliki bootloader dan tata letak sendiri. Jangan instal bootloader MiniOS di atas perangkat Ventoy; gunakan prosedur Ventoy sebagai gantinya.\nSetelah konversi native, target menggunakan bootloader Debian konvensional dan tata letak sistem file standar. Tampilan desktop MiniOS dapat dipertahankan, tetapi infrastruktur live dan alat khusus live MiniOS tidak lagi tersedia. Cadangkan data yang dapat dipulihkan sebelum melakukan perbaikan atau instalasi ulang bootloader Debian sesuai dengan BIOS/UEFI dan tata letak partisinya.\nJika perangkat yang baru dibuat ulang tetap tidak muncul di menu boot firmware, periksa mode firmware, dukungan Secure Boot pada arsitektur yang dipilih, port/perangkat USB, dan kompatibilitas perangkat keras.\nMenu boot MiniOS muncul tetapi proses startup gagal\nHapus parameter opsional terlebih dahulu. Gunakan debug dan timing jika membutuhkan output awal boot lebih detail. rd.break digunakan untuk inspeksi lanjutan initramfs, bukan perbaikan.\nJika MiniOS tidak dapat menemukan sumbernya, lihat Penemuan sistem. Pada shell initramfs, informasi read-only yang berguna meliputi:\ncat /proc/cmdline\nblkid\ncat /proc/net/dev\nfindmnt\ncat /var/log/livedbg\nSebuah from=askdisk sementara dapat membantu mengidentifikasi perangkat yang benar-benar berisi data MiniOS. Setelah itu, gunakan sintaks yang terdokumentasi from= daripada menebak nama perangkat.\nUntuk startup ISO PXE atau HTTP, lihat Boot jaringan. Jaringan pada awal boot terpisah dari NetworkManager di sesi berjalan.\nKegagalan modul atau root-union\nLihat Pemuatan modul untuk aturan pemilihan dan urutan modul yang sebenarnya. Khususnya:\nload= dan noload= dapat mengecualikan modul dasar atau kernel penting; noload= menang jika keduanya cocok;\nkandidat dengan nama dasar sama menempati slot pengganti yang sama;\nsebuah .sb nama file tidak membuktikan bahwa file tersebut adalah citra SquashFS yang valid;\nkernel yang berjalan harus sesuai dengan modul kernel MiniOS dan file boot yang terkoordinasi.\nSetelah boot berhasil, periksa kondisi sebenarnya tanpa mengubahnya:\ncat /proc/cmdline\nsb list\nsb next-boot\nfindmnt -no FSTYPE,OPTIONS /\nfindmnt -R /run/initramfs 2>/dev/null\nMasalah tampilan\nUntuk layar hitam, resolusi tidak dapat digunakan, atau loop display-manager:\nCoba parameter boot text. Konsol yang berfungsi membedakan masalah grafis/desktop dari kegagalan boot sebelumnya.\nHapus parameter xorg-driver atau xorg-resolution yang dimasukkan secara manual.\nUji Mulai tanpa menyimpan untuk menyingkirkan konfigurasi tampilan persisten.\nCatat GPU dan driver dengan lspci -nnk.\nPeriksa journalctl -b -p warning dan dmesg --level=err,warn.\nUntuk mesin virtual, lihat Virtualisasi.\nMasalah jaringan\nKoneksi kabel dan Wi-Fi normal dikelola melalui NetworkManager; lihat Jaringan.\nTentukan terlebih dahulu apakah antarmuka tersedia:\nip link\nip address\nip route\nnmcli device status\nnmcli connection show\nJika tidak ada antarmuka, catat lspci -nnk atau lsusb dan cari kesalahan firmware atau driver di dmesg.\nJika antarmuka tersedia tetapi tidak memiliki alamat, bedakan masalah koneksi/DHCP dari dukungan perangkat keras yang hilang.\nJika alamat tersedia, uji gateway, lalu alamat IP, lalu nama DNS untuk memisahkan kegagalan link, routing, dan DNS.\nParameter boot ip= digunakan hanya untuk boot jaringan awal dan tidak mengonfigurasi koneksi NetworkManager yang persisten. Lihat Boot jaringan.\nMasalah persistensi\nBoot Mulai tanpa menyimpan sebelum mengubah media persistensi yang dicurigai. Jangan memperbaiki atau menghapus satu-satunya salinan sesi saat sesi tersebut masih aktif.\nPeriksa apa yang saat ini dilihat oleh MiniOS:\nsudo minios-session list\nsudo minios-session running\nsudo minios-session active\nsudo minios-session status\nsudo minios-session info\nPeriksa mode boot yang dipilih, ruang tulis yang tersedia, kompatibilitas sistem file, dan kompatibilitas sesi. Aturan pemilihan detail ada di Sesi dan persistensi dan Internal persistensi.\nJika sesi penting yang tidak berjalan native, dynfilefs, dynblk, vmdk, atau raw masih dapat dibaca, termasuk dalam bentuk terenkripsi yang dapat dibuka, ekspor terlebih dahulu sebelum mencoba-coba pada media penyimpanan:\nsudo minios-session export <id> /path/to/session.tar.zst\nJika Session Manager tidak dapat membaca atau mengekspor sesi, hentikan penulisan ke sumber dan simpan salinan offline dari media yang terdampak sebelum melanjutkan. Untuk sesi DynBlk yang terlepas, dynblk inspect /path/to/volume000.db --metadata-only dan dynblk check /path/to/volume000.db menyediakan diagnostik format read-only; jangan jalankan pada volume yang masih terpasang. MiniOS tidak menyediakan prosedur manual universal untuk membangun ulang segmen DynFileFS, merekonstruksi bagian pendukung DynBlk, memperbaiki sistem file di dalamnya, atau merekonstruksi metadata sesi. Pemulihan seperti ini bersifat spesifik sistem file/kontainer dan sebaiknya hanya dilakukan pada salinan jika memang data tersebut sangat penting.\nLihat Mencadangkan MiniOS untuk alur kerja backup dan impor sesi yang didukung.\nMasalah penyimpanan dan ruang kosong\nPeriksa perangkat dan mount tanpa mengubahnya:\nlsblk -o NAME,SIZE,TYPE,FSTYPE,LABEL,UUID,MOUNTPOINTS,MODEL\nfindmnt\ndf -hT\ndf -ih\nSistem file penuh dapat menyebabkan kegagalan operasi paket, penyimpanan sesi tidak lengkap, dan kesalahan sekunder lainnya. Kosongkan ruang dengan memindahkan atau menghapus data yang sudah diketahui hanya setelah memastikan sistem file yang benar. Gunakan Manajer Sesi MiniOS untuk menghapus sesi, bukan menghapus direktori sesi bernomor secara manual.\nJika LIVE_APT_CACHE=volatile, periksa juga findmnt -T /var/cache/apt/archives dan df -h /var/cache/apt/archives: area arsip adalah sistem file RAM terbatas dan unduhan besar dapat memenuhi area ini meskipun perangkat USB masih memiliki ruang kosong. Dengan LIVE_LOG_STORAGE=volatile, /var/log biasa memiliki batas terpisah 32 MiB RAM. Jika salah satu area penuh, MiniOS tidak akan secara diam-diam menulis file tersebut ke perangkat USB. Lihat Performa.\nPerbaikan sistem file bukan operasi MiniOS yang umum. Jika sistem file rusak, lepas mount-nya, cadangkan data penting atau citra terlebih dahulu, dan gunakan prosedur perbaikan yang sesuai dengan sistem file dan perangkat penyimpanan tersebut.\nPerubahan paket dan pembaruan sistem\nJika masalah muncul setelah perubahan paket APT, ingat bahwa sesi live persisten dapat menimpa file dari modul MiniOS yang hanya-baca. Uji Mulai tanpa menyimpan untuk membandingkan dengan set modul asli. Lihat Memperbarui MiniOS untuk perbedaan antara pemeliharaan APT dan perubahan rilis MiniOS.\nMengumpulkan log\nInformasi yang berguna meliputi:\nuname -a\ncat /etc/os-release\njournalctl -b\njournalctl -b -p warning\ndmesg\nlsblk -f\nlspci -nnk\nlsusb\nUntuk kegagalan boot berulang pada media MiniOS yang dapat ditulis, EXPORT_LOGS=true di config.conf mengekspor log boot di bawah minios/log/. Lihat config.conf.\nPada sesi tahan lama yang sehat perch, dua log startup wajib sudah tersimpan terlepas dari LIVE_LOG_STORAGE:\nsudo ls -l /var/log/minios/minios-boot.log*\nsudo ls -l /var/log/live/config.log*\nsudo cat /run/initramfs/minios-persistence/boot-state\nfindmnt -T /var/log\nfindmnt -T /var/log/minios\nVersi .1, .2 dan .3 adalah boot sebelumnya. Mount /var/log biasa dapat tmpfs sementara /var/log/minios dan /var/log/live tetap berada di media persistensi. Untuk SquashFS, log ini juga berada di bawah minios/changes/<session-id>/boot-logs/, di luar changes.sb; log ini tetap ada meskipun snapshot shutdown gagal. Aktivasi perch yang gagal atau tidak tahan lama tidak memiliki tujuan log persisten yang dijamin. Dengan LIVE_LOG_STORAGE=volatile, journalctl -b dan log biasa lainnya tersedia hanya untuk boot saat ini. Aktifkan jejak minios-update-* detail menggunakan LIVE_CONFIG_DEBUG=true hanya jika diperlukan; kesalahan normal tetap dilaporkan tanpa itu.\nHapus kredensial, kunci privat, rahasia Wi-Fi, dan informasi pribadi lain sebelum membagikan log. Untuk bug yang dapat direproduksi, sertakan bagian log yang relevan dan buka isu di pelacak isu MiniOS.\nSesi VMDK tidak tersedia\nPerbarui driver/CLI DynBlk dan alat sesi secara bersamaan, lalu bangun ulang\ninitrd boot. Initrd yang berjalan harus mengumumkan vmdk-session-v1; Installer juga\nmemeriksa setiap initrd sumber yang akan disalin. Penanda kosong lama DynBlk hanya\nmenandakan dukungan blok native dan tidak menjamin dukungan boot sesi VMDK.\nJangan mengubah mode sesi yang sudah ada secara manual: gunakan salin eksplisit atau\nkonversi ke format lain.\nMengosongkan ruang di DynFileFS, DynBlk, atau sesi VMDK\nGunakan menu konteks Session Manager Bebaskan Ruang..., atau\nminios-session reclaim ID --json. Untuk sesi plaintext, ini akan memangkas\next4 bagian dalam yang sebenarnya lalu meminta backend pemilik untuk mereklamasi penyimpanan tanpa\nmemindahkan data aktif. DynFileFS memerlukan versi 4.6.0 atau lebih baru untuk operasi ini.\nPada sistem file seperti exFAT, celah di dalamnya mungkin tetap dialokasikan ke file host\ntetapi dapat digunakan ulang oleh kontainer; --compact adalah pilihan manual terpisah yang dapat\nmemindahkan data aktif dan menulis lebih banyak ke perangkat flash. Tidak ada yang mengaktifkan\nkompaksi atau LUKS discard secara otomatis. Sesi terenkripsi hanya dapat mereklamasi\nruang yang sudah diketahui backend terkait melalui perintah ini.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

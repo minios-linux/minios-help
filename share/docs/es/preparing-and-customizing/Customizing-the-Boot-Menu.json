@@ -6,9 +6,9 @@
       "title": "Personalización del menú de arranque"
     },
     {
-      "anchor": "descripción-general",
+      "anchor": "resumen",
       "level": 2,
-      "title": "Descripción general"
+      "title": "Resumen"
     },
     {
       "anchor": "opciones-del-menú-de-arranque",
@@ -36,14 +36,14 @@
       "title": "Personalización de las opciones de arranque"
     },
     {
-      "anchor": "edición-temporal-de-los-parámetros-de-arranque",
+      "anchor": "editar-parámetros-de-arranque-temporalmente",
       "level": 3,
-      "title": "Edición temporal de los parámetros de arranque"
+      "title": "Editar parámetros de arranque temporalmente"
     },
     {
-      "anchor": "modificaciones-comunes-de-parámetros-de-arranque",
+      "anchor": "modificaciones-comunes-de-los-parámetros-de-arranque",
       "level": 3,
-      "title": "Modificaciones comunes de parámetros de arranque"
+      "title": "Modificaciones comunes de los parámetros de arranque"
     },
     {
       "anchor": "ubicación-de-los-archivos-de-configuración",
@@ -61,9 +61,9 @@
       "title": "En el sistema en ejecución"
     },
     {
-      "anchor": "edición-de-archivos-de-configuración",
+      "anchor": "editar-archivos-de-configuración",
       "level": 3,
-      "title": "Edición de archivos de configuración"
+      "title": "Editar archivos de configuración"
     }
   ],
   "nodes": [
@@ -84,18 +84,18 @@
       [
         [
           "text",
-          "Los menús de arranque de MiniOS ofrecen accesos directos para los modos de arranque en vivo más comunes. Esta guía explica cómo seleccionar y editar esas entradas."
+          "Los menús de arranque de MiniOS ofrecen accesos directos a los modos de arranque en vivo más comunes. Esta guía explica cómo seleccionar y editar esas opciones."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "descripción-general",
+      "resumen",
       [
         [
           "text",
-          "Descripción general"
+          "Resumen"
         ]
       ]
     ],
@@ -105,7 +105,7 @@
       [
         [
           "text",
-          "Las imágenes de MiniOS pueden utilizar GRUB o Syslinux según el firmware, la estructura de la imagen y la compilación. Sus menús, teclas de edición, manejo de idiomas y entradas disponibles no son necesariamente idénticos. El gestor de arranque finalmente pasa una línea de comandos del kernel al mismo initrd; consulta "
+          "Las imágenes de MiniOS pueden utilizar GRUB o Syslinux según el firmware, la estructura de la imagen y la compilación. Sus menús, teclas de edición, manejo de idiomas y opciones disponibles pueden variar. El gestor de arranque finalmente pasa una línea de comandos del kernel al mismo initrd; consulta "
         ],
         [
           "link",
@@ -120,7 +120,7 @@
         ],
         [
           "text",
-          " para conocer el origen resultante, la persistencia, el comportamiento de copia de RAM y la dependencia del medio."
+          " para conocer el origen resultante, persistencia, comportamiento de copia RAM y dependencia del medio."
         ]
       ]
     ],
@@ -141,7 +141,7 @@
       [
         [
           "text",
-          "La imagen proporcionada suele presentar estas opciones semánticas, aunque los títulos, la disponibilidad, el orden y la selección predeterminada pueden variar según la imagen:"
+          "La imagen proporcionada suele mostrar estas opciones principales, aunque los títulos, la disponibilidad, el orden y la selección predeterminada pueden variar según la imagen:"
         ]
       ]
     ],
@@ -214,7 +214,7 @@
               [
                 [
                   "text",
-                  "Probar la sesión compatible predeterminada y permitir la creación de reemplazos bajo las condiciones documentadas."
+                  "Inicia la sesión compatible predeterminada y permite crear una nueva sesión según las condiciones documentadas."
                 ]
               ]
             ]
@@ -229,7 +229,7 @@
               [
                 [
                   "text",
-                  "Iniciar una nueva sesión"
+                  "Iniciar nueva sesión"
                 ]
               ]
             ],
@@ -242,7 +242,7 @@
                   [
                     [
                       "text",
-                      "perchdir=new"
+                      "perchdir=setup"
                     ]
                   ]
                 ]
@@ -253,7 +253,7 @@
               [
                 [
                   "text",
-                  "Crear una sesión persistente adicional numerada manteniendo las sesiones existentes sin cambios."
+                  "Abre el selector de backend de persistencia y luego crea una sesión adicional numerada, manteniendo las sesiones existentes sin cambios."
                 ]
               ]
             ]
@@ -292,21 +292,7 @@
               [
                 [
                   "text",
-                  "Seleccionar de forma interactiva una sesión guardada existente. Usa "
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Iniciar una nueva sesión"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " si el almacenamiento está vacío."
+                  "Selecciona de forma interactiva una sesión guardada existente; si el almacenamiento está vacío, MiniOS inicia el mismo flujo de configuración para crear la primera sesión."
                 ]
               ]
             ]
@@ -339,7 +325,7 @@
               [
                 [
                   "text",
-                  "Utilizar una capa temporal editable en RAM."
+                  "Utiliza una capa temporal de escritura en RAM."
                 ]
               ]
             ]
@@ -378,7 +364,21 @@
               [
                 [
                   "text",
-                  "Copiar todo el árbol de datos de MiniOS a RAM e intentar desmontar el origen."
+                  "Copia los datos del sistema de MiniOS a RAM; con persistencia, la opción predeterminada "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " copia por separado la sesión compatible seleccionada."
                 ]
               ]
             ]
@@ -392,7 +392,7 @@
       [
         [
           "text",
-          "Estos son selectores, no garantías de que el almacenamiento sea editable, que una sesión sea compatible, que RAM sea suficiente o que el medio de origen se haya desmontado. Consulta "
+          "Estas son opciones de selección, no garantías de que el almacenamiento sea escribible, que la sesión sea compatible, que RAM sea suficiente o que el medio de origen se haya retirado. Consulta "
         ],
         [
           "link",
@@ -437,7 +437,7 @@
         ],
         [
           "text",
-          " para RAM y compensaciones de E/S."
+          " para RAM y consideraciones de E/S."
         ]
       ]
     ],
@@ -480,7 +480,7 @@
               [
                 [
                   "text",
-                  "Usa las "
+                  "Usa "
                 ],
                 [
                   "span",
@@ -488,7 +488,7 @@
                   [
                     [
                       "text",
-                      "flechas"
+                      "las teclas de flecha"
                     ]
                   ]
                 ],
@@ -570,7 +570,7 @@
               [
                 [
                   "text",
-                  "La selección automática y la duración del temporizador dependen de la configuración activa del menú; algunos menús pueden esperar indefinidamente"
+                  "La selección automática y la duración del tiempo de espera dependen de la configuración activa del menú; algunos menús pueden esperar indefinidamente"
                 ]
               ]
             ]
@@ -664,7 +664,7 @@
               [
                 [
                   "text",
-                  "La selección también puede pasar la configuración regional al arranque posterior, pero no garantiza que todos los mensajes del arranque o de las aplicaciones estén traducidos"
+                  "La selección también puede pasar la configuración regional al siguiente inicio, pero no garantiza que todos los mensajes de arranque o de aplicaciones estén traducidos"
                 ]
               ]
             ]
@@ -766,11 +766,11 @@
     [
       "heading",
       3,
-      "edición-temporal-de-los-parámetros-de-arranque",
+      "editar-parámetros-de-arranque-temporalmente",
       [
         [
           "text",
-          "Edición temporal de los parámetros de arranque"
+          "Editar parámetros de arranque temporalmente"
         ]
       ]
     ],
@@ -897,7 +897,7 @@
               [
                 [
                   "text",
-                  "Añade o modifica los parámetros al final de la línea"
+                  "Agrega o modifica parámetros al final de la línea"
                 ]
               ]
             ]
@@ -1020,7 +1020,7 @@
                 ],
                 [
                   "text",
-                  " antes de presionar Enter"
+                  " antes de pulsar Enter"
                 ]
               ]
             ]
@@ -1036,7 +1036,7 @@
               [
                 [
                   "text",
-                  "Añade los parámetros en la línea de comandos que aparece"
+                  "Agrega parámetros a la línea de comandos que aparece"
                 ]
               ]
             ]
@@ -1077,11 +1077,11 @@
     [
       "heading",
       3,
-      "modificaciones-comunes-de-parámetros-de-arranque",
+      "modificaciones-comunes-de-los-parámetros-de-arranque",
       [
         [
           "text",
-          "Modificaciones comunes de parámetros de arranque"
+          "Modificaciones comunes de los parámetros de arranque"
         ]
       ]
     ],
@@ -1112,7 +1112,7 @@
                 ],
                 [
                   "text",
-                  " - Muestra mensajes detallados de arranque (útil para diagnóstico)"
+                  " - Mostrar mensajes detallados de arranque (útil para diagnóstico)"
                 ]
               ]
             ]
@@ -1138,7 +1138,7 @@
                 ],
                 [
                   "text",
-                  " - Copia el conjunto de módulos filtrado y los datos mínimos requeridos a la RAM"
+                  " - Copiar el conjunto de módulos filtrados y los datos requeridos limitados a RAM"
                 ]
               ]
             ]
@@ -1164,7 +1164,7 @@
                 ],
                 [
                   "text",
-                  " - Establece el tamaño de almacenamiento de sesión en 2GB (ajusta según sea necesario)"
+                  " - Establecer el tamaño de almacenamiento de la sesión en 2GB (ajustar según necesidad)"
                 ]
               ]
             ]
@@ -1190,7 +1190,7 @@
                 ],
                 [
                   "text",
-                  " - Solicita un idioma o configuración regional específica"
+                  " - Solicitar un idioma o configuración regional específica"
                 ]
               ]
             ]
@@ -1523,11 +1523,11 @@
     [
       "heading",
       3,
-      "edición-de-archivos-de-configuración",
+      "editar-archivos-de-configuración",
       [
         [
           "text",
-          "Edición de archivos de configuración"
+          "Editar archivos de configuración"
         ]
       ]
     ],
@@ -1612,7 +1612,7 @@
               [
                 [
                   "text",
-                  "Navega a "
+                  "Navega hasta "
                 ],
                 [
                   "span",
@@ -1668,7 +1668,7 @@
               [
                 [
                   "text",
-                  "Guarda y extrae de forma segura la unidad USB"
+                  "Guarda y expulsa la unidad USB de forma segura"
                 ]
               ]
             ]
@@ -1690,7 +1690,7 @@
           [
             [
               "text",
-              "Cambios comunes:"
+              "Cambios habituales:"
             ]
           ]
         ],
@@ -1717,7 +1717,7 @@
               [
                 [
                   "text",
-                  "Modificar la directiva de temporizador utilizada por el menú activo de GRUB o Syslinux"
+                  "Modificar la directiva de tiempo de espera utilizada por el menú activo de GRUB o Syslinux"
                 ]
               ]
             ]
@@ -1733,7 +1733,7 @@
               [
                 [
                   "text",
-                  "Cambiar "
+                  "Cambia "
                 ],
                 [
                   "span",
@@ -1747,7 +1747,7 @@
                 ],
                 [
                   "text",
-                  " para modificar la opción de menú predeterminada"
+                  " para modificar la opción predeterminada del menú"
                 ]
               ]
             ]
@@ -1763,7 +1763,7 @@
               [
                 [
                   "text",
-                  "Añadir entradas de menú personalizadas"
+                  "Agregar entradas personalizadas al menú"
                 ]
               ]
             ]
@@ -1772,7 +1772,7 @@
       ]
     ]
   ],
-  "plain_text": "Personalización del menú de arranque\nLos menús de arranque de MiniOS ofrecen accesos directos para los modos de arranque en vivo más comunes. Esta guía explica cómo seleccionar y editar esas entradas.\nDescripción general\nLas imágenes de MiniOS pueden utilizar GRUB o Syslinux según el firmware, la estructura de la imagen y la compilación. Sus menús, teclas de edición, manejo de idiomas y entradas disponibles no son necesariamente idénticos. El gestor de arranque finalmente pasa una línea de comandos del kernel al mismo initrd; consulta Modos de arranque para conocer el origen resultante, la persistencia, el comportamiento de copia de RAM y la dependencia del medio.\nOpciones del menú de arranque\nLa imagen proporcionada suele presentar estas opciones semánticas, aunque los títulos, la disponibilidad, el orden y la selección predeterminada pueden variar según la imagen:\nOpción de menú | Selector típico de initrd | Propósito\nIniciar MiniOS | perchdir=resume | Probar la sesión compatible predeterminada y permitir la creación de reemplazos bajo las condiciones documentadas.\nIniciar una nueva sesión | perchdir=new | Crear una sesión persistente adicional numerada manteniendo las sesiones existentes sin cambios.\nElegir una sesión guardada | perchdir=ask | Seleccionar de forma interactiva una sesión guardada existente. Usa Iniciar una nueva sesión si el almacenamiento está vacío.\nIniciar sin guardar | sin selector de persistencia | Utilizar una capa temporal editable en RAM.\nEjecutar desde RAM | toram | Copiar todo el árbol de datos de MiniOS a RAM e intentar desmontar el origen.\nEstos son selectores, no garantías de que el almacenamiento sea editable, que una sesión sea compatible, que RAM sea suficiente o que el medio de origen se haya desmontado. Consulta Modos de arranque para el comportamiento y combinaciones, Persistencia en initrd para casos límite de los selectores, y Optimización de rendimiento para RAM y compensaciones de E/S.\nCómo usar el menú de arranque\nNavegación por el menú\nUsa las flechas para moverte entre las opciones\nPulsa Enter para seleccionar una opción\nPulsa Esc para volver al menú anterior (en GRUB)\nLa selección automática y la duración del temporizador dependen de la configuración activa del menú; algunos menús pueden esperar indefinidamente\nSelección de idioma (GRUB)\nSi tu unidad USB de MiniOS admite varios idiomas:\nLa primera pantalla mostrará las opciones de idioma\nSelecciona tu idioma preferido\nEl menú de arranque aparecerá en el idioma seleccionado\nLa selección también puede pasar la configuración regional al arranque posterior, pero no garantiza que todos los mensajes del arranque o de las aplicaciones estén traducidos\nImportante: El menú multilingüe sobrescribe cualquier configuración regional especificada en config.conf. El idioma seleccionado en el menú de arranque tiene prioridad sobre las configuraciones regionales predefinidas. Consulta Archivo de configuración y live-config para más detalles sobre los archivos de configuración del sistema.\nPersonalización de las opciones de arranque\nEdición temporal de los parámetros de arranque\nPuedes modificar las opciones de arranque para una sola sesión:\nEn GRUB:\nSelecciona la opción de menú que deseas modificar\nPulsa 'e' para editar\nNavega hasta la línea que comienza con linux\nAñade o modifica los parámetros al final de la línea\nPulsa Ctrl+X o F10 para arrancar con los cambios\nEn SYSLINUX:\nSelecciona la opción de menú deseada\nPulsa Tab antes de presionar Enter\nAñade los parámetros en la línea de comandos que aparece\nPulsa Enter para arrancar\nModificaciones comunes de parámetros de arranque\ndebug - Muestra mensajes detallados de arranque (útil para diagnóstico)\ntoram=trim - Copia el conjunto de módulos filtrado y los datos mínimos requeridos a la RAM\nperchsize=2000 - Establece el tamaño de almacenamiento de sesión en 2GB (ajusta según sea necesario)\nlocales=ru_RU.UTF-8 - Solicita un idioma o configuración regional específica\nPara ver la lista completa de parámetros de arranque disponibles, consulta Parámetros de arranque.\nUbicación de los archivos de configuración\nEn tu unidad USB de MiniOS\nConfiguración de GRUB: /minios/boot/grub/grub.cfg\nConfiguración de SYSLINUX: /minios/boot/syslinux/syslinux.cfg\nImágenes de arranque: /minios/boot/bootlogo.png\nArchivos de idioma: /minios/boot/grub/locale/\nEn el sistema en ejecución\nParámetros de arranque actuales: /proc/cmdline\nDirectorio de datos de MiniOS: /run/initramfs/memory/data/minios/\nEdición de archivos de configuración\nAdvertencia: Solo edita los archivos de configuración de arranque si sabes lo que haces. Cambios incorrectos pueden hacer que tu unidad USB no arranque.\nPara editar la configuración de GRUB:\nMonta tu unidad USB de MiniOS\nNavega a /minios/boot/grub/\nEdita grub.cfg con un editor de texto\nGuarda y extrae de forma segura la unidad USB\nCambios comunes:\nModificar la directiva de temporizador utilizada por el menú activo de GRUB o Syslinux\nCambiar set default=0 para modificar la opción de menú predeterminada\nAñadir entradas de menú personalizadas",
+  "plain_text": "Personalización del menú de arranque\nLos menús de arranque de MiniOS ofrecen accesos directos a los modos de arranque en vivo más comunes. Esta guía explica cómo seleccionar y editar esas opciones.\nResumen\nLas imágenes de MiniOS pueden utilizar GRUB o Syslinux según el firmware, la estructura de la imagen y la compilación. Sus menús, teclas de edición, manejo de idiomas y opciones disponibles pueden variar. El gestor de arranque finalmente pasa una línea de comandos del kernel al mismo initrd; consulta Modos de arranque para conocer el origen resultante, persistencia, comportamiento de copia RAM y dependencia del medio.\nOpciones del menú de arranque\nLa imagen proporcionada suele mostrar estas opciones principales, aunque los títulos, la disponibilidad, el orden y la selección predeterminada pueden variar según la imagen:\nOpción de menú | Selector típico de initrd | Propósito\nIniciar MiniOS | perchdir=resume | Inicia la sesión compatible predeterminada y permite crear una nueva sesión según las condiciones documentadas.\nIniciar nueva sesión | perchdir=setup | Abre el selector de backend de persistencia y luego crea una sesión adicional numerada, manteniendo las sesiones existentes sin cambios.\nElegir una sesión guardada | perchdir=ask | Selecciona de forma interactiva una sesión guardada existente; si el almacenamiento está vacío, MiniOS inicia el mismo flujo de configuración para crear la primera sesión.\nIniciar sin guardar | sin selector de persistencia | Utiliza una capa temporal de escritura en RAM.\nEjecutar desde RAM | toram | Copia los datos del sistema de MiniOS a RAM; con persistencia, la opción predeterminada perchtoram=trim copia por separado la sesión compatible seleccionada.\nEstas son opciones de selección, no garantías de que el almacenamiento sea escribible, que la sesión sea compatible, que RAM sea suficiente o que el medio de origen se haya retirado. Consulta Modos de arranque para el comportamiento y combinaciones, Persistencia en initrd para casos límite de los selectores, y Optimización de rendimiento para RAM y consideraciones de E/S.\nCómo usar el menú de arranque\nNavegación por el menú\nUsa las teclas de flecha para moverte entre las opciones\nPulsa Enter para seleccionar una opción\nPulsa Esc para volver al menú anterior (en GRUB)\nLa selección automática y la duración del tiempo de espera dependen de la configuración activa del menú; algunos menús pueden esperar indefinidamente\nSelección de idioma (GRUB)\nSi tu unidad USB de MiniOS admite varios idiomas:\nLa primera pantalla mostrará las opciones de idioma\nSelecciona tu idioma preferido\nEl menú de arranque aparecerá en el idioma seleccionado\nLa selección también puede pasar la configuración regional al siguiente inicio, pero no garantiza que todos los mensajes de arranque o de aplicaciones estén traducidos\nImportante: El menú multilingüe sobrescribe cualquier configuración regional especificada en config.conf. El idioma seleccionado en el menú de arranque tiene prioridad sobre las configuraciones regionales predefinidas. Consulta Archivo de configuración y live-config para más detalles sobre los archivos de configuración del sistema.\nPersonalización de las opciones de arranque\nEditar parámetros de arranque temporalmente\nPuedes modificar las opciones de arranque para una sola sesión:\nEn GRUB:\nSelecciona la opción de menú que deseas modificar\nPulsa 'e' para editar\nNavega hasta la línea que comienza con linux\nAgrega o modifica parámetros al final de la línea\nPulsa Ctrl+X o F10 para arrancar con los cambios\nEn SYSLINUX:\nSelecciona la opción de menú deseada\nPulsa Tab antes de pulsar Enter\nAgrega parámetros a la línea de comandos que aparece\nPulsa Enter para arrancar\nModificaciones comunes de los parámetros de arranque\ndebug - Mostrar mensajes detallados de arranque (útil para diagnóstico)\ntoram=trim - Copiar el conjunto de módulos filtrados y los datos requeridos limitados a RAM\nperchsize=2000 - Establecer el tamaño de almacenamiento de la sesión en 2GB (ajustar según necesidad)\nlocales=ru_RU.UTF-8 - Solicitar un idioma o configuración regional específica\nPara ver la lista completa de parámetros de arranque disponibles, consulta Parámetros de arranque.\nUbicación de los archivos de configuración\nEn tu unidad USB de MiniOS\nConfiguración de GRUB: /minios/boot/grub/grub.cfg\nConfiguración de SYSLINUX: /minios/boot/syslinux/syslinux.cfg\nImágenes de arranque: /minios/boot/bootlogo.png\nArchivos de idioma: /minios/boot/grub/locale/\nEn el sistema en ejecución\nParámetros de arranque actuales: /proc/cmdline\nDirectorio de datos de MiniOS: /run/initramfs/memory/data/minios/\nEditar archivos de configuración\nAdvertencia: Solo edita los archivos de configuración de arranque si sabes lo que haces. Cambios incorrectos pueden hacer que tu unidad USB no arranque.\nPara editar la configuración de GRUB:\nMonta tu unidad USB de MiniOS\nNavega hasta /minios/boot/grub/\nEdita grub.cfg con un editor de texto\nGuarda y expulsa la unidad USB de forma segura\nCambios habituales:\nModificar la directiva de tiempo de espera utilizada por el menú activo de GRUB o Syslinux\nCambia set default=0 para modificar la opción predeterminada del menú\nAgregar entradas personalizadas al menú",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

@@ -6,39 +6,39 @@
       "title": "Utilitas Disk"
     },
     {
-      "anchor": "penting",
+      "anchor": "keamanan",
       "level": 2,
-      "title": "Penting"
+      "title": "Keamanan"
     },
     {
-      "anchor": "persyaratan-drive",
+      "anchor": "tulis-image",
       "level": 2,
-      "title": "Persyaratan Drive"
+      "title": "Tulis image"
     },
     {
-      "anchor": "ukuran-drive-untuk-penulisan-minios",
-      "level": 3,
-      "title": "Ukuran Drive (untuk penulisan MiniOS)"
-    },
-    {
-      "anchor": "filesystem-yang-didukung",
-      "level": 3,
-      "title": "Filesystem yang Didukung"
-    },
-    {
-      "anchor": "meluncurkan-utilitas-disk",
+      "anchor": "buat-image-perangkat",
       "level": 2,
-      "title": "Meluncurkan Utilitas Disk"
+      "title": "Buat image perangkat"
     },
     {
-      "anchor": "membuat-usb-drive-bootable",
+      "anchor": "format-perangkat",
       "level": 2,
-      "title": "Membuat USB Drive Bootable"
+      "title": "Format perangkat"
     },
     {
-      "anchor": "hasil-dan-persistensi",
+      "anchor": "hapus-perangkat",
       "level": 2,
-      "title": "Hasil dan persistensi"
+      "title": "Hapus perangkat"
+    },
+    {
+      "anchor": "perangkat-command-line",
+      "level": 2,
+      "title": "Perangkat command-line"
+    },
+    {
+      "anchor": "utilitas-disk-vs-penginstal-minios",
+      "level": 2,
+      "title": "Utilitas Disk vs Penginstal MiniOS"
     }
   ],
   "nodes": [
@@ -59,7 +59,86 @@
       [
         [
           "text",
-          "Utilitas Disk adalah alat grafis untuk menulis citra ISO MiniOS ke drive USB."
+          "Utilitas Disk adalah utilitas disk GTK umum yang disertakan bersama MiniOS. Aplikasi ini dapat menulis image disk yang sudah ada, membuat image dari perangkat fisik, memformat seluruh perangkat, atau menghapusnya. Tidak terbatas pada media MiniOS dan bukan pengganti Penginstal MiniOS."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Buka dari menu aplikasi di bawah "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Sistem"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", atau jalankan:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "driveutility",
+      "bash",
+      [
+        [
+          "syntax",
+          "driveutility",
+          "#6F42C1",
+          "#B392F0"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "keamanan",
+      [
+        [
+          "text",
+          "Keamanan"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Menulis image, memformat, dan menghapus adalah operasi yang bersifat merusak data. Pastikan target yang dipilih sudah benar berdasarkan perangkat, model, dan kapasitas sebelum mengonfirmasi. Selalu cadangkan data penting dan lepas perangkat penyimpanan eksternal yang tidak terkait jika memungkinkan."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Disk yang sedang ter-mount disembunyikan secara default. Anda dapat menampilkannya secara eksplisit, namun Utilitas Disk akan memberikan peringatan sebelum melakukan operasi yang merusak dan backend akan mencoba melepaskan (unmount) perangkat serta partisi yang dipilih sebelum mengubahnya. Jika status mount tidak jelas atau sistem file masih ter-mount, operasi akan gagal dan tidak akan dilanjutkan di bawah sistem file yang aktif."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "tulis-image",
+      [
+        [
+          "text",
+          "Tulis image"
         ]
       ]
     ],
@@ -77,35 +156,164 @@
           [
             [
               "text",
-              "Instalasi:"
+              "Tulis"
             ]
           ]
         ],
         [
           "text",
-          " Tersedia secara default di MiniOS, untuk distribusi lain lihat "
+          " menyalin image byte-per-byte ke perangkat yang dipilih. Input image terkompresi akan terdeteksi oleh backend jika didukung."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Penggunaan umumnya meliputi menulis ISO MiniOS ke media USB atau SD serta mengembalikan image perangkat utuh yang telah dibuat sebelumnya."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Untuk ISO MiniOS, ini adalah penulisan image mentah (raw). Proses ini menyalin partisi ISO dan tata letak boot persis seperti yang ada di dalam image. Ini "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "tidak"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " membuat partisi data tambahan yang dapat ditulis, membuat sesi persistensi, atau melakukan deployment Penginstal MiniOS yang terkelola."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Persistensi setelah penulisan raw tetap bergantung pada mode boot dan media penyimpanan yang dapat ditulis yang tersedia pada image hasil. Untuk tata letak target yang terkelola atau sesi yang sudah dibuat sebelumnya, gunakan "
         ],
         [
           "link",
-          "https://github.com/minios-linux/driveutility",
+          "/installing-minios/MiniOS-Installer.md",
           null,
           [
             [
               "text",
-              "https://github.com/minios-linux/driveutility"
+              "Penginstal MiniOS"
             ]
           ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Contoh CLI:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo driveutility-write -s /path/to/minios.iso -t /dev/sdX",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-write",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-s",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/minios.iso",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-t",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
         ]
       ]
     ],
     [
       "heading",
       2,
-      "penting",
+      "buat-image-perangkat",
       [
         [
           "text",
-          "Penting"
+          "Buat image perangkat"
         ]
       ]
     ],
@@ -123,35 +331,13 @@
           [
             [
               "text",
-              "Peringatan:"
+              "Buat Image"
             ]
           ]
         ],
         [
           "text",
-          " Pemilihan perangkat yang salah akan menyebabkan kehilangan data! Selalu periksa kembali drive yang dipilih dan lakukan backup data penting."
-        ]
-      ]
-    ],
-    [
-      "heading",
-      2,
-      "persyaratan-drive",
-      [
-        [
-          "text",
-          "Persyaratan Drive"
-        ]
-      ]
-    ],
-    [
-      "heading",
-      3,
-      "ukuran-drive-untuk-penulisan-minios",
-      [
-        [
-          "text",
-          "Ukuran Drive (untuk penulisan MiniOS)"
+          " membaca perangkat fisik ke dalam file image. Output dapat tetap dalam bentuk raw atau dikompresi selama proses penulisan."
         ]
       ]
     ],
@@ -161,33 +347,607 @@
       [
         [
           "text",
-          "Lihat "
-        ],
+          "Pilihan kompresi yang didukung antara lain:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
         [
-          "link",
-          "/getting-started/Hardware-Compatibility.md",
+          "item",
           null,
           [
             [
-              "text",
-              "Panduan Kompatibilitas Perangkat Keras"
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "gzip ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".gz"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")"
+                ]
+              ]
             ]
           ]
         ],
         [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "bzip2 ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".bz2"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "XZ ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".xz"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "LZ4 ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".lz4"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Zstandard ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".zst"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ") jika dukungan Python zstd yang diperlukan sudah terpasang"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
           "text",
-          " untuk persyaratan sistem dan ukuran drive secara detail."
+          "Aplikasi grafis juga dapat mengatur file hasil agar menjadi milik pengguna desktop sehingga backup yang dibuat oleh root langsung dapat digunakan tanpa perlu mengubah kepemilikan secara terpisah."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Contoh CLI:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo driveutility-read -s /dev/sdX -t /path/to/backup.img -c zstd",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-read",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-s",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-t",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/backup.img",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-c",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "zstd",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ekstensi khusus kompresi akan ditambahkan secara otomatis oleh pembaca command-line."
         ]
       ]
     ],
     [
       "heading",
-      3,
-      "filesystem-yang-didukung",
+      2,
+      "format-perangkat",
       [
         [
           "text",
-          "Filesystem yang Didukung"
+          "Format perangkat"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Format"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " membuat tata letak sistem file tunggal yang baru pada perangkat yang dipilih. Pilihan sistem file saat ini meliputi:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "FAT32"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "exFAT"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "NTFS"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "ext4"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Anda dapat mengatur label volume. Untuk ext4, Utilitas Disk dapat mengatur direktori root agar menjadi milik pengguna dan grup yang dipilih."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Proses format ini terpisah dari penulisan ISO MiniOS. Pilihan sistem file di halaman ini hanya berlaku untuk operasi format Utilitas Disk; tidak mengubah tata letak sistem file yang tertanam pada penulisan ISO mentah."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Contoh CLI:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo driveutility-format -d /dev/sdX -f ext4 -u 1000 -g 1000 MYDISK",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-format",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-f",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "ext4",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-u",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "1000",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-g",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "1000",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "MYDISK",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "hapus-perangkat",
+      [
+        [
+          "text",
+          "Hapus perangkat"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Hapus"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " memilih antara operasi penghapusan native dari controller, discard/TRIM, dan penimpaan dari sisi host sesuai dengan perangkat yang dipilih dan metode yang diminta."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Backend yang didukung saat ini meliputi:"
         ]
       ]
     ],
@@ -216,13 +976,13 @@
                   [
                     [
                       "text",
-                      "FAT32"
+                      "Secure erase"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  ": kompatibilitas maksimal"
+                  " — secara otomatis memilih metode yang didukung controller jika tersedia."
                 ]
               ]
             ]
@@ -246,13 +1006,13 @@
                   [
                     [
                       "text",
-                      "NTFS"
+                      "ATA Secure Erase / Enhanced Secure Erase"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  ": kompatibel dengan Windows"
+                  " — dijalankan melalui UDisks2 untuk drive SATA/ATA yang didukung; perangkat yang frozen atau tidak didukung akan ditolak."
                 ]
               ]
             ]
@@ -276,62 +1036,18 @@
                   [
                     [
                       "text",
-                      "EXT4"
+                      "NVMe User Data Erase / Cryptographic Erase"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  ": direkomendasikan untuk Linux"
+                  " — menggunakan NVMe Format NVM hanya jika controller melaporkan kemampuan yang diminta."
                 ]
               ]
             ]
           ]
-        ]
-      ]
-    ],
-    [
-      "heading",
-      2,
-      "meluncurkan-utilitas-disk",
-      [
-        [
-          "text",
-          "Meluncurkan Utilitas Disk"
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          ""
         ],
-        [
-          "span",
-          "strong",
-          [
-            [
-              "text",
-              "Melalui menu aplikasi:"
-            ]
-          ]
-        ],
-        [
-          "text",
-          ""
-        ]
-      ]
-    ],
-    [
-      "list",
-      {
-        "ordered": true,
-        "start": 1
-      },
-      [
         [
           "item",
           null,
@@ -342,7 +1058,95 @@
               [
                 [
                   "text",
-                  "Buka menu → Sistem → \"Utilitas Disk\""
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Discard / secure discard"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — menggunakan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "blkdiscard"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " jika block device mendukung discard."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Zero overwrite"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — menulis data nol dari host."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Random overwrite"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — menulis data acak sesuai jumlah pass yang diminta dan dapat menambahkan pass nol terakhir."
                 ]
               ]
             ]
@@ -356,338 +1160,306 @@
       [
         [
           "text",
-          ""
+          "Penghapusan aman melalui controller tidak sama dengan menimpa setiap blok logis secara berulang dari sisi host. Ketersediaan fitur ini tergantung pada firmware perangkat, antarmuka kernel, UDisks2, "
         ],
         [
           "span",
-          "strong",
+          "code",
           [
             [
               "text",
-              "Melalui terminal:"
+              "nvme-cli"
             ]
           ]
         ],
         [
           "text",
-          ""
+          ", dan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "blkdiscard"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " dukungan."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Untuk perangkat NVMe, Utilitas Disk mempertahankan format LBA namespace aktif, pengaturan metadata, dan pengaturan informasi perlindungan saat menjalankan Format NVM. Utilitas ini juga akan menolak operasi controller yang cakupannya dapat memengaruhi beberapa namespace jika target tidak dapat dipastikan aman sebagai operasi satu namespace."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Contoh:"
         ]
       ]
     ],
     [
       "code_block",
-      "driveutility",
+      "sudo driveutility-wipe -d /dev/nvme0n1 -m secure\nsudo driveutility-wipe -d /dev/sdX -m discard\nsudo driveutility-wipe -d /dev/sdX -p 3 -t random -z",
       "bash",
       [
         [
           "syntax",
-          "driveutility",
+          "sudo",
           "#6F42C1",
           "#B392F0"
-        ]
-      ]
-    ],
-    [
-      "heading",
-      2,
-      "membuat-usb-drive-bootable",
-      [
-        [
-          "text",
-          "Membuat USB Drive Bootable"
-        ]
-      ]
-    ],
-    [
-      "list",
-      {
-        "ordered": true,
-        "start": 1
-      },
-      [
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Pilih mode \"Write\""
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " di jendela utama program"
-                ]
-              ]
-            ]
-          ]
         ],
         [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Pilih file ISO MiniOS:"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ""
-                ]
-              ]
-            ],
-            [
-              "list",
-              {
-                "ordered": false,
-                "start": 1
-              },
-              [
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Klik tombol \"Browse\" di sebelah kolom \"Source\""
-                        ]
-                      ]
-                    ]
-                  ]
-                ],
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Temukan dan pilih file MiniOS.iso yang sudah diunduh"
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
         ],
         [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Pilih drive tujuan:"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ""
-                ]
-              ]
-            ],
-            [
-              "list",
-              {
-                "ordered": false,
-                "start": 1
-              },
-              [
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Pilih USB drive Anda dari daftar perangkat"
-                        ]
-                      ]
-                    ]
-                  ]
-                ],
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Pastikan pilihan berdasarkan ukuran dan model"
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
+          "syntax",
+          "driveutility-wipe",
+          "#032F62",
+          "#9ECBFF"
         ],
         [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Mulai penulisan:"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ""
-                ]
-              ]
-            ],
-            [
-              "list",
-              {
-                "ordered": false,
-                "start": 1
-              },
-              [
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Klik tombol \"Write\""
-                        ]
-                      ]
-                    ]
-                  ]
-                ],
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Konfirmasi operasi - semua data di drive akan dihapus"
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
         ],
         [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Tunggu hingga selesai"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " - proses ini akan memakan waktu beberapa menit"
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ],
-    [
-      "heading",
-      2,
-      "hasil-dan-persistensi",
-      [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
         [
-          "text",
-          "Hasil dan persistensi"
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/nvme0n1",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-m",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "secure",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-wipe",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-m",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "discard",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-wipe",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-p",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "3",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-t",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "random",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-z",
+          "#005CC5",
+          "#79B8FF"
         ]
       ]
     ],
@@ -697,7 +1469,18 @@
       [
         [
           "text",
-          "Mode tulis melakukan penulisan citra mentah: ini menyalin tata letak ISO ke seluruh perangkat target. Mode ini tidak membuat partisi ext4 di ruang yang tidak terpakai, tidak membuat sesi persistensi, maupun melakukan deployment Penginstal MiniOS. Pilihan sistem berkas di atas berlaku untuk operasi Utilitas Disk yang memformat sistem berkas, bukan untuk tata letak partisi yang disalin oleh penulisan ISO."
+          "Gunakan kontrol overwrite-pass dan partial-size hanya untuk metode zero/random tradisional. Penghapusan melalui controller dan discard berjalan sesuai perintah perangkat, bukan berdasarkan jumlah byte dari sisi host."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "perangkat-command-line",
+      [
+        [
+          "text",
+          "Perangkat command-line"
         ]
       ]
     ],
@@ -707,7 +1490,264 @@
       [
         [
           "text",
-          "Persistensi hanya diaktifkan jika entri boot atau baris perintah kernel memintanya, dan tetap memerlukan media penyimpanan yang dapat ditulis. Lihat "
+          "Utilitas Disk memasang empat perintah tingkat bawah:"
+        ]
+      ]
+    ],
+    [
+      "table",
+      [
+        [
+          "table_row",
+          true,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Perintah"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Tujuan"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "driveutility-write"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Menulis image mentah atau terkompresi yang didukung ke perangkat blok."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "driveutility-read"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Membuat image mentah atau terkompresi dari perangkat blok."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "driveutility-format"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Membuat penyimpanan FAT32, exFAT, NTFS, atau ext4 pada perangkat."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "driveutility-wipe"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Menghapus melalui metode controller, discard, atau overwrite."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Semua perintah yang bersifat merusak sebaiknya hanya dijalankan setelah memverifikasi perangkat target secara tepat. Gunakan halaman man yang terpasang dan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "--help"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " output untuk opsi khusus versi."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "utilitas-disk-vs-penginstal-minios",
+      [
+        [
+          "text",
+          "Utilitas Disk vs Penginstal MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Gunakan "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Utilitas Disk"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " saat Anda ingin melakukan operasi disk umum: penulisan image mentah, pembuatan image perangkat, format, atau penghapusan."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Gunakan "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Penginstal MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " jika Anda membutuhkan deployment yang sadar MiniOS dengan penempatan terkontrol, pilihan sistem file dan tata letak boot, pemilihan modul, konfigurasi, atau pembuatan sesi live opsional."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Untuk cara lain menempatkan MiniOS ke media, lihat "
+        ],
+        [
+          "link",
+          "/installing-minios/Installation-Methods.md",
+          null,
+          [
+            [
+              "text",
+              "Metode instalasi"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Untuk penyimpanan perubahan setelah boot, lihat "
         ],
         [
           "link",
@@ -726,23 +1766,23 @@
         ],
         [
           "link",
-          "/reference/boot-process/Persistence-Internals.md",
+          "/using-minios/Sessions-and-Persistence.md",
           null,
           [
             [
               "text",
-              "Persistensi Initrd"
+              "Sesi dan persistensi"
             ]
           ]
         ],
         [
           "text",
-          " sebelum mengandalkan perubahan yang tersimpan."
+          "."
         ]
       ]
     ]
   ],
-  "plain_text": "Utilitas Disk\nUtilitas Disk adalah alat grafis untuk menulis citra ISO MiniOS ke drive USB.\nInstalasi: Tersedia secara default di MiniOS, untuk distribusi lain lihat https://github.com/minios-linux/driveutility\nPenting\nPeringatan: Pemilihan perangkat yang salah akan menyebabkan kehilangan data! Selalu periksa kembali drive yang dipilih dan lakukan backup data penting.\nPersyaratan Drive\nUkuran Drive (untuk penulisan MiniOS)\nLihat Panduan Kompatibilitas Perangkat Keras untuk persyaratan sistem dan ukuran drive secara detail.\nFilesystem yang Didukung\nFAT32: kompatibilitas maksimal\nNTFS: kompatibel dengan Windows\nEXT4: direkomendasikan untuk Linux\nMeluncurkan Utilitas Disk\nMelalui menu aplikasi:\nBuka menu → Sistem → \"Utilitas Disk\"\nMelalui terminal:\ndriveutility\nMembuat USB Drive Bootable\nPilih mode \"Write\" di jendela utama program\nPilih file ISO MiniOS:\nKlik tombol \"Browse\" di sebelah kolom \"Source\"\nTemukan dan pilih file MiniOS.iso yang sudah diunduh\nPilih drive tujuan:\nPilih USB drive Anda dari daftar perangkat\nPastikan pilihan berdasarkan ukuran dan model\nMulai penulisan:\nKlik tombol \"Write\"\nKonfirmasi operasi - semua data di drive akan dihapus\nTunggu hingga selesai - proses ini akan memakan waktu beberapa menit\nHasil dan persistensi\nMode tulis melakukan penulisan citra mentah: ini menyalin tata letak ISO ke seluruh perangkat target. Mode ini tidak membuat partisi ext4 di ruang yang tidak terpakai, tidak membuat sesi persistensi, maupun melakukan deployment Penginstal MiniOS. Pilihan sistem berkas di atas berlaku untuk operasi Utilitas Disk yang memformat sistem berkas, bukan untuk tata letak partisi yang disalin oleh penulisan ISO.\nPersistensi hanya diaktifkan jika entri boot atau baris perintah kernel memintanya, dan tetap memerlukan media penyimpanan yang dapat ditulis. Lihat Mode boot dan Persistensi Initrd sebelum mengandalkan perubahan yang tersimpan.",
+  "plain_text": "Utilitas Disk\nUtilitas Disk adalah utilitas disk GTK umum yang disertakan bersama MiniOS. Aplikasi ini dapat menulis image disk yang sudah ada, membuat image dari perangkat fisik, memformat seluruh perangkat, atau menghapusnya. Tidak terbatas pada media MiniOS dan bukan pengganti Penginstal MiniOS.\nBuka dari menu aplikasi di bawah Sistem, atau jalankan:\ndriveutility\nKeamanan\nMenulis image, memformat, dan menghapus adalah operasi yang bersifat merusak data. Pastikan target yang dipilih sudah benar berdasarkan perangkat, model, dan kapasitas sebelum mengonfirmasi. Selalu cadangkan data penting dan lepas perangkat penyimpanan eksternal yang tidak terkait jika memungkinkan.\nDisk yang sedang ter-mount disembunyikan secara default. Anda dapat menampilkannya secara eksplisit, namun Utilitas Disk akan memberikan peringatan sebelum melakukan operasi yang merusak dan backend akan mencoba melepaskan (unmount) perangkat serta partisi yang dipilih sebelum mengubahnya. Jika status mount tidak jelas atau sistem file masih ter-mount, operasi akan gagal dan tidak akan dilanjutkan di bawah sistem file yang aktif.\nTulis image\nTulis menyalin image byte-per-byte ke perangkat yang dipilih. Input image terkompresi akan terdeteksi oleh backend jika didukung.\nPenggunaan umumnya meliputi menulis ISO MiniOS ke media USB atau SD serta mengembalikan image perangkat utuh yang telah dibuat sebelumnya.\nUntuk ISO MiniOS, ini adalah penulisan image mentah (raw). Proses ini menyalin partisi ISO dan tata letak boot persis seperti yang ada di dalam image. Ini tidak membuat partisi data tambahan yang dapat ditulis, membuat sesi persistensi, atau melakukan deployment Penginstal MiniOS yang terkelola.\nPersistensi setelah penulisan raw tetap bergantung pada mode boot dan media penyimpanan yang dapat ditulis yang tersedia pada image hasil. Untuk tata letak target yang terkelola atau sesi yang sudah dibuat sebelumnya, gunakan Penginstal MiniOS.\nContoh CLI:\nsudo driveutility-write -s /path/to/minios.iso -t /dev/sdX\nBuat image perangkat\nBuat Image membaca perangkat fisik ke dalam file image. Output dapat tetap dalam bentuk raw atau dikompresi selama proses penulisan.\nPilihan kompresi yang didukung antara lain:\ngzip (.gz)\nbzip2 (.bz2)\nXZ (.xz)\nLZ4 (.lz4)\nZstandard (.zst) jika dukungan Python zstd yang diperlukan sudah terpasang\nAplikasi grafis juga dapat mengatur file hasil agar menjadi milik pengguna desktop sehingga backup yang dibuat oleh root langsung dapat digunakan tanpa perlu mengubah kepemilikan secara terpisah.\nContoh CLI:\nsudo driveutility-read -s /dev/sdX -t /path/to/backup.img -c zstd\nEkstensi khusus kompresi akan ditambahkan secara otomatis oleh pembaca command-line.\nFormat perangkat\nFormat membuat tata letak sistem file tunggal yang baru pada perangkat yang dipilih. Pilihan sistem file saat ini meliputi:\nFAT32\nexFAT\nNTFS\next4\nAnda dapat mengatur label volume. Untuk ext4, Utilitas Disk dapat mengatur direktori root agar menjadi milik pengguna dan grup yang dipilih.\nProses format ini terpisah dari penulisan ISO MiniOS. Pilihan sistem file di halaman ini hanya berlaku untuk operasi format Utilitas Disk; tidak mengubah tata letak sistem file yang tertanam pada penulisan ISO mentah.\nContoh CLI:\nsudo driveutility-format -d /dev/sdX -f ext4 -u 1000 -g 1000 MYDISK\nHapus perangkat\nHapus memilih antara operasi penghapusan native dari controller, discard/TRIM, dan penimpaan dari sisi host sesuai dengan perangkat yang dipilih dan metode yang diminta.\nBackend yang didukung saat ini meliputi:\nSecure erase — secara otomatis memilih metode yang didukung controller jika tersedia.\nATA Secure Erase / Enhanced Secure Erase — dijalankan melalui UDisks2 untuk drive SATA/ATA yang didukung; perangkat yang frozen atau tidak didukung akan ditolak.\nNVMe User Data Erase / Cryptographic Erase — menggunakan NVMe Format NVM hanya jika controller melaporkan kemampuan yang diminta.\nDiscard / secure discard — menggunakan blkdiscard jika block device mendukung discard.\nZero overwrite — menulis data nol dari host.\nRandom overwrite — menulis data acak sesuai jumlah pass yang diminta dan dapat menambahkan pass nol terakhir.\nPenghapusan aman melalui controller tidak sama dengan menimpa setiap blok logis secara berulang dari sisi host. Ketersediaan fitur ini tergantung pada firmware perangkat, antarmuka kernel, UDisks2, nvme-cli, dan blkdiscard dukungan.\nUntuk perangkat NVMe, Utilitas Disk mempertahankan format LBA namespace aktif, pengaturan metadata, dan pengaturan informasi perlindungan saat menjalankan Format NVM. Utilitas ini juga akan menolak operasi controller yang cakupannya dapat memengaruhi beberapa namespace jika target tidak dapat dipastikan aman sebagai operasi satu namespace.\nContoh:\nsudo driveutility-wipe -d /dev/nvme0n1 -m secure\nsudo driveutility-wipe -d /dev/sdX -m discard\nsudo driveutility-wipe -d /dev/sdX -p 3 -t random -z\nGunakan kontrol overwrite-pass dan partial-size hanya untuk metode zero/random tradisional. Penghapusan melalui controller dan discard berjalan sesuai perintah perangkat, bukan berdasarkan jumlah byte dari sisi host.\nPerangkat command-line\nUtilitas Disk memasang empat perintah tingkat bawah:\nPerintah | Tujuan\ndriveutility-write | Menulis image mentah atau terkompresi yang didukung ke perangkat blok.\ndriveutility-read | Membuat image mentah atau terkompresi dari perangkat blok.\ndriveutility-format | Membuat penyimpanan FAT32, exFAT, NTFS, atau ext4 pada perangkat.\ndriveutility-wipe | Menghapus melalui metode controller, discard, atau overwrite.\nSemua perintah yang bersifat merusak sebaiknya hanya dijalankan setelah memverifikasi perangkat target secara tepat. Gunakan halaman man yang terpasang dan --help output untuk opsi khusus versi.\nUtilitas Disk vs Penginstal MiniOS\nGunakan Utilitas Disk saat Anda ingin melakukan operasi disk umum: penulisan image mentah, pembuatan image perangkat, format, atau penghapusan.\nGunakan Penginstal MiniOS jika Anda membutuhkan deployment yang sadar MiniOS dengan penempatan terkontrol, pilihan sistem file dan tata letak boot, pemilihan modul, konfigurasi, atau pembuatan sesi live opsional.\nUntuk cara lain menempatkan MiniOS ke media, lihat Metode instalasi. Untuk penyimpanan perubahan setelah boot, lihat Mode boot dan Sesi dan persistensi.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

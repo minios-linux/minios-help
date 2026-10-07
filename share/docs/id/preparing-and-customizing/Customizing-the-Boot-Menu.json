@@ -3,7 +3,7 @@
     {
       "anchor": "kustomisasi-menu-boot",
       "level": 1,
-      "title": "Kustomisasi menu boot"
+      "title": "Kustomisasi Menu Boot"
     },
     {
       "anchor": "ikhtisar",
@@ -21,9 +21,9 @@
       "title": "Cara Menggunakan Menu Boot"
     },
     {
-      "anchor": "navigasi-menu",
+      "anchor": "menavigasi-menu",
       "level": 3,
-      "title": "Navigasi Menu"
+      "title": "Menavigasi Menu"
     },
     {
       "anchor": "pemilihan-bahasa-grub",
@@ -31,9 +31,9 @@
       "title": "Pemilihan Bahasa (GRUB)"
     },
     {
-      "anchor": "menyesuaikan-opsi-boot",
+      "anchor": "kustomisasi-opsi-boot",
       "level": 2,
-      "title": "Menyesuaikan Opsi Boot"
+      "title": "Kustomisasi Opsi Boot"
     },
     {
       "anchor": "mengedit-parameter-boot-sementara",
@@ -74,7 +74,7 @@
       [
         [
           "text",
-          "Kustomisasi menu boot"
+          "Kustomisasi Menu Boot"
         ]
       ]
     ],
@@ -84,7 +84,7 @@
       [
         [
           "text",
-          "Menu boot MiniOS menyediakan entri yang praktis untuk mode live boot yang umum digunakan. Panduan ini menjelaskan cara memilih dan mengedit entri-entri tersebut."
+          "Menu boot MiniOS menyediakan entri yang praktis untuk mode live boot yang umum. Panduan ini menjelaskan cara memilih dan mengedit entri tersebut."
         ]
       ]
     ],
@@ -105,7 +105,7 @@
       [
         [
           "text",
-          "Image MiniOS dapat menggunakan GRUB atau Syslinux tergantung pada firmware, tata letak image, dan build. Grafik menu, tombol pengeditan, penanganan bahasa, dan entri yang tersedia tidak selalu identik. Bootloader pada akhirnya akan meneruskan command line kernel ke initrd yang sama; lihat "
+          "Image MiniOS dapat menggunakan GRUB atau Syslinux tergantung pada firmware, tata letak image, dan build. Struktur menu, tombol pengeditan, penanganan bahasa, serta entri yang tersedia bisa berbeda. Bootloader pada akhirnya akan meneruskan kernel command line ke initrd yang sama; lihat "
         ],
         [
           "link",
@@ -120,7 +120,7 @@
         ],
         [
           "text",
-          " untuk sumber yang dihasilkan, persistensi, perilaku RAM-copy, dan ketergantungan media."
+          " untuk sumber yang dihasilkan, persistensi, perilaku salin-RAM, dan ketergantungan media."
         ]
       ]
     ],
@@ -141,7 +141,7 @@
       [
         [
           "text",
-          "Image yang disediakan umumnya menampilkan pilihan semantik berikut, meskipun judul, ketersediaan, urutan, dan pilihan default dapat berbeda-beda tergantung image:"
+          "Image yang disediakan umumnya menampilkan pilihan semantik berikut, meskipun judul, ketersediaan, urutan, dan pilihan default dapat berbeda pada setiap image:"
         ]
       ]
     ],
@@ -166,7 +166,7 @@
               [
                 [
                   "text",
-                  "Selector initrd tipikal"
+                  "Selector initrd yang umum"
                 ]
               ]
             ],
@@ -214,7 +214,7 @@
               [
                 [
                   "text",
-                  "Mencoba sesi kompatibel default dan mengizinkan pembuatan pengganti sesuai kondisi yang didokumentasikan."
+                  "Coba sesi kompatibel default dan izinkan pembuatan pengganti sesuai kondisi yang didokumentasikan."
                 ]
               ]
             ]
@@ -242,7 +242,7 @@
                   [
                     [
                       "text",
-                      "perchdir=new"
+                      "perchdir=setup"
                     ]
                   ]
                 ]
@@ -253,7 +253,7 @@
               [
                 [
                   "text",
-                  "Membuat sesi persisten bernomor tambahan tanpa mengubah sesi yang sudah ada."
+                  "Buka pemilih backend-persistensi, lalu buat sesi bernomor tambahan tanpa mengubah sesi yang sudah ada."
                 ]
               ]
             ]
@@ -268,7 +268,7 @@
               [
                 [
                   "text",
-                  "Pilih sesi tersimpan"
+                  "Pilih sesi yang disimpan"
                 ]
               ]
             ],
@@ -292,21 +292,7 @@
               [
                 [
                   "text",
-                  "Memilih sesi tersimpan yang sudah ada secara interaktif. Gunakan "
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Mulai sesi baru"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " jika penyimpanan kosong."
+                  "Pilih sesi tersimpan yang sudah ada secara interaktif; jika penyimpanan kosong, MiniOS akan masuk ke alur pengaturan yang sama agar sesi pertama dapat dibuat."
                 ]
               ]
             ]
@@ -330,7 +316,7 @@
               [
                 [
                   "text",
-                  "selector tanpa persistensi"
+                  "tanpa pemilih persistensi"
                 ]
               ]
             ],
@@ -339,7 +325,7 @@
               [
                 [
                   "text",
-                  "Menggunakan layer writable sementara di RAM."
+                  "Gunakan layer writable sementara di RAM."
                 ]
               ]
             ]
@@ -378,7 +364,21 @@
               [
                 [
                   "text",
-                  "Menyalin seluruh pohon data MiniOS ke RAM dan mencoba melepas sumbernya."
+                  "Salin data sistem MiniOS ke RAM; dengan persistensi, default "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " menyalin sesi yang didukung dan dipilih secara terpisah."
                 ]
               ]
             ]
@@ -392,7 +392,7 @@
       [
         [
           "text",
-          "Ini adalah selector, bukan jaminan bahwa penyimpanan dapat ditulis, sesi kompatibel, RAM mencukupi, atau media sumber telah dilepas. Lihat "
+          "Ini adalah pemilih, bukan jaminan bahwa penyimpanan dapat ditulis, sesi kompatibel, RAM mencukupi, atau media sumber telah dilepas. Lihat "
         ],
         [
           "link",
@@ -416,13 +416,13 @@
           [
             [
               "text",
-              "Persistensi Initrd"
+              "Persistensi initrd"
             ]
           ]
         ],
         [
           "text",
-          " untuk kasus tepi selector, dan "
+          " untuk kasus khusus pemilih, dan "
         ],
         [
           "link",
@@ -431,7 +431,7 @@
           [
             [
               "text",
-              "Optimasi performa"
+              "Optimasi Performa"
             ]
           ]
         ],
@@ -455,11 +455,11 @@
     [
       "heading",
       3,
-      "navigasi-menu",
+      "menavigasi-menu",
       [
         [
           "text",
-          "Navigasi Menu"
+          "Menavigasi Menu"
         ]
       ]
     ],
@@ -570,7 +570,7 @@
               [
                 [
                   "text",
-                  "Pemilihan otomatis dan durasi timeout bergantung pada konfigurasi menu yang aktif; beberapa menu mungkin menunggu tanpa batas waktu"
+                  "Pemilihan otomatis dan durasi timeout bergantung pada konfigurasi menu aktif; beberapa menu mungkin menunggu tanpa batas waktu"
                 ]
               ]
             ]
@@ -692,7 +692,7 @@
         ],
         [
           "text",
-          " Menu multibahasa akan menimpa pengaturan lokal apa pun yang ditentukan di "
+          " Menu multibahasa akan menimpa pengaturan lokal apa pun yang telah ditentukan di "
         ],
         [
           "span",
@@ -706,7 +706,7 @@
         ],
         [
           "text",
-          ". Bahasa yang dipilih di menu boot akan menjadi prioritas dibanding pengaturan lokal yang sudah dikonfigurasi. Lihat "
+          ". Bahasa yang dipilih di menu boot akan diutamakan daripada pengaturan lokal yang sudah dikonfigurasi sebelumnya. Lihat "
         ],
         [
           "span",
@@ -719,7 +719,7 @@
               [
                 [
                   "text",
-                  "Configuration File"
+                  "Berkas Konfigurasi"
                 ]
               ]
             ]
@@ -748,18 +748,18 @@
         ],
         [
           "text",
-          " untuk detail mengenai file konfigurasi sistem."
+          " untuk detail tentang file konfigurasi sistem."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "menyesuaikan-opsi-boot",
+      "kustomisasi-opsi-boot",
       [
         [
           "text",
-          "Menyesuaikan Opsi Boot"
+          "Kustomisasi Opsi Boot"
         ]
       ]
     ],
@@ -780,7 +780,7 @@
       [
         [
           "text",
-          "Anda dapat memodifikasi opsi boot untuk satu sesi boot saja:"
+          "Anda dapat memodifikasi opsi boot untuk satu sesi boot:"
         ]
       ]
     ],
@@ -1036,7 +1036,7 @@
               [
                 [
                   "text",
-                  "Tambahkan parameter ke baris perintah yang muncul"
+                  "Tambahkan parameter ke command line yang muncul"
                 ]
               ]
             ]
@@ -1138,7 +1138,7 @@
                 ],
                 [
                   "text",
-                  " - Salin set modul yang difilter dan data penting terbatas ke RAM"
+                  " - Salin set modul yang sudah difilter dan data penting terbatas ke RAM"
                 ]
               ]
             ]
@@ -1164,7 +1164,7 @@
                 ],
                 [
                   "text",
-                  " - Atur ukuran penyimpanan sesi menjadi 2GB (sesuaikan sesuai kebutuhan)"
+                  " - Atur ukuran penyimpanan sesi menjadi 2GB (ubah sesuai kebutuhan)"
                 ]
               ]
             ]
@@ -1217,7 +1217,7 @@
               [
                 [
                   "text",
-                  "Boot Parameters"
+                  "Parameter Boot"
                 ]
               ]
             ]
@@ -1356,7 +1356,7 @@
                   [
                     [
                       "text",
-                      "Boot images:"
+                      "Image boot:"
                     ]
                   ]
                 ],
@@ -1551,7 +1551,7 @@
         ],
         [
           "text",
-          " Edit file konfigurasi boot hanya jika Anda benar-benar memahami apa yang Anda lakukan. Perubahan yang salah dapat membuat USB drive Anda tidak bisa boot."
+          " Hanya edit file konfigurasi boot jika Anda memahami apa yang Anda lakukan. Perubahan yang salah dapat membuat USB drive Anda tidak dapat melakukan boot."
         ]
       ]
     ],
@@ -1652,7 +1652,7 @@
                 ],
                 [
                   "text",
-                  " dengan text editor"
+                  " dengan editor teks"
                 ]
               ]
             ]
@@ -1668,7 +1668,7 @@
               [
                 [
                   "text",
-                  "Simpan dan eject USB drive dengan aman"
+                  "Simpan dan keluarkan USB drive dengan aman"
                 ]
               ]
             ]
@@ -1717,7 +1717,7 @@
               [
                 [
                   "text",
-                  "Ubah direktif timeout yang digunakan oleh menu GRUB atau Syslinux yang aktif"
+                  "Modifikasi direktif timeout yang digunakan oleh menu GRUB atau Syslinux aktif"
                 ]
               ]
             ]
@@ -1772,7 +1772,7 @@
       ]
     ]
   ],
-  "plain_text": "Kustomisasi menu boot\nMenu boot MiniOS menyediakan entri yang praktis untuk mode live boot yang umum digunakan. Panduan ini menjelaskan cara memilih dan mengedit entri-entri tersebut.\nIkhtisar\nImage MiniOS dapat menggunakan GRUB atau Syslinux tergantung pada firmware, tata letak image, dan build. Grafik menu, tombol pengeditan, penanganan bahasa, dan entri yang tersedia tidak selalu identik. Bootloader pada akhirnya akan meneruskan command line kernel ke initrd yang sama; lihat Mode Boot untuk sumber yang dihasilkan, persistensi, perilaku RAM-copy, dan ketergantungan media.\nOpsi Menu Boot\nImage yang disediakan umumnya menampilkan pilihan semantik berikut, meskipun judul, ketersediaan, urutan, dan pilihan default dapat berbeda-beda tergantung image:\nPilihan menu | Selector initrd tipikal | Tujuan\nMulai MiniOS | perchdir=resume | Mencoba sesi kompatibel default dan mengizinkan pembuatan pengganti sesuai kondisi yang didokumentasikan.\nMulai sesi baru | perchdir=new | Membuat sesi persisten bernomor tambahan tanpa mengubah sesi yang sudah ada.\nPilih sesi tersimpan | perchdir=ask | Memilih sesi tersimpan yang sudah ada secara interaktif. Gunakan Mulai sesi baru jika penyimpanan kosong.\nMulai tanpa menyimpan | selector tanpa persistensi | Menggunakan layer writable sementara di RAM.\nJalankan dari RAM | toram | Menyalin seluruh pohon data MiniOS ke RAM dan mencoba melepas sumbernya.\nIni adalah selector, bukan jaminan bahwa penyimpanan dapat ditulis, sesi kompatibel, RAM mencukupi, atau media sumber telah dilepas. Lihat Mode Boot untuk perilaku dan kombinasi, Persistensi Initrd untuk kasus tepi selector, dan Optimasi performa untuk RAM dan pertimbangan I/O.\nCara Menggunakan Menu Boot\nNavigasi Menu\nGunakan tombol panah untuk berpindah antar opsi\nTekan Enter untuk memilih opsi\nTekan Esc untuk kembali ke menu sebelumnya (di GRUB)\nPemilihan otomatis dan durasi timeout bergantung pada konfigurasi menu yang aktif; beberapa menu mungkin menunggu tanpa batas waktu\nPemilihan Bahasa (GRUB)\nJika USB drive MiniOS Anda mendukung beberapa bahasa:\nLayar pertama akan menampilkan opsi bahasa\nPilih bahasa yang Anda inginkan\nMenu boot akan muncul dalam bahasa yang dipilih\nPilihan ini juga dapat meneruskan pengaturan lokal ke proses startup berikutnya, namun tidak menjamin semua pesan boot atau aplikasi akan diterjemahkan\nPenting: Menu multibahasa akan menimpa pengaturan lokal apa pun yang ditentukan di config.conf. Bahasa yang dipilih di menu boot akan menjadi prioritas dibanding pengaturan lokal yang sudah dikonfigurasi. Lihat Configuration File dan live-config untuk detail mengenai file konfigurasi sistem.\nMenyesuaikan Opsi Boot\nMengedit Parameter Boot Sementara\nAnda dapat memodifikasi opsi boot untuk satu sesi boot saja:\nDi GRUB:\nPilih opsi menu yang ingin Anda ubah\nTekan 'e' untuk mengedit\nArahkan ke baris yang diawali dengan linux\nTambahkan atau ubah parameter di akhir baris\nTekan Ctrl+X atau F10 untuk boot dengan perubahan Anda\nDi SYSLINUX:\nPilih opsi menu yang diinginkan\nTekan Tab sebelum menekan Enter\nTambahkan parameter ke baris perintah yang muncul\nTekan Enter untuk boot\nModifikasi Parameter Boot yang Umum\ndebug - Tampilkan pesan boot secara detail (berguna untuk troubleshooting)\ntoram=trim - Salin set modul yang difilter dan data penting terbatas ke RAM\nperchsize=2000 - Atur ukuran penyimpanan sesi menjadi 2GB (sesuaikan sesuai kebutuhan)\nlocales=ru_RU.UTF-8 - Minta bahasa/lokal tertentu\nUntuk daftar lengkap parameter boot yang tersedia, lihat Boot Parameters.\nLokasi File Konfigurasi\nPada USB Drive MiniOS Anda\nKonfigurasi GRUB: /minios/boot/grub/grub.cfg\nKonfigurasi SYSLINUX: /minios/boot/syslinux/syslinux.cfg\nBoot images: /minios/boot/bootlogo.png\nFile bahasa: /minios/boot/grub/locale/\nDi Sistem yang Sedang Berjalan\nParameter boot saat ini: /proc/cmdline\nDirektori data MiniOS: /run/initramfs/memory/data/minios/\nMengedit File Konfigurasi\nPeringatan: Edit file konfigurasi boot hanya jika Anda benar-benar memahami apa yang Anda lakukan. Perubahan yang salah dapat membuat USB drive Anda tidak bisa boot.\nUntuk mengedit konfigurasi GRUB:\nMount USB drive MiniOS Anda\nArahkan ke /minios/boot/grub/\nEdit grub.cfg dengan text editor\nSimpan dan eject USB drive dengan aman\nPerubahan umum:\nUbah direktif timeout yang digunakan oleh menu GRUB atau Syslinux yang aktif\nUbah set default=0 untuk mengubah opsi menu default\nTambahkan entri menu kustom",
+  "plain_text": "Kustomisasi Menu Boot\nMenu boot MiniOS menyediakan entri yang praktis untuk mode live boot yang umum. Panduan ini menjelaskan cara memilih dan mengedit entri tersebut.\nIkhtisar\nImage MiniOS dapat menggunakan GRUB atau Syslinux tergantung pada firmware, tata letak image, dan build. Struktur menu, tombol pengeditan, penanganan bahasa, serta entri yang tersedia bisa berbeda. Bootloader pada akhirnya akan meneruskan kernel command line ke initrd yang sama; lihat Mode Boot untuk sumber yang dihasilkan, persistensi, perilaku salin-RAM, dan ketergantungan media.\nOpsi Menu Boot\nImage yang disediakan umumnya menampilkan pilihan semantik berikut, meskipun judul, ketersediaan, urutan, dan pilihan default dapat berbeda pada setiap image:\nPilihan menu | Selector initrd yang umum | Tujuan\nMulai MiniOS | perchdir=resume | Coba sesi kompatibel default dan izinkan pembuatan pengganti sesuai kondisi yang didokumentasikan.\nMulai sesi baru | perchdir=setup | Buka pemilih backend-persistensi, lalu buat sesi bernomor tambahan tanpa mengubah sesi yang sudah ada.\nPilih sesi yang disimpan | perchdir=ask | Pilih sesi tersimpan yang sudah ada secara interaktif; jika penyimpanan kosong, MiniOS akan masuk ke alur pengaturan yang sama agar sesi pertama dapat dibuat.\nMulai tanpa menyimpan | tanpa pemilih persistensi | Gunakan layer writable sementara di RAM.\nJalankan dari RAM | toram | Salin data sistem MiniOS ke RAM; dengan persistensi, default perchtoram=trim menyalin sesi yang didukung dan dipilih secara terpisah.\nIni adalah pemilih, bukan jaminan bahwa penyimpanan dapat ditulis, sesi kompatibel, RAM mencukupi, atau media sumber telah dilepas. Lihat Mode Boot untuk perilaku dan kombinasi, Persistensi initrd untuk kasus khusus pemilih, dan Optimasi Performa untuk RAM dan pertimbangan I/O.\nCara Menggunakan Menu Boot\nMenavigasi Menu\nGunakan tombol panah untuk berpindah antar opsi\nTekan Enter untuk memilih opsi\nTekan Esc untuk kembali ke menu sebelumnya (di GRUB)\nPemilihan otomatis dan durasi timeout bergantung pada konfigurasi menu aktif; beberapa menu mungkin menunggu tanpa batas waktu\nPemilihan Bahasa (GRUB)\nJika USB drive MiniOS Anda mendukung beberapa bahasa:\nLayar pertama akan menampilkan opsi bahasa\nPilih bahasa yang Anda inginkan\nMenu boot akan muncul dalam bahasa yang dipilih\nPilihan ini juga dapat meneruskan pengaturan lokal ke proses startup berikutnya, namun tidak menjamin semua pesan boot atau aplikasi akan diterjemahkan\nPenting: Menu multibahasa akan menimpa pengaturan lokal apa pun yang telah ditentukan di config.conf. Bahasa yang dipilih di menu boot akan diutamakan daripada pengaturan lokal yang sudah dikonfigurasi sebelumnya. Lihat Berkas Konfigurasi dan live-config untuk detail tentang file konfigurasi sistem.\nKustomisasi Opsi Boot\nMengedit Parameter Boot Sementara\nAnda dapat memodifikasi opsi boot untuk satu sesi boot:\nDi GRUB:\nPilih opsi menu yang ingin Anda ubah\nTekan 'e' untuk mengedit\nArahkan ke baris yang diawali dengan linux\nTambahkan atau ubah parameter di akhir baris\nTekan Ctrl+X atau F10 untuk boot dengan perubahan Anda\nDi SYSLINUX:\nPilih opsi menu yang diinginkan\nTekan Tab sebelum menekan Enter\nTambahkan parameter ke command line yang muncul\nTekan Enter untuk boot\nModifikasi Parameter Boot yang Umum\ndebug - Tampilkan pesan boot secara detail (berguna untuk troubleshooting)\ntoram=trim - Salin set modul yang sudah difilter dan data penting terbatas ke RAM\nperchsize=2000 - Atur ukuran penyimpanan sesi menjadi 2GB (ubah sesuai kebutuhan)\nlocales=ru_RU.UTF-8 - Minta bahasa/lokal tertentu\nUntuk daftar lengkap parameter boot yang tersedia, lihat Parameter Boot.\nLokasi File Konfigurasi\nPada USB Drive MiniOS Anda\nKonfigurasi GRUB: /minios/boot/grub/grub.cfg\nKonfigurasi SYSLINUX: /minios/boot/syslinux/syslinux.cfg\nImage boot: /minios/boot/bootlogo.png\nFile bahasa: /minios/boot/grub/locale/\nDi Sistem yang Sedang Berjalan\nParameter boot saat ini: /proc/cmdline\nDirektori data MiniOS: /run/initramfs/memory/data/minios/\nMengedit File Konfigurasi\nPeringatan: Hanya edit file konfigurasi boot jika Anda memahami apa yang Anda lakukan. Perubahan yang salah dapat membuat USB drive Anda tidak dapat melakukan boot.\nUntuk mengedit konfigurasi GRUB:\nMount USB drive MiniOS Anda\nArahkan ke /minios/boot/grub/\nEdit grub.cfg dengan editor teks\nSimpan dan keluarkan USB drive dengan aman\nPerubahan umum:\nModifikasi direktif timeout yang digunakan oleh menu GRUB atau Syslinux aktif\nUbah set default=0 untuk mengubah opsi menu default\nTambahkan entri menu kustom",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

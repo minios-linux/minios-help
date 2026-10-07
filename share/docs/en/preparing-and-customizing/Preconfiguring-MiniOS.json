@@ -481,6 +481,100 @@
           [
             [
               "text",
+              "Module mode"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " accepts "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "simple"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " or "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "merged"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". When "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "LIVE_MODULE_MODE"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " is absent from the selected configuration, current MiniOS Configurator presents "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "merged"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " as the effective default. In merged mode, live-config refreshes users, caches, and package state so configuration from the module stack is integrated into the running live system."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "In "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Advanced"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
               "System log storage"
             ]
           ]
@@ -893,7 +987,7 @@
       ]
     ]
   ],
-  "plain_text": "Preconfiguring MiniOS\nMiniOS Configurator is a graphical editor for MiniOS live configuration. It validates changes and writes configuration for a later boot. Early cache/log storage choices are applied by minios-boot; the remaining live-config components run later. Saving does not change the running system directly.\nStart the configurator\nOpen MiniOS Configurator from the application menu or run:\nminios-configurator\nThe default target is /etc/live/config.conf. To edit another regular file, pass its path:\nminios-configurator /path/to/config.conf\nSaving requires PolicyKit authentication. Symlinks and non-regular target files are rejected.\nMedia and runtime configuration\nMiniOS can read configuration from two locations:\nminios/config.conf and minios/config.conf.d/*.conf on the live medium\n/etc/live/config.conf and /etc/live/config.conf.d/*.conf in the running root filesystem\nMiniOS Configurator edits the selected file only. With no path argument, it edits the runtime file /etc/live/config.conf; it does not directly open the medium file. MiniOS synchronizes newer configuration between the runtime filesystem and writable MiniOS media during boot. Read-only media cannot receive runtime changes, and persistent runtime configuration can remain independent of the media copy.\nAt boot, MiniOS synchronizes the medium and runtime files by modification time. For the new storage policies, later config.conf.d fragments override the main file, LIVE_CONFIG_CMDLINE comes next, and the actual kernel command line wins last.\nUse -i to overlay recognized settings from the current kernel command line in the editor:\nminios-configurator --inherit-cmdline /etc/live/config.conf\nThe selected file remains the save target. Unknown kernel parameters are ignored.\nWhen settings apply\nEvery control states when it is used. Saving never applies a setting to the current session.\nApplied after reboot\nHostname, locale, timezone, keyboard, boot target, service selection, module mode, user-directory media handling, debug settings, log export, and the three Advanced storage settings are read on a later boot. Reboot after saving to apply them.\nIn Advanced, System log storage, APT download cache, and Browser cache each offer persistent (default) or volatile. Their volatile choices apply only to a healthy, durable perch session. Logs from minios-boot and live-config stay persistent even when ordinary logs are temporary. APT package state and browser profiles stay persistent; only the selected logs and caches move to bounded RAM. Browser setup runs after the live user is created. Configurator warns if the running initrd lacks the perch-storage-v1 marker needed for these settings. See Performance before choosing RAM sizes for a low-memory machine.\nUsed only for a new session\nAccount creation, user and root passwords, noroot, sudo and PolicyKit policy, SSH and XRDP policy, X11 access, password hints, and screen locking are one-shot settings. A persistent session normally records completed live-config components under /var/lib/live/config/, so changing these values and rebooting the same session does not recreate the account or security state. Start a new session to apply them as initial settings.\nSecurity profiles are editor presets. The profile name is not saved; the individual security settings are saved and remain editable.\nUser directories and persistence\nLinking and bind mounting user directories are mutually exclusive. Both use an existing writable local MiniOS data medium and a safe media-relative path. They are unavailable with toram, toram=full, or toram=trim, and MiniOS does not merge two populated directory trees automatically.\nperchmode and perchsize are initramfs boot parameters, not MiniOS Configurator settings. The new cache/log storage controls do not select or create a perch session. MiniOS Configurator does not create, unlock, resize, or repair a persistence container. For encrypted persistence it reports whether the initramfs encryption marker is present.\nSave behavior\nReview lists only changed values and redacts passwords. Saving updates only changed keys while preserving comments, ordering, unknown keys, ownership, permissions, and extended attributes. The write is atomic.\nFor the full variable and boot-parameter reference, see Configuration file, Boot parameters, and live-config.",
+  "plain_text": "Preconfiguring MiniOS\nMiniOS Configurator is a graphical editor for MiniOS live configuration. It validates changes and writes configuration for a later boot. Early cache/log storage choices are applied by minios-boot; the remaining live-config components run later. Saving does not change the running system directly.\nStart the configurator\nOpen MiniOS Configurator from the application menu or run:\nminios-configurator\nThe default target is /etc/live/config.conf. To edit another regular file, pass its path:\nminios-configurator /path/to/config.conf\nSaving requires PolicyKit authentication. Symlinks and non-regular target files are rejected.\nMedia and runtime configuration\nMiniOS can read configuration from two locations:\nminios/config.conf and minios/config.conf.d/*.conf on the live medium\n/etc/live/config.conf and /etc/live/config.conf.d/*.conf in the running root filesystem\nMiniOS Configurator edits the selected file only. With no path argument, it edits the runtime file /etc/live/config.conf; it does not directly open the medium file. MiniOS synchronizes newer configuration between the runtime filesystem and writable MiniOS media during boot. Read-only media cannot receive runtime changes, and persistent runtime configuration can remain independent of the media copy.\nAt boot, MiniOS synchronizes the medium and runtime files by modification time. For the new storage policies, later config.conf.d fragments override the main file, LIVE_CONFIG_CMDLINE comes next, and the actual kernel command line wins last.\nUse -i to overlay recognized settings from the current kernel command line in the editor:\nminios-configurator --inherit-cmdline /etc/live/config.conf\nThe selected file remains the save target. Unknown kernel parameters are ignored.\nWhen settings apply\nEvery control states when it is used. Saving never applies a setting to the current session.\nApplied after reboot\nHostname, locale, timezone, keyboard, boot target, service selection, module mode, user-directory media handling, debug settings, log export, and the three Advanced storage settings are read on a later boot. Reboot after saving to apply them.\nIn Advanced, Module mode accepts simple or merged. When LIVE_MODULE_MODE is absent from the selected configuration, current MiniOS Configurator presents merged as the effective default. In merged mode, live-config refreshes users, caches, and package state so configuration from the module stack is integrated into the running live system.\nIn Advanced, System log storage, APT download cache, and Browser cache each offer persistent (default) or volatile. Their volatile choices apply only to a healthy, durable perch session. Logs from minios-boot and live-config stay persistent even when ordinary logs are temporary. APT package state and browser profiles stay persistent; only the selected logs and caches move to bounded RAM. Browser setup runs after the live user is created. Configurator warns if the running initrd lacks the perch-storage-v1 marker needed for these settings. See Performance before choosing RAM sizes for a low-memory machine.\nUsed only for a new session\nAccount creation, user and root passwords, noroot, sudo and PolicyKit policy, SSH and XRDP policy, X11 access, password hints, and screen locking are one-shot settings. A persistent session normally records completed live-config components under /var/lib/live/config/, so changing these values and rebooting the same session does not recreate the account or security state. Start a new session to apply them as initial settings.\nSecurity profiles are editor presets. The profile name is not saved; the individual security settings are saved and remain editable.\nUser directories and persistence\nLinking and bind mounting user directories are mutually exclusive. Both use an existing writable local MiniOS data medium and a safe media-relative path. They are unavailable with toram, toram=full, or toram=trim, and MiniOS does not merge two populated directory trees automatically.\nperchmode and perchsize are initramfs boot parameters, not MiniOS Configurator settings. The new cache/log storage controls do not select or create a perch session. MiniOS Configurator does not create, unlock, resize, or repair a persistence container. For encrypted persistence it reports whether the initramfs encryption marker is present.\nSave behavior\nReview lists only changed values and redacts passwords. Saving updates only changed keys while preserving comments, ordering, unknown keys, ownership, permissions, and extended attributes. The write is atomic.\nFor the full variable and boot-parameter reference, see Configuration file, Boot parameters, and live-config.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

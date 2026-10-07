@@ -6,14 +6,14 @@
       "title": "Solução de problemas"
     },
     {
-      "anchor": "primeiras-verificações",
+      "anchor": "verificações-iniciais",
       "level": 2,
-      "title": "Primeiras verificações"
+      "title": "Verificações iniciais"
     },
     {
-      "anchor": "o-dispositivo-não-acessa-o-menu-de-boot-minios",
+      "anchor": "o-dispositivo-não-chega-ao-menu-de-boot-minios",
       "level": 2,
-      "title": "O dispositivo não acessa o menu de boot MiniOS"
+      "title": "O dispositivo não chega ao menu de boot MiniOS"
     },
     {
       "anchor": "o-menu-de-boot-minios-aparece-mas-a-inicialização-falha",
@@ -51,19 +51,19 @@
       "title": "Alterações de pacotes e atualizações do sistema"
     },
     {
-      "anchor": "coletando-logs",
+      "anchor": "coleta-de-logs",
       "level": 2,
-      "title": "Coletando logs"
+      "title": "Coleta de logs"
     },
     {
-      "anchor": "sessões-vmdk-não-estão-disponíveis",
+      "anchor": "sessões-vmdk-não-são-exibidas",
       "level": 3,
-      "title": "Sessões VMDK não estão disponíveis"
+      "title": "Sessões VMDK não são exibidas"
     },
     {
-      "anchor": "liberando-espaço-em-sessões-dynblk-ou-vmdk",
+      "anchor": "liberando-espaço-em-dynfilefs-dynblk-ou-sessões-vmdk",
       "level": 3,
-      "title": "Liberando espaço em sessões DynBlk ou VMDK"
+      "title": "Liberando espaço em DynFileFS, DynBlk ou sessões VMDK"
     }
   ],
   "nodes": [
@@ -84,18 +84,18 @@
       [
         [
           "text",
-          "Comece observando e realizando testes reversíveis. Não faça reparticionamento, formatação, reparo de sistema de arquivos, exclusão de sessão ou substituição de arquivos de boot apenas para testar se resolve. Primeiro, faça backup dos dados importantes."
+          "Comece pela observação e por testes reversíveis. Não reparticione, formate, repare um sistema de arquivos, exclua uma sessão ou substitua arquivos de boot apenas para ver se resolve. Preserve primeiro os dados importantes."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "primeiras-verificações",
+      "verificações-iniciais",
       [
         [
           "text",
-          "Primeiras verificações"
+          "Verificações iniciais"
         ]
       ]
     ],
@@ -121,7 +121,7 @@
                   [
                     [
                       "text",
-                      "Verificar a imagem baixada"
+                      "Verifique a imagem baixada"
                     ]
                   ]
                 ],
@@ -143,7 +143,7 @@
               [
                 [
                   "text",
-                  "Inicializar "
+                  "Inicie o boot "
                 ],
                 [
                   "span",
@@ -173,7 +173,7 @@
               [
                 [
                   "text",
-                  "Remova parâmetros de inicialização personalizados e filtros de módulos, a menos que sejam necessários para reproduzir o problema."
+                  "Remova parâmetros de boot personalizados e filtros de módulos, a menos que sejam necessários para reproduzir o problema."
                 ]
               ]
             ]
@@ -189,7 +189,7 @@
               [
                 [
                   "text",
-                  "Tente outra porta USB e, se possível, outro dispositivo ou computador já testado."
+                  "Tente outra porta USB e, se possível, outro dispositivo ou computador confiável."
                 ]
               ]
             ]
@@ -205,7 +205,7 @@
               [
                 [
                   "text",
-                  "Registre o primeiro erro e a entrada exata do menu de boot, em vez de apenas a última mensagem exibida na tela."
+                  "Registre o primeiro erro e a entrada exata do menu de boot, não apenas a última mensagem exibida na tela."
                 ]
               ]
             ]
@@ -221,7 +221,7 @@
               [
                 [
                   "text",
-                  "Verifique "
+                  "Verifique a "
                 ],
                 [
                   "link",
@@ -230,13 +230,13 @@
                   [
                     [
                       "text",
-                      "Compatibilidade de hardware"
+                      "compatibilidade de hardware"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " quando a mesma imagem verificada falha em uma máquina, mas funciona em outra."
+                  " quando a mesma imagem verificada falha em um computador, mas funciona em outro."
                 ]
               ]
             ]
@@ -247,11 +247,11 @@
     [
       "heading",
       2,
-      "o-dispositivo-não-acessa-o-menu-de-boot-minios",
+      "o-dispositivo-não-chega-ao-menu-de-boot-minios",
       [
         [
           "text",
-          "O dispositivo não acessa o menu de boot MiniOS"
+          "O dispositivo não chega ao menu de boot MiniOS"
         ]
       ]
     ],
@@ -282,7 +282,7 @@
               [
                 [
                   "text",
-                  "Para uma imagem gravada de forma bruta ("
+                  "Para uma imagem gravada em modo bruto ("
                 ],
                 [
                   "span",
@@ -296,7 +296,7 @@
                 ],
                 [
                   "text",
-                  ", Etcher, modo DD do Rufus ou gravação de imagem pelo Utilitário de disco), não repare arquivos de boot individualmente. Se a cópia estiver corrompida, regrave todo o dispositivo a partir de uma imagem verificada."
+                  ", Etcher, modo DD do Rufus ou gravação de imagem pelo Utilitário de disco), não repare arquivos individuais de boot. Se a cópia estiver corrompida, regrave todo o dispositivo a partir de uma imagem verificada."
                 ]
               ]
             ]
@@ -312,7 +312,7 @@
               [
                 [
                   "text",
-                  "Para uma instalação baseada em arquivos MiniOS, recrie a estrutura inicializável usando o mesmo método de instalação documentado, em vez de copiar arquivos GRUB, Syslinux ou EFI de outra versão."
+                  "Para uma instalação baseada em arquivos MiniOS, recrie o layout inicializável utilizando o mesmo método de instalação documentado, em vez de copiar arquivos GRUB, Syslinux ou EFI de outra versão."
                 ]
               ]
             ]
@@ -328,7 +328,7 @@
               [
                 [
                   "text",
-                  "O Ventoy possui seu próprio bootloader e layout. Não instale o bootloader MiniOS sobre um dispositivo Ventoy; utilize o "
+                  "Ventoy possui seu próprio bootloader e layout. Não instale o bootloader MiniOS sobre um dispositivo Ventoy; utilize o procedimento "
                 ],
                 [
                   "link",
@@ -337,7 +337,7 @@
                   [
                     [
                       "text",
-                      "procedimento Ventoy"
+                      "Ventoy"
                     ]
                   ]
                 ],
@@ -359,7 +359,7 @@
               [
                 [
                   "text",
-                  "Após a conversão nativa, o destino utiliza um bootloader e layout de sistema de arquivos convencionais do Debian. Pode manter a aparência da área de trabalho MiniOS, mas a infraestrutura live e as ferramentas específicas do modo live MiniOS não estarão mais presentes. Faça backup dos dados recuperáveis antes de usar o procedimento de reparo ou reinstalação do bootloader Debian adequado ao BIOS/UEFI e ao layout de partição."
+                  "Após a conversão nativa, o destino utiliza um bootloader Debian convencional e layout de sistema de arquivos padrão. Pode manter a aparência da área de trabalho MiniOS, mas a infraestrutura live e ferramentas específicas MiniOS não estarão mais presentes. Faça backup dos dados recuperáveis antes de usar o procedimento de reparo ou reinstalação do bootloader Debian adequado ao BIOS/UEFI e ao particionamento."
                 ]
               ]
             ]
@@ -373,7 +373,7 @@
       [
         [
           "text",
-          "Se um dispositivo recém-recriado ainda não aparecer no menu de boot do firmware, verifique o modo do firmware, o suporte ao Secure Boot da arquitetura selecionada, a porta/dispositivo USB e a "
+          "Se um dispositivo recém-criado ainda não aparecer no menu de boot do firmware, verifique o modo do firmware, o suporte a Secure Boot da arquitetura selecionada, a porta/dispositivo USB e a "
         ],
         [
           "link",
@@ -437,7 +437,7 @@
         ],
         [
           "text",
-          " quando precisar de mais informações do início da inicialização. "
+          " quando for necessário obter mais informações do início do boot. "
         ],
         [
           "span",
@@ -461,7 +461,7 @@
       [
         [
           "text",
-          "Se o MiniOS não conseguir encontrar sua origem, consulte "
+          "Se o MiniOS não encontrar sua origem, veja "
         ],
         [
           "link",
@@ -583,7 +583,7 @@
       [
         [
           "text",
-          "Um "
+          "Um temporário "
         ],
         [
           "span",
@@ -597,7 +597,7 @@
         ],
         [
           "text",
-          " temporário pode ajudar a identificar o dispositivo que realmente contém os dados MiniOS. Depois disso, use a sintaxe documentada de "
+          " pode ajudar a identificar o dispositivo que realmente contém os dados MiniOS. Depois disso, utilize a sintaxe documentada do "
         ],
         [
           "span",
@@ -611,7 +611,7 @@
         ],
         [
           "text",
-          " em vez de tentar adivinhar os nomes dos dispositivos."
+          " em vez de adivinhar nomes de dispositivos."
         ]
       ]
     ],
@@ -621,7 +621,7 @@
       [
         [
           "text",
-          "Para inicialização via PXE ou ISO HTTP, consulte "
+          "Para inicialização via PXE ou ISO HTTP, veja "
         ],
         [
           "link",
@@ -630,13 +630,13 @@
           [
             [
               "text",
-              "Inicialização pela rede"
+              "Boot em rede"
             ]
           ]
         ],
         [
           "text",
-          ". A rede no início do boot é separada do NetworkManager na sessão em execução."
+          ". O networking inicial do boot é separado do NetworkManager da sessão em execução."
         ]
       ]
     ],
@@ -657,7 +657,7 @@
       [
         [
           "text",
-          "Consulte "
+          "Veja "
         ],
         [
           "link",
@@ -666,13 +666,13 @@
           [
             [
               "text",
-              "Carregamento de módulo"
+              "Carregamento de módulos"
             ]
           ]
         ],
         [
           "text",
-          " para as regras de seleção e ordenação de módulos. Em especial:"
+          " para as regras reais de seleção e ordenação de módulos. Em especial:"
         ]
       ]
     ],
@@ -717,7 +717,7 @@
                 ],
                 [
                   "text",
-                  " podem excluir módulos base ou de kernel essenciais; "
+                  " podem excluir módulos base ou do kernel essenciais; "
                 ],
                 [
                   "span",
@@ -747,7 +747,7 @@
               [
                 [
                   "text",
-                  "candidatos com o mesmo basename ocupam o mesmo slot de substituição;"
+                  "candidatos com o mesmo nome base ocupam o mesmo slot de substituição;"
                 ]
               ]
             ]
@@ -777,7 +777,7 @@
                 ],
                 [
                   "text",
-                  " não prova que o arquivo é uma imagem SquashFS válida;"
+                  " não garante que o arquivo seja uma imagem SquashFS válida;"
                 ]
               ]
             ]
@@ -793,7 +793,7 @@
               [
                 [
                   "text",
-                  "o kernel em execução deve corresponder ao módulo de kernel MiniOS coordenado e aos arquivos de boot."
+                  "o kernel em execução deve corresponder ao módulo do kernel MiniOS e aos arquivos de boot coordenados."
                 ]
               ]
             ]
@@ -807,7 +807,7 @@
       [
         [
           "text",
-          "Após um boot bem-sucedido, inspecione o estado atual sem alterá-lo:"
+          "Após um boot bem-sucedido, inspecione o estado real sem alterá-lo:"
         ]
       ]
     ],
@@ -1038,7 +1038,7 @@
                 ],
                 [
                   "text",
-                  ". Um console funcional separa um problema gráfico/de desktop de uma falha anterior na inicialização."
+                  ". Um console funcional separa um problema gráfico/de desktop de uma falha anterior no boot."
                 ]
               ]
             ]
@@ -1054,7 +1054,7 @@
               [
                 [
                   "text",
-                  "Remova os parâmetros "
+                  "Remova parâmetros especificados manualmente de "
                 ],
                 [
                   "span",
@@ -1082,7 +1082,7 @@
                 ],
                 [
                   "text",
-                  " definidos manualmente."
+                  " ."
                 ]
               ]
             ]
@@ -1112,7 +1112,7 @@
                 ],
                 [
                   "text",
-                  " para descartar configurações de exibição persistentes."
+                  " para descartar configurações persistentes de exibição."
                 ]
               ]
             ]
@@ -1236,7 +1236,7 @@
       [
         [
           "text",
-          "Conexões cabeadas e Wi-Fi comuns são gerenciadas pelo NetworkManager; veja "
+          "Conexões cabeadas e Wi-Fi normais são gerenciadas pelo NetworkManager; veja "
         ],
         [
           "link",
@@ -1427,7 +1427,7 @@
               [
                 [
                   "text",
-                  "Se não houver interface, registre "
+                  "Se não existir interface, registre "
                 ],
                 [
                   "span",
@@ -1485,7 +1485,7 @@
               [
                 [
                   "text",
-                  "Se a interface existir, mas não tiver endereço, diferencie problemas de conexão/DHCP de falta de suporte ao hardware."
+                  "Se a interface existir mas não tiver endereço, diferencie problemas de conexão/DHCP de falta de suporte de hardware."
                 ]
               ]
             ]
@@ -1531,7 +1531,7 @@
                 ],
                 [
                   "text",
-                  " pertence ao boot de rede inicial e não configura uma conexão persistente no NetworkManager. Veja "
+                  " pertence ao boot de rede inicial e não configura uma conexão persistente do NetworkManager. Veja "
                 ],
                 [
                   "link",
@@ -1540,7 +1540,7 @@
                   [
                     [
                       "text",
-                      "Boot pela rede"
+                      "Boot em rede"
                     ]
                   ]
                 ],
@@ -1571,7 +1571,7 @@
       [
         [
           "text",
-          "Inicialize "
+          "Inicie o boot "
         ],
         [
           "span",
@@ -1595,7 +1595,7 @@
       [
         [
           "text",
-          "Verifique o que MiniOS está visualizando no momento:"
+          "Verifique o que o MiniOS está enxergando no momento:"
         ]
       ]
     ],
@@ -1786,7 +1786,7 @@
       [
         [
           "text",
-          "Confira o modo de inicialização selecionado, o espaço disponível para gravação, a compatibilidade do sistema de arquivos e a compatibilidade da sessão. As regras detalhadas de seleção estão em "
+          "Verifique o modo de boot selecionado, o espaço disponível para gravação, a compatibilidade do sistema de arquivos e a compatibilidade da sessão. As regras detalhadas de seleção estão em "
         ],
         [
           "link",
@@ -1810,7 +1810,7 @@
           [
             [
               "text",
-              "Internals da persistência"
+              "Persistência interna"
             ]
           ]
         ],
@@ -1826,7 +1826,7 @@
       [
         [
           "text",
-          "Se uma sessão importante que não está em execução "
+          "Se uma sessão importante não ativa "
         ],
         [
           "span",
@@ -1876,7 +1876,7 @@
           [
             [
               "text",
-              "raw"
+              "vmdk"
             ]
           ]
         ],
@@ -1890,13 +1890,13 @@
           [
             [
               "text",
-              "luks"
+              "raw"
             ]
           ]
         ],
         [
           "text",
-          " ainda está legível, exporte-a "
+          " ainda estiver legível, inclusive em formato criptografado que possa ser desbloqueado, exporte-a "
         ],
         [
           "span",
@@ -1999,7 +1999,7 @@
       [
         [
           "text",
-          "Se o Session Manager não conseguir ler ou exportar a sessão, pare de gravar na origem e preserve uma cópia offline do armazenamento afetado antes de continuar. Para uma sessão DynBlk desconectada, "
+          "Se o Session Manager não conseguir ler ou exportar a sessão, pare de gravar na origem e preserve uma cópia offline do armazenamento afetado antes de prosseguir. Para uma sessão DynBlk destacada, "
         ],
         [
           "span",
@@ -2027,7 +2027,7 @@
         ],
         [
           "text",
-          " fornecem diagnósticos de formato somente leitura; não execute em um volume ainda conectado. MiniOS não define um procedimento manual universal para reconstruir segmentos DynFileFS, reconstruir partes de suporte DynBlk, reparar um sistema de arquivos interno ou reconstruir os metadados da sessão. Essa recuperação é específica do sistema de arquivos/conteiner e só deve ser tentada em uma cópia quando o valor dos dados justificar."
+          " fornecem diagnósticos de formato somente leitura; não execute em volumes ainda montados. MiniOS não define um procedimento manual universal para reconstruir segmentos DynFileFS, restaurar partes de base DynBlk, reparar um sistema de arquivos interno ou reconstruir metadados de sessão. Essa recuperação é específica do sistema de arquivos/container e só deve ser tentada em uma cópia, quando o valor dos dados justificar."
         ]
       ]
     ],
@@ -2037,7 +2037,7 @@
       [
         [
           "text",
-          "Consulte "
+          "Veja "
         ],
         [
           "link",
@@ -2052,7 +2052,7 @@
         ],
         [
           "text",
-          " para fluxos de trabalho suportados de backup e importação de sessões."
+          " para fluxos de trabalho suportados de backup e importação de sessão."
         ]
       ]
     ],
@@ -2073,7 +2073,7 @@
       [
         [
           "text",
-          "Verifique dispositivos e pontos de montagem sem alterá-los:"
+          "Inspecione dispositivos e pontos de montagem sem alterá-los:"
         ]
       ]
     ],
@@ -2180,7 +2180,7 @@
       [
         [
           "text",
-          "Um sistema de arquivos cheio pode causar falhas em operações de pacotes, salvamento de sessões incompleto e outros erros secundários. Libere espaço movendo ou excluindo dados conhecidos somente após confirmar o sistema de arquivos correto. Use o Gerenciador de sessões MiniOS para excluir sessões, em vez de remover manualmente diretórios de sessões numerados."
+          "Um sistema de arquivos cheio pode causar falhas em operações de pacotes, salvamentos de sessão incompletos e outros erros secundários. Libere espaço movendo ou excluindo dados conhecidos apenas após confirmar o sistema de arquivos correto. Utilize o Gerenciador de sessões MiniOS para exclusão de sessões, em vez de remover diretórios de sessões numeradas manualmente."
         ]
       ]
     ],
@@ -2204,7 +2204,7 @@
         ],
         [
           "text",
-          ", também verifique "
+          ", verifique também "
         ],
         [
           "span",
@@ -2260,7 +2260,7 @@
         ],
         [
           "text",
-          " comum tem um limite separado de 32 MiB RAM. Preencher qualquer uma dessas áreas não faz com que o MiniOS passe a gravar esses arquivos no dispositivo USB automaticamente. Veja "
+          " comum possui um limite separado de 32 MiB para RAM. Preencher qualquer uma dessas áreas não faz com que o MiniOS passe a gravar esses arquivos no dispositivo USB de forma silenciosa. Veja "
         ],
         [
           "link",
@@ -2285,7 +2285,7 @@
       [
         [
           "text",
-          "O reparo de sistema de arquivos não é uma operação genérica de MiniOS. Se o próprio sistema de arquivos estiver corrompido, desmonte-o, salve primeiro os dados importantes ou uma imagem, e utilize um procedimento de reparo adequado para aquele sistema de arquivos e dispositivo de armazenamento."
+          "O reparo de sistema de arquivos não é uma operação genérica MiniOS. Se o sistema de arquivos estiver corrompido, desmonte-o, preserve antes os dados importantes ou uma imagem, e utilize o procedimento de reparo adequado ao sistema de arquivos e ao dispositivo de armazenamento."
         ]
       ]
     ],
@@ -2306,7 +2306,7 @@
       [
         [
           "text",
-          "Se os problemas começaram após alterações de pacotes APT, lembre-se de que uma sessão persistente ao vivo pode sobrescrever arquivos dos módulos MiniOS somente leitura. Teste "
+          "Se os problemas começaram após alterações de pacotes APT, lembre-se de que uma sessão persistente live pode sobrescrever arquivos dos módulos MiniOS somente leitura. Teste "
         ],
         [
           "span",
@@ -2335,18 +2335,18 @@
         ],
         [
           "text",
-          " para entender a diferença entre manutenção via APT e mudança de versões MiniOS."
+          " para a diferença entre manutenção APT e mudança de versões MiniOS."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "coletando-logs",
+      "coleta-de-logs",
       [
         [
           "text",
-          "Coletando logs"
+          "Coleta de logs"
         ]
       ]
     ],
@@ -2587,7 +2587,7 @@
         ],
         [
           "text",
-          " exporta logs de inicialização em "
+          " exporta logs de boot em "
         ],
         [
           "span",
@@ -2626,7 +2626,7 @@
       [
         [
           "text",
-          "Em uma sessão durável saudável de "
+          "Em uma sessão durável saudável "
         ],
         [
           "span",
@@ -2640,7 +2640,7 @@
         ],
         [
           "text",
-          " , os dois logs obrigatórios de inicialização já são mantidos independentemente de "
+          ", os dois logs obrigatórios de inicialização já são mantidos independentemente de "
         ],
         [
           "span",
@@ -2923,7 +2923,7 @@
         ],
         [
           "text",
-          " são boots anteriores. O ponto de montagem comum de "
+          " são boots anteriores. O ponto de montagem "
         ],
         [
           "span",
@@ -2979,7 +2979,7 @@
         ],
         [
           "text",
-          " permanecem no armazenamento persistente. Para SquashFS, esses logs também ficam em "
+          " permanecem no armazenamento de persistência. Para SquashFS, esses logs também ficam em "
         ],
         [
           "span",
@@ -3007,7 +3007,7 @@
         ],
         [
           "text",
-          "; eles permanecem mesmo que o snapshot de desligamento falhe. Uma ativação de "
+          "; eles sobrevivem mesmo se o snapshot de desligamento falhar. Uma ativação de "
         ],
         [
           "span",
@@ -3021,7 +3021,7 @@
         ],
         [
           "text",
-          " com falha ou não durável não garante destino persistente para logs. Com "
+          " falha ou não durável não garante destino de log persistente. Com "
         ],
         [
           "span",
@@ -3049,7 +3049,7 @@
         ],
         [
           "text",
-          " e outros logs comuns estão disponíveis apenas para o boot "
+          " e outros logs comuns ficam disponíveis apenas para o boot "
         ],
         [
           "span",
@@ -3101,7 +3101,7 @@
       [
         [
           "text",
-          "Remova credenciais, chaves privadas, senhas de Wi-Fi e outras informações confidenciais antes de compartilhar logs. Para um defeito reproduzível, inclua os trechos relevantes e abra um chamado no "
+          "Remova credenciais, chaves privadas, senhas Wi-Fi e outras informações confidenciais antes de compartilhar logs. Para um defeito reproduzível, inclua os trechos relevantes e abra um chamado no "
         ],
         [
           "link",
@@ -3123,11 +3123,11 @@
     [
       "heading",
       3,
-      "sessões-vmdk-não-estão-disponíveis",
+      "sessões-vmdk-não-são-exibidas",
       [
         [
           "text",
-          "Sessões VMDK não estão disponíveis"
+          "Sessões VMDK não são exibidas"
         ]
       ]
     ],
@@ -3145,7 +3145,7 @@
         ],
         [
           "text",
-          "initrd de inicialização. O initrd em execução deve anunciar "
+          "initrd de boot. O initrd em execução deve anunciar "
         ],
         [
           "span",
@@ -3167,7 +3167,7 @@
         ],
         [
           "text",
-          "verifica cada initrd de origem que será copiado. O antigo marcador vazio DynBlk apenas"
+          "verifica cada initrd de origem que irá copiar. O antigo marcador vazio DynBlk apenas"
         ],
         [
           "text",
@@ -3175,7 +3175,7 @@
         ],
         [
           "text",
-          "indica suporte nativo a bloco e não garante suporte à inicialização de sessões VMDK."
+          "indica suporte nativo a bloco e não garante suporte a boot de sessão VMDK."
         ],
         [
           "text",
@@ -3183,7 +3183,7 @@
         ],
         [
           "text",
-          "Não altere manualmente o modo de uma sessão existente: utilize uma cópia explícita ou"
+          "Não altere manualmente o modo de uma sessão existente: use uma cópia explícita ou"
         ],
         [
           "text",
@@ -3198,11 +3198,11 @@
     [
       "heading",
       3,
-      "liberando-espaço-em-sessões-dynblk-ou-vmdk",
+      "liberando-espaço-em-dynfilefs-dynblk-ou-sessões-vmdk",
       [
         [
           "text",
-          "Liberando espaço em sessões DynBlk ou VMDK"
+          "Liberando espaço em DynFileFS, DynBlk ou sessões VMDK"
         ]
       ]
     ],
@@ -3244,7 +3244,7 @@
         ],
         [
           "text",
-          ". Para sessões em texto simples, isso faz o trim do"
+          ". Para sessões em texto puro, isso realiza o trim do"
         ],
         [
           "text",
@@ -3252,7 +3252,7 @@
         ],
         [
           "text",
-          "ext4 interno e depois libera o armazenamento sem mover dados ativos. No exFAT,"
+          "ext4 interno real e depois solicita ao backend proprietário que recupere o espaço sem"
         ],
         [
           "text",
@@ -3260,7 +3260,23 @@
         ],
         [
           "text",
-          "lacunas internas podem permanecer alocadas; "
+          "mover dados ativos. DynFileFS exige a versão 4.6.0 ou superior para esta operação."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Em sistemas de arquivos como exFAT, lacunas internas podem permanecer alocadas ao arquivo hospedeiro"
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "mas reutilizáveis pelo container; "
         ],
         [
           "span",
@@ -3274,7 +3290,7 @@
         ],
         [
           "text",
-          " é uma escolha manual separada"
+          " é uma escolha manual separada que pode"
         ],
         [
           "text",
@@ -3282,7 +3298,7 @@
         ],
         [
           "text",
-          "que realoca dados ativos e grava mais no dispositivo flash. Nada habilita"
+          "realocar dados ativos e gravar mais no dispositivo flash. Nada ativa"
         ],
         [
           "text",
@@ -3290,7 +3306,7 @@
         ],
         [
           "text",
-          "compactação ou descarte LUKS automaticamente. Uma sessão criptografada só pode liberar"
+          "compaction ou descarte LUKS automaticamente. Uma sessão criptografada só pode recuperar"
         ],
         [
           "text",
@@ -3298,12 +3314,12 @@
         ],
         [
           "text",
-          "espaço já conhecido pelo driver subjacente através deste comando."
+          "espaço já conhecido pelo backend subjacente por meio deste comando."
         ]
       ]
     ]
   ],
-  "plain_text": "Solução de problemas\nComece observando e realizando testes reversíveis. Não faça reparticionamento, formatação, reparo de sistema de arquivos, exclusão de sessão ou substituição de arquivos de boot apenas para testar se resolve. Primeiro, faça backup dos dados importantes.\nPrimeiras verificações\nVerificar a imagem baixada.\nInicializar Iniciar sem salvar. Se o problema desaparecer, investigue a sessão persistente ou sua configuração, em vez da imagem base.\nRemova parâmetros de inicialização personalizados e filtros de módulos, a menos que sejam necessários para reproduzir o problema.\nTente outra porta USB e, se possível, outro dispositivo ou computador já testado.\nRegistre o primeiro erro e a entrada exata do menu de boot, em vez de apenas a última mensagem exibida na tela.\nVerifique Compatibilidade de hardware quando a mesma imagem verificada falha em uma máquina, mas funciona em outra.\nO dispositivo não acessa o menu de boot MiniOS\nPrimeiro, determine como o dispositivo MiniOS foi criado.\nPara uma imagem gravada de forma bruta (dd, Etcher, modo DD do Rufus ou gravação de imagem pelo Utilitário de disco), não repare arquivos de boot individualmente. Se a cópia estiver corrompida, regrave todo o dispositivo a partir de uma imagem verificada.\nPara uma instalação baseada em arquivos MiniOS, recrie a estrutura inicializável usando o mesmo método de instalação documentado, em vez de copiar arquivos GRUB, Syslinux ou EFI de outra versão.\nO Ventoy possui seu próprio bootloader e layout. Não instale o bootloader MiniOS sobre um dispositivo Ventoy; utilize o procedimento Ventoy em vez disso.\nApós a conversão nativa, o destino utiliza um bootloader e layout de sistema de arquivos convencionais do Debian. Pode manter a aparência da área de trabalho MiniOS, mas a infraestrutura live e as ferramentas específicas do modo live MiniOS não estarão mais presentes. Faça backup dos dados recuperáveis antes de usar o procedimento de reparo ou reinstalação do bootloader Debian adequado ao BIOS/UEFI e ao layout de partição.\nSe um dispositivo recém-recriado ainda não aparecer no menu de boot do firmware, verifique o modo do firmware, o suporte ao Secure Boot da arquitetura selecionada, a porta/dispositivo USB e a compatibilidade de hardware.\nO menu de boot MiniOS aparece, mas a inicialização falha\nRemova primeiro os parâmetros opcionais. Use debug e timing quando precisar de mais informações do início da inicialização. rd.break é para inspeção avançada do initramfs, não para reparo.\nSe o MiniOS não conseguir encontrar sua origem, consulte Descoberta do sistema. No shell do initramfs, informações úteis e somente leitura incluem:\ncat /proc/cmdline\nblkid\ncat /proc/net/dev\nfindmnt\ncat /var/log/livedbg\nUm from=askdisk temporário pode ajudar a identificar o dispositivo que realmente contém os dados MiniOS. Depois disso, use a sintaxe documentada de from= em vez de tentar adivinhar os nomes dos dispositivos.\nPara inicialização via PXE ou ISO HTTP, consulte Inicialização pela rede. A rede no início do boot é separada do NetworkManager na sessão em execução.\nFalhas de módulo ou root-union\nConsulte Carregamento de módulo para as regras de seleção e ordenação de módulos. Em especial:\nload= e noload= podem excluir módulos base ou de kernel essenciais; noload= vence quando ambos correspondem;\ncandidatos com o mesmo basename ocupam o mesmo slot de substituição;\num arquivo .sb não prova que o arquivo é uma imagem SquashFS válida;\no kernel em execução deve corresponder ao módulo de kernel MiniOS coordenado e aos arquivos de boot.\nApós um boot bem-sucedido, inspecione o estado atual sem alterá-lo:\ncat /proc/cmdline\nsb list\nsb next-boot\nfindmnt -no FSTYPE,OPTIONS /\nfindmnt -R /run/initramfs 2>/dev/null\nProblemas de exibição\nPara tela preta, resolução inadequada ou loop no gerenciador de exibição:\nTente o parâmetro de boot text. Um console funcional separa um problema gráfico/de desktop de uma falha anterior na inicialização.\nRemova os parâmetros xorg-driver ou xorg-resolution definidos manualmente.\nTeste Iniciar sem salvar para descartar configurações de exibição persistentes.\nRegistre a GPU e o driver com lspci -nnk.\nVerifique journalctl -b -p warning e dmesg --level=err,warn.\nPara máquinas virtuais, veja Virtualização.\nProblemas de rede\nConexões cabeadas e Wi-Fi comuns são gerenciadas pelo NetworkManager; veja Rede.\nPrimeiro, verifique se a interface existe:\nip link\nip address\nip route\nnmcli device status\nnmcli connection show\nSe não houver interface, registre lspci -nnk ou lsusb e procure por erros de firmware ou driver em dmesg.\nSe a interface existir, mas não tiver endereço, diferencie problemas de conexão/DHCP de falta de suporte ao hardware.\nSe houver endereço, teste o gateway, depois um endereço IP e, em seguida, um nome DNS para separar falhas de link, roteamento e DNS.\nO parâmetro de boot ip= pertence ao boot de rede inicial e não configura uma conexão persistente no NetworkManager. Veja Boot pela rede.\nProblemas de persistência\nInicialize Iniciar sem salvar antes de alterar um armazenamento de persistência suspeito. Não repare nem exclua a única cópia de uma sessão enquanto ela estiver ativa.\nVerifique o que MiniOS está visualizando no momento:\nsudo minios-session list\nsudo minios-session running\nsudo minios-session active\nsudo minios-session status\nsudo minios-session info\nConfira o modo de inicialização selecionado, o espaço disponível para gravação, a compatibilidade do sistema de arquivos e a compatibilidade da sessão. As regras detalhadas de seleção estão em Sessões e persistência e Internals da persistência.\nSe uma sessão importante que não está em execução native, dynfilefs, dynblk, raw, ou luks ainda está legível, exporte-a antes de experimentar com o armazenamento:\nsudo minios-session export <id> /path/to/session.tar.zst\nSe o Session Manager não conseguir ler ou exportar a sessão, pare de gravar na origem e preserve uma cópia offline do armazenamento afetado antes de continuar. Para uma sessão DynBlk desconectada, dynblk inspect /path/to/volume000.db --metadata-only e dynblk check /path/to/volume000.db fornecem diagnósticos de formato somente leitura; não execute em um volume ainda conectado. MiniOS não define um procedimento manual universal para reconstruir segmentos DynFileFS, reconstruir partes de suporte DynBlk, reparar um sistema de arquivos interno ou reconstruir os metadados da sessão. Essa recuperação é específica do sistema de arquivos/conteiner e só deve ser tentada em uma cópia quando o valor dos dados justificar.\nConsulte Backup de MiniOS para fluxos de trabalho suportados de backup e importação de sessões.\nProblemas de armazenamento e espaço livre\nVerifique dispositivos e pontos de montagem sem alterá-los:\nlsblk -o NAME,SIZE,TYPE,FSTYPE,LABEL,UUID,MOUNTPOINTS,MODEL\nfindmnt\ndf -hT\ndf -ih\nUm sistema de arquivos cheio pode causar falhas em operações de pacotes, salvamento de sessões incompleto e outros erros secundários. Libere espaço movendo ou excluindo dados conhecidos somente após confirmar o sistema de arquivos correto. Use o Gerenciador de sessões MiniOS para excluir sessões, em vez de remover manualmente diretórios de sessões numerados.\nSe LIVE_APT_CACHE=volatile, também verifique findmnt -T /var/cache/apt/archives e df -h /var/cache/apt/archives: a área de arquivos é um sistema de arquivos RAM limitado e um download grande pode preenchê-la mesmo que o dispositivo USB tenha espaço livre. Com LIVE_LOG_STORAGE=volatile, o /var/log comum tem um limite separado de 32 MiB RAM. Preencher qualquer uma dessas áreas não faz com que o MiniOS passe a gravar esses arquivos no dispositivo USB automaticamente. Veja Desempenho.\nO reparo de sistema de arquivos não é uma operação genérica de MiniOS. Se o próprio sistema de arquivos estiver corrompido, desmonte-o, salve primeiro os dados importantes ou uma imagem, e utilize um procedimento de reparo adequado para aquele sistema de arquivos e dispositivo de armazenamento.\nAlterações de pacotes e atualizações do sistema\nSe os problemas começaram após alterações de pacotes APT, lembre-se de que uma sessão persistente ao vivo pode sobrescrever arquivos dos módulos MiniOS somente leitura. Teste Iniciar sem salvar para comparar com o conjunto original de módulos. Veja Atualizando MiniOS para entender a diferença entre manutenção via APT e mudança de versões MiniOS.\nColetando logs\nInformações úteis incluem:\nuname -a\ncat /etc/os-release\njournalctl -b\njournalctl -b -p warning\ndmesg\nlsblk -f\nlspci -nnk\nlsusb\nPara falhas repetidas de boot em mídias MiniOS graváveis, EXPORT_LOGS=true em config.conf exporta logs de inicialização em minios/log/. Veja config.conf.\nEm uma sessão durável saudável de perch , os dois logs obrigatórios de inicialização já são mantidos independentemente de LIVE_LOG_STORAGE:\nsudo ls -l /var/log/minios/minios-boot.log*\nsudo ls -l /var/log/live/config.log*\nsudo cat /run/initramfs/minios-persistence/boot-state\nfindmnt -T /var/log\nfindmnt -T /var/log/minios\nAs versões .1, .2 e .3 são boots anteriores. O ponto de montagem comum de /var/log pode ser tmpfs enquanto /var/log/minios e /var/log/live permanecem no armazenamento persistente. Para SquashFS, esses logs também ficam em minios/changes/<session-id>/boot-logs/, fora de changes.sb; eles permanecem mesmo que o snapshot de desligamento falhe. Uma ativação de perch com falha ou não durável não garante destino persistente para logs. Com LIVE_LOG_STORAGE=volatile, journalctl -b e outros logs comuns estão disponíveis apenas para o boot atual. Ative rastreamentos detalhados de minios-update-* usando LIVE_CONFIG_DEBUG=true apenas quando necessário; erros normais ainda são relatados sem isso.\nRemova credenciais, chaves privadas, senhas de Wi-Fi e outras informações confidenciais antes de compartilhar logs. Para um defeito reproduzível, inclua os trechos relevantes e abra um chamado no rastreador de issues MiniOS.\nSessões VMDK não estão disponíveis\nAtualize o driver/CLI DynBlk e as ferramentas de sessão juntos, depois reconstrua o\ninitrd de inicialização. O initrd em execução deve anunciar vmdk-session-v1; o Instalador também\nverifica cada initrd de origem que será copiado. O antigo marcador vazio DynBlk apenas\nindica suporte nativo a bloco e não garante suporte à inicialização de sessões VMDK.\nNão altere manualmente o modo de uma sessão existente: utilize uma cópia explícita ou\nconversão para o outro formato.\nLiberando espaço em sessões DynBlk ou VMDK\nUse o menu de contexto do Session Manager Liberar espaço..., ou\nminios-session reclaim ID --json. Para sessões em texto simples, isso faz o trim do\next4 interno e depois libera o armazenamento sem mover dados ativos. No exFAT,\nlacunas internas podem permanecer alocadas; --compact é uma escolha manual separada\nque realoca dados ativos e grava mais no dispositivo flash. Nada habilita\ncompactação ou descarte LUKS automaticamente. Uma sessão criptografada só pode liberar\nespaço já conhecido pelo driver subjacente através deste comando.",
+  "plain_text": "Solução de problemas\nComece pela observação e por testes reversíveis. Não reparticione, formate, repare um sistema de arquivos, exclua uma sessão ou substitua arquivos de boot apenas para ver se resolve. Preserve primeiro os dados importantes.\nVerificações iniciais\nVerifique a imagem baixada.\nInicie o boot Iniciar sem salvar. Se o problema desaparecer, investigue a sessão persistente ou sua configuração, em vez da imagem base.\nRemova parâmetros de boot personalizados e filtros de módulos, a menos que sejam necessários para reproduzir o problema.\nTente outra porta USB e, se possível, outro dispositivo ou computador confiável.\nRegistre o primeiro erro e a entrada exata do menu de boot, não apenas a última mensagem exibida na tela.\nVerifique a compatibilidade de hardware quando a mesma imagem verificada falha em um computador, mas funciona em outro.\nO dispositivo não chega ao menu de boot MiniOS\nPrimeiro, determine como o dispositivo MiniOS foi criado.\nPara uma imagem gravada em modo bruto (dd, Etcher, modo DD do Rufus ou gravação de imagem pelo Utilitário de disco), não repare arquivos individuais de boot. Se a cópia estiver corrompida, regrave todo o dispositivo a partir de uma imagem verificada.\nPara uma instalação baseada em arquivos MiniOS, recrie o layout inicializável utilizando o mesmo método de instalação documentado, em vez de copiar arquivos GRUB, Syslinux ou EFI de outra versão.\nVentoy possui seu próprio bootloader e layout. Não instale o bootloader MiniOS sobre um dispositivo Ventoy; utilize o procedimento Ventoy em vez disso.\nApós a conversão nativa, o destino utiliza um bootloader Debian convencional e layout de sistema de arquivos padrão. Pode manter a aparência da área de trabalho MiniOS, mas a infraestrutura live e ferramentas específicas MiniOS não estarão mais presentes. Faça backup dos dados recuperáveis antes de usar o procedimento de reparo ou reinstalação do bootloader Debian adequado ao BIOS/UEFI e ao particionamento.\nSe um dispositivo recém-criado ainda não aparecer no menu de boot do firmware, verifique o modo do firmware, o suporte a Secure Boot da arquitetura selecionada, a porta/dispositivo USB e a compatibilidade de hardware.\nO menu de boot MiniOS aparece, mas a inicialização falha\nRemova primeiro os parâmetros opcionais. Use debug e timing quando for necessário obter mais informações do início do boot. rd.break é para inspeção avançada do initramfs, não para reparo.\nSe o MiniOS não encontrar sua origem, veja Descoberta do sistema. No shell do initramfs, informações úteis e somente leitura incluem:\ncat /proc/cmdline\nblkid\ncat /proc/net/dev\nfindmnt\ncat /var/log/livedbg\nUm temporário from=askdisk pode ajudar a identificar o dispositivo que realmente contém os dados MiniOS. Depois disso, utilize a sintaxe documentada do from= em vez de adivinhar nomes de dispositivos.\nPara inicialização via PXE ou ISO HTTP, veja Boot em rede. O networking inicial do boot é separado do NetworkManager da sessão em execução.\nFalhas de módulo ou root-union\nVeja Carregamento de módulos para as regras reais de seleção e ordenação de módulos. Em especial:\nload= e noload= podem excluir módulos base ou do kernel essenciais; noload= vence quando ambos correspondem;\ncandidatos com o mesmo nome base ocupam o mesmo slot de substituição;\num arquivo .sb não garante que o arquivo seja uma imagem SquashFS válida;\no kernel em execução deve corresponder ao módulo do kernel MiniOS e aos arquivos de boot coordenados.\nApós um boot bem-sucedido, inspecione o estado real sem alterá-lo:\ncat /proc/cmdline\nsb list\nsb next-boot\nfindmnt -no FSTYPE,OPTIONS /\nfindmnt -R /run/initramfs 2>/dev/null\nProblemas de exibição\nPara tela preta, resolução inadequada ou loop no gerenciador de exibição:\nTente o parâmetro de boot text. Um console funcional separa um problema gráfico/de desktop de uma falha anterior no boot.\nRemova parâmetros especificados manualmente de xorg-driver ou xorg-resolution .\nTeste Iniciar sem salvar para descartar configurações persistentes de exibição.\nRegistre a GPU e o driver com lspci -nnk.\nVerifique journalctl -b -p warning e dmesg --level=err,warn.\nPara máquinas virtuais, veja Virtualização.\nProblemas de rede\nConexões cabeadas e Wi-Fi normais são gerenciadas pelo NetworkManager; veja Rede.\nPrimeiro, verifique se a interface existe:\nip link\nip address\nip route\nnmcli device status\nnmcli connection show\nSe não existir interface, registre lspci -nnk ou lsusb e procure por erros de firmware ou driver em dmesg.\nSe a interface existir mas não tiver endereço, diferencie problemas de conexão/DHCP de falta de suporte de hardware.\nSe houver endereço, teste o gateway, depois um endereço IP e, em seguida, um nome DNS para separar falhas de link, roteamento e DNS.\nO parâmetro de boot ip= pertence ao boot de rede inicial e não configura uma conexão persistente do NetworkManager. Veja Boot em rede.\nProblemas de persistência\nInicie o boot Iniciar sem salvar antes de alterar um armazenamento de persistência suspeito. Não repare nem exclua a única cópia de uma sessão enquanto ela estiver ativa.\nVerifique o que o MiniOS está enxergando no momento:\nsudo minios-session list\nsudo minios-session running\nsudo minios-session active\nsudo minios-session status\nsudo minios-session info\nVerifique o modo de boot selecionado, o espaço disponível para gravação, a compatibilidade do sistema de arquivos e a compatibilidade da sessão. As regras detalhadas de seleção estão em Sessões e persistência e Persistência interna.\nSe uma sessão importante não ativa native, dynfilefs, dynblk, vmdk, ou raw ainda estiver legível, inclusive em formato criptografado que possa ser desbloqueado, exporte-a antes de experimentar com o armazenamento:\nsudo minios-session export <id> /path/to/session.tar.zst\nSe o Session Manager não conseguir ler ou exportar a sessão, pare de gravar na origem e preserve uma cópia offline do armazenamento afetado antes de prosseguir. Para uma sessão DynBlk destacada, dynblk inspect /path/to/volume000.db --metadata-only e dynblk check /path/to/volume000.db fornecem diagnósticos de formato somente leitura; não execute em volumes ainda montados. MiniOS não define um procedimento manual universal para reconstruir segmentos DynFileFS, restaurar partes de base DynBlk, reparar um sistema de arquivos interno ou reconstruir metadados de sessão. Essa recuperação é específica do sistema de arquivos/container e só deve ser tentada em uma cópia, quando o valor dos dados justificar.\nVeja Backup de MiniOS para fluxos de trabalho suportados de backup e importação de sessão.\nProblemas de armazenamento e espaço livre\nInspecione dispositivos e pontos de montagem sem alterá-los:\nlsblk -o NAME,SIZE,TYPE,FSTYPE,LABEL,UUID,MOUNTPOINTS,MODEL\nfindmnt\ndf -hT\ndf -ih\nUm sistema de arquivos cheio pode causar falhas em operações de pacotes, salvamentos de sessão incompletos e outros erros secundários. Libere espaço movendo ou excluindo dados conhecidos apenas após confirmar o sistema de arquivos correto. Utilize o Gerenciador de sessões MiniOS para exclusão de sessões, em vez de remover diretórios de sessões numeradas manualmente.\nSe LIVE_APT_CACHE=volatile, verifique também findmnt -T /var/cache/apt/archives e df -h /var/cache/apt/archives: a área de arquivos é um sistema de arquivos RAM limitado e um download grande pode preenchê-la mesmo que o dispositivo USB tenha espaço livre. Com LIVE_LOG_STORAGE=volatile, o /var/log comum possui um limite separado de 32 MiB para RAM. Preencher qualquer uma dessas áreas não faz com que o MiniOS passe a gravar esses arquivos no dispositivo USB de forma silenciosa. Veja Desempenho.\nO reparo de sistema de arquivos não é uma operação genérica MiniOS. Se o sistema de arquivos estiver corrompido, desmonte-o, preserve antes os dados importantes ou uma imagem, e utilize o procedimento de reparo adequado ao sistema de arquivos e ao dispositivo de armazenamento.\nAlterações de pacotes e atualizações do sistema\nSe os problemas começaram após alterações de pacotes APT, lembre-se de que uma sessão persistente live pode sobrescrever arquivos dos módulos MiniOS somente leitura. Teste Iniciar sem salvar para comparar com o conjunto original de módulos. Veja Atualizando MiniOS para a diferença entre manutenção APT e mudança de versões MiniOS.\nColeta de logs\nInformações úteis incluem:\nuname -a\ncat /etc/os-release\njournalctl -b\njournalctl -b -p warning\ndmesg\nlsblk -f\nlspci -nnk\nlsusb\nPara falhas repetidas de boot em mídias MiniOS graváveis, EXPORT_LOGS=true em config.conf exporta logs de boot em minios/log/. Veja config.conf.\nEm uma sessão durável saudável perch, os dois logs obrigatórios de inicialização já são mantidos independentemente de LIVE_LOG_STORAGE:\nsudo ls -l /var/log/minios/minios-boot.log*\nsudo ls -l /var/log/live/config.log*\nsudo cat /run/initramfs/minios-persistence/boot-state\nfindmnt -T /var/log\nfindmnt -T /var/log/minios\nAs versões .1, .2 e .3 são boots anteriores. O ponto de montagem /var/log pode ser tmpfs enquanto /var/log/minios e /var/log/live permanecem no armazenamento de persistência. Para SquashFS, esses logs também ficam em minios/changes/<session-id>/boot-logs/, fora de changes.sb; eles sobrevivem mesmo se o snapshot de desligamento falhar. Uma ativação de perch falha ou não durável não garante destino de log persistente. Com LIVE_LOG_STORAGE=volatile, journalctl -b e outros logs comuns ficam disponíveis apenas para o boot atual. Ative rastreamentos detalhados de minios-update-* usando LIVE_CONFIG_DEBUG=true apenas quando necessário; erros normais ainda são relatados sem isso.\nRemova credenciais, chaves privadas, senhas Wi-Fi e outras informações confidenciais antes de compartilhar logs. Para um defeito reproduzível, inclua os trechos relevantes e abra um chamado no rastreador de issues MiniOS.\nSessões VMDK não são exibidas\nAtualize o driver/CLI DynBlk e as ferramentas de sessão juntos, depois reconstrua o\ninitrd de boot. O initrd em execução deve anunciar vmdk-session-v1; o Instalador também\nverifica cada initrd de origem que irá copiar. O antigo marcador vazio DynBlk apenas\nindica suporte nativo a bloco e não garante suporte a boot de sessão VMDK.\nNão altere manualmente o modo de uma sessão existente: use uma cópia explícita ou\nconversão para o outro formato.\nLiberando espaço em DynFileFS, DynBlk ou sessões VMDK\nUse o menu de contexto do Session Manager Liberar espaço..., ou\nminios-session reclaim ID --json. Para sessões em texto puro, isso realiza o trim do\next4 interno real e depois solicita ao backend proprietário que recupere o espaço sem\nmover dados ativos. DynFileFS exige a versão 4.6.0 ou superior para esta operação.\nEm sistemas de arquivos como exFAT, lacunas internas podem permanecer alocadas ao arquivo hospedeiro\nmas reutilizáveis pelo container; --compact é uma escolha manual separada que pode\nrealocar dados ativos e gravar mais no dispositivo flash. Nada ativa\ncompaction ou descarte LUKS automaticamente. Uma sessão criptografada só pode recuperar\nespaço já conhecido pelo backend subjacente por meio deste comando.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

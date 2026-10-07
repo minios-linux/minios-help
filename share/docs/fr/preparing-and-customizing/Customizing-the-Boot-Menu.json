@@ -6,9 +6,9 @@
       "title": "Personnalisation du menu de démarrage"
     },
     {
-      "anchor": "vue-densemble",
+      "anchor": "aperçu",
       "level": 2,
-      "title": "Vue d'ensemble"
+      "title": "Aperçu"
     },
     {
       "anchor": "options-du-menu-de-démarrage",
@@ -36,9 +36,9 @@
       "title": "Personnalisation des options de démarrage"
     },
     {
-      "anchor": "modification-temporaire-des-paramètres-de-démarrage",
+      "anchor": "modifier-temporairement-les-paramètres-de-démarrage",
       "level": 3,
-      "title": "Modification temporaire des paramètres de démarrage"
+      "title": "Modifier temporairement les paramètres de démarrage"
     },
     {
       "anchor": "modifications-courantes-des-paramètres-de-démarrage",
@@ -58,7 +58,7 @@
     {
       "anchor": "dans-le-système-en-cours-dexécution",
       "level": 3,
-      "title": "Dans le système en cours d'exécution"
+      "title": "Dans le système en cours d’exécution"
     },
     {
       "anchor": "modification-des-fichiers-de-configuration",
@@ -84,18 +84,18 @@
       [
         [
           "text",
-          "Les menus de démarrage MiniOS offrent des entrées pratiques pour les modes de démarrage live courants. Ce guide explique comment sélectionner et modifier ces entrées."
+          "Les menus de démarrage MiniOS proposent des entrées pratiques pour les modes de démarrage live courants. Ce guide explique comment sélectionner et modifier ces entrées."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "vue-densemble",
+      "aperçu",
       [
         [
           "text",
-          "Vue d'ensemble"
+          "Aperçu"
         ]
       ]
     ],
@@ -105,7 +105,7 @@
       [
         [
           "text",
-          "Les images MiniOS peuvent utiliser GRUB ou Syslinux selon le firmware, la structure de l'image et la méthode de création. Leurs menus, touches d'édition, gestion des langues et entrées disponibles ne sont pas forcément identiques. Le chargeur de démarrage transmet finalement une ligne de commande du noyau au même initrd ; consultez "
+          "Les images MiniOS peuvent utiliser GRUB ou Syslinux selon le firmware, la structure de l’image et la méthode de création. Leurs graphes de menus, touches d’édition, gestion des langues et entrées disponibles peuvent différer. Le chargeur de démarrage transmet finalement une ligne de commande du noyau au même initrd ; voir "
         ],
         [
           "link",
@@ -120,7 +120,7 @@
         ],
         [
           "text",
-          " pour les sources résultantes, la persistance, le comportement de copie RAM et la dépendance au support."
+          " pour le comportement de la source, la persistance, la copie RAM et la gestion de la dépendance au support."
         ]
       ]
     ],
@@ -141,7 +141,7 @@
       [
         [
           "text",
-          "L'image fournie propose généralement ces choix sémantiques, bien que les titres, la disponibilité, l'ordre et la sélection par défaut puissent varier selon l'image :"
+          "L’image fournie propose généralement ces choix fonctionnels, mais les titres, la disponibilité, l’ordre et la sélection par défaut peuvent varier selon l’image :"
         ]
       ]
     ],
@@ -175,7 +175,7 @@
               [
                 [
                   "text",
-                  "Objectif"
+                  "But"
                 ]
               ]
             ]
@@ -214,7 +214,7 @@
               [
                 [
                   "text",
-                  "Essayer la session compatible par défaut et permettre la création de remplacement dans les conditions documentées."
+                  "Essayer la session compatible par défaut et permettre la création d’une nouvelle session de remplacement dans les conditions documentées."
                 ]
               ]
             ]
@@ -242,7 +242,7 @@
                   [
                     [
                       "text",
-                      "perchdir=new"
+                      "perchdir=setup"
                     ]
                   ]
                 ]
@@ -253,7 +253,7 @@
               [
                 [
                   "text",
-                  "Créer une session persistante supplémentaire numérotée tout en conservant les sessions existantes inchangées."
+                  "Ouvrir le sélecteur de backend de persistance, puis créer une session supplémentaire numérotée tout en conservant les sessions existantes."
                 ]
               ]
             ]
@@ -292,21 +292,7 @@
               [
                 [
                   "text",
-                  "Sélectionner une session enregistrée existante de façon interactive. Utilisez "
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Démarrer une nouvelle session"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " si le stockage est vide."
+                  "Sélectionner une session enregistrée existante de façon interactive ; si le stockage est vide, MiniOS lance le même flux de configuration pour permettre la création de la première session."
                 ]
               ]
             ]
@@ -339,7 +325,7 @@
               [
                 [
                   "text",
-                  "Utiliser une couche temporaire inscriptible dans RAM."
+                  "Utiliser une couche temporaire en écriture dans RAM."
                 ]
               ]
             ]
@@ -354,7 +340,7 @@
               [
                 [
                   "text",
-                  "Exécuter depuis RAM"
+                  "Exécuter depuis la RAM"
                 ]
               ]
             ],
@@ -378,7 +364,21 @@
               [
                 [
                   "text",
-                  "Copier l'arborescence complète des données MiniOS vers RAM et tenter de détacher la source."
+                  "Copier les données système MiniOS vers RAM ; avec la persistance, l’option par défaut "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " copie séparément la session prise en charge sélectionnée."
                 ]
               ]
             ]
@@ -392,7 +392,7 @@
       [
         [
           "text",
-          "Ce sont des sélecteurs, et non des garanties que le stockage est inscriptible, qu'une session est compatible, que la RAM est suffisante ou que le support source a été détaché. Consultez "
+          "Il s’agit de sélecteurs, sans garantie que le stockage soit accessible en écriture, qu’une session soit compatible, que RAM soit suffisant ou que le support source ait été retiré. Voir "
         ],
         [
           "link",
@@ -416,13 +416,13 @@
           [
             [
               "text",
-              "Persistance de l'initrd"
+              "Persistance initrd"
             ]
           ]
         ],
         [
           "text",
-          " pour les cas limites des sélecteurs, et "
+          " pour les cas particuliers des sélecteurs, et "
         ],
         [
           "link",
@@ -494,7 +494,7 @@
                 ],
                 [
                   "text",
-                  " pour naviguer entre les options"
+                  " pour vous déplacer entre les options"
                 ]
               ]
             ]
@@ -524,7 +524,7 @@
                 ],
                 [
                   "text",
-                  " pour sélectionner une option"
+                  " pour valider une option"
                 ]
               ]
             ]
@@ -570,7 +570,7 @@
               [
                 [
                   "text",
-                  "La sélection automatique et la durée du délai dépendent de la configuration du menu actif ; certains menus peuvent attendre indéfiniment"
+                  "La sélection automatique et la durée du délai dépendent de la configuration active du menu ; certains menus peuvent attendre indéfiniment"
                 ]
               ]
             ]
@@ -616,7 +616,7 @@
               [
                 [
                   "text",
-                  "Le premier écran affichera les options de langue"
+                  "L’écran d’accueil affichera les options de langue"
                 ]
               ]
             ]
@@ -632,7 +632,7 @@
               [
                 [
                   "text",
-                  "Sélectionnez votre langue préférée"
+                  "Sélectionnez la langue de votre choix"
                 ]
               ]
             ]
@@ -648,7 +648,7 @@
               [
                 [
                   "text",
-                  "Le menu de démarrage apparaîtra dans la langue choisie"
+                  "Le menu de démarrage apparaîtra dans la langue sélectionnée"
                 ]
               ]
             ]
@@ -664,7 +664,7 @@
               [
                 [
                   "text",
-                  "Cette sélection peut également transmettre les paramètres régionaux au démarrage suivant, mais ne garantit pas que chaque message du démarrage ou de l'application soit traduit"
+                  "La sélection peut aussi transmettre les paramètres régionaux au démarrage suivant, mais cela ne garantit pas que tous les messages système ou applicatifs seront traduits"
                 ]
               ]
             ]
@@ -692,7 +692,7 @@
         ],
         [
           "text",
-          " Le menu multilingue remplace tout paramètre régional spécifié dans "
+          " Le menu multilingue remplace tout paramètre régional défini dans "
         ],
         [
           "span",
@@ -706,7 +706,7 @@
         ],
         [
           "text",
-          ". La langue choisie dans le menu de démarrage prévaut sur les paramètres régionaux préconfigurés. Consultez "
+          ". La langue choisie dans le menu de démarrage prévaut sur les paramètres régionaux préconfigurés. Voir "
         ],
         [
           "span",
@@ -748,7 +748,7 @@
         ],
         [
           "text",
-          " pour plus de détails sur les fichiers de configuration système."
+          " pour plus d’informations sur les fichiers de configuration système."
         ]
       ]
     ],
@@ -766,11 +766,11 @@
     [
       "heading",
       3,
-      "modification-temporaire-des-paramètres-de-démarrage",
+      "modifier-temporairement-les-paramètres-de-démarrage",
       [
         [
           "text",
-          "Modification temporaire des paramètres de démarrage"
+          "Modifier temporairement les paramètres de démarrage"
         ]
       ]
     ],
@@ -825,7 +825,7 @@
               [
                 [
                   "text",
-                  "Sélectionnez l'option de menu à modifier"
+                  "Sélectionnez l’option du menu à modifier"
                 ]
               ]
             ]
@@ -871,7 +871,7 @@
               [
                 [
                   "text",
-                  "Allez à la ligne commençant par "
+                  "Placez-vous sur la ligne commençant par "
                 ],
                 [
                   "span",
@@ -990,7 +990,7 @@
               [
                 [
                   "text",
-                  "Sélectionnez l'option de menu souhaitée"
+                  "Sélectionnez l’option du menu souhaitée"
                 ]
               ]
             ]
@@ -1020,7 +1020,7 @@
                 ],
                 [
                   "text",
-                  " avant d'appuyer sur Entrée"
+                  " avant d’appuyer sur Entrée"
                 ]
               ]
             ]
@@ -1036,7 +1036,7 @@
               [
                 [
                   "text",
-                  "Ajoutez les paramètres à la ligne de commande qui s'affiche"
+                  "Ajoutez les paramètres à la ligne de commande qui s’affiche"
                 ]
               ]
             ]
@@ -1112,7 +1112,7 @@
                 ],
                 [
                   "text",
-                  " - Afficher les messages détaillés au démarrage (utile pour le dépannage)"
+                  " - Afficher les messages détaillés du démarrage (utile pour le diagnostic)"
                 ]
               ]
             ]
@@ -1138,7 +1138,7 @@
                 ],
                 [
                   "text",
-                  " - Copier l'ensemble filtré des modules et les données requises limitées en RAM"
+                  " - Copier le jeu de modules filtré et les données requises limitées vers RAM"
                 ]
               ]
             ]
@@ -1164,7 +1164,7 @@
                 ],
                 [
                   "text",
-                  " - Définir la taille du stockage de session à 2 Go (à adapter selon vos besoins)"
+                  " - Définir la taille du stockage de session à 2 Go (à ajuster selon vos besoins)"
                 ]
               ]
             ]
@@ -1190,7 +1190,7 @@
                 ],
                 [
                   "text",
-                  " - Demander une langue/locale spécifique"
+                  " - Demander une langue ou une locale spécifique"
                 ]
               ]
             ]
@@ -1427,7 +1427,7 @@
       [
         [
           "text",
-          "Dans le système en cours d'exécution"
+          "Dans le système en cours d’exécution"
         ]
       ]
     ],
@@ -1551,7 +1551,7 @@
         ],
         [
           "text",
-          " N'éditez les fichiers de configuration de démarrage que si vous savez ce que vous faites. Des modifications incorrectes peuvent rendre votre clé USB non amorçable."
+          " Modifiez les fichiers de configuration de démarrage uniquement si vous savez ce que vous faites. Des modifications incorrectes peuvent rendre votre clé USB non amorçable."
         ]
       ]
     ],
@@ -1612,7 +1612,7 @@
               [
                 [
                   "text",
-                  "Accédez à "
+                  "Allez dans "
                 ],
                 [
                   "span",
@@ -1733,7 +1733,7 @@
               [
                 [
                   "text",
-                  "Modifier "
+                  "Modifiez "
                 ],
                 [
                   "span",
@@ -1747,7 +1747,7 @@
                 ],
                 [
                   "text",
-                  " pour changer l'option de menu par défaut"
+                  " pour changer l’option du menu par défaut"
                 ]
               ]
             ]
@@ -1763,7 +1763,7 @@
               [
                 [
                   "text",
-                  "Ajouter des entrées de menu personnalisées"
+                  "Ajouter des entrées personnalisées au menu"
                 ]
               ]
             ]
@@ -1772,7 +1772,7 @@
       ]
     ]
   ],
-  "plain_text": "Personnalisation du menu de démarrage\nLes menus de démarrage MiniOS offrent des entrées pratiques pour les modes de démarrage live courants. Ce guide explique comment sélectionner et modifier ces entrées.\nVue d'ensemble\nLes images MiniOS peuvent utiliser GRUB ou Syslinux selon le firmware, la structure de l'image et la méthode de création. Leurs menus, touches d'édition, gestion des langues et entrées disponibles ne sont pas forcément identiques. Le chargeur de démarrage transmet finalement une ligne de commande du noyau au même initrd ; consultez Modes de démarrage pour les sources résultantes, la persistance, le comportement de copie RAM et la dépendance au support.\nOptions du menu de démarrage\nL'image fournie propose généralement ces choix sémantiques, bien que les titres, la disponibilité, l'ordre et la sélection par défaut puissent varier selon l'image :\nChoix du menu | Sélecteur initrd typique | Objectif\nDémarrer MiniOS | perchdir=resume | Essayer la session compatible par défaut et permettre la création de remplacement dans les conditions documentées.\nDémarrer une nouvelle session | perchdir=new | Créer une session persistante supplémentaire numérotée tout en conservant les sessions existantes inchangées.\nChoisir une session enregistrée | perchdir=ask | Sélectionner une session enregistrée existante de façon interactive. Utilisez Démarrer une nouvelle session si le stockage est vide.\nDémarrer sans enregistrer | aucun sélecteur de persistance | Utiliser une couche temporaire inscriptible dans RAM.\nExécuter depuis RAM | toram | Copier l'arborescence complète des données MiniOS vers RAM et tenter de détacher la source.\nCe sont des sélecteurs, et non des garanties que le stockage est inscriptible, qu'une session est compatible, que la RAM est suffisante ou que le support source a été détaché. Consultez Modes de démarrage pour le comportement et les combinaisons, Persistance de l'initrd pour les cas limites des sélecteurs, et Optimisation des performances pour les compromis entre RAM et les entrées/sorties.\nComment utiliser le menu de démarrage\nNavigation dans le menu\nUtilisez les flèches directionnelles pour naviguer entre les options\nAppuyez sur Entrée pour sélectionner une option\nAppuyez sur Échap pour revenir au menu précédent (dans GRUB)\nLa sélection automatique et la durée du délai dépendent de la configuration du menu actif ; certains menus peuvent attendre indéfiniment\nSélection de la langue (GRUB)\nSi votre clé USB MiniOS prend en charge plusieurs langues :\nLe premier écran affichera les options de langue\nSélectionnez votre langue préférée\nLe menu de démarrage apparaîtra dans la langue choisie\nCette sélection peut également transmettre les paramètres régionaux au démarrage suivant, mais ne garantit pas que chaque message du démarrage ou de l'application soit traduit\nImportant : Le menu multilingue remplace tout paramètre régional spécifié dans config.conf. La langue choisie dans le menu de démarrage prévaut sur les paramètres régionaux préconfigurés. Consultez Fichier de configuration et live-config pour plus de détails sur les fichiers de configuration système.\nPersonnalisation des options de démarrage\nModification temporaire des paramètres de démarrage\nVous pouvez modifier les options de démarrage pour une seule session :\nDans GRUB :\nSélectionnez l'option de menu à modifier\nAppuyez sur 'e' pour éditer\nAllez à la ligne commençant par linux\nAjoutez ou modifiez les paramètres à la fin de la ligne\nAppuyez sur Ctrl+X ou F10 pour démarrer avec vos modifications\nDans SYSLINUX :\nSélectionnez l'option de menu souhaitée\nAppuyez sur Tab avant d'appuyer sur Entrée\nAjoutez les paramètres à la ligne de commande qui s'affiche\nAppuyez sur Entrée pour démarrer\nModifications courantes des paramètres de démarrage\ndebug - Afficher les messages détaillés au démarrage (utile pour le dépannage)\ntoram=trim - Copier l'ensemble filtré des modules et les données requises limitées en RAM\nperchsize=2000 - Définir la taille du stockage de session à 2 Go (à adapter selon vos besoins)\nlocales=ru_RU.UTF-8 - Demander une langue/locale spécifique\nPour la liste complète des paramètres de démarrage disponibles, consultez Paramètres de démarrage.\nEmplacements des fichiers de configuration\nSur votre clé USB MiniOS\nConfiguration GRUB : /minios/boot/grub/grub.cfg\nConfiguration SYSLINUX : /minios/boot/syslinux/syslinux.cfg\nImages de démarrage : /minios/boot/bootlogo.png\nFichiers de langue : /minios/boot/grub/locale/\nDans le système en cours d'exécution\nParamètres de démarrage actuels : /proc/cmdline\nRépertoire de données MiniOS : /run/initramfs/memory/data/minios/\nModification des fichiers de configuration\nAttention : N'éditez les fichiers de configuration de démarrage que si vous savez ce que vous faites. Des modifications incorrectes peuvent rendre votre clé USB non amorçable.\nPour modifier la configuration GRUB :\nMontez votre clé USB MiniOS\nAccédez à /minios/boot/grub/\nModifiez grub.cfg avec un éditeur de texte\nEnregistrez et éjectez la clé USB en toute sécurité\nModifications courantes :\nModifier la directive de délai utilisée par le menu GRUB ou Syslinux actif\nModifier set default=0 pour changer l'option de menu par défaut\nAjouter des entrées de menu personnalisées",
+  "plain_text": "Personnalisation du menu de démarrage\nLes menus de démarrage MiniOS proposent des entrées pratiques pour les modes de démarrage live courants. Ce guide explique comment sélectionner et modifier ces entrées.\nAperçu\nLes images MiniOS peuvent utiliser GRUB ou Syslinux selon le firmware, la structure de l’image et la méthode de création. Leurs graphes de menus, touches d’édition, gestion des langues et entrées disponibles peuvent différer. Le chargeur de démarrage transmet finalement une ligne de commande du noyau au même initrd ; voir Modes de démarrage pour le comportement de la source, la persistance, la copie RAM et la gestion de la dépendance au support.\nOptions du menu de démarrage\nL’image fournie propose généralement ces choix fonctionnels, mais les titres, la disponibilité, l’ordre et la sélection par défaut peuvent varier selon l’image :\nChoix du menu | Sélecteur initrd typique | But\nDémarrer MiniOS | perchdir=resume | Essayer la session compatible par défaut et permettre la création d’une nouvelle session de remplacement dans les conditions documentées.\nDémarrer une nouvelle session | perchdir=setup | Ouvrir le sélecteur de backend de persistance, puis créer une session supplémentaire numérotée tout en conservant les sessions existantes.\nChoisir une session enregistrée | perchdir=ask | Sélectionner une session enregistrée existante de façon interactive ; si le stockage est vide, MiniOS lance le même flux de configuration pour permettre la création de la première session.\nDémarrer sans enregistrer | aucun sélecteur de persistance | Utiliser une couche temporaire en écriture dans RAM.\nExécuter depuis la RAM | toram | Copier les données système MiniOS vers RAM ; avec la persistance, l’option par défaut perchtoram=trim copie séparément la session prise en charge sélectionnée.\nIl s’agit de sélecteurs, sans garantie que le stockage soit accessible en écriture, qu’une session soit compatible, que RAM soit suffisant ou que le support source ait été retiré. Voir Modes de démarrage pour le comportement et les combinaisons, Persistance initrd pour les cas particuliers des sélecteurs, et Optimisation des performances pour les compromis entre RAM et les entrées/sorties.\nComment utiliser le menu de démarrage\nNavigation dans le menu\nUtilisez les flèches directionnelles pour vous déplacer entre les options\nAppuyez sur Entrée pour valider une option\nAppuyez sur Échap pour revenir au menu précédent (dans GRUB)\nLa sélection automatique et la durée du délai dépendent de la configuration active du menu ; certains menus peuvent attendre indéfiniment\nSélection de la langue (GRUB)\nSi votre clé USB MiniOS prend en charge plusieurs langues :\nL’écran d’accueil affichera les options de langue\nSélectionnez la langue de votre choix\nLe menu de démarrage apparaîtra dans la langue sélectionnée\nLa sélection peut aussi transmettre les paramètres régionaux au démarrage suivant, mais cela ne garantit pas que tous les messages système ou applicatifs seront traduits\nImportant : Le menu multilingue remplace tout paramètre régional défini dans config.conf. La langue choisie dans le menu de démarrage prévaut sur les paramètres régionaux préconfigurés. Voir Fichier de configuration et live-config pour plus d’informations sur les fichiers de configuration système.\nPersonnalisation des options de démarrage\nModifier temporairement les paramètres de démarrage\nVous pouvez modifier les options de démarrage pour une seule session :\nDans GRUB :\nSélectionnez l’option du menu à modifier\nAppuyez sur 'e' pour éditer\nPlacez-vous sur la ligne commençant par linux\nAjoutez ou modifiez les paramètres à la fin de la ligne\nAppuyez sur Ctrl+X ou F10 pour démarrer avec vos modifications\nDans SYSLINUX :\nSélectionnez l’option du menu souhaitée\nAppuyez sur Tab avant d’appuyer sur Entrée\nAjoutez les paramètres à la ligne de commande qui s’affiche\nAppuyez sur Entrée pour démarrer\nModifications courantes des paramètres de démarrage\ndebug - Afficher les messages détaillés du démarrage (utile pour le diagnostic)\ntoram=trim - Copier le jeu de modules filtré et les données requises limitées vers RAM\nperchsize=2000 - Définir la taille du stockage de session à 2 Go (à ajuster selon vos besoins)\nlocales=ru_RU.UTF-8 - Demander une langue ou une locale spécifique\nPour la liste complète des paramètres de démarrage disponibles, consultez Paramètres de démarrage.\nEmplacements des fichiers de configuration\nSur votre clé USB MiniOS\nConfiguration GRUB : /minios/boot/grub/grub.cfg\nConfiguration SYSLINUX : /minios/boot/syslinux/syslinux.cfg\nImages de démarrage : /minios/boot/bootlogo.png\nFichiers de langue : /minios/boot/grub/locale/\nDans le système en cours d’exécution\nParamètres de démarrage actuels : /proc/cmdline\nRépertoire de données MiniOS : /run/initramfs/memory/data/minios/\nModification des fichiers de configuration\nAttention : Modifiez les fichiers de configuration de démarrage uniquement si vous savez ce que vous faites. Des modifications incorrectes peuvent rendre votre clé USB non amorçable.\nPour modifier la configuration GRUB :\nMontez votre clé USB MiniOS\nAllez dans /minios/boot/grub/\nModifiez grub.cfg avec un éditeur de texte\nEnregistrez et éjectez la clé USB en toute sécurité\nModifications courantes :\nModifier la directive de délai utilisée par le menu GRUB ou Syslinux actif\nModifiez set default=0 pour changer l’option du menu par défaut\nAjouter des entrées personnalisées au menu",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

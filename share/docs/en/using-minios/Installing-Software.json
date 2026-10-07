@@ -252,7 +252,39 @@
               [
                 [
                   "text",
+                  "Screenshots and application artwork, when provided. These are presentation metadata, not proof that a recipe is trustworthy."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
                   "Whether the recipe downloads a separate Debian package."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Any additional software license shown by the recipe. Recipes marked as requiring acceptance cannot be installed until you explicitly accept that license."
                 ]
               ]
             ]
@@ -404,7 +436,95 @@
               [
                 [
                   "text",
+                  "In module mode, choose the build level when needed. "
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Recipe default"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " keeps each recipe's configured level; "
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Auto"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " uses all currently loaded modules as the build base and produces an unnumbered module name; a numeric level from "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "01"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " through "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "09"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " uses loaded modules only through that level. Prefer Recipe default unless you deliberately need to avoid dependencies on higher optional layers."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
                   "For multiple applications in module mode, select one combined module or separate modules. A combined module can also be given a custom name."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Accept any recipe licenses that explicitly require acceptance."
                 ]
               ]
             ]
@@ -1113,7 +1233,21 @@
       [
         [
           "text",
-          "The URI handler is a separate path. It starts the GTK installer through PolicyKit and does not require the WebSocket daemon. Current URI entries are interpreted as APT package names with a requested module level and compression setting. The installer starts after authorization, so inspect the browser request before accepting the authentication prompt."
+          "The URI handler is a separate path. It starts the GTK installer through PolicyKit and does not require the WebSocket daemon. Current Store links include a complete encoded recipe payload so APT, script, and downloaded-DEB recipes can use the same fallback path; explicit license acceptances are carried separately and revalidated by the local installer. The older "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "recipes=id:level:compression"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " form remains a compatibility fallback and is interpreted as an APT recipe. The installer starts after authorization, so inspect the browser request before accepting the authentication prompt."
         ]
       ]
     ],
@@ -1857,7 +1991,7 @@
       ]
     ]
   ],
-  "plain_text": "Installing software\nMiniOS Store provides a catalog of application recipes at store.minios.dev. In the MiniOS live environment, those recipes can be installed directly into the running system or used to build one or more SquashFS (.sb) modules.\nThis page describes the MiniOS live software workflow. A native installation keeps the selected desktop and ordinary applications, but removes the MiniOS-specific software intended for live operation. Use the normal Debian package-management workflow on that installed system instead.\nBrowsing the catalog does not require a local server. Installation does: the web interface either connects to the local MiniOS Store daemon or opens the installed minios-store:// URI handler.\nBefore installing\nOpen an application's details and review the following information before adding it to the cart:\nThe package names and installation method.\nThe installation script, when one is shown.\nThe application homepage and developer information.\nWhether the recipe downloads a separate Debian package.\nRecipes can install APT packages, download Debian packages, or execute shell scripts. Installation operations run with root privileges. Treat a recipe and every download or repository it uses as privileged code.\nInstall an application\nOpen MiniOS Store from the application menu. The launcher checks https://store.minios.dev and opens it in the default browser.\nSearch or browse by category, open the application details, and inspect the packages or script.\nAdd one or more applications to the cart.\nOn a live MiniOS session, select Module or System.\nFor multiple applications in module mode, select one combined module or separate modules. A combined module can also be given a custom name.\nSelect Install and follow the progress and command output. The page uses the local daemon when its status is Connected; otherwise it tries the URI handler and may show a PolicyKit authentication prompt.\nOnly one daemon installation batch can run at a time. Closing the progress dialog does not necessarily stop a daemon installation; reopen the installation indicator to view it or explicitly cancel it.\nModule and system modes\nModule mode\nModule mode runs apt2sb or script2sb in an isolated module-building environment. It writes the resulting .sb files to the first writable location below:\n/run/initramfs/memory/data/minios/modules\n/var/lib/minios-store/modules\nThe first path is the modules directory on the current MiniOS boot storage. A module created there is not activated in the current session by MiniOS Store. Leave the module in that directory and reboot to load it on the next boot. The result remains available only if the underlying boot storage is writable and retains the file.\nThe second path is a fallback used when the normal modules directory is not writable. A module in the fallback directory is not automatically part of the next live boot. Use Open folder, then copy the finished module to the minios/modules directory on writable MiniOS boot media before rebooting.\nA combined module contains all selected recipes. With separate packaging, a failure can affect one recipe while modules completed earlier in the batch remain in the target directory.\nSystem mode\nSystem mode uses APT or a recipe script directly against the running root filesystem. Changes take effect in the current live system rather than producing a module. Whether those changes survive a reboot depends on the session's persistence configuration.\nSystem mode is not transactional. A failed or cancelled operation can leave packages, repository state, or files changed by earlier commands.\nLocal service and trust boundary\nThe minios-store service runs as root because module construction and direct package installation require mount, overlay, chroot, APT, and dpkg operations. By default it listens only on ws://127.0.0.1:8765. The hosted web interface sends complete recipe data, including scripts and download URLs, to this local service.\nThe daemon validates the request shape and supported installation method, but it does not independently authenticate or sign the recipe payload. A page that can reach the local WebSocket endpoint can request privileged installation work. Therefore:\nKeep the daemon bound to 127.0.0.1. Do not expose port 8765 to a LAN or the internet.\nDo not set MINIOS_STORE_HOST to a non-loopback address unless an additional, reviewed security boundary is in place.\nAccess MiniOS Store only through its official HTTPS website and inspect recipes before installation.\nStop or disable the service when browser-based installation is not needed.\nManage the systemd service with:\nsudo systemctl status minios-store\nsudo systemctl start minios-store\nsudo systemctl stop minios-store\nsudo systemctl enable minios-store\nsudo systemctl disable minios-store\nThe URI handler is a separate path. It starts the GTK installer through PolicyKit and does not require the WebSocket daemon. Current URI entries are interpreted as APT package names with a requested module level and compression setting. The installer starts after authorization, so inspect the browser request before accepting the authentication prompt.\nCancellation\nSelect Cancel in the web progress dialog or Cancel installation in the GTK installer. Cancellation marks the batch as cancelled and terminates the currently tracked child process. Remaining recipes are not started.\nCancellation is not rollback. Packages or modules completed earlier remain, and a command interrupted during APT, dpkg, a script, download, or module construction may leave partial state or an incomplete output file. After cancellation:\nRead the final installation log.\nCheck the target modules directory for unexpected or zero-size files.\nFor system mode, run sudo dpkg --audit and repair package configuration if needed.\nRemove only artifacts that you have identified as belonging to the cancelled operation.\nTroubleshooting\nMiniOS Store is offline\nCheck network access to https://store.minios.dev. An Offline status also means the browser is not connected to the local WebSocket daemon; installation may still proceed through the URI handler if minios-store-gui is installed.\nThe browser cannot connect to the daemon\nCheck the service and its logs:\nsudo systemctl status minios-store\nsudo journalctl -u minios-store\nThe normal endpoint is ws://127.0.0.1:8765. A port conflict, stopped service, missing python3-websockets, or browser restrictions can prevent connection. Restarting the browser does not repair a stopped daemon.\nAuthentication fails or no prompt appears\nThe URI installer requires PolicyKit, pkexec, and an active desktop authentication agent. Start the installer from an active graphical session and verify that minios-store-gui is installed. Do not work around the prompt by exposing the root daemon over the network.\nModule construction fails\nExpand the installation log and use the last command error rather than only the summary. Common causes include unavailable packages, repository or DNS failures, insufficient free space, an unsupported compression tool, and a read-only modules directory. The daemon reports when it has switched to /var/lib/minios-store/modules.\nThe application is absent after installation\nFor module mode, reboot after confirming that the .sb file is in the boot media's minios/modules directory. A file left in the fallback directory is not loaded automatically. For system mode on a live session, verify that the session is persistent if the application disappeared after reboot.\nA cancelled system install left dpkg unfinished\nInspect package state before retrying:\nsudo dpkg --audit\nsudo dpkg --configure -a\nsudo apt-get -f install\nReview the proposed APT changes before confirming any additional repair operation.\nRelated documentation\nCreating modules\nRebuilding ISO",
+  "plain_text": "Installing software\nMiniOS Store provides a catalog of application recipes at store.minios.dev. In the MiniOS live environment, those recipes can be installed directly into the running system or used to build one or more SquashFS (.sb) modules.\nThis page describes the MiniOS live software workflow. A native installation keeps the selected desktop and ordinary applications, but removes the MiniOS-specific software intended for live operation. Use the normal Debian package-management workflow on that installed system instead.\nBrowsing the catalog does not require a local server. Installation does: the web interface either connects to the local MiniOS Store daemon or opens the installed minios-store:// URI handler.\nBefore installing\nOpen an application's details and review the following information before adding it to the cart:\nThe package names and installation method.\nThe installation script, when one is shown.\nThe application homepage and developer information.\nScreenshots and application artwork, when provided. These are presentation metadata, not proof that a recipe is trustworthy.\nWhether the recipe downloads a separate Debian package.\nAny additional software license shown by the recipe. Recipes marked as requiring acceptance cannot be installed until you explicitly accept that license.\nRecipes can install APT packages, download Debian packages, or execute shell scripts. Installation operations run with root privileges. Treat a recipe and every download or repository it uses as privileged code.\nInstall an application\nOpen MiniOS Store from the application menu. The launcher checks https://store.minios.dev and opens it in the default browser.\nSearch or browse by category, open the application details, and inspect the packages or script.\nAdd one or more applications to the cart.\nOn a live MiniOS session, select Module or System.\nIn module mode, choose the build level when needed. Recipe default keeps each recipe's configured level; Auto uses all currently loaded modules as the build base and produces an unnumbered module name; a numeric level from 01 through 09 uses loaded modules only through that level. Prefer Recipe default unless you deliberately need to avoid dependencies on higher optional layers.\nFor multiple applications in module mode, select one combined module or separate modules. A combined module can also be given a custom name.\nAccept any recipe licenses that explicitly require acceptance.\nSelect Install and follow the progress and command output. The page uses the local daemon when its status is Connected; otherwise it tries the URI handler and may show a PolicyKit authentication prompt.\nOnly one daemon installation batch can run at a time. Closing the progress dialog does not necessarily stop a daemon installation; reopen the installation indicator to view it or explicitly cancel it.\nModule and system modes\nModule mode\nModule mode runs apt2sb or script2sb in an isolated module-building environment. It writes the resulting .sb files to the first writable location below:\n/run/initramfs/memory/data/minios/modules\n/var/lib/minios-store/modules\nThe first path is the modules directory on the current MiniOS boot storage. A module created there is not activated in the current session by MiniOS Store. Leave the module in that directory and reboot to load it on the next boot. The result remains available only if the underlying boot storage is writable and retains the file.\nThe second path is a fallback used when the normal modules directory is not writable. A module in the fallback directory is not automatically part of the next live boot. Use Open folder, then copy the finished module to the minios/modules directory on writable MiniOS boot media before rebooting.\nA combined module contains all selected recipes. With separate packaging, a failure can affect one recipe while modules completed earlier in the batch remain in the target directory.\nSystem mode\nSystem mode uses APT or a recipe script directly against the running root filesystem. Changes take effect in the current live system rather than producing a module. Whether those changes survive a reboot depends on the session's persistence configuration.\nSystem mode is not transactional. A failed or cancelled operation can leave packages, repository state, or files changed by earlier commands.\nLocal service and trust boundary\nThe minios-store service runs as root because module construction and direct package installation require mount, overlay, chroot, APT, and dpkg operations. By default it listens only on ws://127.0.0.1:8765. The hosted web interface sends complete recipe data, including scripts and download URLs, to this local service.\nThe daemon validates the request shape and supported installation method, but it does not independently authenticate or sign the recipe payload. A page that can reach the local WebSocket endpoint can request privileged installation work. Therefore:\nKeep the daemon bound to 127.0.0.1. Do not expose port 8765 to a LAN or the internet.\nDo not set MINIOS_STORE_HOST to a non-loopback address unless an additional, reviewed security boundary is in place.\nAccess MiniOS Store only through its official HTTPS website and inspect recipes before installation.\nStop or disable the service when browser-based installation is not needed.\nManage the systemd service with:\nsudo systemctl status minios-store\nsudo systemctl start minios-store\nsudo systemctl stop minios-store\nsudo systemctl enable minios-store\nsudo systemctl disable minios-store\nThe URI handler is a separate path. It starts the GTK installer through PolicyKit and does not require the WebSocket daemon. Current Store links include a complete encoded recipe payload so APT, script, and downloaded-DEB recipes can use the same fallback path; explicit license acceptances are carried separately and revalidated by the local installer. The older recipes=id:level:compression form remains a compatibility fallback and is interpreted as an APT recipe. The installer starts after authorization, so inspect the browser request before accepting the authentication prompt.\nCancellation\nSelect Cancel in the web progress dialog or Cancel installation in the GTK installer. Cancellation marks the batch as cancelled and terminates the currently tracked child process. Remaining recipes are not started.\nCancellation is not rollback. Packages or modules completed earlier remain, and a command interrupted during APT, dpkg, a script, download, or module construction may leave partial state or an incomplete output file. After cancellation:\nRead the final installation log.\nCheck the target modules directory for unexpected or zero-size files.\nFor system mode, run sudo dpkg --audit and repair package configuration if needed.\nRemove only artifacts that you have identified as belonging to the cancelled operation.\nTroubleshooting\nMiniOS Store is offline\nCheck network access to https://store.minios.dev. An Offline status also means the browser is not connected to the local WebSocket daemon; installation may still proceed through the URI handler if minios-store-gui is installed.\nThe browser cannot connect to the daemon\nCheck the service and its logs:\nsudo systemctl status minios-store\nsudo journalctl -u minios-store\nThe normal endpoint is ws://127.0.0.1:8765. A port conflict, stopped service, missing python3-websockets, or browser restrictions can prevent connection. Restarting the browser does not repair a stopped daemon.\nAuthentication fails or no prompt appears\nThe URI installer requires PolicyKit, pkexec, and an active desktop authentication agent. Start the installer from an active graphical session and verify that minios-store-gui is installed. Do not work around the prompt by exposing the root daemon over the network.\nModule construction fails\nExpand the installation log and use the last command error rather than only the summary. Common causes include unavailable packages, repository or DNS failures, insufficient free space, an unsupported compression tool, and a read-only modules directory. The daemon reports when it has switched to /var/lib/minios-store/modules.\nThe application is absent after installation\nFor module mode, reboot after confirming that the .sb file is in the boot media's minios/modules directory. A file left in the fallback directory is not loaded automatically. For system mode on a live session, verify that the session is persistent if the application disappeared after reboot.\nA cancelled system install left dpkg unfinished\nInspect package state before retrying:\nsudo dpkg --audit\nsudo dpkg --configure -a\nsudo apt-get -f install\nReview the proposed APT changes before confirming any additional repair operation.\nRelated documentation\nCreating modules\nRebuilding ISO",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

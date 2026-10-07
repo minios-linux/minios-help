@@ -6,14 +6,14 @@
       "title": "Internal Persistensi"
     },
     {
-      "anchor": "penjelasan-sederhana",
+      "anchor": "dengan-bahasa-sederhana",
       "level": 2,
-      "title": "Penjelasan sederhana"
+      "title": "Dengan bahasa sederhana"
     },
     {
       "anchor": "penjelasan-parameter",
       "level": 2,
-      "title": "Penjelasan parameter"
+      "title": "Penjelasan Parameter"
     },
     {
       "anchor": "persistensi-bersifat-eksplisit",
@@ -23,7 +23,7 @@
     {
       "anchor": "penyimpanan-dan-lokasi-sesi",
       "level": 2,
-      "title": "Penyimpanan dan Lokasi Sesi"
+      "title": "Penyimpanan dan lokasi sesi"
     },
     {
       "anchor": "seleksi-dan-kompatibilitas",
@@ -76,9 +76,9 @@
       "title": "SquashFS"
     },
     {
-      "anchor": "aktivasi-union-dan-batas-pemulihan",
+      "anchor": "batas-aktivasi-dan-pemulihan-union",
       "level": 2,
-      "title": "Aktivasi union dan batas pemulihan"
+      "title": "Batas aktivasi dan pemulihan union"
     },
     {
       "anchor": "status-aktif-berjalan-dan-boot-saat-ini",
@@ -109,7 +109,7 @@
       [
         [
           "text",
-          "Halaman ini menjelaskan parameter boot "
+          "Halaman ini menjelaskan "
         ],
         [
           "span",
@@ -165,7 +165,7 @@
         ],
         [
           "text",
-          ", dan "
+          ", "
         ],
         [
           "span",
@@ -179,7 +179,49 @@
         ],
         [
           "text",
-          ". Parameter-parameter ini mengatur di mana perubahan dari sesi live akan disimpan. Untuk penggunaan normal, pilih entri persisten di menu boot atau gunakan Manajer Sesi MiniOS daripada mengeditnya secara manual."
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchencrypt"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchcomp"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", dan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchtoram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " parameter boot. Parameter ini mengatur di mana perubahan dari sesi live disimpan, bagaimana sesi baru dibuat, dan apakah penyimpanan sesi yang didukung akan disalin ke RAM. Untuk penggunaan normal, pilih entri persisten di menu boot atau gunakan Manajer Sesi MiniOS daripada mengeditnya secara manual."
         ]
       ]
     ],
@@ -189,7 +231,7 @@
       [
         [
           "text",
-          "MiniOS membangun root live dari modul read-only dan satu lapisan atas yang dapat ditulis."
+          "MiniOS membangun root live dari modul hanya-baca dan satu lapisan atas yang dapat ditulis."
         ],
         [
           "text",
@@ -197,7 +239,7 @@
         ],
         [
           "text",
-          "Initrd menentukan apakah lapisan atas itu adalah sesi persisten bernomor atau direktori sementara di RAM. Halaman ini menjelaskan keputusan dan jalur aktivasi saat boot. Untuk kontrol yang ditujukan bagi pengguna, lihat "
+          "Initrd menentukan apakah lapisan atas tersebut adalah sesi persisten bernomor atau direktori sementara di RAM. Halaman ini menjelaskan keputusan dan jalur aktivasi saat boot. Untuk kontrol yang terlihat oleh pengguna, lihat "
         ],
         [
           "link",
@@ -234,11 +276,11 @@
     [
       "heading",
       2,
-      "penjelasan-sederhana",
+      "dengan-bahasa-sederhana",
       [
         [
           "text",
-          "Penjelasan sederhana"
+          "Dengan bahasa sederhana"
         ]
       ]
     ],
@@ -248,7 +290,7 @@
       [
         [
           "text",
-          "Tanpa parameter persistensi, MiniOS akan menyimpan perubahan di RAM dan membuangnya saat shutdown. Parameter persistensi meminta MiniOS untuk mencari media penyimpanan yang dapat ditulis, memilih atau membuat sesi bernomor, memeriksa kompatibilitas, dan menggunakan sesi tersebut sebagai layer yang dapat ditulis."
+          "Tanpa parameter persistensi, MiniOS menempatkan perubahan di RAM dan akan menghapusnya saat aplikasi ditutup. Parameter persistensi meminta MiniOS untuk mencari media penyimpanan yang dapat ditulis, memilih atau membuat sesi bernomor, memeriksa kompatibilitas, dan menggunakan sesi tersebut sebagai layer yang dapat ditulis."
         ]
       ]
     ],
@@ -258,7 +300,7 @@
       [
         [
           "text",
-          "Meminta persistensi tidak menjamin fitur ini aktif. Jika target hanya-baca, penuh, rusak, atau tidak kompatibel, MiniOS dapat melanjutkan dengan layer sementara di RAM. Bacalah peringatan saat startup sebelum mengandalkan perubahan yang tersimpan."
+          "Meminta persistensi tidak menjamin fitur tersebut langsung aktif. Jika target hanya-baca, penuh, rusak, atau tidak kompatibel, MiniOS dapat tetap berjalan dengan layer RAM sementara. Bacalah peringatan saat startup sebelum mengandalkan perubahan yang disimpan."
         ]
       ]
     ],
@@ -269,7 +311,7 @@
       [
         [
           "text",
-          "Penjelasan parameter"
+          "Penjelasan Parameter"
         ]
       ]
     ],
@@ -294,7 +336,7 @@
               [
                 [
                   "text",
-                  "Menjelaskan apa yang dilakukan MiniOS"
+                  "Apa yang dijelaskan oleh MiniOS"
                 ]
               ]
             ],
@@ -333,7 +375,7 @@
               [
                 [
                   "text",
-                  "Membuka sesi default yang kompatibel dan, jika kondisi mendukung, membuat pengganti jika tidak dapat digunakan."
+                  "Buka sesi default yang kompatibel dan, jika kondisi mendukung, buat pengganti jika tidak dapat digunakan."
                 ]
               ]
             ],
@@ -343,6 +385,59 @@
                 [
                   "text",
                   "Pekerjaan harian biasa."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchdir=setup"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Pilih backend persistensi dan opsi enkripsi/kompresi yang didukung secara interaktif, lalu buat sesi baru dengan nomor tertentu."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Entri "
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Mulai sesi baru"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " boot-menu saat ini."
                 ]
               ]
             ]
@@ -372,7 +467,21 @@
               [
                 [
                   "text",
-                  "Membuat sesi baru dengan nomor tertentu."
+                  "Buat sesi baru dengan nomor tertentu langsung menggunakan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchmode"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " yang diminta/default, enkripsi, kompresi, dan ukuran tanpa menampilkan pemilih backend."
                 ]
               ]
             ],
@@ -381,7 +490,7 @@
               [
                 [
                   "text",
-                  "Mempertahankan workspace yang sudah ada tanpa perubahan."
+                  "Entri boot yang sudah diatur atau skrip dengan opsi penyimpanan yang sudah ditentukan."
                 ]
               ]
             ]
@@ -411,7 +520,21 @@
               [
                 [
                   "text",
-                  "Menampilkan sesi yang tersimpan setelah penyimpanan yang dapat dilanjutkan ditemukan dan memungkinkan Anda memilih salah satunya. Tidak dapat membuat sesi pertama pada storage yang kosong."
+                  "Tampilkan sesi yang tersimpan dan izinkan Anda memilih salah satu. Jika tidak ada sesi tersimpan pada penyimpanan, pemilih akan masuk ke alur pengaturan yang sama seperti "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchdir=setup"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
                 ]
               ]
             ],
@@ -420,21 +543,7 @@
               [
                 [
                   "text",
-                  "Beberapa workspace yang sudah ada di satu perangkat; gunakan "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "perchdir=new"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " untuk sesi pertama."
+                  "Beberapa workspace pada satu perangkat, termasuk pengaturan interaktif pertama pada penyimpanan kosong."
                 ]
               ]
             ]
@@ -665,7 +774,7 @@
               [
                 [
                   "text",
-                  "Meminta ukuran sesi container baru atau yang sedang bertambah."
+                  "Minta ukuran untuk sesi container baru atau yang bertambah."
                 ]
               ]
             ],
@@ -674,7 +783,7 @@
               [
                 [
                   "text",
-                  "DynFileFS, DynBlk, VMDK, atau raw; enkripsi tidak mengubah semantik ukuran backend."
+                  "DynFileFS, DynBlk, VMDK, atau raw; enkripsi tidak mengubah skema ukuran backend."
                 ]
               ]
             ]
@@ -821,7 +930,7 @@
                 ],
                 [
                   "text",
-                  "; ketersediaan tetap tergantung pada kernel yang berjalan. Kompresi dinonaktifkan saat LUKS membungkus DynBlk."
+                  "; ketersediaan tetap tergantung pada kernel yang sedang berjalan. Kompresi dinonaktifkan jika LUKS membungkus DynBlk."
                 ]
               ]
             ]
@@ -860,7 +969,7 @@
               [
                 [
                   "text",
-                  "Sisakan ruang kerja saat mengalokasikan container; ini bukan kuota runtime."
+                  "Sisakan ruang kerja saat mengalokasikan container; ini bukan kuota saat runtime."
                 ]
               ]
             ]
@@ -899,7 +1008,7 @@
               [
                 [
                   "text",
-                  "Kompatibilitas dengan entri kustom yang sudah ada; lebih disarankan "
+                  "Kompatibilitas dengan entri kustom yang sudah ada; disarankan menggunakan "
                 ],
                 [
                   "span",
@@ -918,6 +1027,125 @@
               ]
             ]
           ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=off"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ", "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=full"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Kontrol penyalinan persistensi secara terpisah dari sistem "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "toram"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "off"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " menjaga store asli tetap aktif; "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " hanya menyalin sesi yang didukung dan dipilih; "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "full"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " menyalin semua sesi container/SquashFS yang didukung."
+                ]
+              ]
+            ]
+          ]
         ]
       ]
     ],
@@ -927,7 +1155,7 @@
       [
         [
           "text",
-          "Jangan gabungkan persistensi dengan "
+          "Jika persistensi diminta, sistem "
         ],
         [
           "span",
@@ -941,7 +1169,35 @@
         ],
         [
           "text",
-          " saat Anda mengharapkan perubahan akan ditulis kembali ke perangkat asli. MiniOS mengaktifkan sesi yang disalin di RAM, dan perubahan pada salinan tersebut akan hilang saat shutdown."
+          " menjadikan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "perchtoram=trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " sebagai default kecuali mode persistensi-RAM secara eksplisit diberikan. Tanpa sistem "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "toram"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", persistensi tetap berada di penyimpanan secara default. Sesi yang disalin bersifat non-durable saat berjalan, namun Session Manager saat ini dapat secara eksplisit menyimpan status yang didukung RAM ke store asli atau menerbitkannya sebagai sesi baru jika store asli tersedia dan identitasnya sesuai dengan saat boot."
         ]
       ]
     ],
@@ -962,7 +1218,7 @@
       [
         [
           "text",
-          "Initrd hanya mengaktifkan penanganan persistensi ketika baris perintah kernel berisi salah satu token yang dikenali berikut:"
+          "Initrd hanya mengaktifkan penanganan persistensi jika baris perintah kernel memuat salah satu token yang dikenali berikut:"
         ]
       ]
     ],
@@ -1135,7 +1391,7 @@
       [
         [
           "text",
-          "Jika tidak ada token tersebut, termasuk ketika hanya terdapat nama "
+          "Jika tidak ada token tersebut, termasuk ketika hanya terdapat "
         ],
         [
           "span",
@@ -1149,7 +1405,7 @@
         ],
         [
           "text",
-          " yang tidak dikenali, MiniOS akan membuat upper writable baru di RAM. Perubahan yang dilakukan selama boot tersebut akan dihapus saat shutdown."
+          " nama yang tidak dikenali, MiniOS akan membuat upper writable baru di RAM. Perubahan yang dilakukan selama boot tersebut akan dihapus saat shutdown."
         ]
       ]
     ],
@@ -1159,7 +1415,7 @@
       [
         [
           "text",
-          "Selector tidak semuanya setara:"
+          "Selector yang tersedia tidak semuanya setara:"
         ]
       ]
     ],
@@ -1184,7 +1440,7 @@
               [
                 [
                   "text",
-                  "Perilaku Initrd"
+                  "Perilaku initrd"
                 ]
               ]
             ]
@@ -1214,7 +1470,7 @@
               [
                 [
                   "text",
-                  "Mencoba melanjutkan metadata default. Tidak secara otomatis membuat sesi baru jika tidak ada yang dapat digunakan atau jika pemeriksaan kompatibilitas gagal."
+                  "Mencoba melanjutkan metadata default. Tidak otomatis membuat sesi baru jika tidak ada yang dapat digunakan atau jika pemeriksaan kompatibilitas gagal."
                 ]
               ]
             ]
@@ -1263,6 +1519,36 @@
                   [
                     [
                       "text",
+                      "perchdir=setup"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Membuka pemilih backend terlebih dahulu, mencatat backend/enkripsi/permintaan kompresi yang dipilih, lalu mengikuti jalur alokasi sesi baru."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
                       "perchdir=new"
                     ]
                   ]
@@ -1274,7 +1560,7 @@
               [
                 [
                   "text",
-                  "Mengalokasikan direktori dengan ID numerik satu angka lebih besar dari ID numerik tertinggi yang sudah ada. Tidak pernah menggunakan ulang direktori yang sudah ada."
+                  "Mengalokasikan direktori dengan ID numerik satu angka lebih besar dari ID numerik tertinggi yang ada. Tidak pernah menggunakan ulang direktori yang sudah ada dan tidak membuka pemilih backend."
                 ]
               ]
             ]
@@ -1304,7 +1590,7 @@
               [
                 [
                   "text",
-                  "Menawarkan sesi yang sudah ada setelah store yang dapat dilanjutkan dan default ditemukan. Sesi yang tidak kompatibel memerlukan konfirmasi. Pada penyimpanan kosong, gunakan "
+                  "Menawarkan sesi yang sudah ada jika tersedia; sesi yang tidak kompatibel memerlukan konfirmasi. Jika tidak ada default/sesi di store, akan beralih ke "
                 ],
                 [
                   "span",
@@ -1312,13 +1598,13 @@
                   [
                     [
                       "text",
-                      "perchdir=new"
+                      "setup"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " untuk membuat sesi pertama."
+                  " sehingga sesi pertama dapat dibuat secara interaktif."
                 ]
               ]
             ]
@@ -1362,7 +1648,7 @@
       [
         [
           "text",
-          "Parameter persistensi lain yang dikenali tanpa selector akan masuk ke jalur resume lama yang sama seperti bare "
+          "Parameter persistensi lain yang dikenali tanpa selector akan masuk ke jalur resume legacy yang sama seperti hanya "
         ],
         [
           "span",
@@ -1376,7 +1662,7 @@
         ],
         [
           "text",
-          ": mereka meminta persistensi, tetapi tidak mengaktifkan pembuatan otomatis. Jika pemilihan atau aktivasi tidak dapat menghasilkan upper yang dapat digunakan, proses boot akan tetap berjalan dengan upper RAM dan menampilkan peringatan kegagalan."
+          ": mereka meminta persistensi, tetapi tidak mengaktifkan pembuatan otomatis. Jika pemilihan atau aktivasi tidak dapat menghasilkan upper yang dapat digunakan, proses boot tetap berjalan normal dengan upper RAM dan menampilkan peringatan kegagalan."
         ]
       ]
     ],
@@ -1387,7 +1673,7 @@
       [
         [
           "text",
-          "Penyimpanan dan Lokasi Sesi"
+          "Penyimpanan dan lokasi sesi"
         ]
       ]
     ],
@@ -1397,7 +1683,7 @@
       [
         [
           "text",
-          "Penyimpanan standar berada di "
+          "Penyimpanan normal berada di "
         ],
         [
           "span",
@@ -1455,7 +1741,7 @@
       [
         [
           "text",
-          "Penyimpanan juga dapat dipilih sebagai perangkat beserta path opsional. Bentuk yang diterima termasuk path langsung "
+          "Penyimpanan juga dapat dipilih sebagai perangkat beserta jalur opsional. Format yang diterima termasuk jalur "
         ],
         [
           "span",
@@ -1469,7 +1755,7 @@
         ],
         [
           "text",
-          " , "
+          " langsung, "
         ],
         [
           "span",
@@ -1483,7 +1769,7 @@
         ],
         [
           "text",
-          " , "
+          ", "
         ],
         [
           "span",
@@ -1497,7 +1783,7 @@
         ],
         [
           "text",
-          " , "
+          ", "
         ],
         [
           "span",
@@ -1511,7 +1797,7 @@
         ],
         [
           "text",
-          " , "
+          ", "
         ],
         [
           "span",
@@ -1539,7 +1825,7 @@
         ],
         [
           "text",
-          ". Sufiks yang dipisahkan tanda titik dua akan menjadi path di bawah perangkat yang dipilih; sintaks garis miring setelah "
+          ". Sufiks yang dipisahkan dengan tanda titik dua akan menjadi jalur di bawah perangkat yang dipilih; sintaks garis miring setelah "
         ],
         [
           "span",
@@ -1553,7 +1839,7 @@
         ],
         [
           "text",
-          " akan mengabaikan path kustom tersebut. Subdirektori yang dipilih akan di-bind-mount sebagai penyimpanan sesi. MiniOS juga dapat mendeteksi partisi persistence di drive yang sama dan penyimpanan persistence Ventoy yang didukung."
+          " akan mengabaikan jalur kustom tersebut secara diam-diam. Subdirektori yang dipilih akan di-bind-mount sebagai penyimpanan sesi. MiniOS juga dapat mendeteksi partisi persistence pada drive yang sama dan penyimpanan persistence Ventoy yang didukung."
         ]
       ]
     ],
@@ -1563,7 +1849,7 @@
       [
         [
           "text",
-          "Sebelum pemilihan sesi, initrd harus me-mount lokasi tersebut agar dapat ditulis dan memastikan dapat membuat serta menghapus marker di penyimpanan. Perangkat blok yang tidak dapat dibuka untuk penulisan, mount hanya-baca, path yang tidak tersedia, atau uji tulis yang gagal akan menolak persistence untuk boot tersebut. Sesi yang sudah ada tidak langsung dipercaya hanya karena file-nya dapat dibaca."
+          "Sebelum pemilihan sesi, initrd harus me-mount lokasi sebagai writable dan membuktikan dapat membuat serta menghapus marker di penyimpanan. Perangkat blok yang tidak bisa dibuka untuk penulisan, mount hanya-baca, jalur yang tidak tersedia, atau uji tulis yang gagal akan menolak persistence untuk boot tersebut. Sesi yang sudah ada tidak langsung dipercaya hanya karena file-nya bisa dibaca."
         ]
       ]
     ],
@@ -1584,7 +1870,7 @@
       [
         [
           "text",
-          "Metadata sesi mencatat mode penyimpanan dan dapat mencatat versi MiniOS, edisi, union filesystem, dan ukuran container. Resume membandingkan mode, versi, edisi, dan union yang tercatat dengan mode yang diminta dan sistem saat ini."
+          "Metadata sesi mencatat mode penyimpanan dan dapat mencatat versi MiniOS, edisi, union filesystem, dan ukuran container. Saat melanjutkan, sistem membandingkan mode, versi, edisi, dan union yang tercatat dengan mode yang diminta dan sistem saat ini."
         ],
         [
           "text",
@@ -1592,7 +1878,7 @@
         ],
         [
           "text",
-          "Field kompatibilitas lama yang hilang tidak dianggap sebagai ketidakcocokan."
+          "Kolom kompatibilitas legacy yang hilang tidak dianggap sebagai ketidakcocokan."
         ]
       ]
     ],
@@ -1616,7 +1902,7 @@
         ],
         [
           "text",
-          " akan membuat sesi bernomor baru jika default-nya tidak ada atau jika mode, versi, edisi, atau union yang tercatat tidak cocok sehingga default tersebut tidak sesuai. "
+          " membuat sesi bernomor baru jika default-nya tidak ada atau jika terjadi ketidakcocokan mode, versi, edisi, atau union yang tercatat sehingga default tersebut tidak sesuai. Penggunaan bare "
         ],
         [
           "span",
@@ -1630,7 +1916,7 @@
         ],
         [
           "text",
-          " tanpa selector, pemilihan numerik langsung, dan permintaan resume lama lainnya menolak pembuatan pengganti otomatis dan melanjutkan di RAM jika pemilihan gagal. "
+          ", pemilihan numerik langsung, dan permintaan resume legacy lainnya menolak penggantian otomatis dan tetap melanjutkan di RAM setelah kegagalan seleksi. "
         ],
         [
           "span",
@@ -1644,7 +1930,7 @@
         ],
         [
           "text",
-          " menampilkan informasi kompatibilitas dan memungkinkan override eksplisit. Sesi baru akan default ke "
+          " menampilkan informasi kompatibilitas dan memungkinkan override secara eksplisit. Sesi baru secara default menggunakan "
         ],
         [
           "span",
@@ -1658,7 +1944,7 @@
         ],
         [
           "text",
-          " kecuali mode lain diminta."
+          " kecuali mode lain yang diminta."
         ]
       ]
     ],
@@ -1668,7 +1954,7 @@
       [
         [
           "text",
-          "Mode penyimpanan adalah bagian dari kompatibilitas. Jika seleksi mencapai backend dispatch, mode yang diminta tidak dikenal akan kembali ke "
+          "Mode penyimpanan adalah bagian dari kompatibilitas. Jika seleksi mencapai backend dispatch, mode yang diminta namun tidak dikenal akan kembali ke "
         ],
         [
           "span",
@@ -1682,7 +1968,7 @@
         ],
         [
           "text",
-          ", yang kemudian dapat memilih DynFileFS pada media yang tidak sesuai. Sesi yang sudah ada dengan mode berbeda dapat gagal pada pemeriksaan kompatibilitas sebelumnya; permintaan resume lama kemudian akan melanjutkan di RAM daripada mencapai fallback tersebut."
+          ", di mana probe-nya kemudian dapat memilih DynFileFS pada penyimpanan yang tidak sesuai. Sesi yang sudah ada dengan mode yang tercatat berbeda dapat gagal pada pengecekan kompatibilitas sebelumnya; permintaan resume legacy kemudian tetap berjalan di RAM alih-alih mencapai fallback tersebut."
         ]
       ]
     ],
@@ -1717,7 +2003,7 @@
         ],
         [
           "text",
-          " menerima angka bulat tak bertanda tanpa satuan, dibatasi maksimal 4096, dan akan kembali ke 256 jika kosong atau tidak valid. Margin ini mengurangi ruang yang ditawarkan untuk container baru atau yang bertambah. Ini bukan kuota: sesi native atau penulisan berikutnya masih dapat menggunakan sisa ruang filesystem. Boot akan memperingatkan jika ruang kosong saat ini sama dengan atau di bawah ambang batas."
+          " menerima angka bulat tak bertanda tanpa satuan, dibatasi maksimal 4096, dan akan kembali ke 256 jika tidak diisi atau tidak valid. Margin ini mengurangi ruang yang ditawarkan untuk container baru atau yang bertambah. Ini bukan kuota: sesi native atau penulisan berikutnya tetap dapat menggunakan sisa ruang filesystem. Saat boot, peringatan akan muncul jika ruang kosong saat ini berada di ambang atau di bawah batas tersebut."
         ]
       ]
     ],
@@ -1727,7 +2013,7 @@
       [
         [
           "text",
-          "Ukuran container menggunakan jumlah bulat yang dialokasikan dalam MiB:"
+          "Ukuran container menggunakan bilangan bulat yang dialokasikan dalam satuan MiB:"
         ]
       ]
     ],
@@ -1872,7 +2158,7 @@
               [
                 [
                   "text",
-                  "Container Raw dibatasi hingga 1.000.000 MiB dan oleh ruang yang tersedia setelah cadangan. DynFileFS memiliki batas khusus yang memperhitungkan RAM dan batas keras 2.000.000 MiB. DynBlk mendapatkan batas geometri format native dari "
+                  "Container tipe Raw dibatasi maksimal 1.000.000 MiB dan juga oleh ruang yang tersedia setelah cadangan. DynFileFS memiliki batas terpisah yang memperhitungkan RAM dan batas keras 2.000.000 MiB. DynBlk mendapatkan batas geometri format native dari "
                 ],
                 [
                   "span",
@@ -1886,7 +2172,7 @@
                 ],
                 [
                   "text",
-                  "; MiniOS tidak memberlakukan batas 512-GiB terpisah."
+                  "; MiniOS tidak menerapkan batas keras 512-GiB secara terpisah."
                 ]
               ]
             ]
@@ -1902,7 +2188,7 @@
               [
                 [
                   "text",
-                  "Raw adalah satu file pendukung, sehingga FAT32 membatasinya hingga 4000 MiB di MiniOS. Batas yang sama berlaku saat Raw dibungkus dalam LUKS2."
+                  "Raw adalah satu file pendukung, sehingga FAT32 membatasi ukurannya hingga 4000 MiB di MiniOS. Batas yang sama berlaku jika Raw dibungkus dengan LUKS2."
                 ]
               ]
             ]
@@ -1934,7 +2220,7 @@
               [
                 [
                   "text",
-                  "Sesi DynFileFS baru yang dibuat initrd tanpa "
+                  "Sesi DynFileFS baru yang dibuat oleh initrd tanpa "
                 ],
                 [
                   "span",
@@ -1948,7 +2234,7 @@
                 ],
                 [
                   "text",
-                  " menggunakan hingga 16 GiB kapasitas logis. Jika media pendukung tidak dapat menampung sebanyak itu setelah "
+                  " menggunakan kapasitas logis hingga 16 GiB. Jika media penyimpanan tidak dapat menampung sebanyak itu setelah "
                 ],
                 [
                   "span",
@@ -1962,7 +2248,7 @@
                 ],
                 [
                   "text",
-                  " dan overhead indeks DynFileFS, default dikurangi ke kapasitas yang tersedia. Indeks format-400 memakan sekitar 2 MiB dari RAM dan sekitar 2 MiB penyimpanan pendukung per GiB kapasitas logis yang dideklarasikan, meskipun payload masih kosong. MiniOS juga membatasi kapasitas DynFileFS dari RAM fisik dan oleh batas keras 2.000.000 MiB yang telah diuji."
+                  " dan overhead indeks DynFileFS, default akan dikurangi sesuai kapasitas yang tersedia. Indeks format-400 membutuhkan sekitar 2 MiB RAM dan sekitar 2 MiB ruang penyimpanan per GiB dari kapasitas logis yang dideklarasikan, bahkan saat payload masih kosong. Karena itu, MiniOS juga membatasi kapasitas DynFileFS dari RAM fisik dan dengan batas keras 2.000.000 MiB yang telah diuji."
                 ]
               ]
             ]
@@ -1992,7 +2278,7 @@
                 ],
                 [
                   "text",
-                  " mengikuti batas otomatis 16 GiB yang sama dan akan dikurangi jika ruang pendukung yang tersisa kurang setelah "
+                  " mengikuti batas otomatis 16 GiB yang sama dan akan dikurangi jika ruang cadangan yang tersisa kurang setelah "
                 ],
                 [
                   "span",
@@ -2006,7 +2292,7 @@
                 ],
                 [
                   "text",
-                  ". Ukuran DynBlk eksplisit adalah permintaan kapasitas tipis yang diperiksa terhadap batas backend terpasang. Metadata untuk bagian yang dideklarasikan dibuat di awal, namun ruang payload akan bertambah sesuai kebutuhan. DynBlk memiliki cache metadata terbatas yang terpisah dari pemenuhan payload."
+                  ". Ukuran DynBlk eksplisit adalah permintaan kapasitas tipis yang akan dicek terhadap batas backend yang terpasang. Metadata untuk bagian yang dideklarasikan dibuat di awal, namun ruang payload akan bertambah sesuai kebutuhan. DynBlk memiliki cache metadata terbatas yang terpisah dari isi payload."
                 ]
               ]
             ]
@@ -2020,7 +2306,7 @@
       [
         [
           "text",
-          "Pertumbuhan container bersifat best-effort dan pengurangan ukuran tidak didukung. "
+          "Pertumbuhan container bersifat best-effort dan penyusutan tidak didukung. "
         ],
         [
           "span",
@@ -2034,7 +2320,7 @@
         ],
         [
           "text",
-          " tidak menentukan ukuran sesi native atau SquashFS. Manajer Sesi MiniOS mengatur default container raw dan DynFileFS yang dibuat manual ke 4000 MiB dan DynBlk ke 16 GiB; varian terenkripsi menggunakan default backend yang sama. Lihat "
+          " tidak mengatur ukuran sesi native atau SquashFS. Manajer Sesi MiniOS mengatur container raw dan DynFileFS yang dibuat manual ke 4000 MiB dan container DynBlk/VMDK ke 16 GiB; varian terenkripsi menggunakan default backend yang sama. Lihat "
         ],
         [
           "link",
@@ -2070,7 +2356,7 @@
       [
         [
           "text",
-          "Semua backend yang berhasil harus menyediakan writable upper yang diharapkan oleh union filesystem yang dipilih. Mount backend saja tidak membuktikan bahwa persistensi sudah aktif. Native, DynFileFS, DynBlk, VMDK, dan raw dapat memperbarui metadata sesi persisten sebelum validasi union; SquashFS menunda commit metadata tersebut. Raw, DynFileFS, DynBlk, dan VMDK juga dapat menggunakan enkripsi LUKS2. Status current-boot yang terlindungi hanya dipublikasikan setelah root union terakhir dipastikan menggunakan upper yang sesuai."
+          "Semua backend yang berhasil harus menyediakan writable upper yang diharapkan oleh union filesystem yang dipilih. Mounting backend saja tidak membuktikan bahwa persistensi sudah aktif. Native, DynFileFS, DynBlk, VMDK, dan raw dapat memperbarui metadata sesi persisten sebelum validasi union; SquashFS menunda komit metadata tersebut. Raw, DynFileFS, DynBlk, dan VMDK juga dapat menggunakan enkripsi LUKS2. Status current-boot yang dilindungi hanya akan dipublikasikan setelah root union terakhir dipastikan menggunakan upper yang diharapkan."
         ]
       ]
     ],
@@ -2113,7 +2399,7 @@
               [
                 [
                   "text",
-                  "Kebutuhan penyimpanan pendukung"
+                  "Persyaratan backing-storage"
                 ]
               ]
             ],
@@ -2161,7 +2447,7 @@
               [
                 [
                   "text",
-                  "Menggunakan ruang filesystem pendukung secara langsung; "
+                  "Menggunakan ruang filesystem backing secara langsung; "
                 ],
                 [
                   "span",
@@ -2184,7 +2470,7 @@
               [
                 [
                   "text",
-                  "Filesystem yang dapat ditulis dan lolos uji perilaku POSIX"
+                  "Filesystem writable yang lolos uji perilaku POSIX"
                 ]
               ]
             ],
@@ -2237,7 +2523,7 @@
                 ],
                 [
                   "text",
-                  " ditambah file segmen yang mengekspose ext4 "
+                  " ditambah file segmen yang menampilkan ext4 "
                 ],
                 [
                   "span",
@@ -2256,7 +2542,7 @@
               [
                 [
                   "text",
-                  "Payload tipis dengan indeks berdensitas sesuai kapasitas"
+                  "Payload tipis dengan indeks berukuran kapasitas yang padat"
                 ]
               ]
             ],
@@ -2318,7 +2604,7 @@
                 ],
                 [
                   "text",
-                  " file yang mengekspose "
+                  " file yang menampilkan "
                 ],
                 [
                   "span",
@@ -2341,7 +2627,7 @@
               [
                 [
                   "text",
-                  "Perangkat blok virtual tipis dengan pemetaan di disk dan cache terbatas"
+                  "Perangkat blok virtual tipis dengan pemetaan disk-residen dan cache terbatas"
                 ]
               ]
             ],
@@ -2351,6 +2637,101 @@
                 [
                   "text",
                   "Filesystem yang diterima oleh backend kernel DynBlk dan sumber daya backend yang cukup"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Ya"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "vmdk"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volume.vmdk"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " ditambah split sparse "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volume-sNNN.vmdk"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " extent yang diekspos oleh driver DynBlk, dengan ext4 di atasnya"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Perangkat blok virtual split-sparse tipis"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Filesystem yang diterima oleh backend VMDK DynBlk dan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "vmdk-session-v1"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " kapabilitas"
                 ]
               ]
             ],
@@ -2421,7 +2802,7 @@
               [
                 [
                   "text",
-                  "Filesystem yang dapat ditulis dan mampu menampung image; FAT32 terbatas hingga 4000 MiB"
+                  "Filesystem writable yang dapat menampung image; FAT32 dibatasi hingga 4000 MiB"
                 ]
               ]
             ],
@@ -2460,7 +2841,7 @@
               [
                 [
                   "text",
-                  "Terkompresi "
+                  "Snapshot "
                 ],
                 [
                   "span",
@@ -2474,7 +2855,7 @@
                 ],
                 [
                   "text",
-                  " snapshot; writable runtime upper direkonstruksi di RAM"
+                  " terkompresi; writable runtime upper direkonstruksi di RAM"
                 ]
               ]
             ],
@@ -2506,7 +2887,7 @@
               [
                 [
                   "text",
-                  "Snapshot yang sudah ada dapat dibaca dari media tulis yang didukung; penyimpanan persis membutuhkan store persisten yang mendukung POSIX"
+                  "Snapshot yang sudah ada dapat dibaca dari media writable yang didukung; penyimpanan persis memerlukan persistence store yang mendukung POSIX"
                 ]
               ]
             ],
@@ -2540,7 +2921,7 @@
       [
         [
           "text",
-          "Mode Native menyimpan konten union yang dapat ditulis secara langsung di direktori sesi bernomor. Tidak ada image internal, perangkat loop, kontainer FUSE, atau filesystem blok terpisah, sehingga kapasitasnya mengikuti ruang kosong pada filesystem dasar dan "
+          "Mode Native menyimpan isi union yang dapat ditulis langsung di direktori sesi bernomor. Tidak ada image internal, perangkat loop, kontainer FUSE, atau sistem file blok terpisah, sehingga kapasitas mengikuti ruang kosong pada filesystem dasar dan "
         ],
         [
           "span",
@@ -2554,7 +2935,7 @@
         ],
         [
           "text",
-          " tidak berlaku. Ini memberikan overhead kontainer paling rendah dan menjaga visibilitas file seperti biasa untuk pemulihan dan pencadangan."
+          " tidak berlaku. Ini memiliki overhead kontainer paling sedikit dan menjaga visibilitas file biasa untuk pemulihan dan pencadangan."
         ]
       ]
     ],
@@ -2564,7 +2945,7 @@
       [
         [
           "text",
-          "MiniOS terlebih dahulu mengecualikan filesystem non-POSIX yang sudah dikenal seperti FAT, exFAT, dan NTFS. Selanjutnya, sistem akan menguji perilaku filesystem sebenarnya dengan membuat file dan symlink serta memeriksa perubahan mode eksekusi. Jika pengujian berhasil, direktori sesi bernomor akan di-bind-mount langsung sebagai area yang dapat ditulis. Jika filesystem diketahui tidak cocok, atau pengujian POSIX gagal, mode native akan beralih ke DynFileFS. Kegagalan setelah aktivasi native akan dibatalkan; kandidat kosong baru akan dihapus jika sudah aman untuk dihapus."
+          "MiniOS terlebih dahulu mengecualikan filesystem non-POSIX yang sudah dikenal seperti FAT, exFAT, dan NTFS. Setelah itu, sistem akan menguji perilaku filesystem nyata dengan membuat file dan symlink serta memeriksa perubahan mode eksekusi. Jika pengujian berhasil, direktori sesi bernomor akan di-bind-mount langsung sebagai area yang dapat ditulis. Jika filesystem diketahui tidak cocok, atau pengujian POSIX gagal, mode native akan beralih ke DynFileFS. Kegagalan setelah aktivasi native akan dibatalkan; kandidat kosong baru akan dihapus jika sudah aman untuk dihapus."
         ]
       ]
     ],
@@ -2574,7 +2955,7 @@
       [
         [
           "text",
-          "Lapisan persistensi MiniOS LUKS2 tidak membungkus mode native karena mode native tidak memiliki batas kontainer atau block device untuk dienkripsi. Persistensi native tetap dapat ditempatkan pada media penyimpanan yang dienkripsi di luar lapisan persistensi ini."
+          "Lapisan persistensi LUKS2 MiniOS tidak membungkus mode native karena native tidak memiliki batas kontainer atau perangkat blok untuk dienkripsi. Persistensi native masih dapat ditempatkan di penyimpanan yang dienkripsi di luar lapisan persistensi ini."
         ]
       ]
     ],
@@ -2595,7 +2976,7 @@
       [
         [
           "text",
-          "DynFileFS adalah backend container format-400 berbasis FUSE. Backend ini menyediakan satu image logis"
+          "DynFileFS adalah backend kontainer format-400 berbasis FUSE. Backend ini menampilkan satu image logis"
         ],
         [
           "span",
@@ -2609,7 +2990,7 @@
         ],
         [
           "text",
-          " saat data disimpan di"
+          " saat menyimpan data di"
         ],
         [
           "span",
@@ -2623,7 +3004,7 @@
         ],
         [
           "text",
-          " beserta file segmen bernomor. Helper harus berhasil melakukan mount dan menampilkan"
+          " ditambah file segmen bernomor. Helper harus berhasil melakukan mount dan menampilkan"
         ],
         [
           "span",
@@ -2637,7 +3018,7 @@
         ],
         [
           "text",
-          "; jika tidak, proses aktivasi akan gagal daripada secara tidak sengaja membuat file hanya-RAM dengan nama yang tampak persisten."
+          "; jika tidak, aktivasi akan gagal daripada secara tidak sengaja membuat file hanya-RAM dengan nama yang tampak persisten."
         ]
       ]
     ],
@@ -2647,7 +3028,7 @@
       [
         [
           "text",
-          "Indeks mapping-nya padat terhadap kapasitas logis yang dideklarasikan: setiap blok logis 4 KiB memiliki satu offset 8-byte. Ini setara sekitar 2 MiB indeks RAM per 1 GiB kapasitas virtual, dan jumlah yang kurang lebih sama juga disimpan pada indeks segmen pendukung bahkan sebelum data payload ditulis. Alokasi payload tetap dinamis. Karena binary initrd statis menggunakan i686, MiniOS juga menerapkan batas ukuran logis yang sadar RAM serta batas keras 2.000.000 MiB di bawah titik kegagalan address-space yang telah diuji."
+          "Indeks mapping-nya padat terhadap kapasitas logis yang dideklarasikan: setiap blok logis 4 KiB memiliki satu offset 8-byte. Itu sekitar 2 MiB indeks RAM per 1 GiB kapasitas virtual, dan jumlah yang kurang lebih sama juga disimpan di indeks segmen pendukung bahkan sebelum data payload ditulis. Alokasi payload sendiri tetap dinamis. Karena binary initrd statis menggunakan i686, MiniOS juga menerapkan batas ukuran logis yang sadar RAM dan batas keras 2.000.000 MiB di bawah titik kegagalan address-space yang telah diuji."
         ]
       ]
     ],
@@ -2657,7 +3038,7 @@
       [
         [
           "text",
-          "Image logis berisi ext4. Image yang sudah ada akan diperiksa sebelum proses mount writable; hasil pemeriksaan filesystem di atas status error-terkoreksi akan menolak sesi, bukan melakukan mount writable. Resize hanya mendukung penambahan kapasitas, dan filesystem ext4 di dalamnya akan diperluas jika memungkinkan. Untuk diagnosis yang ditujukan ke pengguna, lihat"
+          "Image logis ini berisi ext4. Image yang sudah ada akan diperiksa sebelum proses mount writable; hasil pemeriksaan filesystem di atas status error yang telah diperbaiki akan menolak sesi tersebut, bukan melakukan mount writable. Resize hanya dapat memperbesar, dan filesystem ext4 di dalamnya akan diperluas jika memungkinkan. Untuk diagnosis yang dapat diakses pengguna, lihat"
         ],
         [
           "link",
@@ -2707,7 +3088,7 @@
         ],
         [
           "text",
-          " menggunakan perangkat blok kernel, terpisah dari DynFileFS. Setiap sesi bernomor memiliki "
+          " ini menggunakan perangkat blok kernel, terpisah dari DynFileFS. Setiap sesi bernomor memiliki "
         ],
         [
           "span",
@@ -2721,7 +3102,7 @@
         ],
         [
           "text",
-          " dan semua saudara bernomor ("
+          " dan semua saudara bernomor lainnya ("
         ],
         [
           "span",
@@ -2777,7 +3158,7 @@
         ],
         [
           "text",
-          ". Tata letak yang tidak didukung akan ditolak, bukan diam-diam dikonversi. Pastikan versi CLI dan modul yang terpasang sesuai."
+          ". Tata letak yang tidak didukung akan ditolak, bukan diam-diam dikonversi. Pastikan versi CLI dan modul yang terpasang selalu sesuai."
         ]
       ]
     ],
@@ -2829,7 +3210,7 @@
         ],
         [
           "text",
-          " bebas. ext4 yang sudah ada akan diperiksa sebelum digunakan secara writable. Status boot yang dilindungi mencatat perangkat tersebut secara persis sehingga shutdown hanya melepaskannya setelah semua pengguna dan filesystem upper ditutup. Beberapa perangkat independen dapat digunakan bersamaan."
+          " bebas. ext4 yang sudah ada akan diperiksa sebelum digunakan secara writeable. Rekaman boot-state yang dilindungi mencatat perangkat tersebut secara persis sehingga shutdown hanya melepaskannya setelah semua pengguna dan filesystem atasnya ditutup. Beberapa perangkat independen dapat berjalan bersamaan."
         ]
       ]
     ],
@@ -2853,7 +3234,7 @@
         ],
         [
           "text",
-          " untuk batas geometri backend yang terpasang. Resource guard saat ini mengizinkan 65536 part: rentang logis standar 1-GiB memungkinkan hingga 64 TiB. Batas fisik part yang lebih kecil akan mengurangi batas virtual. Ini adalah batas geometri, bukan jaminan host dapat membuka sebanyak itu file atau memiliki cukup RAM/storage. Pertumbuhan didukung; pengurangan tidak."
+          " untuk mengetahui batas geometri backend yang terpasang. Resource guard saat ini mengizinkan hingga 65536 part: rentang logis standar 1-GiB memungkinkan sampai 64 TiB. Batas part fisik yang lebih kecil akan menurunkan batas virtual. Ini adalah batas geometri, bukan jaminan host dapat membuka file sebanyak itu atau memiliki cukup RAM/storage. Pertumbuhan didukung; pengecilan tidak."
         ]
       ]
     ],
@@ -2863,7 +3244,7 @@
       [
         [
           "text",
-          "Tabel pemetaan disimpan di disk. "
+          "Tabel mapping disimpan di disk. "
         ],
         [
           "span",
@@ -2877,7 +3258,7 @@
         ],
         [
           "text",
-          " mengatur cache metadata per perangkat (default 1 MiB, rentang 1..64 MiB), tidak lagi berupa persentase dari RAM atau batas data yang dipetakan. Deskripsi extent, vektor file terbuka, dan direktori kecil bertambah sesuai geometri yang dideklarasikan, bukan isi payload. Attach akan memindai metadata pemetaan dan sementara membangun ulang status alokasi satu part per waktu; tidak membaca setiap payload. Full "
+          " mengatur cache metadata per perangkat (default 1 MiB, rentang 1..64 MiB), tidak lagi berupa persentase dari RAM atau batas data yang dipetakan. Deskripsi extent, vektor file terbuka, dan direktori kecil bertambah sesuai geometri yang dideklarasikan, bukan berdasarkan isi payload. Attach akan memindai metadata mapping dan sementara membangun ulang status alokasi satu part per waktu; tidak membaca setiap payload. Full "
         ],
         [
           "span",
@@ -2905,7 +3286,7 @@
         ],
         [
           "text",
-          " tidak termasuk page cache filesystem, internal codec, dan alokasi kernel lainnya."
+          " tidak termasuk cache page filesystem, internal codec, dan alokasi kernel lainnya."
         ]
       ]
     ],
@@ -2915,7 +3296,7 @@
       [
         [
           "text",
-          "File metadata untuk semua part yang dideklarasikan diinisialisasi saat create/grow; data aktual tetap tipis. Setiap part dibatasi 4000 MiB. Cadangkan seluruh namespace yang terlepas, tanpa mengasumsikan tiga digit atau part terakhir tetap. Volume baru dapat memilih kompresi dengan "
+          "File metadata untuk semua part yang dideklarasikan diinisialisasi saat create/grow; data aktual tetap tipis. Setiap part dibatasi hingga 4000 MiB. Lakukan backup seluruh namespace yang terlepas, tanpa mengasumsikan jumlah tiga digit atau part akhir yang tetap. Volume baru dapat memilih kompresi dengan "
         ],
         [
           "span",
@@ -2929,7 +3310,7 @@
         ],
         [
           "text",
-          "; pemuatan berikutnya menggunakan codec yang tersimpan. LUKS2 di atas DynBlk memaksa kompresi ke "
+          "; pemuatan berikutnya menggunakan codec yang tersimpan. LUKS2 di atas DynBlk akan memaksa kompresi ke "
         ],
         [
           "span",
@@ -2943,7 +3324,7 @@
         ],
         [
           "text",
-          ". Penulisan parsial ke data terkompresi saat ini akan mengompresi ulang grain 64-KiB terkait. Kegagalan storage atau resource masih dapat menyebabkan penulisan gagal; filesystem upper harus di-unmount sebelum detach."
+          ". Penulisan parsial ke data terkompresi saat ini akan mengompresi ulang grain 64-KiB terkait. Kegagalan penulisan masih bisa terjadi jika storage atau resource habis; filesystem atas harus di-unmount sebelum detach."
         ]
       ]
     ],
@@ -2978,7 +3359,7 @@
         ],
         [
           "text",
-          " menggunakan driver yang sama dengan image "
+          " menggunakan driver yang sama seperti pada "
         ],
         [
           "span",
@@ -2996,7 +3377,7 @@
         ],
         [
           "text",
-          "asli. Primernya adalah "
+          "image asli. Fungsinya utama adalah "
         ],
         [
           "span",
@@ -3024,7 +3405,7 @@
         ],
         [
           "text",
-          " dan part berikutnya"
+          " dan bagian-bagian berikutnya; setiap bagian mencakup hingga 2 GiB ruang logis. Deskriptor dibatasi"
         ],
         [
           "text",
@@ -3032,7 +3413,7 @@
         ],
         [
           "text",
-          "; setiap part mencakup hingga 2 GiB ruang logis. Deskriptornya dibatasi"
+          "kurang dari 1 MiB, sehingga panjang nama file dan jumlah extent membatasi kapasitas."
         ],
         [
           "text",
@@ -3040,7 +3421,7 @@
         ],
         [
           "text",
-          "kurang dari 1 MiB, jadi panjang nama file dan jumlah extent membatasi kapasitas."
+          "Session Manager, Installer, dan initramfs akan melakukan query ke"
         ],
         [
           "text",
@@ -3048,7 +3429,7 @@
         ],
         [
           "text",
-          "Session Manager, Installer, dan initramfs melakukan query ke "
+          "."
         ],
         [
           "span",
@@ -3062,7 +3443,7 @@
         ],
         [
           "text",
-          "."
+          "Mode native tetap menggunakan"
         ],
         [
           "text",
@@ -3070,7 +3451,7 @@
         ],
         [
           "text",
-          "Mode native tetap menggunakan "
+          "; kedua mode tidak menafsirkan ulang file "
         ],
         [
           "span",
@@ -3084,15 +3465,7 @@
         ],
         [
           "text",
-          "; kedua mode tidak menafsirkan ulang"
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "file satu sama lain. Sesi yang dikelola tidak mengimpor VMDK eksternal yang dipartisi sembarangan"
+          "mode lain. Sesi terkelola tidak mengimpor VMDK yang dipartisi eksternal secara sembarang"
         ],
         [
           "text",
@@ -3101,6 +3474,14 @@
         [
           "text",
           "sebagai metadata sesi."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Dukungan sesi VMDK diumumkan oleh"
         ]
       ]
     ],
@@ -3110,7 +3491,7 @@
       [
         [
           "text",
-          "Dukungan sesi VMDK diiklankan oleh "
+          "di"
         ],
         [
           "span",
@@ -3124,7 +3505,7 @@
         ],
         [
           "text",
-          " di"
+          " dalam initrd. Runtime saat ini dan setiap"
         ],
         [
           "text",
@@ -3142,7 +3523,7 @@
         ],
         [
           "text",
-          " dalam initrd. Runtime saat ini dan setiap"
+          "initrd sumber yang disalin oleh Installer harus mendukungnya. VMDK tidak memiliki kompresi native;"
         ],
         [
           "text",
@@ -3150,7 +3531,7 @@
         ],
         [
           "text",
-          "initrd sumber yang disalin oleh Installer harus mendukungnya. VMDK tidak memiliki kompresi native;"
+          "akan diabaikan dengan peringatan saat boot dan Session Manager akan menolak"
         ],
         [
           "text",
@@ -3168,7 +3549,7 @@
         ],
         [
           "text",
-          " akan diabaikan dengan peringatan saat boot dan Session Manager akan menolak"
+          "VMDK codec non-"
         ],
         [
           "text",
@@ -3176,7 +3557,7 @@
         ],
         [
           "text",
-          "codec VMDK non-"
+          ". LUKS2 tetap menjadi lapisan enkripsi terpisah yang opsional. Kedua mode mempublikasikan"
         ],
         [
           "span",
@@ -3190,7 +3571,7 @@
         ],
         [
           "text",
-          ". LUKS tetap menjadi lapisan terpisah opsional. Kedua mode mempublikasikan"
+          "mode sesi aktual dan pemilik"
         ],
         [
           "text",
@@ -3198,7 +3579,7 @@
         ],
         [
           "text",
-          "mode sesi aktual dan pemilik "
+          "dalam boot-state yang terlindungi,"
         ],
         [
           "span",
@@ -3212,7 +3593,7 @@
         ],
         [
           "text",
-          " di boot-state yang dilindungi,"
+          "dan kedua implementasi shutdown akan menutup perangkat tersebut setelah semua pengguna keluar."
         ],
         [
           "text",
@@ -3220,7 +3601,7 @@
         ],
         [
           "text",
-          "dan kedua implementasi shutdown akan menutup perangkat tersebut setelah semua pengguna keluar."
+          "Kedua format driver mendukung"
         ]
       ]
     ],
@@ -3230,7 +3611,7 @@
       [
         [
           "text",
-          "Kedua format driver mendukung "
+          ", "
         ],
         [
           "span",
@@ -3272,7 +3653,7 @@
         ],
         [
           "text",
-          ", "
+          " serta kebijakan attachment "
         ],
         [
           "span",
@@ -3286,7 +3667,7 @@
         ],
         [
           "text",
-          " dan kebijakan attachment "
+          "eksplisit. Mode direct saat ini memerlukan ext2/ext4 di bawahnya. "
         ],
         [
           "span",
@@ -3300,7 +3681,7 @@
         ],
         [
           "text",
-          "eksplisit. Mode langsung saat ini memerlukan ext2/ext4 di bawahnya. "
+          " akan melampirkan filesystem yang sudah ada; "
         ],
         [
           "span",
@@ -3314,7 +3695,7 @@
         ],
         [
           "text",
-          " mengaitkan filesystem yang sudah ada; "
+          " akan melepas perangkat yang dimiliki helper setelah pengguna terakhir menutupnya. "
         ],
         [
           "span",
@@ -3328,7 +3709,7 @@
         ],
         [
           "text",
-          " melepaskan perangkat yang dimiliki helper setelah pengguna terakhir menutupnya. "
+          "Manual "
         ],
         [
           "span",
@@ -3342,7 +3723,7 @@
         ],
         [
           "text",
-          " memiliki masa aktif eksplisit. Ini tidak membuat filesystem atau membuka kunci LUKS."
+          "memiliki masa aktif eksplisit. Ini tidak membuat filesystem baru atau membuka kunci LUKS."
         ]
       ]
     ],
@@ -3377,7 +3758,7 @@
         ],
         [
           "text",
-          " file yang berisi ext4. Panjang file ditetapkan sesuai kapasitas logis yang diminta saat pembuatan, sehingga berbeda dengan backend dinamis, kapasitasnya tetap hingga dilakukan operasi grow secara eksplisit. Filesystem bawah dapat merepresentasikan bagian yang belum ditulis secara sparse, tetapi MiniOS tetap memperlakukan Raw sebagai penyimpanan dengan kapasitas tetap dan memeriksa ketersediaan ruang sebelum membuat atau memperbesar file tersebut. Karena semuanya berada dalam satu file di host, FAT32 dibatasi hingga 4000 MiB."
+          " file yang berisi ext4. Panjang file ditetapkan sesuai kapasitas logis yang diminta saat pembuatan, sehingga berbeda dengan backend dinamis, kapasitasnya tetap hingga ada operasi grow secara eksplisit. Filesystem bawah dapat merepresentasikan extent yang belum ditulis secara sparse, tetapi MiniOS tetap memperlakukan Raw sebagai penyimpanan dengan kapasitas tetap dan memeriksa ruang cadangan yang tersedia sebelum membuat atau memperbesarnya. Karena semuanya berada dalam satu file host, FAT32 dibatasi hingga 4000 MiB."
         ]
       ]
     ],
@@ -3401,7 +3782,7 @@
         ],
         [
           "text",
-          " sebelum proses mounting writable. Proses grow akan memperbesar "
+          " sebelum melakukan mounting writable. Proses grow akan memperbesar "
         ],
         [
           "span",
@@ -3415,7 +3796,7 @@
         ],
         [
           "text",
-          " lalu memperluas ext4 menggunakan "
+          " lalu memperluas ext4 dengan "
         ],
         [
           "span",
@@ -3429,7 +3810,7 @@
         ],
         [
           "text",
-          "; proses shrink tidak didukung. Jika pemeriksaan atau mounting gagal, citra tetap dipertahankan untuk pemulihan dan booting akan dilanjutkan di RAM. Raw tidak memiliki daemon FUSE atau metadata block-storage khusus, sehingga model pemulihannya menjadi sederhana, namun tidak memiliki perilaku thin-capacity seperti DynFileFS dan DynBlk."
+          "; proses shrink tidak didukung. Jika pemeriksaan atau mounting gagal, citra akan dipertahankan untuk pemulihan dan booting tetap dilanjutkan di RAM. Raw tidak memiliki daemon FUSE atau metadata block-storage khusus, sehingga model pemulihannya sederhana, namun tidak memiliki perilaku thin-capacity seperti DynFileFS dan DynBlk."
         ]
       ]
     ],
@@ -3450,7 +3831,7 @@
       [
         [
           "text",
-          "LUKS2 adalah lapisan enkripsi opsional yang dipilih dengan "
+          "LUKS2 adalah lapisan enkripsi opsional yang dapat dipilih dengan "
         ],
         [
           "span",
@@ -3464,7 +3845,7 @@
         ],
         [
           "text",
-          " saat membuat sesi Raw, DynFileFS, DynBlk, atau VMDK. Sesi yang sudah ada mengambil status enkripsi dari metadata sesi; menentukan "
+          " saat membuat sesi Raw, DynFileFS, DynBlk, atau VMDK. Sesi yang sudah ada menggunakan status enkripsi dari metadata sesi; menentukan "
         ],
         [
           "span",
@@ -3478,7 +3859,7 @@
         ],
         [
           "text",
-          " setelahnya tidak akan menafsirkan ulang atau mengonversi sesi plaintext yang sudah ada."
+          " di kemudian hari tidak akan mengubah atau mengonversi sesi plaintext yang sudah ada."
         ]
       ]
     ],
@@ -3488,7 +3869,7 @@
       [
         [
           "text",
-          "Batas enkripsi tergantung pada backend: Raw mengaitkan "
+          "Batas enkripsi tergantung pada backend: Raw menghubungkan "
         ],
         [
           "span",
@@ -3502,7 +3883,7 @@
         ],
         [
           "text",
-          " melalui perangkat loop dan menempatkan LUKS2 di dalam file tersebut; DynFileFS mengaitkan "
+          " melalui perangkat loop dan menempatkan LUKS2 di dalam file tersebut; DynFileFS menghubungkan "
         ],
         [
           "span",
@@ -3516,7 +3897,7 @@
         ],
         [
           "text",
-          " yang diekspos melalui perangkat loop dan mengenkripsi image logis tersebut; DynBlk menggunakan perangkat blok "
+          " yang diekspos melalui perangkat loop dan mengenkripsi image logis tersebut; DynBlk menggunakan "
         ],
         [
           "span",
@@ -3530,7 +3911,7 @@
         ],
         [
           "text",
-          " secara langsung sebagai sumber LUKS2. Pada ketiga kasus, MiniOS membuat ext4 di dalam "
+          " block device yang dialokasikan secara langsung; VMDK menggunakan block device yang diekspos oleh driver DynBlk yang sama untuk split sparse image-nya. Pada keempat kasus tersebut, MiniOS membuat ext4 di dalam "
         ],
         [
           "span",
@@ -3544,7 +3925,7 @@
         ],
         [
           "text",
-          ", sehingga isi filesystem dan metadata di dalam mapper terenkripsi saat diam. Metadata backend di luar batas LUKS, file boot, metadata sesi, dan file lain di media persistensi tetap tidak terenkripsi."
+          ", sehingga isi filesystem dan metadata di dalam mapper akan terenkripsi saat tidak digunakan. Metadata backend di luar batas LUKS, deskriptor VMDK, file boot, metadata sesi, dan file lain di media penyimpanan tetap tidak terenkripsi."
         ]
       ]
     ],
@@ -3554,7 +3935,7 @@
       [
         [
           "text",
-          "Default ukuran, batas pertumbuhan, pembatasan FAT32, dan perilaku alokasi tipis/tetap tetap mengikuti backend dasarnya. Initrd melakukan autentikasi sebelum menambah backend terenkripsi yang sudah ada, menutup mapper sebelum pertumbuhan backend, lalu membukanya kembali, memeriksa ext4, dan memperbesar filesystem sebelum mount. Untuk DynBlk terenkripsi, kompresi backend dipaksa ke "
+          "Pengaturan ukuran default, batas pertumbuhan, pembatasan FAT32, dan perilaku alokasi tipis/tetap tetap mengikuti backend yang digunakan. Initrd melakukan autentikasi sebelum memperbesar backend terenkripsi yang sudah ada, menutup mapper sebelum backend diperbesar, lalu membukanya kembali, memeriksa ext4, dan memperluas filesystem sebelum mounting. Untuk DynBlk terenkripsi, kompresi backend dipaksa ke "
         ],
         [
           "span",
@@ -3578,7 +3959,7 @@
       [
         [
           "text",
-          "Saat pembuatan, passphrase diminta dua kali. Sesi terenkripsi yang sudah ada mengizinkan tiga kali percobaan unlock di konsol boot. Tiga passphrase yang ditolak akan memicu jalur boot fatal: MiniOS tidak akan melanjutkan di RAM, menafsirkan ulang sesi yang sama sebagai plaintext, memilih backend lain, atau membuat pengganti. Kegagalan pembuatan, pemeriksaan, resize, atau mount lainnya tetap mengikuti perilaku pemulihan backend tanpa fallback plaintext. Passphrase tidak disimpan di metadata sesi atau dikirim sebagai argumen perintah. Ekspor logis berisi file sesi yang sudah didekripsi, bukan image backend terenkripsi."
+          "Saat pembuatan, passphrase diminta dua kali. Sesi terenkripsi yang sudah ada mengizinkan tiga kali percobaan membuka kunci di konsol boot. Tiga passphrase yang ditolak akan memicu jalur boot fatal: MiniOS tidak akan melanjutkan di RAM, tidak mengubah sesi yang sama menjadi plaintext, tidak memilih backend lain, atau membuat pengganti. Kegagalan lain saat pembuatan, pengecekan, resize, atau mount akan tetap mengikuti mekanisme pemulihan backend-nya masing-masing tanpa fallback ke plaintext. Passphrase tidak disimpan di metadata sesi atau dikirim sebagai argumen perintah. Ekspor logis berisi file sesi yang sudah didekripsi, bukan image backend terenkripsi."
         ]
       ]
     ],
@@ -3603,7 +3984,7 @@
         ],
         [
           "text",
-          " untuk batas perlindungan dan pertimbangan backup."
+          " untuk penjelasan batas perlindungan dan pertimbangan backup."
         ]
       ]
     ],
@@ -3624,7 +4005,7 @@
       [
         [
           "text",
-          "Initrd biasanya mengaktifkan sesi SquashFS yang sudah ada. Setup interaktif membuat metadata generasi-nol dengan penyimpanan saat shutdown diaktifkan, namun tidak membuat "
+          "Initrd biasanya mengaktifkan sesi SquashFS yang sudah ada. Pengaturan interaktif membuat metadata generasi nol dengan penyimpanan saat shutdown diaktifkan, tetapi tidak membuat "
         ],
         [
           "span",
@@ -3638,7 +4019,7 @@
         ],
         [
           "text",
-          "; writable upper layer hanya ada di RAM sampai sistem berjalan melakukan penyimpanan pertama sesuai permintaan atau saat shutdown. Sesi generasi-nol hanya valid jika field artefak snapshot dan "
+          "; lapisan atas yang dapat ditulis hanya ada di RAM sampai sistem berjalan melakukan penyimpanan pertama sesuai permintaan atau saat shutdown. Sesi generasi nol hanya valid jika field artefak snapshot dan "
         ],
         [
           "span",
@@ -3652,7 +4033,7 @@
         ],
         [
           "text",
-          " tidak ada. Untuk generasi berikutnya, aktivasi memvalidasi metadata snapshot yang ketat dan bernilai tunggal, termasuk digest, ukuran terkompresi dan tidak terkompresi, jumlah entri, tipe union, dan kebijakan penyimpanan. Sistem juga memeriksa tipe dan ukuran file, RAM dan swap yang tersedia, digest SHA-256 sebelum dan sesudah ekstraksi, serta kompatibilitas union saat ini."
+          " tidak ada. Untuk generasi berikutnya, aktivasi memvalidasi metadata snapshot yang ketat dan bernilai tunggal, termasuk digest, ukuran terkompresi dan tidak terkompresi, jumlah entri, tipe union, dan kebijakan penyimpanan. Sistem juga memeriksa tipe file dan ukuran tepatnya, ketersediaan RAM dan swap, digest SHA-256 sebelum dan sesudah ekstraksi, serta kompatibilitas union saat ini."
         ]
       ]
     ],
@@ -3690,7 +4071,7 @@
         ],
         [
           "text",
-          "; untuk AUFS, root-nya adalah branch yang dapat ditulis."
+          "; untuk AUFS, root-nya adalah cabang yang dapat ditulis."
         ],
         [
           "text",
@@ -3698,7 +4079,7 @@
         ],
         [
           "text",
-          "Metadata yang rusak, memori tidak cukup, perubahan digest, error ekstraksi, atau kebijakan tidak valid akan menggagalkan aktivasi dan sistem boot tetap menggunakan upper RAM biasa."
+          "Metadata yang rusak, memori tidak cukup, perubahan digest, error ekstraksi, atau kebijakan tidak valid akan menyebabkan aktivasi gagal dan sistem boot tetap pada lapisan atas RAM seperti biasa."
         ]
       ]
     ],
@@ -3722,7 +4103,7 @@
         ],
         [
           "text",
-          " berarti boot sebelumnya tidak menyelesaikan transisi shutdown bersih. SquashFS kemudian akan memberi peringatan dan mengembalikan snapshot "
+          " berarti boot sebelumnya tidak menyelesaikan transisi shutdown yang bersih. SquashFS kemudian akan memberikan peringatan dan mengembalikan "
         ],
         [
           "span",
@@ -3736,7 +4117,7 @@
         ],
         [
           "text",
-          " terakhir yang berhasil disimpan; perubahan yang belum disimpan dari boot yang terputus tidak dianggap sebagai generasi rollback kedua."
+          " terakhir yang berhasil disimpan; perubahan yang belum disimpan dari boot yang terputus bukanlah generasi rollback kedua."
         ]
       ]
     ],
@@ -3746,7 +4127,7 @@
       [
         [
           "text",
-          "Manajer Sesi MiniOS dan backend penyimpanan sistem membuat dan mengganti snapshot SquashFS secara atomik menggunakan capture yang persis. Aktivasi boot dapat membaca snapshot yang sudah ada dari penyimpanan FAT, exFAT, atau NTFS yang dapat ditulis karena ekstraksi dilakukan di upper ext4 sementara. Pembuatan dan penyimpanan persis tetap tergantung pada filesystem: store sesi harus mendukung pembuatan workspace privat, metadata Linux, dan publikasi yang tahan lama di filesystem POSIX yang sesuai."
+          "Manajer Sesi MiniOS dan backend penyimpanan sistem membuat serta menggantikan snapshot SquashFS secara atomik menggunakan metode penangkapan yang tepat. Aktivasi boot dapat membaca snapshot yang ada dari penyimpanan FAT, exFAT, atau NTFS yang dapat ditulis karena ekstraksi dilakukan di lapisan atas ext4 sementara. Pembuatan dan penyimpanan persis tetap bergantung pada filesystem: penyimpanan sesi harus mendukung pembuatan workspace privat, metadata Linux, dan publikasi yang tahan lama pada filesystem POSIX yang sesuai."
         ]
       ]
     ],
@@ -3756,7 +4137,7 @@
       [
         [
           "text",
-          "Saat menyimpan, backend pertama-tama menangkap pohon file yang stabil di penyimpanan memori privat milik root jika initrd menyediakan tmpfs tepercaya dengan ruang yang cukup. Jika RAM tidak mencukupi, pohon ini menggunakan workspace disk sebelumnya. Kompresor menulis langsung ke satu direktori mode-0700 privat di filesystem sesi, bukan ke image RAM tambahan lalu disalin ke disk lagi. MiniOS memverifikasi hasil kompresi dan identitasnya, melakukan sync, memindahkan ke nama kandidat privat, lalu merevalidasi kandidat sebelum mengganti snapshot aktif secara atomik."
+          "Selama proses penyimpanan, backend terlebih dahulu menangkap pohon file yang stabil di penyimpanan memori privat milik root ketika initrd menyediakan tmpfs tepercaya dengan ruang yang cukup. Jika RAM tidak cukup, pohon ini menggunakan workspace disk sebelumnya. Kompresor menulis langsung ke satu direktori privat mode-0700 di filesystem sesi, bukan ke image RAM tambahan yang kemudian disalin ke disk. MiniOS memverifikasi hasil kompresi dan identitasnya, melakukan sinkronisasi, memindahkannya ke nama kandidat privat, lalu memvalidasi ulang kandidat tersebut sebelum menggantikan "
         ],
         [
           "span",
@@ -3770,7 +4151,7 @@
         ],
         [
           "text",
-          ". Salinan atau kompresi yang gagal tidak akan menggantikan snapshot terakhir yang berhasil."
+          " snapshot aktif secara atomik. Salinan atau kompresi yang gagal tidak akan menggantikan snapshot terakhir yang berhasil."
         ]
       ]
     ],
@@ -3822,7 +4203,7 @@
         ],
         [
           "text",
-          " di dalam sesi bernomor. Diagnostik startup ini ditulis terpisah dari upper RAM dan snapshot shutdown. Boot yang store persistensinya tidak diaktifkan secara tahan lama tidak dapat menjamin log tersebut akan bertahan setelah restart. Log dan cache biasa dapat dikonfigurasi secara terpisah; lihat "
+          " di dalam sesi yang diberi nomor. Diagnostik startup ini ditulis secara independen dari lapisan atas RAM dan snapshot shutdown. Boot yang penyimpanan persistensinya tidak diaktifkan secara tahan lama tidak dapat menjamin log tersebut akan bertahan setelah restart. Log dan cache biasa dapat dikonfigurasi secara terpisah; lihat "
         ],
         [
           "link",
@@ -3861,7 +4242,7 @@
         ],
         [
           "text",
-          ": ukuran yang disimpan mengikuti perubahan terkompresi, sedangkan memori runtime ditentukan oleh writable upper yang diekstrak. Lapisan persistensi LUKS MiniOS tidak membungkus "
+          ": ukuran yang disimpan mengikuti perubahan yang ditangkap dan dikompresi, sedangkan memori runtime ditentukan oleh lapisan atas yang dapat ditulis setelah diekstrak. Lapisan persistensi LUKS MiniOS tidak membungkus "
         ],
         [
           "span",
@@ -3897,11 +4278,11 @@
     [
       "heading",
       2,
-      "aktivasi-union-dan-batas-pemulihan",
+      "batas-aktivasi-dan-pemulihan-union",
       [
         [
           "text",
-          "Aktivasi union dan batas pemulihan"
+          "Batas aktivasi dan pemulihan union"
         ]
       ]
     ],
@@ -3911,7 +4292,7 @@
       [
         [
           "text",
-          "Untuk AUFS, root perubahan yang diaktifkan menjadi branch writable nol. Untuk OverlayFS, initrd membangun "
+          "Untuk AUFS, root perubahan yang diaktifkan menjadi branch nol yang dapat ditulis. Untuk OverlayFS, initrd membangun "
         ],
         [
           "span",
@@ -3939,7 +4320,7 @@
         ],
         [
           "text",
-          " di bawah root perubahan yang diaktifkan dan me-mount modul read-only sebagai direktori bawah. Initrd kemudian memverifikasi branch AUFS live atau OverlayFS "
+          " di bawah root perubahan yang diaktifkan dan me-mount modul read-only sebagai direktori bawah. Kemudian initrd memverifikasi branch live AUFS atau OverlayFS "
         ],
         [
           "span",
@@ -3953,7 +4334,7 @@
         ],
         [
           "text",
-          " sebelum mempublikasikan persistensi sebagai aktif."
+          " sebelum menerbitkan persistensi sebagai aktif."
         ]
       ]
     ],
@@ -3963,7 +4344,7 @@
       [
         [
           "text",
-          "Jika backend persistensi, pembaruan metadata, atau verifikasi ini gagal, mount akan dibatalkan jika memungkinkan, tidak ada status persistensi yang sukses dipublikasikan, dan boot writable tetap dilanjutkan di RAM. Kegagalan membangun root union akan masuk ke shell initramfs fatal. Keluar dari shell tersebut dapat membuat setup berlanjut dengan root tidak valid; ini bukan perbaikan atau fallback yang aman. AUFS tetap mencoba menambahkan branch modul, tetapi union yang tidak lengkap melewati batas pemulihan: MiniOS tidak menandai persistensi sebagai aktif."
+          "Jika backend persistensi, pembaruan metadata, atau verifikasi ini gagal, mount akan dilepas jika memungkinkan, tidak ada status persistensi yang berhasil yang diterbitkan, dan boot writable tetap berlanjut di RAM. Kegagalan membangun root union akan masuk ke shell fatal initramfs. Keluar dari shell tersebut dapat membuat setup tetap berjalan dengan root yang tidak valid; ini bukan perbaikan atau solusi aman. AUFS tetap menambahkan branch modul secara best-effort, tetapi union yang tidak lengkap melewati batas pemulihan: MiniOS tidak menandai persistensi sebagai aktif."
         ]
       ]
     ],
@@ -3973,7 +4354,7 @@
       [
         [
           "text",
-          "Kegagalan pemeriksaan container sengaja menghindari mount sesi yang dicurigai secara writable."
+          "Kegagalan pemeriksaan container sengaja menghindari mount sesi yang dicurigai sebagai writable."
         ],
         [
           "text",
@@ -3990,7 +4371,7 @@
           [
             [
               "text",
-              "Membackup MiniOS"
+              "Mencadangkan MiniOS"
             ]
           ]
         ],
@@ -4005,7 +4386,7 @@
           [
             [
               "text",
-              "Pemecahan masalah"
+              "Pemecahan Masalah"
             ]
           ]
         ],
@@ -4054,13 +4435,13 @@
           [
             [
               "text",
-              "aktif"
+              "sesi aktif"
             ]
           ]
         ],
         [
           "text",
-          " sesi yang dipilih untuk resume berikutnya, sedangkan "
+          " yang dipilih untuk resume berikutnya, sedangkan "
         ],
         [
           "span",
@@ -4074,7 +4455,7 @@
         ],
         [
           "text",
-          " adalah sesi yang tercatat sebagai pemasok boot saat ini. Aktivasi menulis kedua field tersebut dan menandai sesi tersebut sebagai "
+          " adalah sesi yang dicatat sebagai penyedia boot saat ini. Proses aktivasi menulis kedua field ini dan menandai sesi tersebut sebagai "
         ],
         [
           "span",
@@ -4096,7 +4477,7 @@
         ],
         [
           "text",
-          "Setelah mount persistence hilang selama shutdown yang bersih, MiniOS menghapus "
+          "Setelah mount persistence hilang saat shutdown bersih, MiniOS menghapus "
         ],
         [
           "span",
@@ -4110,7 +4491,7 @@
         ],
         [
           "text",
-          " dan menandai sesi tersebut sebagai "
+          "dan menandai sesi tersebut sebagai "
         ],
         [
           "span",
@@ -4134,7 +4515,7 @@
       [
         [
           "text",
-          "Field metadata tersebut bisa saja usang setelah crash, kegagalan penulisan metadata, kegagalan pembuatan union, penyalinan store, atau shutdown yang terputus. Komponen runtime yang mengizinkan penyimpanan tidak mempercayai "
+          "Field metadata tersebut bisa saja usang setelah crash, kegagalan penulisan metadata, kegagalan pembuatan union, penyalinan store, atau shutdown yang terputus. Komponen runtime yang mengizinkan penyimpanan tidak hanya mempercayai "
         ],
         [
           "span",
@@ -4148,7 +4529,7 @@
         ],
         [
           "text",
-          " saja. Mereka menggunakan status boot saat ini yang dilindungi oleh initrd, terikat pada boot ID, sesi numerik, mode, identitas store yang sebenarnya, status writable, durabilitas, generasi aktif yang terverifikasi, dan, untuk DynBlk, perangkat terlampir yang persis sama."
+          " saja. Mereka menggunakan status current-boot yang dilindungi oleh initrd, terikat pada boot ID, sesi numerik, mode, identitas store yang sebenarnya, status writable, durabilitas, generasi aktif yang terverifikasi, dan, untuk DynBlk, perangkat "
         ],
         [
           "span",
@@ -4162,7 +4543,7 @@
         ],
         [
           "text",
-          " Jika catatan boot saat ini gagal atau hilang, persistence tidak boleh dianggap sebagai target penyimpanan yang disetujui."
+          " yang terpasang secara persis. Jika catatan current-boot gagal atau hilang, persistence tidak boleh diperlakukan sebagai target penyimpanan yang disetujui."
         ]
       ]
     ],
@@ -4180,13 +4561,83 @@
           [
             [
               "text",
-              "toram"
+              "perchtoram=trim"
             ]
           ]
         ],
         [
           "text",
-          " dan permintaan persistence yang dikenali, store sesi akan disalin ke RAM sebelum aktivasi. Sesi yang disalin dapat writable dan dapat digunakan sebagai upper yang berjalan, namun status boot saat ini ditandai sebagai non-durable. Perubahan pada salinan RAM tersebut tidak akan kembali ke perangkat asli dan akan hilang saat shutdown."
+          " atau "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "full"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", container sesi yang didukung akan disalin ke tmpfs khusus sebelum aktivasi. Sesi yang disalin bisa writable dan dapat digunakan sebagai upper yang berjalan, namun status current-boot yang dilindungi menandainya sebagai non-durable dan mencatat "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "ram-origin"
+            ]
+          ]
+        ],
+        [
+          "text",
+          "identitas untuk store asli. "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "trim"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " hanya menyalin sesi yang didukung dan metadata yang sesuai; "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "full"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " menyalin semua sesi Raw, DynFileFS, DynBlk, VMDK, atau SquashFS yang didukung di dalam store. Sesi direktori native tidak disertakan. Session Manager saat ini menggunakan "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "ram-origin"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " untuk menemukan store asli berdasarkan UUID filesystem dan dapat secara eksplisit menyimpan sesi yang berbasis RAM kembali atau sebagai sesi baru dengan nomor berbeda. Perubahan RAM yang belum disimpan tetap akan hilang jika tidak ada proses penulisan ulang yang berhasil."
         ]
       ]
     ],
@@ -4317,53 +4768,7 @@
         ],
         [
           "text",
-          " beroperasi pada kedua format blok. Untuk sesi plaintext"
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "akan melaporkan rentang ext4 kosong dengan FITRIM, lalu memanggil "
-        ],
-        [
-          "span",
-          "code",
-          [
-            [
-              "text",
-              "dynblk reclaim"
-            ]
-          ]
-        ],
-        [
-          "text",
-          "."
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "Untuk sesi aktif, perangkat terikat pada status boot saat ini yang dilindungi dan"
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "mount ext4 aktual akan diperiksa; root union tidak pernah dipangkas langsung."
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "Sesi tidak aktif akan di-attach dan di-mount sementara untuk operasi ini."
+          " mendukung DynFileFS, DynBlk, dan sesi VMDK. Untuk sesi plaintext, FITRIM dijalankan pada filesystem ext4 internal, bukan pada root gabungan AUFS/OverlayFS, lalu operasi reclaim backend storage pemilik dipanggil. Reklamasi DynFileFS memerlukan DynFileFS versi 4.6.0 atau lebih baru."
         ]
       ]
     ],
@@ -4373,7 +4778,31 @@
       [
         [
           "text",
-          "Baik boot maupun shutdown tidak menjalankan kompaksi secara otomatis. "
+          "Untuk sesi DynFileFS yang sedang berjalan, Session Manager masuk ke namespace mount privat yang berumur pendek agar dapat mengakses "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "virtual.dat"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " di bawah overmount ext4 aktif tanpa mengganggu daemon sistem, perangkat loop, atau union mount yang sedang berjalan. Perangkat DynBlk/VMDK yang berjalan divalidasi terhadap status boot saat ini yang terlindungi. Sesi tidak aktif akan dilampirkan dan di-mount sementara; sesi yang sudah di-mount oleh Session Manager akan menggunakan lampiran yang sudah ada. Unmount yang sedang sibuk akan menghentikan proses teardown, bukan memutus storage di bawah filesystem yang sedang aktif."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Baik saat boot maupun shutdown tidak menjalankan kompaksi secara otomatis."
         ],
         [
           "span",
@@ -4387,36 +4816,12 @@
         ],
         [
           "text",
-          " adalah"
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "pilihan eksplisit pengguna di CLI atau opsi dialog Session Manager yang tidak dicentang."
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "Tanpa itu, hanya hole punching (jika didukung) dan truncation free-tail yang terjadi."
-        ],
-        [
-          "text",
-          "\n"
-        ],
-        [
-          "text",
-          "Kebijakan discard LUKS tidak diubah oleh perintah sesi."
+          " adalah pilihan eksplisit pengguna di CLI atau opsi dialog Session Manager yang tidak dicentang dan dapat memindahkan data aktif, sehingga meningkatkan jumlah penulisan ke flash. Tanpa opsi ini, backend hanya mereklamasi ruang yang dapat dikembalikan tanpa memindahkan data aktif, seperti rentang yang bisa di-hole-punch atau ekor file yang benar-benar kosong; pada filesystem seperti exFAT, rentang bagian dalam yang telah dibebaskan tetap dapat digunakan ulang di dalam container meskipun tidak dapat dikembalikan ke host filesystem. Sesi terenkripsi hanya mereklamasi ruang yang sudah diketahui oleh backend dan tidak secara diam-diam mengaktifkan discard melalui dm-crypt."
         ]
       ]
     ]
   ],
-  "plain_text": "Internal Persistensi\nHalaman ini menjelaskan parameter boot perch, perchdir, perchmode, perchsize, dan perchreserve. Parameter-parameter ini mengatur di mana perubahan dari sesi live akan disimpan. Untuk penggunaan normal, pilih entri persisten di menu boot atau gunakan Manajer Sesi MiniOS daripada mengeditnya secara manual.\nMiniOS membangun root live dari modul read-only dan satu lapisan atas yang dapat ditulis.\nInitrd menentukan apakah lapisan atas itu adalah sesi persisten bernomor atau direktori sementara di RAM. Halaman ini menjelaskan keputusan dan jalur aktivasi saat boot. Untuk kontrol yang ditujukan bagi pengguna, lihat Mode Boot dan Parameter Boot.\nPenjelasan sederhana\nTanpa parameter persistensi, MiniOS akan menyimpan perubahan di RAM dan membuangnya saat shutdown. Parameter persistensi meminta MiniOS untuk mencari media penyimpanan yang dapat ditulis, memilih atau membuat sesi bernomor, memeriksa kompatibilitas, dan menggunakan sesi tersebut sebagai layer yang dapat ditulis.\nMeminta persistensi tidak menjamin fitur ini aktif. Jika target hanya-baca, penuh, rusak, atau tidak kompatibel, MiniOS dapat melanjutkan dengan layer sementara di RAM. Bacalah peringatan saat startup sebelum mengandalkan perubahan yang tersimpan.\nPenjelasan parameter\nParameter | Menjelaskan apa yang dilakukan MiniOS | Pilihan umum\nperchdir=resume | Membuka sesi default yang kompatibel dan, jika kondisi mendukung, membuat pengganti jika tidak dapat digunakan. | Pekerjaan harian biasa.\nperchdir=new | Membuat sesi baru dengan nomor tertentu. | Mempertahankan workspace yang sudah ada tanpa perubahan.\nperchdir=ask | Menampilkan sesi yang tersimpan setelah penyimpanan yang dapat dilanjutkan ditemukan dan memungkinkan Anda memilih salah satunya. Tidak dapat membuat sesi pertama pada storage yang kosong. | Beberapa workspace yang sudah ada di satu perangkat; gunakan perchdir=new untuk sesi pertama.\nperchdir=NUMBER | Meminta sesi bernomor tertentu. | Entri boot kustom yang stabil setelah memeriksa ID sesi.\nperchmode=MODE | Pilih native, dynfilefs, dynblk, vmdk, raw, atau squashfs. | Sesuaikan filesystem pendukung dan model persistensi yang diinginkan.\nperchencrypt=luks | Tambahkan lapisan LUKS2 saat membuat sesi Raw, DynFileFS, DynBlk, atau VMDK. | Enkripsi backend container yang didukung.\nperchsize=SIZE | Meminta ukuran sesi container baru atau yang sedang bertambah. | DynFileFS, DynBlk, VMDK, atau raw; enkripsi tidak mengubah semantik ukuran backend.\nperchcomp=CODEC | Pilih kompresi backend DynBlk untuk sesi DynBlk yang baru dibuat. | none, lz4, lz4hc, lzo, lzo-rle, zstd, deflate, atau 842; ketersediaan tetap tergantung pada kernel yang berjalan. Kompresi dinonaktifkan saat LUKS membungkus DynBlk.\nperchreserve=MB | Kurangi margin saat menentukan ukuran container baru atau yang bertambah dan atur ambang peringatan ruang rendah. | Sisakan ruang kerja saat mengalokasikan container; ini bukan kuota runtime.\nperch | Gunakan perilaku resume lama tanpa pembuatan pengganti otomatis. | Kompatibilitas dengan entri kustom yang sudah ada; lebih disarankan perchdir=resume untuk menu saat ini.\nJangan gabungkan persistensi dengan toram saat Anda mengharapkan perubahan akan ditulis kembali ke perangkat asli. MiniOS mengaktifkan sesi yang disalin di RAM, dan perubahan pada salinan tersebut akan hilang saat shutdown.\nPersistensi bersifat eksplisit\nInitrd hanya mengaktifkan penanganan persistensi ketika baris perintah kernel berisi salah satu token yang dikenali berikut:\nperch\nperchdir=...\nperchmode=...\nperchencrypt=...\nperchsize=...\nperchcomp=...\nperchreserve=...\nJika tidak ada token tersebut, termasuk ketika hanya terdapat nama perch... yang tidak dikenali, MiniOS akan membuat upper writable baru di RAM. Perubahan yang dilakukan selama boot tersebut akan dihapus saat shutdown.\nSelector tidak semuanya setara:\nSelector | Perilaku Initrd\nperch | Mencoba melanjutkan metadata default. Tidak secara otomatis membuat sesi baru jika tidak ada yang dapat digunakan atau jika pemeriksaan kompatibilitas gagal.\nperchdir=resume | Mencoba metadata default dan dapat secara otomatis membuat pengganti baru yang kompatibel. Ini adalah perilaku resume boot-menu saat ini.\nperchdir=new | Mengalokasikan direktori dengan ID numerik satu angka lebih besar dari ID numerik tertinggi yang sudah ada. Tidak pernah menggunakan ulang direktori yang sudah ada.\nperchdir=ask | Menawarkan sesi yang sudah ada setelah store yang dapat dilanjutkan dan default ditemukan. Sesi yang tidak kompatibel memerlukan konfirmasi. Pada penyimpanan kosong, gunakan perchdir=new untuk membuat sesi pertama.\nperchdir=NUMBER | Menggunakan direktori tersebut jika sudah ada. Jika tidak ada, pemilihan dapat kembali ke default yang tercatat di metadata; tidak memesan nomor yang diminta.\nParameter persistensi lain yang dikenali tanpa selector akan masuk ke jalur resume lama yang sama seperti bare perch: mereka meminta persistensi, tetapi tidak mengaktifkan pembuatan otomatis. Jika pemilihan atau aktivasi tidak dapat menghasilkan upper yang dapat digunakan, proses boot akan tetap berjalan dengan upper RAM dan menampilkan peringatan kegagalan.\nPenyimpanan dan Lokasi Sesi\nPenyimpanan standar berada di changes direktori di samping data MiniOS, dengan direktori sesi bernomor dan session.conf atau session.json metadata:\nminios/changes/\n|-- session.conf\n|-- session.json\n|-- 1/\n`-- 2/\nPenyimpanan juga dapat dipilih sebagai perangkat beserta path opsional. Bentuk yang diterima termasuk path langsung /dev/... , /dev/disk/by-label/LABEL/... , /dev/mapper/... , label:LABEL/... , askdisk, dan askdisk:custom:path. Sufiks yang dipisahkan tanda titik dua akan menjadi path di bawah perangkat yang dipilih; sintaks garis miring setelah askdisk akan mengabaikan path kustom tersebut. Subdirektori yang dipilih akan di-bind-mount sebagai penyimpanan sesi. MiniOS juga dapat mendeteksi partisi persistence di drive yang sama dan penyimpanan persistence Ventoy yang didukung.\nSebelum pemilihan sesi, initrd harus me-mount lokasi tersebut agar dapat ditulis dan memastikan dapat membuat serta menghapus marker di penyimpanan. Perangkat blok yang tidak dapat dibuka untuk penulisan, mount hanya-baca, path yang tidak tersedia, atau uji tulis yang gagal akan menolak persistence untuk boot tersebut. Sesi yang sudah ada tidak langsung dipercaya hanya karena file-nya dapat dibaca.\nSeleksi dan kompatibilitas\nMetadata sesi mencatat mode penyimpanan dan dapat mencatat versi MiniOS, edisi, union filesystem, dan ukuran container. Resume membandingkan mode, versi, edisi, dan union yang tercatat dengan mode yang diminta dan sistem saat ini.\nField kompatibilitas lama yang hilang tidak dianggap sebagai ketidakcocokan.\nLiteral perchdir=resume akan membuat sesi bernomor baru jika default-nya tidak ada atau jika mode, versi, edisi, atau union yang tercatat tidak cocok sehingga default tersebut tidak sesuai. perch tanpa selector, pemilihan numerik langsung, dan permintaan resume lama lainnya menolak pembuatan pengganti otomatis dan melanjutkan di RAM jika pemilihan gagal. perchdir=ask menampilkan informasi kompatibilitas dan memungkinkan override eksplisit. Sesi baru akan default ke native kecuali mode lain diminta.\nMode penyimpanan adalah bagian dari kompatibilitas. Jika seleksi mencapai backend dispatch, mode yang diminta tidak dikenal akan kembali ke native, yang kemudian dapat memilih DynFileFS pada media yang tidak sesuai. Sesi yang sudah ada dengan mode berbeda dapat gagal pada pemeriksaan kompatibilitas sebelumnya; permintaan resume lama kemudian akan melanjutkan di RAM daripada mencapai fallback tersebut.\nCadangan ruang dan ukuran\nMiniOS menggunakan 256 MiB sebagai margin alokasi default dan ambang peringatan ruang rendah. Perhitungan menggunakan blok filesystem 1024-byte. perchreserve menerima angka bulat tak bertanda tanpa satuan, dibatasi maksimal 4096, dan akan kembali ke 256 jika kosong atau tidak valid. Margin ini mengurangi ruang yang ditawarkan untuk container baru atau yang bertambah. Ini bukan kuota: sesi native atau penulisan berikutnya masih dapat menggunakan sisa ruang filesystem. Boot akan memperingatkan jika ruang kosong saat ini sama dengan atau di bawah ambang batas.\nUkuran container menggunakan jumlah bulat yang dialokasikan dalam MiB:\nAngka tanpa satuan, M, atau MB berarti MiB.\nG atau GB mengalikan angka dengan 1000 MiB.\nT atau TB mengalikan angka dengan 1.000.000 MiB.\nContainer Raw dibatasi hingga 1.000.000 MiB dan oleh ruang yang tersedia setelah cadangan. DynFileFS memiliki batas khusus yang memperhitungkan RAM dan batas keras 2.000.000 MiB. DynBlk mendapatkan batas geometri format native dari dynblk limits --format dynblk; MiniOS tidak memberlakukan batas 512-GiB terpisah.\nRaw adalah satu file pendukung, sehingga FAT32 membatasinya hingga 4000 MiB di MiniOS. Batas yang sama berlaku saat Raw dibungkus dalam LUKS2.\nSesi raw baru secara default berukuran 4000 MiB. Enkripsi tidak membuat kebijakan ukuran LUKS terpisah: Raw terenkripsi, DynFileFS, DynBlk, atau sesi VMDK mengikuti aturan ukuran backend dasarnya.\nSesi DynFileFS baru yang dibuat initrd tanpa perchsize menggunakan hingga 16 GiB kapasitas logis. Jika media pendukung tidak dapat menampung sebanyak itu setelah perchreserve dan overhead indeks DynFileFS, default dikurangi ke kapasitas yang tersedia. Indeks format-400 memakan sekitar 2 MiB dari RAM dan sekitar 2 MiB penyimpanan pendukung per GiB kapasitas logis yang dideklarasikan, meskipun payload masih kosong. MiniOS juga membatasi kapasitas DynFileFS dari RAM fisik dan oleh batas keras 2.000.000 MiB yang telah diuji.\nSesi DynBlk baru tanpa perchsize mengikuti batas otomatis 16 GiB yang sama dan akan dikurangi jika ruang pendukung yang tersisa kurang setelah perchreserve. Ukuran DynBlk eksplisit adalah permintaan kapasitas tipis yang diperiksa terhadap batas backend terpasang. Metadata untuk bagian yang dideklarasikan dibuat di awal, namun ruang payload akan bertambah sesuai kebutuhan. DynBlk memiliki cache metadata terbatas yang terpisah dari pemenuhan payload.\nPertumbuhan container bersifat best-effort dan pengurangan ukuran tidak didukung. perchsize tidak menentukan ukuran sesi native atau SquashFS. Manajer Sesi MiniOS mengatur default container raw dan DynFileFS yang dibuat manual ke 4000 MiB dan DynBlk ke 16 GiB; varian terenkripsi menggunakan default backend yang sama. Lihat Manajemen sesi.\nAktivasi penyimpanan\nSemua backend yang berhasil harus menyediakan writable upper yang diharapkan oleh union filesystem yang dipilih. Mount backend saja tidak membuktikan bahwa persistensi sudah aktif. Native, DynFileFS, DynBlk, VMDK, dan raw dapat memperbarui metadata sesi persisten sebelum validasi union; SquashFS menunda commit metadata tersebut. Raw, DynFileFS, DynBlk, dan VMDK juga dapat menggunakan enkripsi LUKS2. Status current-boot yang terlindungi hanya dipublikasikan setelah root union terakhir dipastikan menggunakan upper yang sesuai.\nBackend | Representasi persisten | Model kapasitas | Kebutuhan penyimpanan pendukung | Lapisan LUKS2 MiniOS\nnative | File dan direktori langsung di dalam direktori sesi bernomor | Menggunakan ruang filesystem pendukung secara langsung; perchsize tidak berlaku | Filesystem yang dapat ditulis dan lolos uji perilaku POSIX | Tidak\ndynfilefs | Format-400 changes.dat ditambah file segmen yang mengekspose ext4 virtual.dat | Payload tipis dengan indeks berdensitas sesuai kapasitas | Penyimpanan POSIX, FAT32, NTFS, atau exFAT yang dapat ditulis | Ya\ndynblk | Format-1 volumeNNN.db file yang mengekspose /dev/dynblkN, dengan ext4 di atasnya | Perangkat blok virtual tipis dengan pemetaan di disk dan cache terbatas | Filesystem yang diterima oleh backend kernel DynBlk dan sumber daya backend yang cukup | Ya\nraw | Satu file berukuran tetap changes.img yang berisi ext4 | File dibuat sesuai ukuran logis yang diminta; hanya dapat bertambah | Filesystem yang dapat ditulis dan mampu menampung image; FAT32 terbatas hingga 4000 MiB | Ya\nsquashfs | Terkompresi changes.sb snapshot; writable runtime upper direkonstruksi di RAM | Ukuran snapshot mengikuti perubahan yang ditangkap; perchsize tidak berlaku | Snapshot yang sudah ada dapat dibaca dari media tulis yang didukung; penyimpanan persis membutuhkan store persisten yang mendukung POSIX | Tidak\nNative\nMode Native menyimpan konten union yang dapat ditulis secara langsung di direktori sesi bernomor. Tidak ada image internal, perangkat loop, kontainer FUSE, atau filesystem blok terpisah, sehingga kapasitasnya mengikuti ruang kosong pada filesystem dasar dan perchsize tidak berlaku. Ini memberikan overhead kontainer paling rendah dan menjaga visibilitas file seperti biasa untuk pemulihan dan pencadangan.\nMiniOS terlebih dahulu mengecualikan filesystem non-POSIX yang sudah dikenal seperti FAT, exFAT, dan NTFS. Selanjutnya, sistem akan menguji perilaku filesystem sebenarnya dengan membuat file dan symlink serta memeriksa perubahan mode eksekusi. Jika pengujian berhasil, direktori sesi bernomor akan di-bind-mount langsung sebagai area yang dapat ditulis. Jika filesystem diketahui tidak cocok, atau pengujian POSIX gagal, mode native akan beralih ke DynFileFS. Kegagalan setelah aktivasi native akan dibatalkan; kandidat kosong baru akan dihapus jika sudah aman untuk dihapus.\nLapisan persistensi MiniOS LUKS2 tidak membungkus mode native karena mode native tidak memiliki batas kontainer atau block device untuk dienkripsi. Persistensi native tetap dapat ditempatkan pada media penyimpanan yang dienkripsi di luar lapisan persistensi ini.\nDynFileFS\nDynFileFS adalah backend container format-400 berbasis FUSE. Backend ini menyediakan satu image logisvirtual.dat saat data disimpan dichanges.dat beserta file segmen bernomor. Helper harus berhasil melakukan mount dan menampilkanvirtual.dat; jika tidak, proses aktivasi akan gagal daripada secara tidak sengaja membuat file hanya-RAM dengan nama yang tampak persisten.\nIndeks mapping-nya padat terhadap kapasitas logis yang dideklarasikan: setiap blok logis 4 KiB memiliki satu offset 8-byte. Ini setara sekitar 2 MiB indeks RAM per 1 GiB kapasitas virtual, dan jumlah yang kurang lebih sama juga disimpan pada indeks segmen pendukung bahkan sebelum data payload ditulis. Alokasi payload tetap dinamis. Karena binary initrd statis menggunakan i686, MiniOS juga menerapkan batas ukuran logis yang sadar RAM serta batas keras 2.000.000 MiB di bawah titik kegagalan address-space yang telah diuji.\nImage logis berisi ext4. Image yang sudah ada akan diperiksa sebelum proses mount writable; hasil pemeriksaan filesystem di atas status error-terkoreksi akan menolak sesi, bukan melakukan mount writable. Resize hanya mendukung penambahan kapasitas, dan filesystem ext4 di dalamnya akan diperluas jika memungkinkan. Untuk diagnosis yang ditujukan ke pengguna, lihatPemecahan Masalah.\nDynBlk\nMode dynblk menggunakan perangkat blok kernel, terpisah dari DynFileFS. Setiap sesi bernomor memiliki volume000.db dan semua saudara bernomor (volume001.db, ..., volume1000.db, dan seterusnya). Tata letak native adalah DBSPRS01, format disk 1. Tata letak yang tidak didukung akan ditolak, bukan diam-diam dikonversi. Pastikan versi CLI dan modul yang terpasang sesuai.\nMiniOS membuat ext4 pada seluruh disk yang dikembalikan oleh /dev/dynblk-control, seperti /dev/dynblk3; tidak mengasumsikan bahwa dynblk0 bebas. ext4 yang sudah ada akan diperiksa sebelum digunakan secara writable. Status boot yang dilindungi mencatat perangkat tersebut secara persis sehingga shutdown hanya melepaskannya setelah semua pengguna dan filesystem upper ditutup. Beberapa perangkat independen dapat digunakan bersamaan.\nSession Manager, installer, dan initramfs melakukan query ke dynblk limits --format dynblk untuk batas geometri backend yang terpasang. Resource guard saat ini mengizinkan 65536 part: rentang logis standar 1-GiB memungkinkan hingga 64 TiB. Batas fisik part yang lebih kecil akan mengurangi batas virtual. Ini adalah batas geometri, bukan jaminan host dapat membuka sebanyak itu file atau memiliki cukup RAM/storage. Pertumbuhan didukung; pengurangan tidak.\nTabel pemetaan disimpan di disk. --map-memory-mb mengatur cache metadata per perangkat (default 1 MiB, rentang 1..64 MiB), tidak lagi berupa persentase dari RAM atau batas data yang dipetakan. Deskripsi extent, vektor file terbuka, dan direktori kecil bertambah sesuai geometri yang dideklarasikan, bukan isi payload. Attach akan memindai metadata pemetaan dan sementara membangun ulang status alokasi satu part per waktu; tidak membaca setiap payload. Full dynblk check akan membaca payload. engine_memory_bytes tidak termasuk page cache filesystem, internal codec, dan alokasi kernel lainnya.\nFile metadata untuk semua part yang dideklarasikan diinisialisasi saat create/grow; data aktual tetap tipis. Setiap part dibatasi 4000 MiB. Cadangkan seluruh namespace yang terlepas, tanpa mengasumsikan tiga digit atau part terakhir tetap. Volume baru dapat memilih kompresi dengan perchcomp; pemuatan berikutnya menggunakan codec yang tersimpan. LUKS2 di atas DynBlk memaksa kompresi ke none. Penulisan parsial ke data terkompresi saat ini akan mengompresi ulang grain 64-KiB terkait. Kegagalan storage atau resource masih dapat menyebabkan penulisan gagal; filesystem upper harus di-unmount sebelum detach.\nSesi VMDK\nMode sesi vmdk menggunakan driver yang sama dengan image twoGbMaxExtentSparse\nasli. Primernya adalah volume.vmdk, dengan volume-s001.vmdk dan part berikutnya\n; setiap part mencakup hingga 2 GiB ruang logis. Deskriptornya dibatasi\nkurang dari 1 MiB, jadi panjang nama file dan jumlah extent membatasi kapasitas.\nSession Manager, Installer, dan initramfs melakukan query ke dynblk limits --format vmdk.\nMode native tetap menggunakan volume000.db; kedua mode tidak menafsirkan ulang\nfile satu sama lain. Sesi yang dikelola tidak mengimpor VMDK eksternal yang dipartisi sembarangan\nsebagai metadata sesi.\nDukungan sesi VMDK diiklankan oleh vmdk-session-v1 di\n/etc/minios-initramfs-dynblk dalam initrd. Runtime saat ini dan setiap\ninitrd sumber yang disalin oleh Installer harus mendukungnya. VMDK tidak memiliki kompresi native;\nperchcomp akan diabaikan dengan peringatan saat boot dan Session Manager akan menolak\ncodec VMDK non-none. LUKS tetap menjadi lapisan terpisah opsional. Kedua mode mempublikasikan\nmode sesi aktual dan pemilik dynblk_device di boot-state yang dilindungi,\ndan kedua implementasi shutdown akan menutup perangkat tersebut setelah semua pengguna keluar.\nKedua format driver mendukung writeback, writethrough, none, directsync dan kebijakan attachment unsafeeksplisit. Mode langsung saat ini memerlukan ext2/ext4 di bawahnya. mount -t dynblk /path/to/image /mnt -o inner-fstype=ext4,cache=writeback mengaitkan filesystem yang sudah ada; umount melepaskan perangkat yang dimiliki helper setelah pengguna terakhir menutupnya. dynblk load memiliki masa aktif eksplisit. Ini tidak membuat filesystem atau membuka kunci LUKS.\nRaw\nMode Raw menggunakan satu changes.img file yang berisi ext4. Panjang file ditetapkan sesuai kapasitas logis yang diminta saat pembuatan, sehingga berbeda dengan backend dinamis, kapasitasnya tetap hingga dilakukan operasi grow secara eksplisit. Filesystem bawah dapat merepresentasikan bagian yang belum ditulis secara sparse, tetapi MiniOS tetap memperlakukan Raw sebagai penyimpanan dengan kapasitas tetap dan memeriksa ketersediaan ruang sebelum membuat atau memperbesar file tersebut. Karena semuanya berada dalam satu file di host, FAT32 dibatasi hingga 4000 MiB.\nCitra Raw yang sudah ada akan diperiksa dengan e2fsck sebelum proses mounting writable. Proses grow akan memperbesar changes.img lalu memperluas ext4 menggunakan resize2fs; proses shrink tidak didukung. Jika pemeriksaan atau mounting gagal, citra tetap dipertahankan untuk pemulihan dan booting akan dilanjutkan di RAM. Raw tidak memiliki daemon FUSE atau metadata block-storage khusus, sehingga model pemulihannya menjadi sederhana, namun tidak memiliki perilaku thin-capacity seperti DynFileFS dan DynBlk.\nLapisan enkripsi LUKS\nLUKS2 adalah lapisan enkripsi opsional yang dipilih dengan perchencrypt=luks saat membuat sesi Raw, DynFileFS, DynBlk, atau VMDK. Sesi yang sudah ada mengambil status enkripsi dari metadata sesi; menentukan perchencrypt setelahnya tidak akan menafsirkan ulang atau mengonversi sesi plaintext yang sudah ada.\nBatas enkripsi tergantung pada backend: Raw mengaitkan changes.img melalui perangkat loop dan menempatkan LUKS2 di dalam file tersebut; DynFileFS mengaitkan virtual.dat yang diekspos melalui perangkat loop dan mengenkripsi image logis tersebut; DynBlk menggunakan perangkat blok /dev/dynblkN secara langsung sebagai sumber LUKS2. Pada ketiga kasus, MiniOS membuat ext4 di dalam /dev/mapper/..., sehingga isi filesystem dan metadata di dalam mapper terenkripsi saat diam. Metadata backend di luar batas LUKS, file boot, metadata sesi, dan file lain di media persistensi tetap tidak terenkripsi.\nDefault ukuran, batas pertumbuhan, pembatasan FAT32, dan perilaku alokasi tipis/tetap tetap mengikuti backend dasarnya. Initrd melakukan autentikasi sebelum menambah backend terenkripsi yang sudah ada, menutup mapper sebelum pertumbuhan backend, lalu membukanya kembali, memeriksa ext4, dan memperbesar filesystem sebelum mount. Untuk DynBlk terenkripsi, kompresi backend dipaksa ke none.\nSaat pembuatan, passphrase diminta dua kali. Sesi terenkripsi yang sudah ada mengizinkan tiga kali percobaan unlock di konsol boot. Tiga passphrase yang ditolak akan memicu jalur boot fatal: MiniOS tidak akan melanjutkan di RAM, menafsirkan ulang sesi yang sama sebagai plaintext, memilih backend lain, atau membuat pengganti. Kegagalan pembuatan, pemeriksaan, resize, atau mount lainnya tetap mengikuti perilaku pemulihan backend tanpa fallback plaintext. Passphrase tidak disimpan di metadata sesi atau dikirim sebagai argumen perintah. Ekspor logis berisi file sesi yang sudah didekripsi, bukan image backend terenkripsi.\nLihat Keamanan untuk batas perlindungan dan pertimbangan backup.\nSquashFS\nInitrd biasanya mengaktifkan sesi SquashFS yang sudah ada. Setup interaktif membuat metadata generasi-nol dengan penyimpanan saat shutdown diaktifkan, namun tidak membuat changes.sb; writable upper layer hanya ada di RAM sampai sistem berjalan melakukan penyimpanan pertama sesuai permintaan atau saat shutdown. Sesi generasi-nol hanya valid jika field artefak snapshot dan changes.sb tidak ada. Untuk generasi berikutnya, aktivasi memvalidasi metadata snapshot yang ketat dan bernilai tunggal, termasuk digest, ukuran terkompresi dan tidak terkompresi, jumlah entri, tipe union, dan kebijakan penyimpanan. Sistem juga memeriksa tipe dan ukuran file, RAM dan swap yang tersedia, digest SHA-256 sebelum dan sesudah ekstraksi, serta kompatibilitas union saat ini.\nSnapshot diekstrak dengan penanganan error dan xattr yang ketat ke dalam image ext4 sementara yang dibatasi di RAM. Untuk OverlayFS, image tersebut berisi direktori changes dan workdir; untuk AUFS, root-nya adalah branch yang dapat ditulis.\nMetadata yang rusak, memori tidak cukup, perubahan digest, error ekstraksi, atau kebijakan tidak valid akan menggagalkan aktivasi dan sistem boot tetap menggunakan upper RAM biasa.\nSesi yang ditandai dirty berarti boot sebelumnya tidak menyelesaikan transisi shutdown bersih. SquashFS kemudian akan memberi peringatan dan mengembalikan snapshot changes.sb terakhir yang berhasil disimpan; perubahan yang belum disimpan dari boot yang terputus tidak dianggap sebagai generasi rollback kedua.\nManajer Sesi MiniOS dan backend penyimpanan sistem membuat dan mengganti snapshot SquashFS secara atomik menggunakan capture yang persis. Aktivasi boot dapat membaca snapshot yang sudah ada dari penyimpanan FAT, exFAT, atau NTFS yang dapat ditulis karena ekstraksi dilakukan di upper ext4 sementara. Pembuatan dan penyimpanan persis tetap tergantung pada filesystem: store sesi harus mendukung pembuatan workspace privat, metadata Linux, dan publikasi yang tahan lama di filesystem POSIX yang sesuai.\nSaat menyimpan, backend pertama-tama menangkap pohon file yang stabil di penyimpanan memori privat milik root jika initrd menyediakan tmpfs tepercaya dengan ruang yang cukup. Jika RAM tidak mencukupi, pohon ini menggunakan workspace disk sebelumnya. Kompresor menulis langsung ke satu direktori mode-0700 privat di filesystem sesi, bukan ke image RAM tambahan lalu disalin ke disk lagi. MiniOS memverifikasi hasil kompresi dan identitasnya, melakukan sync, memindahkan ke nama kandidat privat, lalu merevalidasi kandidat sebelum mengganti snapshot aktif secara atomik.changes.sb. Salinan atau kompresi yang gagal tidak akan menggantikan snapshot terakhir yang berhasil.\nDengan sesi yang tahan lama dan sehat, /var/log/minios dan /var/log/live di-bind-mount dari boot-logs/ di dalam sesi bernomor. Diagnostik startup ini ditulis terpisah dari upper RAM dan snapshot shutdown. Boot yang store persistensinya tidak diaktifkan secara tahan lama tidak dapat menjamin log tersebut akan bertahan setelah restart. Log dan cache biasa dapat dikonfigurasi secara terpisah; lihat Performa.\nSquashFS tidak memiliki perchsize: ukuran yang disimpan mengikuti perubahan terkompresi, sedangkan memori runtime ditentukan oleh writable upper yang diekstrak. Lapisan persistensi LUKS MiniOS tidak membungkus changes.sb; jika kerahasiaan snapshot diperlukan, penyimpanan pendukung harus dienkripsi di luar lapisan ini. Lihat Manajemen sesi.\nAktivasi union dan batas pemulihan\nUntuk AUFS, root perubahan yang diaktifkan menjadi branch writable nol. Untuk OverlayFS, initrd membangun upperdir dan workdir di bawah root perubahan yang diaktifkan dan me-mount modul read-only sebagai direktori bawah. Initrd kemudian memverifikasi branch AUFS live atau OverlayFS upperdir sebelum mempublikasikan persistensi sebagai aktif.\nJika backend persistensi, pembaruan metadata, atau verifikasi ini gagal, mount akan dibatalkan jika memungkinkan, tidak ada status persistensi yang sukses dipublikasikan, dan boot writable tetap dilanjutkan di RAM. Kegagalan membangun root union akan masuk ke shell initramfs fatal. Keluar dari shell tersebut dapat membuat setup berlanjut dengan root tidak valid; ini bukan perbaikan atau fallback yang aman. AUFS tetap mencoba menambahkan branch modul, tetapi union yang tidak lengkap melewati batas pemulihan: MiniOS tidak menandai persistensi sebagai aktif.\nKegagalan pemeriksaan container sengaja menghindari mount sesi yang dicurigai secara writable.\nJangan mengganti atau membangun ulang file sesi saat boot. Lindungi media penyimpanan yang terdampak terlebih dahulu; lihat Membackup MiniOS dan Pemecahan masalah.\nStatus aktif, berjalan, dan boot saat ini\nDalam metadata sesi yang tahan lama, default= adalah aktif sesi yang dipilih untuk resume berikutnya, sedangkan running= adalah sesi yang tercatat sebagai pemasok boot saat ini. Aktivasi menulis kedua field tersebut dan menandai sesi tersebut sebagai dirty.\nSetelah mount persistence hilang selama shutdown yang bersih, MiniOS menghapus running= dan menandai sesi tersebut sebagai clean.\nField metadata tersebut bisa saja usang setelah crash, kegagalan penulisan metadata, kegagalan pembuatan union, penyalinan store, atau shutdown yang terputus. Komponen runtime yang mengizinkan penyimpanan tidak mempercayai running= saja. Mereka menggunakan status boot saat ini yang dilindungi oleh initrd, terikat pada boot ID, sesi numerik, mode, identitas store yang sebenarnya, status writable, durabilitas, generasi aktif yang terverifikasi, dan, untuk DynBlk, perangkat terlampir yang persis sama./dev/dynblkN Jika catatan boot saat ini gagal atau hilang, persistence tidak boleh dianggap sebagai target penyimpanan yang disetujui.\nDengan toram dan permintaan persistence yang dikenali, store sesi akan disalin ke RAM sebelum aktivasi. Sesi yang disalin dapat writable dan dapat digunakan sebagai upper yang berjalan, namun status boot saat ini ditandai sebagai non-durable. Perubahan pada salinan RAM tersebut tidak akan kembali ke perangkat asli dan akan hilang saat shutdown.\nUntuk panduan operasional terkait, lihat Mode boot, Parameter boot, Sesi dan persistence, Mencadangkan MiniOS, Keamanan, dan Pemecahan masalah.\nReklamasi ruang berbasis sesi\nminios-session reclaim ID beroperasi pada kedua format blok. Untuk sesi plaintext\nakan melaporkan rentang ext4 kosong dengan FITRIM, lalu memanggil dynblk reclaim.\nUntuk sesi aktif, perangkat terikat pada status boot saat ini yang dilindungi dan\nmount ext4 aktual akan diperiksa; root union tidak pernah dipangkas langsung.\nSesi tidak aktif akan di-attach dan di-mount sementara untuk operasi ini.\nBaik boot maupun shutdown tidak menjalankan kompaksi secara otomatis. --compact adalah\npilihan eksplisit pengguna di CLI atau opsi dialog Session Manager yang tidak dicentang.\nTanpa itu, hanya hole punching (jika didukung) dan truncation free-tail yang terjadi.\nKebijakan discard LUKS tidak diubah oleh perintah sesi.",
+  "plain_text": "Internal Persistensi\nHalaman ini menjelaskan perch, perchdir, perchmode, perchsize, perchreserve, perchencrypt, perchcomp, dan perchtoram parameter boot. Parameter ini mengatur di mana perubahan dari sesi live disimpan, bagaimana sesi baru dibuat, dan apakah penyimpanan sesi yang didukung akan disalin ke RAM. Untuk penggunaan normal, pilih entri persisten di menu boot atau gunakan Manajer Sesi MiniOS daripada mengeditnya secara manual.\nMiniOS membangun root live dari modul hanya-baca dan satu lapisan atas yang dapat ditulis.\nInitrd menentukan apakah lapisan atas tersebut adalah sesi persisten bernomor atau direktori sementara di RAM. Halaman ini menjelaskan keputusan dan jalur aktivasi saat boot. Untuk kontrol yang terlihat oleh pengguna, lihat Mode Boot dan Parameter Boot.\nDengan bahasa sederhana\nTanpa parameter persistensi, MiniOS menempatkan perubahan di RAM dan akan menghapusnya saat aplikasi ditutup. Parameter persistensi meminta MiniOS untuk mencari media penyimpanan yang dapat ditulis, memilih atau membuat sesi bernomor, memeriksa kompatibilitas, dan menggunakan sesi tersebut sebagai layer yang dapat ditulis.\nMeminta persistensi tidak menjamin fitur tersebut langsung aktif. Jika target hanya-baca, penuh, rusak, atau tidak kompatibel, MiniOS dapat tetap berjalan dengan layer RAM sementara. Bacalah peringatan saat startup sebelum mengandalkan perubahan yang disimpan.\nPenjelasan Parameter\nParameter | Apa yang dijelaskan oleh MiniOS | Pilihan umum\nperchdir=resume | Buka sesi default yang kompatibel dan, jika kondisi mendukung, buat pengganti jika tidak dapat digunakan. | Pekerjaan harian biasa.\nperchdir=setup | Pilih backend persistensi dan opsi enkripsi/kompresi yang didukung secara interaktif, lalu buat sesi baru dengan nomor tertentu. | Entri Mulai sesi baru boot-menu saat ini.\nperchdir=new | Buat sesi baru dengan nomor tertentu langsung menggunakan perchmode yang diminta/default, enkripsi, kompresi, dan ukuran tanpa menampilkan pemilih backend. | Entri boot yang sudah diatur atau skrip dengan opsi penyimpanan yang sudah ditentukan.\nperchdir=ask | Tampilkan sesi yang tersimpan dan izinkan Anda memilih salah satu. Jika tidak ada sesi tersimpan pada penyimpanan, pemilih akan masuk ke alur pengaturan yang sama seperti perchdir=setup. | Beberapa workspace pada satu perangkat, termasuk pengaturan interaktif pertama pada penyimpanan kosong.\nperchdir=NUMBER | Meminta sesi bernomor tertentu. | Entri boot kustom yang stabil setelah memeriksa ID sesi.\nperchmode=MODE | Pilih native, dynfilefs, dynblk, vmdk, raw, atau squashfs. | Sesuaikan filesystem pendukung dan model persistensi yang diinginkan.\nperchencrypt=luks | Tambahkan lapisan LUKS2 saat membuat sesi Raw, DynFileFS, DynBlk, atau VMDK. | Enkripsi backend container yang didukung.\nperchsize=SIZE | Minta ukuran untuk sesi container baru atau yang bertambah. | DynFileFS, DynBlk, VMDK, atau raw; enkripsi tidak mengubah skema ukuran backend.\nperchcomp=CODEC | Pilih kompresi backend DynBlk untuk sesi DynBlk yang baru dibuat. | none, lz4, lz4hc, lzo, lzo-rle, zstd, deflate, atau 842; ketersediaan tetap tergantung pada kernel yang sedang berjalan. Kompresi dinonaktifkan jika LUKS membungkus DynBlk.\nperchreserve=MB | Kurangi margin saat menentukan ukuran container baru atau yang bertambah dan atur ambang peringatan ruang rendah. | Sisakan ruang kerja saat mengalokasikan container; ini bukan kuota saat runtime.\nperch | Gunakan perilaku resume lama tanpa pembuatan pengganti otomatis. | Kompatibilitas dengan entri kustom yang sudah ada; disarankan menggunakan perchdir=resume untuk menu saat ini.\nperchtoram=off, perchtoram=trim, perchtoram=full | Kontrol penyalinan persistensi secara terpisah dari sistem toram. | off menjaga store asli tetap aktif; trim hanya menyalin sesi yang didukung dan dipilih; full menyalin semua sesi container/SquashFS yang didukung.\nJika persistensi diminta, sistem toram menjadikan perchtoram=trim sebagai default kecuali mode persistensi-RAM secara eksplisit diberikan. Tanpa sistem toram, persistensi tetap berada di penyimpanan secara default. Sesi yang disalin bersifat non-durable saat berjalan, namun Session Manager saat ini dapat secara eksplisit menyimpan status yang didukung RAM ke store asli atau menerbitkannya sebagai sesi baru jika store asli tersedia dan identitasnya sesuai dengan saat boot.\nPersistensi bersifat eksplisit\nInitrd hanya mengaktifkan penanganan persistensi jika baris perintah kernel memuat salah satu token yang dikenali berikut:\nperch\nperchdir=...\nperchmode=...\nperchencrypt=...\nperchsize=...\nperchcomp=...\nperchreserve=...\nJika tidak ada token tersebut, termasuk ketika hanya terdapat perch... nama yang tidak dikenali, MiniOS akan membuat upper writable baru di RAM. Perubahan yang dilakukan selama boot tersebut akan dihapus saat shutdown.\nSelector yang tersedia tidak semuanya setara:\nSelector | Perilaku initrd\nperch | Mencoba melanjutkan metadata default. Tidak otomatis membuat sesi baru jika tidak ada yang dapat digunakan atau jika pemeriksaan kompatibilitas gagal.\nperchdir=resume | Mencoba metadata default dan dapat secara otomatis membuat pengganti baru yang kompatibel. Ini adalah perilaku resume boot-menu saat ini.\nperchdir=setup | Membuka pemilih backend terlebih dahulu, mencatat backend/enkripsi/permintaan kompresi yang dipilih, lalu mengikuti jalur alokasi sesi baru.\nperchdir=new | Mengalokasikan direktori dengan ID numerik satu angka lebih besar dari ID numerik tertinggi yang ada. Tidak pernah menggunakan ulang direktori yang sudah ada dan tidak membuka pemilih backend.\nperchdir=ask | Menawarkan sesi yang sudah ada jika tersedia; sesi yang tidak kompatibel memerlukan konfirmasi. Jika tidak ada default/sesi di store, akan beralih ke setup sehingga sesi pertama dapat dibuat secara interaktif.\nperchdir=NUMBER | Menggunakan direktori tersebut jika sudah ada. Jika tidak ada, pemilihan dapat kembali ke default yang tercatat di metadata; tidak memesan nomor yang diminta.\nParameter persistensi lain yang dikenali tanpa selector akan masuk ke jalur resume legacy yang sama seperti hanya perch: mereka meminta persistensi, tetapi tidak mengaktifkan pembuatan otomatis. Jika pemilihan atau aktivasi tidak dapat menghasilkan upper yang dapat digunakan, proses boot tetap berjalan normal dengan upper RAM dan menampilkan peringatan kegagalan.\nPenyimpanan dan lokasi sesi\nPenyimpanan normal berada di changes direktori di samping data MiniOS, dengan direktori sesi bernomor dan session.conf atau session.json metadata:\nminios/changes/\n|-- session.conf\n|-- session.json\n|-- 1/\n`-- 2/\nPenyimpanan juga dapat dipilih sebagai perangkat beserta jalur opsional. Format yang diterima termasuk jalur /dev/... langsung, /dev/disk/by-label/LABEL/..., /dev/mapper/..., label:LABEL/..., askdisk, dan askdisk:custom:path. Sufiks yang dipisahkan dengan tanda titik dua akan menjadi jalur di bawah perangkat yang dipilih; sintaks garis miring setelah askdisk akan mengabaikan jalur kustom tersebut secara diam-diam. Subdirektori yang dipilih akan di-bind-mount sebagai penyimpanan sesi. MiniOS juga dapat mendeteksi partisi persistence pada drive yang sama dan penyimpanan persistence Ventoy yang didukung.\nSebelum pemilihan sesi, initrd harus me-mount lokasi sebagai writable dan membuktikan dapat membuat serta menghapus marker di penyimpanan. Perangkat blok yang tidak bisa dibuka untuk penulisan, mount hanya-baca, jalur yang tidak tersedia, atau uji tulis yang gagal akan menolak persistence untuk boot tersebut. Sesi yang sudah ada tidak langsung dipercaya hanya karena file-nya bisa dibaca.\nSeleksi dan kompatibilitas\nMetadata sesi mencatat mode penyimpanan dan dapat mencatat versi MiniOS, edisi, union filesystem, dan ukuran container. Saat melanjutkan, sistem membandingkan mode, versi, edisi, dan union yang tercatat dengan mode yang diminta dan sistem saat ini.\nKolom kompatibilitas legacy yang hilang tidak dianggap sebagai ketidakcocokan.\nLiteral perchdir=resume membuat sesi bernomor baru jika default-nya tidak ada atau jika terjadi ketidakcocokan mode, versi, edisi, atau union yang tercatat sehingga default tersebut tidak sesuai. Penggunaan bare perch, pemilihan numerik langsung, dan permintaan resume legacy lainnya menolak penggantian otomatis dan tetap melanjutkan di RAM setelah kegagalan seleksi. perchdir=ask menampilkan informasi kompatibilitas dan memungkinkan override secara eksplisit. Sesi baru secara default menggunakan native kecuali mode lain yang diminta.\nMode penyimpanan adalah bagian dari kompatibilitas. Jika seleksi mencapai backend dispatch, mode yang diminta namun tidak dikenal akan kembali ke native, di mana probe-nya kemudian dapat memilih DynFileFS pada penyimpanan yang tidak sesuai. Sesi yang sudah ada dengan mode yang tercatat berbeda dapat gagal pada pengecekan kompatibilitas sebelumnya; permintaan resume legacy kemudian tetap berjalan di RAM alih-alih mencapai fallback tersebut.\nCadangan ruang dan ukuran\nMiniOS menggunakan 256 MiB sebagai margin alokasi default dan ambang peringatan ruang rendah. Perhitungan menggunakan blok filesystem 1024-byte. perchreserve menerima angka bulat tak bertanda tanpa satuan, dibatasi maksimal 4096, dan akan kembali ke 256 jika tidak diisi atau tidak valid. Margin ini mengurangi ruang yang ditawarkan untuk container baru atau yang bertambah. Ini bukan kuota: sesi native atau penulisan berikutnya tetap dapat menggunakan sisa ruang filesystem. Saat boot, peringatan akan muncul jika ruang kosong saat ini berada di ambang atau di bawah batas tersebut.\nUkuran container menggunakan bilangan bulat yang dialokasikan dalam satuan MiB:\nAngka tanpa satuan, M, atau MB berarti MiB.\nG atau GB mengalikan angka dengan 1000 MiB.\nT atau TB mengalikan angka dengan 1.000.000 MiB.\nContainer tipe Raw dibatasi maksimal 1.000.000 MiB dan juga oleh ruang yang tersedia setelah cadangan. DynFileFS memiliki batas terpisah yang memperhitungkan RAM dan batas keras 2.000.000 MiB. DynBlk mendapatkan batas geometri format native dari dynblk limits --format dynblk; MiniOS tidak menerapkan batas keras 512-GiB secara terpisah.\nRaw adalah satu file pendukung, sehingga FAT32 membatasi ukurannya hingga 4000 MiB di MiniOS. Batas yang sama berlaku jika Raw dibungkus dengan LUKS2.\nSesi raw baru secara default berukuran 4000 MiB. Enkripsi tidak membuat kebijakan ukuran LUKS terpisah: Raw terenkripsi, DynFileFS, DynBlk, atau sesi VMDK mengikuti aturan ukuran backend dasarnya.\nSesi DynFileFS baru yang dibuat oleh initrd tanpa perchsize menggunakan kapasitas logis hingga 16 GiB. Jika media penyimpanan tidak dapat menampung sebanyak itu setelah perchreserve dan overhead indeks DynFileFS, default akan dikurangi sesuai kapasitas yang tersedia. Indeks format-400 membutuhkan sekitar 2 MiB RAM dan sekitar 2 MiB ruang penyimpanan per GiB dari kapasitas logis yang dideklarasikan, bahkan saat payload masih kosong. Karena itu, MiniOS juga membatasi kapasitas DynFileFS dari RAM fisik dan dengan batas keras 2.000.000 MiB yang telah diuji.\nSesi DynBlk baru tanpa perchsize mengikuti batas otomatis 16 GiB yang sama dan akan dikurangi jika ruang cadangan yang tersisa kurang setelah perchreserve. Ukuran DynBlk eksplisit adalah permintaan kapasitas tipis yang akan dicek terhadap batas backend yang terpasang. Metadata untuk bagian yang dideklarasikan dibuat di awal, namun ruang payload akan bertambah sesuai kebutuhan. DynBlk memiliki cache metadata terbatas yang terpisah dari isi payload.\nPertumbuhan container bersifat best-effort dan penyusutan tidak didukung. perchsize tidak mengatur ukuran sesi native atau SquashFS. Manajer Sesi MiniOS mengatur container raw dan DynFileFS yang dibuat manual ke 4000 MiB dan container DynBlk/VMDK ke 16 GiB; varian terenkripsi menggunakan default backend yang sama. Lihat Manajemen sesi.\nAktivasi penyimpanan\nSemua backend yang berhasil harus menyediakan writable upper yang diharapkan oleh union filesystem yang dipilih. Mounting backend saja tidak membuktikan bahwa persistensi sudah aktif. Native, DynFileFS, DynBlk, VMDK, dan raw dapat memperbarui metadata sesi persisten sebelum validasi union; SquashFS menunda komit metadata tersebut. Raw, DynFileFS, DynBlk, dan VMDK juga dapat menggunakan enkripsi LUKS2. Status current-boot yang dilindungi hanya akan dipublikasikan setelah root union terakhir dipastikan menggunakan upper yang diharapkan.\nBackend | Representasi persisten | Model kapasitas | Persyaratan backing-storage | Lapisan LUKS2 MiniOS\nnative | File dan direktori langsung di dalam direktori sesi bernomor | Menggunakan ruang filesystem backing secara langsung; perchsize tidak berlaku | Filesystem writable yang lolos uji perilaku POSIX | Tidak\ndynfilefs | Format-400 changes.dat ditambah file segmen yang menampilkan ext4 virtual.dat | Payload tipis dengan indeks berukuran kapasitas yang padat | Penyimpanan POSIX, FAT32, NTFS, atau exFAT yang dapat ditulis | Ya\ndynblk | Format-1 volumeNNN.db file yang menampilkan /dev/dynblkN, dengan ext4 di atasnya | Perangkat blok virtual tipis dengan pemetaan disk-residen dan cache terbatas | Filesystem yang diterima oleh backend kernel DynBlk dan sumber daya backend yang cukup | Ya\nvmdk | volume.vmdk ditambah split sparse volume-sNNN.vmdk extent yang diekspos oleh driver DynBlk, dengan ext4 di atasnya | Perangkat blok virtual split-sparse tipis | Filesystem yang diterima oleh backend VMDK DynBlk dan vmdk-session-v1 kapabilitas | Ya\nraw | Satu file berukuran tetap changes.img yang berisi ext4 | File dibuat sesuai ukuran logis yang diminta; hanya dapat bertambah | Filesystem writable yang dapat menampung image; FAT32 dibatasi hingga 4000 MiB | Ya\nsquashfs | Snapshot changes.sb terkompresi; writable runtime upper direkonstruksi di RAM | Ukuran snapshot mengikuti perubahan yang ditangkap; perchsize tidak berlaku | Snapshot yang sudah ada dapat dibaca dari media writable yang didukung; penyimpanan persis memerlukan persistence store yang mendukung POSIX | Tidak\nNative\nMode Native menyimpan isi union yang dapat ditulis langsung di direktori sesi bernomor. Tidak ada image internal, perangkat loop, kontainer FUSE, atau sistem file blok terpisah, sehingga kapasitas mengikuti ruang kosong pada filesystem dasar dan perchsize tidak berlaku. Ini memiliki overhead kontainer paling sedikit dan menjaga visibilitas file biasa untuk pemulihan dan pencadangan.\nMiniOS terlebih dahulu mengecualikan filesystem non-POSIX yang sudah dikenal seperti FAT, exFAT, dan NTFS. Setelah itu, sistem akan menguji perilaku filesystem nyata dengan membuat file dan symlink serta memeriksa perubahan mode eksekusi. Jika pengujian berhasil, direktori sesi bernomor akan di-bind-mount langsung sebagai area yang dapat ditulis. Jika filesystem diketahui tidak cocok, atau pengujian POSIX gagal, mode native akan beralih ke DynFileFS. Kegagalan setelah aktivasi native akan dibatalkan; kandidat kosong baru akan dihapus jika sudah aman untuk dihapus.\nLapisan persistensi LUKS2 MiniOS tidak membungkus mode native karena native tidak memiliki batas kontainer atau perangkat blok untuk dienkripsi. Persistensi native masih dapat ditempatkan di penyimpanan yang dienkripsi di luar lapisan persistensi ini.\nDynFileFS\nDynFileFS adalah backend kontainer format-400 berbasis FUSE. Backend ini menampilkan satu image logisvirtual.dat saat menyimpan data dichanges.dat ditambah file segmen bernomor. Helper harus berhasil melakukan mount dan menampilkanvirtual.dat; jika tidak, aktivasi akan gagal daripada secara tidak sengaja membuat file hanya-RAM dengan nama yang tampak persisten.\nIndeks mapping-nya padat terhadap kapasitas logis yang dideklarasikan: setiap blok logis 4 KiB memiliki satu offset 8-byte. Itu sekitar 2 MiB indeks RAM per 1 GiB kapasitas virtual, dan jumlah yang kurang lebih sama juga disimpan di indeks segmen pendukung bahkan sebelum data payload ditulis. Alokasi payload sendiri tetap dinamis. Karena binary initrd statis menggunakan i686, MiniOS juga menerapkan batas ukuran logis yang sadar RAM dan batas keras 2.000.000 MiB di bawah titik kegagalan address-space yang telah diuji.\nImage logis ini berisi ext4. Image yang sudah ada akan diperiksa sebelum proses mount writable; hasil pemeriksaan filesystem di atas status error yang telah diperbaiki akan menolak sesi tersebut, bukan melakukan mount writable. Resize hanya dapat memperbesar, dan filesystem ext4 di dalamnya akan diperluas jika memungkinkan. Untuk diagnosis yang dapat diakses pengguna, lihatPemecahan Masalah.\nDynBlk\nMode dynblk ini menggunakan perangkat blok kernel, terpisah dari DynFileFS. Setiap sesi bernomor memiliki volume000.db dan semua saudara bernomor lainnya (volume001.db, ..., volume1000.db, dan seterusnya). Tata letak native adalah DBSPRS01, format disk 1. Tata letak yang tidak didukung akan ditolak, bukan diam-diam dikonversi. Pastikan versi CLI dan modul yang terpasang selalu sesuai.\nMiniOS membuat ext4 pada seluruh disk yang dikembalikan oleh /dev/dynblk-control, seperti /dev/dynblk3; tidak mengasumsikan bahwa dynblk0 bebas. ext4 yang sudah ada akan diperiksa sebelum digunakan secara writeable. Rekaman boot-state yang dilindungi mencatat perangkat tersebut secara persis sehingga shutdown hanya melepaskannya setelah semua pengguna dan filesystem atasnya ditutup. Beberapa perangkat independen dapat berjalan bersamaan.\nSession Manager, installer, dan initramfs melakukan query ke dynblk limits --format dynblk untuk mengetahui batas geometri backend yang terpasang. Resource guard saat ini mengizinkan hingga 65536 part: rentang logis standar 1-GiB memungkinkan sampai 64 TiB. Batas part fisik yang lebih kecil akan menurunkan batas virtual. Ini adalah batas geometri, bukan jaminan host dapat membuka file sebanyak itu atau memiliki cukup RAM/storage. Pertumbuhan didukung; pengecilan tidak.\nTabel mapping disimpan di disk. --map-memory-mb mengatur cache metadata per perangkat (default 1 MiB, rentang 1..64 MiB), tidak lagi berupa persentase dari RAM atau batas data yang dipetakan. Deskripsi extent, vektor file terbuka, dan direktori kecil bertambah sesuai geometri yang dideklarasikan, bukan berdasarkan isi payload. Attach akan memindai metadata mapping dan sementara membangun ulang status alokasi satu part per waktu; tidak membaca setiap payload. Full dynblk check akan membaca payload. engine_memory_bytes tidak termasuk cache page filesystem, internal codec, dan alokasi kernel lainnya.\nFile metadata untuk semua part yang dideklarasikan diinisialisasi saat create/grow; data aktual tetap tipis. Setiap part dibatasi hingga 4000 MiB. Lakukan backup seluruh namespace yang terlepas, tanpa mengasumsikan jumlah tiga digit atau part akhir yang tetap. Volume baru dapat memilih kompresi dengan perchcomp; pemuatan berikutnya menggunakan codec yang tersimpan. LUKS2 di atas DynBlk akan memaksa kompresi ke none. Penulisan parsial ke data terkompresi saat ini akan mengompresi ulang grain 64-KiB terkait. Kegagalan penulisan masih bisa terjadi jika storage atau resource habis; filesystem atas harus di-unmount sebelum detach.\nSesi VMDK\nMode sesi vmdk menggunakan driver yang sama seperti pada twoGbMaxExtentSparse\nimage asli. Fungsinya utama adalah volume.vmdk, dengan volume-s001.vmdk dan bagian-bagian berikutnya; setiap bagian mencakup hingga 2 GiB ruang logis. Deskriptor dibatasi\nkurang dari 1 MiB, sehingga panjang nama file dan jumlah extent membatasi kapasitas.\nSession Manager, Installer, dan initramfs akan melakukan query ke\n.dynblk limits --format vmdkMode native tetap menggunakan\n; kedua mode tidak menafsirkan ulang file volume000.dbmode lain. Sesi terkelola tidak mengimpor VMDK yang dipartisi eksternal secara sembarang\nsebagai metadata sesi.\nDukungan sesi VMDK diumumkan oleh\ndivmdk-session-v1 dalam initrd. Runtime saat ini dan setiap\n/etc/minios-initramfs-dynblkinitrd sumber yang disalin oleh Installer harus mendukungnya. VMDK tidak memiliki kompresi native;\nakan diabaikan dengan peringatan saat boot dan Session Manager akan menolak\nperchcompVMDK codec non-\n. LUKS2 tetap menjadi lapisan enkripsi terpisah yang opsional. Kedua mode mempublikasikannonemode sesi aktual dan pemilik\ndalam boot-state yang terlindungi,dynblk_devicedan kedua implementasi shutdown akan menutup perangkat tersebut setelah semua pengguna keluar.\nKedua format driver mendukung\n, writeback, writethrough, none serta kebijakan attachment directsynceksplisit. Mode direct saat ini memerlukan ext2/ext4 di bawahnya. unsafe akan melampirkan filesystem yang sudah ada; mount -t dynblk /path/to/image /mnt -o inner-fstype=ext4,cache=writeback akan melepas perangkat yang dimiliki helper setelah pengguna terakhir menutupnya. umountManual dynblk loadmemiliki masa aktif eksplisit. Ini tidak membuat filesystem baru atau membuka kunci LUKS.\nRaw\nMode Raw menggunakan satu changes.img file yang berisi ext4. Panjang file ditetapkan sesuai kapasitas logis yang diminta saat pembuatan, sehingga berbeda dengan backend dinamis, kapasitasnya tetap hingga ada operasi grow secara eksplisit. Filesystem bawah dapat merepresentasikan extent yang belum ditulis secara sparse, tetapi MiniOS tetap memperlakukan Raw sebagai penyimpanan dengan kapasitas tetap dan memeriksa ruang cadangan yang tersedia sebelum membuat atau memperbesarnya. Karena semuanya berada dalam satu file host, FAT32 dibatasi hingga 4000 MiB.\nCitra Raw yang sudah ada akan diperiksa dengan e2fsck sebelum melakukan mounting writable. Proses grow akan memperbesar changes.img lalu memperluas ext4 dengan resize2fs; proses shrink tidak didukung. Jika pemeriksaan atau mounting gagal, citra akan dipertahankan untuk pemulihan dan booting tetap dilanjutkan di RAM. Raw tidak memiliki daemon FUSE atau metadata block-storage khusus, sehingga model pemulihannya sederhana, namun tidak memiliki perilaku thin-capacity seperti DynFileFS dan DynBlk.\nLapisan enkripsi LUKS\nLUKS2 adalah lapisan enkripsi opsional yang dapat dipilih dengan perchencrypt=luks saat membuat sesi Raw, DynFileFS, DynBlk, atau VMDK. Sesi yang sudah ada menggunakan status enkripsi dari metadata sesi; menentukan perchencrypt di kemudian hari tidak akan mengubah atau mengonversi sesi plaintext yang sudah ada.\nBatas enkripsi tergantung pada backend: Raw menghubungkan changes.img melalui perangkat loop dan menempatkan LUKS2 di dalam file tersebut; DynFileFS menghubungkan virtual.dat yang diekspos melalui perangkat loop dan mengenkripsi image logis tersebut; DynBlk menggunakan /dev/dynblkN block device yang dialokasikan secara langsung; VMDK menggunakan block device yang diekspos oleh driver DynBlk yang sama untuk split sparse image-nya. Pada keempat kasus tersebut, MiniOS membuat ext4 di dalam /dev/mapper/..., sehingga isi filesystem dan metadata di dalam mapper akan terenkripsi saat tidak digunakan. Metadata backend di luar batas LUKS, deskriptor VMDK, file boot, metadata sesi, dan file lain di media penyimpanan tetap tidak terenkripsi.\nPengaturan ukuran default, batas pertumbuhan, pembatasan FAT32, dan perilaku alokasi tipis/tetap tetap mengikuti backend yang digunakan. Initrd melakukan autentikasi sebelum memperbesar backend terenkripsi yang sudah ada, menutup mapper sebelum backend diperbesar, lalu membukanya kembali, memeriksa ext4, dan memperluas filesystem sebelum mounting. Untuk DynBlk terenkripsi, kompresi backend dipaksa ke none.\nSaat pembuatan, passphrase diminta dua kali. Sesi terenkripsi yang sudah ada mengizinkan tiga kali percobaan membuka kunci di konsol boot. Tiga passphrase yang ditolak akan memicu jalur boot fatal: MiniOS tidak akan melanjutkan di RAM, tidak mengubah sesi yang sama menjadi plaintext, tidak memilih backend lain, atau membuat pengganti. Kegagalan lain saat pembuatan, pengecekan, resize, atau mount akan tetap mengikuti mekanisme pemulihan backend-nya masing-masing tanpa fallback ke plaintext. Passphrase tidak disimpan di metadata sesi atau dikirim sebagai argumen perintah. Ekspor logis berisi file sesi yang sudah didekripsi, bukan image backend terenkripsi.\nLihat Keamanan untuk penjelasan batas perlindungan dan pertimbangan backup.\nSquashFS\nInitrd biasanya mengaktifkan sesi SquashFS yang sudah ada. Pengaturan interaktif membuat metadata generasi nol dengan penyimpanan saat shutdown diaktifkan, tetapi tidak membuat changes.sb; lapisan atas yang dapat ditulis hanya ada di RAM sampai sistem berjalan melakukan penyimpanan pertama sesuai permintaan atau saat shutdown. Sesi generasi nol hanya valid jika field artefak snapshot dan changes.sb tidak ada. Untuk generasi berikutnya, aktivasi memvalidasi metadata snapshot yang ketat dan bernilai tunggal, termasuk digest, ukuran terkompresi dan tidak terkompresi, jumlah entri, tipe union, dan kebijakan penyimpanan. Sistem juga memeriksa tipe file dan ukuran tepatnya, ketersediaan RAM dan swap, digest SHA-256 sebelum dan sesudah ekstraksi, serta kompatibilitas union saat ini.\nSnapshot diekstrak dengan penanganan error dan xattr yang ketat ke dalam image ext4 sementara yang dibatasi di RAM. Untuk OverlayFS, image tersebut berisi direktori changes dan workdir; untuk AUFS, root-nya adalah cabang yang dapat ditulis.\nMetadata yang rusak, memori tidak cukup, perubahan digest, error ekstraksi, atau kebijakan tidak valid akan menyebabkan aktivasi gagal dan sistem boot tetap pada lapisan atas RAM seperti biasa.\nSesi yang ditandai dirty berarti boot sebelumnya tidak menyelesaikan transisi shutdown yang bersih. SquashFS kemudian akan memberikan peringatan dan mengembalikan changes.sb terakhir yang berhasil disimpan; perubahan yang belum disimpan dari boot yang terputus bukanlah generasi rollback kedua.\nManajer Sesi MiniOS dan backend penyimpanan sistem membuat serta menggantikan snapshot SquashFS secara atomik menggunakan metode penangkapan yang tepat. Aktivasi boot dapat membaca snapshot yang ada dari penyimpanan FAT, exFAT, atau NTFS yang dapat ditulis karena ekstraksi dilakukan di lapisan atas ext4 sementara. Pembuatan dan penyimpanan persis tetap bergantung pada filesystem: penyimpanan sesi harus mendukung pembuatan workspace privat, metadata Linux, dan publikasi yang tahan lama pada filesystem POSIX yang sesuai.\nSelama proses penyimpanan, backend terlebih dahulu menangkap pohon file yang stabil di penyimpanan memori privat milik root ketika initrd menyediakan tmpfs tepercaya dengan ruang yang cukup. Jika RAM tidak cukup, pohon ini menggunakan workspace disk sebelumnya. Kompresor menulis langsung ke satu direktori privat mode-0700 di filesystem sesi, bukan ke image RAM tambahan yang kemudian disalin ke disk. MiniOS memverifikasi hasil kompresi dan identitasnya, melakukan sinkronisasi, memindahkannya ke nama kandidat privat, lalu memvalidasi ulang kandidat tersebut sebelum menggantikan changes.sb snapshot aktif secara atomik. Salinan atau kompresi yang gagal tidak akan menggantikan snapshot terakhir yang berhasil.\nDengan sesi yang tahan lama dan sehat, /var/log/minios dan /var/log/live di-bind-mount dari boot-logs/ di dalam sesi yang diberi nomor. Diagnostik startup ini ditulis secara independen dari lapisan atas RAM dan snapshot shutdown. Boot yang penyimpanan persistensinya tidak diaktifkan secara tahan lama tidak dapat menjamin log tersebut akan bertahan setelah restart. Log dan cache biasa dapat dikonfigurasi secara terpisah; lihat Performa.\nSquashFS tidak memiliki perchsize: ukuran yang disimpan mengikuti perubahan yang ditangkap dan dikompresi, sedangkan memori runtime ditentukan oleh lapisan atas yang dapat ditulis setelah diekstrak. Lapisan persistensi LUKS MiniOS tidak membungkus changes.sb; jika kerahasiaan snapshot diperlukan, penyimpanan pendukung harus dienkripsi di luar lapisan ini. Lihat Manajemen sesi.\nBatas aktivasi dan pemulihan union\nUntuk AUFS, root perubahan yang diaktifkan menjadi branch nol yang dapat ditulis. Untuk OverlayFS, initrd membangun upperdir dan workdir di bawah root perubahan yang diaktifkan dan me-mount modul read-only sebagai direktori bawah. Kemudian initrd memverifikasi branch live AUFS atau OverlayFS upperdir sebelum menerbitkan persistensi sebagai aktif.\nJika backend persistensi, pembaruan metadata, atau verifikasi ini gagal, mount akan dilepas jika memungkinkan, tidak ada status persistensi yang berhasil yang diterbitkan, dan boot writable tetap berlanjut di RAM. Kegagalan membangun root union akan masuk ke shell fatal initramfs. Keluar dari shell tersebut dapat membuat setup tetap berjalan dengan root yang tidak valid; ini bukan perbaikan atau solusi aman. AUFS tetap menambahkan branch modul secara best-effort, tetapi union yang tidak lengkap melewati batas pemulihan: MiniOS tidak menandai persistensi sebagai aktif.\nKegagalan pemeriksaan container sengaja menghindari mount sesi yang dicurigai sebagai writable.\nJangan mengganti atau membangun ulang file sesi saat boot. Lindungi media penyimpanan yang terdampak terlebih dahulu; lihat Mencadangkan MiniOS dan Pemecahan Masalah.\nStatus aktif, berjalan, dan boot saat ini\nDalam metadata sesi yang tahan lama, default= adalah sesi aktif yang dipilih untuk resume berikutnya, sedangkan running= adalah sesi yang dicatat sebagai penyedia boot saat ini. Proses aktivasi menulis kedua field ini dan menandai sesi tersebut sebagai dirty.\nSetelah mount persistence hilang saat shutdown bersih, MiniOS menghapus running=dan menandai sesi tersebut sebagai clean.\nField metadata tersebut bisa saja usang setelah crash, kegagalan penulisan metadata, kegagalan pembuatan union, penyalinan store, atau shutdown yang terputus. Komponen runtime yang mengizinkan penyimpanan tidak hanya mempercayai running= saja. Mereka menggunakan status current-boot yang dilindungi oleh initrd, terikat pada boot ID, sesi numerik, mode, identitas store yang sebenarnya, status writable, durabilitas, generasi aktif yang terverifikasi, dan, untuk DynBlk, perangkat /dev/dynblkN yang terpasang secara persis. Jika catatan current-boot gagal atau hilang, persistence tidak boleh diperlakukan sebagai target penyimpanan yang disetujui.\nDengan perchtoram=trim atau full, container sesi yang didukung akan disalin ke tmpfs khusus sebelum aktivasi. Sesi yang disalin bisa writable dan dapat digunakan sebagai upper yang berjalan, namun status current-boot yang dilindungi menandainya sebagai non-durable dan mencatat ram-originidentitas untuk store asli. trim hanya menyalin sesi yang didukung dan metadata yang sesuai; full menyalin semua sesi Raw, DynFileFS, DynBlk, VMDK, atau SquashFS yang didukung di dalam store. Sesi direktori native tidak disertakan. Session Manager saat ini menggunakan ram-origin untuk menemukan store asli berdasarkan UUID filesystem dan dapat secara eksplisit menyimpan sesi yang berbasis RAM kembali atau sebagai sesi baru dengan nomor berbeda. Perubahan RAM yang belum disimpan tetap akan hilang jika tidak ada proses penulisan ulang yang berhasil.\nUntuk panduan operasional terkait, lihat Mode boot, Parameter boot, Sesi dan persistence, Mencadangkan MiniOS, Keamanan, dan Pemecahan masalah.\nReklamasi ruang berbasis sesi\nminios-session reclaim ID mendukung DynFileFS, DynBlk, dan sesi VMDK. Untuk sesi plaintext, FITRIM dijalankan pada filesystem ext4 internal, bukan pada root gabungan AUFS/OverlayFS, lalu operasi reclaim backend storage pemilik dipanggil. Reklamasi DynFileFS memerlukan DynFileFS versi 4.6.0 atau lebih baru.\nUntuk sesi DynFileFS yang sedang berjalan, Session Manager masuk ke namespace mount privat yang berumur pendek agar dapat mengakses virtual.dat di bawah overmount ext4 aktif tanpa mengganggu daemon sistem, perangkat loop, atau union mount yang sedang berjalan. Perangkat DynBlk/VMDK yang berjalan divalidasi terhadap status boot saat ini yang terlindungi. Sesi tidak aktif akan dilampirkan dan di-mount sementara; sesi yang sudah di-mount oleh Session Manager akan menggunakan lampiran yang sudah ada. Unmount yang sedang sibuk akan menghentikan proses teardown, bukan memutus storage di bawah filesystem yang sedang aktif.\nBaik saat boot maupun shutdown tidak menjalankan kompaksi secara otomatis.--compact adalah pilihan eksplisit pengguna di CLI atau opsi dialog Session Manager yang tidak dicentang dan dapat memindahkan data aktif, sehingga meningkatkan jumlah penulisan ke flash. Tanpa opsi ini, backend hanya mereklamasi ruang yang dapat dikembalikan tanpa memindahkan data aktif, seperti rentang yang bisa di-hole-punch atau ekor file yang benar-benar kosong; pada filesystem seperti exFAT, rentang bagian dalam yang telah dibebaskan tetap dapat digunakan ulang di dalam container meskipun tidak dapat dikembalikan ke host filesystem. Sesi terenkripsi hanya mereklamasi ruang yang sudah diketahui oleh backend dan tidak secara diam-diam mengaktifkan discard melalui dm-crypt.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

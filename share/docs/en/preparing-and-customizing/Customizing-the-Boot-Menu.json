@@ -242,7 +242,7 @@
                   [
                     [
                       "text",
-                      "perchdir=new"
+                      "perchdir=setup"
                     ]
                   ]
                 ]
@@ -253,7 +253,7 @@
               [
                 [
                   "text",
-                  "Create an additional numbered persistent session while keeping existing sessions unchanged."
+                  "Open the persistence-backend chooser, then create an additional numbered session while keeping existing sessions unchanged."
                 ]
               ]
             ]
@@ -292,21 +292,7 @@
               [
                 [
                   "text",
-                  "Select an existing saved session interactively. Use "
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Start a new session"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " on empty storage."
+                  "Select an existing saved session interactively; on empty storage MiniOS enters the same setup flow so the first session can be created."
                 ]
               ]
             ]
@@ -378,7 +364,21 @@
               [
                 [
                   "text",
-                  "Copy the complete MiniOS data tree to RAM and try to detach the source."
+                  "Copy MiniOS system data to RAM; with persistence, the default "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " separately copies the selected supported session."
                 ]
               ]
             ]
@@ -1772,7 +1772,7 @@
       ]
     ]
   ],
-  "plain_text": "Customizing the boot menu\nMiniOS boot menus provide convenient entries for common live boot modes. This guide explains how to select and edit those entries.\nOverview\nMiniOS images can use GRUB or Syslinux depending on firmware, image layout, and build. Their menu graphs, editing keys, language handling, and available entries are not necessarily identical. The bootloader ultimately passes a kernel command line to the same initrd; see Boot modes for the resulting source, persistence, RAM-copy, and media-dependency behavior.\nBoot Menu Options\nThe supplied image commonly presents these semantic choices, although titles, availability, order, and default selection can vary by image:\nMenu choice | Typical initrd selector | Purpose\nStart MiniOS | perchdir=resume | Try the default compatible session and permit replacement creation under the documented conditions.\nStart a new session | perchdir=new | Create an additional numbered persistent session while keeping existing sessions unchanged.\nChoose a saved session | perchdir=ask | Select an existing saved session interactively. Use Start a new session on empty storage.\nStart without saving | no persistence selector | Use a temporary writable layer in RAM.\nRun from RAM | toram | Copy the complete MiniOS data tree to RAM and try to detach the source.\nThese are selectors, not guarantees that storage is writable, a session is compatible, RAM is sufficient, or source media has detached. See Boot modes for behavior and combinations, Initrd persistence for selector edge cases, and Performance optimization for RAM and I/O tradeoffs.\nHow to Use the Boot Menu\nNavigating the Menu\nUse arrow keys to move between options\nPress Enter to select an option\nPress Esc to return to previous menu (in GRUB)\nAutomatic selection and timeout duration depend on the active menu configuration; some menus may wait indefinitely\nLanguage Selection (GRUB)\nIf your MiniOS USB drive supports multiple languages:\nThe first screen will show language options\nSelect your preferred language\nThe boot menu will appear in the selected language\nThe selection can also pass locale settings to later startup, but it does not guarantee that every boot or application message is translated\nImportant: The multilingual menu overrides any locale settings specified in config.conf. The language selected in the boot menu takes precedence over pre-configured locale settings. See Configuration File and live-config for details about system configuration files.\nCustomizing Boot Options\nEditing Boot Parameters Temporarily\nYou can modify boot options for a single boot session:\nIn GRUB:\nSelect the menu option you want to modify\nPress 'e' to edit\nNavigate to the line starting with linux\nAdd or modify parameters at the end of the line\nPress Ctrl+X or F10 to boot with your changes\nIn SYSLINUX:\nSelect the menu option you want\nPress Tab before pressing Enter\nAdd parameters to the command line that appears\nPress Enter to boot\nCommon Boot Parameter Modifications\ndebug - Show detailed boot messages (useful for troubleshooting)\ntoram=trim - Copy the filtered module set and limited required data to RAM\nperchsize=2000 - Set session storage size to 2GB (adjust as needed)\nlocales=ru_RU.UTF-8 - Request a specific language/locale\nFor a complete list of available boot parameters, see Boot Parameters.\nConfiguration File Locations\nOn Your MiniOS USB Drive\nGRUB configuration: /minios/boot/grub/grub.cfg\nSYSLINUX configuration: /minios/boot/syslinux/syslinux.cfg\nBoot images: /minios/boot/bootlogo.png\nLanguage files: /minios/boot/grub/locale/\nIn Running System\nCurrent boot parameters: /proc/cmdline\nMiniOS data directory: /run/initramfs/memory/data/minios/\nEditing Configuration Files\nWarning: Only edit boot configuration files if you understand what you're doing. Incorrect changes can make your USB drive unbootable.\nTo edit GRUB configuration:\nMount your MiniOS USB drive\nNavigate to /minios/boot/grub/\nEdit grub.cfg with a text editor\nSave and safely eject the USB drive\nCommon changes:\nModify the timeout directive used by the active GRUB or Syslinux menu\nChange set default=0 to change default menu option\nAdd custom menu entries",
+  "plain_text": "Customizing the boot menu\nMiniOS boot menus provide convenient entries for common live boot modes. This guide explains how to select and edit those entries.\nOverview\nMiniOS images can use GRUB or Syslinux depending on firmware, image layout, and build. Their menu graphs, editing keys, language handling, and available entries are not necessarily identical. The bootloader ultimately passes a kernel command line to the same initrd; see Boot modes for the resulting source, persistence, RAM-copy, and media-dependency behavior.\nBoot Menu Options\nThe supplied image commonly presents these semantic choices, although titles, availability, order, and default selection can vary by image:\nMenu choice | Typical initrd selector | Purpose\nStart MiniOS | perchdir=resume | Try the default compatible session and permit replacement creation under the documented conditions.\nStart a new session | perchdir=setup | Open the persistence-backend chooser, then create an additional numbered session while keeping existing sessions unchanged.\nChoose a saved session | perchdir=ask | Select an existing saved session interactively; on empty storage MiniOS enters the same setup flow so the first session can be created.\nStart without saving | no persistence selector | Use a temporary writable layer in RAM.\nRun from RAM | toram | Copy MiniOS system data to RAM; with persistence, the default perchtoram=trim separately copies the selected supported session.\nThese are selectors, not guarantees that storage is writable, a session is compatible, RAM is sufficient, or source media has detached. See Boot modes for behavior and combinations, Initrd persistence for selector edge cases, and Performance optimization for RAM and I/O tradeoffs.\nHow to Use the Boot Menu\nNavigating the Menu\nUse arrow keys to move between options\nPress Enter to select an option\nPress Esc to return to previous menu (in GRUB)\nAutomatic selection and timeout duration depend on the active menu configuration; some menus may wait indefinitely\nLanguage Selection (GRUB)\nIf your MiniOS USB drive supports multiple languages:\nThe first screen will show language options\nSelect your preferred language\nThe boot menu will appear in the selected language\nThe selection can also pass locale settings to later startup, but it does not guarantee that every boot or application message is translated\nImportant: The multilingual menu overrides any locale settings specified in config.conf. The language selected in the boot menu takes precedence over pre-configured locale settings. See Configuration File and live-config for details about system configuration files.\nCustomizing Boot Options\nEditing Boot Parameters Temporarily\nYou can modify boot options for a single boot session:\nIn GRUB:\nSelect the menu option you want to modify\nPress 'e' to edit\nNavigate to the line starting with linux\nAdd or modify parameters at the end of the line\nPress Ctrl+X or F10 to boot with your changes\nIn SYSLINUX:\nSelect the menu option you want\nPress Tab before pressing Enter\nAdd parameters to the command line that appears\nPress Enter to boot\nCommon Boot Parameter Modifications\ndebug - Show detailed boot messages (useful for troubleshooting)\ntoram=trim - Copy the filtered module set and limited required data to RAM\nperchsize=2000 - Set session storage size to 2GB (adjust as needed)\nlocales=ru_RU.UTF-8 - Request a specific language/locale\nFor a complete list of available boot parameters, see Boot Parameters.\nConfiguration File Locations\nOn Your MiniOS USB Drive\nGRUB configuration: /minios/boot/grub/grub.cfg\nSYSLINUX configuration: /minios/boot/syslinux/syslinux.cfg\nBoot images: /minios/boot/bootlogo.png\nLanguage files: /minios/boot/grub/locale/\nIn Running System\nCurrent boot parameters: /proc/cmdline\nMiniOS data directory: /run/initramfs/memory/data/minios/\nEditing Configuration Files\nWarning: Only edit boot configuration files if you understand what you're doing. Incorrect changes can make your USB drive unbootable.\nTo edit GRUB configuration:\nMount your MiniOS USB drive\nNavigate to /minios/boot/grub/\nEdit grub.cfg with a text editor\nSave and safely eject the USB drive\nCommon changes:\nModify the timeout directive used by the active GRUB or Syslinux menu\nChange set default=0 to change default menu option\nAdd custom menu entries",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

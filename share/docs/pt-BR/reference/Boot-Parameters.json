@@ -1,9 +1,9 @@
 {
   "headings": [
     {
-      "anchor": "parâmetros-de-inicialização",
+      "anchor": "parâmetros-de-boot",
       "level": 1,
-      "title": "Parâmetros de inicialização"
+      "title": "Parâmetros de boot"
     },
     {
       "anchor": "como-usar-parâmetros-de-boot",
@@ -21,7 +21,7 @@
       "title": "GRUB"
     },
     {
-      "anchor": "parâmetros-de-boot",
+      "anchor": "parâmetros-de-boot-1",
       "level": 2,
       "title": "Parâmetros de boot"
     },
@@ -31,20 +31,20 @@
       "title": "Considerações de segurança"
     },
     {
-      "anchor": "parâmetros-de-cache-de-sessão-persistente-e-log",
+      "anchor": "parâmetros-de-cache-e-log-de-sessões-persistentes",
       "level": 2,
-      "title": "Parâmetros de cache de sessão persistente e log"
+      "title": "Parâmetros de cache e log de sessões persistentes"
     }
   ],
   "nodes": [
     [
       "heading",
       1,
-      "parâmetros-de-inicialização",
+      "parâmetros-de-boot",
       [
         [
           "text",
-          "Parâmetros de inicialização"
+          "Parâmetros de boot"
         ]
       ]
     ],
@@ -111,7 +111,7 @@
                 ],
                 [
                   "text",
-                  " durante a sequência de boot MiniOS para acessar o menu de boot."
+                  " durante a sequência de boot do MiniOS para acessar o menu de boot."
                 ]
               ]
             ]
@@ -237,7 +237,7 @@
               [
                 [
                   "text",
-                  "Edite os parâmetros de inicialização ao final da linha de comando."
+                  "Edite os parâmetros de boot ao final da linha de comando."
                 ]
               ]
             ]
@@ -267,7 +267,7 @@
                 ],
                 [
                   "text",
-                  " para inicializar com as novas configurações."
+                  " para iniciar com as novas configurações."
                 ]
               ]
             ]
@@ -278,7 +278,7 @@
     [
       "heading",
       2,
-      "parâmetros-de-boot",
+      "parâmetros-de-boot-1",
       [
         [
           "text",
@@ -292,7 +292,7 @@
       [
         [
           "text",
-          "A coluna Aplicação diferencia parâmetros normalmente aceitos em todo boot das configurações de conta destinadas à configuração inicial. Com persistência, componentes do live-config normalmente são executados apenas uma vez; veja "
+          "A coluna Aplicação diferencia parâmetros normalmente aceitos em todo boot de configurações de conta destinadas à configuração inicial. Com persistência, componentes live-config normalmente são executados apenas uma vez; veja "
         ],
         [
           "link",
@@ -331,7 +331,7 @@
         ],
         [
           "text",
-          " formatos aceitos estão definidos em "
+          " formatos aceitos são definidos em "
         ],
         [
           "link",
@@ -473,7 +473,7 @@
               [
                 [
                   "text",
-                  "Carrega dados MiniOS de um diretório, caminho de dispositivo compatível ou ISO. Formatos UUID, PARTUUID e dispositivos by-id não são analisados. Um "
+                  "Carrega dados MiniOS de um diretório, caminho de dispositivo suportado ou ISO. Formatos UUID, PARTUUID e by-id de dispositivos não são analisados. Um "
                 ],
                 [
                   "span",
@@ -497,7 +497,7 @@
                 ],
                 [
                   "text",
-                  " tem precedência sobre "
+                  " URL tem precedência sobre "
                 ],
                 [
                   "span",
@@ -520,7 +520,7 @@
                   [
                     [
                       "text",
-                      "boot pela rede"
+                      "boot em rede"
                     ]
                   ]
                 ],
@@ -678,7 +678,7 @@
                 ],
                 [
                   "text",
-                  " cujo caminho corresponde a uma expressão regular estendida não ancorada; vírgulas viram alternância e um intervalo numérico inteiro crescente tem expansão especial. Também filtra "
+                  " cujo caminho corresponde a uma expressão regular estendida não ancorada; vírgulas se tornam alternância e um intervalo numérico inteiro crescente tem expansão especial. Também filtra "
                 ],
                 [
                   "span",
@@ -692,7 +692,7 @@
                 ],
                 [
                   "text",
-                  ". Pode excluir módulos essenciais ou do kernel e tornar o sistema não inicializável."
+                  ". Pode excluir módulos core ou do kernel e tornar o sistema não inicializável."
                 ]
               ]
             ],
@@ -816,7 +816,7 @@
                 ],
                 [
                   "text",
-                  " e pode excluir módulos essenciais ou do kernel."
+                  " e pode excluir módulos core ou do kernel."
                 ]
               ]
             ],
@@ -1144,7 +1144,7 @@
                 ],
                 [
                   "text",
-                  " (porta padrão HTTP PXE "
+                  " (porta HTTP PXE padrão "
                 ],
                 [
                   "span",
@@ -1172,7 +1172,7 @@
                 ],
                 [
                   "text",
-                  " tem prioridade sobre "
+                  " prevalece sobre "
                 ],
                 [
                   "span",
@@ -1186,7 +1186,7 @@
                 ],
                 [
                   "text",
-                  " e usa seus campos de endereçamento; caso contrário, qualquer valor não vazio de "
+                  " e usa seus campos de endereço; caso contrário, qualquer valor não vazio de "
                 ],
                 [
                   "span",
@@ -1406,7 +1406,7 @@
               [
                 [
                   "text",
-                  "Seleciona uma sessão de persistência numerada ou uma ação: "
+                  "Seleciona uma sessão de persistência numerada ou uma ação. "
                 ],
                 [
                   "span",
@@ -1420,7 +1420,21 @@
                 ],
                 [
                   "text",
-                  ", "
+                  " abre a sessão compatível padrão; "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "setup"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " escolhe interativamente o backend de armazenamento e então cria uma nova sessão numerada; "
                 ],
                 [
                   "span",
@@ -1434,7 +1448,21 @@
                 ],
                 [
                   "text",
-                  ", ou "
+                  " cria uma nova sessão diretamente a partir do "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchmode"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " solicitado/padrão, configurações de criptografia, compactação e tamanho; "
                 ],
                 [
                   "span",
@@ -1448,7 +1476,7 @@
                 ],
                 [
                   "text",
-                  ". Um seletor numérico inexistente pode recorrer ao valor padrão dos metadados; não reserva nem cria esse número. Um dispositivo/caminho ou "
+                  " oferece sessões salvas e entra automaticamente na configuração quando não há nenhuma existente. Um seletor numérico inexistente pode recorrer ao padrão de metadados; ele não reserva nem cria esse número. Um dispositivo/caminho ou "
                 ],
                 [
                   "span",
@@ -1490,6 +1518,20 @@
                     [
                       "text",
                       "perchdir=resume"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchdir=setup"
                     ]
                   ]
                 ],
@@ -1782,7 +1824,7 @@
                 ],
                 [
                   "text",
-                  " são convertidos para 1000 e 1.000.000 MiB. Sem um tamanho explícito, sessões criadas pelo initrd DynFileFS, DynBlk e VMDK usam até 16 GiB e reduzem esse padrão quando resta menos espaço disponível após "
+                  " são convertidos para 1000 e 1.000.000 MiB. Sem um tamanho explícito, sessões criadas pelo initrd DynFileFS, DynBlk e VMDK usam até 16 GiB e reduzem esse padrão quando resta menos espaço após "
                 ],
                 [
                   "span",
@@ -1796,7 +1838,7 @@
                 ],
                 [
                   "text",
-                  "; DynFileFS também considera a sobrecarga do índice e o limite RAM. DynBlk consulta o limite do backend instalado usando "
+                  "; DynFileFS também considera sua sobrecarga de índice e o limite de RAM. DynBlk consulta o limite do backend instalado usando "
                 ],
                 [
                   "span",
@@ -1824,7 +1866,7 @@
                 ],
                 [
                   "text",
-                  " para VMDK); não há limite separado de 512 GiB. O payload DynFileFS e os dados de suporte DynBlk crescem sob demanda, enquanto DynFileFS também reserva índices para a capacidade lógica declarada. Requisições Raw são limitadas a 1.000.000 MiB e pelo espaço disponível após "
+                  " para VMDK); não há limite separado de 512 GiB. O payload DynFileFS e os dados de suporte DynBlk crescem sob demanda, enquanto DynFileFS também reserva índices para a capacidade lógica declarada. Requisições raw são limitadas a 1.000.000 MiB e pelo espaço disponível após "
                 ],
                 [
                   "span",
@@ -1838,7 +1880,7 @@
                 ],
                 [
                   "text",
-                  "; Raw é limitado a 4000 MiB em FAT32, criptografado ou não. Novos contêineres raw têm padrão de 4000 MiB. O Gerenciador de sessões MiniOS ainda define contêineres DynFileFS criados manualmente para 4000 MiB e DynBlk/VMDK para 16 GiB. Veja "
+                  "; Raw é limitado a 4000 MiB em FAT32, criptografado ou não. Novos contêineres raw têm padrão de 4000 MiB. O Gerenciador de sessões MiniOS ainda define manualmente contêineres DynFileFS criados manualmente para 4000 MiB e DynBlk/VMDK para 16 GiB. Veja "
                 ],
                 [
                   "link",
@@ -1935,7 +1977,7 @@
               [
                 [
                   "text",
-                  "Margem de alocação e limite de aviso de pouco espaço em MiB. Esse valor é subtraído ao dimensionar contêineres novos ou em crescimento, mas não é uma cota em tempo de execução e não impede que gravações posteriores preencham o dispositivo. Padrão: 256; máximo: 4096."
+                  "Margem de alocação e limite de aviso de pouco espaço em MiB. Esse valor é subtraído ao dimensionar novos contêineres ou ao expandi-los, mas não é uma cota de tempo de execução e não impede que gravações posteriores preencham o dispositivo. Padrão: 256; máximo: 4096."
                 ]
               ]
             ],
@@ -2039,7 +2081,7 @@
                 ],
                 [
                   "text",
-                  ": contêiner expansível baseado em FUSE no formato 400, inclusive em FAT32, NTFS ou exFAT."
+                  ": o contêiner expansível baseado em FUSE no formato-400, inclusive em FAT32, NTFS ou exFAT."
                 ],
                 [
                   "text",
@@ -2057,7 +2099,7 @@
                 ],
                 [
                   "text",
-                  ": um dispositivo de bloco de kernel separado no formato 1, baseado em thin "
+                  ": um dispositivo de bloco de kernel separado no formato-1, baseado em thin "
                 ],
                 [
                   "span",
@@ -2071,7 +2113,7 @@
                 ],
                 [
                   "text",
-                  " arquivos; o número real de "
+                  " arquivos; o número real "
                 ],
                 [
                   "span",
@@ -2103,7 +2145,7 @@
                 ],
                 [
                   "text",
-                  ": arquivos padrão divididos e esparsos "
+                  ": arquivos sparse padrão divididos "
                 ],
                 [
                   "span",
@@ -2181,7 +2223,7 @@
                 ],
                 [
                   "text",
-                  ": um snapshot compactado descompactado em uma camada superior baseada em RAM. A configuração do initrd cria apenas os metadados da geração zero; o sistema em execução cria o primeiro snapshot sob demanda ou no desligamento."
+                  ": um snapshot compactado extraído para uma camada superior baseada em RAM. A configuração do initrd cria apenas os metadados da geração zero; o sistema em execução cria o primeiro snapshot sob demanda ou no desligamento."
                 ]
               ]
             ],
@@ -2305,7 +2347,7 @@
               [
                 [
                   "text",
-                  "Camada opcional de criptografia para uma nova "
+                  "Camada de criptografia opcional para um novo "
                 ],
                 [
                   "span",
@@ -2403,7 +2445,7 @@
                 ],
                 [
                   "text",
-                  ", portanto este parâmetro não reinterpreta nem converte essas sessões."
+                  ", portanto, este parâmetro não reinterpreta nem converte essas sessões."
                 ]
               ]
             ],
@@ -2707,7 +2749,7 @@
               [
                 [
                   "text",
-                  "Ativa o caminho legado de retomada da persistência. Diferente de "
+                  "Ativa o caminho de retomada de persistência legado. Diferente de "
                 ],
                 [
                   "span",
@@ -2775,7 +2817,21 @@
               [
                 [
                   "text",
-                  "Bare "
+                  "Controla a cópia do MiniOS "
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "dados do sistema"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " para RAM. Bare "
                 ],
                 [
                   "span",
@@ -2789,7 +2845,7 @@
                 ],
                 [
                   "text",
-                  " é "
+                  " copia "
                 ],
                 [
                   "span",
@@ -2803,7 +2859,7 @@
                 ],
                 [
                   "text",
-                  ". Com persistência, a cópia de nível superior do full "
+                  "; "
                 ],
                 [
                   "span",
@@ -2811,13 +2867,13 @@
                   [
                     [
                       "text",
-                      "*"
+                      "trim"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " omite arquivos ocultos; sem persistência, omite "
+                  " apenas a configuração necessária e o conjunto de módulos selecionados, omitindo dados de origem não relacionados. A cópia de persistência é controlada separadamente por "
                 ],
                 [
                   "span",
@@ -2825,13 +2881,13 @@
                   [
                     [
                       "text",
-                      "changes"
+                      "perchtoram"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " mas copia outras entradas de nível superior, incluindo arquivos ocultos. Trim copia os arquivos necessários "
+                  ". Quando a persistência é solicitada e "
                 ],
                 [
                   "span",
@@ -2839,13 +2895,13 @@
                   [
                     [
                       "text",
-                      "config.conf"
+                      "perchtoram"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  ", arquivo regular "
+                  " não está especificado, qualquer modo ativo de "
                 ],
                 [
                   "span",
@@ -2853,13 +2909,13 @@
                   [
                     [
                       "text",
-                      "authorized_keys"
+                      "toram"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  ", módulos selecionados de nível superior e recursivos, e toda a árvore "
+                  " define a cópia de persistência como padrão para "
                 ],
                 [
                   "span",
@@ -2867,69 +2923,13 @@
                   [
                     [
                       "text",
-                      "changes/"
+                      "trim"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  " quando a persistência é solicitada; omite "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "boot/"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ", "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "kernels/"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ", "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "rootcopy/"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ", "
-                ],
-                [
-                  "span",
-                  "code",
-                  [
-                    [
-                      "text",
-                      "config.conf.d/"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ", logs, outros dados que não sejam módulos e o nível separado de módulo de persistência. Nenhum modo verifica a capacidade de RAM antes. Um armazenamento de persistência copiado para RAM não é durável e as alterações não são copiadas de volta. Remova a mídia somente após confirmar que a origem, loops e mapeamentos foram desconectados com sucesso."
+                  ". Remova a mídia somente após confirmar que a origem, loops, mapeamentos e qualquer armazenamento de persistência necessário foram desconectados com sucesso."
                 ]
               ]
             ],
@@ -2971,6 +2971,186 @@
                     [
                       "text",
                       "toram=full"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "A cada inicialização com persistência"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Controla a cópia de sessões de persistência suportadas de forma independente dos "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "toram"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "dados do sistema: "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "off"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " mantém a sessão no armazenamento original, "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " copia apenas a sessão Raw, DynFileFS, DynBlk, VMDK ou SquashFS selecionada mais os metadados correspondentes, e "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "full"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " copia todas as sessões de container/SquashFS suportadas desse armazenamento. Sessões de diretório nativas não são copiadas. O padrão é "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " quando os dados do sistema "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "toram"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " estão ativos, caso contrário "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "off"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "; um valor explícito prevalece. Uma sessão copiada é marcada como não durável, mas o Session Manager atual pode salvar explicitamente alterações suportadas por RAM no armazenamento original ou como uma nova sessão quando esse armazenamento estiver disponível e ainda corresponder à identidade registrada."
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=off"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  "\n"
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=full"
                     ]
                   ]
                 ]
@@ -3065,7 +3245,7 @@
               [
                 [
                   "text",
-                  "Ativa a montagem automática de dispositivos de armazenamento."
+                  "Habilita a montagem automática de dispositivos de armazenamento."
                 ]
               ]
             ],
@@ -3173,7 +3353,7 @@
               [
                 [
                   "text",
-                  "Desativa o swap zram."
+                  "Desativa a troca zram."
                 ]
               ]
             ],
@@ -3227,7 +3407,7 @@
               [
                 [
                   "text",
-                  "Define o tamanho do swap zram em MiB. Se omitido, MiniOS calcula a partir do total de RAM."
+                  "Define o tamanho do swap zram em MiB. Se omitido, o MiniOS calcula a partir do total de RAM."
                 ]
               ]
             ],
@@ -4461,7 +4641,7 @@
               [
                 [
                   "text",
-                  "Define layouts de teclado separados por vírgula."
+                  "Define os layouts de teclado separados por vírgula."
                 ]
               ]
             ],
@@ -4515,7 +4695,7 @@
               [
                 [
                   "text",
-                  "Define variantes de teclado, separadas por vírgula, correspondentes aos layouts."
+                  "Define as variantes de teclado, separadas por vírgula, correspondentes aos layouts."
                 ]
               ]
             ],
@@ -4677,7 +4857,7 @@
               [
                 [
                   "text",
-                  "Impede que o live-config configure login automático no console e no modo gráfico; a configuração persistente existente não é removida."
+                  "Impede que o live-config configure o login automático no console e no ambiente gráfico; configurações persistentes já existentes não são removidas."
                 ]
               ]
             ],
@@ -4731,7 +4911,7 @@
               [
                 [
                   "text",
-                  "Impede apenas a configuração de login automático no console; a configuração persistente existente não é removida."
+                  "Impede apenas a configuração de login automático no console; configurações persistentes já existentes não são removidas."
                 ]
               ]
             ],
@@ -4785,7 +4965,7 @@
               [
                 [
                   "text",
-                  "Impede apenas a configuração de login automático no modo gráfico; a configuração persistente existente não é removida."
+                  "Impede apenas a configuração de login automático no ambiente gráfico; configurações persistentes já existentes não são removidas."
                 ]
               ]
             ],
@@ -4839,7 +5019,7 @@
               [
                 [
                   "text",
-                  "Seleciona um driver Xorg em vez de autodetecção."
+                  "Seleciona um driver Xorg em vez de usar a autodetecção."
                 ]
               ]
             ],
@@ -4893,7 +5073,7 @@
               [
                 [
                   "text",
-                  "Define a resolução do Xorg em vez de autodetecção."
+                  "Define a resolução do Xorg em vez de usar a autodetecção."
                 ]
               ]
             ],
@@ -5029,7 +5209,7 @@
                 ],
                 [
                   "text",
-                  " e indisponível com qualquer "
+                  " e indisponível com qualquer modo "
                 ],
                 [
                   "span",
@@ -5043,7 +5223,7 @@
                 ],
                 [
                   "text",
-                  " modo ou enquanto a sessão de persistência ativa estiver criptografada com LUKS. A criptografia ativa é determinada pela sessão em execução, não pela "
+                  " ou enquanto a sessão de persistência ativa estiver criptografada com LUKS. A criptografia ativa é determinada pela sessão em execução, não pela solicitação de criação de "
                 ],
                 [
                   "span",
@@ -5057,7 +5237,7 @@
                 ],
                 [
                   "text",
-                  " solicitação de criação."
+                  "."
                 ]
               ]
             ],
@@ -5111,7 +5291,7 @@
               [
                 [
                   "text",
-                  "Realiza bind-mount dos diretórios de usuário gerenciados a partir da mídia gravável MiniOS. Possui as mesmas "
+                  "Faz bind-mount dos diretórios de usuário gerenciados a partir da mídia gravável MiniOS. Possui as mesmas restrições de "
                 ],
                 [
                   "span",
@@ -5125,7 +5305,7 @@
                 ],
                 [
                   "text",
-                  " e restrições de criptografia de sessão ativa que "
+                  " e criptografia de sessão ativa que "
                 ],
                 [
                   "span",
@@ -5193,7 +5373,7 @@
               [
                 [
                   "text",
-                  "Define a localização relativa à mídia usada por "
+                  "Define o local relativo à mídia usado por "
                 ],
                 [
                   "span",
@@ -5289,7 +5469,7 @@
               [
                 [
                   "text",
-                  "Busca e executa hooks do sistema de arquivos, mídia live ou URLs suportadas pelo wget."
+                  "Busca e executa hooks do sistema de arquivos, da mídia live ou de URLs compatíveis com wget."
                 ]
               ]
             ],
@@ -5343,7 +5523,7 @@
       [
         [
           "text",
-          "A linha de comando do kernel é em texto simples e normalmente fica visível na configuração do bootloader, "
+          "A linha de comando do kernel é texto simples e normalmente fica visível na configuração do bootloader, "
         ],
         [
           "span",
@@ -5357,7 +5537,7 @@
         ],
         [
           "text",
-          ", e em diagnósticos. Não coloque segredos reutilizáveis em "
+          ", e diagnósticos. Não coloque segredos reutilizáveis em "
         ],
         [
           "span",
@@ -5385,7 +5565,7 @@
         ],
         [
           "text",
-          ". Prefira os parâmetros correspondentes de "
+          ". Prefira os parâmetros "
         ],
         [
           "span",
@@ -5399,7 +5579,7 @@
         ],
         [
           "text",
-          ", tratando ainda assim hashes de senha expostos como informações sensíveis."
+          " correspondentes, tratando ainda assim hashes de senha expostos como sensíveis."
         ]
       ]
     ],
@@ -5409,7 +5589,7 @@
       [
         [
           "text",
-          "Hooks são executados como código privilegiado de boot. Um "
+          "Hooks são executados como código privilegiado de boot. Um hook "
         ],
         [
           "span",
@@ -5423,7 +5603,7 @@
         ],
         [
           "text",
-          " hook não possui criptografia de transporte nem autenticação de servidor, então qualquer pessoa capaz de alterar o caminho da rede pode substituí-lo. Use apenas mecanismos de entrega e conteúdo em que confia; não utilize um hook HTTP sem autenticação para inicializações sensíveis à segurança."
+          " não possui criptografia de transporte nem autenticação de servidor, então qualquer pessoa capaz de alterar o caminho de rede pode substituí-lo. Use apenas conteúdos e mecanismos de entrega confiáveis; não utilize hooks HTTP não autenticados para inicialização sensível à segurança."
         ]
       ]
     ],
@@ -5433,7 +5613,7 @@
       [
         [
           "text",
-          "Separe os comandos com espaços. Consulte as "
+          "Separe comandos com espaços. Veja as "
         ],
         [
           "span",
@@ -5457,7 +5637,7 @@
       [
         [
           "text",
-          "Para informações detalhadas sobre os parâmetros do live-config, consulte "
+          "Para informações detalhadas sobre parâmetros do live-config, veja "
         ],
         [
           "link",
@@ -5482,7 +5662,7 @@
       [
         [
           "text",
-          "Para carregar MiniOS pela rede (PXE e ISO via HTTP), veja "
+          "Para carregar MiniOS pela rede (PXE e HTTP ISO), veja "
         ],
         [
           "link",
@@ -5491,7 +5671,7 @@
           [
             [
               "text",
-              "Inicialização pela rede"
+              "Boot pela rede"
             ]
           ]
         ],
@@ -5504,11 +5684,11 @@
     [
       "heading",
       2,
-      "parâmetros-de-cache-de-sessão-persistente-e-log",
+      "parâmetros-de-cache-e-log-de-sessões-persistentes",
       [
         [
           "text",
-          "Parâmetros de cache de sessão persistente e log"
+          "Parâmetros de cache e log de sessões persistentes"
         ]
       ]
     ],
@@ -5595,7 +5775,7 @@
               [
                 [
                   "text",
-                  "A cada inicialização, com "
+                  "Todo boot, com "
                 ],
                 [
                   "span",
@@ -5624,7 +5804,7 @@
                 ],
                 [
                   "text",
-                  " (padrão) ou "
+                  " durável (padrão) ou "
                 ],
                 [
                   "span",
@@ -5638,7 +5818,7 @@
                 ],
                 [
                   "text",
-                  ". No modo volátil, o journald utiliza até 32 MiB de RAM e o armazenamento comum "
+                  ". No modo volátil, o journald usa até 32 MiB de RAM e o "
                 ],
                 [
                   "span",
@@ -5652,7 +5832,7 @@
                 ],
                 [
                   "text",
-                  " utiliza um tmpfs de 32 MiB. "
+                  " comum usa um tmpfs de 32 MiB. "
                 ],
                 [
                   "span",
@@ -5680,7 +5860,7 @@
                 ],
                 [
                   "text",
-                  " os logs de inicialização permanecem no armazenamento persistente gravável. Um sistema de arquivos de log RAM cheio deixa de aceitar gravações ao invés de transbordar para o dispositivo USB."
+                  " logs de boot permanecem no armazenamento de persistência gravável. Um sistema de arquivos de log RAM cheio para de aceitar gravações em vez de transbordar para o dispositivo USB."
                 ]
               ]
             ],
@@ -5739,7 +5919,7 @@
               [
                 [
                   "text",
-                  "A cada inicialização, com "
+                  "Todo boot, com "
                 ],
                 [
                   "span",
@@ -5768,7 +5948,7 @@
                 ],
                 [
                   "text",
-                  " (padrão) ou "
+                  " durável (padrão) ou "
                 ],
                 [
                   "span",
@@ -5796,7 +5976,7 @@
                 ],
                 [
                   "text",
-                  ". O ponto de montagem RAM é de 256 ou 512 MiB quando há memória suficiente disponível e não há swap fora do zRAM ativo; downloads grandes podem esgotar esse espaço. "
+                  ". O ponto de montagem RAM é de 256 ou 512 MiB quando há memória suficiente e nenhum swap não-zRAM está ativo; downloads grandes podem esgotá-lo. "
                 ],
                 [
                   "span",
@@ -5869,7 +6049,7 @@
               [
                 [
                   "text",
-                  "A cada inicialização, com "
+                  "Todo boot, com "
                 ],
                 [
                   "span",
@@ -5898,7 +6078,7 @@
                 ],
                 [
                   "text",
-                  " (padrão) ou "
+                  " durável (padrão) ou "
                 ],
                 [
                   "span",
@@ -5912,7 +6092,7 @@
                 ],
                 [
                   "text",
-                  " para caches nativos padrão do navegador. Após o usuário live encerrar a sessão, determinados "
+                  " para caches padrão de navegador nativo. Após a existência do usuário live, subdiretórios selecionados de "
                 ],
                 [
                   "span",
@@ -5926,7 +6106,7 @@
                 ],
                 [
                   "text",
-                  " subdiretórios utilizam um tmpfs compartilhado de 512 MiB, e o cache em disco do Firefox é desativado por uma política de sistema gerenciada quando não há outro arquivo de política do Firefox presente. Perfis e caches de aplicativos não relacionados permanecem persistentes."
+                  " usam um tmpfs compartilhado de 512 MiB, e o cache em disco do Firefox é desabilitado por uma política de sistema gerenciada quando não há outro arquivo de política do Firefox presente. Perfis e caches de aplicativos não relacionados permanecem persistentes."
                 ]
               ]
             ],
@@ -5955,7 +6135,7 @@
       [
         [
           "text",
-          "Os três parâmetros de política de armazenamento são interpretados pelo "
+          "Os três parâmetros de política de armazenamento são interpretados por "
         ],
         [
           "span",
@@ -5969,7 +6149,7 @@
         ],
         [
           "text",
-          " antes do sistema de inicialização padrão, "
+          " antes do sistema init normal, "
         ],
         [
           "span",
@@ -5983,7 +6163,7 @@
         ],
         [
           "text",
-          " pelo seletor de persistência antecipada. Eles não ativam "
+          " pelo seletor de persistência antecipado. Eles não habilitam "
         ],
         [
           "span",
@@ -5997,7 +6177,7 @@
         ],
         [
           "text",
-          " e só têm efeito após a ativação bem-sucedida da persistência durável. Um initrd compatível anuncia "
+          " e só têm efeito após ativação bem-sucedida da persistência durável. Um initrd compatível anuncia "
         ],
         [
           "span",
@@ -6025,7 +6205,7 @@
         ],
         [
           "text",
-          ". O Configurador e o "
+          ". Configurador e "
         ],
         [
           "span",
@@ -6059,7 +6239,7 @@
       ]
     ]
   ],
-  "plain_text": "Parâmetros de inicialização\nComo usar parâmetros de boot\nOs parâmetros de boot personalizam como o MiniOS é iniciado. Separe os parâmetros com espaços na linha de comando do kernel.\nSyslinux\nPressione Esc durante a sequência de boot MiniOS para acessar o menu de boot.\nPressione Tab para editar as opções de boot.\nDigite os parâmetros e pressione Enter para iniciar.\nGRUB\nPressione E no menu do GRUB.\nEdite os parâmetros de inicialização ao final da linha de comando.\nPressione F10 para inicializar com as novas configurações.\nParâmetros de boot\nA coluna Aplicação diferencia parâmetros normalmente aceitos em todo boot das configurações de conta destinadas à configuração inicial. Com persistência, componentes do live-config normalmente são executados apenas uma vez; veja live-config.\nEsta tabela serve como referência rápida. A precedência das fontes e os from= formatos aceitos estão definidos em Descoberta do sistema Initrd, filtragem de módulos em Carregamento de módulos Initrd, seleção de persistência em Persistência Initrd, e combinações suportadas em Modos de boot.\nParâmetro | Aplicação | Descrição | Exemplo\nfrom | Todo boot | Carrega dados MiniOS de um diretório, caminho de dispositivo compatível ou ISO. Formatos UUID, PARTUUID e dispositivos by-id não são analisados. Um http:// literal apenas tem precedência sobre ip= e inicia o boot pela rede via httpfs2. | from=/minios/\nfrom=/Downloads/minios.iso\nfrom=http://domain.com/minios.iso\nfrom=/dev/sr0/minios\nfrom=/dev/disk/by-label/MyFlash/minios\nfrom=askdisk\nfrom=askdisk:customdir\nload | Todo boot | Mantém os candidatos .sb cujo caminho corresponde a uma expressão regular estendida não ancorada; vírgulas viram alternância e um intervalo numérico inteiro crescente tem expansão especial. Também filtra toram=trim. Pode excluir módulos essenciais ou do kernel e tornar o sistema não inicializável. | load=00-core\nload=core,kernel,firmware\nload=00,01,02\nload=00-03\nnoload | Todo boot | Exclui candidatos cujo caminho corresponde a uma expressão regular estendida não ancorada, inclusive de toram=trim; é aplicado após load e pode excluir módulos essenciais ou do kernel. | noload=05-xfce-apps\nnoload=xfce-apps,firefox\nnoload=05,06\nnoload=04-06\nbext | Todo boot | Define a extensão do bundle. Padrão: sb. A coordenação com o kernel ainda usa nomes .sb literais, então uma extensão personalizada não pode coordenar o módulo 01-kernel. | bext=mymod\ntiming | Todo boot | Ativa a saída de tempo de inicialização. | timing\nunion | A cada inicialização | Seleciona o sistema de arquivos union. | union=aufs\nunion=overlayfs\nip | A cada inicialização | Endereço estático para busca de rede antecipada. Formato: <client-ip>:<server-ip>:<gateway-ip>:<netmask>[:<port>] (porta padrão HTTP PXE 7529). Um valor literal from=http://... tem prioridade sobre ip= e usa seus campos de endereçamento; caso contrário, qualquer valor não vazio de ip= força o download de dados PXE e ignora a mídia local. Isso não é uma configuração de sessão do NetworkManager. Veja Inicialização pela rede. | ip=192.168.1.10:192.168.1.1:192.168.1.1:255.255.255.0\ncache | A cada inicialização | Tamanho do cache httpfs em MiB para inicialização de rede HTTP ISO (from=http://…). Veja Inicialização pela rede. | cache=512\nrd.break | A cada inicialização | Abre um shell de depuração ao final da etapa initramfs. | rd.break\nperchdir | A cada inicialização | Seleciona uma sessão de persistência numerada ou uma ação: resume, new, ou ask. Um seletor numérico inexistente pode recorrer ao valor padrão dos metadados; não reserva nem cria esse número. Um dispositivo/caminho ou askdisk seleciona outro local de persistência. Use um sufixo separado por dois-pontos para um caminho personalizado. Sem um parâmetro de persistência, MiniOS inicia limpo. | perchdir=1\nperchdir=resume\nperchdir=new\nperchdir=ask\nperchdir=/dev/sda1/changes\nperchdir=/dev/disk/by-label/MyFlash/changes\nperchdir=askdisk\nperchdir=askdisk:customdir\nperchsize | A cada inicialização | Tamanho lógico do contêiner para dynfilefs, dynblk, vmdk, e raw; não se aplica a native ou squashfs. Um número simples ou M/MB é alocado em MiB; G/GB e T/TB são convertidos para 1000 e 1.000.000 MiB. Sem um tamanho explícito, sessões criadas pelo initrd DynFileFS, DynBlk e VMDK usam até 16 GiB e reduzem esse padrão quando resta menos espaço disponível após perchreserve; DynFileFS também considera a sobrecarga do índice e o limite RAM. DynBlk consulta o limite do backend instalado usando dynblk limits --format dynblk (ou --format vmdk para VMDK); não há limite separado de 512 GiB. O payload DynFileFS e os dados de suporte DynBlk crescem sob demanda, enquanto DynFileFS também reserva índices para a capacidade lógica declarada. Requisições Raw são limitadas a 1.000.000 MiB e pelo espaço disponível após perchreserve; Raw é limitado a 4000 MiB em FAT32, criptografado ou não. Novos contêineres raw têm padrão de 4000 MiB. O Gerenciador de sessões MiniOS ainda define contêineres DynFileFS criados manualmente para 4000 MiB e DynBlk/VMDK para 16 GiB. Veja Persistência initrd para comportamento de memória e armazenamento do backend. | perchsize=4000\nperchsize=32GB\nperchsize=512GB\nperchreserve | A cada inicialização | Margem de alocação e limite de aviso de pouco espaço em MiB. Esse valor é subtraído ao dimensionar contêineres novos ou em crescimento, mas não é uma cota em tempo de execução e não impede que gravações posteriores preencham o dispositivo. Padrão: 256; máximo: 4096. | perchreserve=512\nperchreserve=1024\nperchmode | A cada inicialização | Modo de armazenamento persistente.\nnative (padrão): um diretório em um sistema de arquivos POSIX gravável.\ndynfilefs: contêiner expansível baseado em FUSE no formato 400, inclusive em FAT32, NTFS ou exFAT.\ndynblk: um dispositivo de bloco de kernel separado no formato 1, baseado em thin volumeNNN.db arquivos; o número real de /dev/dynblkN é alocado dinamicamente e vários volumes podem coexistir.\nvmdk: arquivos padrão divididos e esparsos volume.vmdk / volume-sNNN.vmdk arquivos expostos pelo driver DynBlk; sem compactação. Requer a capacidade versionada de vmdk-session-v1 initrd.\nraw: uma imagem ext4 de tamanho fixo.\nsquashfs: um snapshot compactado descompactado em uma camada superior baseada em RAM. A configuração do initrd cria apenas os metadados da geração zero; o sistema em execução cria o primeiro snapshot sob demanda ou no desligamento. | perchmode=native\nperchmode=dynfilefs\nperchmode=dynblk\nperchmode=vmdk\nperchmode=raw\nperchmode=squashfs\nperchencrypt | Somente na criação | Camada opcional de criptografia para uma nova raw, dynfilefs, dynblk, ou vmdk sessão. perchencrypt=luks requer a capacidade versionada de luks-layer-v1 initramfs. Sessões existentes derivam a criptografia apenas de session_encryption[N], portanto este parâmetro não reinterpreta nem converte essas sessões. | perchmode=raw perchencrypt=luks\nperchmode=dynfilefs perchencrypt=luks\nperchmode=dynblk perchencrypt=luks\nperchcomp | Somente na criação | Seleciona a compactação de backend DynBlk para uma nova sessão DynBlk: none, lz4, lz4hc, lzo, lzo-rle, zstd, deflate, ou 842. O codec do kernel selecionado deve estar disponível. Quando perchencrypt=luks envolve DynBlk, MiniOS força a compactação DynBlk para none. VMDK não possui compactação: a inicialização ignora um codec não-none com um aviso. | perchmode=dynblk perchcomp=lz4\nperchmode=dynblk perchcomp=zstd\nperch | A cada inicialização | Ativa o caminho legado de retomada da persistência. Diferente de perchdir=resume, não cria automaticamente um substituto compatível quando não existe uma sessão padrão utilizável. | perch\ntoram | A cada inicialização | Bare toram é full. Com persistência, a cópia de nível superior do full * omite arquivos ocultos; sem persistência, omite changes mas copia outras entradas de nível superior, incluindo arquivos ocultos. Trim copia os arquivos necessários config.conf, arquivo regular authorized_keys, módulos selecionados de nível superior e recursivos, e toda a árvore changes/ quando a persistência é solicitada; omite boot/, kernels/, rootcopy/, config.conf.d/, logs, outros dados que não sejam módulos e o nível separado de módulo de persistência. Nenhum modo verifica a capacidade de RAM antes. Um armazenamento de persistência copiado para RAM não é durável e as alterações não são copiadas de volta. Remova a mídia somente após confirmar que a origem, loops e mapeamentos foram desconectados com sucesso. | toram\ntoram=trim\ntoram=full\ntext | A cada inicialização | Inicia no modo console de texto. | text\nautomount | A cada inicialização | Ativa a montagem automática de dispositivos de armazenamento. | automount\ndebug | A cada inicialização | Ativa diagnósticos adicionais na inicialização. | debug\nnozram | A cada inicialização | Desativa o swap zram. | nozram\nzramsize | A cada inicialização | Define o tamanho do swap zram em MiB. Se omitido, MiniOS calcula a partir do total de RAM. | zramsize=512\nzramsize=2048\nzramcomp | A cada inicialização | Seleciona lzo, lzo-rle, lz4, lz4hc, ou zstd; a disponibilidade depende do kernel em execução. Se omitido, o padrão do kernel é mantido. | zramcomp=lzo\nzramcomp=lz4\ndefault-target | A cada inicialização | Define o target padrão do systemd. | default-target=multi-user\ndefault-target=rescue\nenable-services | A cada inicialização | Ativa os serviços systemd especificados na inicialização. | enable-services=ssh,docker\nenable-services=ssh\ndisable-services | A cada inicialização | Desativa os serviços systemd especificados na inicialização. | disable-services=apache2\ndisable-services=nginx\nnovirtres | A cada inicialização | Desativa alterações automáticas de resolução de tela em máquinas virtuais. O padrão do XFCE é 1280x800. | novirtres\nvirtres | A cada inicialização | Define a resolução de tela do XFCE em máquinas virtuais. | virtres=1920x1080\nvirtres=1024x768\ncomponents | A cada inicialização | Executa apenas os componentes live-config listados, na ordem dos componentes. | components=hostname,user-setup,sudo\nnocomponents | A cada inicialização | Executa todos os componentes live-config, exceto os listados. | nocomponents=anacron,apport\nhostname | A cada inicialização | Define o nome do host do sistema. | hostname=minios\nusername | Configuração inicial | Define o nome de usuário criado para login automático. | username=live\nuser-default-groups | Configuração inicial | Define os grupos padrão do usuário criado. | user-default-groups=audio,cdrom,video\nuser-fullname | Configuração inicial | Define o nome completo do usuário criado. | user-fullname=\"MiniOS Live User\"\nroot-password | Configuração inicial | Define a senha do root em texto simples. | root-password=toor\nroot-password-crypted | Configuração inicial | Define a senha do root como um hash crypt. | root-password-crypted=$y$j9T$...\nuser-password | Configuração inicial | Define a senha do usuário em texto simples. | user-password=live\nuser-password-crypted | Configuração inicial | Define a senha do usuário como um hash crypt. | user-password-crypted=$y$j9T$...\nlocales | A cada inicialização | Define um ou mais locais do sistema. | locales=en_US.UTF-8\ntimezone | A cada inicialização | Define o fuso horário do sistema. | timezone=Europe/Berlin\nkeyboard-model | A cada inicialização | Define o modelo do teclado. | keyboard-model=pc105\nkeyboard-layouts | A cada inicialização | Define layouts de teclado separados por vírgula. | keyboard-layouts=us,de\nkeyboard-variants | A cada inicialização | Define variantes de teclado, separadas por vírgula, correspondentes aos layouts. | keyboard-variants=,dvorak\nkeyboard-options | A cada inicialização | Define as opções do teclado. | keyboard-options=grp:alt_shift_toggle\nnoroot | Configuração inicial | Impede que o live-config conceda privilégios de sudo e policykit. | noroot\nnoautologin | A cada inicialização | Impede que o live-config configure login automático no console e no modo gráfico; a configuração persistente existente não é removida. | noautologin\nnottyautologin | A cada inicialização | Impede apenas a configuração de login automático no console; a configuração persistente existente não é removida. | nottyautologin\nnox11autologin | A cada inicialização | Impede apenas a configuração de login automático no modo gráfico; a configuração persistente existente não é removida. | nox11autologin\nxorg-driver | A cada inicialização | Seleciona um driver Xorg em vez de autodetecção. | xorg-driver=nouveau\nxorg-resolution | A cada inicialização | Define a resolução do Xorg em vez de autodetecção. | xorg-resolution=1920x1080\nmodule-mode | A cada inicialização | Com merged, integra as alterações de configuração ao sistema live em execução. | module-mode=merged\nlink-user-dirs | A cada inicialização | Vincula os diretórios de usuário gerenciados à mídia gravável MiniOS. É mutuamente exclusivo com bind-user-dirs e indisponível com qualquer toram modo ou enquanto a sessão de persistência ativa estiver criptografada com LUKS. A criptografia ativa é determinada pela sessão em execução, não pela perchencrypt solicitação de criação. | link-user-dirs\nbind-user-dirs | A cada inicialização | Realiza bind-mount dos diretórios de usuário gerenciados a partir da mídia gravável MiniOS. Possui as mesmas toram e restrições de criptografia de sessão ativa que link-user-dirs. | bind-user-dirs\nuser-dirs-path | A cada inicialização | Define a localização relativa à mídia usada por link-user-dirs ou bind-user-dirs. Padrão: /minios/userdata. | user-dirs-path=/minios/userdata\nhooks | A cada inicialização | Busca e executa hooks do sistema de arquivos, mídia live ou URLs suportadas pelo wget. | hooks=filesystem\nhooks=http://example.com/script.sh\nConsiderações de segurança\nA linha de comando do kernel é em texto simples e normalmente fica visível na configuração do bootloader, /proc/cmdline, e em diagnósticos. Não coloque segredos reutilizáveis em root-password= ou user-password=. Prefira os parâmetros correspondentes de *-crypted, tratando ainda assim hashes de senha expostos como informações sensíveis.\nHooks são executados como código privilegiado de boot. Um http:// hook não possui criptografia de transporte nem autenticação de servidor, então qualquer pessoa capaz de alterar o caminho da rede pode substituí-lo. Use apenas mecanismos de entrega e conteúdo em que confia; não utilize um hook HTTP sem autenticação para inicializações sensíveis à segurança.\nSepare os comandos com espaços. Consulte as man bootparam páginas de referência para parâmetros adicionais do kernel comuns a todas as distribuições Linux.\nPara informações detalhadas sobre os parâmetros do live-config, consulte live-config.\nPara carregar MiniOS pela rede (PXE e ISO via HTTP), veja Inicialização pela rede.\nParâmetros de cache de sessão persistente e log\nParâmetro | Aplicação | Descrição | Exemplo\nlog-storage ou live-config.log-storage | A cada inicialização, com perch | persistent (padrão) ou volatile. No modo volátil, o journald utiliza até 32 MiB de RAM e o armazenamento comum /var/log utiliza um tmpfs de 32 MiB. minios-boot e live-config os logs de inicialização permanecem no armazenamento persistente gravável. Um sistema de arquivos de log RAM cheio deixa de aceitar gravações ao invés de transbordar para o dispositivo USB. | log-storage=volatile\napt-cache ou live-config.apt-cache | A cada inicialização, com perch | persistent (padrão) ou volatile para /var/cache/apt/archives. O ponto de montagem RAM é de 256 ou 512 MiB quando há memória suficiente disponível e não há swap fora do zRAM ativo; downloads grandes podem esgotar esse espaço. /var/lib/apt/lists e o estado do dpkg permanecem persistentes. | apt-cache=volatile\nbrowser-cache ou live-config.browser-cache | A cada inicialização, com perch | persistent (padrão) ou volatile para caches nativos padrão do navegador. Após o usuário live encerrar a sessão, determinados ~/.cache subdiretórios utilizam um tmpfs compartilhado de 512 MiB, e o cache em disco do Firefox é desativado por uma política de sistema gerenciada quando não há outro arquivo de política do Firefox presente. Perfis e caches de aplicativos não relacionados permanecem persistentes. | browser-cache=volatile\nOs três parâmetros de política de armazenamento são interpretados pelo minios-boot antes do sistema de inicialização padrão, não pelo seletor de persistência antecipada. Eles não ativam perch e só têm efeito após a ativação bem-sucedida da persistência durável. Um initrd compatível anuncia perch-storage-v1 em /run/initramfs/etc/minios-initramfs-storage. O Configurador e o config.conf oferecem as mesmas opções; veja Desempenho para limites, precedência e observações sobre instalação de navegador.",
+  "plain_text": "Parâmetros de boot\nComo usar parâmetros de boot\nOs parâmetros de boot personalizam como o MiniOS é iniciado. Separe os parâmetros com espaços na linha de comando do kernel.\nSyslinux\nPressione Esc durante a sequência de boot do MiniOS para acessar o menu de boot.\nPressione Tab para editar as opções de boot.\nDigite os parâmetros e pressione Enter para iniciar.\nGRUB\nPressione E no menu do GRUB.\nEdite os parâmetros de boot ao final da linha de comando.\nPressione F10 para iniciar com as novas configurações.\nParâmetros de boot\nA coluna Aplicação diferencia parâmetros normalmente aceitos em todo boot de configurações de conta destinadas à configuração inicial. Com persistência, componentes live-config normalmente são executados apenas uma vez; veja live-config.\nEsta tabela serve como referência rápida. A precedência das fontes e os from= formatos aceitos são definidos em Descoberta do sistema Initrd, filtragem de módulos em Carregamento de módulos Initrd, seleção de persistência em Persistência Initrd, e combinações suportadas em Modos de boot.\nParâmetro | Aplicação | Descrição | Exemplo\nfrom | Todo boot | Carrega dados MiniOS de um diretório, caminho de dispositivo suportado ou ISO. Formatos UUID, PARTUUID e by-id de dispositivos não são analisados. Um http:// literal apenas URL tem precedência sobre ip= e inicia o boot em rede via httpfs2. | from=/minios/\nfrom=/Downloads/minios.iso\nfrom=http://domain.com/minios.iso\nfrom=/dev/sr0/minios\nfrom=/dev/disk/by-label/MyFlash/minios\nfrom=askdisk\nfrom=askdisk:customdir\nload | Todo boot | Mantém os candidatos .sb cujo caminho corresponde a uma expressão regular estendida não ancorada; vírgulas se tornam alternância e um intervalo numérico inteiro crescente tem expansão especial. Também filtra toram=trim. Pode excluir módulos core ou do kernel e tornar o sistema não inicializável. | load=00-core\nload=core,kernel,firmware\nload=00,01,02\nload=00-03\nnoload | Todo boot | Exclui candidatos cujo caminho corresponde a uma expressão regular estendida não ancorada, inclusive de toram=trim; é aplicado após load e pode excluir módulos core ou do kernel. | noload=05-xfce-apps\nnoload=xfce-apps,firefox\nnoload=05,06\nnoload=04-06\nbext | Todo boot | Define a extensão do bundle. Padrão: sb. A coordenação com o kernel ainda usa nomes .sb literais, então uma extensão personalizada não pode coordenar o módulo 01-kernel. | bext=mymod\ntiming | Todo boot | Ativa a saída de tempo de inicialização. | timing\nunion | A cada inicialização | Seleciona o sistema de arquivos union. | union=aufs\nunion=overlayfs\nip | A cada inicialização | Endereço estático para busca de rede antecipada. Formato: <client-ip>:<server-ip>:<gateway-ip>:<netmask>[:<port>] (porta HTTP PXE padrão 7529). Um valor literal from=http://... prevalece sobre ip= e usa seus campos de endereço; caso contrário, qualquer valor não vazio de ip= força o download de dados PXE e ignora a mídia local. Isso não é uma configuração de sessão do NetworkManager. Veja Inicialização pela rede. | ip=192.168.1.10:192.168.1.1:192.168.1.1:255.255.255.0\ncache | A cada inicialização | Tamanho do cache httpfs em MiB para inicialização de rede HTTP ISO (from=http://…). Veja Inicialização pela rede. | cache=512\nrd.break | A cada inicialização | Abre um shell de depuração ao final da etapa initramfs. | rd.break\nperchdir | A cada inicialização | Seleciona uma sessão de persistência numerada ou uma ação. resume abre a sessão compatível padrão; setup escolhe interativamente o backend de armazenamento e então cria uma nova sessão numerada; new cria uma nova sessão diretamente a partir do perchmode solicitado/padrão, configurações de criptografia, compactação e tamanho; ask oferece sessões salvas e entra automaticamente na configuração quando não há nenhuma existente. Um seletor numérico inexistente pode recorrer ao padrão de metadados; ele não reserva nem cria esse número. Um dispositivo/caminho ou askdisk seleciona outro local de persistência. Use um sufixo separado por dois-pontos para um caminho personalizado. Sem um parâmetro de persistência, MiniOS inicia limpo. | perchdir=1\nperchdir=resume\nperchdir=setup\nperchdir=new\nperchdir=ask\nperchdir=/dev/sda1/changes\nperchdir=/dev/disk/by-label/MyFlash/changes\nperchdir=askdisk\nperchdir=askdisk:customdir\nperchsize | A cada inicialização | Tamanho lógico do contêiner para dynfilefs, dynblk, vmdk, e raw; não se aplica a native ou squashfs. Um número simples ou M/MB é alocado em MiB; G/GB e T/TB são convertidos para 1000 e 1.000.000 MiB. Sem um tamanho explícito, sessões criadas pelo initrd DynFileFS, DynBlk e VMDK usam até 16 GiB e reduzem esse padrão quando resta menos espaço após perchreserve; DynFileFS também considera sua sobrecarga de índice e o limite de RAM. DynBlk consulta o limite do backend instalado usando dynblk limits --format dynblk (ou --format vmdk para VMDK); não há limite separado de 512 GiB. O payload DynFileFS e os dados de suporte DynBlk crescem sob demanda, enquanto DynFileFS também reserva índices para a capacidade lógica declarada. Requisições raw são limitadas a 1.000.000 MiB e pelo espaço disponível após perchreserve; Raw é limitado a 4000 MiB em FAT32, criptografado ou não. Novos contêineres raw têm padrão de 4000 MiB. O Gerenciador de sessões MiniOS ainda define manualmente contêineres DynFileFS criados manualmente para 4000 MiB e DynBlk/VMDK para 16 GiB. Veja Persistência initrd para comportamento de memória e armazenamento do backend. | perchsize=4000\nperchsize=32GB\nperchsize=512GB\nperchreserve | A cada inicialização | Margem de alocação e limite de aviso de pouco espaço em MiB. Esse valor é subtraído ao dimensionar novos contêineres ou ao expandi-los, mas não é uma cota de tempo de execução e não impede que gravações posteriores preencham o dispositivo. Padrão: 256; máximo: 4096. | perchreserve=512\nperchreserve=1024\nperchmode | A cada inicialização | Modo de armazenamento persistente.\nnative (padrão): um diretório em um sistema de arquivos POSIX gravável.\ndynfilefs: o contêiner expansível baseado em FUSE no formato-400, inclusive em FAT32, NTFS ou exFAT.\ndynblk: um dispositivo de bloco de kernel separado no formato-1, baseado em thin volumeNNN.db arquivos; o número real /dev/dynblkN é alocado dinamicamente e vários volumes podem coexistir.\nvmdk: arquivos sparse padrão divididos volume.vmdk / volume-sNNN.vmdk arquivos expostos pelo driver DynBlk; sem compactação. Requer a capacidade versionada de vmdk-session-v1 initrd.\nraw: uma imagem ext4 de tamanho fixo.\nsquashfs: um snapshot compactado extraído para uma camada superior baseada em RAM. A configuração do initrd cria apenas os metadados da geração zero; o sistema em execução cria o primeiro snapshot sob demanda ou no desligamento. | perchmode=native\nperchmode=dynfilefs\nperchmode=dynblk\nperchmode=vmdk\nperchmode=raw\nperchmode=squashfs\nperchencrypt | Somente na criação | Camada de criptografia opcional para um novo raw, dynfilefs, dynblk, ou vmdk sessão. perchencrypt=luks requer a capacidade versionada de luks-layer-v1 initramfs. Sessões existentes derivam a criptografia apenas de session_encryption[N], portanto, este parâmetro não reinterpreta nem converte essas sessões. | perchmode=raw perchencrypt=luks\nperchmode=dynfilefs perchencrypt=luks\nperchmode=dynblk perchencrypt=luks\nperchcomp | Somente na criação | Seleciona a compactação de backend DynBlk para uma nova sessão DynBlk: none, lz4, lz4hc, lzo, lzo-rle, zstd, deflate, ou 842. O codec do kernel selecionado deve estar disponível. Quando perchencrypt=luks envolve DynBlk, MiniOS força a compactação DynBlk para none. VMDK não possui compactação: a inicialização ignora um codec não-none com um aviso. | perchmode=dynblk perchcomp=lz4\nperchmode=dynblk perchcomp=zstd\nperch | A cada inicialização | Ativa o caminho de retomada de persistência legado. Diferente de perchdir=resume, não cria automaticamente um substituto compatível quando não existe uma sessão padrão utilizável. | perch\ntoram | A cada inicialização | Controla a cópia do MiniOS dados do sistema para RAM. Bare toram copia full; trim apenas a configuração necessária e o conjunto de módulos selecionados, omitindo dados de origem não relacionados. A cópia de persistência é controlada separadamente por perchtoram. Quando a persistência é solicitada e perchtoram não está especificado, qualquer modo ativo de toram define a cópia de persistência como padrão para trim. Remova a mídia somente após confirmar que a origem, loops, mapeamentos e qualquer armazenamento de persistência necessário foram desconectados com sucesso. | toram\ntoram=trim\ntoram=full\nperchtoram | A cada inicialização com persistência | Controla a cópia de sessões de persistência suportadas de forma independente dos toramdados do sistema: off mantém a sessão no armazenamento original, trim copia apenas a sessão Raw, DynFileFS, DynBlk, VMDK ou SquashFS selecionada mais os metadados correspondentes, e full copia todas as sessões de container/SquashFS suportadas desse armazenamento. Sessões de diretório nativas não são copiadas. O padrão é trim quando os dados do sistema toram estão ativos, caso contrário off; um valor explícito prevalece. Uma sessão copiada é marcada como não durável, mas o Session Manager atual pode salvar explicitamente alterações suportadas por RAM no armazenamento original ou como uma nova sessão quando esse armazenamento estiver disponível e ainda corresponder à identidade registrada. | perchtoram=off\nperchtoram=trim\nperchtoram=full\ntext | A cada inicialização | Inicia no modo console de texto. | text\nautomount | A cada inicialização | Habilita a montagem automática de dispositivos de armazenamento. | automount\ndebug | A cada inicialização | Ativa diagnósticos adicionais na inicialização. | debug\nnozram | A cada inicialização | Desativa a troca zram. | nozram\nzramsize | A cada inicialização | Define o tamanho do swap zram em MiB. Se omitido, o MiniOS calcula a partir do total de RAM. | zramsize=512\nzramsize=2048\nzramcomp | A cada inicialização | Seleciona lzo, lzo-rle, lz4, lz4hc, ou zstd; a disponibilidade depende do kernel em execução. Se omitido, o padrão do kernel é mantido. | zramcomp=lzo\nzramcomp=lz4\ndefault-target | A cada inicialização | Define o target padrão do systemd. | default-target=multi-user\ndefault-target=rescue\nenable-services | A cada inicialização | Ativa os serviços systemd especificados na inicialização. | enable-services=ssh,docker\nenable-services=ssh\ndisable-services | A cada inicialização | Desativa os serviços systemd especificados na inicialização. | disable-services=apache2\ndisable-services=nginx\nnovirtres | A cada inicialização | Desativa alterações automáticas de resolução de tela em máquinas virtuais. O padrão do XFCE é 1280x800. | novirtres\nvirtres | A cada inicialização | Define a resolução de tela do XFCE em máquinas virtuais. | virtres=1920x1080\nvirtres=1024x768\ncomponents | A cada inicialização | Executa apenas os componentes live-config listados, na ordem dos componentes. | components=hostname,user-setup,sudo\nnocomponents | A cada inicialização | Executa todos os componentes live-config, exceto os listados. | nocomponents=anacron,apport\nhostname | A cada inicialização | Define o nome do host do sistema. | hostname=minios\nusername | Configuração inicial | Define o nome de usuário criado para login automático. | username=live\nuser-default-groups | Configuração inicial | Define os grupos padrão do usuário criado. | user-default-groups=audio,cdrom,video\nuser-fullname | Configuração inicial | Define o nome completo do usuário criado. | user-fullname=\"MiniOS Live User\"\nroot-password | Configuração inicial | Define a senha do root em texto simples. | root-password=toor\nroot-password-crypted | Configuração inicial | Define a senha do root como um hash crypt. | root-password-crypted=$y$j9T$...\nuser-password | Configuração inicial | Define a senha do usuário em texto simples. | user-password=live\nuser-password-crypted | Configuração inicial | Define a senha do usuário como um hash crypt. | user-password-crypted=$y$j9T$...\nlocales | A cada inicialização | Define um ou mais locais do sistema. | locales=en_US.UTF-8\ntimezone | A cada inicialização | Define o fuso horário do sistema. | timezone=Europe/Berlin\nkeyboard-model | A cada inicialização | Define o modelo do teclado. | keyboard-model=pc105\nkeyboard-layouts | A cada inicialização | Define os layouts de teclado separados por vírgula. | keyboard-layouts=us,de\nkeyboard-variants | A cada inicialização | Define as variantes de teclado, separadas por vírgula, correspondentes aos layouts. | keyboard-variants=,dvorak\nkeyboard-options | A cada inicialização | Define as opções do teclado. | keyboard-options=grp:alt_shift_toggle\nnoroot | Configuração inicial | Impede que o live-config conceda privilégios de sudo e policykit. | noroot\nnoautologin | A cada inicialização | Impede que o live-config configure o login automático no console e no ambiente gráfico; configurações persistentes já existentes não são removidas. | noautologin\nnottyautologin | A cada inicialização | Impede apenas a configuração de login automático no console; configurações persistentes já existentes não são removidas. | nottyautologin\nnox11autologin | A cada inicialização | Impede apenas a configuração de login automático no ambiente gráfico; configurações persistentes já existentes não são removidas. | nox11autologin\nxorg-driver | A cada inicialização | Seleciona um driver Xorg em vez de usar a autodetecção. | xorg-driver=nouveau\nxorg-resolution | A cada inicialização | Define a resolução do Xorg em vez de usar a autodetecção. | xorg-resolution=1920x1080\nmodule-mode | A cada inicialização | Com merged, integra as alterações de configuração ao sistema live em execução. | module-mode=merged\nlink-user-dirs | A cada inicialização | Vincula os diretórios de usuário gerenciados à mídia gravável MiniOS. É mutuamente exclusivo com bind-user-dirs e indisponível com qualquer modo toram ou enquanto a sessão de persistência ativa estiver criptografada com LUKS. A criptografia ativa é determinada pela sessão em execução, não pela solicitação de criação de perchencrypt. | link-user-dirs\nbind-user-dirs | A cada inicialização | Faz bind-mount dos diretórios de usuário gerenciados a partir da mídia gravável MiniOS. Possui as mesmas restrições de toram e criptografia de sessão ativa que link-user-dirs. | bind-user-dirs\nuser-dirs-path | A cada inicialização | Define o local relativo à mídia usado por link-user-dirs ou bind-user-dirs. Padrão: /minios/userdata. | user-dirs-path=/minios/userdata\nhooks | A cada inicialização | Busca e executa hooks do sistema de arquivos, da mídia live ou de URLs compatíveis com wget. | hooks=filesystem\nhooks=http://example.com/script.sh\nConsiderações de segurança\nA linha de comando do kernel é texto simples e normalmente fica visível na configuração do bootloader, /proc/cmdline, e diagnósticos. Não coloque segredos reutilizáveis em root-password= ou user-password=. Prefira os parâmetros *-crypted correspondentes, tratando ainda assim hashes de senha expostos como sensíveis.\nHooks são executados como código privilegiado de boot. Um hook http:// não possui criptografia de transporte nem autenticação de servidor, então qualquer pessoa capaz de alterar o caminho de rede pode substituí-lo. Use apenas conteúdos e mecanismos de entrega confiáveis; não utilize hooks HTTP não autenticados para inicialização sensível à segurança.\nSepare comandos com espaços. Veja as man bootparam páginas de referência para parâmetros adicionais do kernel comuns a todas as distribuições Linux.\nPara informações detalhadas sobre parâmetros do live-config, veja live-config.\nPara carregar MiniOS pela rede (PXE e HTTP ISO), veja Boot pela rede.\nParâmetros de cache e log de sessões persistentes\nParâmetro | Aplicação | Descrição | Exemplo\nlog-storage ou live-config.log-storage | Todo boot, com perch | persistent durável (padrão) ou volatile. No modo volátil, o journald usa até 32 MiB de RAM e o /var/log comum usa um tmpfs de 32 MiB. minios-boot e live-config logs de boot permanecem no armazenamento de persistência gravável. Um sistema de arquivos de log RAM cheio para de aceitar gravações em vez de transbordar para o dispositivo USB. | log-storage=volatile\napt-cache ou live-config.apt-cache | Todo boot, com perch | persistent durável (padrão) ou volatile para /var/cache/apt/archives. O ponto de montagem RAM é de 256 ou 512 MiB quando há memória suficiente e nenhum swap não-zRAM está ativo; downloads grandes podem esgotá-lo. /var/lib/apt/lists e o estado do dpkg permanecem persistentes. | apt-cache=volatile\nbrowser-cache ou live-config.browser-cache | Todo boot, com perch | persistent durável (padrão) ou volatile para caches padrão de navegador nativo. Após a existência do usuário live, subdiretórios selecionados de ~/.cache usam um tmpfs compartilhado de 512 MiB, e o cache em disco do Firefox é desabilitado por uma política de sistema gerenciada quando não há outro arquivo de política do Firefox presente. Perfis e caches de aplicativos não relacionados permanecem persistentes. | browser-cache=volatile\nOs três parâmetros de política de armazenamento são interpretados por minios-boot antes do sistema init normal, não pelo seletor de persistência antecipado. Eles não habilitam perch e só têm efeito após ativação bem-sucedida da persistência durável. Um initrd compatível anuncia perch-storage-v1 em /run/initramfs/etc/minios-initramfs-storage. Configurador e config.conf oferecem as mesmas opções; veja Desempenho para limites, precedência e observações sobre instalação de navegador.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

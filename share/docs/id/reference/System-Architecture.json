@@ -6,9 +6,9 @@
       "title": "Arsitektur sistem"
     },
     {
-      "anchor": "penemuan-boot",
+      "anchor": "deteksi-boot",
       "level": 2,
-      "title": "Penemuan boot"
+      "title": "Deteksi boot"
     },
     {
       "anchor": "komposisi-modul",
@@ -31,9 +31,9 @@
       "title": "Prioritas konfigurasi"
     },
     {
-      "anchor": "siklus-hidup-shutdown-dan-penyimpanan",
+      "anchor": "siklus-shutdown-dan-penyimpanan",
       "level": 2,
-      "title": "Siklus hidup shutdown dan penyimpanan"
+      "title": "Siklus shutdown dan penyimpanan"
     },
     {
       "anchor": "pohon-media",
@@ -64,18 +64,18 @@
       [
         [
           "text",
-          "MiniOS melakukan boot sistem operasi hanya-baca yang dirakit dari modul-modul SquashFS dan menambahkan satu lapisan yang dapat ditulis untuk sesi saat ini. Initramfs bertanggung jawab untuk menemukan media, memilih modul dan persistensi, membangun root filesystem, menerapkan konfigurasi awal, dan menyerahkan kontrol ke sistem init yang terpasang."
+          "MiniOS melakukan boot sistem operasi hanya-baca yang dirakit dari modul-modul SquashFS dan menambahkan satu lapisan tulis untuk sesi saat ini. Initramfs bertanggung jawab menemukan media, memilih modul dan persistensi, membangun root filesystem, menerapkan konfigurasi awal, lalu menyerahkan kontrol ke sistem init yang terpasang."
         ]
       ]
     ],
     [
       "heading",
       2,
-      "penemuan-boot",
+      "deteksi-boot",
       [
         [
           "text",
-          "Penemuan boot"
+          "Deteksi boot"
         ]
       ]
     ],
@@ -99,7 +99,7 @@
         ],
         [
           "text",
-          ". Initramfs kemudian menemukan pohon data MiniOS yang berisi modul live. Sumber bisa lokal, dipilih secara interaktif, atau disediakan melalui jalur jaringan yang didukung; ISO lokal akan di-mount secara loop sebelum pohon datanya digunakan. Urutan prioritas dan bentuk "
+          ". Kemudian initramfs mendeteksi pohon data MiniOS yang berisi modul live. Sumber dapat lokal, dipilih secara interaktif, atau disediakan melalui jalur jaringan yang didukung; ISO lokal akan di-mount loop sebelum pohon datanya digunakan. Urutan prioritas dan bentuk yang diterima dijelaskan dalam "
         ],
         [
           "span",
@@ -113,7 +113,7 @@
         ],
         [
           "text",
-          " yang diterima dijelaskan di "
+          " dokumentasi "
         ],
         [
           "link",
@@ -138,7 +138,7 @@
       [
         [
           "text",
-          "Tahap penemuan yang sama mendukung sumber ISO HTTP dan PXE. Jaringan awal-boot opsional hanya untuk "
+          "Tahap deteksi yang sama mendukung sumber ISO HTTP dan PXE. Jaringan awal-boot opsional hanya digunakan untuk "
         ],
         [
           "span",
@@ -177,7 +177,7 @@
       [
         [
           "text",
-          "Setelah penemuan, MiniOS dapat secara opsional menyiapkan salinan RAM. Apakah sumber asli tetap dibutuhkan tergantung pada mode salin, persistensi, dan keberhasilan pelepasan. Lihat "
+          "Setelah deteksi, MiniOS dapat secara opsional menyiapkan salinan RAM. Apakah sumber asli masih dibutuhkan tergantung pada mode penyalinan, persistensi, dan keberhasilan pemutusan. Lihat "
         ],
         [
           "link",
@@ -192,7 +192,7 @@
         ],
         [
           "text",
-          " untuk model operasionalnya."
+          " untuk model operasional."
         ]
       ]
     ],
@@ -213,7 +213,7 @@
       [
         [
           "text",
-          "Setiap file "
+          "Setiap "
         ],
         [
           "span",
@@ -227,7 +227,7 @@
         ],
         [
           "text",
-          " adalah filesystem SquashFS hanya-baca. Modul bawaan disimpan langsung di bawah "
+          " file adalah filesystem SquashFS hanya-baca. Modul bawaan disimpan langsung di bawah "
         ],
         [
           "span",
@@ -241,7 +241,7 @@
         ],
         [
           "text",
-          "; lokasi modul tambahan dapat berkontribusi pada komposisi berurutan. Initramfs memilih, mengurutkan, dan me-mount lapisan hanya-baca yang dihasilkan. Kandidat tier, penggantian basename, filter, ekstensi bundle kustom, dan koordinasi kernel yang sedang berjalan dijelaskan di "
+          "; lokasi modul tambahan dapat berkontribusi pada komposisi berurutan. Initramfs memilih, mengurutkan, dan me-mount lapisan hanya-baca yang dihasilkan. Kandidat tier, penggantian basename, filter, ekstensi bundle kustom, dan koordinasi kernel berjalan diatur dalam "
         ],
         [
           "link",
@@ -266,7 +266,7 @@
       [
         [
           "text",
-          "Citra Xfce yang umum berisi peran berurutan berikut, meskipun nama dan jumlah pastinya tergantung pada build dan modul yang dilewati untuk target tersebut:"
+          "Citra Xfce umumnya berisi peran berurutan berikut, meskipun nama dan jumlah pastinya tergantung pada build dan modul yang dilewati untuk target tersebut:"
         ]
       ]
     ],
@@ -282,7 +282,7 @@
       [
         [
           "text",
-          "Modul yang lebih baru memiliki prioritas lebih tinggi dan dapat menggantikan path yang disediakan oleh modul sebelumnya. Sebuah modul dapat bergantung pada file di setiap modul bernomor lebih rendah, sehingga satu set file modul adalah komposisi berurutan, bukan sekadar kumpulan paket independen."
+          "Modul yang lebih akhir memiliki prioritas lebih tinggi dan dapat menggantikan path yang disediakan oleh modul sebelumnya. Sebuah modul dapat bergantung pada file di setiap modul bernomor lebih rendah, sehingga satu set file modul merupakan komposisi berurutan, bukan sekadar kumpulan paket independen."
         ]
       ]
     ],
@@ -303,7 +303,7 @@
       [
         [
           "text",
-          "MiniOS menggunakan union filesystem untuk menampilkan modul dan layer yang dapat ditulis sebagai satu root filesystem. Sistem ini akan memilih AUFS jika kernel yang berjalan mendukungnya, dan akan menggunakan OverlayFS jika tidak."
+          "MiniOS menggunakan union filesystem untuk menyajikan modul dan lapisan tulis sebagai satu root filesystem. Ia memilih AUFS jika kernel yang berjalan mendukungnya, dan akan menggunakan OverlayFS jika tidak. "
         ],
         [
           "span",
@@ -317,7 +317,7 @@
         ],
         [
           "text",
-          " meminta AUFS namun tetap akan kembali ke OverlayFS jika AUFS tidak tersedia;"
+          " meminta AUFS namun tetap kembali ke OverlayFS jika AUFS tidak tersedia; "
         ],
         [
           "span",
@@ -331,7 +331,7 @@
         ],
         [
           "text",
-          " memilih OverlayFS. Pada UEFI Secure Boot, initrd tidak memuat modul yang tidak ditandatangani"
+          " memilih OverlayFS. Pada UEFI Secure Boot, initrd tidak memuat modul "
         ],
         [
           "span",
@@ -345,7 +345,7 @@
         ],
         [
           "text",
-          " modul dan menggunakan OverlayFS kecuali sudah ada implementasi AUFS lain yang dapat digunakan."
+          " yang belum ditandatangani dan menggunakan OverlayFS kecuali sudah ada implementasi AUFS lain yang dapat digunakan."
         ]
       ]
     ],
@@ -355,7 +355,7 @@
       [
         [
           "text",
-          "Kedua implementasi ini memiliki perbedaan operasional yang penting:"
+          "Kedua implementasi ini memiliki perbedaan operasional penting:"
         ]
       ]
     ],
@@ -376,7 +376,7 @@
               [
                 [
                   "text",
-                  "AUFS dimulai dengan branch yang dapat ditulis dan menambahkan modul yang di-mount sebagai branch hanya-baca. MiniOS dapat mengaktifkan atau menonaktifkan modul di root yang sedang berjalan jika mount AUFS mendukung operasi tersebut."
+                  "AUFS dimulai dengan cabang tulis dan menambahkan modul yang di-mount sebagai cabang hanya-baca. MiniOS dapat mengaktifkan atau menonaktifkan modul di root yang berjalan jika mount AUFS mendukung operasi tersebut."
                 ]
               ]
             ]
@@ -392,7 +392,7 @@
               [
                 [
                   "text",
-                  "OverlayFS menerima urutan lengkap"
+                  "OverlayFS menerima daftar urutan lengkap "
                 ],
                 [
                   "span",
@@ -406,7 +406,7 @@
                 ],
                 [
                   "text",
-                  " daftar saat root di-mount, ditambah satu"
+                  " saat root di-mount, ditambah satu "
                 ],
                 [
                   "span",
@@ -420,7 +420,7 @@
                 ],
                 [
                   "text",
-                  " dan"
+                  " dan "
                 ],
                 [
                   "span",
@@ -434,7 +434,7 @@
                 ],
                 [
                   "text",
-                  ". Set modul bawahnya tidak dapat diubah secara langsung oleh"
+                  ". Set modul bawahnya tidak dapat diubah secara langsung oleh "
                 ],
                 [
                   "span",
@@ -476,7 +476,7 @@
         ],
         [
           "text",
-          " sehingga memisahkan"
+          " memisahkan "
         ],
         [
           "span",
@@ -490,7 +490,7 @@
         ],
         [
           "text",
-          ", kumpulan modul yang telah di-mount, dari"
+          ", set modul yang di-mount, dari "
         ],
         [
           "span",
@@ -504,7 +504,7 @@
         ],
         [
           "text",
-          ", modul yang dipilih berdasarkan media dan aturan boot saat ini. Menambah atau menghapus modul yang bersifat permanen biasanya hanya memengaruhi boot berikutnya. Membuat atau membuka modul tidak langsung mengaktifkannya. Aktivasi dan deaktivasi saat runtime hanya tersedia dengan AUFS."
+          ", modul yang dipilih oleh media dan aturan boot saat ini. Menambah atau menghapus modul permanen biasanya hanya mengubah boot berikutnya. Membuat atau membuka modul tidak langsung mengaktifkannya. Aktivasi dan deaktivasi runtime hanya tersedia dengan AUFS."
         ]
       ]
     ],
@@ -514,7 +514,7 @@
       [
         [
           "text",
-          "Setelah root dirakit dan proses setup awal selesai, initrd LiveKit menggunakan"
+          "Setelah root dirakit dan pengaturan awal selesai, initrd LiveKit menggunakan "
         ],
         [
           "span",
@@ -528,7 +528,7 @@
         ],
         [
           "text",
-          ", tetap mempertahankan initrd lama untuk proses shutdown, dan mengeksekusi init pada root baru. Jalur dracut menyiapkan root yang sama, namun menyerahkan proses akhir"
+          ", mempertahankan initrd lama untuk proses shutdown, dan menjalankan init root baru. Jalur dracut menyiapkan root yang sama, tetapi menyerahkan proses akhir "
         ],
         [
           "span",
@@ -542,7 +542,7 @@
         ],
         [
           "text",
-          " ke dracut. Lihat"
+          " ke dracut. Lihat "
         ],
         [
           "link",
@@ -551,13 +551,13 @@
           [
             [
               "text",
-              "Pemuatan modul initrd"
+              "Pemrosesan modul Initrd"
             ]
           ]
         ],
         [
           "text",
-          " untuk detail batas penyerahan proses."
+          " untuk detail batas penyerahan."
         ]
       ]
     ],
@@ -578,7 +578,7 @@
       [
         [
           "text",
-          "Tanpa persistensi, lapisan tulis hanya didukung oleh memori dan akan hilang saat dimatikan. Dengan mengaktifkan persistensi, sesi bernomor dapat digunakan dengan backend penyimpanan yang didukung. Pemilihan, kompatibilitas, kegagalan aktivasi, otoritas boot saat ini, dan daya tahan diatur dalam "
+          "Tanpa persistensi, lapisan tulis didukung oleh memori dan akan hilang saat shutdown. Persistensi dapat mengaktifkan sesi bernomor dengan backend penyimpanan yang didukung. Pemilihan, kompatibilitas, kegagalan aktivasi, otoritas boot saat ini, dan daya tahan diatur dalam "
         ],
         [
           "link",
@@ -587,7 +587,7 @@
           [
             [
               "text",
-              "Persistensi initrd"
+              "Persistensi Initrd"
             ]
           ]
         ],
@@ -657,7 +657,7 @@
               [
                 [
                   "text",
-                  "Berkas disimpan langsung di direktori sesi"
+                  "File disimpan langsung di direktori sesi"
                 ]
               ]
             ],
@@ -666,7 +666,7 @@
               [
                 [
                   "text",
-                  "Membutuhkan filesystem POSIX yang dapat ditulis dan mampu mempertahankan metadata Linux."
+                  "Membutuhkan filesystem POSIX yang dapat ditulis dan mempertahankan metadata Linux."
                 ]
               ]
             ]
@@ -696,7 +696,7 @@
               [
                 [
                   "text",
-                  "Filesystem ext4 yang dapat diperluas, terbagi dalam beberapa berkas pendukung"
+                  "Filesystem ext4 yang dapat diperluas dan dibagi ke beberapa file backend"
                 ]
               ]
             ],
@@ -749,7 +749,7 @@
                 ],
                 [
                   "text",
-                  " berkas"
+                  " file"
                 ]
               ]
             ],
@@ -758,7 +758,88 @@
               [
                 [
                   "text",
-                  "Membutuhkan kemampuan DynBlk di userspace, kernel, dan initrd."
+                  "Membutuhkan userspace, kernel, dan kemampuan initrd DynBlk."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "vmdk"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Sparse terpisah "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volume.vmdk"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " / "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "volume-sNNN.vmdk"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " penyimpanan yang diekspos sebagai perangkat blok oleh driver DynBlk"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Membutuhkan kemampuan "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "vmdk-session-v1"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " DynBlk/initrd; tanpa kompresi backend."
                 ]
               ]
             ]
@@ -864,7 +945,7 @@
               [
                 [
                   "text",
-                  "Diekstrak ke RAM untuk digunakan; saat menyimpan, snapshot akan dibangun ulang dan diganti secara atomik. Filesystem persistensi harus mempertahankan metadata Linux selama proses penyimpanan."
+                  "Diekstrak ke RAM untuk digunakan; penyimpanan akan membangun ulang dan mengganti snapshot secara atomik. Filesystem persistensi harus mempertahankan metadata Linux saat penyimpanan."
                 ]
               ]
             ]
@@ -878,7 +959,7 @@
       [
         [
           "text",
-          "Raw, DynFileFS, dan DynBlk dapat secara opsional menggunakan lapisan LUKS2. Metadata mencatat backend penyimpanan dan enkripsi secara terpisah. Saat dimatikan, ext4, mapper, loop yang dimiliki, dan backend akan dilepas sesuai urutan dependensinya."
+          "Raw, DynFileFS, DynBlk, dan VMDK dapat membawa lapisan LUKS2 secara opsional. Metadata mencatat backend penyimpanan dan enkripsi secara terpisah. Saat shutdown, ext4, mapper, loop yang dimiliki, dan backend dilepas sesuai urutan dependensinya."
         ]
       ]
     ],
@@ -888,7 +969,7 @@
       [
         [
           "text",
-          "Sesi aktif yang dipilih untuk resume di masa depan dan lapisan tulis yang benar-benar diotorisasi untuk boot saat ini adalah dua status yang terkait namun berbeda. Mengubah pilihan untuk masa depan tidak akan menggantikan lapisan tulis yang sedang berjalan."
+          "Sesi aktif yang dipilih untuk resume di masa depan dan lapisan tulis yang benar-benar diotorisasi untuk boot saat ini adalah dua status yang berbeda. Mengubah pilihan untuk masa depan tidak akan menggantikan lapisan tulis yang sedang berjalan."
         ]
       ]
     ],
@@ -934,7 +1015,7 @@
       [
         [
           "text",
-          "Konfigurasi media berada di "
+          "Konfigurasi media adalah "
         ],
         [
           "span",
@@ -962,7 +1043,7 @@
         ],
         [
           "text",
-          ". Salinan runtime berada di "
+          ". Salinan runtime adalah "
         ],
         [
           "span",
@@ -990,7 +1071,7 @@
         ],
         [
           "text",
-          " dalam root yang sudah terkomposisi."
+          " di root hasil komposisi."
         ]
       ]
     ],
@@ -1000,7 +1081,7 @@
       [
         [
           "text",
-          "Saat boot, MiniOS membandingkan waktu modifikasi dan menyalin file media yang lebih baru ke root runtime. Jika media dapat ditulis dan salinan runtime lebih baru, maka akan disalin kembali ke media. File fragmen disinkronkan berdasarkan nama file di kedua arah. Jika jam sistem mundur sejak sinkronisasi sebelumnya, MiniOS menghindari penggantian timestamp dan hanya mengisi tujuan yang belum ada."
+          "Saat boot, MiniOS membandingkan waktu modifikasi dan menyalin file media yang lebih baru ke root runtime. Jika media dapat ditulis dan salinan runtime lebih baru, maka akan disalin kembali ke media. File fragmen disinkronkan berdasarkan nama file di kedua arah. Jika jam sistem mundur sejak sinkronisasi sebelumnya, MiniOS menghindari penggantian cap waktu dan hanya mengisi tujuan yang belum ada."
         ]
       ]
     ],
@@ -1010,7 +1091,7 @@
       [
         [
           "text",
-          "Opsi baris perintah kernel akan menimpa nilai yang dibaca dari konfigurasi runtime untuk boot tersebut. Artinya, urutan efektif untuk pengaturan yang didukung secara eksplisit adalah parameter boot, lalu konfigurasi runtime/media yang telah disinkronkan, lalu default bawaan. Edit runtime yang persisten dapat menjadi konfigurasi media jika sumbernya dapat ditulis; media ISO hanya-baca tidak dapat menerima pembaruan tersebut."
+          "Opsi command-line kernel akan menimpa nilai yang dibaca dari konfigurasi runtime untuk boot tersebut. Artinya, urutan efektif untuk pengaturan yang didukung secara eksplisit adalah parameter boot, lalu konfigurasi runtime/media yang tersinkronisasi, lalu default bawaan. Edit runtime yang persisten dapat menjadi konfigurasi media jika sumbernya dapat ditulis; media ISO hanya-baca tidak dapat menerima pembaruan tersebut."
         ]
       ]
     ],
@@ -1057,11 +1138,11 @@
     [
       "heading",
       2,
-      "siklus-hidup-shutdown-dan-penyimpanan",
+      "siklus-shutdown-dan-penyimpanan",
       [
         [
           "text",
-          "Siklus hidup shutdown dan penyimpanan"
+          "Siklus shutdown dan penyimpanan"
         ]
       ]
     ],
@@ -1071,7 +1152,7 @@
       [
         [
           "text",
-          "Shutdown normal pertama-tama memberi kesempatan pada sistem yang berjalan untuk melakukan flush layanan dan data sesi. Sesi SquashFS dengan penyimpanan saat shutdown diaktifkan akan dibangun ulang dan divalidasi sebelum filesystem dibongkar. Backend penyimpanan menulis penanda penyelesaian untuk sesi yang sedang berjalan; initramfs shutdown memeriksa penanda itu dan akan membiarkan sesi tetap \"kotor\" jika penyimpanan yang diperlukan gagal."
+          "Shutdown normal pertama-tama memberi kesempatan pada sistem yang berjalan untuk menyimpan layanan dan data sesi. Sesi SquashFS dengan penyimpanan saat shutdown diaktifkan akan dibangun ulang dan divalidasi sebelum filesystem dibongkar. Backend penyimpanan akan menulis penanda selesai untuk sesi yang sedang berjalan; initramfs shutdown akan memeriksa penanda tersebut dan menandai sesi sebagai kotor jika penyimpanan yang diperlukan gagal."
         ]
       ]
     ],
@@ -1081,7 +1162,7 @@
       [
         [
           "text",
-          "Initramfs shutdown kemudian melepas perangkat loop yang tidak digunakan, unmount root lama dan lapisan yang dapat ditulis, mencatat sesi yang berhasil sebagai bersih, unmount media, dan menutup pemetaan LUKS milik MiniOS. Media optik kemudian dapat dikeluarkan sebelum poweroff atau reboot. Penyimpanan manual dan periodik SquashFS menggunakan backend snapshot yang sama, tetapi hanya kebijakan shutdown yang dikonfigurasi yang akan memblokir finalisasi bersih jika penyimpanan shutdown hilang."
+          "Initramfs shutdown kemudian melepas perangkat loop yang tidak digunakan, unmount root lama dan lapisan tulis, mencatat sesi yang sukses sebagai bersih, unmount media, dan menutup mapping LUKS milik MiniOS. Media optik kemudian dapat dikeluarkan sebelum poweroff atau reboot. Penyimpanan manual dan berkala SquashFS menggunakan backend snapshot yang sama, namun hanya kebijakan shutdown yang dikonfigurasi yang akan memblokir finalisasi bersih jika penyimpanan shutdown hilang."
         ]
       ]
     ],
@@ -1102,7 +1183,7 @@
       [
         [
           "text",
-          "Struktur gambar saat ini adalah sebagai berikut. Direktori opsional hanya akan muncul jika fitur terkait telah membuat konten."
+          "Citra terkini diorganisasikan sebagai berikut. Direktori opsional hanya muncul jika fitur terkait telah membuat konten."
         ]
       ]
     ],
@@ -1118,7 +1199,7 @@
       [
         [
           "text",
-          "Path yang dijalankan di bawah "
+          "Path yang di-boot di bawah "
         ],
         [
           "span",
@@ -1192,7 +1273,7 @@
                   [
                     [
                       "text",
-                      "Deteksi sistem Initrd"
+                      "Penemuan sistem Initrd"
                     ]
                   ]
                 ]
@@ -1215,7 +1296,7 @@
                   [
                     [
                       "text",
-                      "Pemuat modul Initrd"
+                      "Pemrosesan modul Initrd"
                     ]
                   ]
                 ]
@@ -1376,7 +1457,7 @@
                   [
                     [
                       "text",
-                      "Membuat modul"
+                      "Pembuatan modul"
                     ]
                   ]
                 ]
@@ -1387,7 +1468,7 @@
       ]
     ]
   ],
-  "plain_text": "Arsitektur sistem\nMiniOS melakukan boot sistem operasi hanya-baca yang dirakit dari modul-modul SquashFS dan menambahkan satu lapisan yang dapat ditulis untuk sesi saat ini. Initramfs bertanggung jawab untuk menemukan media, memilih modul dan persistensi, membangun root filesystem, menerapkan konfigurasi awal, dan menyerahkan kontrol ke sistem init yang terpasang.\nPenemuan boot\nBootloader BIOS atau UEFI memuat kernel Linux dan initramfs MiniOS dari minios/boot/. Initramfs kemudian menemukan pohon data MiniOS yang berisi modul live. Sumber bisa lokal, dipilih secara interaktif, atau disediakan melalui jalur jaringan yang didukung; ISO lokal akan di-mount secara loop sebelum pohon datanya digunakan. Urutan prioritas dan bentuk from= yang diterima dijelaskan di Penemuan sistem Initrd.\nTahap penemuan yang sama mendukung sumber ISO HTTP dan PXE. Jaringan awal-boot opsional hanya untuk memuat MiniOS melalui jaringan (PXE / HTTP ISO). Ini bukan konfigurasi jaringan sesi yang bersifat permanen. Lihat Boot jaringan.\nSetelah penemuan, MiniOS dapat secara opsional menyiapkan salinan RAM. Apakah sumber asli tetap dibutuhkan tergantung pada mode salin, persistensi, dan keberhasilan pelepasan. Lihat Mode boot untuk model operasionalnya.\nKomposisi modul\nSetiap file .sb adalah filesystem SquashFS hanya-baca. Modul bawaan disimpan langsung di bawah minios/; lokasi modul tambahan dapat berkontribusi pada komposisi berurutan. Initramfs memilih, mengurutkan, dan me-mount lapisan hanya-baca yang dihasilkan. Kandidat tier, penggantian basename, filter, ekstensi bundle kustom, dan koordinasi kernel yang sedang berjalan dijelaskan di Pemrosesan modul Initrd.\nCitra Xfce yang umum berisi peran berurutan berikut, meskipun nama dan jumlah pastinya tergantung pada build dan modul yang dilewati untuk target tersebut:\n00-core-<arch>.sb\n01-kernel-<version>-<arch>.sb\n02-firmware-<arch>.sb\n03-gui-base-<arch>.sb\n04-xfce-desktop-<arch>.sb\n05-apps-<arch>.sb or the next applicable module\nModul yang lebih baru memiliki prioritas lebih tinggi dan dapat menggantikan path yang disediakan oleh modul sebelumnya. Sebuah modul dapat bergantung pada file di setiap modul bernomor lebih rendah, sehingga satu set file modul adalah komposisi berurutan, bukan sekadar kumpulan paket independen.\nAUFS dan OverlayFS\nMiniOS menggunakan union filesystem untuk menampilkan modul dan layer yang dapat ditulis sebagai satu root filesystem. Sistem ini akan memilih AUFS jika kernel yang berjalan mendukungnya, dan akan menggunakan OverlayFS jika tidak.union=aufs meminta AUFS namun tetap akan kembali ke OverlayFS jika AUFS tidak tersedia;union=overlayfs memilih OverlayFS. Pada UEFI Secure Boot, initrd tidak memuat modul yang tidak ditandatanganiaufs-ng modul dan menggunakan OverlayFS kecuali sudah ada implementasi AUFS lain yang dapat digunakan.\nKedua implementasi ini memiliki perbedaan operasional yang penting:\nAUFS dimulai dengan branch yang dapat ditulis dan menambahkan modul yang di-mount sebagai branch hanya-baca. MiniOS dapat mengaktifkan atau menonaktifkan modul di root yang sedang berjalan jika mount AUFS mendukung operasi tersebut.\nOverlayFS menerima urutan lengkaplowerdir daftar saat root di-mount, ditambah satuupperdir danworkdir. Set modul bawahnya tidak dapat diubah secara langsung olehManajer Modul MiniOS.\nManajer Modul MiniOS sehingga memisahkanSedang berjalan sekarang, kumpulan modul yang telah di-mount, dariBoot berikutnya, modul yang dipilih berdasarkan media dan aturan boot saat ini. Menambah atau menghapus modul yang bersifat permanen biasanya hanya memengaruhi boot berikutnya. Membuat atau membuka modul tidak langsung mengaktifkannya. Aktivasi dan deaktivasi saat runtime hanya tersedia dengan AUFS.\nSetelah root dirakit dan proses setup awal selesai, initrd LiveKit menggunakanpivot_root, tetap mempertahankan initrd lama untuk proses shutdown, dan mengeksekusi init pada root baru. Jalur dracut menyiapkan root yang sama, namun menyerahkan proses akhirswitch_root ke dracut. LihatPemuatan modul initrd untuk detail batas penyerahan proses.\nLapisan tulis dan sesi\nTanpa persistensi, lapisan tulis hanya didukung oleh memori dan akan hilang saat dimatikan. Dengan mengaktifkan persistensi, sesi bernomor dapat digunakan dengan backend penyimpanan yang didukung. Pemilihan, kompatibilitas, kegagalan aktivasi, otoritas boot saat ini, dan daya tahan diatur dalam Persistensi initrd.\nMode | Penyimpanan tulis | Catatan\nnative | Berkas disimpan langsung di direktori sesi | Membutuhkan filesystem POSIX yang dapat ditulis dan mampu mempertahankan metadata Linux.\ndynfilefs | Filesystem ext4 yang dapat diperluas, terbagi dalam beberapa berkas pendukung | Mendukung filesystem POSIX serta media FAT32, NTFS, atau exFAT.\ndynblk | Filesystem ext4 tipis pada perangkat blok kernel yang didukung oleh volumeNNN.db berkas | Membutuhkan kemampuan DynBlk di userspace, kernel, dan initrd.\nraw | Ukuran tetap changes.img berisi ext4 | Mendukung filesystem POSIX serta media FAT32, NTFS, atau exFAT.\nsquashfs | Snapshot changes.sb terkompresi | Diekstrak ke RAM untuk digunakan; saat menyimpan, snapshot akan dibangun ulang dan diganti secara atomik. Filesystem persistensi harus mempertahankan metadata Linux selama proses penyimpanan.\nRaw, DynFileFS, dan DynBlk dapat secara opsional menggunakan lapisan LUKS2. Metadata mencatat backend penyimpanan dan enkripsi secara terpisah. Saat dimatikan, ext4, mapper, loop yang dimiliki, dan backend akan dilepas sesuai urutan dependensinya.\nSesi aktif yang dipilih untuk resume di masa depan dan lapisan tulis yang benar-benar diotorisasi untuk boot saat ini adalah dua status yang terkait namun berbeda. Mengubah pilihan untuk masa depan tidak akan menggantikan lapisan tulis yang sedang berjalan.\nLihat Manajemen sesi untuk perintah pembuatan, pemilihan, pengaturan ukuran, enkripsi, konversi, ekspor, dan pemulihan.\nPrioritas konfigurasi\nKonfigurasi media berada di minios/config.conf, dengan fragmen opsional di minios/config.conf.d/. Salinan runtime berada di /etc/live/config.conf dan /etc/live/config.conf.d/ dalam root yang sudah terkomposisi.\nSaat boot, MiniOS membandingkan waktu modifikasi dan menyalin file media yang lebih baru ke root runtime. Jika media dapat ditulis dan salinan runtime lebih baru, maka akan disalin kembali ke media. File fragmen disinkronkan berdasarkan nama file di kedua arah. Jika jam sistem mundur sejak sinkronisasi sebelumnya, MiniOS menghindari penggantian timestamp dan hanya mengisi tujuan yang belum ada.\nOpsi baris perintah kernel akan menimpa nilai yang dibaca dari konfigurasi runtime untuk boot tersebut. Artinya, urutan efektif untuk pengaturan yang didukung secara eksplisit adalah parameter boot, lalu konfigurasi runtime/media yang telah disinkronkan, lalu default bawaan. Edit runtime yang persisten dapat menjadi konfigurasi media jika sumbernya dapat ditulis; media ISO hanya-baca tidak dapat menerima pembaruan tersebut.\nLihat Berkas konfigurasi dan live-config untuk pengaturan yang didukung.\nSiklus hidup shutdown dan penyimpanan\nShutdown normal pertama-tama memberi kesempatan pada sistem yang berjalan untuk melakukan flush layanan dan data sesi. Sesi SquashFS dengan penyimpanan saat shutdown diaktifkan akan dibangun ulang dan divalidasi sebelum filesystem dibongkar. Backend penyimpanan menulis penanda penyelesaian untuk sesi yang sedang berjalan; initramfs shutdown memeriksa penanda itu dan akan membiarkan sesi tetap \"kotor\" jika penyimpanan yang diperlukan gagal.\nInitramfs shutdown kemudian melepas perangkat loop yang tidak digunakan, unmount root lama dan lapisan yang dapat ditulis, mencatat sesi yang berhasil sebagai bersih, unmount media, dan menutup pemetaan LUKS milik MiniOS. Media optik kemudian dapat dikeluarkan sebelum poweroff atau reboot. Penyimpanan manual dan periodik SquashFS menggunakan backend snapshot yang sama, tetapi hanya kebijakan shutdown yang dikonfigurasi yang akan memblokir finalisasi bersih jika penyimpanan shutdown hilang.\nPohon media\nStruktur gambar saat ini adalah sebagai berikut. Direktori opsional hanya akan muncul jika fitur terkait telah membuat konten.\n/\n|-- .disk/                         ISO metadata\n|-- EFI/                           UEFI boot files\n`-- minios/\n    |-- 00-core-<arch>.sb          base userspace\n    |-- 01-kernel-<version>-<arch>.sb\n    |-- 02-firmware-<arch>.sb\n    |-- NN-<name>-<arch>.sb        ordered system modules\n    |-- boot/                      kernels, initramfs, GRUB, and Syslinux data\n    |-- changes/                   session metadata and numbered sessions\n    |-- modules/                   additional next-boot modules\n    |-- config.conf                main media configuration\n    |-- config.conf.d/             optional configuration fragments\n    |-- kernels/                   optional inactive kernel repository\n    |-- userdata/                  optional linked or bound user directories\n    `-- log/                       optional exported boot logs\nPath yang dijalankan di bawah /run/initramfs/memory/ adalah mount implementasi, bukan salinan kedua pohon ini yang bersifat persisten.\nDokumentasi terkait\nMode boot\nDeteksi sistem Initrd\nPemuat modul Initrd\nPersistensi Initrd\nParameter boot\nMenu boot\nBerkas konfigurasi\nManajemen sesi\nBoot jaringan\nMembuat modul",
+  "plain_text": "Arsitektur sistem\nMiniOS melakukan boot sistem operasi hanya-baca yang dirakit dari modul-modul SquashFS dan menambahkan satu lapisan tulis untuk sesi saat ini. Initramfs bertanggung jawab menemukan media, memilih modul dan persistensi, membangun root filesystem, menerapkan konfigurasi awal, lalu menyerahkan kontrol ke sistem init yang terpasang.\nDeteksi boot\nBootloader BIOS atau UEFI memuat kernel Linux dan initramfs MiniOS dari minios/boot/. Kemudian initramfs mendeteksi pohon data MiniOS yang berisi modul live. Sumber dapat lokal, dipilih secara interaktif, atau disediakan melalui jalur jaringan yang didukung; ISO lokal akan di-mount loop sebelum pohon datanya digunakan. Urutan prioritas dan bentuk yang diterima dijelaskan dalam from= dokumentasi Penemuan sistem Initrd.\nTahap deteksi yang sama mendukung sumber ISO HTTP dan PXE. Jaringan awal-boot opsional hanya digunakan untuk memuat MiniOS melalui jaringan (PXE / HTTP ISO). Ini bukan konfigurasi jaringan sesi yang bersifat permanen. Lihat Boot jaringan.\nSetelah deteksi, MiniOS dapat secara opsional menyiapkan salinan RAM. Apakah sumber asli masih dibutuhkan tergantung pada mode penyalinan, persistensi, dan keberhasilan pemutusan. Lihat Mode boot untuk model operasional.\nKomposisi modul\nSetiap .sb file adalah filesystem SquashFS hanya-baca. Modul bawaan disimpan langsung di bawah minios/; lokasi modul tambahan dapat berkontribusi pada komposisi berurutan. Initramfs memilih, mengurutkan, dan me-mount lapisan hanya-baca yang dihasilkan. Kandidat tier, penggantian basename, filter, ekstensi bundle kustom, dan koordinasi kernel berjalan diatur dalam Pemrosesan modul Initrd.\nCitra Xfce umumnya berisi peran berurutan berikut, meskipun nama dan jumlah pastinya tergantung pada build dan modul yang dilewati untuk target tersebut:\n00-core-<arch>.sb\n01-kernel-<version>-<arch>.sb\n02-firmware-<arch>.sb\n03-gui-base-<arch>.sb\n04-xfce-desktop-<arch>.sb\n05-apps-<arch>.sb or the next applicable module\nModul yang lebih akhir memiliki prioritas lebih tinggi dan dapat menggantikan path yang disediakan oleh modul sebelumnya. Sebuah modul dapat bergantung pada file di setiap modul bernomor lebih rendah, sehingga satu set file modul merupakan komposisi berurutan, bukan sekadar kumpulan paket independen.\nAUFS dan OverlayFS\nMiniOS menggunakan union filesystem untuk menyajikan modul dan lapisan tulis sebagai satu root filesystem. Ia memilih AUFS jika kernel yang berjalan mendukungnya, dan akan menggunakan OverlayFS jika tidak. union=aufs meminta AUFS namun tetap kembali ke OverlayFS jika AUFS tidak tersedia; union=overlayfs memilih OverlayFS. Pada UEFI Secure Boot, initrd tidak memuat modul aufs-ng yang belum ditandatangani dan menggunakan OverlayFS kecuali sudah ada implementasi AUFS lain yang dapat digunakan.\nKedua implementasi ini memiliki perbedaan operasional penting:\nAUFS dimulai dengan cabang tulis dan menambahkan modul yang di-mount sebagai cabang hanya-baca. MiniOS dapat mengaktifkan atau menonaktifkan modul di root yang berjalan jika mount AUFS mendukung operasi tersebut.\nOverlayFS menerima daftar urutan lengkap lowerdir saat root di-mount, ditambah satu upperdir dan workdir. Set modul bawahnya tidak dapat diubah secara langsung oleh Manajer Modul MiniOS.\nManajer Modul MiniOS memisahkan Sedang berjalan sekarang, set modul yang di-mount, dari Boot berikutnya, modul yang dipilih oleh media dan aturan boot saat ini. Menambah atau menghapus modul permanen biasanya hanya mengubah boot berikutnya. Membuat atau membuka modul tidak langsung mengaktifkannya. Aktivasi dan deaktivasi runtime hanya tersedia dengan AUFS.\nSetelah root dirakit dan pengaturan awal selesai, initrd LiveKit menggunakan pivot_root, mempertahankan initrd lama untuk proses shutdown, dan menjalankan init root baru. Jalur dracut menyiapkan root yang sama, tetapi menyerahkan proses akhir switch_root ke dracut. Lihat Pemrosesan modul Initrd untuk detail batas penyerahan.\nLapisan tulis dan sesi\nTanpa persistensi, lapisan tulis didukung oleh memori dan akan hilang saat shutdown. Persistensi dapat mengaktifkan sesi bernomor dengan backend penyimpanan yang didukung. Pemilihan, kompatibilitas, kegagalan aktivasi, otoritas boot saat ini, dan daya tahan diatur dalam Persistensi Initrd.\nMode | Penyimpanan tulis | Catatan\nnative | File disimpan langsung di direktori sesi | Membutuhkan filesystem POSIX yang dapat ditulis dan mempertahankan metadata Linux.\ndynfilefs | Filesystem ext4 yang dapat diperluas dan dibagi ke beberapa file backend | Mendukung filesystem POSIX serta media FAT32, NTFS, atau exFAT.\ndynblk | Filesystem ext4 tipis pada perangkat blok kernel yang didukung oleh volumeNNN.db file | Membutuhkan userspace, kernel, dan kemampuan initrd DynBlk.\nvmdk | Sparse terpisah volume.vmdk / volume-sNNN.vmdk penyimpanan yang diekspos sebagai perangkat blok oleh driver DynBlk | Membutuhkan kemampuan vmdk-session-v1 DynBlk/initrd; tanpa kompresi backend.\nraw | Ukuran tetap changes.img berisi ext4 | Mendukung filesystem POSIX serta media FAT32, NTFS, atau exFAT.\nsquashfs | Snapshot changes.sb terkompresi | Diekstrak ke RAM untuk digunakan; penyimpanan akan membangun ulang dan mengganti snapshot secara atomik. Filesystem persistensi harus mempertahankan metadata Linux saat penyimpanan.\nRaw, DynFileFS, DynBlk, dan VMDK dapat membawa lapisan LUKS2 secara opsional. Metadata mencatat backend penyimpanan dan enkripsi secara terpisah. Saat shutdown, ext4, mapper, loop yang dimiliki, dan backend dilepas sesuai urutan dependensinya.\nSesi aktif yang dipilih untuk resume di masa depan dan lapisan tulis yang benar-benar diotorisasi untuk boot saat ini adalah dua status yang berbeda. Mengubah pilihan untuk masa depan tidak akan menggantikan lapisan tulis yang sedang berjalan.\nLihat Manajemen sesi untuk perintah pembuatan, pemilihan, pengaturan ukuran, enkripsi, konversi, ekspor, dan pemulihan.\nPrioritas konfigurasi\nKonfigurasi media adalah minios/config.conf, dengan fragmen opsional di minios/config.conf.d/. Salinan runtime adalah /etc/live/config.conf dan /etc/live/config.conf.d/ di root hasil komposisi.\nSaat boot, MiniOS membandingkan waktu modifikasi dan menyalin file media yang lebih baru ke root runtime. Jika media dapat ditulis dan salinan runtime lebih baru, maka akan disalin kembali ke media. File fragmen disinkronkan berdasarkan nama file di kedua arah. Jika jam sistem mundur sejak sinkronisasi sebelumnya, MiniOS menghindari penggantian cap waktu dan hanya mengisi tujuan yang belum ada.\nOpsi command-line kernel akan menimpa nilai yang dibaca dari konfigurasi runtime untuk boot tersebut. Artinya, urutan efektif untuk pengaturan yang didukung secara eksplisit adalah parameter boot, lalu konfigurasi runtime/media yang tersinkronisasi, lalu default bawaan. Edit runtime yang persisten dapat menjadi konfigurasi media jika sumbernya dapat ditulis; media ISO hanya-baca tidak dapat menerima pembaruan tersebut.\nLihat Berkas konfigurasi dan live-config untuk pengaturan yang didukung.\nSiklus shutdown dan penyimpanan\nShutdown normal pertama-tama memberi kesempatan pada sistem yang berjalan untuk menyimpan layanan dan data sesi. Sesi SquashFS dengan penyimpanan saat shutdown diaktifkan akan dibangun ulang dan divalidasi sebelum filesystem dibongkar. Backend penyimpanan akan menulis penanda selesai untuk sesi yang sedang berjalan; initramfs shutdown akan memeriksa penanda tersebut dan menandai sesi sebagai kotor jika penyimpanan yang diperlukan gagal.\nInitramfs shutdown kemudian melepas perangkat loop yang tidak digunakan, unmount root lama dan lapisan tulis, mencatat sesi yang sukses sebagai bersih, unmount media, dan menutup mapping LUKS milik MiniOS. Media optik kemudian dapat dikeluarkan sebelum poweroff atau reboot. Penyimpanan manual dan berkala SquashFS menggunakan backend snapshot yang sama, namun hanya kebijakan shutdown yang dikonfigurasi yang akan memblokir finalisasi bersih jika penyimpanan shutdown hilang.\nPohon media\nCitra terkini diorganisasikan sebagai berikut. Direktori opsional hanya muncul jika fitur terkait telah membuat konten.\n/\n|-- .disk/                         ISO metadata\n|-- EFI/                           UEFI boot files\n`-- minios/\n    |-- 00-core-<arch>.sb          base userspace\n    |-- 01-kernel-<version>-<arch>.sb\n    |-- 02-firmware-<arch>.sb\n    |-- NN-<name>-<arch>.sb        ordered system modules\n    |-- boot/                      kernels, initramfs, GRUB, and Syslinux data\n    |-- changes/                   session metadata and numbered sessions\n    |-- modules/                   additional next-boot modules\n    |-- config.conf                main media configuration\n    |-- config.conf.d/             optional configuration fragments\n    |-- kernels/                   optional inactive kernel repository\n    |-- userdata/                  optional linked or bound user directories\n    `-- log/                       optional exported boot logs\nPath yang di-boot di bawah /run/initramfs/memory/ adalah mount implementasi, bukan salinan kedua pohon ini yang bersifat persisten.\nDokumentasi terkait\nMode boot\nPenemuan sistem Initrd\nPemrosesan modul Initrd\nPersistensi Initrd\nParameter boot\nMenu boot\nBerkas konfigurasi\nManajemen sesi\nBoot jaringan\nPembuatan modul",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

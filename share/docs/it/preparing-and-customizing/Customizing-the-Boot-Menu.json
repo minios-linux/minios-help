@@ -26,9 +26,9 @@
       "title": "Navigazione nel menu"
     },
     {
-      "anchor": "selezione-della-lingua-grub",
+      "anchor": "selezione-lingua-grub",
       "level": 3,
-      "title": "Selezione della lingua (GRUB)"
+      "title": "Selezione lingua (GRUB)"
     },
     {
       "anchor": "personalizzazione-delle-opzioni-di-avvio",
@@ -46,9 +46,9 @@
       "title": "Modifiche comuni ai parametri di avvio"
     },
     {
-      "anchor": "percorsi-dei-file-di-configurazione",
+      "anchor": "posizioni-dei-file-di-configurazione",
       "level": 2,
-      "title": "Percorsi dei file di configurazione"
+      "title": "Posizioni dei file di configurazione"
     },
     {
       "anchor": "sulla-tua-chiavetta-usb-minios",
@@ -105,7 +105,7 @@
       [
         [
           "text",
-          "Le immagini MiniOS possono utilizzare GRUB o Syslinux a seconda del firmware, della struttura dell’immagine e della build. Le loro interfacce grafiche di menu, i tasti di modifica, la gestione della lingua e le voci disponibili non sono necessariamente identiche. Il bootloader passa infine la riga di comando del kernel allo stesso initrd; consulta "
+          "Le immagini MiniOS possono utilizzare GRUB o Syslinux a seconda del firmware, della struttura dell'immagine e della build. I loro menu, i tasti di modifica, la gestione della lingua e le voci disponibili possono differire. Il bootloader alla fine passa una riga di comando del kernel allo stesso initrd; consulta "
         ],
         [
           "link",
@@ -120,7 +120,7 @@
         ],
         [
           "text",
-          " per la provenienza risultante, la persistenza, il comportamento di copia RAM e la dipendenza dal supporto."
+          " per informazioni su sorgente risultante, persistenza, comportamento di copia RAM e dipendenza dai supporti."
         ]
       ]
     ],
@@ -141,7 +141,7 @@
       [
         [
           "text",
-          "L’immagine fornita presenta comunemente queste scelte semantiche, anche se titoli, disponibilità, ordine e selezione predefinita possono variare a seconda dell’immagine:"
+          "L'immagine fornita presenta solitamente queste scelte semantiche, anche se titoli, disponibilità, ordine e selezione predefinita possono variare a seconda dell'immagine:"
         ]
       ]
     ],
@@ -157,7 +157,7 @@
               [
                 [
                   "text",
-                  "Scelta menu"
+                  "Scelta del menu"
                 ]
               ]
             ],
@@ -190,7 +190,7 @@
               [
                 [
                   "text",
-                  "Avvia MiniOS"
+                  "Avviare MiniOS"
                 ]
               ]
             ],
@@ -214,7 +214,7 @@
               [
                 [
                   "text",
-                  "Prova la sessione compatibile predefinita e consenti la creazione di una sostituzione nelle condizioni documentate."
+                  "Prova la sessione compatibile predefinita e consenti la creazione di una nuova sessione secondo le condizioni documentate."
                 ]
               ]
             ]
@@ -229,7 +229,7 @@
               [
                 [
                   "text",
-                  "Avvia una nuova sessione"
+                  "Avviare una nuova sessione"
                 ]
               ]
             ],
@@ -242,7 +242,7 @@
                   [
                     [
                       "text",
-                      "perchdir=new"
+                      "perchdir=setup"
                     ]
                   ]
                 ]
@@ -253,7 +253,7 @@
               [
                 [
                   "text",
-                  "Crea una sessione persistente aggiuntiva numerata mantenendo inalterate le sessioni esistenti."
+                  "Apri il selettore del backend di persistenza, quindi crea una sessione aggiuntiva numerata mantenendo inalterate le sessioni esistenti."
                 ]
               ]
             ]
@@ -268,7 +268,7 @@
               [
                 [
                   "text",
-                  "Scegli una sessione salvata"
+                  "Scegliere una sessione salvata"
                 ]
               ]
             ],
@@ -292,21 +292,7 @@
               [
                 [
                   "text",
-                  "Seleziona interattivamente una sessione salvata esistente. Usa "
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Avvia una nuova sessione"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " se l’archiviazione è vuota."
+                  "Seleziona interattivamente una sessione salvata esistente; se l'archiviazione è vuota, MiniOS avvia lo stesso flusso di configurazione per consentire la creazione della prima sessione."
                 ]
               ]
             ]
@@ -321,7 +307,7 @@
               [
                 [
                   "text",
-                  "Avvia senza salvare"
+                  "Avviare senza salvare"
                 ]
               ]
             ],
@@ -339,7 +325,7 @@
               [
                 [
                   "text",
-                  "Usa un layer temporaneo scrivibile in RAM."
+                  "Utilizza un layer scrivibile temporaneo in RAM."
                 ]
               ]
             ]
@@ -354,7 +340,7 @@
               [
                 [
                   "text",
-                  "Esegui da RAM"
+                  "Eseguire dalla RAM"
                 ]
               ]
             ],
@@ -378,7 +364,21 @@
               [
                 [
                   "text",
-                  "Copia l’intero albero dati MiniOS su RAM e tenta di scollegare la sorgente."
+                  "Copia i dati di sistema MiniOS su RAM; con la persistenza, il comando predefinito "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "perchtoram=trim"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " copia separatamente la sessione supportata selezionata."
                 ]
               ]
             ]
@@ -392,7 +392,7 @@
       [
         [
           "text",
-          "Questi sono selettori, non garanzie che l’archiviazione sia scrivibile, che una sessione sia compatibile, che la RAM sia sufficiente o che il supporto di origine sia stato scollegato. Consulta "
+          "Questi sono selettori, non garanzie che l'archiviazione sia scrivibile, che la sessione sia compatibile, che RAM sia sufficiente o che il supporto di origine sia stato rimosso. Consulta "
         ],
         [
           "link",
@@ -407,7 +407,7 @@
         ],
         [
           "text",
-          " per comportamento e combinazioni, "
+          " per il comportamento e le combinazioni, "
         ],
         [
           "link",
@@ -422,7 +422,7 @@
         ],
         [
           "text",
-          " per casi limite dei selettori e "
+          " per i casi limite dei selettori e "
         ],
         [
           "link",
@@ -437,7 +437,7 @@
         ],
         [
           "text",
-          " per RAM e compromessi tra prestazioni e I/O."
+          " per RAM e compromessi I/O."
         ]
       ]
     ],
@@ -480,7 +480,7 @@
               [
                 [
                   "text",
-                  "Usa le "
+                  "Usa "
                 ],
                 [
                   "span",
@@ -488,7 +488,7 @@
                   [
                     [
                       "text",
-                      "frecce direzionali"
+                      "i tasti freccia"
                     ]
                   ]
                 ],
@@ -570,7 +570,7 @@
               [
                 [
                   "text",
-                  "La selezione automatica e la durata del timeout dipendono dalla configurazione attiva del menu; alcuni menu possono attendere indefinitamente"
+                  "La selezione automatica e la durata del timeout dipendono dalla configurazione attiva del menu; alcuni menu potrebbero attendere indefinitamente"
                 ]
               ]
             ]
@@ -581,11 +581,11 @@
     [
       "heading",
       3,
-      "selezione-della-lingua-grub",
+      "selezione-lingua-grub",
       [
         [
           "text",
-          "Selezione della lingua (GRUB)"
+          "Selezione lingua (GRUB)"
         ]
       ]
     ],
@@ -648,7 +648,7 @@
               [
                 [
                   "text",
-                  "Il menu di avvio apparirà nella lingua scelta"
+                  "Il menu di avvio verrà visualizzato nella lingua selezionata"
                 ]
               ]
             ]
@@ -664,7 +664,7 @@
               [
                 [
                   "text",
-                  "La selezione può anche trasmettere le impostazioni locali alla fase successiva di avvio, ma non garantisce che ogni messaggio di avvio o applicazione sia tradotto"
+                  "La selezione può anche trasmettere le impostazioni locali alle fasi successive dell'avvio, ma non garantisce che ogni messaggio di sistema o applicazione sia tradotto"
                 ]
               ]
             ]
@@ -706,7 +706,7 @@
         ],
         [
           "text",
-          ". La lingua selezionata nel menu di avvio ha la precedenza sulle impostazioni locali preconfigurate. Consulta "
+          ". La lingua scelta nel menu di avvio ha la precedenza sulle impostazioni locali preconfigurate. Consulta "
         ],
         [
           "span",
@@ -748,7 +748,7 @@
         ],
         [
           "text",
-          " per dettagli sui file di configurazione del sistema."
+          " per dettagli sui file di configurazione di sistema."
         ]
       ]
     ],
@@ -1112,7 +1112,7 @@
                 ],
                 [
                   "text",
-                  " - Mostra messaggi dettagliati di avvio (utile per la diagnostica)"
+                  " - Mostra messaggi dettagliati di avvio (utile per la risoluzione dei problemi)"
                 ]
               ]
             ]
@@ -1138,7 +1138,7 @@
                 ],
                 [
                   "text",
-                  " - Copia il set di moduli filtrato e i dati essenziali in RAM"
+                  " - Copia il set di moduli filtrato e i dati minimi necessari su RAM"
                 ]
               ]
             ]
@@ -1164,7 +1164,7 @@
                 ],
                 [
                   "text",
-                  " - Imposta la dimensione dello storage della sessione a 2GB (modificabile a piacere)"
+                  " - Imposta la dimensione dello storage di sessione a 2GB (modificabile secondo necessità)"
                 ]
               ]
             ]
@@ -1232,11 +1232,11 @@
     [
       "heading",
       2,
-      "percorsi-dei-file-di-configurazione",
+      "posizioni-dei-file-di-configurazione",
       [
         [
           "text",
-          "Percorsi dei file di configurazione"
+          "Posizioni dei file di configurazione"
         ]
       ]
     ],
@@ -1456,7 +1456,7 @@
                   [
                     [
                       "text",
-                      "Parametri di avvio correnti:"
+                      "Parametri di avvio attuali:"
                     ]
                   ]
                 ],
@@ -1551,7 +1551,7 @@
         ],
         [
           "text",
-          " Modifica i file di configurazione di avvio solo se sai cosa stai facendo. Cambiamenti errati possono rendere la tua chiavetta USB non avviabile."
+          " Modifica i file di configurazione di avvio solo se sai cosa stai facendo. Cambiamenti errati possono rendere la chiavetta USB non avviabile."
         ]
       ]
     ],
@@ -1668,7 +1668,7 @@
               [
                 [
                   "text",
-                  "Salva ed espelli in sicurezza la chiavetta USB"
+                  "Salva ed espelli in modo sicuro la chiavetta USB"
                 ]
               ]
             ]
@@ -1772,7 +1772,7 @@
       ]
     ]
   ],
-  "plain_text": "Personalizzazione del menu di avvio\nI menu di avvio MiniOS offrono voci pratiche per le modalità di avvio live più comuni. Questa guida spiega come selezionare e modificare tali voci.\nPanoramica\nLe immagini MiniOS possono utilizzare GRUB o Syslinux a seconda del firmware, della struttura dell’immagine e della build. Le loro interfacce grafiche di menu, i tasti di modifica, la gestione della lingua e le voci disponibili non sono necessariamente identiche. Il bootloader passa infine la riga di comando del kernel allo stesso initrd; consulta Modalità di avvio per la provenienza risultante, la persistenza, il comportamento di copia RAM e la dipendenza dal supporto.\nOpzioni del menu di avvio\nL’immagine fornita presenta comunemente queste scelte semantiche, anche se titoli, disponibilità, ordine e selezione predefinita possono variare a seconda dell’immagine:\nScelta menu | Selettore initrd tipico | Scopo\nAvvia MiniOS | perchdir=resume | Prova la sessione compatibile predefinita e consenti la creazione di una sostituzione nelle condizioni documentate.\nAvvia una nuova sessione | perchdir=new | Crea una sessione persistente aggiuntiva numerata mantenendo inalterate le sessioni esistenti.\nScegli una sessione salvata | perchdir=ask | Seleziona interattivamente una sessione salvata esistente. Usa Avvia una nuova sessione se l’archiviazione è vuota.\nAvvia senza salvare | nessun selettore di persistenza | Usa un layer temporaneo scrivibile in RAM.\nEsegui da RAM | toram | Copia l’intero albero dati MiniOS su RAM e tenta di scollegare la sorgente.\nQuesti sono selettori, non garanzie che l’archiviazione sia scrivibile, che una sessione sia compatibile, che la RAM sia sufficiente o che il supporto di origine sia stato scollegato. Consulta Modalità di avvio per comportamento e combinazioni, Persistenza initrd per casi limite dei selettori e Ottimizzazione delle prestazioni per RAM e compromessi tra prestazioni e I/O.\nCome utilizzare il menu di avvio\nNavigazione nel menu\nUsa le frecce direzionali per spostarti tra le opzioni\nPremi Invio per selezionare un'opzione\nPremi Esc per tornare al menu precedente (in GRUB)\nLa selezione automatica e la durata del timeout dipendono dalla configurazione attiva del menu; alcuni menu possono attendere indefinitamente\nSelezione della lingua (GRUB)\nSe la tua chiavetta USB MiniOS supporta più lingue:\nLa prima schermata mostrerà le opzioni di lingua\nSeleziona la lingua preferita\nIl menu di avvio apparirà nella lingua scelta\nLa selezione può anche trasmettere le impostazioni locali alla fase successiva di avvio, ma non garantisce che ogni messaggio di avvio o applicazione sia tradotto\nImportante: Il menu multilingue sovrascrive qualsiasi impostazione locale specificata in config.conf. La lingua selezionata nel menu di avvio ha la precedenza sulle impostazioni locali preconfigurate. Consulta File di configurazione e live-config per dettagli sui file di configurazione del sistema.\nPersonalizzazione delle opzioni di avvio\nModifica temporanea dei parametri di avvio\nPuoi modificare le opzioni di avvio per una singola sessione:\nIn GRUB:\nSeleziona la voce di menu che vuoi modificare\nPremi 'e' per modificare\nVai alla riga che inizia con linux\nAggiungi o modifica i parametri alla fine della riga\nPremi Ctrl+X o F10 per avviare con le modifiche\nIn SYSLINUX:\nSeleziona la voce di menu desiderata\nPremi Tab prima di premere Invio\nAggiungi i parametri alla riga di comando che appare\nPremi Invio per avviare\nModifiche comuni ai parametri di avvio\ndebug - Mostra messaggi dettagliati di avvio (utile per la diagnostica)\ntoram=trim - Copia il set di moduli filtrato e i dati essenziali in RAM\nperchsize=2000 - Imposta la dimensione dello storage della sessione a 2GB (modificabile a piacere)\nlocales=ru_RU.UTF-8 - Richiedi una lingua/locale specifica\nPer l'elenco completo dei parametri di avvio disponibili, consulta Parametri di avvio.\nPercorsi dei file di configurazione\nSulla tua chiavetta USB MiniOS\nConfigurazione GRUB: /minios/boot/grub/grub.cfg\nConfigurazione SYSLINUX: /minios/boot/syslinux/syslinux.cfg\nImmagini di avvio: /minios/boot/bootlogo.png\nFile lingua: /minios/boot/grub/locale/\nNel sistema in esecuzione\nParametri di avvio correnti: /proc/cmdline\nDirectory dati MiniOS: /run/initramfs/memory/data/minios/\nModifica dei file di configurazione\nAttenzione: Modifica i file di configurazione di avvio solo se sai cosa stai facendo. Cambiamenti errati possono rendere la tua chiavetta USB non avviabile.\nPer modificare la configurazione di GRUB:\nMonta la chiavetta USB MiniOS\nVai su /minios/boot/grub/\nModifica grub.cfg con un editor di testo\nSalva ed espelli in sicurezza la chiavetta USB\nModifiche comuni:\nModifica la direttiva di timeout utilizzata dal menu GRUB o Syslinux attivo\nCambia set default=0 per modificare l'opzione di menu predefinita\nAggiungi voci personalizzate al menu",
+  "plain_text": "Personalizzazione del menu di avvio\nI menu di avvio MiniOS offrono voci pratiche per le modalità di avvio live più comuni. Questa guida spiega come selezionare e modificare tali voci.\nPanoramica\nLe immagini MiniOS possono utilizzare GRUB o Syslinux a seconda del firmware, della struttura dell'immagine e della build. I loro menu, i tasti di modifica, la gestione della lingua e le voci disponibili possono differire. Il bootloader alla fine passa una riga di comando del kernel allo stesso initrd; consulta Modalità di avvio per informazioni su sorgente risultante, persistenza, comportamento di copia RAM e dipendenza dai supporti.\nOpzioni del menu di avvio\nL'immagine fornita presenta solitamente queste scelte semantiche, anche se titoli, disponibilità, ordine e selezione predefinita possono variare a seconda dell'immagine:\nScelta del menu | Selettore initrd tipico | Scopo\nAvviare MiniOS | perchdir=resume | Prova la sessione compatibile predefinita e consenti la creazione di una nuova sessione secondo le condizioni documentate.\nAvviare una nuova sessione | perchdir=setup | Apri il selettore del backend di persistenza, quindi crea una sessione aggiuntiva numerata mantenendo inalterate le sessioni esistenti.\nScegliere una sessione salvata | perchdir=ask | Seleziona interattivamente una sessione salvata esistente; se l'archiviazione è vuota, MiniOS avvia lo stesso flusso di configurazione per consentire la creazione della prima sessione.\nAvviare senza salvare | nessun selettore di persistenza | Utilizza un layer scrivibile temporaneo in RAM.\nEseguire dalla RAM | toram | Copia i dati di sistema MiniOS su RAM; con la persistenza, il comando predefinito perchtoram=trim copia separatamente la sessione supportata selezionata.\nQuesti sono selettori, non garanzie che l'archiviazione sia scrivibile, che la sessione sia compatibile, che RAM sia sufficiente o che il supporto di origine sia stato rimosso. Consulta Modalità di avvio per il comportamento e le combinazioni, Persistenza initrd per i casi limite dei selettori e Ottimizzazione delle prestazioni per RAM e compromessi I/O.\nCome utilizzare il menu di avvio\nNavigazione nel menu\nUsa i tasti freccia per spostarti tra le opzioni\nPremi Invio per selezionare un'opzione\nPremi Esc per tornare al menu precedente (in GRUB)\nLa selezione automatica e la durata del timeout dipendono dalla configurazione attiva del menu; alcuni menu potrebbero attendere indefinitamente\nSelezione lingua (GRUB)\nSe la tua chiavetta USB MiniOS supporta più lingue:\nLa prima schermata mostrerà le opzioni di lingua\nSeleziona la lingua preferita\nIl menu di avvio verrà visualizzato nella lingua selezionata\nLa selezione può anche trasmettere le impostazioni locali alle fasi successive dell'avvio, ma non garantisce che ogni messaggio di sistema o applicazione sia tradotto\nImportante: Il menu multilingue sovrascrive qualsiasi impostazione locale specificata in config.conf. La lingua scelta nel menu di avvio ha la precedenza sulle impostazioni locali preconfigurate. Consulta File di configurazione e live-config per dettagli sui file di configurazione di sistema.\nPersonalizzazione delle opzioni di avvio\nModifica temporanea dei parametri di avvio\nPuoi modificare le opzioni di avvio per una singola sessione:\nIn GRUB:\nSeleziona la voce di menu che vuoi modificare\nPremi 'e' per modificare\nVai alla riga che inizia con linux\nAggiungi o modifica i parametri alla fine della riga\nPremi Ctrl+X o F10 per avviare con le modifiche\nIn SYSLINUX:\nSeleziona la voce di menu desiderata\nPremi Tab prima di premere Invio\nAggiungi i parametri alla riga di comando che appare\nPremi Invio per avviare\nModifiche comuni ai parametri di avvio\ndebug - Mostra messaggi dettagliati di avvio (utile per la risoluzione dei problemi)\ntoram=trim - Copia il set di moduli filtrato e i dati minimi necessari su RAM\nperchsize=2000 - Imposta la dimensione dello storage di sessione a 2GB (modificabile secondo necessità)\nlocales=ru_RU.UTF-8 - Richiedi una lingua/locale specifica\nPer l'elenco completo dei parametri di avvio disponibili, consulta Parametri di avvio.\nPosizioni dei file di configurazione\nSulla tua chiavetta USB MiniOS\nConfigurazione GRUB: /minios/boot/grub/grub.cfg\nConfigurazione SYSLINUX: /minios/boot/syslinux/syslinux.cfg\nImmagini di avvio: /minios/boot/bootlogo.png\nFile lingua: /minios/boot/grub/locale/\nNel sistema in esecuzione\nParametri di avvio attuali: /proc/cmdline\nDirectory dati MiniOS: /run/initramfs/memory/data/minios/\nModifica dei file di configurazione\nAttenzione: Modifica i file di configurazione di avvio solo se sai cosa stai facendo. Cambiamenti errati possono rendere la chiavetta USB non avviabile.\nPer modificare la configurazione di GRUB:\nMonta la chiavetta USB MiniOS\nVai su /minios/boot/grub/\nModifica grub.cfg con un editor di testo\nSalva ed espelli in modo sicuro la chiavetta USB\nModifiche comuni:\nModifica la direttiva di timeout utilizzata dal menu GRUB o Syslinux attivo\nCambia set default=0 per modificare l'opzione di menu predefinita\nAggiungi voci personalizzate al menu",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }

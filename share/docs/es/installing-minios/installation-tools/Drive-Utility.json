@@ -6,39 +6,39 @@
       "title": "Utilidad de disco"
     },
     {
-      "anchor": "importante",
+      "anchor": "seguridad",
       "level": 2,
-      "title": "Importante"
+      "title": "Seguridad"
     },
     {
-      "anchor": "requisitos-de-la-unidad",
+      "anchor": "grabar-una-imagen",
       "level": 2,
-      "title": "Requisitos de la unidad"
+      "title": "Grabar una imagen"
     },
     {
-      "anchor": "tamaño-de-la-unidad-para-grabar-minios",
-      "level": 3,
-      "title": "Tamaño de la unidad (para grabar MiniOS)"
-    },
-    {
-      "anchor": "sistemas-de-archivos-compatibles",
-      "level": 3,
-      "title": "Sistemas de archivos compatibles"
-    },
-    {
-      "anchor": "iniciar-utilidad-de-disco",
+      "anchor": "crear-una-imagen-de-dispositivo",
       "level": 2,
-      "title": "Iniciar Utilidad de disco"
+      "title": "Crear una imagen de dispositivo"
     },
     {
-      "anchor": "crear-una-unidad-usb-booteable",
+      "anchor": "formatear-un-dispositivo",
       "level": 2,
-      "title": "Crear una unidad USB booteable"
+      "title": "Formatear un dispositivo"
     },
     {
-      "anchor": "resultado-y-persistencia",
+      "anchor": "borrar-un-dispositivo",
       "level": 2,
-      "title": "Resultado y persistencia"
+      "title": "Borrar un dispositivo"
+    },
+    {
+      "anchor": "herramientas-de-línea-de-comandos",
+      "level": 2,
+      "title": "Herramientas de línea de comandos"
+    },
+    {
+      "anchor": "utilidad-de-disco-frente-al-instalador-de-minios",
+      "level": 2,
+      "title": "Utilidad de disco frente al Instalador de MiniOS"
     }
   ],
   "nodes": [
@@ -59,7 +59,86 @@
       [
         [
           "text",
-          "Utilidad de disco es una herramienta gráfica para grabar imágenes ISO de MiniOS en unidades USB."
+          "Utilidad de disco es una herramienta general de discos GTK incluida con MiniOS. Permite grabar una imagen de disco existente, crear una imagen a partir de un dispositivo físico, formatear un dispositivo completo o borrarlo. No está limitada a medios de MiniOS y no reemplaza al Instalador de MiniOS."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ábrela desde el menú de aplicaciones en "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Sistema"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ", o ejecuta:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "driveutility",
+      "bash",
+      [
+        [
+          "syntax",
+          "driveutility",
+          "#6F42C1",
+          "#B392F0"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "seguridad",
+      [
+        [
+          "text",
+          "Seguridad"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Grabar una imagen, formatear y borrar son operaciones destructivas. Verifica el destino por dispositivo, modelo y capacidad antes de confirmar. Mantén copias de seguridad de todo lo importante y desconecta unidades extraíbles no relacionadas cuando sea posible."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Los discos montados están ocultos por defecto. Puedes mostrarlos explícitamente, pero Utilidad de disco advierte antes de realizar acciones destructivas y el backend intenta desmontar el dispositivo seleccionado y sus particiones antes de modificarlo. Si el estado de montaje es ambiguo o algún sistema de archivos permanece montado, la operación falla en lugar de continuar sobre un sistema de archivos activo."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "grabar-una-imagen",
+      [
+        [
+          "text",
+          "Grabar una imagen"
         ]
       ]
     ],
@@ -77,35 +156,164 @@
           [
             [
               "text",
-              "Instalación:"
+              "Grabar"
             ]
           ]
         ],
         [
           "text",
-          " Disponible en MiniOS por defecto; para otras distribuciones, consulta "
+          " copia una imagen byte a byte en el dispositivo seleccionado. Cuando es compatible, el backend detecta automáticamente si la imagen de entrada está comprimida."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Los usos habituales incluyen grabar un ISO de MiniOS en un USB o SD, y restaurar una imagen de dispositivo completo creada previamente."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Para un ISO de MiniOS, esto es una grabación de imagen sin procesar. Copia la partición y la estructura de arranque del ISO exactamente como están en la imagen. No "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "no"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " crea una partición adicional de datos escribible, sesión de persistencia ni realiza un despliegue gestionado con el Instalador de MiniOS."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La persistencia después de una grabación sin procesar depende del modo de arranque y del almacenamiento escribible que exponga la imagen resultante. Para un diseño de destino gestionado o una sesión precreada, utiliza "
         ],
         [
           "link",
-          "https://github.com/minios-linux/driveutility",
+          "/installing-minios/MiniOS-Installer.md",
           null,
           [
             [
               "text",
-              "https://github.com/minios-linux/driveutility"
+              "Instalador de MiniOS"
             ]
           ]
+        ],
+        [
+          "text",
+          "."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ejemplo CLI:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo driveutility-write -s /path/to/minios.iso -t /dev/sdX",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-write",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-s",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/minios.iso",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-t",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
         ]
       ]
     ],
     [
       "heading",
       2,
-      "importante",
+      "crear-una-imagen-de-dispositivo",
       [
         [
           "text",
-          "Importante"
+          "Crear una imagen de dispositivo"
         ]
       ]
     ],
@@ -123,35 +331,13 @@
           [
             [
               "text",
-              "Advertencia:"
+              "Crear imagen"
             ]
           ]
         ],
         [
           "text",
-          " ¡Seleccionar un dispositivo incorrecto provocará la pérdida de datos! Revisa siempre la unidad seleccionada y haz una copia de seguridad de la información importante."
-        ]
-      ]
-    ],
-    [
-      "heading",
-      2,
-      "requisitos-de-la-unidad",
-      [
-        [
-          "text",
-          "Requisitos de la unidad"
-        ]
-      ]
-    ],
-    [
-      "heading",
-      3,
-      "tamaño-de-la-unidad-para-grabar-minios",
-      [
-        [
-          "text",
-          "Tamaño de la unidad (para grabar MiniOS)"
+          " lee un dispositivo físico y lo guarda en un archivo de imagen. La salida puede mantenerse sin comprimir o comprimirse mientras se escribe."
         ]
       ]
     ],
@@ -161,33 +347,607 @@
       [
         [
           "text",
-          "Consulta la "
-        ],
+          "Las opciones de compresión compatibles son:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
         [
-          "link",
-          "/getting-started/Hardware-Compatibility.md",
+          "item",
           null,
           [
             [
-              "text",
-              "Guía de compatibilidad de hardware"
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "gzip ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".gz"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")"
+                ]
+              ]
             ]
           ]
         ],
         [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "bzip2 ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".bz2"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "XZ ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".xz"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "LZ4 ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".lz4"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ")"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "Zstandard ("
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      ".zst"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  ") cuando se tiene instalado el soporte Python zstd necesario"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
           "text",
-          " para ver los requisitos detallados del sistema y los tamaños de unidad recomendados."
+          "La aplicación gráfica también puede asignar el archivo resultante al usuario del escritorio, de modo que una copia de seguridad creada como root sea utilizable de inmediato sin tener que cambiar la propiedad."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Ejemplo CLI:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo driveutility-read -s /dev/sdX -t /path/to/backup.img -c zstd",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-read",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-s",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-t",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/path/to/backup.img",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-c",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "zstd",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "La extensión específica de la compresión se añade automáticamente al usar la herramienta de línea de comandos."
         ]
       ]
     ],
     [
       "heading",
-      3,
-      "sistemas-de-archivos-compatibles",
+      2,
+      "formatear-un-dispositivo",
       [
         [
           "text",
-          "Sistemas de archivos compatibles"
+          "Formatear un dispositivo"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Formatear"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " crea una nueva estructura de un solo sistema de archivos en el dispositivo seleccionado. Las opciones de sistema de archivos disponibles son:"
+        ]
+      ]
+    ],
+    [
+      "list",
+      {
+        "ordered": false,
+        "start": 1
+      },
+      [
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "FAT32"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "exFAT"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "NTFS"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  "ext4"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Puedes establecer una etiqueta de volumen. Para ext4, Utilidad de disco puede asignar el directorio raíz al usuario y grupo seleccionados."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "El formateo es independiente de la grabación de un ISO de MiniOS. Las opciones de sistema de archivos en esta página describen la operación de formateo de Utilidad de disco; no modifican la estructura del sistema de archivos incluida en una grabación ISO sin procesar."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ejemplo CLI:"
+        ]
+      ]
+    ],
+    [
+      "code_block",
+      "sudo driveutility-format -d /dev/sdX -f ext4 -u 1000 -g 1000 MYDISK",
+      "bash",
+      [
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-format",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-f",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "ext4",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-u",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "1000",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-g",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "1000",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "MYDISK",
+          "#032F62",
+          "#9ECBFF"
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "borrar-un-dispositivo",
+      [
+        [
+          "text",
+          "Borrar un dispositivo"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          ""
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Borrar"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " elige entre operaciones de borrado nativas del controlador, descarte/TRIM y sobrescrituras desde el host según el dispositivo seleccionado y el método solicitado."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Los backends disponibles incluyen:"
         ]
       ]
     ],
@@ -216,13 +976,13 @@
                   [
                     [
                       "text",
-                      "FAT32"
+                      "Borrado seguro"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  ": máxima compatibilidad"
+                  " — selecciona automáticamente un método compatible con el controlador cuando está disponible."
                 ]
               ]
             ]
@@ -246,13 +1006,13 @@
                   [
                     [
                       "text",
-                      "NTFS"
+                      "ATA Secure Erase / Enhanced Secure Erase"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  ": compatibilidad con Windows"
+                  " — se ejecuta a través de UDisks2 para discos SATA/ATA compatibles; los dispositivos congelados o no compatibles son rechazados."
                 ]
               ]
             ]
@@ -276,62 +1036,18 @@
                   [
                     [
                       "text",
-                      "EXT4"
+                      "NVMe User Data Erase / Cryptographic Erase"
                     ]
                   ]
                 ],
                 [
                   "text",
-                  ": recomendado para Linux"
+                  " — utiliza NVMe Format NVM solo cuando el controlador informa de la capacidad solicitada."
                 ]
               ]
             ]
           ]
-        ]
-      ]
-    ],
-    [
-      "heading",
-      2,
-      "iniciar-utilidad-de-disco",
-      [
-        [
-          "text",
-          "Iniciar Utilidad de disco"
-        ]
-      ]
-    ],
-    [
-      "block",
-      "paragraph",
-      [
-        [
-          "text",
-          ""
         ],
-        [
-          "span",
-          "strong",
-          [
-            [
-              "text",
-              "Desde el menú de aplicaciones:"
-            ]
-          ]
-        ],
-        [
-          "text",
-          ""
-        ]
-      ]
-    ],
-    [
-      "list",
-      {
-        "ordered": true,
-        "start": 1
-      },
-      [
         [
           "item",
           null,
@@ -342,7 +1058,95 @@
               [
                 [
                   "text",
-                  "Abre el menú → Sistema → \"Utilidad de disco\""
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Descartar / descarte seguro"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — utiliza "
+                ],
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "blkdiscard"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " cuando el dispositivo de bloques admite descarte."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Sobrescritura con ceros"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — escribe ceros desde el host."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "item",
+          null,
+          [
+            [
+              "block",
+              "paragraph",
+              [
+                [
+                  "text",
+                  ""
+                ],
+                [
+                  "span",
+                  "strong",
+                  [
+                    [
+                      "text",
+                      "Sobrescritura aleatoria"
+                    ]
+                  ]
+                ],
+                [
+                  "text",
+                  " — escribe datos aleatorios la cantidad de pasadas solicitadas y puede añadir una pasada final de ceros."
                 ]
               ]
             ]
@@ -356,338 +1160,306 @@
       [
         [
           "text",
-          ""
+          "El borrado seguro por controlador no es equivalente a sobrescribir repetidamente cada bloque lógico desde el host. Su disponibilidad depende del firmware del dispositivo, las interfaces del kernel, UDisks2, "
         ],
         [
           "span",
-          "strong",
+          "code",
           [
             [
               "text",
-              "Desde la terminal:"
+              "nvme-cli"
             ]
           ]
         ],
         [
           "text",
-          ""
+          ", y "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "blkdiscard"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " soporte."
+        ],
+        [
+          "text",
+          "\n"
+        ],
+        [
+          "text",
+          "Para dispositivos NVMe, Utilidad de disco conserva el formato LBA del espacio de nombres activo, la configuración de metadatos y la configuración de información de protección al emitir Format NVM. También rechaza operaciones de controlador cuyo alcance pueda afectar a varios espacios de nombres cuando no se puede garantizar la seguridad como operación de un solo espacio de nombres."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Ejemplos:"
         ]
       ]
     ],
     [
       "code_block",
-      "driveutility",
+      "sudo driveutility-wipe -d /dev/nvme0n1 -m secure\nsudo driveutility-wipe -d /dev/sdX -m discard\nsudo driveutility-wipe -d /dev/sdX -p 3 -t random -z",
       "bash",
       [
         [
           "syntax",
-          "driveutility",
+          "sudo",
           "#6F42C1",
           "#B392F0"
-        ]
-      ]
-    ],
-    [
-      "heading",
-      2,
-      "crear-una-unidad-usb-booteable",
-      [
-        [
-          "text",
-          "Crear una unidad USB booteable"
-        ]
-      ]
-    ],
-    [
-      "list",
-      {
-        "ordered": true,
-        "start": 1
-      },
-      [
-        [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Selecciona el modo \"Write\""
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  " en la ventana principal del programa"
-                ]
-              ]
-            ]
-          ]
         ],
         [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Selecciona el archivo ISO de MiniOS:"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ""
-                ]
-              ]
-            ],
-            [
-              "list",
-              {
-                "ordered": false,
-                "start": 1
-              },
-              [
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Haz clic en el botón \"Browse\" junto al campo \"Source\""
-                        ]
-                      ]
-                    ]
-                  ]
-                ],
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Busca y selecciona el archivo MiniOS.iso descargado"
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
         ],
         [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Selecciona la unidad de destino:"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ""
-                ]
-              ]
-            ],
-            [
-              "list",
-              {
-                "ordered": false,
-                "start": 1
-              },
-              [
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Elige tu unidad USB de la lista de dispositivos"
-                        ]
-                      ]
-                    ]
-                  ]
-                ],
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Verifica la selección por tamaño y modelo"
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
+          "syntax",
+          "driveutility-wipe",
+          "#032F62",
+          "#9ECBFF"
         ],
         [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Inicia la escritura:"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ""
-                ]
-              ]
-            ],
-            [
-              "list",
-              {
-                "ordered": false,
-                "start": 1
-              },
-              [
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Haz clic en el botón \"Write\""
-                        ]
-                      ]
-                    ]
-                  ]
-                ],
-                [
-                  "item",
-                  null,
-                  [
-                    [
-                      "block",
-                      "paragraph",
-                      [
-                        [
-                          "text",
-                          "Confirma la operación: todos los datos de la unidad serán eliminados"
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
         ],
         [
-          "item",
-          null,
-          [
-            [
-              "block",
-              "paragraph",
-              [
-                [
-                  "text",
-                  ""
-                ],
-                [
-                  "span",
-                  "strong",
-                  [
-                    [
-                      "text",
-                      "Espera a que finalice"
-                    ]
-                  ]
-                ],
-                [
-                  "text",
-                  ": el proceso tomará varios minutos"
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ],
-    [
-      "heading",
-      2,
-      "resultado-y-persistencia",
-      [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
         [
-          "text",
-          "Resultado y persistencia"
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/nvme0n1",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-m",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "secure",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-wipe",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-m",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "discard",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          "\n",
+          "#24292e",
+          "#e1e4e8"
+        ],
+        [
+          "syntax",
+          "sudo",
+          "#6F42C1",
+          "#B392F0"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "driveutility-wipe",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-d",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "/dev/sdX",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-p",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "3",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-t",
+          "#005CC5",
+          "#79B8FF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "random",
+          "#032F62",
+          "#9ECBFF"
+        ],
+        [
+          "syntax",
+          " ",
+          "#24292E",
+          "#E1E4E8"
+        ],
+        [
+          "syntax",
+          "-z",
+          "#005CC5",
+          "#79B8FF"
         ]
       ]
     ],
@@ -697,7 +1469,18 @@
       [
         [
           "text",
-          "El modo de escritura realiza una escritura de imagen sin procesar: copia la estructura del ISO en todo el dispositivo de destino. No crea una partición ext4 en el espacio no utilizado, ni crea una sesión de persistencia, ni ejecuta un despliegue del Instalador de MiniOS. Las opciones de sistema de archivos mencionadas arriba aplican solo a las operaciones de la Utilidad de disco que formatean un sistema de archivos, no al esquema de particiones copiado por una escritura de ISO."
+          "Utiliza los controles de número de pasadas de sobrescritura y tamaño parcial solo para los métodos tradicionales de ceros/aleatorio. El borrado por controlador y el descarte funcionan según el comando del dispositivo y no por el número de bytes desde el host."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "herramientas-de-línea-de-comandos",
+      [
+        [
+          "text",
+          "Herramientas de línea de comandos"
         ]
       ]
     ],
@@ -707,7 +1490,264 @@
       [
         [
           "text",
-          "La persistencia solo se activa cuando una entrada de arranque o la línea de comandos del kernel la solicitan, y aún requiere un almacenamiento adecuado con permisos de escritura. Consulta "
+          "Utilidad de disco instala cuatro comandos de bajo nivel:"
+        ]
+      ]
+    ],
+    [
+      "table",
+      [
+        [
+          "table_row",
+          true,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Comando"
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Propósito"
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "driveutility-write"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Graba una imagen sin procesar o comprimida compatible en un dispositivo de bloques."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "driveutility-read"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Crea una imagen sin comprimir o comprimida a partir de un dispositivo de bloques."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "driveutility-format"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Crea almacenamiento FAT32, exFAT, NTFS o ext4 en un dispositivo."
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "table_row",
+          false,
+          [
+            [
+              "table_cell",
+              [
+                [
+                  "span",
+                  "code",
+                  [
+                    [
+                      "text",
+                      "driveutility-wipe"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "table_cell",
+              [
+                [
+                  "text",
+                  "Borra mediante métodos de controlador, descarte o sobrescritura."
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Todos los comandos destructivos deben ejecutarse solo después de verificar el dispositivo de destino exacto. Consulta sus páginas man instaladas y "
+        ],
+        [
+          "span",
+          "code",
+          [
+            [
+              "text",
+              "--help"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " para ver las opciones específicas de la versión."
+        ]
+      ]
+    ],
+    [
+      "heading",
+      2,
+      "utilidad-de-disco-frente-al-instalador-de-minios",
+      [
+        [
+          "text",
+          "Utilidad de disco frente al Instalador de MiniOS"
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Usa "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Utilidad de disco"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " cuando la operación deseada sea una acción genérica de disco: grabar imágenes sin procesar, crear imágenes de dispositivos, formatear o borrar."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Usa "
+        ],
+        [
+          "span",
+          "strong",
+          [
+            [
+              "text",
+              "Instalador de MiniOS"
+            ]
+          ]
+        ],
+        [
+          "text",
+          " cuando quieras un despliegue compatible con MiniOS, con control sobre la ubicación, opciones de sistema de archivos y arranque, selección de módulos, configuración o creación opcional de sesión en vivo."
+        ]
+      ]
+    ],
+    [
+      "block",
+      "paragraph",
+      [
+        [
+          "text",
+          "Para otras formas de poner MiniOS en un medio, consulta "
+        ],
+        [
+          "link",
+          "/installing-minios/Installation-Methods.md",
+          null,
+          [
+            [
+              "text",
+              "Métodos de instalación"
+            ]
+          ]
+        ],
+        [
+          "text",
+          ". Para guardar cambios después de iniciar, consulta "
         ],
         [
           "link",
@@ -726,23 +1766,23 @@
         ],
         [
           "link",
-          "/reference/boot-process/Persistence-Internals.md",
+          "/using-minios/Sessions-and-Persistence.md",
           null,
           [
             [
               "text",
-              "Persistencia Initrd"
+              "Sesiones y persistencia"
             ]
           ]
         ],
         [
           "text",
-          " antes de depender de los cambios guardados."
+          "."
         ]
       ]
     ]
   ],
-  "plain_text": "Utilidad de disco\nUtilidad de disco es una herramienta gráfica para grabar imágenes ISO de MiniOS en unidades USB.\nInstalación: Disponible en MiniOS por defecto; para otras distribuciones, consulta https://github.com/minios-linux/driveutility\nImportante\nAdvertencia: ¡Seleccionar un dispositivo incorrecto provocará la pérdida de datos! Revisa siempre la unidad seleccionada y haz una copia de seguridad de la información importante.\nRequisitos de la unidad\nTamaño de la unidad (para grabar MiniOS)\nConsulta la Guía de compatibilidad de hardware para ver los requisitos detallados del sistema y los tamaños de unidad recomendados.\nSistemas de archivos compatibles\nFAT32: máxima compatibilidad\nNTFS: compatibilidad con Windows\nEXT4: recomendado para Linux\nIniciar Utilidad de disco\nDesde el menú de aplicaciones:\nAbre el menú → Sistema → \"Utilidad de disco\"\nDesde la terminal:\ndriveutility\nCrear una unidad USB booteable\nSelecciona el modo \"Write\" en la ventana principal del programa\nSelecciona el archivo ISO de MiniOS:\nHaz clic en el botón \"Browse\" junto al campo \"Source\"\nBusca y selecciona el archivo MiniOS.iso descargado\nSelecciona la unidad de destino:\nElige tu unidad USB de la lista de dispositivos\nVerifica la selección por tamaño y modelo\nInicia la escritura:\nHaz clic en el botón \"Write\"\nConfirma la operación: todos los datos de la unidad serán eliminados\nEspera a que finalice: el proceso tomará varios minutos\nResultado y persistencia\nEl modo de escritura realiza una escritura de imagen sin procesar: copia la estructura del ISO en todo el dispositivo de destino. No crea una partición ext4 en el espacio no utilizado, ni crea una sesión de persistencia, ni ejecuta un despliegue del Instalador de MiniOS. Las opciones de sistema de archivos mencionadas arriba aplican solo a las operaciones de la Utilidad de disco que formatean un sistema de archivos, no al esquema de particiones copiado por una escritura de ISO.\nLa persistencia solo se activa cuando una entrada de arranque o la línea de comandos del kernel la solicitan, y aún requiere un almacenamiento adecuado con permisos de escritura. Consulta Modos de arranque y Persistencia Initrd antes de depender de los cambios guardados.",
+  "plain_text": "Utilidad de disco\nUtilidad de disco es una herramienta general de discos GTK incluida con MiniOS. Permite grabar una imagen de disco existente, crear una imagen a partir de un dispositivo físico, formatear un dispositivo completo o borrarlo. No está limitada a medios de MiniOS y no reemplaza al Instalador de MiniOS.\nÁbrela desde el menú de aplicaciones en Sistema, o ejecuta:\ndriveutility\nSeguridad\nGrabar una imagen, formatear y borrar son operaciones destructivas. Verifica el destino por dispositivo, modelo y capacidad antes de confirmar. Mantén copias de seguridad de todo lo importante y desconecta unidades extraíbles no relacionadas cuando sea posible.\nLos discos montados están ocultos por defecto. Puedes mostrarlos explícitamente, pero Utilidad de disco advierte antes de realizar acciones destructivas y el backend intenta desmontar el dispositivo seleccionado y sus particiones antes de modificarlo. Si el estado de montaje es ambiguo o algún sistema de archivos permanece montado, la operación falla en lugar de continuar sobre un sistema de archivos activo.\nGrabar una imagen\nGrabar copia una imagen byte a byte en el dispositivo seleccionado. Cuando es compatible, el backend detecta automáticamente si la imagen de entrada está comprimida.\nLos usos habituales incluyen grabar un ISO de MiniOS en un USB o SD, y restaurar una imagen de dispositivo completo creada previamente.\nPara un ISO de MiniOS, esto es una grabación de imagen sin procesar. Copia la partición y la estructura de arranque del ISO exactamente como están en la imagen. No no crea una partición adicional de datos escribible, sesión de persistencia ni realiza un despliegue gestionado con el Instalador de MiniOS.\nLa persistencia después de una grabación sin procesar depende del modo de arranque y del almacenamiento escribible que exponga la imagen resultante. Para un diseño de destino gestionado o una sesión precreada, utiliza Instalador de MiniOS.\nEjemplo CLI:\nsudo driveutility-write -s /path/to/minios.iso -t /dev/sdX\nCrear una imagen de dispositivo\nCrear imagen lee un dispositivo físico y lo guarda en un archivo de imagen. La salida puede mantenerse sin comprimir o comprimirse mientras se escribe.\nLas opciones de compresión compatibles son:\ngzip (.gz)\nbzip2 (.bz2)\nXZ (.xz)\nLZ4 (.lz4)\nZstandard (.zst) cuando se tiene instalado el soporte Python zstd necesario\nLa aplicación gráfica también puede asignar el archivo resultante al usuario del escritorio, de modo que una copia de seguridad creada como root sea utilizable de inmediato sin tener que cambiar la propiedad.\nEjemplo CLI:\nsudo driveutility-read -s /dev/sdX -t /path/to/backup.img -c zstd\nLa extensión específica de la compresión se añade automáticamente al usar la herramienta de línea de comandos.\nFormatear un dispositivo\nFormatear crea una nueva estructura de un solo sistema de archivos en el dispositivo seleccionado. Las opciones de sistema de archivos disponibles son:\nFAT32\nexFAT\nNTFS\next4\nPuedes establecer una etiqueta de volumen. Para ext4, Utilidad de disco puede asignar el directorio raíz al usuario y grupo seleccionados.\nEl formateo es independiente de la grabación de un ISO de MiniOS. Las opciones de sistema de archivos en esta página describen la operación de formateo de Utilidad de disco; no modifican la estructura del sistema de archivos incluida en una grabación ISO sin procesar.\nEjemplo CLI:\nsudo driveutility-format -d /dev/sdX -f ext4 -u 1000 -g 1000 MYDISK\nBorrar un dispositivo\nBorrar elige entre operaciones de borrado nativas del controlador, descarte/TRIM y sobrescrituras desde el host según el dispositivo seleccionado y el método solicitado.\nLos backends disponibles incluyen:\nBorrado seguro — selecciona automáticamente un método compatible con el controlador cuando está disponible.\nATA Secure Erase / Enhanced Secure Erase — se ejecuta a través de UDisks2 para discos SATA/ATA compatibles; los dispositivos congelados o no compatibles son rechazados.\nNVMe User Data Erase / Cryptographic Erase — utiliza NVMe Format NVM solo cuando el controlador informa de la capacidad solicitada.\nDescartar / descarte seguro — utiliza blkdiscard cuando el dispositivo de bloques admite descarte.\nSobrescritura con ceros — escribe ceros desde el host.\nSobrescritura aleatoria — escribe datos aleatorios la cantidad de pasadas solicitadas y puede añadir una pasada final de ceros.\nEl borrado seguro por controlador no es equivalente a sobrescribir repetidamente cada bloque lógico desde el host. Su disponibilidad depende del firmware del dispositivo, las interfaces del kernel, UDisks2, nvme-cli, y blkdiscard soporte.\nPara dispositivos NVMe, Utilidad de disco conserva el formato LBA del espacio de nombres activo, la configuración de metadatos y la configuración de información de protección al emitir Format NVM. También rechaza operaciones de controlador cuyo alcance pueda afectar a varios espacios de nombres cuando no se puede garantizar la seguridad como operación de un solo espacio de nombres.\nEjemplos:\nsudo driveutility-wipe -d /dev/nvme0n1 -m secure\nsudo driveutility-wipe -d /dev/sdX -m discard\nsudo driveutility-wipe -d /dev/sdX -p 3 -t random -z\nUtiliza los controles de número de pasadas de sobrescritura y tamaño parcial solo para los métodos tradicionales de ceros/aleatorio. El borrado por controlador y el descarte funcionan según el comando del dispositivo y no por el número de bytes desde el host.\nHerramientas de línea de comandos\nUtilidad de disco instala cuatro comandos de bajo nivel:\nComando | Propósito\ndriveutility-write | Graba una imagen sin procesar o comprimida compatible en un dispositivo de bloques.\ndriveutility-read | Crea una imagen sin comprimir o comprimida a partir de un dispositivo de bloques.\ndriveutility-format | Crea almacenamiento FAT32, exFAT, NTFS o ext4 en un dispositivo.\ndriveutility-wipe | Borra mediante métodos de controlador, descarte o sobrescritura.\nTodos los comandos destructivos deben ejecutarse solo después de verificar el dispositivo de destino exacto. Consulta sus páginas man instaladas y --help para ver las opciones específicas de la versión.\nUtilidad de disco frente al Instalador de MiniOS\nUsa Utilidad de disco cuando la operación deseada sea una acción genérica de disco: grabar imágenes sin procesar, crear imágenes de dispositivos, formatear o borrar.\nUsa Instalador de MiniOS cuando quieras un despliegue compatible con MiniOS, con control sobre la ubicación, opciones de sistema de archivos y arranque, selección de módulos, configuración o creación opcional de sesión en vivo.\nPara otras formas de poner MiniOS en un medio, consulta Métodos de instalación. Para guardar cambios después de iniciar, consulta Modos de arranque y Sesiones y persistencia.",
   "product_kind": "minios-markup-document",
   "schema_version": 1
 }
